@@ -1,0 +1,5 @@
+{
+  "python.pythonPath": "~/.python_venvs/culpa/bin/python",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true
+}
