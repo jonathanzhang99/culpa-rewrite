@@ -1,9 +1,9 @@
 import { render } from '@testing-library/react';
 import React from 'react';
 
-import Professors from 'components/Professors';
+import { ProfessorsSection } from 'components/Professors';
 
-describe('Professors Component', () => {
+describe('ProfessorsSection Component', () => {
   const testCases = [
     {
       name: 'renders no professors',
@@ -11,21 +11,21 @@ describe('Professors Component', () => {
     },
     {
       name: 'renders multiple professors',
-      messages: [
+      professors: [
         {
-          first_name: 'Jonathan',
-          last_name: 'Zhang',
+          firstName: 'Nakul',
+          lastName: 'Verma',
         },
         {
-          first_name: 'Lee',
-          last_name: 'Bollinger',
+          firstName: 'Lee',
+          lastName: 'Bollinger',
         },
       ],
     },
   ];
   testCases.forEach(({ name, professors }) => {
     test(name, () => {
-      const snapshot = render(<Professors professors={professors} />);
+      const snapshot = render(<ProfessorsSection professors={professors} />);
       expect(snapshot).toMatchSnapshot();
     });
   });

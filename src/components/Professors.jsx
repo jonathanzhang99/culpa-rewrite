@@ -14,10 +14,22 @@ const propTypes = {
   ).isRequired,
 };
 
-function ProfessorsSection(props) {
+export function ProfessorsSection(props) {
   // TODO: Implement Professor Section
   const { professors } = props;
-  return <div>{professors}</div>;
+
+  return (
+    <ul>
+      {professors.map((professor) => {
+        const { firstName, lastName } = professor;
+        return (
+          <li key={`${firstName}_${lastName}`}>
+            {firstName}, {lastName}
+          </li>
+        );
+      })}
+    </ul>
+  );
 }
 
 ProfessorsSection.propTypes = propTypes;

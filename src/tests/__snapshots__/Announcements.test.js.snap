@@ -5,15 +5,11 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <div>
-        page is loading
-      </div>
+      <div />
     </div>
   </body>,
   "container": <div>
-    <div>
-      page is loading
-    </div>
+    <div />
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],
@@ -75,13 +71,15 @@ Object {
   "baseElement": <body>
     <div>
       <div>
-        page is loading
+        temporary1
+        temporary2
       </div>
     </div>
   </body>,
   "container": <div>
     <div>
-      page is loading
+      temporary1
+      temporary2
     </div>
   </div>,
   "debug": [Function],

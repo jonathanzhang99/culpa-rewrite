@@ -9,7 +9,7 @@ const propTypes = {
   messages: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
-function AnnouncementsSection(props) {
+export function AnnouncementsSection(props) {
   // TODO: Implement Announcements
   const { messages } = props;
   return <div>{messages}</div>;

@@ -1,19 +1,37 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Professors Component renders multiple professors 1`] = `
+exports[`ProfessorsSection Component renders multiple professors 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <div>
-        page is loading
-      </div>
+      <ul>
+        <li>
+          Nakul
+          , 
+          Verma
+        </li>
+        <li>
+          Lee
+          , 
+          Bollinger
+        </li>
+      </ul>
     </div>
   </body>,
   "container": <div>
-    <div>
-      page is loading
-    </div>
+    <ul>
+      <li>
+        Nakul
+        , 
+        Verma
+      </li>
+      <li>
+        Lee
+        , 
+        Bollinger
+      </li>
+    </ul>
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],
@@ -69,20 +87,24 @@ Object {
 }
 `;
 
-exports[`Professors Component renders no professors 1`] = `
+exports[`ProfessorsSection Component renders no professors 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <div>
-        page is loading
-      </div>
+      <ul>
+        <li>
+          , 
+        </li>
+      </ul>
     </div>
   </body>,
   "container": <div>
-    <div>
-      page is loading
-    </div>
+    <ul>
+      <li>
+        , 
+      </li>
+    </ul>
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],

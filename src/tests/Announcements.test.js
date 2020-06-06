@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react';
 import React from 'react';
 
-import Announcements from 'components/Announcements';
+import { AnnouncementsSection } from 'components/Announcements';
 
 describe('Announcements Component', () => {
   const testCases = [
@@ -16,7 +16,7 @@ describe('Announcements Component', () => {
   ];
   testCases.forEach(({ name, messages }) => {
     test(name, () => {
-      const snapshot = render(<Announcements messages={messages} />);
+      const snapshot = render(<AnnouncementsSection messages={messages} />);
       expect(snapshot).toMatchSnapshot();
     });
   });
