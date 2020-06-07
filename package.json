@@ -10,7 +10,7 @@
     "@testing-library/react": "9.5.0",
     "@testing-library/user-event": "7.2.1",
     "eslint": "6.8.0",
-    "eslint-config-prettier": "f6.11.0",
+    "eslint-config-prettier": "6.11.0",
     "eslint-plugin-import": "2.20.1",
     "eslint-plugin-jsx-a11y": "6.2.3",
     "eslint-plugin-react": "7.19.0",
@@ -28,6 +28,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "test-py": "flake8 && nose2",
     "eject": "react-scripts eject",
     "lint": "eslint src --ext .js --ext .jsx",
     "format": "prettier --write \"**/*.+(js|jsx|json|css)\""
@@ -82,7 +83,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-push": "yarn lint && yarn format"
+      "pre-push": "yarn lint && yarn format && flake8"
     }
   },
   "browserslist": {

@@ -1,0 +1,14 @@
+matrix:
+  include:
+    - language: python
+      python: 3.7.7
+      install:
+        - pip install -r requirements.txt
+      script:
+        - yarn test-py
+
+    - language: nodejs
+      nodejs: 14.3.0
+      script:
+        - yarn test
+        - yarn lint
