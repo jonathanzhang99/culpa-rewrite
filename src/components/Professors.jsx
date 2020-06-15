@@ -1,9 +1,9 @@
-import PropTypes from 'prop-types';
-import React from 'react';
+import PropTypes from "prop-types";
+import React from "react";
 
-import ErrorComponent from 'components/common/ErrorComponent';
-import LoadingComponent from 'components/common/LoadingComponent';
-import useDataFetch from 'components/common/useDataFetch';
+import ErrorComponent from "components/common/ErrorComponent";
+import LoadingComponent from "components/common/LoadingComponent";
+import useDataFetch from "components/common/useDataFetch";
 
 const propTypes = {
   professors: PropTypes.arrayOf(
@@ -39,7 +39,7 @@ export default function Professors() {
     data: { professors },
     isLoading,
     isError,
-  } = useDataFetch('/api/professors/', {
+  } = useDataFetch("/api/professors/all", {
     professors: [],
   });
 

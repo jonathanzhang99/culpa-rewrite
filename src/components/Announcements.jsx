@@ -1,9 +1,9 @@
-import PropTypes from 'prop-types';
-import React from 'react';
+import PropTypes from "prop-types";
+import React from "react";
 
-import ErrorComponent from 'components/common/ErrorComponent';
-import LoadingComponent from 'components/common/LoadingComponent';
-import useDataFetch from 'components/common/useDataFetch';
+import ErrorComponent from "components/common/ErrorComponent";
+import LoadingComponent from "components/common/LoadingComponent";
+import useDataFetch from "components/common/useDataFetch";
 
 const propTypes = {
   messages: PropTypes.arrayOf(PropTypes.string).isRequired,
@@ -22,7 +22,7 @@ export default function Announcements() {
     data: { messages },
     isLoading,
     isError,
-  } = useDataFetch('/api/announcements/', {
+  } = useDataFetch("/api/announcements/all", {
     messages: [],
   });
 

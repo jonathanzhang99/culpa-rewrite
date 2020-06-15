@@ -1,24 +1,24 @@
-import { render } from '@testing-library/react';
-import React from 'react';
+import { render } from "@testing-library/react";
+import React from "react";
 
-import { ProfessorsSection } from 'components/Professors';
+import { ProfessorsSection } from "components/Professors";
 
-describe('ProfessorsSection Component', () => {
+describe("ProfessorsSection Component", () => {
   const testCases = [
     {
-      name: 'renders no professors',
+      name: "renders no professors",
       professors: [{}],
     },
     {
-      name: 'renders multiple professors',
+      name: "renders multiple professors",
       professors: [
         {
-          firstName: 'Nakul',
-          lastName: 'Verma',
+          firstName: "Nakul",
+          lastName: "Verma",
         },
         {
-          firstName: 'Lee',
-          lastName: 'Bollinger',
+          firstName: "Lee",
+          lastName: "Bollinger",
         },
       ],
     },
