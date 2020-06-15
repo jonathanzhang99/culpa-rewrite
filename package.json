@@ -19,16 +19,18 @@
     "prop-types": "15.7.2",
     "react": "16.13.1",
     "react-dom": "16.13.1",
+    "react-hook-form": "5.7.2",
     "react-router-dom": "5.2.0",
     "react-scripts": "3.4.1",
     "testing-library": "0.0.2",
     "typescript": "3.2.1"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start-frontend": "react-scripts start",
+    "start-backend": "export FLASK_APP=api/app.py && flask run",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "test-py": "flake8 && nose2",
+    "test-frontend": "react-scripts test",
+    "test-backend": "flake8 && nose2",
     "eject": "react-scripts eject",
     "lint": "eslint src --ext .js --ext .jsx",
     "format": "prettier --write \"**/*.+(js|jsx|json|css)\""

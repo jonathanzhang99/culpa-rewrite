@@ -11,15 +11,15 @@ yarn install --frozen-lockfile
 ## Testing
 
 ```
-yarn test
+yarn test-frontend
 AND
-nose2
+yarn test-backend
 ```
 
 ## Development
 
 ```
-yarn start
+yarn start-frontend
 AND
-export FLASK_APP=api/app.py && flask run
+yarn start-backend
 ```

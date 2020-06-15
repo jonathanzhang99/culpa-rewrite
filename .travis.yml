@@ -7,10 +7,10 @@ jobs:
       install:
         - pip install -r requirements.txt
       script:
-        - yarn test-py
+        - yarn test-backend
 
     - language: node_js
       node_js: 14.3.0
       script:
-        - yarn test
+        - yarn test-frontend
         - yarn lint
