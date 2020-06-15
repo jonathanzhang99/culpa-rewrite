@@ -11,5 +11,5 @@ class ProfessorsTest(BaseTest):
                 }
             ]
         }
-        res = self.app.post('/api/professors/')
+        res = self.app.post('/api/professors/all')
         self.assertEqual(expected_res, res.json)
