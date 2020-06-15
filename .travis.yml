@@ -1,4 +1,6 @@
-matrix:
+dist: xenial
+os: linux
+jobs:
   include:
     - language: python
       python: 3.7.7
@@ -7,8 +9,8 @@ matrix:
       script:
         - yarn test-py
 
-    - language: nodejs
-      nodejs: 14.3.0
+    - language: node_js
+      node_js: 14.3.0
       script:
         - yarn test
         - yarn lint
