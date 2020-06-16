@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.com/jonathanzhang99/culpa-rewrite.svg?token=9pakxssWTQ9rzoc91N3M&branch=master)](https://travis-ci.com/jonathanzhang99/culpa-rewrite)
 
-Queer Eye but the Fab 5 are bored Columbia students with time in hand and the desparate client is [CULPA](culpa.info).
+Queer Eye but the Fab 5 are bored Columbia students with time in hand and the desparate client is [CULPA](http://culpa.info).
 
 ## Development Setup Instructions
 
