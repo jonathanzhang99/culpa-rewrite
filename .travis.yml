@@ -5,7 +5,8 @@ jobs:
     - language: python
       python: 3.7.7
       install:
-        - pip install -r requirements.txt
+        - pip install pipenv
+        - pipenv install --python 3.7.7
       script:
         - yarn test-backend
 
@@ -13,4 +14,4 @@ jobs:
       node_js: 14.3.0
       script:
         - yarn test-frontend
-        - yarn lint
+        - yarn lint-js

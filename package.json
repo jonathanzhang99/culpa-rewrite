@@ -30,9 +30,10 @@
     "start-backend": "export FLASK_APP=api/app.py && pipenv run flask",
     "build": "react-scripts build",
     "test-frontend": "react-scripts test",
-    "test-backend": "flake8 && pipenv run test",
+    "test-backend": "pipenv run flake8 && pipenv run test",
     "eject": "react-scripts eject",
-    "lint": "eslint src --ext .js --ext .jsx",
+    "lint-js": "eslint src --ext .js --ext .jsx",
+    "lint-py": "pipenv run flake8",
     "format": "prettier --write \"**/*.+(js|jsx|json|css)\""
   },
   "eslintConfig": {
@@ -85,7 +86,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-push": "yarn lint && yarn format && flake8"
+      "pre-push": "yarn lint-js && yarn lint-py"
     }
   },
   "browserslist": {
