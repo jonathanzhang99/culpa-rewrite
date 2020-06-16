@@ -11,14 +11,14 @@ The following instructions are for linux/macos operating systems. If you are on 
 1. Install [brew](https://brew.sh)
 2. Install [node](https://nodejs.org/en/) and [yarn](https://classic.yarnpkg.com/en/docs/install/#mac-stable)
 3. Verify or install python 3.7 (there are multiple ways to do this but [pyenv](https://github.com/pyenv/pyenv) is recommended).
-4. Install dependencies in app root directory
+4. Install python and react dependencies in the app root directory (where `Pipfile` and `node_modules/` are located).
 
    ```
-   pipenv install # installs python dependencies
-   yarn install # installs react/js dependencies
+   pipenv install
+   yarn install
    ```
 
-5. Verify success by running the commands in the [Testing Section](#how-to-test) and [Local Server Setup](#how-to-run-local-instance)
+5. Verify success by running the commands in the [Testing Section](#how-to-test) and [Local Server Setup](#how-to-run-locally)
 
 ## How to test
 
