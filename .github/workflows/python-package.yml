@@ -6,7 +6,7 @@ name: Python Backend CI
 on: [push, pull_request]
 
 jobs:
-  build:
+  python-backend-build:
     runs-on: ubuntu-latest
     strategy:
       matrix:

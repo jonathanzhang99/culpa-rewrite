@@ -6,7 +6,7 @@ name: React Frontend CI
 on: [push, pull_request]
 
 jobs:
-  build:
+  react-frontend-build:
     runs-on: ubuntu-latest
 
     steps:
