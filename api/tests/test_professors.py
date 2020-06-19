@@ -2,7 +2,7 @@ from api.tests.test_base import BaseTest
 
 
 class ProfessorsTest(BaseTest):
-    def test_professors(self):
+    def test_retrieve_all_professors(self):
         expected_res = {
             'professors': [
                 {

@@ -1,13 +1,13 @@
 import unittest
 
-from api.app import app
+from api.app import create_app
+from api.config import configs
 
 
 class BaseTest(unittest.TestCase):
 
     def setUp(self):
-        app.config['TESTING'] = True
-        app.config['DEBUG'] = False
+        app = create_app(configs['testing'])
         self.app = app.test_client()
 
     def tearDown(self):
