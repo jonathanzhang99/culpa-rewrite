@@ -1,6 +1,6 @@
 # CULPA rewrite
 
-[![Build Status](https://travis-ci.com/jonathanzhang99/culpa-rewrite.svg?token=9pakxssWTQ9rzoc91N3M&branch=master)](https://travis-ci.com/jonathanzhang99/culpa-rewrite)
+![React CI](https://github.com/jonathanzhang99/culpa-rewrite/workflows/React%20Frontend%20CI/badge.svg) ![Python CI](https://github.com/jonathanzhang99/culpa-rewrite/workflows/Python%20Backend%20CI/badge.svg)
 
 Queer Eye but the Fab 5 are bored Columbia students with time in hand and the desparate client is [CULPA](http://culpa.info).
 
