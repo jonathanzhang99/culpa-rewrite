@@ -11,7 +11,8 @@ from api.data import db
 def create_app(config=None):
     app = Flask(__name__)
 
-    # set the configuration using the FLASK_ENV environment variable
+    # set the configuration using the FLASK_ENV environment variable if
+    # config not provided
     app.config.from_object(config or configs[app.env])
 
     # register all blueprints here
