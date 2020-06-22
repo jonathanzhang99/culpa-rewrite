@@ -87,8 +87,3 @@ CREATE TABLE `flags` (
 FOREIGN KEY (`review_id`) REFERENCES `review` (`review_id`),
 FOREIGN KEY (`users_id`) REFERENCES `users` (`users_id`)
 );
-
-
-
-
-

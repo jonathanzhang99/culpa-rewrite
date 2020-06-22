@@ -8,6 +8,9 @@ on: [push, pull_request]
 jobs:
   python-backend-build:
     runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:8.0
     strategy:
       matrix:
         python-version: [3.7, 3.8]
