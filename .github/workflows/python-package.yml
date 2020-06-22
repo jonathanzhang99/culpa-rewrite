@@ -11,6 +11,8 @@ jobs:
     services:
       mysql:
         image: mysql:8.0
+        port:
+          - 3306:3306
     strategy:
       matrix:
         python-version: [3.7, 3.8]
