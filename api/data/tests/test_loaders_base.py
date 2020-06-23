@@ -24,9 +24,7 @@ class LoadersBaseTest(unittest.TestCase):
         with app.app_context():
             conn = db.get_db()
 
-            conn.cursor().execute(
-                f'DROP DATABASE IF EXISTS {self.MYSQL_DATABASE_DB}'
-            )
+            # Test database should not exist
             conn.cursor().execute(f'CREATE DATABASE {self.MYSQL_DATABASE_DB}')
             conn.select_db(self.MYSQL_DATABASE_DB)
             with open(self.SCHEMA_PATH, 'r') as f:
