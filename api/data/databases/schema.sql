@@ -6,7 +6,7 @@ CREATE TABLE `departments` (
 
 CREATE TABLE `announcements` (
   `announcements_id` INT NOT NULL AUTO_INCREMENT,
-  `content` text CHARACTER SET utf8,
+  `content` text CHARACTER SET UTF8MB4,
   PRIMARY KEY (`announcements_id`)
 );
 
@@ -20,7 +20,7 @@ CREATE TABLE `courses` (
 
 CREATE TABLE `course_instance` (
   `instance_id` INT NOT NULL AUTO_INCREMENT,
-  `year` YEAR(4) NULL,
+  `year` YEAR NULL,
   `semester` INT NULL,
   `courses_id` INT NULL,
   PRIMARY KEY (`instance_id`),
@@ -87,8 +87,3 @@ CREATE TABLE `flags` (
 FOREIGN KEY (`review_id`) REFERENCES `review` (`review_id`),
 FOREIGN KEY (`users_id`) REFERENCES `users` (`users_id`)
 );
-
-
-
-
-

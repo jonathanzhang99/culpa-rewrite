@@ -1,8 +1,0 @@
-{
-  "python.pythonPath": "~/.python_venvs/culpa-rewrite-n_XuCBMT/bin/python",
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.formatOnSave": true,
-  "python.linting.pylintEnabled": false,
-  "python.linting.flake8Enabled": true,
-  "python.linting.enabled": true
-}
