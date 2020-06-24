@@ -122,3 +122,6 @@ Each command only starts the respective server and you will need both servers ru
 
 If you have any feedback for the installation please let us know! This is still a work in progress.
 
+
+Made by:
+- Jonathan
