@@ -4,6 +4,7 @@ import unittest
 from api.app import create_app
 from api.config import configs
 from api.data import db
+from api.utils.decorators import login_required
 
 
 class BaseTest(unittest.TestCase):
@@ -75,3 +76,21 @@ class LoadersBaseTest(unittest.TestCase):
             f'DROP DATABASE IF EXISTS {self.MYSQL_DATABASE_DB}'
         )
         self.app_ctx.pop()
+
+
+class AuthBaseTest(unittest.TestCase):
+    def setUp(self):
+        app = create_app(configs['testing'])
+
+        self.url = '/protected'
+        self.secret = app.config['SECRET_KEY']
+
+        @app.route(self.url, methods=['POST'])
+        @login_required
+        def protected():
+            return {'msg': 'success!'}
+
+        self.app = app.test_client()
+
+    def tearDown(self):
+        pass
