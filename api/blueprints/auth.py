@@ -21,9 +21,10 @@ def login():
     if not username or not password:
         return {'error': 'Missing login credentials'}, 400
 
-    user_data = load_user(username)[0]
+    user_data = load_user(username)
 
-    if not user_data or not check_password_hash(user_data['password'],
+    # check if user exists and is valid
+    if not user_data or not check_password_hash(user_data[0]['password'],
                                                 password):
         return {'error': 'Incorrect login credentials'}, 400
 

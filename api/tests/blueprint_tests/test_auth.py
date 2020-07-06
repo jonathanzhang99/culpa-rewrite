@@ -46,6 +46,21 @@ class AuthTest(BaseTest):
         self.assertEqual(400, res.status_code)
         self.assertEqual(expected_res, res.json)
 
+    def test_login_with_nonexistent_credentials(self,
+                                                mock_create_token,
+                                                mock_load_user):
+        mock_load_user.return_value = []
+        request_data = {
+            'username': 'h@cker123',
+            'password': 'downwithculpa'
+        }
+
+        expected_res = {'error': 'Incorrect login credentials'}
+
+        res = self.app.post('/api/auth/login', json=request_data)
+        self.assertEqual(400, res.status_code)
+        self.assertEqual(expected_res, res.json)
+
     def test_login_with_missing_credentials(self,
                                             mock_create_token,
                                             mock_load_user):
