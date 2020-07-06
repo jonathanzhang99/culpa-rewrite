@@ -5,6 +5,24 @@ import jwt
 
 
 def create_token(username, secret, expires_delta, algorithm):
+    '''
+    Creates a JWT token for user authentication in the front end.
+    All arguments required.
+
+    :param username: the username that we want to store in the token.
+                     This should be a unique username returned by a
+                     function in users_loaders.py.
+    :param secret: A secret to be used to generate tokens. Note that
+                   this function is NOT tied to an app_context since
+                   secret is an input.
+    :param expires_delta: A `datetime.timedelta` object that specifies
+                          the time interval until the token expires. A
+                          value of `False` or `None` specifies that the
+                          token will never expire.
+    :param algorithm: A string denoting which algorithm to use. Config
+                      default uses `HS256`, a standard symmetric key
+                      encryption scheme.
+    '''
     uid = str(uuid.uuid4())
     now = datetime.datetime.utcnow()
 
