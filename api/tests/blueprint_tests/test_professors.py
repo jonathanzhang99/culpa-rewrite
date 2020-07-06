@@ -1,9 +1,9 @@
 from unittest import mock
-from api.tests.test_base import BaseTest
+from api.tests import BaseTest
 
 
 class ProfessorsTest(BaseTest):
-    @mock.patch('api.data.professors_loader.get_all_professors')
+    @mock.patch('api.blueprints.professors.get_all_professors')
     def test_retrieve_all_professors(self, mock_professors):
         mock_professors.return_value = [{
             'professors_id': 1,
@@ -29,7 +29,7 @@ class ProfessorsTest(BaseTest):
         res = self.app.post('/api/professors/all')
         self.assertEqual(expected_res, res.json)
 
-    @mock.patch('api.data.professors_loader.get_all_professors')
+    @mock.patch('api.blueprints.professors.get_all_professors')
     def test_retrieve_all_professors_empty(self, mock_professors):
         mock_professors.return_value = []
         expected_res = {
