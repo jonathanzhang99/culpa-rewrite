@@ -21,6 +21,7 @@ Werkzeug = "==1.0.1"
 pymysql = "==0.9.3"
 pypika = "*"
 autopep8 = "*"
+pyjwt = "*"
 
 [requires]
 python_version = "3.7"
