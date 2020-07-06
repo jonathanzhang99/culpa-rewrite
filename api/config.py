@@ -1,5 +1,9 @@
 class BaseConfig():
 
+    # Authorization Options
+    TOKEN_EXPIRES_DELTA = 3600
+    TOKEN_GEN_ALGORITHM = 'HS256'
+
     # MySQL Configuration Options
     MYSQL_DATABASE_HOST = 'localhost'
     MYSQL_DATABASE_PORT = 3306
@@ -17,10 +21,12 @@ class ProductionConfig(BaseConfig):
 
 
 class DevelopmentConfig(BaseConfig):
+    SECRET_KEY = 'culpa_development'
     DEBUG = True
 
 
 class TestingConfig(BaseConfig):
+    SECRET_KEY = 'culpa_testing'
     TESTING = True
     MYSQL_DATABASE_DB = None
 
