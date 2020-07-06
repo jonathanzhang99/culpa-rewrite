@@ -7,12 +7,20 @@ from api.data import db
 
 
 class BaseTest(unittest.TestCase):
+    '''
+    This Test Class should be used for most blueprints tests. It simply sets up
+    a testing instantiation of the app and gives tests access to the
+    test_client.
+    '''
 
     def setUp(self):
         app = create_app(configs['testing'])
         self.app = app.test_client()
 
     def tearDown(self):
+        '''
+        Does nothing since the app context will shut down automatically.
+        '''
         pass
 
 
