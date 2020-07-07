@@ -1,4 +1,3 @@
-JINWOO!!
 # CULPA rewrite
 
 ![React CI](https://github.com/jonathanzhang99/culpa-rewrite/workflows/React%20Frontend%20CI/badge.svg) ![Python CI](https://github.com/jonathanzhang99/culpa-rewrite/workflows/Python%20Backend%20CI/badge.svg)
