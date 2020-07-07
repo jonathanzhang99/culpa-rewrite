@@ -1,4 +1,3 @@
-JINWOO!!
 # CULPA rewrite
 
 ![React CI](https://github.com/jonathanzhang99/culpa-rewrite/workflows/React%20Frontend%20CI/badge.svg) ![Python CI](https://github.com/jonathanzhang99/culpa-rewrite/workflows/Python%20Backend%20CI/badge.svg)
@@ -102,7 +101,7 @@ You can also use the following to lint your code (necessary before pushing to ma
 
 ```
 yarn lint-js
-yarn lint-python
+yarn lint-py
 ```
 
 If you find that you run into many javascript formatting problems, run the following to fix common errors:
