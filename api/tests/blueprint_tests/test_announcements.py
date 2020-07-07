@@ -1,4 +1,4 @@
-from api.tests.test_base import BaseTest
+from api.tests import BaseTest
 
 
 class AnnouncementsTest(BaseTest):
