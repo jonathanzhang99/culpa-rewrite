@@ -1,6 +1,6 @@
 from api.data import db
-from api.data.tests.test_loaders_base import LoadersBaseTest
 from api.data.professors_loader import get_all_professors
+from api.tests import LoadersBaseTest
 
 
 class ProfessorsLoadersTest(LoadersBaseTest):
