@@ -43,7 +43,11 @@ class AuthTest(BaseTest):
         expected_res = {'error': 'Incorrect login credentials'}
 
         res = self.app.post('/api/auth/login', json=request_data)
+<<<<<<< HEAD
         self.assertEqual(401, res.status_code)
+=======
+        self.assertEqual(400, res.status_code)
+>>>>>>> [Auth Routes PART 1] Moved Tests to Separate Folder (#9)
         self.assertEqual(expected_res, res.json)
 
     def test_login_with_nonexistent_credentials(self,
@@ -58,7 +62,11 @@ class AuthTest(BaseTest):
         expected_res = {'error': 'Incorrect login credentials'}
 
         res = self.app.post('/api/auth/login', json=request_data)
+<<<<<<< HEAD
         self.assertEqual(401, res.status_code)
+=======
+        self.assertEqual(400, res.status_code)
+>>>>>>> [Auth Routes PART 1] Moved Tests to Separate Folder (#9)
         self.assertEqual(expected_res, res.json)
 
     def test_login_with_missing_credentials(self,
@@ -71,5 +79,9 @@ class AuthTest(BaseTest):
         expected_res = {'error': 'Missing login credentials'}
 
         res = self.app.post('/api/auth/login', json=request_data)
+<<<<<<< HEAD
         self.assertEqual(401, res.status_code)
+=======
+        self.assertEqual(400, res.status_code)
+>>>>>>> [Auth Routes PART 1] Moved Tests to Separate Folder (#9)
         self.assertEqual(expected_res, res.json)
