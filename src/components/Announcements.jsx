@@ -5,6 +5,7 @@ import ErrorComponent from "components/common/ErrorComponent";
 import LoadingComponent from "components/common/LoadingComponent";
 import Sidebar from "components/common/Sidebar";
 import useDataFetch from "components/common/useDataFetch";
+import Sidebar from "components/common/Sidebar";
 
 const propTypes = {
   messages: PropTypes.arrayOf(PropTypes.string).isRequired,
