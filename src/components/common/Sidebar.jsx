@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 export default class Sidebar extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {isToggleOn: false};
+    // this.state = {isToggleOn: false};
   }
 
   render() {
