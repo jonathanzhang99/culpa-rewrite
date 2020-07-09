@@ -1,47 +1,10 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-import React from 'react';
-import {Link} from 'react-router-dom';
-
-<<<<<<< HEAD
-export default function Sidebar() {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {isToggleOn: false};
-  // }
-
-    return (
-      <div>
-        <p>Sidebar</p>
-        <ul>
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/professors">Professors</Link></li>
-          <li><Link to="/review">Reviews</Link></li>
-        </ul>
-      </div>
-    );
-}
-=======
 /* Adapted from https://react.semantic-ui.com/modules/sidebar/#states-dimmed */
 // import { useBooleanKnob } from '@stardust-ui/docs-components'    // issue with prettier version (babel/parser issue)
 import React from 'react'
 import { Header, Icon, Image, Menu, Segment, Sidebar } from 'semantic-ui-react'
-=======
-import React from 'react';
 import {Link} from 'react-router-dom';
->>>>>>> Implement rudimentary sidebar as ul
 
-export default class Sidebar extends React.Component {
-=======
-export default function Sidebar(props) {
->>>>>>> Turn the component class into a function
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {isToggleOn: false};
-  // }
-
-<<<<<<< HEAD
-<<<<<<< HEAD
+export default function Sidebar() {
   return (
     <Sidebar.Pushable as={Segment}>
       <Sidebar
@@ -79,25 +42,3 @@ export default function Sidebar(props) {
 }
 
 export default DimmingSidebar
->>>>>>> First version adapted from sidebar example
-=======
-  render() {
-=======
->>>>>>> Turn the component class into a function
-    return (
-      <div>
-        <p>Sidebar</p>
-        <ul>
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/professors">Professors</Link></li>
-          <li><Link to="/review">Reviews</Link></li>
-        </ul>
-      </div>
-    );
-<<<<<<< HEAD
-  }
-}
->>>>>>> Implement rudimentary sidebar as ul
-=======
-}
->>>>>>> Turn the component class into a function
