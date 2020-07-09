@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-export default function Sidebar(props) {
+export default function Sidebar() {
   // constructor(props) {
   //   super(props);
   //   this.state = {isToggleOn: false};
