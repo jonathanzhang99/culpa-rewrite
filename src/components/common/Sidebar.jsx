@@ -31,10 +31,10 @@ import {Link} from 'react-router-dom';
 >>>>>>> Implement rudimentary sidebar as ul
 
 export default class Sidebar extends React.Component {
-  constructor(props) {
-    super(props);
-    // this.state = {isToggleOn: false};
-  }
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {isToggleOn: false};
+  // }
 
 <<<<<<< HEAD
   return (
