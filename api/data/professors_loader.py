@@ -7,6 +7,10 @@ from api.data.common import professors
 def get_all_professors():
     cur = db.get_cursor()
     query = Query.from_(professors) \
-        .select('professors_id', 'first_name', 'last_name').get_sql()
+        .select(
+            professors.professors_id,
+            professors.first_name,
+            professors.last_name
+        ).get_sql()
     cur.execute(query)
     return cur.fetchall()
