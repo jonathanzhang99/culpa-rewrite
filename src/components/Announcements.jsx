@@ -3,9 +3,13 @@ import React from "react";
 
 import ErrorComponent from "components/common/ErrorComponent";
 import LoadingComponent from "components/common/LoadingComponent";
+<<<<<<< HEAD
 import Sidebar from "components/common/Sidebar";
 import useDataFetch from "components/common/useDataFetch";
+=======
+>>>>>>> Fix import and comment out isToggleOn
 import Sidebar from "components/common/Sidebar";
+import useDataFetch from "components/common/useDataFetch";
 
 const propTypes = {
   messages: PropTypes.arrayOf(PropTypes.string).isRequired,
