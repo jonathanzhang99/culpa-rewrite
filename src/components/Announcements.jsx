@@ -3,8 +3,8 @@ import React from "react";
 
 import ErrorComponent from "components/common/ErrorComponent";
 import LoadingComponent from "components/common/LoadingComponent";
-import useDataFetch from "components/common/useDataFetch";
 import Sidebar from "components/common/Sidebar";
+import useDataFetch from "components/common/useDataFetch";
 
 const propTypes = {
   messages: PropTypes.arrayOf(PropTypes.string).isRequired,
