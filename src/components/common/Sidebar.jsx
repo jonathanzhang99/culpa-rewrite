@@ -3,6 +3,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
+<<<<<<< HEAD
 export default function Sidebar() {
   // constructor(props) {
   //   super(props);
@@ -31,11 +32,15 @@ import {Link} from 'react-router-dom';
 >>>>>>> Implement rudimentary sidebar as ul
 
 export default class Sidebar extends React.Component {
+=======
+export default function Sidebar(props) {
+>>>>>>> Turn the component class into a function
   // constructor(props) {
   //   super(props);
   //   this.state = {isToggleOn: false};
   // }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
   return (
     <Sidebar.Pushable as={Segment}>
@@ -77,6 +82,8 @@ export default DimmingSidebar
 >>>>>>> First version adapted from sidebar example
 =======
   render() {
+=======
+>>>>>>> Turn the component class into a function
     return (
       <div>
         <p>Sidebar</p>
@@ -87,6 +94,10 @@ export default DimmingSidebar
         </ul>
       </div>
     );
+<<<<<<< HEAD
   }
 }
 >>>>>>> Implement rudimentary sidebar as ul
+=======
+}
+>>>>>>> Turn the component class into a function
