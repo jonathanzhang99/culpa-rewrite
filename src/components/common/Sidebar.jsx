@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import React from 'react';
 import {Link} from 'react-router-dom';
 
@@ -24,10 +25,18 @@ export default function Sidebar() {
 // import { useBooleanKnob } from '@stardust-ui/docs-components'    // issue with prettier version (babel/parser issue)
 import React from 'react'
 import { Header, Icon, Image, Menu, Segment, Sidebar } from 'semantic-ui-react'
+=======
+import React from 'react';
+import {Link} from 'react-router-dom';
+>>>>>>> Implement rudimentary sidebar as ul
 
-const DimmingSidebar = () => {
-//   const [visible, setVisible] = useBooleanKnob({ name: 'visible' })
+export default class Sidebar extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {isToggleOn: false};
+  }
 
+<<<<<<< HEAD
   return (
     <Sidebar.Pushable as={Segment}>
       <Sidebar
@@ -66,3 +75,18 @@ const DimmingSidebar = () => {
 
 export default DimmingSidebar
 >>>>>>> First version adapted from sidebar example
+=======
+  render() {
+    return (
+      <div>
+        <p>Sidebar</p>
+        <ul>
+          <li><Link to="/">Home</Link></li>
+          <li><Link to="/professors">Professors</Link></li>
+          <li><Link to="/review">Reviews</Link></li>
+        </ul>
+      </div>
+    );
+  }
+}
+>>>>>>> Implement rudimentary sidebar as ul
