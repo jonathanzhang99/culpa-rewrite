@@ -1,13 +1,12 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-export default class Sidebar extends React.Component {
+export default function Sidebar(props) {
   // constructor(props) {
   //   super(props);
   //   this.state = {isToggleOn: false};
   // }
 
-  render() {
     return (
       <div>
         <p>Sidebar</p>
@@ -18,5 +17,4 @@ export default class Sidebar extends React.Component {
         </ul>
       </div>
     );
-  }
 }
