@@ -17,7 +17,9 @@ function App() {
             <Professors />
           </Route>
           <Route path="/">
-            <Announcements />
+            <div>
+              <h1>Welcome to CULPA: Temporary header</h1>
+            </div>
           </Route>
         </Switch>
       </Router>
