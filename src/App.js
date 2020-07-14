@@ -1,7 +1,6 @@
 import React from "react";
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 
-import Announcements from "components/Announcements";
 import Professors from "components/Professors";
 import ReviewForm from "components/Review";
 
