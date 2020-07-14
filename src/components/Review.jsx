@@ -1,9 +1,9 @@
 import React from "react";
 
 import Form from "components/common/Form";
-import { Submit, Input } from "components/common/Inputs";
+import { Submit, TextInput } from "components/common/Inputs";
 
-function onSubmitForm(url) {
+function onSubmitReview(url) {
   return async (data) => {
     const response = await fetch(url, {
       method: "POST",
@@ -12,15 +12,23 @@ function onSubmitForm(url) {
       },
       body: data,
     });
-    const result = await response.json();
-    window.location = `reviews/${result.id}`;
+    try {
+      const result = await response.json();
+
+      if (result.error) {
+        return result.error;
+      }
+    } catch (err) {
+      return err;
+    }
+    return null;
   };
 }
 
 export default function ReviewForm() {
   return (
-    <Form onSubmit={onSubmitForm("/api/review/submit")}>
-      <Input
+    <Form onSubmit={onSubmitReview("/api/review/submit")}>
+      <TextInput
         name="review"
         required={{ value: true, message: "Write something!" }}
       />
