@@ -2,7 +2,6 @@ import React from "react";
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import { Container } from "semantic-ui-react";
 
-<<<<<<< HEAD
 import { AuthProvider, ProtectedRoute } from "components/common/Authentication";
 import ReviewForm from "components/CreateReviewPage";
 import Login from "components/LoginPage";
@@ -38,31 +37,6 @@ function App() {
         </Router>
       </AuthProvider>
     </Container>
-=======
-import Announcements from "components/Announcements";
-import Professors from "components/Professors";
-import ReviewForm from "components/Review";
-import NavigationBar from "components/NavigationBar";
-
-function App() {
-  return (
-    <div>
-      <NavigationBar />
-      <Router>
-        <Switch>
-          <Route path="/review">
-            <ReviewForm />
-          </Route>
-          <Route path="/professors">
-            <Professors />
-          </Route>
-          <Route path="/">
-            <Announcements />
-          </Route>
-        </Switch>
-      </Router>
-    </div>
->>>>>>> Add unstyled navbar
   );
 }
 
