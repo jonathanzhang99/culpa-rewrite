@@ -3,7 +3,7 @@ import React from "react";
 import { MemoryRouter } from "react-router-dom";
 
 import { AuthContext } from "components/common/Authentication";
-import Login from "components/Login";
+import Login from "components/LoginPage";
 
 describe("Login Component Tests", () => {
   const loginSuccess = jest.fn(() => {

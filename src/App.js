@@ -3,9 +3,9 @@ import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import { Container } from "semantic-ui-react";
 
 import { AuthProvider, ProtectedRoute } from "components/common/Authentication";
-import Login from "components/Login";
-import Professors from "components/Professors";
-import ReviewForm from "components/Review";
+import ReviewForm from "components/CreateReviewPage";
+import Login from "components/LoginPage";
+import Professors from "components/ProfessorsPage";
 
 function App() {
   return (
