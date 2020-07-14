@@ -4,11 +4,12 @@ import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import Announcements from "components/Announcements";
 import Professors from "components/Professors";
 import ReviewForm from "components/Review";
+import NavigationBar from "components/NavigationBar";
 
 function App() {
   return (
     <div>
-      {/* <NavigationBar /> */}
+      <NavigationBar />
       <Router>
         <Switch>
           <Route path="/review">
