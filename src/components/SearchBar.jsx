@@ -1,5 +1,4 @@
 import React from "react";
-// import { useForm } from "react-hook-form"
 
 import Form from "components/common/Form"
 import { Submit, Input } from "components/common/Inputs"
