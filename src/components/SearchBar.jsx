@@ -1,16 +1,17 @@
 import React from "react";
+import { useForm } from "react-hook-form"
 
 import Form from "components/common/Form"
-import { Submit, TextInput } from "components/common/Inputs"
+import { Submit, Input } from "components/common/Inputs"
 
-function onSubmitForm() {
+function onSubmitForm(url) {
     // To be implemented
 }
 
-export default function SearchBar(props) {
+export default function SearchBar() {
     return (
         <Form onSubmit={onSubmitForm()}>
-            <TextInput name="search-bar" style={props.style} />
+            <Input name="search-bar" />
             <Submit value="Search" />
         </Form>  
     );
