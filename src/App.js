@@ -14,7 +14,6 @@ function App() {
       <AuthProvider>
         {/* <NavigationBar /> */}
         <Router>
-          <CulpaSidebar />
           <Switch>
             <Route exact path="/login">
               <Login />
@@ -36,6 +35,7 @@ function App() {
               </div>
             </Route>
           </Switch>
+          <CulpaSidebar />
         </Router>
       </AuthProvider>
     </Container>
