@@ -38,7 +38,6 @@ export default function Announcements() {
 
   return (
       <div>
-        <Sidebar />
         <AnnouncementsSection messages={messages} />)
       </div>
   );
