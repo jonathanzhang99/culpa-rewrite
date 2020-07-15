@@ -5,8 +5,6 @@ import {  Header, Icon, Image, Menu, Segment, Sidebar } from 'semantic-ui-react'
 class CulpaSidebar extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {isVisible: true};
-
     this.setVisible = this.setVisible.bind(this);
   }
 
@@ -24,7 +22,7 @@ class CulpaSidebar extends React.Component {
           inverted
           onHide={() => this.setVisible(false)}
           vertical
-          visible={true}
+          visible='true'
           width='thin'
           >
             <Menu.Item as={ Link } name='home' to='/'>
