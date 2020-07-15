@@ -5,12 +5,12 @@ import {  Header, Icon, Image, Menu, Segment, Sidebar } from 'semantic-ui-react'
 class CulpaSidebar extends React.Component {
   constructor(props) {
     super(props);
-    this.setVisible = this.setVisible.bind(this);
+    // this.setVisible = this.setVisible.bind(this);
   }
 
-  setVisible(isVisible) {
-    this.setState({isVisible});
-  }
+  // setVisible(isVisible) {
+  //   this.setState({isVisible});
+  // }
 
   render() {
     return (
@@ -20,7 +20,7 @@ class CulpaSidebar extends React.Component {
           animation='overlay'
           icon='labeled'
           inverted
-          onHide={() => this.setVisible(false)}
+          // onHide={() => this.setVisible(false)}
           vertical
           visible='true'
           width='thin'
