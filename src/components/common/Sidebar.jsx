@@ -18,6 +18,7 @@ class CulpaSidebar extends React.Component {
   }
 
   render() {
+    let visibility = this.state.isVisible;
     return (
       <Sidebar.Pushable as={Segment}>
         <Sidebar
@@ -27,7 +28,7 @@ class CulpaSidebar extends React.Component {
           inverted
           onHide={() => this.setVisible(false)}
           vertical
-          visible={this.state.isVisible}
+          visible={visibility}
           width='thin'
           >
             <Menu.Item as='a'>
