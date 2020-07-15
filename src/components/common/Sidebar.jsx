@@ -14,7 +14,7 @@ class CulpaSidebar extends React.Component {
   }
 
   setVisible(isVisible) {
-    this.setState({isVisible: isVisible});
+    this.setState({isVisible});
   }
 
   render() {
