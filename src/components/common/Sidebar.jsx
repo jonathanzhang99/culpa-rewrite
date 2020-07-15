@@ -1,20 +1,20 @@
+<<<<<<< HEAD
 /* Adapted from https://react.semantic-ui.com/modules/sidebar/#states-dimmed */
 // import { useBooleanKnob } from '@stardust-ui/docs-components'    // issue with prettier version (babel/parser issue)
 import React from 'react'
 import { Header, Icon, Image, Menu, Segment, Sidebar } from 'semantic-ui-react'
 import {Link} from 'react-router-dom';
-import {  Header, Icon, Image, Menu, Segment, Sidebar } from 'semantic-ui-react'
 
 class CulpaSidebar extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {isVisible: false};
+    this.state = {isVisible: true};
+
+    this.setVisible = this.setVisible.bind(this);
   }
 
   setVisible(isVisible) {
-    this.setState(state => ({
-      isVisible: isVisible
-    }));
+    this.setState({isVisible: isVisible});
   }
 
   render() {
@@ -27,7 +27,7 @@ class CulpaSidebar extends React.Component {
           inverted
           onHide={() => this.setVisible(false)}
           vertical
-          visible={true}
+          visible={this.state.isVisible}
           width='thin'
           >
             <Menu.Item as='a'>
