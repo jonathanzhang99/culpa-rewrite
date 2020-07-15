@@ -1,17 +1,17 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+// import {Link} from 'react-router-dom';
 import {  Header, Icon, Image, Menu, Segment, Sidebar } from 'semantic-ui-react'
 
 class CulpaSidebar extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {isVisible: false};
+    this.state = {isVisible: true};
+
+    this.setVisible = this.setVisible.bind(this);
   }
 
   setVisible(isVisible) {
-    this.setState(state => ({
-      isVisible: isVisible
-    }));
+    this.setState({isVisible: isVisible});
   }
 
   render() {
@@ -24,7 +24,7 @@ class CulpaSidebar extends React.Component {
           inverted
           onHide={() => this.setVisible(false)}
           vertical
-          visible={true}
+          visible={this.state.isVisible}
           width='thin'
           >
             <Menu.Item as='a'>
