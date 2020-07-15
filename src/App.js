@@ -2,16 +2,18 @@ import React from "react";
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import { Container } from "semantic-ui-react";
 
+import { AuthProvider, ProtectedRoute } from "components/common/Authentication";
 import ReviewForm from "components/CreateReviewPage";
 import Login from "components/LoginPage";
+import NavigationBar from "components/NavigationBar";
 import Professors from "components/ProfessorsPage";
 
 function App() {
   return (
     <Container>
       <AuthProvider>
-        {/* <NavigationBar /> */}
         <Router>
+          <NavigationBar />
           <Switch>
             <Route exact path="/login">
               <Login />
