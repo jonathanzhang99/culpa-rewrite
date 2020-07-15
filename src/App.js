@@ -1,31 +1,44 @@
 import React from "react";
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
+import { Container } from "semantic-ui-react";
 
-import Announcements from "components/Announcements";
-import Professors from "components/Professors";
-import ReviewForm from "components/Review";
+import { AuthProvider, ProtectedRoute } from "components/common/Authentication";
 import CulpaSidebar from "components/common/Sidebar";
+import ReviewForm from "components/CreateReviewPage";
+import Login from "components/LoginPage";
+import Professors from "components/ProfessorsPage";
 
 function App() {
   return (
-    <div>
-      {/* <NavigationBar /> */}
-
-      <Router>
-        {<CulpaSidebar />}
-        <Switch>
-          <Route path="/review">
-            <ReviewForm />
-          </Route>
-          <Route path="/professors">
-            <Professors />
-          </Route>
-          <Route path="/">
-            <Announcements />
-          </Route>
-        </Switch>
-      </Router>
-    </div>
+    <Container>
+      <AuthProvider>
+        {/* <NavigationBar /> */}
+        <Router>
+          <CulpaSidebar />
+          <Switch>
+            <Route exact path="/login">
+              <Login />
+            </Route>
+            <ProtectedRoute exact path="/admin">
+              <div>
+                <h1>Admin only page!!</h1>
+              </div>
+            </ProtectedRoute>
+            <Route path="/review">
+              <ReviewForm />
+            </Route>
+            <Route path="/professors">
+              <Professors />
+            </Route>
+            <Route path="/">
+              <div>
+                <h1>Welcome to CULPA: Temporary header</h1>
+              </div>
+            </Route>
+          </Switch>
+        </Router>
+      </AuthProvider>
+    </Container>
   );
 }
 

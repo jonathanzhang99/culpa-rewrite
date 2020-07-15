@@ -1,15 +1,47 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Form Component empty form 1`] = `
+exports[`Form Component Tests empty form 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <form />
+      <form
+        class="ui form"
+      >
+        <div
+          class="ui error message"
+        >
+          <div
+            class="content"
+          >
+            <div
+              class="header"
+            >
+              Login Error
+            </div>
+          </div>
+        </div>
+      </form>
     </div>
   </body>,
   "container": <div>
-    <form />
+    <form
+      class="ui form"
+    >
+      <div
+        class="ui error message"
+      >
+        <div
+          class="content"
+        >
+          <div
+            class="header"
+          >
+            Login Error
+          </div>
+        </div>
+      </div>
+    </form>
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],
@@ -65,33 +97,99 @@ Object {
 }
 `;
 
-exports[`Form Component form with multiple inputs 1`] = `
+exports[`Form Component Tests form with multiple inputs 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <form>
+      <form
+        class="ui form"
+      >
+        <div
+          class="ui error message"
+        >
+          <div
+            class="content"
+          >
+            <div
+              class="header"
+            >
+              Login Error
+            </div>
+          </div>
+        </div>
+        <div
+          class="field"
+        >
+          <label
+            for="form-input-test1"
+          />
+          <input
+            aria-label=""
+            id="form-input-test1"
+            name="test1"
+            type="text"
+          />
+        </div>
+        <div
+          class="field"
+        >
+          <label
+            for="form-input-test2"
+          />
+          <input
+            aria-label=""
+            id="form-input-test2"
+            name="test2"
+            type="text"
+          />
+        </div>
+      </form>
+    </div>
+  </body>,
+  "container": <div>
+    <form
+      class="ui form"
+    >
+      <div
+        class="ui error message"
+      >
+        <div
+          class="content"
+        >
+          <div
+            class="header"
+          >
+            Login Error
+          </div>
+        </div>
+      </div>
+      <div
+        class="field"
+      >
+        <label
+          for="form-input-test1"
+        />
         <input
+          aria-label=""
+          id="form-input-test1"
           name="test1"
           type="text"
         />
+      </div>
+      <div
+        class="field"
+      >
+        <label
+          for="form-input-test2"
+        />
         <input
+          aria-label=""
+          id="form-input-test2"
           name="test2"
           type="text"
         />
-      </form>
-    </div>
-  </body>,
-  "container": <div>
-    <form>
-      <input
-        name="test1"
-        type="text"
-      />
-      <input
-        name="test2"
-        type="text"
-      />
+      </div>
     </form>
   </div>,
   "debug": [Function],
@@ -148,25 +246,73 @@ Object {
 }
 `;
 
-exports[`Form Component form with single input 1`] = `
+exports[`Form Component Tests form with single input 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <form>
-        <input
-          name="test1"
-          type="text"
-        />
+      <form
+        class="ui form"
+      >
+        <div
+          class="ui error message"
+        >
+          <div
+            class="content"
+          >
+            <div
+              class="header"
+            >
+              Login Error
+            </div>
+          </div>
+        </div>
+        <div
+          class="field"
+        >
+          <label
+            for="form-input-test1"
+          />
+          <input
+            aria-label=""
+            id="form-input-test1"
+            name="test1"
+            type="text"
+          />
+        </div>
       </form>
     </div>
   </body>,
   "container": <div>
-    <form>
-      <input
-        name="test1"
-        type="text"
-      />
+    <form
+      class="ui form"
+    >
+      <div
+        class="ui error message"
+      >
+        <div
+          class="content"
+        >
+          <div
+            class="header"
+          >
+            Login Error
+          </div>
+        </div>
+      </div>
+      <div
+        class="field"
+      >
+        <label
+          for="form-input-test1"
+        />
+        <input
+          aria-label=""
+          id="form-input-test1"
+          name="test1"
+          type="text"
+        />
+      </div>
     </form>
   </div>,
   "debug": [Function],
@@ -223,35 +369,89 @@ Object {
 }
 `;
 
-exports[`Form Component form with submit button 1`] = `
+exports[`Form Component Tests form with submit button 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <form>
-        <input
-          name="test1"
-          type="text"
-        />
-        <input
+      <form
+        class="ui form"
+      >
+        <div
+          class="ui error message"
+        >
+          <div
+            class="content"
+          >
+            <div
+              class="header"
+            >
+              Login Error
+            </div>
+          </div>
+        </div>
+        <div
+          class="field"
+        >
+          <label
+            for="form-input-test1"
+          />
+          <input
+            aria-label=""
+            id="form-input-test1"
+            name="test1"
+            type="text"
+          />
+        </div>
+        <button
+          class="ui button"
           name="submit"
           type="submit"
           value="submit"
-        />
+        >
+          Submit
+        </button>
       </form>
     </div>
   </body>,
   "container": <div>
-    <form>
-      <input
-        name="test1"
-        type="text"
-      />
-      <input
+    <form
+      class="ui form"
+    >
+      <div
+        class="ui error message"
+      >
+        <div
+          class="content"
+        >
+          <div
+            class="header"
+          >
+            Login Error
+          </div>
+        </div>
+      </div>
+      <div
+        class="field"
+      >
+        <label
+          for="form-input-test1"
+        />
+        <input
+          aria-label=""
+          id="form-input-test1"
+          name="test1"
+          type="text"
+        />
+      </div>
+      <button
+        class="ui button"
         name="submit"
         type="submit"
         value="submit"
-      />
+      >
+        Submit
+      </button>
     </form>
   </div>,
   "debug": [Function],

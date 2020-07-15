@@ -1,3 +1,10 @@
+/* This is an example React file to demonstrate how to fetch data
+ * and standard React patterns. This is not meant to represent a
+ * final product but  should be used as an example your own pages.
+ *
+ * This file and route will be removed in a later stage.
+ */
+
 import PropTypes from "prop-types";
 import React from "react";
 
