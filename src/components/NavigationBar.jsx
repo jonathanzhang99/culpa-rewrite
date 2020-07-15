@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Menu, Search } from 'semantic-ui-react'
 
+import SearchBar from "components/SearchBar"
+
 export default function NavigationBar() {
     return (
         <Menu fixed="top">
