@@ -1,9 +1,6 @@
-<<<<<<< HEAD
-/* Adapted from https://react.semantic-ui.com/modules/sidebar/#states-dimmed */
-// import { useBooleanKnob } from '@stardust-ui/docs-components'    // issue with prettier version (babel/parser issue)
-import React from 'react'
-import { Header, Icon, Image, Menu, Segment, Sidebar } from 'semantic-ui-react'
+import React from 'react';
 import {Link} from 'react-router-dom';
+import {  Header, Icon, Image, Menu, Segment, Sidebar } from 'semantic-ui-react'
 
 class CulpaSidebar extends React.Component {
   constructor(props) {
@@ -18,7 +15,6 @@ class CulpaSidebar extends React.Component {
   }
 
   render() {
-    let visibility = this.state.isVisible;
     return (
       <Sidebar.Pushable as={Segment}>
         <Sidebar
@@ -28,22 +24,19 @@ class CulpaSidebar extends React.Component {
           inverted
           onHide={() => this.setVisible(false)}
           vertical
-          visible={visibility}
+          visible={true}
           width='thin'
           >
-            <Menu.Item as='a'>
+            <Menu.Item as={ Link } name='home' to='/'>
               <Icon name='home' />
-              {/* <Link to='/'>Home</Link> */}
               Home
             </Menu.Item>
-            <Menu.Item as='a'>
+            <Menu.Item as={ Link } name='professors' to='/professors'>
               <Icon name='address card' />
-              {/* <Link to='/professors'>Professors</Link> */}
               Professors
             </Menu.Item>
-            <Menu.Item as='a'>
+            <Menu.Item as={ Link } name='review' to='/review'>
               <Icon name='edit outline' />
-              {/* <Link to='/review'>Reviews</Link> */}
               Reviews
             </Menu.Item>
           </Sidebar>

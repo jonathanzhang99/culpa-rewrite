@@ -34,6 +34,7 @@ function App() {
               </div>
             </Route>
           </Switch>
+          <CulpaSidebar />
         </Router>
       </AuthProvider>
     </Container>
