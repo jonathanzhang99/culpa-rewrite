@@ -7,27 +7,23 @@ import SearchBar from "components/SearchBar"
 export default function NavigationBar() {
     return (
         <Menu fixed="top">
-            <Menu.Item
-                className="sidebar-tab"
-            > 
-                SideBar
+            <Menu.Item> 
+                <span style={{width:"5vw"}}> Side Bar </span>
             </Menu.Item>
             <Menu.Item
                 as={Link} to="/"
                 className="culpa-icon"
             >
-                CULPA
+                <span style={{width:"10vw"}}> CULPA </span>
             </Menu.Item>
-            <Menu.Item
-                className="searchbar"
-            >
-                <Search fluid />
+            <Menu.Item>
+                <Search style={{width:"65vw"}} />
             </Menu.Item>
             <Menu.Item
                 as={Link} to="/review"
                 className="write-review-button"
             >
-                Write Review
+                <span style={{width:"20vw"}}> Write Review </span>
             </Menu.Item>
         </Menu>
     );
