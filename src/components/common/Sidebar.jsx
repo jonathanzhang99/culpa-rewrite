@@ -1,11 +1,11 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import {  Header, Icon, Image, Menu, Segment, Sidebar } from 'semantic-ui-react'
+import {  Header, Icon, Image, Menu, Segment, Sidebar as SemanticSidebar } from 'semantic-ui-react'
 
-const CulpaSidebar = () => {
+const Sidebar = () => {
   return (
-    <Sidebar.Pushable as={Segment}>
-      <Sidebar
+    <SemanticSidebar.Pushable as={Segment}>
+      <SemanticSidebar
         as={Menu}
         animation='overlay'
         icon='labeled'
@@ -27,17 +27,17 @@ const CulpaSidebar = () => {
             <Icon name='edit outline' />
             Reviews
           </Menu.Item>
-        </Sidebar>
+        </SemanticSidebar>
 
-        <Sidebar.Pusher>  {/* need a way to include actual content here */}
+        <SemanticSidebar.Pusher>  {/* need a way to include actual content here */}
           <Segment basic>
             <Header as='h1'>Application Content</Header>
             <Image src='https://react.semantic-ui.com/images/wireframe/paragraph.png' />
           </Segment>
-        </Sidebar.Pusher>
-    </Sidebar.Pushable>
+        </SemanticSidebar.Pusher>
+    </SemanticSidebar.Pushable>
   );
 
 }
 
-export default CulpaSidebar
+export default Sidebar
