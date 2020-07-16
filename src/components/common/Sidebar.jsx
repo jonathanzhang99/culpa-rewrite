@@ -1,5 +1,6 @@
+import PropTypes from 'prop-types'
 import React from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import {  Button, Header, Icon, Image, Menu, Segment, Sidebar as SemanticSidebar } from 'semantic-ui-react'
 
 function ShowSidebarButton({ onClick }) {
@@ -41,7 +42,7 @@ class Sidebar extends React.Component {
 
 
   render() {
-    const isVisible = this.state.isVisible;
+    const { isVisible } = this.state;
 
     return (
       <div>
@@ -89,5 +90,13 @@ class Sidebar extends React.Component {
     );
   }
 }
+
+ShowSidebarButton.propTypes = {
+  onClick: PropTypes.func.isRequired
+};
+
+HideSidebarButton.propTypes = {
+  onClick: PropTypes.func.isRequired
+};
 
 export default Sidebar
