@@ -7,10 +7,10 @@ function onSubmitForm() {
     // To be implemented
 }
 
-export default function SearchBar() {
+export default function SearchBar(props) {
     return (
         <Form onSubmit={onSubmitForm()}>
-            <TextInput name="search-bar" />
+            <TextInput name="search-bar" style={props.style} />
             <Submit value="Search" />
         </Form>  
     );
