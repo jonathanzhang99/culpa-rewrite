@@ -2,17 +2,17 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import {  Button, Header, Icon, Image, Menu, Segment, Sidebar as SemanticSidebar } from 'semantic-ui-react'
 
-function ShowSidebarButton(props) {
+function ShowSidebarButton({ onClick }) {
   return (
-    <Button onClick={props.onClick}>
+    <Button onClick={onClick}>
       Show Sidebar
     </Button>
   );
 }
 
-function HideSidebarButton(props) {
+function HideSidebarButton({ onClick }) {
   return (
-    <Button onClick={props.onClick}>
+    <Button onClick={onClick}>
       Hide Sidebar
     </Button>
   );
