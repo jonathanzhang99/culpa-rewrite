@@ -5,23 +5,27 @@ import { Menu, Search } from 'semantic-ui-react'
 export default function NavigationBar() {
     return (
         <Menu fixed="top">
-            <Menu.Item> 
-                <span style={{width:"5vw"}}> Side Bar </span>
+            <Menu.Item
+                className="sidebar-tab"
+            > 
+                Side Bar
             </Menu.Item>
             <Menu.Item
                 as={Link} to="/"
                 className="culpa-icon"
             >
-                <span style={{width:"10vw"}}> CULPA </span>
+                CULPA
             </Menu.Item>
-            <Menu.Item>
-                <Search style={{width:"65vw"}} />
+            <Menu.Item
+                className="searchbar"
+            >
+                <Search fluid />
             </Menu.Item>
             <Menu.Item
                 as={Link} to="/review"
                 className="write-review-button"
             >
-                <span style={{width:"20vw"}}> Write Review </span>
+                Write Review
             </Menu.Item>
         </Menu>
     );

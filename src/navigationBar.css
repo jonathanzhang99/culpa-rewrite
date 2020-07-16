@@ -1,11 +1,19 @@
 .sidebar-tab {
     width: 5%;
+<<<<<<< HEAD
     justify-content: center;
+=======
+    text-align: center;
+>>>>>>> Add custom css to restyle navbar menus
 }
 
 .culpa-icon {
     width: 15%;
+<<<<<<< HEAD
     justify-content: center;
+=======
+    text-align: center;
+>>>>>>> Add custom css to restyle navbar menus
 }
 
 .searchbar {
@@ -22,5 +30,9 @@
 
 .write-review-button {
     width: 20%;
+<<<<<<< HEAD
     justify-content: center;
+=======
+    text-align: center;
+>>>>>>> Add custom css to restyle navbar menus
 }
