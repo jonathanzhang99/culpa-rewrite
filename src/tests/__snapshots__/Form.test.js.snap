@@ -124,12 +124,17 @@ Object {
           <label
             for="form-input-test1"
           />
-          <input
-            aria-label=""
-            id="form-input-test1"
-            name="test1"
-            type="text"
-          />
+          <div
+            class="ui input"
+          >
+            <input
+              aria-label=""
+              id="form-input-test1"
+              name="test1"
+              type="text"
+              value=""
+            />
+          </div>
         </div>
         <div
           class="field"
@@ -137,12 +142,17 @@ Object {
           <label
             for="form-input-test2"
           />
-          <input
-            aria-label=""
-            id="form-input-test2"
-            name="test2"
-            type="text"
-          />
+          <div
+            class="ui input"
+          >
+            <input
+              aria-label=""
+              id="form-input-test2"
+              name="test2"
+              type="text"
+              value=""
+            />
+          </div>
         </div>
       </form>
     </div>
@@ -170,12 +180,17 @@ Object {
         <label
           for="form-input-test1"
         />
-        <input
-          aria-label=""
-          id="form-input-test1"
-          name="test1"
-          type="text"
-        />
+        <div
+          class="ui input"
+        >
+          <input
+            aria-label=""
+            id="form-input-test1"
+            name="test1"
+            type="text"
+            value=""
+          />
+        </div>
       </div>
       <div
         class="field"
@@ -183,12 +198,17 @@ Object {
         <label
           for="form-input-test2"
         />
-        <input
-          aria-label=""
-          id="form-input-test2"
-          name="test2"
-          type="text"
-        />
+        <div
+          class="ui input"
+        >
+          <input
+            aria-label=""
+            id="form-input-test2"
+            name="test2"
+            type="text"
+            value=""
+          />
+        </div>
       </div>
     </form>
   </div>,
@@ -273,12 +293,17 @@ Object {
           <label
             for="form-input-test1"
           />
-          <input
-            aria-label=""
-            id="form-input-test1"
-            name="test1"
-            type="text"
-          />
+          <div
+            class="ui input"
+          >
+            <input
+              aria-label=""
+              id="form-input-test1"
+              name="test1"
+              type="text"
+              value=""
+            />
+          </div>
         </div>
       </form>
     </div>
@@ -306,12 +331,17 @@ Object {
         <label
           for="form-input-test1"
         />
-        <input
-          aria-label=""
-          id="form-input-test1"
-          name="test1"
-          type="text"
-        />
+        <div
+          class="ui input"
+        >
+          <input
+            aria-label=""
+            id="form-input-test1"
+            name="test1"
+            type="text"
+            value=""
+          />
+        </div>
       </div>
     </form>
   </div>,
@@ -396,12 +426,17 @@ Object {
           <label
             for="form-input-test1"
           />
-          <input
-            aria-label=""
-            id="form-input-test1"
-            name="test1"
-            type="text"
-          />
+          <div
+            class="ui input"
+          >
+            <input
+              aria-label=""
+              id="form-input-test1"
+              name="test1"
+              type="text"
+              value=""
+            />
+          </div>
         </div>
         <button
           class="ui button"
@@ -437,12 +472,17 @@ Object {
         <label
           for="form-input-test1"
         />
-        <input
-          aria-label=""
-          id="form-input-test1"
-          name="test1"
-          type="text"
-        />
+        <div
+          class="ui input"
+        >
+          <input
+            aria-label=""
+            id="form-input-test1"
+            name="test1"
+            type="text"
+            value=""
+          />
+        </div>
       </div>
       <button
         class="ui button"
