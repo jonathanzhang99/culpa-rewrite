@@ -1,11 +1,11 @@
 .sidebar-tab {
     width: 5%;
-    text-align: center;
+    justify-content: center;
 }
 
 .culpa-icon {
     width: 15%;
-    text-align: center;
+    justify-content: center;
 }
 
 .searchbar {
@@ -22,5 +22,5 @@
 
 .write-review-button {
     width: 20%;
-    text-align: center;
+    justify-content: center;
 }

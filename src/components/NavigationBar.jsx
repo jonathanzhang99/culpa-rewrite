@@ -8,7 +8,7 @@ export default function NavigationBar() {
             <Menu.Item
                 className="sidebar-tab"
             > 
-                Side Bar
+                SideBar
             </Menu.Item>
             <Menu.Item
                 as={Link} to="/"
