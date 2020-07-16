@@ -3,7 +3,7 @@ import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import { Container } from "semantic-ui-react";
 
 import { AuthProvider, ProtectedRoute } from "components/common/Authentication";
-import CulpaSidebar from "components/common/Sidebar";
+import Sidebar from "components/common/Sidebar";
 import ReviewForm from "components/CreateReviewPage";
 import Login from "components/LoginPage";
 import Professors from "components/ProfessorsPage";
@@ -35,7 +35,7 @@ function App() {
               </div>
             </Route>
           </Switch>
-          <CulpaSidebar />
+          <Sidebar />
         </Router>
       </AuthProvider>
     </Container>
