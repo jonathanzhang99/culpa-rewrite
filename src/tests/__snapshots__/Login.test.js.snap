@@ -5,139 +5,147 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <div
-        class="ui three column grid"
+      <h1>
+        Login
+      </h1>
+      <form
+        class="ui form"
       >
         <div
-          class="column"
-        >
-          <h1>
-            Login
-          </h1>
-          <form
-            class="ui form"
-          >
-            <div
-              class="ui error message"
-            >
-              <div
-                class="content"
-              >
-                <div
-                  class="header"
-                >
-                  Login Error
-                </div>
-              </div>
-            </div>
-            <div
-              class="field"
-            >
-              <label
-                for="form-input-username"
-              >
-                Username
-              </label>
-              <input
-                aria-label="Username"
-                id="form-input-username"
-                name="username"
-                type="text"
-              />
-            </div>
-            <div
-              class="field"
-            >
-              <label
-                for="form-input-password"
-              >
-                Password
-              </label>
-              <input
-                aria-label="Password"
-                id="form-input-password"
-                name="password"
-                type="password"
-              />
-            </div>
-            <button
-              class="ui button"
-              name="submit"
-              type="submit"
-            >
-              Submit
-            </button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </body>,
-  "container": <div>
-    <div
-      class="ui three column grid"
-    >
-      <div
-        class="column"
-      >
-        <h1>
-          Login
-        </h1>
-        <form
-          class="ui form"
+          class="ui error message"
         >
           <div
-            class="ui error message"
+            class="content"
           >
             <div
-              class="content"
+              class="header"
             >
-              <div
-                class="header"
-              >
-                Login Error
-              </div>
+              Login Error
             </div>
           </div>
-          <div
-            class="field"
+        </div>
+        <div
+          class="five wide field"
+        >
+          <label
+            for="form-input-username"
           >
-            <label
-              for="form-input-username"
-            >
-              Username
-            </label>
+            Username
+          </label>
+          <div
+            class="ui input"
+            rules="[object Object]"
+          >
             <input
               aria-label="Username"
               id="form-input-username"
               name="username"
               type="text"
+              value=""
             />
           </div>
-          <div
-            class="field"
+        </div>
+        <div
+          class="five wide field"
+        >
+          <label
+            for="form-input-password"
           >
-            <label
-              for="form-input-password"
-            >
-              Password
-            </label>
+            Password
+          </label>
+          <div
+            class="ui input"
+            rules="[object Object]"
+          >
             <input
               aria-label="Password"
               id="form-input-password"
               name="password"
               type="password"
+              value=""
             />
           </div>
-          <button
-            class="ui button"
-            name="submit"
-            type="submit"
-          >
-            Submit
-          </button>
-        </form>
-      </div>
+        </div>
+        <button
+          class="ui button"
+          name="submit"
+          type="submit"
+        >
+          Submit
+        </button>
+      </form>
     </div>
+  </body>,
+  "container": <div>
+    <h1>
+      Login
+    </h1>
+    <form
+      class="ui form"
+    >
+      <div
+        class="ui error message"
+      >
+        <div
+          class="content"
+        >
+          <div
+            class="header"
+          >
+            Login Error
+          </div>
+        </div>
+      </div>
+      <div
+        class="five wide field"
+      >
+        <label
+          for="form-input-username"
+        >
+          Username
+        </label>
+        <div
+          class="ui input"
+          rules="[object Object]"
+        >
+          <input
+            aria-label="Username"
+            id="form-input-username"
+            name="username"
+            type="text"
+            value=""
+          />
+        </div>
+      </div>
+      <div
+        class="five wide field"
+      >
+        <label
+          for="form-input-password"
+        >
+          Password
+        </label>
+        <div
+          class="ui input"
+          rules="[object Object]"
+        >
+          <input
+            aria-label="Password"
+            id="form-input-password"
+            name="password"
+            type="password"
+            value=""
+          />
+        </div>
+      </div>
+      <button
+        class="ui button"
+        name="submit"
+        type="submit"
+      >
+        Submit
+      </button>
+    </form>
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],
