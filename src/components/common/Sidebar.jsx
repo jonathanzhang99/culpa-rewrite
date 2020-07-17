@@ -60,22 +60,26 @@ class Sidebar extends React.Component {
             animation='overlay'
             icon='labeled'
             inverted
+            compact
             onHide={this.handleSidebarHide}
             vertical
             visible={isVisible}
             width='thin'
             >
               <Menu.Item as={ Link } name='home' to='/'>
-                <Icon name='home' />
                 Home
               </Menu.Item>
-              <Menu.Item as={ Link } name='professors' to='/professors'>
-                <Icon name='address card' />
-                Professors
+              <Menu.Item as={ Link } name='about' to='/about'>
+                About
               </Menu.Item>
-              <Menu.Item as={ Link } name='review' to='/review'>
-                <Icon name='edit outline' />
-                Reviews
+              <Menu.Item as={ Link } name='departments' to='/departments'>
+                Departments
+              </Menu.Item>
+              <Menu.Item as={ Link } name='join the team' to='/join-the-team'>
+                Join the Team
+              </Menu.Item>
+              <Menu.Item as={ Link } name='log in' to='/login'>
+                Login
               </Menu.Item>
             </SemanticSidebar>
 
