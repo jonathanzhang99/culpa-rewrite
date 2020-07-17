@@ -1,8 +1,18 @@
-import PropTypes from 'prop-types';
+import PropTypes, { oneOfType } from 'prop-types';
 import React, {useState } from 'react';
 import { Link } from 'react-router-dom';
 import {  Button, Icon, Menu, Segment, Sidebar as SemanticSidebar } from 'semantic-ui-react'
 
+const propTypes = {
+  children: oneOfType([
+    PropTypes.arrayOf(PropTypes.element),
+    PropTypes.element,
+  ])
+};
+
+const defaultProps = {
+  children: [],
+};
 
 export default function Sidebar({ children }) {
   const [isVisible, setVisible] = useState(false);
@@ -61,4 +71,5 @@ export default function Sidebar({ children }) {
   );
 }
 
-Sidebar.PropTypes = PropTypes;
+Sidebar.propTypes = propTypes;
+Sidebar.defaultProps = defaultProps;
