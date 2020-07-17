@@ -8,37 +8,44 @@ import ReviewForm from "components/CreateReviewPage";
 import Login from "components/LoginPage";
 import Professors from "components/ProfessorsPage";
 
+function Routes() {
+  return (
+    <div>
+      <Route exact path="/login">
+        <Login />
+      </Route>
+      <ProtectedRoute exact path="/admin">
+        <div>
+          <h1>Admin only page!!</h1>
+        </div>
+      </ProtectedRoute>
+      <Route path="/review">
+        <ReviewForm />
+      </Route>
+      <Route path="/professors">
+        <Professors />
+      </Route>
+      <Route path="/">
+        <div>
+          <h1>Welcome to CULPA: Temporary header</h1>
+        </div>
+      </Route>
+    </div>
+  )
+}
+
 function App() {
   return (
-    <Container>
-      <AuthProvider>
-        {/* <NavigationBar /> */}
+    <AuthProvider>
+      <Container>
         <Router>
           <Switch>
-            <Route exact path="/login">
-              <Login />
-            </Route>
-            <ProtectedRoute exact path="/admin">
-              <div>
-                <h1>Admin only page!!</h1>
-              </div>
-            </ProtectedRoute>
-            <Route path="/review">
-              <ReviewForm />
-            </Route>
-            <Route path="/professors">
-              <Professors />
-            </Route>
-            <Route path="/">
-              <div>
-                <h1>Welcome to CULPA: Temporary header</h1>
-              </div>
-            </Route>
+            {/* <NavigationBar /> */}
+            <Sidebar children={Routes()}/>
           </Switch>
-          <Sidebar />
         </Router>
-      </AuthProvider>
-    </Container>
+      </Container>
+    </AuthProvider>
   );
 }
 
