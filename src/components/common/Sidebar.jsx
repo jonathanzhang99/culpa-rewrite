@@ -1,6 +1,6 @@
 import React, {useState } from 'react';
 import { Link } from 'react-router-dom';
-import {  Button, Header, Image, Menu, Segment, Sidebar as SemanticSidebar } from 'semantic-ui-react'
+import {  Button, Header, Image, Icon, Menu, Segment, Sidebar as SemanticSidebar } from 'semantic-ui-react'
 
 
 export default function Sidebar() {
@@ -17,7 +17,7 @@ export default function Sidebar() {
   return (
     <div>
       <Button onClick={handleClick}>
-        {!isVisible ? 'Show Sidebar' : 'Hide Sidebar'}
+        <Icon name='bars' />
       </Button>
       <SemanticSidebar.Pushable as={Segment}>
         <SemanticSidebar
