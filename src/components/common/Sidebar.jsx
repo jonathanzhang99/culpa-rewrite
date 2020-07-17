@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import React from 'react';
 import { Link } from 'react-router-dom';
-import {  Button, Header, Icon, Image, Menu, Segment, Sidebar as SemanticSidebar } from 'semantic-ui-react'
+import {  Button, Header, Image, Menu, Segment, Sidebar as SemanticSidebar } from 'semantic-ui-react'
 
 function ShowSidebarButton({ onClick }) {
   return (
