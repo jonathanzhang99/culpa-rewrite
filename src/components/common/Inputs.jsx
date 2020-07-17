@@ -1,40 +1,14 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import PropTypes from "prop-types";
 import React from "react";
-import { Form, Button } from "semantic-ui-react";
+import {
+  Form as SemanticForm,
+  Button,
+  Input,
+  TextArea,
+} from "semantic-ui-react";
 
-const propTypesBaseInput = {
-  register: PropTypes.func,
-  name: PropTypes.string.isRequired,
-  requiredOptions: PropTypes.objectOf(PropTypes.any),
-  type: PropTypes.oneOf(["password", "text"]).isRequired,
-  ariaLabel: PropTypes.string,
-};
-
-const defaultPropsBaseInput = {
-  requiredOptions: {},
-  register: () => {},
-  ariaLabel: "",
-};
-
-function BaseInput({
-  name,
-  register,
-  requiredOptions,
-  ariaLabel,
-  type,
-  ...rest
-}) {
-  return (
-    <input
-      type={type}
-      name={name}
-      aria-label={ariaLabel}
-      ref={register(requiredOptions)}
-      {...rest}
-    />
-  );
-}
+import { FormGroup } from "components/common/Form";
 
 const propTypesInputField = {
   name: PropTypes.string.isRequired,
@@ -42,11 +16,13 @@ const propTypesInputField = {
   error: PropTypes.shape({
     message: PropTypes.string,
   }),
+  type: PropTypes.string,
 };
 
 const defaultPropsInputField = {
   label: "",
   error: undefined,
+  type: undefined,
 };
 
 /**
@@ -54,49 +30,79 @@ const defaultPropsInputField = {
  * form logic.
  *
  */
-function InputField({ name, error, label, ...rest }) {
+function InputField({ name, error, label, type, ...rest }) {
   return (
-    <Form.Field
+    <SemanticForm.Field
       id={`form-input-${name}`}
-      control={BaseInput}
       label={label}
-      ariaLabel={label}
+      aria-label={label}
       name={name}
       error={error}
+      type={type}
       {...rest}
     />
   );
 }
 
-export function TextInput(props) {
-  return <InputField type="text" {...props} />;
-}
-
-export function PasswordInput(props) {
-  return <InputField type="password" {...props} />;
-}
-
-const propTypesSubmit = {
-  register: PropTypes.func,
+const propTypesText = {
+  name: PropTypes.string.isRequired,
 };
 
-const defaultPropsSubmit = {
-  register: () => {},
+export function TextInput({ name, ...rest }) {
+  return <InputField type="text" control={Input} name={name} {...rest} />;
+}
+
+export function PasswordInput({ name, ...rest }) {
+  return <InputField type="password" control={Input} name={name} {...rest} />;
+}
+
+export function TextAreaInput(props) {
+  return <InputField control={TextArea} {...props} />;
+}
+
+const propTypesRadioInputGroup = {
+  name: PropTypes.string.isRequired,
+  labels: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.string,
+      key: PropTypes.any,
+    })
+  ).isRequired,
 };
 
-export function Submit({ register, ...rest }) {
+export function RadioInputGroup({ name, labels, ...rest }) {
+  const radioButtons = labels.map(({ label, key }) => {
+    return (
+      <InputField
+        value={key}
+        key={key}
+        control={Input}
+        name={name}
+        label={label}
+        type="radio"
+        {...rest}
+      />
+    );
+  });
   return (
-    <Button type="submit" name="submit" {...rest}>
+    <FormGroup inline unstackable widths="equal">
+      {radioButtons}
+    </FormGroup>
+  );
+}
+
+export function Submit(props) {
+  return (
+    <Button type="submit" name="submit" {...props}>
       Submit
     </Button>
   );
 }
 
-BaseInput.propTypes = propTypesBaseInput;
-BaseInput.defaultProps = defaultPropsBaseInput;
-
 InputField.propTypes = propTypesInputField;
 InputField.defaultProps = defaultPropsInputField;
 
-Submit.propTypes = propTypesSubmit;
-Submit.defaultProps = defaultPropsSubmit;
+TextInput.propTypes = propTypesText;
+PasswordInput.propTypes = propTypesText;
+
+RadioInputGroup.propTypes = propTypesRadioInputGroup;
