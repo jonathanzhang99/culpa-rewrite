@@ -2,7 +2,6 @@ import { render } from '@testing-library/react';
 import React from 'react';
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 
-
 import { AuthProvider, ProtectedRoute } from 'components/common/Authentication';
 import ReviewForm from 'components/CreateReviewPage';
 import Login from 'components/LoginPage';
@@ -41,6 +40,6 @@ describe('Navbar Component Tests', () => {
 				</Router>
 			</AuthProvider>
 		);
-      expect(snapshot).toMatchSnapshot();
+    expect(snapshot).toMatchSnapshot();
   });
 });
