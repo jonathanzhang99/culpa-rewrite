@@ -7,11 +7,15 @@ const propTypes = {
   children: oneOfType([
     PropTypes.arrayOf(PropTypes.element),
     PropTypes.element,
-  ])
+  ]),
+  handleSidebarHide: PropTypes.func,
+  isVisible: PropTypes.bool
 };
 
 const defaultProps = {
   children: [],
+  handleSidebarHide: () => {},
+  isVisible: false
 };
 
 export default function Sidebar({ children, handleSidebarHide, isVisible }) {

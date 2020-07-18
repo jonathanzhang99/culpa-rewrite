@@ -1,7 +1,7 @@
+import PropTypes, { oneOfType } from 'prop-types';
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button, Container, Icon, Menu, Search, Visibility } from 'semantic-ui-react'
-import PropTypes, { oneOfType } from 'prop-types';
 
 import "../styles/navigationBar.css";
 
