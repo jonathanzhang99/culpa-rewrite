@@ -4,7 +4,7 @@ import { Button, Icon, Menu, Search } from 'semantic-ui-react'
 
 import "../styles/navigationBar.css";
 
-export default function NavigationBar({ children }) {
+export default function NavigationBar() {
     return (
         <Menu fixed="top">
             <Menu.Item
