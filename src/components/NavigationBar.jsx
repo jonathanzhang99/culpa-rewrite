@@ -1,31 +1,33 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Menu, Search } from 'semantic-ui-react'
+import { Button, Icon, Menu, Search } from 'semantic-ui-react'
+
+import "../styles/navigationBar.css";
 
 export default function NavigationBar() {
     return (
         <Menu fixed="top">
             <Menu.Item
-                className="sidebar-tab"
+                className="sidebar-tab-container"
             > 
-                SideBar
+                <Icon name="bars" fitted size="big" color="blue"/>
             </Menu.Item>
             <Menu.Item
                 as={Link} to="/"
-                className="culpa-icon"
+                className="culpa-logo-container"
             >
-                CULPA
+                <h1> CULPA </h1>
             </Menu.Item>
             <Menu.Item
-                className="searchbar"
+                className="searchbar-container"
             >
-                <Search fluid />
+                <Search className="searchbar" fluid placeholder="Search for professors or courses." />
             </Menu.Item>
             <Menu.Item
                 as={Link} to="/review"
-                className="write-review-button"
+                className="review-button-container"
             >
-                Write Review
+                <Button className="review-button" color="yellow"> WRITE A REVIEW </Button>
             </Menu.Item>
         </Menu>
     );
