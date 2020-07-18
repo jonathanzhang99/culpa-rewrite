@@ -1,0 +1,342 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Navbar Component Tests navbar snapshot test 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="navbar-container"
+      >
+        <div>
+          <div
+            class="ui menu"
+          >
+            <div
+              class="item sidebar-tab-container"
+            >
+              <button
+                class="ui basic button"
+              >
+                <i
+                  aria-hidden="true"
+                  class="blue bars big fitted icon"
+                />
+              </button>
+            </div>
+            <a
+              class="item culpa-logo-container"
+              href="/"
+            >
+              <h1>
+                 CULPA 
+              </h1>
+            </a>
+            <div
+              class="item searchbar-container"
+            >
+              <div
+                class="ui fluid search searchbar"
+              >
+                <div
+                  class="ui icon input"
+                >
+                  <input
+                    autocomplete="off"
+                    class="prompt"
+                    placeholder="Search for professors or courses."
+                    tabindex="0"
+                    type="text"
+                    value=""
+                  />
+                  <i
+                    aria-hidden="true"
+                    class="search icon"
+                  />
+                </div>
+                <div
+                  class="results transition"
+                >
+                  <div
+                    class="message empty"
+                  >
+                    <div
+                      class="header"
+                    >
+                      No results found.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <a
+              class="item review-button-container"
+              href="/review"
+            >
+              <button
+                class="ui yellow button review-button"
+              >
+                 WRITE A REVIEW 
+              </button>
+            </a>
+          </div>
+        </div>
+        <div
+          class="ui container"
+        >
+          <div
+            class="sidebar-container"
+          >
+            <div
+              class="ui compact vertical ui overlay left thin sidebar menu"
+            >
+              <a
+                class="header item"
+                href="/"
+              >
+                WELCOME TO CULPA!
+              </a>
+              <a
+                class="item"
+                href="/"
+              >
+                Home
+              </a>
+              <a
+                class="item"
+                href="/about"
+              >
+                About
+              </a>
+              <a
+                class="item"
+                href="/departments"
+              >
+                Departments
+              </a>
+              <a
+                class="item"
+                href="/join-the-team"
+              >
+                Join the Team
+              </a>
+              <a
+                class="item"
+                href="/login"
+              >
+                Login
+              </a>
+            </div>
+            <div
+              class="ui segment pushable"
+            >
+              <div
+                class="pusher"
+              >
+                <div>
+                  <h1>
+                    Welcome to CULPA: Temporary header
+                  </h1>
+                  Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="navbar-container"
+    >
+      <div>
+        <div
+          class="ui menu"
+        >
+          <div
+            class="item sidebar-tab-container"
+          >
+            <button
+              class="ui basic button"
+            >
+              <i
+                aria-hidden="true"
+                class="blue bars big fitted icon"
+              />
+            </button>
+          </div>
+          <a
+            class="item culpa-logo-container"
+            href="/"
+          >
+            <h1>
+               CULPA 
+            </h1>
+          </a>
+          <div
+            class="item searchbar-container"
+          >
+            <div
+              class="ui fluid search searchbar"
+            >
+              <div
+                class="ui icon input"
+              >
+                <input
+                  autocomplete="off"
+                  class="prompt"
+                  placeholder="Search for professors or courses."
+                  tabindex="0"
+                  type="text"
+                  value=""
+                />
+                <i
+                  aria-hidden="true"
+                  class="search icon"
+                />
+              </div>
+              <div
+                class="results transition"
+              >
+                <div
+                  class="message empty"
+                >
+                  <div
+                    class="header"
+                  >
+                    No results found.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <a
+            class="item review-button-container"
+            href="/review"
+          >
+            <button
+              class="ui yellow button review-button"
+            >
+               WRITE A REVIEW 
+            </button>
+          </a>
+        </div>
+      </div>
+      <div
+        class="ui container"
+      >
+        <div
+          class="sidebar-container"
+        >
+          <div
+            class="ui compact vertical ui overlay left thin sidebar menu"
+          >
+            <a
+              class="header item"
+              href="/"
+            >
+              WELCOME TO CULPA!
+            </a>
+            <a
+              class="item"
+              href="/"
+            >
+              Home
+            </a>
+            <a
+              class="item"
+              href="/about"
+            >
+              About
+            </a>
+            <a
+              class="item"
+              href="/departments"
+            >
+              Departments
+            </a>
+            <a
+              class="item"
+              href="/join-the-team"
+            >
+              Join the Team
+            </a>
+            <a
+              class="item"
+              href="/login"
+            >
+              Login
+            </a>
+          </div>
+          <div
+            class="ui segment pushable"
+          >
+            <div
+              class="pusher"
+            >
+              <div>
+                <h1>
+                  Welcome to CULPA: Temporary header
+                </h1>
+                Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
