@@ -8,26 +8,26 @@ const propTypes = {
     PropTypes.arrayOf(PropTypes.element),
     PropTypes.element,
   ]),
-  handleSidebarHide: PropTypes.func,
-  isVisible: PropTypes.bool
+  hideSidebar: PropTypes.func,
+  isSidebarVisible: PropTypes.bool
 };
 
 const defaultProps = {
   children: [],
-  handleSidebarHide: () => {},
-  isVisible: false
+  hideSidebar: () => {},
+  isSidebarVisible: false
 };
 
-export default function Sidebar({ children, handleSidebarHide, isVisible }) {
+export default function Sidebar({ children, hideSidebar, isSidebarVisible }) {
   return (
     <div className="sidebar-container">
       <SemanticSidebar
         as={Menu}
         animation='overlay'
         compact
-        onHide={handleSidebarHide}
+        onHide={hideSidebar}
         vertical
-        visible={isVisible}
+        visible={isSidebarVisible}
         width='thin'
         >
         <Menu.Item header as={ Link } name='welcome to culpa' to='/'>

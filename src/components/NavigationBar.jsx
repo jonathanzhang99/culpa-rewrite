@@ -20,15 +20,15 @@ const defaultProps = {
 
 export default function NavigationBar({ children }) {
 
-  const [isVisible, setVisible] = useState(false);
+  const [isSidebarVisible, setSidebarVisible] = useState(false);
   const [isNavbarFixed, setNavbarFixed] = useState(false);
 
-  const handleClick = () => {
-    setVisible(!isVisible);
+  const unhideSidebar = () => {
+    setSidebarVisible(true);
   }
 
-  const handleSidebarHide = () => {
-    setVisible(false);
+  const hideSidebar = () => {
+    setSidebarVisible(false);
   }
 
   const fixNavbar = () => {
@@ -52,8 +52,8 @@ export default function NavigationBar({ children }) {
           <Menu.Item
             className="sidebar-tab-container"
           > 
-            <Button onClick={handleClick} basic>
-              <Icon name='bars' fitted size="big" color="blue" />
+            <Button onClick={unhideSidebar} basic>
+              <Icon name='bars' color="blue" fitted size="big"  />
             </Button>
           </Menu.Item>
           <Menu.Item
@@ -71,14 +71,14 @@ export default function NavigationBar({ children }) {
             as={Link} to="/review"
             className="review-button-container"
           >
-            <Button className="review-button" color="yellow"> WRITE A REVIEW </Button>
+            <Button color="yellow" fluid> WRITE A REVIEW </Button>
           </Menu.Item>
         </Menu>
       </Visibility>
       <Container>
         <Sidebar
-          handleSidebarHide={handleSidebarHide}
-          isVisible={isVisible}
+          hideSidebar={hideSidebar}
+          isSidebarVisible={isSidebarVisible}
         >
           {children}
         </Sidebar>
