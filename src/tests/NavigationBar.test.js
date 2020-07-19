@@ -10,8 +10,7 @@ describe('Navbar Component Tests', () => {
     const snapshot = render(
 			<AuthProvider>
         <Router>
-          <NavigationBar>
-          </NavigationBar>
+          <NavigationBar/>
         </Router>
 			</AuthProvider>
 		);
