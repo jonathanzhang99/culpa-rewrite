@@ -74,7 +74,7 @@ Object {
               href="/review"
             >
               <button
-                class="ui yellow fluid button review-button"
+                class="ui yellow fluid button"
               >
                  WRITE A REVIEW 
               </button>
@@ -209,7 +209,7 @@ Object {
             href="/review"
           >
             <button
-              class="ui yellow fluid button review-button"
+              class="ui yellow fluid button"
             >
                WRITE A REVIEW 
             </button>
