@@ -1,7 +1,7 @@
-import PropTypes, { oneOfType } from 'prop-types';
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Menu, Segment, Sidebar as SemanticSidebar } from 'semantic-ui-react'
+import PropTypes, { oneOfType } from "prop-types";
+import React from "react";
+import { Link } from "react-router-dom";
+import { Menu, Segment, Sidebar as SemanticSidebar } from "semantic-ui-react";
 
 const propTypes = {
   children: oneOfType([
@@ -9,13 +9,13 @@ const propTypes = {
     PropTypes.element,
   ]),
   hideSidebar: PropTypes.func,
-  isSidebarVisible: PropTypes.bool
+  isSidebarVisible: PropTypes.bool,
 };
 
 const defaultProps = {
   children: [],
   hideSidebar: () => {},
-  isSidebarVisible: false
+  isSidebarVisible: false,
 };
 
 export default function Sidebar({ children, hideSidebar, isSidebarVisible }) {
@@ -23,36 +23,34 @@ export default function Sidebar({ children, hideSidebar, isSidebarVisible }) {
     <div className="sidebar-container">
       <SemanticSidebar
         as={Menu}
-        animation='overlay'
+        animation="overlay"
         compact
         onHide={hideSidebar}
         vertical
         visible={isSidebarVisible}
-        width='thin'
-        >
-        <Menu.Item header as={ Link } name='welcome to culpa' to='/'>
+        width="thin"
+      >
+        <Menu.Item header as={Link} name="welcome to culpa" to="/">
           WELCOME TO CULPA!
         </Menu.Item>
-        <Menu.Item as={ Link } name='home' to='/'>
+        <Menu.Item as={Link} name="home" to="/">
           Home
         </Menu.Item>
-        <Menu.Item as={ Link } name='about' to='/about'>
+        <Menu.Item as={Link} name="about" to="/about">
           About
         </Menu.Item>
-        <Menu.Item as={ Link } name='departments' to='/departments'>
+        <Menu.Item as={Link} name="departments" to="/departments">
           Departments
         </Menu.Item>
-        <Menu.Item as={ Link } name='join the team' to='/join-the-team'>
+        <Menu.Item as={Link} name="join the team" to="/join-the-team">
           Join the Team
         </Menu.Item>
-        <Menu.Item as={ Link } name='log in' to='/login'>
+        <Menu.Item as={Link} name="log in" to="/login">
           Login
         </Menu.Item>
       </SemanticSidebar>
       <SemanticSidebar.Pushable as={Segment}>
-        <SemanticSidebar.Pusher>
-          {children}
-        </SemanticSidebar.Pusher>
+        <SemanticSidebar.Pusher>{children}</SemanticSidebar.Pusher>
       </SemanticSidebar.Pushable>
     </div>
   );

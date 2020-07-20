@@ -69,16 +69,17 @@ Object {
                 </div>
               </div>
             </div>
-            <a
-              class="item review-button-container"
-              href="/review"
+            <div
+              class="item write-review-button-container"
             >
-              <button
+              <a
                 class="ui yellow fluid button"
+                href="/review"
+                role="button"
               >
-                 WRITE A REVIEW 
-              </button>
-            </a>
+                WRITE A REVIEW
+              </a>
+            </div>
           </div>
         </div>
         <div
@@ -204,16 +205,17 @@ Object {
               </div>
             </div>
           </div>
-          <a
-            class="item review-button-container"
-            href="/review"
+          <div
+            class="item write-review-button-container"
           >
-            <button
+            <a
               class="ui yellow fluid button"
+              href="/review"
+              role="button"
             >
-               WRITE A REVIEW 
-            </button>
-          </a>
+              WRITE A REVIEW
+            </a>
+          </div>
         </div>
       </div>
       <div
