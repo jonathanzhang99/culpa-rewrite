@@ -1,19 +1,19 @@
-import { render } from '@testing-library/react';
-import React from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { render } from "@testing-library/react";
+import React from "react";
+import { BrowserRouter as Router } from "react-router-dom";
 
-import { AuthProvider } from 'components/common/Authentication';
-import NavigationBar from 'components/NavigationBar';
+import { AuthProvider } from "components/common/Authentication";
+import NavigationBar from "components/NavigationBar";
 
-describe('Navbar Component Tests', () => {
-  test('navbar snapshot test', () => {
+describe("Navbar Component Tests", () => {
+  test("navbar snapshot test", () => {
     const snapshot = render(
-			<AuthProvider>
+      <AuthProvider>
         <Router>
-          <NavigationBar/>
+          <NavigationBar />
         </Router>
-			</AuthProvider>
-		);
+      </AuthProvider>
+    );
     expect(snapshot).toMatchSnapshot();
   });
 });
