@@ -24,8 +24,6 @@ describe("Login Component Tests", () => {
   });
 
   describe("server Login Successful", () => {
-    jest.mock("react-router-dom");
-
     beforeEach(() => {
       render(
         <MemoryRouter>
