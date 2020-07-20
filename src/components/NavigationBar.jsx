@@ -6,8 +6,7 @@ import {
   Container,
   Icon,
   Menu,
-  Search,
-  Visibility,
+  Search
 } from "semantic-ui-react";
 
 import "../styles/navigationBar.css";
@@ -28,7 +27,6 @@ const defaultProps = {
 
 export default function NavigationBar({ children }) {
   const [isSidebarVisible, setSidebarVisible] = useState(false);
-  const [isNavbarFixed, setNavbarFixed] = useState(false);
 
   const unhideSidebar = () => {
     setSidebarVisible(true);
@@ -38,39 +36,26 @@ export default function NavigationBar({ children }) {
     setSidebarVisible(false);
   };
 
-  const fixNavbar = () => {
-    setNavbarFixed(true);
-  };
-
-  const unfixNavbar = () => {
-    setNavbarFixed(false);
-  };
-
   return (
     <div className="navbar-container">
-      <Visibility
-        onTopPassed={fixNavbar}
-        onTopVisible={unfixNavbar}
-        once={false}
-      >
-        <Menu fixed={isNavbarFixed ? "top" : undefined}>
-          <Menu.Item className="sidebar-tab-container">
-            <Button onClick={unhideSidebar} basic>
-              <Icon name="bars" color="blue" fitted size="big" />
-            </Button>
-          </Menu.Item>
-          <Menu.Item className="culpa-logo-container" as={Link} to="/" >
-            <h1> CULPA </h1>
-          </Menu.Item>
-          <Menu.Item className="searchbar-container">
-            <Search className="searchbar" fluid placeholder="Search for professors or courses." />
-          </Menu.Item>
-          <Menu.Item className="write-review-button-container">
-            <WriteReviewButton as={Link} to="/review" color="yellow" content="WRITE A REVIEW" fluid />
-          </Menu.Item>
-        </Menu>
-      </Visibility>
+      <Menu fixed="top">
+        <Menu.Item className="sidebar-tab-container">
+          <Button onClick={unhideSidebar} basic>
+            <Icon name="bars" color="blue" fitted size="big" />
+          </Button>
+        </Menu.Item>
+        <Menu.Item className="culpa-logo-container" as={Link} to="/" >
+          <h1> CULPA </h1>
+        </Menu.Item>
+        <Menu.Item className="searchbar-container">
+          <Search className="searchbar" fluid placeholder="Search for professors or courses." />
+        </Menu.Item>
+        <Menu.Item className="write-review-button-container">
+          <WriteReviewButton as={Link} to="/review" color="yellow" content="WRITE A REVIEW" fluid />
+        </Menu.Item>
+      </Menu>
       <Container>
+        <div className="top-margin" style={{height:"72px"}}> </div>
         <Sidebar hideSidebar={hideSidebar} isSidebarVisible={isSidebarVisible}>
           {children}
         </Sidebar>
