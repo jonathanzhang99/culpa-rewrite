@@ -129,9 +129,11 @@ function searchReducer(state, action) {
 }
 
 const propTypesSearchInput = {
+  name: PropTypes.string.isRequired,
   searchEntity: PropTypes.oneOf(["all", "professors", "courses"]),
   onChange: PropTypes.func,
   onBlur: PropTypes.func,
+  onResultSelect: PropTypes.func,
   value: PropTypes.string,
 };
 
@@ -139,6 +141,7 @@ const defaultPropsSearchInput = {
   searchEntity: "all",
   onChange: undefined,
   onBlur: undefined,
+  onResultSelect: () => {},
   value: "",
 };
 
@@ -152,6 +155,7 @@ export function SearchInput({
   searchEntity,
   onChange,
   onBlur,
+  onResultSelect,
   value,
   ...rest
 }) {
@@ -166,6 +170,7 @@ export function SearchInput({
 
   const handleResultSelect = (e, { result }) => {
     onChange(result.title);
+    onResultSelect(result);
   };
 
   const handleSearchChange = async (e) => {
