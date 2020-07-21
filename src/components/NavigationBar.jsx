@@ -37,7 +37,7 @@ export default function NavigationBar({ children }) {
   };
 
   return (
-    <div className="navbar-container">
+    <>
       <Menu fixed="top">
         <Menu.Item className="sidebar-tab-container">
           <Button onClick={unhideSidebar} basic>
@@ -55,12 +55,12 @@ export default function NavigationBar({ children }) {
         </Menu.Item>
       </Menu>
       <Container>
-        <div className="top-margin" style={{height:"72px"}}> </div>
+        <div className="top-margin" style={{height:"120px"}}> </div>
         <Sidebar hideSidebar={hideSidebar} isSidebarVisible={isSidebarVisible}>
           {children}
         </Sidebar>
       </Container>
-    </div>
+    </>
   );
 }
 
