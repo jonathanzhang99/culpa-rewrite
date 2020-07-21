@@ -20,7 +20,7 @@ const defaultProps = {
 
 export default function Sidebar({ children, hideSidebar, isSidebarVisible }) {
   return (
-    <div className="sidebar-container">
+    <>
       <SemanticSidebar
         as={Menu}
         animation="overlay"
@@ -52,7 +52,7 @@ export default function Sidebar({ children, hideSidebar, isSidebarVisible }) {
       <SemanticSidebar.Pushable as={Segment}>
         <SemanticSidebar.Pusher>{children}</SemanticSidebar.Pusher>
       </SemanticSidebar.Pushable>
-    </div>
+    </>
   );
 }
 
