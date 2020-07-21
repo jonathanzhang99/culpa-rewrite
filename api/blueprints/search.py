@@ -7,9 +7,9 @@ search_blueprint = flask.Blueprint('searc_blueprint', __name__)
 def search():
     '''
     POST request should contain two fields:
-        - searchEntity: One of ['professors', 'courses', 'all'] to
+        - entity: One of `['professors', 'courses', 'all']` to
           specify the data source for our results.
-        - searchValue: the query string.
+        - query: the query string.
 
     This function will access the db and retrieve query matches.
     Returns a JSON object with the results.
@@ -20,11 +20,11 @@ def search():
 
     request_json = flask.request.get_json()
 
-    search_entity = request_json.get('searchEntity', 'all')
-    query = request_json.get('searchValue')
+    search_entity = request_json.get('entity', 'all')
+    query = request_json.get('query', '')
 
-    if not query:
-        return {'error': 'Please give a more substantial query'}, 400
+    if len(query) < 2:
+        return {'error': 'Query is too insubstantial'}, 400
 
     # TODO: Everything below this line is strictly for testing the
     # `SearchInput` on the frontend and will be removed.
@@ -38,6 +38,6 @@ def search():
 
     return {
         'searchResults': search_results,
-        'searchEntity': search_entity,
+        'entity': search_entity,
         'query': query,
     }

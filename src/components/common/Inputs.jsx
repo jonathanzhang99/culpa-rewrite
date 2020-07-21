@@ -139,8 +139,8 @@ const propTypesSearchInput = {
 
 const defaultPropsSearchInput = {
   searchEntity: "all",
-  onChange: undefined,
-  onBlur: undefined,
+  onChange: () => {},
+  onBlur: () => {},
   onResultSelect: () => {},
   value: "",
 };
@@ -169,23 +169,21 @@ export function SearchInput({
   );
 
   const handleResultSelect = (e, { result }) => {
-    onChange(result.title);
+    onChange(e);
     onResultSelect(result);
   };
 
-  const handleSearchChange = async (e) => {
-    if (onChange) {
-      onChange(e);
-    }
+  const handleSearchChange = async (e, { value: searchValue }) => {
+    onChange(e);
 
-    if (value.length < 2) {
+    if (searchValue.length < 2) {
       return dispatch({ type: "SEARCH_RESET" });
     }
 
     dispatch({ type: "SEARCH_START" });
     const response = await fetch(`/api/search/`, {
       method: "POST",
-      body: JSON.stringify({ value, searchEntity }),
+      body: JSON.stringify({ query: searchValue, entity: searchEntity }),
       headers: { "Content-Type": "Application/json" },
     });
 
