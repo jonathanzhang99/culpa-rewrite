@@ -139,8 +139,13 @@ const propTypesSearchInput = {
 
 const defaultPropsSearchInput = {
   searchEntity: "all",
+<<<<<<< HEAD
   onChange: undefined,
   onBlur: undefined,
+=======
+  onChange: () => {},
+  onBlur: () => {},
+>>>>>>> 6a37956cb5bd3776a6a7b54a5a45938033e36761
   onResultSelect: () => {},
   value: "",
 };
@@ -169,6 +174,7 @@ export function SearchInput({
   );
 
   const handleResultSelect = (e, { result }) => {
+<<<<<<< HEAD
     onChange(result.title);
     onResultSelect(result);
   };
@@ -179,13 +185,27 @@ export function SearchInput({
     }
 
     if (value.length < 2) {
+=======
+    onChange(e);
+    onResultSelect(result);
+  };
+
+  const handleSearchChange = async (e, { value: searchValue }) => {
+    onChange(e);
+
+    if (searchValue.length < 2) {
+>>>>>>> 6a37956cb5bd3776a6a7b54a5a45938033e36761
       return dispatch({ type: "SEARCH_RESET" });
     }
 
     dispatch({ type: "SEARCH_START" });
     const response = await fetch(`/api/search/`, {
       method: "POST",
+<<<<<<< HEAD
       body: JSON.stringify({ value, searchEntity }),
+=======
+      body: JSON.stringify({ query: searchValue, entity: searchEntity }),
+>>>>>>> 6a37956cb5bd3776a6a7b54a5a45938033e36761
       headers: { "Content-Type": "Application/json" },
     });
 
