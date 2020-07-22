@@ -6,7 +6,7 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="ui top fixed ui celled center aligned middle aligned grid menu"
+        class="ui top fixed ui center aligned middle aligned grid menu"
       >
         <div
           class="one wide column"
@@ -37,6 +37,19 @@ Object {
           <form
             class="ui form"
           >
+            <div
+              class="ui error message"
+            >
+              <div
+                class="content"
+              >
+                <div
+                  class="header"
+                >
+                  Login Error
+                </div>
+              </div>
+            </div>
             <div
               class="field"
             >
@@ -142,7 +155,7 @@ Object {
           </a>
         </div>
         <div
-          class="ui container pushable"
+          class="pushable"
         >
           <div
             class="pusher"
@@ -153,7 +166,7 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="ui top fixed ui celled center aligned middle aligned grid menu"
+      class="ui top fixed ui center aligned middle aligned grid menu"
     >
       <div
         class="one wide column"
@@ -184,6 +197,19 @@ Object {
         <form
           class="ui form"
         >
+          <div
+            class="ui error message"
+          >
+            <div
+              class="content"
+            >
+              <div
+                class="header"
+              >
+                Login Error
+              </div>
+            </div>
+          </div>
           <div
             class="field"
           >
@@ -289,7 +315,7 @@ Object {
         </a>
       </div>
       <div
-        class="ui container pushable"
+        class="pushable"
       >
         <div
           class="pusher"

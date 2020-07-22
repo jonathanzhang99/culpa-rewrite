@@ -32,12 +32,7 @@ export default function NavigationBar({ children }) {
 
   return (
     <>
-      <Grid
-        as={Menu}
-        fixed="top"
-        textAlign="center"
-        verticalAlign="middle"
-      >
+      <Grid as={Menu} fixed="top" textAlign="center" verticalAlign="middle">
         <Grid.Column width={1}>
           <Button onClick={showSidebar} basic compact>
             <Icon name="bars" color="blue" fitted size="big" />
@@ -49,7 +44,7 @@ export default function NavigationBar({ children }) {
           </Link>
         </Grid.Column>
         <Grid.Column width={9}>
-          <Form onSubmit={()=>{}} onSuccess={()=>{}}>
+          <Form onSubmit={() => {}} onSuccess={() => {}}>
             <SearchInput name="searchbar-in-navbar" fluid searchEntity="all" />
           </Form>
         </Grid.Column>
