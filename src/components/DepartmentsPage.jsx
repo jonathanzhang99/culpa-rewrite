@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import React from "react";
+import { Header, List } from "semantic-ui-react";
 
 import ErrorComponent from "components/common/ErrorComponent";
 import LoadingComponent from "components/common/LoadingComponent";
@@ -19,11 +20,13 @@ export function DepartmentsSection(props) {
 
   return (
     <div>
-      <h2>List of Departments</h2>
-      {departments.map((department) => {
-        const { name } = department;
-        return <p key={`${name}`}>{name}</p>;
-      })}
+      <Header>List of Departments</Header>
+      <List>
+        {departments.map((department) => {
+          const { name } = department;
+          return <List.Item key={`${name}`}>{name}</List.Item>;
+        })}
+      </List>
     </div>
   );
 }

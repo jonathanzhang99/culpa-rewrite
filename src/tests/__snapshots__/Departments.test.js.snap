@@ -6,29 +6,55 @@ Object {
   "baseElement": <body>
     <div>
       <div>
-        <h2>
+        <div
+          class="ui header"
+        >
           List of Departments
-        </h2>
-        <p>
-          Computer Science
-        </p>
-        <p>
-          English
-        </p>
+        </div>
+        <div
+          class="ui list"
+          role="list"
+        >
+          <div
+            class="item"
+            role="listitem"
+          >
+            Computer Science
+          </div>
+          <div
+            class="item"
+            role="listitem"
+          >
+            English
+          </div>
+        </div>
       </div>
     </div>
   </body>,
   "container": <div>
     <div>
-      <h2>
+      <div
+        class="ui header"
+      >
         List of Departments
-      </h2>
-      <p>
-        Computer Science
-      </p>
-      <p>
-        English
-      </p>
+      </div>
+      <div
+        class="ui list"
+        role="list"
+      >
+        <div
+          class="item"
+          role="listitem"
+        >
+          Computer Science
+        </div>
+        <div
+          class="item"
+          role="listitem"
+        >
+          English
+        </div>
+      </div>
     </div>
   </div>,
   "debug": [Function],
@@ -91,19 +117,39 @@ Object {
   "baseElement": <body>
     <div>
       <div>
-        <h2>
+        <div
+          class="ui header"
+        >
           List of Departments
-        </h2>
-        <p />
+        </div>
+        <div
+          class="ui list"
+          role="list"
+        >
+          <div
+            class="item"
+            role="listitem"
+          />
+        </div>
       </div>
     </div>
   </body>,
   "container": <div>
     <div>
-      <h2>
+      <div
+        class="ui header"
+      >
         List of Departments
-      </h2>
-      <p />
+      </div>
+      <div
+        class="ui list"
+        role="list"
+      >
+        <div
+          class="item"
+          role="listitem"
+        />
+      </div>
     </div>
   </div>,
   "debug": [Function],
