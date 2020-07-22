@@ -3,9 +3,9 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button, Container, Form, Grid, Icon, Menu } from "semantic-ui-react";
 
+import CreateReviewButton from "components/common/CreateReviewButton";
 import { SearchInput } from "components/common/Inputs";
 import Sidebar from "components/common/Sidebar";
-import WriteReviewButton from "components/common/WriteReviewButton";
 
 const propTypes = {
   children: oneOfType([
@@ -21,7 +21,7 @@ const defaultProps = {
 export default function NavigationBar({ children }) {
   const [isSidebarVisible, setSidebarVisible] = useState(false);
 
-  const unhideSidebar = () => {
+  const showSidebar = () => {
     setSidebarVisible(true);
   };
 
@@ -39,12 +39,14 @@ export default function NavigationBar({ children }) {
         verticalAlign="middle"
       >
         <Grid.Column width={1}>
-          <Button onClick={unhideSidebar} basic compact>
+          <Button onClick={showSidebar} basic compact>
             <Icon name="bars" color="blue" fitted size="big" />
           </Button>
         </Grid.Column>
-        <Grid.Column as={Link} to="/" width={3}>
-          <h1> CULPA </h1>
+        <Grid.Column width={3}>
+          <Link to="/">
+            <h1> CULPA </h1>
+          </Link>
         </Grid.Column>
         <Grid.Column width={9}>
           <Form>
@@ -52,17 +54,13 @@ export default function NavigationBar({ children }) {
           </Form>
         </Grid.Column>
         <Grid.Column width={3}>
-          <WriteReviewButton
-            as={Link}
-            to="/review"
-            color="yellow"
-            content="WRITE A REVIEW"
-            fluid
-          />
+          <CreateReviewButton color="yellow" fluid>
+            WRITE A REVIEW
+          </CreateReviewButton>
         </Grid.Column>
       </Grid>
       <Container>
-        <div className="top-margin" style={{ height: "120px" }} />
+        <div style={{ height: "120px" }} />
         <Sidebar hideSidebar={hideSidebar} isSidebarVisible={isSidebarVisible}>
           {children}
         </Sidebar>

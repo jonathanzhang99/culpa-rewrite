@@ -20,14 +20,17 @@ Object {
             />
           </button>
         </div>
-        <a
+        <div
           class="three wide column"
-          href="/"
         >
-          <h1>
-             CULPA 
-          </h1>
-        </a>
+          <a
+            href="/"
+          >
+            <h1>
+               CULPA 
+            </h1>
+          </a>
+        </div>
         <div
           class="nine wide column"
         >
@@ -82,11 +85,13 @@ Object {
           class="three wide column"
         >
           <a
-            class="ui yellow fluid button"
             href="/review"
-            role="button"
           >
-            WRITE A REVIEW
+            <button
+              class="ui yellow fluid button"
+            >
+              WRITE A REVIEW
+            </button>
           </a>
         </div>
       </div>
@@ -94,7 +99,6 @@ Object {
         class="ui container"
       >
         <div
-          class="top-margin"
           style="height: 120px;"
         />
         <div
@@ -163,14 +167,17 @@ Object {
           />
         </button>
       </div>
-      <a
+      <div
         class="three wide column"
-        href="/"
       >
-        <h1>
-           CULPA 
-        </h1>
-      </a>
+        <a
+          href="/"
+        >
+          <h1>
+             CULPA 
+          </h1>
+        </a>
+      </div>
       <div
         class="nine wide column"
       >
@@ -225,11 +232,13 @@ Object {
         class="three wide column"
       >
         <a
-          class="ui yellow fluid button"
           href="/review"
-          role="button"
         >
-          WRITE A REVIEW
+          <button
+            class="ui yellow fluid button"
+          >
+            WRITE A REVIEW
+          </button>
         </a>
       </div>
     </div>
@@ -237,7 +246,6 @@ Object {
       class="ui container"
     >
       <div
-        class="top-margin"
         style="height: 120px;"
       />
       <div
