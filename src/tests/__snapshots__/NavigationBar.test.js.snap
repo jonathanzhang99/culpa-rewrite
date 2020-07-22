@@ -6,45 +6,52 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="navbar-container"
+        class="ui top fixed ui celled center aligned middle aligned grid menu"
       >
-        <div>
-          <div
-            class="ui menu"
+        <div
+          class="one wide column"
+        >
+          <button
+            class="ui basic compact button"
+          >
+            <i
+              aria-hidden="true"
+              class="blue bars big fitted icon"
+            />
+          </button>
+        </div>
+        <a
+          class="three wide column"
+          href="/"
+        >
+          <h1>
+             CULPA 
+          </h1>
+        </a>
+        <div
+          class="nine wide column"
+        >
+          <form
+            class="ui form"
           >
             <div
-              class="item sidebar-tab-container"
+              class="field"
             >
-              <button
-                class="ui basic button"
-              >
-                <i
-                  aria-hidden="true"
-                  class="blue bars big fitted icon"
-                />
-              </button>
-            </div>
-            <a
-              class="item culpa-logo-container"
-              href="/"
-            >
-              <h1>
-                 CULPA 
-              </h1>
-            </a>
-            <div
-              class="item searchbar-container"
-            >
+              <label
+                for="form-input-searchbar-in-navbar"
+              />
               <div
-                class="ui fluid search searchbar"
+                class="ui fluid search"
               >
                 <div
                   class="ui icon input"
                 >
                   <input
+                    aria-label=""
                     autocomplete="off"
                     class="prompt"
-                    placeholder="Search for professors or courses."
+                    id="form-input-searchbar-in-navbar"
+                    name="searchbar-in-navbar"
                     tabindex="0"
                     type="text"
                     value=""
@@ -69,118 +76,125 @@ Object {
                 </div>
               </div>
             </div>
-            <div
-              class="item write-review-button-container"
-            >
-              <a
-                class="ui yellow fluid button"
-                href="/review"
-                role="button"
-              >
-                WRITE A REVIEW
-              </a>
-            </div>
-          </div>
+          </form>
         </div>
         <div
-          class="ui container"
+          class="three wide column"
+        >
+          <a
+            class="ui yellow fluid button"
+            href="/review"
+            role="button"
+          >
+            WRITE A REVIEW
+          </a>
+        </div>
+      </div>
+      <div
+        class="ui container"
+      >
+        <div
+          class="top-margin"
+          style="height: 120px;"
+        />
+        <div
+          class="ui compact vertical ui overlay left thin sidebar menu"
+        >
+          <a
+            class="header item"
+            href="/"
+          >
+            WELCOME TO CULPA!
+          </a>
+          <a
+            class="item"
+            href="/"
+          >
+            Home
+          </a>
+          <a
+            class="item"
+            href="/about"
+          >
+            About
+          </a>
+          <a
+            class="item"
+            href="/departments"
+          >
+            Departments
+          </a>
+          <a
+            class="item"
+            href="/join-the-team"
+          >
+            Join the Team
+          </a>
+          <a
+            class="item"
+            href="/login"
+          >
+            Login
+          </a>
+        </div>
+        <div
+          class="ui segment pushable"
         >
           <div
-            class="sidebar-container"
-          >
-            <div
-              class="ui compact vertical ui overlay left thin sidebar menu"
-            >
-              <a
-                class="header item"
-                href="/"
-              >
-                WELCOME TO CULPA!
-              </a>
-              <a
-                class="item"
-                href="/"
-              >
-                Home
-              </a>
-              <a
-                class="item"
-                href="/about"
-              >
-                About
-              </a>
-              <a
-                class="item"
-                href="/departments"
-              >
-                Departments
-              </a>
-              <a
-                class="item"
-                href="/join-the-team"
-              >
-                Join the Team
-              </a>
-              <a
-                class="item"
-                href="/login"
-              >
-                Login
-              </a>
-            </div>
-            <div
-              class="ui segment pushable"
-            >
-              <div
-                class="pusher"
-              />
-            </div>
-          </div>
+            class="pusher"
+          />
         </div>
       </div>
     </div>
   </body>,
   "container": <div>
     <div
-      class="navbar-container"
+      class="ui top fixed ui celled center aligned middle aligned grid menu"
     >
-      <div>
-        <div
-          class="ui menu"
+      <div
+        class="one wide column"
+      >
+        <button
+          class="ui basic compact button"
+        >
+          <i
+            aria-hidden="true"
+            class="blue bars big fitted icon"
+          />
+        </button>
+      </div>
+      <a
+        class="three wide column"
+        href="/"
+      >
+        <h1>
+           CULPA 
+        </h1>
+      </a>
+      <div
+        class="nine wide column"
+      >
+        <form
+          class="ui form"
         >
           <div
-            class="item sidebar-tab-container"
+            class="field"
           >
-            <button
-              class="ui basic button"
-            >
-              <i
-                aria-hidden="true"
-                class="blue bars big fitted icon"
-              />
-            </button>
-          </div>
-          <a
-            class="item culpa-logo-container"
-            href="/"
-          >
-            <h1>
-               CULPA 
-            </h1>
-          </a>
-          <div
-            class="item searchbar-container"
-          >
+            <label
+              for="form-input-searchbar-in-navbar"
+            />
             <div
-              class="ui fluid search searchbar"
+              class="ui fluid search"
             >
               <div
                 class="ui icon input"
               >
                 <input
+                  aria-label=""
                   autocomplete="off"
                   class="prompt"
-                  placeholder="Search for professors or courses."
+                  id="form-input-searchbar-in-navbar"
+                  name="searchbar-in-navbar"
                   tabindex="0"
                   type="text"
                   value=""
@@ -205,73 +219,73 @@ Object {
               </div>
             </div>
           </div>
-          <div
-            class="item write-review-button-container"
-          >
-            <a
-              class="ui yellow fluid button"
-              href="/review"
-              role="button"
-            >
-              WRITE A REVIEW
-            </a>
-          </div>
-        </div>
+        </form>
       </div>
       <div
-        class="ui container"
+        class="three wide column"
+      >
+        <a
+          class="ui yellow fluid button"
+          href="/review"
+          role="button"
+        >
+          WRITE A REVIEW
+        </a>
+      </div>
+    </div>
+    <div
+      class="ui container"
+    >
+      <div
+        class="top-margin"
+        style="height: 120px;"
+      />
+      <div
+        class="ui compact vertical ui overlay left thin sidebar menu"
+      >
+        <a
+          class="header item"
+          href="/"
+        >
+          WELCOME TO CULPA!
+        </a>
+        <a
+          class="item"
+          href="/"
+        >
+          Home
+        </a>
+        <a
+          class="item"
+          href="/about"
+        >
+          About
+        </a>
+        <a
+          class="item"
+          href="/departments"
+        >
+          Departments
+        </a>
+        <a
+          class="item"
+          href="/join-the-team"
+        >
+          Join the Team
+        </a>
+        <a
+          class="item"
+          href="/login"
+        >
+          Login
+        </a>
+      </div>
+      <div
+        class="ui segment pushable"
       >
         <div
-          class="sidebar-container"
-        >
-          <div
-            class="ui compact vertical ui overlay left thin sidebar menu"
-          >
-            <a
-              class="header item"
-              href="/"
-            >
-              WELCOME TO CULPA!
-            </a>
-            <a
-              class="item"
-              href="/"
-            >
-              Home
-            </a>
-            <a
-              class="item"
-              href="/about"
-            >
-              About
-            </a>
-            <a
-              class="item"
-              href="/departments"
-            >
-              Departments
-            </a>
-            <a
-              class="item"
-              href="/join-the-team"
-            >
-              Join the Team
-            </a>
-            <a
-              class="item"
-              href="/login"
-            >
-              Login
-            </a>
-          </div>
-          <div
-            class="ui segment pushable"
-          >
-            <div
-              class="pusher"
-            />
-          </div>
-        </div>
+          class="pusher"
+        />
       </div>
     </div>
   </div>,

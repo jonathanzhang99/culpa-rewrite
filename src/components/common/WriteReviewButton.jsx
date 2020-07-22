@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from "react";
-import { Button } from "semantic-ui-react"
+import { Button } from "semantic-ui-react";
 
 export default function WriteReviewButton(props) {
-  return <Button {...props} />
+  return <Button {...props} />;
 }
