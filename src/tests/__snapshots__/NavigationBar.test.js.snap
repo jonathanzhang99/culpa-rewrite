@@ -142,7 +142,7 @@ Object {
           </a>
         </div>
         <div
-          class="ui segment pushable"
+          class="ui container pushable"
         >
           <div
             class="pusher"
@@ -289,7 +289,7 @@ Object {
         </a>
       </div>
       <div
-        class="ui segment pushable"
+        class="ui container pushable"
       >
         <div
           class="pusher"
