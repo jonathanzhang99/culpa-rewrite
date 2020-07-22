@@ -4,6 +4,7 @@ import { Container } from "semantic-ui-react";
 
 import { AuthProvider, ProtectedRoute } from "components/common/Authentication";
 import ReviewForm from "components/CreateReviewPage";
+import Departments from "components/DepartmentsPage";
 import Login from "components/LoginPage";
 import Professors from "components/ProfessorsPage";
 
@@ -27,6 +28,9 @@ function App() {
             </Route>
             <Route path="/professors">
               <Professors />
+            </Route>
+            <Route path="/departments">
+              <Departments />
             </Route>
             <Route path="/">
               <div>
