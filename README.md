@@ -101,7 +101,7 @@ You can also use the following to lint your code (necessary before pushing to ma
 
 ```
 yarn lint-js
-yarn lint-python
+yarn lint-py
 ```
 
 If you find that you run into many javascript formatting problems, run the following to fix common errors:
