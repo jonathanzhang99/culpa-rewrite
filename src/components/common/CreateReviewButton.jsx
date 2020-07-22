@@ -19,7 +19,7 @@ export default function CreateReviewButton({ courseId, professorId, ...rest }) {
     <Link
       to={{
         pathname: "/review",
-        state: { courseId: { courseId }, professorId: { professorId } },
+        state: { courseId, professorId },
       }}
     >
       <Button {...rest} />
