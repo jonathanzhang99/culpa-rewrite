@@ -14,16 +14,14 @@ const propTypes = {
   ).isRequired,
 };
 
-export function DepartmentsSection(props) {
+export function DepartmentsSection({ departments }) {
   // TODO: Implement Department Section
-  const { departments } = props;
 
   return (
     <div>
       <Header>List of Departments</Header>
       <List>
-        {departments.map((department) => {
-          const { name } = department;
+        {departments.map(({ name }) => {
           return <List.Item key={`${name}`}>{name}</List.Item>;
         })}
       </List>
