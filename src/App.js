@@ -3,6 +3,7 @@ import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 
 import { AuthProvider, ProtectedRoute } from "components/common/Authentication";
 import ReviewForm from "components/CreateReviewPage";
+import Departments from "components/DepartmentsPage";
 import Login from "components/LoginPage";
 import NavigationBar from "components/NavigationBar";
 import Professors from "components/ProfessorsPage";
@@ -24,6 +25,9 @@ function App() {
             </Route>
             <Route path="/professors">
               <Professors />
+            </Route>
+            <Route path="/departments">
+              <Departments />
             </Route>
             <Route path="/">
               <h1>Welcome to CULPA: Temporary header</h1>
