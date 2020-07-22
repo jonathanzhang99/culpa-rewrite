@@ -17,9 +17,7 @@ function App() {
               <Login />
             </Route>
             <ProtectedRoute exact path="/admin">
-              <div>
-                <h1>Admin only page!!</h1>
-              </div>
+              <h1>Admin only page!!</h1>
             </ProtectedRoute>
             <Route path="/review">
               <ReviewForm />
@@ -28,9 +26,7 @@ function App() {
               <Professors />
             </Route>
             <Route path="/">
-              <div>
-                <h1>Welcome to CULPA: Temporary header</h1>
-              </div>
+              <h1>Welcome to CULPA: Temporary header</h1>
             </Route>
           </Switch>
         </NavigationBar>

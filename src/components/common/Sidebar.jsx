@@ -1,7 +1,7 @@
 import PropTypes, { oneOfType } from "prop-types";
 import React from "react";
 import { Link } from "react-router-dom";
-import { Menu, Segment, Sidebar as SemanticSidebar } from "semantic-ui-react";
+import { Menu, Sidebar as SemanticSidebar } from "semantic-ui-react";
 
 const propTypes = {
   children: oneOfType([
@@ -49,7 +49,7 @@ export default function Sidebar({ children, hideSidebar, isSidebarVisible }) {
           Login
         </Menu.Item>
       </SemanticSidebar>
-      <SemanticSidebar.Pushable as={Segment}>
+      <SemanticSidebar.Pushable>
         <SemanticSidebar.Pusher>{children}</SemanticSidebar.Pusher>
       </SemanticSidebar.Pushable>
     </>

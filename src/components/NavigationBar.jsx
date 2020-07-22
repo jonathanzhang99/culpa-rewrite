@@ -1,9 +1,10 @@
 import PropTypes, { oneOfType } from "prop-types";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Button, Container, Form, Grid, Icon, Menu } from "semantic-ui-react";
+import { Button, Container, Grid, Icon, Menu } from "semantic-ui-react";
 
 import CreateReviewButton from "components/common/CreateReviewButton";
+import Form from "components/common/Form";
 import { SearchInput } from "components/common/Inputs";
 import Sidebar from "components/common/Sidebar";
 
@@ -33,7 +34,6 @@ export default function NavigationBar({ children }) {
     <>
       <Grid
         as={Menu}
-        celled
         fixed="top"
         textAlign="center"
         verticalAlign="middle"
@@ -49,7 +49,7 @@ export default function NavigationBar({ children }) {
           </Link>
         </Grid.Column>
         <Grid.Column width={9}>
-          <Form>
+          <Form onSubmit={()=>{}} onSuccess={()=>{}}>
             <SearchInput name="searchbar-in-navbar" fluid searchEntity="all" />
           </Form>
         </Grid.Column>
