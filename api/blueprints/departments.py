@@ -1,6 +1,6 @@
 import flask
 
-from api.data.departments_loader import get_all_departments
+from api.data.department_loaders import get_all_departments
 
 departments_blueprint = flask.Blueprint('departments_blueprint', __name__)
 
