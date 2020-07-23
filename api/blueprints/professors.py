@@ -1,6 +1,6 @@
 import flask
 
-from api.data.professors_loader import get_all_professors
+from api.data.professor_loader import get_all_professors
 
 professors_blueprint = flask.Blueprint('professors_blueprint', __name__)
 
