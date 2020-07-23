@@ -1,16 +1,16 @@
 from api.data import db
-from api.data.departments_loader import get_all_departments
+from api.data.department_loaders import get_all_departments
 from api.tests import LoadersBaseTest
 
 
-class DepartmentsLoadersTest(LoadersBaseTest):
+class DepartmentLoadersTest(LoadersBaseTest):
     def test_load_departments(self):
         cur = db.get_cursor()
         cur.execute(
-            'INSERT INTO departments (name)'
+            'INSERT INTO department (name)'
             'VALUES ("test1")'
         )
-        expected_res = [{'departments_id': 1,
+        expected_res = [{'id': 1,
                          'name': 'test1'
                          }]
 

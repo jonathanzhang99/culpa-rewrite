@@ -1,14 +1,14 @@
 from pypika import Table
 
 
-departments = Table('departments')
-announcements = Table('announcements')
-courses = Table('courses')
+department = Table('department')
+announcement = Table('announcement')
+course = Table('course')
 course_instance = Table('course_instance')
-professors = Table('professors')
-professors_courses = Table('professors_courses')
-departments_professors = Table('departments_professors')
+professor = Table('professor')
+professor_course = Table('professor_course')
+department_professor = Table('department_professor')
 review = Table('review')
-votes = Table('votes')
-users = Table('users')
-flags = Table('flags')
+vote = Table('vote')
+user = Table('user')
+flag = Table('flag')
