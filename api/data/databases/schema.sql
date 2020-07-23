@@ -1,6 +1,6 @@
 CREATE TABLE `department` (
   `department_id` INT NOT NULL AUTO_INCREMENT,
-  `department_name` VARCHAR(255) NOT NULL,
+  `name` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`department_id`)
 );
 
@@ -12,7 +12,7 @@ CREATE TABLE `announcement` (
 
 CREATE TABLE `course` (
   `course_id` INT NOT NULL AUTO_INCREMENT,
-  `course_name` VARCHAR(255) NOT NULL,
+  `name` VARCHAR(255) NOT NULL,
   `department_id` INT NOT NULL,
   PRIMARY KEY (`course_id`),
   FOREIGN KEY (`department_id`) REFERENCES `department`(`department_id`)
@@ -53,8 +53,8 @@ FOREIGN KEY (`department_id`) REFERENCES `department` (`department_id`)
 CREATE TABLE `review` (
   `review_id` INT NOT NULL AUTO_INCREMENT,
   `instance_id` INT NOT NULL,
-  `review_content` TEXT NULL,
-  `review_rating` INT NULL,
+  `content` TEXT NULL,
+  `rating` INT NULL,
   `submission_date` DATETIME NOT NULL,
   `professor_id` INT NOT NULL,
   PRIMARY KEY (`review_id`),
@@ -65,7 +65,7 @@ FOREIGN KEY (`professor_id`) REFERENCES `professor` (`professor_id`)
 
 CREATE TABLE `vote` (
   `review_id` INT NOT NULL,
-  `vote_type` VARCHAR(255) NOT NULL,
+  `type` VARCHAR(255) NOT NULL,
 FOREIGN KEY (`review_id`) REFERENCES `review`(`review_id`)
 );
 
