@@ -8,7 +8,7 @@ def get_all_professors():
     cur = db.get_cursor()
     query = Query.from_(professor) \
         .select(
-            professor.professor_id,
+            professor.id,
             professor.first_name,
             professor.last_name
         ).get_sql()

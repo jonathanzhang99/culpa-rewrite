@@ -1,11 +1,11 @@
 from werkzeug.security import generate_password_hash
 
 from api.data import db
-from api.data.user_loader import load_user
+from api.data.user_loaders import load_user
 from api.tests import LoadersBaseTest
 
 
-class UserLoaderTest(LoadersBaseTest):
+class UserLoadersTest(LoadersBaseTest):
     def test_load_user(self):
         cur = db.get_cursor()
         password = 'taxthestudents'
@@ -15,7 +15,7 @@ class UserLoaderTest(LoadersBaseTest):
             'VALUES (%s, %s, %s, %s)',
             ['lcb50@columbia.edu', 'theBigL', phash, '']
         )
-        expected_res = [{'user_id': 1,
+        expected_res = [{'id': 1,
                          'email': 'lcb50@columbia.edu',
                          'username': 'theBigL',
                          'password': phash,
