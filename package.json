@@ -41,6 +41,14 @@
   },
   "eslintConfig": {
     "rules": {
+      "react/jsx-sort-props": [
+        "error",
+        {
+          "ignoreCase": true,
+          "callbacksLast": true,
+          "shorthandFirst": true
+        }
+      ],
       "react/jsx-filename-extension": [
         1,
         {

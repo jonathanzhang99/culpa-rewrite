@@ -22,13 +22,13 @@ export default function Sidebar({ children, hideSidebar, isSidebarVisible }) {
   return (
     <>
       <SemanticSidebar
-        as={Menu}
-        animation="overlay"
         compact
-        onHide={hideSidebar}
         vertical
+        animation="overlay"
+        as={Menu}
         visible={isSidebarVisible}
         width="thin"
+        onHide={hideSidebar}
       >
         <Menu.Item header as={Link} name="welcome to culpa" to="/">
           WELCOME TO CULPA!

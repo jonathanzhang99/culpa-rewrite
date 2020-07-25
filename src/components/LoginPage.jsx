@@ -16,16 +16,16 @@ export default function Login() {
       <h1>Login</h1>
       <Form onSubmit={login} onSuccess={onSuccess}>
         <TextInput
-          width={5}
           label="Username"
           name="username"
           rules={{ required: "Missing username" }}
+          width={5}
         />
         <PasswordInput
-          width={5}
           label="Password"
           name="password"
           rules={{ required: "Missing password" }}
+          width={5}
         />
         <Submit />
       </Form>

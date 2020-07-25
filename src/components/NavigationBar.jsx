@@ -34,8 +34,8 @@ export default function NavigationBar({ children }) {
     <>
       <Grid as={Menu} fixed="top" textAlign="center" verticalAlign="middle">
         <Grid.Column width={1}>
-          <Button onClick={showSidebar} basic compact>
-            <Icon name="bars" color="blue" fitted size="big" />
+          <Button basic compact onClick={showSidebar}>
+            <Icon fitted color="blue" name="bars" size="big" />
           </Button>
         </Grid.Column>
         <Grid.Column width={3}>
@@ -45,11 +45,11 @@ export default function NavigationBar({ children }) {
         </Grid.Column>
         <Grid.Column width={9}>
           <Form onSubmit={() => {}} onSuccess={() => {}}>
-            <SearchInput name="searchbar-in-navbar" fluid searchEntity="all" />
+            <SearchInput fluid name="searchbar-in-navbar" searchEntity="all" />
           </Form>
         </Grid.Column>
         <Grid.Column width={3}>
-          <CreateReviewButton color="yellow" fluid>
+          <CreateReviewButton fluid color="yellow">
             WRITE A REVIEW
           </CreateReviewButton>
         </Grid.Column>
