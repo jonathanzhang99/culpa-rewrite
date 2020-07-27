@@ -39,6 +39,7 @@ const propTypesInput = {
   label: PropTypes.string,
   name: PropTypes.string.isRequired,
   width: PropTypes.number,
+  onChange: PropTypes.func,
 };
 
 const defaultPropsInput = {
@@ -46,9 +47,10 @@ const defaultPropsInput = {
   id: "",
   label: "",
   width: undefined,
+  onChange: () => {},
 };
 
-export function TextInput({ error, id, label, name, width }) {
+export function TextInput({ error, id, label, name, width, onChange }) {
   return (
     <SemanticForm.Field
       aria-label={label}
@@ -59,11 +61,12 @@ export function TextInput({ error, id, label, name, width }) {
       name={name}
       type="text"
       width={width}
+      onChange={onChange}
     />
   );
 }
 
-export function PasswordInput({ name, label, error, id, width }) {
+export function PasswordInput({ name, label, error, id, width, onChange }) {
   return (
     <SemanticForm.Field
       aria-label={label}
@@ -74,11 +77,12 @@ export function PasswordInput({ name, label, error, id, width }) {
       name={name}
       type="password"
       width={width}
+      onChange={onChange}
     />
   );
 }
 
-export function TextAreaInput({ name, label, error, id, width }) {
+export function TextAreaInput({ name, label, error, id, width, onChange }) {
   return (
     <SemanticForm.Field
       aria-label={label}
@@ -88,6 +92,7 @@ export function TextAreaInput({ name, label, error, id, width }) {
       label={label}
       name={name}
       width={width}
+      onChange={onChange}
     />
   );
 }
@@ -103,6 +108,7 @@ const propTypesDropdown = {
   label: PropTypes.string,
   name: PropTypes.string.isRequired,
   width: PropTypes.number,
+  onChange: PropTypes.func,
 };
 
 const defaultPropsDropdown = {
@@ -113,6 +119,7 @@ const defaultPropsDropdown = {
   id: "",
   label: "",
   width: undefined,
+  onChange: () => {},
 };
 export function DropdownInput({
   disabled,
@@ -123,6 +130,7 @@ export function DropdownInput({
   width,
   options,
   placeholder,
+  onChange,
 }) {
   return (
     <SemanticForm.Field
@@ -138,6 +146,7 @@ export function DropdownInput({
       options={options}
       placeholder={placeholder}
       width={width}
+      onChange={onChange}
     />
   );
 }

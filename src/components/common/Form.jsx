@@ -64,16 +64,15 @@ export default function Form({ defaultValues, children, onSubmit, onSuccess }) {
             </child.type>
           );
         }
-        const { name, rules, ...rest } = child.props;
+        const { name, rules } = child.props;
         return (
           <Controller
             as={child}
             control={control}
-            name={name}
-            rules={rules}
-            {...rest}
             defaultValue=""
             error={getErrors(name)}
+            name={name}
+            rules={rules}
           />
         );
       }

@@ -53,17 +53,13 @@ Object {
             <div
               class="field"
             >
-              <label
-                for="form-input-searchbar-in-navbar"
-              />
               <div
-                class="ui fluid search"
+                class="ui search"
               >
                 <div
                   class="ui icon input"
                 >
                   <input
-                    aria-label=""
                     autocomplete="off"
                     class="prompt"
                     id="form-input-searchbar-in-navbar"
@@ -213,17 +209,13 @@ Object {
           <div
             class="field"
           >
-            <label
-              for="form-input-searchbar-in-navbar"
-            />
             <div
-              class="ui fluid search"
+              class="ui search"
             >
               <div
                 class="ui icon input"
               >
                 <input
-                  aria-label=""
                   autocomplete="off"
                   class="prompt"
                   id="form-input-searchbar-in-navbar"

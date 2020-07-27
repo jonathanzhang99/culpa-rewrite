@@ -132,7 +132,6 @@ Object {
               id="form-input-test1"
               name="test1"
               type="text"
-              value=""
             />
           </div>
         </div>
@@ -150,7 +149,6 @@ Object {
               id="form-input-test2"
               name="test2"
               type="text"
-              value=""
             />
           </div>
         </div>
@@ -188,7 +186,6 @@ Object {
             id="form-input-test1"
             name="test1"
             type="text"
-            value=""
           />
         </div>
       </div>
@@ -206,7 +203,6 @@ Object {
             id="form-input-test2"
             name="test2"
             type="text"
-            value=""
           />
         </div>
       </div>
@@ -301,7 +297,6 @@ Object {
               id="form-input-test1"
               name="test1"
               type="text"
-              value=""
             />
           </div>
         </div>
@@ -339,7 +334,6 @@ Object {
             id="form-input-test1"
             name="test1"
             type="text"
-            value=""
           />
         </div>
       </div>
@@ -434,7 +428,6 @@ Object {
               id="form-input-test1"
               name="test1"
               type="text"
-              value=""
             />
           </div>
         </div>
@@ -480,7 +473,6 @@ Object {
             id="form-input-test1"
             name="test1"
             type="text"
-            value=""
           />
         </div>
       </div>
