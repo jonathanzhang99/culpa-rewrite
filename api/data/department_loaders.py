@@ -8,8 +8,8 @@ def get_all_departments():
     cur = db.get_cursor()
     query = Query.from_(department) \
         .select(
-            department.id,
+            department.department_id,
             department.name
-        ).get_sql()
+    ).get_sql()
     cur.execute(query)
     return cur.fetchall()

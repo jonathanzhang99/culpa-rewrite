@@ -10,7 +10,7 @@ class DepartmentLoadersTest(LoadersBaseTest):
             'INSERT INTO department (name)'
             'VALUES ("test1")'
         )
-        expected_res = [{'id': 1,
+        expected_res = [{'department_id': 1,
                          'name': 'test1'
                          }]
 
