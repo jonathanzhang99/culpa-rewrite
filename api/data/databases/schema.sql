@@ -15,7 +15,7 @@ CREATE TABLE `course` (
   `name` VARCHAR(255) NOT NULL,
   `department_id` INT NOT NULL,
   PRIMARY KEY (`course_id`),
-  CONSTRAINT `fk_course_department` FOREIGN KEY (`department_id`)
+  CONSTRAINT `fk_course__department` FOREIGN KEY (`department_id`)
     REFERENCES `department` (`department_id`)
 );
 
@@ -29,10 +29,10 @@ CREATE TABLE `professor` (
 CREATE TABLE `department_professor`(
   `professor_id` INT NOT NULL,
   `department_id` INT NOT NULL,
-  CONSTRAINT `fk_department_professor_professor` FOREIGN KEY (`professor_id`)
-  REFERENCES `professor` (`professor_id`),
-  CONSTRAINT `fk_department_professor_department` FOREIGN KEY (`department_id`)
-  REFERENCES `department` (`department_id`)
+  CONSTRAINT `fk_department_professor__professor` FOREIGN KEY (`professor_id`)
+    REFERENCES `professor` (`professor_id`),
+  CONSTRAINT `fk_department_professor__department` FOREIGN KEY (`department_id`)
+    REFERENCES `department` (`department_id`)
 );
 
 CREATE TABLE `course_instance` (
@@ -42,10 +42,10 @@ CREATE TABLE `course_instance` (
   `year` YEAR NULL,
   `semester` INT NULL,
   PRIMARY KEY (`course_instance_id`),
-  CONSTRAINT `fk_course_instance_professor` FOREIGN KEY(`professor_id`)
-  REFERENCES `professor` (`professor_id`),
-  CONSTRAINT `fk_course_instance_course` FOREIGN KEY (`course_id`)
-  REFERENCES `course` (`course_id`)
+  CONSTRAINT `fk_course_instance__professor` FOREIGN KEY(`professor_id`)
+    REFERENCES `professor` (`professor_id`),
+  CONSTRAINT `fk_course_instance__course` FOREIGN KEY (`course_id`)
+    REFERENCES `course` (`course_id`)
 );
 
 CREATE TABLE `review` (
@@ -56,17 +56,17 @@ CREATE TABLE `review` (
   `rating` INT NULL,
   `submission_date` DATETIME NOT NULL,
   PRIMARY KEY (`review_id`),
-  CONSTRAINT `fk_review_professor` FOREIGN KEY (`professor_id`)
-  REFERENCES `professor` (`professor_id`),
-  CONSTRAINT `fk_review_course_instance` FOREIGN KEY (`course_instance_id`)
-  REFERENCES `course_instance` (`course_instance_id`)
+  CONSTRAINT `fk_review__professor` FOREIGN KEY (`professor_id`)
+    REFERENCES `professor` (`professor_id`),
+  CONSTRAINT `fk_review__course_instance` FOREIGN KEY (`course_instance_id`)
+    REFERENCES `course_instance` (`course_instance_id`)
 );
 
 CREATE TABLE `vote` (
   `review_id` INT NOT NULL,
   `type` VARCHAR(255) NOT NULL,
-  CONSTRAINT `fk_vote_review` FOREIGN KEY (`review_id`)
-  REFERENCES `review`(`review_id`)
+  CONSTRAINT `fk_vote__review` FOREIGN KEY (`review_id`)
+    REFERENCES `review`(`review_id`)
 );
 
 CREATE TABLE `user` (
@@ -84,8 +84,8 @@ CREATE TABLE `flag` (
   `flag_type` VARCHAR(45) NULL,
   `created_at` DATETIME NOT NULL,
   `modified_at` DATETIME NOT NULL,
-  CONSTRAINT `fk_flag_review` FOREIGN KEY (`review_id`)
-  REFERENCES `review` (`review_id`),
-  CONSTRAINT `fk_flag_user` FOREIGN KEY (`user_id`)
-  REFERENCES `user` (`user_id`)
+  CONSTRAINT `fk_flag__review` FOREIGN KEY (`review_id`)
+    REFERENCES `review` (`review_id`),
+  CONSTRAINT `fk_flag__user` FOREIGN KEY (`user_id`)
+    REFERENCES `user` (`user_id`)
 );
