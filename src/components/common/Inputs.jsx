@@ -38,11 +38,11 @@ function InputField({ name, error, label, type, id, ...rest }) {
   const inputId = id || `form-input-${name}`;
   return (
     <SemanticForm.Field
+      aria-label={label}
+      error={error}
       id={inputId}
       label={label}
-      aria-label={label}
       name={name}
-      error={error}
       type={type}
       {...rest}
     />
@@ -54,11 +54,11 @@ const propTypesText = {
 };
 
 export function TextInput({ name, ...rest }) {
-  return <InputField type="text" control={Input} name={name} {...rest} />;
+  return <InputField control={Input} name={name} type="text" {...rest} />;
 }
 
 export function PasswordInput({ name, ...rest }) {
-  return <InputField type="password" control={Input} name={name} {...rest} />;
+  return <InputField control={Input} name={name} type="password" {...rest} />;
 }
 
 export function TextAreaInput(props) {
@@ -79,13 +79,13 @@ export function RadioInputGroup({ name, labels, ...rest }) {
   const radioButtons = labels.map(({ label, key }) => {
     return (
       <InputField
-        value={`test-${key}`}
+        control={Input}
         id={`${name}-radio-button-${key}`}
         key={`form-input-${key}`}
-        control={Input}
-        name={name}
         label={label}
+        name={name}
         type="radio"
+        value={`test-${key}`}
         {...rest}
       />
     );
@@ -201,14 +201,14 @@ export function SearchInput({
 
   return (
     <InputField
-      name={name}
       control={Search}
       loading={isLoading}
-      onResultSelect={handleResultSelect}
-      onBlur={onBlur}
-      onSearchChange={debounce(handleSearchChange, 300, { leading: true })}
+      name={name}
       results={results}
       value={value}
+      onBlur={onBlur}
+      onResultSelect={handleResultSelect}
+      onSearchChange={debounce(handleSearchChange, 300, { leading: true })}
       {...rest}
     />
   );
@@ -216,7 +216,7 @@ export function SearchInput({
 
 export function Submit(props) {
   return (
-    <Button type="submit" name="submit" {...props}>
+    <Button name="submit" type="submit" {...props}>
       Submit
     </Button>
   );
