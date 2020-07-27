@@ -3,7 +3,7 @@ import flask
 from werkzeug.security import check_password_hash
 
 from api.utils.token import create_token
-from api.data.user_loaders import load_user
+from api.data.dataloaders.users_loader import load_user
 
 
 auth_blueprint = flask.Blueprint('auth_blueprint', __name__)
