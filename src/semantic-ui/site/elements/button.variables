@@ -1,0 +1,6 @@
+/*******************************
+    User Variable Overrides
+*******************************/
+
+@backgroundColor: @primaryColor;
+@textColor: @pageBackground;
