@@ -2,5 +2,13 @@
     User Variable Overrides
 *******************************/
 
+/*
+        Colors
+*/
+
 @backgroundColor: @primaryColor;
-@textColor: @pageBackground;
+@hoverBackgroundColor: @primaryColorHover;
+@activeBackgroundColor: @primaryColorActive;
+@downBackgroundColor: @primaryColorDown;
+
+@fontFamily: "Source Code Pro", @fontName, "Helvetica Neue";
