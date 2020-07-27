@@ -34,14 +34,12 @@ Object {
           </label>
           <div
             class="ui input"
-            rules="[object Object]"
           >
             <input
               aria-label="Username"
               id="form-input-username"
               name="username"
               type="text"
-              value=""
             />
           </div>
         </div>
@@ -55,14 +53,12 @@ Object {
           </label>
           <div
             class="ui input"
-            rules="[object Object]"
           >
             <input
               aria-label="Password"
               id="form-input-password"
               name="password"
               type="password"
-              value=""
             />
           </div>
         </div>
@@ -106,14 +102,12 @@ Object {
         </label>
         <div
           class="ui input"
-          rules="[object Object]"
         >
           <input
             aria-label="Username"
             id="form-input-username"
             name="username"
             type="text"
-            value=""
           />
         </div>
       </div>
@@ -127,14 +121,12 @@ Object {
         </label>
         <div
           class="ui input"
-          rules="[object Object]"
         >
           <input
             aria-label="Password"
             id="form-input-password"
             name="password"
             type="password"
-            value=""
           />
         </div>
       </div>

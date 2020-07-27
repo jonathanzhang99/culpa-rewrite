@@ -1,3 +1,17 @@
+/**
+ * This file contains all of the input components that can be used with
+ * the custom Form component. All components use Semantic UI React and
+ * are compatible with react-hook-forms.
+ *
+ * Many of the prop types are duplicated on purpose in order to give a
+ * consistent description of the props that each component accepts.
+ *
+ * NOTE: These components are NOT generic components. Only a selection
+ * of the usable props are passed down to the base Semantic components
+ * in order to limit the freedom and chance of breaking changes. If
+ * you need additional functionality you will need to pass those props
+ * down.
+ */
 /* eslint-disable react/jsx-props-no-spreading */
 import debounce from "lodash.debounce";
 import PropTypes from "prop-types";
@@ -8,61 +22,133 @@ import {
   Input,
   TextArea,
   Search,
+  Dropdown,
 } from "semantic-ui-react";
 
 import { FormGroup } from "components/common/Form";
 
-const propTypesInputField = {
-  name: PropTypes.string.isRequired,
-  label: PropTypes.string,
+function getId(id, name) {
+  return id || `form-input-${name}`;
+}
+
+const propTypesInput = {
   error: PropTypes.shape({
     message: PropTypes.string,
   }),
-  type: PropTypes.string,
   id: PropTypes.string,
+  label: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  width: PropTypes.number,
+  onChange: PropTypes.func,
 };
 
-const defaultPropsInputField = {
-  label: "",
+const defaultPropsInput = {
   error: undefined,
-  type: undefined,
-  id: undefined,
+  id: "",
+  label: "",
+  width: undefined,
+  onChange: () => {},
 };
 
-/**
- * Wrapper around Form Field from Semantic UI to allow us to easily manipulate the underlying
- * form logic.
- *
- */
-function InputField({ name, error, label, type, id, ...rest }) {
-  const inputId = id || `form-input-${name}`;
+export function TextInput({ error, id, label, name, width, onChange }) {
   return (
     <SemanticForm.Field
-      id={inputId}
-      label={label}
       aria-label={label}
-      name={name}
+      control={Input}
       error={error}
-      type={type}
-      {...rest}
+      id={getId(id, name)}
+      label={label}
+      name={name}
+      type="text"
+      width={width}
+      onChange={onChange}
     />
   );
 }
 
-const propTypesText = {
+export function PasswordInput({ name, label, error, id, width, onChange }) {
+  return (
+    <SemanticForm.Field
+      aria-label={label}
+      control={Input}
+      error={error}
+      id={getId(id, name)}
+      label={label}
+      name={name}
+      type="password"
+      width={width}
+      onChange={onChange}
+    />
+  );
+}
+
+export function TextAreaInput({ name, label, error, id, width, onChange }) {
+  return (
+    <SemanticForm.Field
+      aria-label={label}
+      control={TextArea}
+      error={error}
+      id={getId(id, name)}
+      label={label}
+      name={name}
+      width={width}
+      onChange={onChange}
+    />
+  );
+}
+
+const propTypesDropdown = {
+  disabled: PropTypes.bool,
+  options: PropTypes.arrayOf(PropTypes.any),
+  placeholder: PropTypes.string,
+  error: PropTypes.shape({
+    message: PropTypes.string,
+  }),
+  id: PropTypes.string,
+  label: PropTypes.string,
   name: PropTypes.string.isRequired,
+  width: PropTypes.number,
+  onChange: PropTypes.func,
 };
 
-export function TextInput({ name, ...rest }) {
-  return <InputField type="text" control={Input} name={name} {...rest} />;
-}
-
-export function PasswordInput({ name, ...rest }) {
-  return <InputField type="password" control={Input} name={name} {...rest} />;
-}
-
-export function TextAreaInput(props) {
-  return <InputField control={TextArea} {...props} />;
+const defaultPropsDropdown = {
+  disabled: false,
+  options: [],
+  placeholder: undefined,
+  error: undefined,
+  id: "",
+  label: "",
+  width: undefined,
+  onChange: () => {},
+};
+export function DropdownInput({
+  disabled,
+  name,
+  label,
+  error,
+  id,
+  width,
+  options,
+  placeholder,
+  onChange,
+}) {
+  return (
+    <SemanticForm.Field
+      search
+      selection
+      aria-label={label}
+      control={Dropdown}
+      disabled={disabled}
+      error={error}
+      id={getId(id, name)}
+      label={label}
+      name={name}
+      options={options}
+      placeholder={placeholder}
+      width={width}
+      onChange={onChange}
+    />
+  );
 }
 
 const propTypesRadioInputGroup = {
@@ -75,18 +161,17 @@ const propTypesRadioInputGroup = {
   ).isRequired,
 };
 
-export function RadioInputGroup({ name, labels, ...rest }) {
+export function RadioInputGroup({ name, labels }) {
   const radioButtons = labels.map(({ label, key }) => {
     return (
-      <InputField
-        value={`test-${key}`}
+      <SemanticForm.Field
+        control={Input}
         id={`${name}-radio-button-${key}`}
         key={`form-input-${key}`}
-        control={Input}
-        name={name}
         label={label}
+        name={name}
         type="radio"
-        {...rest}
+        value={`radio-input-${key}`}
       />
     );
   });
@@ -129,35 +214,47 @@ function searchReducer(state, action) {
 }
 
 const propTypesSearchInput = {
+  id: PropTypes.string,
+  label: PropTypes.string,
   name: PropTypes.string.isRequired,
   searchEntity: PropTypes.oneOf(["all", "professors", "courses"]),
+  value: PropTypes.string,
+  width: PropTypes.number,
   onChange: PropTypes.func,
   onBlur: PropTypes.func,
   onResultSelect: PropTypes.func,
-  value: PropTypes.string,
+  onSearchChange: PropTypes.func,
 };
 
 const defaultPropsSearchInput = {
+  id: undefined,
+  label: undefined,
   searchEntity: "all",
   onChange: () => {},
   onBlur: () => {},
   onResultSelect: () => {},
+  onSearchChange: () => {},
   value: "",
+  width: undefined,
 };
 
 /**
  * Search bar with autocompletion that receives onChange, onBlur, value from
  * react-hook-forms.
  *
+ * onSearchChange: (value) => void
  */
 export function SearchInput({
+  id,
+  label,
   name,
   searchEntity,
+  value,
+  width,
   onChange,
   onBlur,
   onResultSelect,
-  value,
-  ...rest
+  onSearchChange,
 }) {
   const initialState = {
     isLoading: false,
@@ -169,12 +266,13 @@ export function SearchInput({
   );
 
   const handleResultSelect = (e, { result }) => {
-    onChange(e);
+    onChange(result.title);
     onResultSelect(result);
   };
 
   const handleSearchChange = async (e, { value: searchValue }) => {
     onChange(e);
+    onSearchChange(searchValue);
 
     if (searchValue.length < 2) {
       return dispatch({ type: "SEARCH_RESET" });
@@ -200,33 +298,41 @@ export function SearchInput({
   };
 
   return (
-    <InputField
-      name={name}
+    <SemanticForm.Field
       control={Search}
+      id={getId(id, name)}
+      label={label}
       loading={isLoading}
-      onResultSelect={handleResultSelect}
-      onBlur={onBlur}
-      onSearchChange={debounce(handleSearchChange, 300, { leading: true })}
+      name={name}
       results={results}
       value={value}
-      {...rest}
+      width={width}
+      onBlur={onBlur}
+      onResultSelect={handleResultSelect}
+      onSearchChange={debounce(handleSearchChange, 300, { leading: true })}
     />
   );
 }
 
 export function Submit(props) {
   return (
-    <Button type="submit" name="submit" {...props}>
+    <Button name="submit" type="submit" {...props}>
       Submit
     </Button>
   );
 }
 
-InputField.propTypes = propTypesInputField;
-InputField.defaultProps = defaultPropsInputField;
+TextInput.propTypes = propTypesInput;
+TextInput.defaultProps = defaultPropsInput;
 
-TextInput.propTypes = propTypesText;
-PasswordInput.propTypes = propTypesText;
+PasswordInput.propTypes = propTypesInput;
+PasswordInput.defaultProps = defaultPropsInput;
+
+TextAreaInput.propTypes = propTypesInput;
+TextAreaInput.defaultProps = defaultPropsInput;
+
+DropdownInput.propTypes = propTypesDropdown;
+DropdownInput.defaultProps = defaultPropsDropdown;
 
 RadioInputGroup.propTypes = propTypesRadioInputGroup;
 

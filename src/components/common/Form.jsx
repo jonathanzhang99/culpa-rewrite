@@ -64,16 +64,15 @@ export default function Form({ defaultValues, children, onSubmit, onSuccess }) {
             </child.type>
           );
         }
-        const { name, rules, ...rest } = child.props;
+        const { name, rules } = child.props;
         return (
           <Controller
             as={child}
-            name={name}
             control={control}
-            rules={rules}
-            {...rest}
-            error={getErrors(name)}
             defaultValue=""
+            error={getErrors(name)}
+            name={name}
+            rules={rules}
           />
         );
       }
@@ -83,7 +82,7 @@ export default function Form({ defaultValues, children, onSubmit, onSuccess }) {
 
   return (
     <SemanticForm error={!!errors.form} onSubmit={handleSubmitWithErrors}>
-      <Message error header="Login Error" content={errors?.form?.message} />
+      <Message error content={errors?.form?.message} header="Login Error" />
       {registerControlledComponents(children)}
     </SemanticForm>
   );

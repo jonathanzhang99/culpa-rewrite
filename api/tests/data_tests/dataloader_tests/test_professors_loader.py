@@ -1,9 +1,9 @@
 from api.data import db
-from api.data.professor_loaders import get_all_professors
+from api.data.dataloaders.professors_loader import get_all_professors
 from api.tests import LoadersBaseTest
 
 
-class ProfessorLoadersTest(LoadersBaseTest):
+class ProfessorsLoaderTest(LoadersBaseTest):
     def test_load_professors(self):
         cur = db.get_cursor()
         cur.execute(

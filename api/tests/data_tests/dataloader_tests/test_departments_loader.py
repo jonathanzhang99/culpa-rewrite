@@ -1,9 +1,9 @@
 from api.data import db
-from api.data.department_loaders import get_all_departments
+from api.data.dataloaders.departments_loader import get_all_departments
 from api.tests import LoadersBaseTest
 
 
-class DepartmentLoadersTest(LoadersBaseTest):
+class DepartmentsLoaderTest(LoadersBaseTest):
     def test_load_departments(self):
         cur = db.get_cursor()
         cur.execute(
