@@ -10,7 +10,7 @@ class ProfessorsLoaderTest(LoadersBaseTest):
             'INSERT INTO professor (first_name, last_name)'
             'VALUES ("test1", "test1")'
         )
-        expected_res = [{'id': 1,
+        expected_res = [{'professor_id': 1,
                          'first_name': 'test1',
                          'last_name': 'test1'
                          }]

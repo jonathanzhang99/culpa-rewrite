@@ -15,7 +15,7 @@ class UsersLoaderTest(LoadersBaseTest):
             'VALUES (%s, %s, %s, %s)',
             ['lcb50@columbia.edu', 'theBigL', phash, '']
         )
-        expected_res = [{'id': 1,
+        expected_res = [{'user_id': 1,
                          'email': 'lcb50@columbia.edu',
                          'username': 'theBigL',
                          'password': phash,
