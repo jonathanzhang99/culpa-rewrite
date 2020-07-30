@@ -26,7 +26,7 @@ class ProfessorsTest(BaseTest):
             ]
         }
 
-        res = self.app.post('/api/professors/all')
+        res = self.app.get('/api/professors/all')
         self.assertEqual(expected_res, res.json)
 
     @mock.patch('api.blueprints.professors.get_all_professors')
@@ -36,5 +36,5 @@ class ProfessorsTest(BaseTest):
             'professors': []
         }
 
-        res = self.app.post('/api/professors/all')
+        res = self.app.get('/api/professors/all')
         self.assertEqual(expected_res, res.json)
