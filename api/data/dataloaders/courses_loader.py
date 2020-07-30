@@ -2,15 +2,14 @@ from pypika import MySQLQuery as Query
 from pypika import Order
 
 from api.data import db
-from api.data.common import course, course_instance, professor, \
-    professor_course
+from api.data.common import course, course_instance, professor
 
 
 def get_all_courses():
     cur = db.get_cursor()
     query = Query.from_(course) \
         .select(
-            course.id,
+            course.course_id,
             course.name,
             course.department_id
     ).get_sql()
@@ -25,11 +24,11 @@ def get_course(course_id):
     cur = db.get_cursor()
     query = Query.from_(course) \
         .select(
-            course.id,
+            course.course_id,
             course.name,
             course.department_id
     ).where(
-            course.id == course_id
+            course.course_id == course_id
     ).get_sql()
     cur.execute(query)
     return cur.fetchall()
@@ -39,7 +38,7 @@ def get_all_course_instances(course_id):
     cur = db.get_cursor()
     query = Query.from_(course_instance) \
         .select(
-            course_instance.id,
+            course_instance.course_instance_id,
             course_instance.year,
             course_instance.semester,
             course_instance.course_id
@@ -64,7 +63,7 @@ def get_recent_course_instance(course_id, num_year):
     cur = db.get_cursor()
     query = Query.from_(course_instance) \
         .select(
-            course_instance.id,
+            course_instance.course_instance_id,
             course_instance.year,
             course_instance.semester,
             course_instance.course_id
@@ -84,24 +83,17 @@ def get_prof_by_course(course_id):
         2. Get all professor_id's from professor_course table
         3. Get all professor names from professor table
     '''
-    course_instances = get_all_course_instances(course_id)
-    course_instance_ids = [course_instance['id']
-                           for course_instance in course_instances]
-
-    if len(course_instance_ids) == 0:
-        raise ValueError
-
     cur = db.get_cursor()
     query = Query.from_(professor) \
         .select(
-            professor.id,
+            professor.professor_id,
             professor.first_name,
             professor.last_name,
-            professor_course.instance_id
+            course_instance.course_instance_id
     ) \
-        .left_join(professor_course) \
-        .on(professor.id == professor_course.professor_id) \
-        .where(professor_course.instance_id.isin(course_instance_ids)) \
+        .left_join(course_instance) \
+        .on(professor.professor_id == course_instance.professor_id) \
+        .where(course_instance.course_id == course_id) \
         .get_sql()
     cur.execute(query)
     return cur.fetchall()
