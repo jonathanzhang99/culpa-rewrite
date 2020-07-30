@@ -22,7 +22,8 @@ class DepartmentsTest(BaseTest):
             ]
         }
 
-        res = self.app.post('/api/departments/all')
+        res = self.app.get('/api/departments/all')
+
         self.assertEqual(expected_res, res.json)
 
     @mock.patch('api.blueprints.departments.get_all_departments')
@@ -32,5 +33,5 @@ class DepartmentsTest(BaseTest):
             'departments': []
         }
 
-        res = self.app.post('/api/departments/all')
+        res = self.app.get('/api/departments/all')
         self.assertEqual(expected_res, res.json)

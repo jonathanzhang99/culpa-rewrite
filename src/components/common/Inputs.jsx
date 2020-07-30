@@ -279,11 +279,13 @@ export function SearchInput({
     }
 
     dispatch({ type: "SEARCH_START" });
-    const response = await fetch(`/api/search/`, {
-      method: "POST",
-      body: JSON.stringify({ query: searchValue, entity: searchEntity }),
-      headers: { "Content-Type": "Application/json" },
-    });
+    const response = await fetch(
+      `/api/search?searchEntity=${searchEntity}&q=${searchValue}`,
+      {
+        method: "GET",
+        headers: { "Content-Type": "Application/json" },
+      }
+    );
 
     try {
       const result = await response.json();
