@@ -8,23 +8,49 @@ import {
 } from "components/common/CourseDisplay";
 
 describe("CourseDisplay Components", () => {
-  test("CourseDisplayName test", () => {
-    const snapshot = render(
-      <CourseDisplayName code="COMS4771" name="Machine Learning" />
-    );
-    expect(snapshot).toMatchSnapshot();
+  const nameTestCases = [
+    {
+      testName: "renders no CourseDisplayName",
+      code: "",
+      name: "",
+    },
+    {
+      testName: "renders CourseDisplayName",
+      code: "COMS4771",
+      name: "Machine Learning",
+    },
+  ];
+
+  const linkTestCases = [
+    {
+      testName: "renders no CourseDisplayLink",
+      code: "",
+      courseId: null,
+      name: "",
+    },
+    {
+      testName: "renders CourseDisplayLink",
+      code: "COMS4771",
+      courseId: 3,
+      name: "Machine Learning",
+    },
+  ];
+
+  nameTestCases.forEach(({ testName, code, name }) => {
+    test(testName, () => {
+      const snapshot = render(<CourseDisplayName code={code} name={name} />);
+      expect(snapshot).toMatchSnapshot();
+    });
   });
 
-  test("CourseDisplayLink test", () => {
-    const snapshot = render(
-      <MemoryRouter>
-        <CourseDisplayLink
-          code="COMS4771"
-          courseId={3}
-          name="Machine Learning"
-        />
-      </MemoryRouter>
-    );
-    expect(snapshot).toMatchSnapshot();
+  linkTestCases.forEach(({ testName, code, courseId, name }) => {
+    test(testName, () => {
+      const snapshot = render(
+        <MemoryRouter>
+          <CourseDisplayLink code={code} courseId={courseId} name={name} />
+        </MemoryRouter>
+      );
+      expect(snapshot).toMatchSnapshot();
+    });
   });
 });
