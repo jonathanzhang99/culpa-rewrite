@@ -1,13 +1,14 @@
 import PropTypes from "prop-types";
 import React from "react";
 import { Link } from "react-router-dom";
+import { Header } from "semantic-ui-react";
 
-const propTypesName = {
+const propTypesCourseDisplayName = {
   name: PropTypes.string.isRequired,
   code: PropTypes.string,
 };
 
-const propTypesLink = {
+const propTypesCourseDisplayLink = {
   courseId: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
   code: PropTypes.string,
@@ -17,28 +18,28 @@ const defaultProps = {
   code: "",
 };
 
-export function CourseDisplayName({ name, code }) {
+export function CourseDisplayName({ code, name }) {
   return (
-    <div>
+    <Header as="h3">
       {code} {name}
-    </div>
+    </Header>
   );
 }
 
-export function CourseDisplayLink({ courseId, name, code }) {
+export function CourseDisplayLink({ courseId, code, name }) {
   return (
     <Link
       to={{
         pathname: `/courses/${courseId}`,
       }}
     >
-      {code} {name}
+      <CourseDisplayName code={code} name={name} />
     </Link>
   );
 }
 
-CourseDisplayName.propTypes = propTypesName;
+CourseDisplayName.propTypes = propTypesCourseDisplayName;
 CourseDisplayName.defaultProps = defaultProps;
 
-CourseDisplayLink.propTypes = propTypesLink;
+CourseDisplayLink.propTypes = propTypesCourseDisplayLink;
 CourseDisplayLink.defaultProps = defaultProps;
