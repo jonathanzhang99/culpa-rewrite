@@ -2,20 +2,21 @@ import { render } from "@testing-library/react";
 import React from "react";
 
 import Form from "components/common/Form";
-import { Input, Submit } from "components/common/Inputs";
+import { TextInput, Submit } from "components/common/Inputs";
 
-function onSubmit() {}
+describe("Form Component Tests", () => {
+  const onSubmit = jest.fn();
+  const onSuccess = jest.fn();
 
-describe("Form Component", () => {
   test("empty form", () => {
-    const snapshot = render(<Form onSubmit={onSubmit} />);
+    const snapshot = render(<Form onSubmit={onSubmit} onSuccess={onSuccess} />);
     expect(snapshot).toMatchSnapshot();
   });
 
   test("form with single input", () => {
     const snapshot = render(
-      <Form onSubmit={onSubmit}>
-        <Input name="test1" />
+      <Form onSubmit={onSubmit} onSuccess={onSuccess}>
+        <TextInput name="test1" />
       </Form>
     );
     expect(snapshot).toMatchSnapshot();
@@ -23,9 +24,9 @@ describe("Form Component", () => {
 
   test("form with multiple inputs", () => {
     const snapshot = render(
-      <Form onSubmit={onSubmit}>
-        <Input name="test1" />
-        <Input name="test2" />
+      <Form onSubmit={onSubmit} onSuccess={onSuccess}>
+        <TextInput name="test1" />
+        <TextInput name="test2" />
       </Form>
     );
     expect(snapshot).toMatchSnapshot();
@@ -33,8 +34,8 @@ describe("Form Component", () => {
 
   test("form with submit button", () => {
     const snapshot = render(
-      <Form onSubmit={onSubmit}>
-        <Input name="test1" />
+      <Form onSubmit={onSubmit} onSuccess={onSuccess}>
+        <TextInput name="test1" />
         <Submit value="submit" />
       </Form>
     );

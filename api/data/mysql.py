@@ -1,6 +1,8 @@
 import flask
 import pymysql
 
+from pymysql.cursors import DictCursor
+
 
 class MySQL(object):
     def __init__(self, app=None):
@@ -19,6 +21,9 @@ class MySQL(object):
 
     def connect(self):
         app = flask.current_app
+        CURSORCLASS = DictCursor if app.config.get('MYSQL_USE_DICTCURSOR') \
+            else None
+
         connect_args = {
             'host': app.config.get('MYSQL_DATABASE_HOST'),
             'port': app.config.get('MYSQL_DATABASE_PORT'),
@@ -27,9 +32,14 @@ class MySQL(object):
             'database': app.config.get('MYSQL_DATABASE_DB'),
             'unix_socket': app.config.get('MYSQL_DATABASE_SOCKET'),
             'charset': app.config.get('MYSQL_DATABASE_CHARSET'),
-            'use_unicode': app.config.get('MYSQL_USE_UNICODE')
+            'use_unicode': app.config.get('MYSQL_USE_UNICODE'),
+            'cursorclass': CURSORCLASS
         }
+
         return pymysql.connect(**connect_args)
+
+    def get_cursor(self):
+        return self.get_db().cursor()
 
     def get_db(self):
         if flask.g is not None:
