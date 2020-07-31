@@ -46,9 +46,9 @@ CREATE TABLE `course_professor` (
 
 CREATE TABLE `review` (
   `review_id` INT NOT NULL AUTO_INCREMENT,
-  `professor_id` INT NOT NULL,
   `course_professor_id` INT NOT NULL,
   `content` TEXT NULL,
+  `workload` TEXT NULL,
   `rating` INT NULL,
   `submission_date` DATETIME NOT NULL,
   PRIMARY KEY (`review_id`),
