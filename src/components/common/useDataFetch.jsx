@@ -64,7 +64,7 @@ export default function useDataFetch(url, initialData) {
 
       const headers = getHeaders();
       const response = await fetch(url, {
-        method: "POST",
+        method: "GET",
         headers,
       });
 

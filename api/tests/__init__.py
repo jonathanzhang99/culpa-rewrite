@@ -82,10 +82,10 @@ class AuthBaseTest(unittest.TestCase):
     def setUp(self):
         app = create_app(configs['testing'])
 
-        self.url = '/protected'
+        self.protected_url = '/protected'
         self.secret = app.config['SECRET_KEY']
 
-        @app.route(self.url, methods=['POST'])
+        @app.route(self.protected_url, methods=['GET'])
         @login_required
         def protected():
             return {'msg': 'success!'}

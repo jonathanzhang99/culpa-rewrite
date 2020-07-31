@@ -5,7 +5,7 @@ from api.data.dataloaders.professors_loader import get_all_professors
 professors_blueprint = flask.Blueprint('professors_blueprint', __name__)
 
 
-@professors_blueprint.route('/all', methods=['POST'])
+@professors_blueprint.route('/all', methods=['GET'])
 def all_professors():
     professors = get_all_professors()
     professors_json = [{

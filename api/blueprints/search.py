@@ -3,25 +3,21 @@ import flask
 search_blueprint = flask.Blueprint('searc_blueprint', __name__)
 
 
-@search_blueprint.route('/', methods=['POST'])
+@search_blueprint.route('/', methods=['GET'], strict_slashes=False)
 def search():
     '''
-    POST request should contain two fields:
+    GET request should contain two url parameters:
         - entity: One of `['professors', 'courses', 'all']` to
           specify the data source for our results.
-        - query: the query string.
+        - q: the query string.
 
     This function will access the db and retrieve query matches.
     Returns a JSON object with the results.
     '''
-    # saves review and gets the id of new review
-    if not flask.request.is_json:
-        return {'error': 'Missing JSON in request'}, 422
+    url_params = flask.request.args
 
-    request_json = flask.request.get_json()
-
-    search_entity = request_json.get('entity', 'all')
-    query = request_json.get('query', '')
+    search_entity = url_params.get('entity', 'all')
+    query = url_params.get('q', '')
 
     if len(query) < 2:
         return {'error': 'Query is too insubstantial'}, 400
