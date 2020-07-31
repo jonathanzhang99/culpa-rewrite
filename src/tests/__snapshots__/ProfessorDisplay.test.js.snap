@@ -8,13 +8,13 @@ Object {
       <a
         href="/professors/5"
       >
-        <h3
+        <p
           class="ui header"
         >
           Nakul
            
           Verma
-        </h3>
+        </p>
       </a>
     </div>
   </body>,
@@ -22,13 +22,13 @@ Object {
     <a
       href="/professors/5"
     >
-      <h3
+      <p
         class="ui header"
       >
         Nakul
          
         Verma
-      </h3>
+      </p>
     </a>
   </div>,
   "debug": [Function],
@@ -90,23 +90,23 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <h3
+      <p
         class="ui header"
       >
         Nakul
          
         Verma
-      </h3>
+      </p>
     </div>
   </body>,
   "container": <div>
-    <h3
+    <p
       class="ui header"
     >
       Nakul
        
       Verma
-    </h3>
+    </p>
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],
@@ -170,13 +170,13 @@ Object {
       <a
         href="/professors/null"
       >
-        <h3
+        <p
           class="ui header"
         >
           
            
           
-        </h3>
+        </p>
       </a>
     </div>
   </body>,
@@ -184,13 +184,13 @@ Object {
     <a
       href="/professors/null"
     >
-      <h3
+      <p
         class="ui header"
       >
         
          
         
-      </h3>
+      </p>
     </a>
   </div>,
   "debug": [Function],
@@ -252,23 +252,23 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <h3
+      <p
         class="ui header"
       >
         
          
         
-      </h3>
+      </p>
     </div>
   </body>,
   "container": <div>
-    <h3
+    <p
       class="ui header"
     >
       
        
       
-    </h3>
+    </p>
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],

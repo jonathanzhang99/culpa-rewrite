@@ -8,13 +8,13 @@ Object {
       <a
         href="/courses/3"
       >
-        <h3
+        <h1
           class="ui header"
         >
           COMS4771
            
           Machine Learning
-        </h3>
+        </h1>
       </a>
     </div>
   </body>,
@@ -22,13 +22,13 @@ Object {
     <a
       href="/courses/3"
     >
-      <h3
+      <h1
         class="ui header"
       >
         COMS4771
          
         Machine Learning
-      </h3>
+      </h1>
     </a>
   </div>,
   "debug": [Function],
@@ -170,13 +170,13 @@ Object {
       <a
         href="/courses/null"
       >
-        <h3
+        <div
           class="ui header"
         >
           
            
           
-        </h3>
+        </div>
       </a>
     </div>
   </body>,
@@ -184,13 +184,13 @@ Object {
     <a
       href="/courses/null"
     >
-      <h3
+      <div
         class="ui header"
       >
         
          
         
-      </h3>
+      </div>
     </a>
   </div>,
   "debug": [Function],
@@ -252,23 +252,23 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <h3
+      <div
         class="ui header"
       >
         
          
         
-      </h3>
+      </div>
     </div>
   </body>,
   "container": <div>
-    <h3
+    <div
       class="ui header"
     >
       
        
       
-    </h3>
+    </div>
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],

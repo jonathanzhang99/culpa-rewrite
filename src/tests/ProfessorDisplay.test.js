@@ -11,11 +11,13 @@ describe("ProfessorDisplay Components", () => {
   const nameTestCases = [
     {
       testName: "renders no ProfessorDisplayName",
+      as: "",
       firstName: "",
       lastName: "",
     },
     {
       testName: "renders ProfessorDisplayName",
+      as: "h2",
       firstName: "Nakul",
       lastName: "Verma",
     },
@@ -24,6 +26,7 @@ describe("ProfessorDisplay Components", () => {
   const linkTestCases = [
     {
       testName: "renders no ProfessorDisplayLink",
+      as: "",
       firstName: "",
       lastName: "",
       professorId: null,
