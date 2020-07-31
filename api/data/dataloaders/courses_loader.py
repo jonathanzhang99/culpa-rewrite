@@ -2,7 +2,7 @@ from pypika import MySQLQuery as Query
 from pypika import Order
 
 from api.data import db
-from api.data.common import course, course_instance, professor
+from api.data.common import course, course_instance, professor, department
 
 
 def get_all_courses():
@@ -34,6 +34,18 @@ def get_course(course_id):
     return cur.fetchall()
 
 
+def get_department(department_id):
+    cur = db.get_cursor()
+    query = Query.from_(department) \
+        .select(
+            department.name
+    ).where(
+            department.department_id == department_id
+    ).get_sql()
+    cur.execute(query)
+    return cur.fetchall()
+
+
 def get_all_course_instances(course_id):
     cur = db.get_cursor()
     query = Query.from_(course_instance) \
@@ -49,7 +61,7 @@ def get_all_course_instances(course_id):
     return cur.fetchall()
 
 
-def get_recent_course_instance(course_id, num_year):
+def get_recent_course_instances(course_id, num_year):
     '''
     Query year, semester from the latest course_instance(s)
         Args:
@@ -78,10 +90,8 @@ def get_recent_course_instance(course_id, num_year):
 
 def get_prof_by_course(course_id):
     '''
-    Get a list of professors who have taught this course by:
-        1. Query course_instance table for a list of instance_id's
-        2. Get all professor_id's from professor_course table
-        3. Get all professor names from professor table
+    List of all professors who have ever taught the course from most recent
+    to oldest
     '''
     cur = db.get_cursor()
     query = Query.from_(professor) \
@@ -94,6 +104,8 @@ def get_prof_by_course(course_id):
         .left_join(course_instance) \
         .on(professor.professor_id == course_instance.professor_id) \
         .where(course_instance.course_id == course_id) \
-        .get_sql()
+        .orderby(
+            course_instance.year, order=Order.desc
+    ).get_sql()
     cur.execute(query)
     return cur.fetchall()
