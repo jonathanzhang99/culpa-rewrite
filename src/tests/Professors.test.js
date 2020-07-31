@@ -1,7 +1,7 @@
 import { render } from "@testing-library/react";
 import React from "react";
 
-import { ProfessorsSection } from "components/Professors";
+import { ProfessorsSection } from "components/ProfessorsPage";
 
 describe("ProfessorsSection Component", () => {
   const testCases = [

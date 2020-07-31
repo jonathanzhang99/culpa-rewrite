@@ -1,15 +1,61 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Announcements Component renders empty messages 1`] = `
+exports[`DepartmentsSection Component renders multiple departments 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <div />
+      <div>
+        <div
+          class="ui header"
+        >
+          List of Departments
+        </div>
+        <div
+          class="ui list"
+          role="list"
+        >
+          <div
+            class="item"
+            role="listitem"
+          >
+            Computer Science
+          </div>
+          <div
+            class="item"
+            role="listitem"
+          >
+            English
+          </div>
+        </div>
+      </div>
     </div>
   </body>,
   "container": <div>
-    <div />
+    <div>
+      <div
+        class="ui header"
+      >
+        List of Departments
+      </div>
+      <div
+        class="ui list"
+        role="list"
+      >
+        <div
+          class="item"
+          role="listitem"
+        >
+          Computer Science
+        </div>
+        <div
+          class="item"
+          role="listitem"
+        >
+          English
+        </div>
+      </div>
+    </div>
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],
@@ -65,21 +111,45 @@ Object {
 }
 `;
 
-exports[`Announcements Component renders multiple messages 1`] = `
+exports[`DepartmentsSection Component renders no departments 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
       <div>
-        temporary1
-        temporary2
+        <div
+          class="ui header"
+        >
+          List of Departments
+        </div>
+        <div
+          class="ui list"
+          role="list"
+        >
+          <div
+            class="item"
+            role="listitem"
+          />
+        </div>
       </div>
     </div>
   </body>,
   "container": <div>
     <div>
-      temporary1
-      temporary2
+      <div
+        class="ui header"
+      >
+        List of Departments
+      </div>
+      <div
+        class="ui list"
+        role="list"
+      >
+        <div
+          class="item"
+          role="listitem"
+        />
+      </div>
     </div>
   </div>,
   "debug": [Function],

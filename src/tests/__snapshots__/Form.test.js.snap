@@ -1,97 +1,46 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Form Component empty form 1`] = `
+exports[`Form Component Tests empty form 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <form />
-    </div>
-  </body>,
-  "container": <div>
-    <form />
-  </div>,
-  "debug": [Function],
-  "findAllByAltText": [Function],
-  "findAllByDisplayValue": [Function],
-  "findAllByLabelText": [Function],
-  "findAllByPlaceholderText": [Function],
-  "findAllByRole": [Function],
-  "findAllByTestId": [Function],
-  "findAllByText": [Function],
-  "findAllByTitle": [Function],
-  "findByAltText": [Function],
-  "findByDisplayValue": [Function],
-  "findByLabelText": [Function],
-  "findByPlaceholderText": [Function],
-  "findByRole": [Function],
-  "findByTestId": [Function],
-  "findByText": [Function],
-  "findByTitle": [Function],
-  "getAllByAltText": [Function],
-  "getAllByDisplayValue": [Function],
-  "getAllByLabelText": [Function],
-  "getAllByPlaceholderText": [Function],
-  "getAllByRole": [Function],
-  "getAllByTestId": [Function],
-  "getAllByText": [Function],
-  "getAllByTitle": [Function],
-  "getByAltText": [Function],
-  "getByDisplayValue": [Function],
-  "getByLabelText": [Function],
-  "getByPlaceholderText": [Function],
-  "getByRole": [Function],
-  "getByTestId": [Function],
-  "getByText": [Function],
-  "getByTitle": [Function],
-  "queryAllByAltText": [Function],
-  "queryAllByDisplayValue": [Function],
-  "queryAllByLabelText": [Function],
-  "queryAllByPlaceholderText": [Function],
-  "queryAllByRole": [Function],
-  "queryAllByTestId": [Function],
-  "queryAllByText": [Function],
-  "queryAllByTitle": [Function],
-  "queryByAltText": [Function],
-  "queryByDisplayValue": [Function],
-  "queryByLabelText": [Function],
-  "queryByPlaceholderText": [Function],
-  "queryByRole": [Function],
-  "queryByTestId": [Function],
-  "queryByText": [Function],
-  "queryByTitle": [Function],
-  "rerender": [Function],
-  "unmount": [Function],
-}
-`;
-
-exports[`Form Component form with multiple inputs 1`] = `
-Object {
-  "asFragment": [Function],
-  "baseElement": <body>
-    <div>
-      <form>
-        <input
-          name="test1"
-          type="text"
-        />
-        <input
-          name="test2"
-          type="text"
-        />
+      <form
+        class="ui form"
+      >
+        <div
+          class="ui error message"
+        >
+          <div
+            class="content"
+          >
+            <div
+              class="header"
+            >
+              Login Error
+            </div>
+          </div>
+        </div>
       </form>
     </div>
   </body>,
   "container": <div>
-    <form>
-      <input
-        name="test1"
-        type="text"
-      />
-      <input
-        name="test2"
-        type="text"
-      />
+    <form
+      class="ui form"
+    >
+      <div
+        class="ui error message"
+      >
+        <div
+          class="content"
+        >
+          <div
+            class="header"
+          >
+            Login Error
+          </div>
+        </div>
+      </div>
     </form>
   </div>,
   "debug": [Function],
@@ -148,25 +97,115 @@ Object {
 }
 `;
 
-exports[`Form Component form with single input 1`] = `
+exports[`Form Component Tests form with multiple inputs 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <form>
-        <input
-          name="test1"
-          type="text"
-        />
+      <form
+        class="ui form"
+      >
+        <div
+          class="ui error message"
+        >
+          <div
+            class="content"
+          >
+            <div
+              class="header"
+            >
+              Login Error
+            </div>
+          </div>
+        </div>
+        <div
+          class="field"
+        >
+          <label
+            for="form-input-test1"
+          />
+          <div
+            class="ui input"
+          >
+            <input
+              aria-label=""
+              id="form-input-test1"
+              name="test1"
+              type="text"
+            />
+          </div>
+        </div>
+        <div
+          class="field"
+        >
+          <label
+            for="form-input-test2"
+          />
+          <div
+            class="ui input"
+          >
+            <input
+              aria-label=""
+              id="form-input-test2"
+              name="test2"
+              type="text"
+            />
+          </div>
+        </div>
       </form>
     </div>
   </body>,
   "container": <div>
-    <form>
-      <input
-        name="test1"
-        type="text"
-      />
+    <form
+      class="ui form"
+    >
+      <div
+        class="ui error message"
+      >
+        <div
+          class="content"
+        >
+          <div
+            class="header"
+          >
+            Login Error
+          </div>
+        </div>
+      </div>
+      <div
+        class="field"
+      >
+        <label
+          for="form-input-test1"
+        />
+        <div
+          class="ui input"
+        >
+          <input
+            aria-label=""
+            id="form-input-test1"
+            name="test1"
+            type="text"
+          />
+        </div>
+      </div>
+      <div
+        class="field"
+      >
+        <label
+          for="form-input-test2"
+        />
+        <div
+          class="ui input"
+        >
+          <input
+            aria-label=""
+            id="form-input-test2"
+            name="test2"
+            type="text"
+          />
+        </div>
+      </div>
     </form>
   </div>,
   "debug": [Function],
@@ -223,35 +262,228 @@ Object {
 }
 `;
 
-exports[`Form Component form with submit button 1`] = `
+exports[`Form Component Tests form with single input 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <form>
-        <input
-          name="test1"
-          type="text"
+      <form
+        class="ui form"
+      >
+        <div
+          class="ui error message"
+        >
+          <div
+            class="content"
+          >
+            <div
+              class="header"
+            >
+              Login Error
+            </div>
+          </div>
+        </div>
+        <div
+          class="field"
+        >
+          <label
+            for="form-input-test1"
+          />
+          <div
+            class="ui input"
+          >
+            <input
+              aria-label=""
+              id="form-input-test1"
+              name="test1"
+              type="text"
+            />
+          </div>
+        </div>
+      </form>
+    </div>
+  </body>,
+  "container": <div>
+    <form
+      class="ui form"
+    >
+      <div
+        class="ui error message"
+      >
+        <div
+          class="content"
+        >
+          <div
+            class="header"
+          >
+            Login Error
+          </div>
+        </div>
+      </div>
+      <div
+        class="field"
+      >
+        <label
+          for="form-input-test1"
         />
-        <input
+        <div
+          class="ui input"
+        >
+          <input
+            aria-label=""
+            id="form-input-test1"
+            name="test1"
+            type="text"
+          />
+        </div>
+      </div>
+    </form>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
+exports[`Form Component Tests form with submit button 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <form
+        class="ui form"
+      >
+        <div
+          class="ui error message"
+        >
+          <div
+            class="content"
+          >
+            <div
+              class="header"
+            >
+              Login Error
+            </div>
+          </div>
+        </div>
+        <div
+          class="field"
+        >
+          <label
+            for="form-input-test1"
+          />
+          <div
+            class="ui input"
+          >
+            <input
+              aria-label=""
+              id="form-input-test1"
+              name="test1"
+              type="text"
+            />
+          </div>
+        </div>
+        <button
+          class="ui button"
           name="submit"
           type="submit"
           value="submit"
-        />
+        >
+          Submit
+        </button>
       </form>
     </div>
   </body>,
   "container": <div>
-    <form>
-      <input
-        name="test1"
-        type="text"
-      />
-      <input
+    <form
+      class="ui form"
+    >
+      <div
+        class="ui error message"
+      >
+        <div
+          class="content"
+        >
+          <div
+            class="header"
+          >
+            Login Error
+          </div>
+        </div>
+      </div>
+      <div
+        class="field"
+      >
+        <label
+          for="form-input-test1"
+        />
+        <div
+          class="ui input"
+        >
+          <input
+            aria-label=""
+            id="form-input-test1"
+            name="test1"
+            type="text"
+          />
+        </div>
+      </div>
+      <button
+        class="ui button"
         name="submit"
         type="submit"
         value="submit"
-      />
+      >
+        Submit
+      </button>
     </form>
   </div>,
   "debug": [Function],
