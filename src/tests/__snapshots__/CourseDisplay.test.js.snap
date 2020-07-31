@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CourseDisplay Components CourseDisplayLink test 1`] = `
+exports[`CourseDisplay Components renders CourseDisplayLink 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
@@ -8,9 +8,13 @@ Object {
       <a
         href="/courses/3"
       >
-        COMS4771
-         
-        Machine Learning
+        <h1
+          class="ui header"
+        >
+          COMS4771
+           
+          Machine Learning
+        </h1>
       </a>
     </div>
   </body>,
@@ -18,9 +22,13 @@ Object {
     <a
       href="/courses/3"
     >
-      COMS4771
-       
-      Machine Learning
+      <h1
+        class="ui header"
+      >
+        COMS4771
+         
+        Machine Learning
+      </h1>
     </a>
   </div>,
   "debug": [Function],
@@ -77,23 +85,189 @@ Object {
 }
 `;
 
-exports[`CourseDisplay Components CourseDisplayName test 1`] = `
+exports[`CourseDisplay Components renders CourseDisplayName 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <div>
+      <h3
+        class="ui header"
+      >
         COMS4771
          
         Machine Learning
+      </h3>
+    </div>
+  </body>,
+  "container": <div>
+    <h3
+      class="ui header"
+    >
+      COMS4771
+       
+      Machine Learning
+    </h3>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
+exports[`CourseDisplay Components renders no CourseDisplayLink 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <a
+        href="/courses/null"
+      >
+        <div
+          class="ui header"
+        >
+          
+           
+          
+        </div>
+      </a>
+    </div>
+  </body>,
+  "container": <div>
+    <a
+      href="/courses/null"
+    >
+      <div
+        class="ui header"
+      >
+        
+         
+        
+      </div>
+    </a>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
+exports[`CourseDisplay Components renders no CourseDisplayName 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="ui header"
+      >
+        
+         
+        
       </div>
     </div>
   </body>,
   "container": <div>
-    <div>
-      COMS4771
+    <div
+      class="ui header"
+    >
+      
        
-      Machine Learning
+      
     </div>
   </div>,
   "debug": [Function],

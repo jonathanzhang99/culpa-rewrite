@@ -9,7 +9,7 @@ class LoginRequiredDecoratorTest(AuthBaseTest):
         token = create_token('username', self.secret, False, 'HS256')
         headers = {'Authorization': f'Bearer {token}'}
 
-        res = self.app.post(self.url, headers=headers)
+        res = self.app.get(self.protected_url, headers=headers)
 
         self.assertEqual(res.status_code, 200)
         self.assertEqual(res.json, {'msg': 'success!'})
@@ -18,13 +18,13 @@ class LoginRequiredDecoratorTest(AuthBaseTest):
         token = 'aaaaaa.bbbbbbb.ccccccc'
         headers = {'Authorization': f'Bearer {token}'}
 
-        res = self.app.post(self.url, headers=headers)
+        res = self.app.get(self.protected_url, headers=headers)
 
         self.assertEqual(res.status_code, 422)
         self.assertEqual(res.json, {'error': 'Invalid Token'})
 
     def test_missing_header(self):
-        res = self.app.post(self.url)
+        res = self.app.get(self.protected_url)
 
         self.assertEqual(res.status_code, 401)
         self.assertEqual(res.json, {'error': 'Missing Authorization Header'})
@@ -32,7 +32,7 @@ class LoginRequiredDecoratorTest(AuthBaseTest):
     def test_incomplete_header(self):
         headers = {'Authorization': 'Bearer'}
 
-        res = self.app.post(self.url, headers=headers)
+        res = self.app.get(self.protected_url, headers=headers)
 
         self.assertEqual(res.status_code, 422)
         self.assertEqual(res.json, {'error': 'Authorization Header Invalid'})
@@ -41,7 +41,7 @@ class LoginRequiredDecoratorTest(AuthBaseTest):
         token = create_token('username', self.secret, False, 'HS256')
         headers = {'Authorization': f'Basic {token}'}
 
-        res = self.app.post(self.url, headers=headers)
+        res = self.app.get(self.protected_url, headers=headers)
 
         self.assertEqual(res.status_code, 422)
         self.assertEqual(res.json, {'error': 'Authorization Header Invalid'})
@@ -53,7 +53,7 @@ class LoginRequiredDecoratorTest(AuthBaseTest):
                              'HS256')
         headers = {'Authorization': f'Bearer {token}'}
 
-        res = self.app.post(self.url, headers=headers)
+        res = self.app.get(self.protected_url, headers=headers)
 
         self.assertEqual(res.status_code, 401)
         self.assertEqual(res.json, {'error': 'Token has expired'})

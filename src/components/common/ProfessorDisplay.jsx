@@ -1,37 +1,47 @@
 import PropTypes from "prop-types";
 import React from "react";
 import { Link } from "react-router-dom";
+import { Header } from "semantic-ui-react";
 
-const propTypesName = {
+const propTypesProfessorDisplayName = {
+  as: PropTypes.string,
   firstName: PropTypes.string.isRequired,
   lastName: PropTypes.string.isRequired,
 };
 
-const propTypesLink = {
+const propTypesProfessorDisplayLink = {
+  as: PropTypes.string,
   firstName: PropTypes.string.isRequired,
   lastName: PropTypes.string.isRequired,
   professorId: PropTypes.number.isRequired,
 };
 
-export function ProfessorDisplayName({ firstName, lastName }) {
+const defaultProps = {
+  as: "p",
+};
+
+export function ProfessorDisplayName({ as, firstName, lastName }) {
   return (
-    <div>
+    <Header as={as}>
       {firstName} {lastName}
-    </div>
+    </Header>
   );
 }
 
-export function ProfessorDisplayLink({ professorId, firstName, lastName }) {
+export function ProfessorDisplayLink({ as, professorId, firstName, lastName }) {
   return (
     <Link
       to={{
         pathname: `/professors/${professorId}`,
       }}
     >
-      {firstName} {lastName}
+      <ProfessorDisplayName as={as} firstName={firstName} lastName={lastName} />
     </Link>
   );
 }
 
-ProfessorDisplayName.propTypes = propTypesName;
-ProfessorDisplayLink.propTypes = propTypesLink;
+ProfessorDisplayName.propTypes = propTypesProfessorDisplayName;
+ProfessorDisplayName.defaultProps = defaultProps;
+
+ProfessorDisplayLink.propTypes = propTypesProfessorDisplayLink;
+ProfessorDisplayLink.defaultProps = defaultProps;
