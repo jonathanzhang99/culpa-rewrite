@@ -19,8 +19,8 @@ def all_courses():
 @courses_blueprint.route('/<course_id>', methods=['GET'])
 def course_summary(course_id):
     num_course_instances = 3
-    course = loader.get_course(course_id)
-    department = loader.get_department(course['department_id'])
+    course = loader.get_course(course_id)[0]
+    department = loader.get_department(course['department_id'])[0]
     recent_course_instances = loader.get_recent_course_instances(
         course_id, num_course_instances)
     associated_professors = loader.get_prof_by_course(course_id)
@@ -38,5 +38,4 @@ def course_summary(course_id):
             'professorId': professor['professor_id'],
         } for professor in associated_professors]
     }
-
     return {'courseSummary': course_summary_json}

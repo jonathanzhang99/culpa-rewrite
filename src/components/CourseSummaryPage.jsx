@@ -11,28 +11,48 @@ import useDataFetch from "components/common/useDataFetch";
 export default function CourseSummary() {
   const { courseId } = useParams();
 
-  return (
-    <div>
-      <h1> course_id: {courseId}</h1>
-      <CourseHeader courseId={courseId} />
-      <ReviewSummary />
-    </div>
-  );
-}
-
-function CourseHeader({ courseId }) {
   const {
     data: { courseSummary },
     isLoading,
     isError,
   } = useDataFetch(`/api/courses/${courseId}`, {
-    courseSummary: [],
+    courseSummary: {
+      courseName: "",
+      departmentName: "",
+      recentCourseInstances: [
+        {
+          year: 0,
+          semester: 0,
+        },
+      ],
+      associatedProfessors: [
+        {
+          firstName: "",
+          lastName: "",
+          professorId: 0,
+        },
+      ],
+    },
   });
 
-  if (isLoading || isError) {
-    return isLoading ? <LoadingComponent /> : <ErrorComponent />;
+  if (isLoading) {
+    return <LoadingComponent />;
   }
 
+  if (isError) {
+    return <ErrorComponent />;
+  }
+
+  return (
+    <div>
+      <h1> course_id: {courseId}</h1>
+      <CourseHeader courseId={courseId} courseSummary={courseSummary} />
+      <ReviewSummary />
+    </div>
+  );
+}
+
+function CourseHeader({ courseId, courseSummary }) {
   const {
     courseName,
     departmentName,
@@ -47,7 +67,7 @@ function CourseHeader({ courseId }) {
       </h1>
       <h3>{departmentName}</h3>
 
-      {/* <ul>
+      <ul>
         {associatedProfessors.map((professor) => {
           const { firstName, lastName, professorId } = professor;
           return (
@@ -71,7 +91,7 @@ function CourseHeader({ courseId }) {
             </li>
           );
         })}
-      </ul> */}
+      </ul>
 
       <CreateReviewButton fluid color="yellow">
         Write a Review for COURSENAME

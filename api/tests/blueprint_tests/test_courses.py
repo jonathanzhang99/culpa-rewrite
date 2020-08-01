@@ -1,9 +1,9 @@
-from unittest import mock
+# from unittest import mock
 from api.tests import BaseTest
 
 
 class CoursesTest(BaseTest):
-    @mock.patch('api.blueprints.courses.course_summary')
-    def test_course_summary(self, mock_course_summary):
+    # @mock.patch('api.blueprints.courses.course_summary')
+    def test_course_summary(self):
         res = self.app.get('/api/courses/1')
         print(res)
