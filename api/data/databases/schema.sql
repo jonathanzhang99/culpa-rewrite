@@ -48,12 +48,11 @@ CREATE TABLE `review` (
   `review_id` INT NOT NULL AUTO_INCREMENT,
   `course_professor_id` INT NOT NULL,
   `content` TEXT NULL,
+  `ip` VARCHAR(15) DEFAULT NULL,
   `workload` TEXT NULL,
   `rating` INT NULL,
-  `submission_date` DATETIME NOT NULL,
+  `submission_date` DATETIME DEFAULT NULL,
   PRIMARY KEY (`review_id`),
-  CONSTRAINT `fk_review__professor` FOREIGN KEY (`professor_id`)
-    REFERENCES `professor` (`professor_id`),
   CONSTRAINT `fk_review__course_professor` FOREIGN KEY (`course_professor_id`)
     REFERENCES `course_professor` (`course_professor_id`)
 );
@@ -62,7 +61,7 @@ CREATE TABLE `vote` (
   `review_id` INT NOT NULL,
   `type` VARCHAR(255) NOT NULL,
   `ip` VARCHAR(15) DEFAULT NULL,
-  `created_at` datetime NOT NULL DEFAULT '2020-07-01 00:00:00',
+  `created_at` DATETIME DEFAULT NULL,
   `is_agreed` BOOLEAN DEFAULT NULL,
   `is_funny` BOOLEAN DEFAULT NULL,
   CONSTRAINT `fk_vote__review` FOREIGN KEY (`review_id`)
@@ -100,7 +99,7 @@ CREATE TABLE `badge` (
 CREATE TABLE `badge_professor` (
   `professor_id` INT NOT NULL,
   `badge_id` INT NOT NULL,
-  CONSTRAINT `fk_department_professor__professor` FOREIGN KEY (`professor_id`)
+  CONSTRAINT `fk_badge_professor__professor` FOREIGN KEY (`professor_id`)
     REFERENCES `professor` (`professor_id`),
   CONSTRAINT `fk_badge_professor__badge` FOREIGN KEY (`badge_id`)
     REFERENCES `badge` (`badge_id`)
