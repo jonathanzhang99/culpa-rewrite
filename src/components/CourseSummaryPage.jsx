@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import React from "react";
 import { useParams } from "react-router-dom";
 
@@ -7,6 +8,16 @@ import ErrorComponent from "components/common/ErrorComponent";
 import LoadingComponent from "components/common/LoadingComponent";
 import { ProfessorDisplayLink } from "components/common/ProfessorDisplay";
 import useDataFetch from "components/common/useDataFetch";
+
+const propTypesCourseHeader = {
+  courseId: PropTypes.number.isRequired,
+  courseSummary: PropTypes.shape({
+    courseName: PropTypes.string.isRequired,
+    departmentName: PropTypes.string.isRequired,
+    recentCourseInstances: PropTypes.array.isRequired,
+    associatedProfessors: PropTypes.array.isRequired,
+  }).isRequired,
+};
 
 export default function CourseSummary() {
   const { courseId } = useParams();
@@ -45,7 +56,6 @@ export default function CourseSummary() {
 
   return (
     <div>
-      <h1> course_id: {courseId}</h1>
       <CourseHeader courseId={courseId} courseSummary={courseSummary} />
       <ReviewSummary />
     </div>
@@ -67,34 +77,39 @@ function CourseHeader({ courseId, courseSummary }) {
       </h1>
       <h3>{departmentName}</h3>
 
-      <ul>
-        {associatedProfessors.map((professor) => {
+      <h3>
+        Professors:{" "}
+        {associatedProfessors.map((professor, index) => {
           const { firstName, lastName, professorId } = professor;
           return (
-            <li key={professorId}>
+            <span>
               <ProfessorDisplayLink
+                as="a"
                 firstName={firstName}
                 lastName={lastName}
                 professorId={professorId}
               />
-            </li>
+              {associatedProfessors.length - 1 !== index ? ", " : ""}
+            </span>
           );
         })}
-      </ul>
+      </h3>
 
-      <ul>
-        {recentCourseInstances.map((courseInstance) => {
+      <h3>
+        Offered in:{" "}
+        {recentCourseInstances.map((courseInstance, index) => {
           const { year, semester } = courseInstance;
           return (
-            <li key={`${year}_${semester}`}>
-              {year} {semester}
-            </li>
+            <span>
+              {year} {semester}{" "}
+              {recentCourseInstances.length - 1 !== index ? ", " : ""}
+            </span>
           );
         })}
-      </ul>
+      </h3>
 
-      <CreateReviewButton fluid color="yellow">
-        Write a Review for COURSENAME
+      <CreateReviewButton compact color="yellow" courseId={courseId}>
+        Write a Review for {courseName}
       </CreateReviewButton>
     </div>
   );
@@ -103,3 +118,5 @@ function CourseHeader({ courseId, courseSummary }) {
 function ReviewSummary() {
   return "Review Summary here";
 }
+
+CourseHeader.propTypes = propTypesCourseHeader;
