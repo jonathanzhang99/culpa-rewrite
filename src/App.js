@@ -7,6 +7,7 @@ import Departments from "components/DepartmentsPage";
 import Login from "components/LoginPage";
 import NavigationBar from "components/NavigationBar";
 import Professors from "components/ProfessorsPage";
+import Reviews from "components/ReviewsPage"
 
 function App() {
   return (
@@ -20,6 +21,9 @@ function App() {
             <ProtectedRoute exact path="/admin">
               <h1>Admin only page!!</h1>
             </ProtectedRoute>
+            <Route path="/reviews">
+              <Reviews />
+            </Route>
             <Route path="/review">
               <ReviewForm />
             </Route>
