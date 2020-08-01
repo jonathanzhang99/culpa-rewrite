@@ -35,8 +35,6 @@ CREATE TABLE `course_professor` (
   `course_professor_id` INT NOT NULL AUTO_INCREMENT,
   `professor_id` INT NULL,
   `course_id` INT NULL,
-  `year` YEAR NULL,
-  `semester` INT NULL,
   PRIMARY KEY (`course_professor_id`),
   CONSTRAINT `fk_course_professor__professor` FOREIGN KEY(`professor_id`)
     REFERENCES `professor` (`professor_id`),
