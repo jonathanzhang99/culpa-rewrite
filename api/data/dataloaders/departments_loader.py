@@ -18,6 +18,18 @@ def get_all_departments():
     return cur.fetchall()
 
 
+def get_department_name(department_id):
+    cur = db.get_cursor()
+    query = Query.from_(department) \
+        .select(
+            department.name
+        ).where(
+            department.department_id == department_id
+        ).get_sql()
+    cur.execute(query)
+    return cur.fetchall()
+
+
 def get_department_courses(department_id):
     cur = db.get_cursor()
     query = Query.from_(course) \

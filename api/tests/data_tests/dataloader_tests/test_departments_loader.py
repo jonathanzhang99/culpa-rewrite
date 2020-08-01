@@ -1,6 +1,7 @@
 from api.data import db
 from api.data.dataloaders.departments_loader import get_all_departments
 from api.data.dataloaders.departments_loader import get_department_courses
+from api.data.dataloaders.departments_loader import get_department_name
 from api.data.dataloaders.departments_loader import get_department_professors
 from api.tests import LoadersBaseTest
 
@@ -17,6 +18,20 @@ class DepartmentsLoaderTest(LoadersBaseTest):
                          }]
 
         res = get_all_departments()
+
+        self.assertEqual(expected_res, res)
+
+    def test_load_name(self):
+        TEST_DEPARTMENT_ID = 1
+
+        cur = db.get_cursor()
+        cur.execute(
+            'INSERT INTO department (name)'
+            'VALUES ("test1")'
+        )
+        expected_res = [{'name': 'test1'}]
+
+        res = get_department_name(TEST_DEPARTMENT_ID)
 
         self.assertEqual(expected_res, res)
 

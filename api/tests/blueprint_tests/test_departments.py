@@ -15,11 +15,11 @@ class DepartmentsTest(BaseTest):
         expected_res = {
             'departments': [
                 {
-                    'id': 1,
-                    'name': 'Computer Science'
+                    'departmentId': 1,
+                    'departmentName': 'Computer Science'
                 }, {
-                    'id': 2,
-                    'name': 'English'
+                    'departmentId': 2,
+                    'departmentName': 'English'
                 }
             ]
         }
@@ -39,9 +39,14 @@ class DepartmentsTest(BaseTest):
 
     @mock.patch('api.blueprints.departments.get_department_professors')
     @mock.patch('api.blueprints.departments.get_department_courses')
-    def test_retrieve_department_info(self, mock_courses, mock_professors):
+    @mock.patch('api.blueprints.departments.get_department_name')
+    def test_retrieve_department_info(
+            self, mock_name, mock_courses, mock_professors):
         TEST_DEPARTMENT_ID = 1
 
+        mock_name.return_value = [{
+            'name': 'Computer Science'
+        }]
         mock_courses.return_value = [{
             'course_id': 1,
             'name': 'User Interface Design',
@@ -59,22 +64,48 @@ class DepartmentsTest(BaseTest):
             'last_name': 'Verma'
         }]
         expected_res = {
-            'courses': [
+            'departmentName': 'Computer Science',
+            'departmentCourses': [
                 {
-                    'name': 'User Interface Design'
+                    'courseId': 1,
+                    'courseName': 'User Interface Design'
                 }, {
-                    'name': 'Machine Learning'
+                    'courseId': 2,
+                    'courseName': 'Machine Learning'
                 }
             ],
-            'professors': [
+            'departmentProfessors': [
                 {
+                    'professorId': 1,
                     'firstName': 'Lydia',
                     'lastName': 'Chilton'
                 }, {
+                    'professorId': 2,
                     'firstName': 'Nakul',
                     'lastName': 'Verma'
                 }
             ]
+        }
+
+        res = self.app.get(
+            f'/api/departments/{TEST_DEPARTMENT_ID}')
+        self.maxDiff = None
+        self.assertEqual(expected_res, res.json)
+
+    @mock.patch('api.blueprints.departments.get_department_professors')
+    @mock.patch('api.blueprints.departments.get_department_courses')
+    @mock.patch('api.blueprints.departments.get_department_name')
+    def test_retrieve_department_info_empty(
+            self, mock_name, mock_courses, mock_professors):
+        TEST_DEPARTMENT_ID = 1
+
+        mock_name.return_value = []
+        mock_courses.return_value = []
+        mock_professors.return_value = []
+        expected_res = {
+            'departmentName': '',
+            'departmentCourses': [],
+            'departmentProfessors': []
         }
 
         res = self.app.get(
