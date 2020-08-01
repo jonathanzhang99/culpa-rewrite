@@ -1,20 +1,12 @@
 import PropTypes from "prop-types";
 import React, { useState } from "react";
 import { Container, Header, Image, Grid } from "semantic-ui-react";
+
 import { CourseDisplayName } from "components/common/CourseDisplay"
 import { ProfessorDisplayName } from "components/common/ProfessorDisplay";
-
-import downvote_icon from "icons/downvote.png"
-import upvote_icon from "icons/upvote.png"
-import funny_icon from "icons/funny.png"
-
-const propTypes = {
-    isProp: PropTypes.bool.isRequired,
-    isCourse: PropTypes.bool.isRequired,
-    submission_date: PropTypes.string.isRequired
-}
-
-ReviewCard.propTypes = propTypes
+import downvoteIcon from "icons/downvote.png"
+import funnyIcon from "icons/funny.png"
+import upvoteIcon from "icons/upvote.png"
 
 function VotesContainer({upvotes, downvotes, funnys}){
     const [upvoteClicked, setUpvoteClicked] = useState(false)
@@ -45,19 +37,19 @@ function VotesContainer({upvotes, downvotes, funnys}){
             <Grid centered style={{padding: "30px 10px", 
                                    height: "100%"}}>
                 <Grid.Row style={{paddingBottom:0}}>
-                    <Image onClick={toggleUpvote} src={upvoteClicked ? downvote_icon : upvote_icon} />
+                    <Image src={upvoteClicked ? downvoteIcon : upvoteIcon} onClick={toggleUpvote} />
                 </Grid.Row>
                 <Grid.Row style={{padding:0, color:"white"}}>
                     <strong>{upvoteCount}</strong>
                 </Grid.Row>
                 <Grid.Row style={{paddingBottom:0}}>
-                    <Image onClick={toggleDownvote} src={downvote_icon} />
+                    <Image src={downvoteIcon} onClick={toggleDownvote} />
                 </Grid.Row>
                 <Grid.Row style={{padding:0, color:"white"}}>
                     <strong>{downvoteCount}</strong>
                 </Grid.Row>
                 <Grid.Row style={{paddingBottom:0}}>
-                    <Image onClick={toggleFunny} src={funny_icon} />
+                    <Image src={funnyIcon} onClick={toggleFunny} />
                 </Grid.Row>
                 <Grid.Row style={{padding:0, color:"white"}}>
                     <strong>{funnyCount}</strong>
@@ -67,32 +59,58 @@ function VotesContainer({upvotes, downvotes, funnys}){
         </Container>
     )
 }
-export default function ReviewCard({isProf, isCourse, submission_date, review_id, 
+
+const votesContainerPropTypes = {
+    upvotes: PropTypes.num.isRequired,
+    downvotes: PropTypes.num.isRequired,
+    funnys: PropTypes.num.isRequired
+}
+
+VotesContainer.propTypes = votesContainerPropTypes
+
+export default function ReviewCard({isProf, isCourse, submissionDate, reviewId, 
                                     upvotes, downvotes, funnys, 
                                     profFirstName, profLastName, courseCode, courseName,
                                     content}){
     return (
         <Container fluid>
             <Grid>
-            <Grid.Column key={1} width={14} style={{backgroundColor:"#F2F2F2", 
-                                                    padding: "30px"}}>
+            <Grid.Column key={1} style={{backgroundColor:"#F2F2F2", 
+                                                    padding: "30px"}} width={14}>
                 <Container fluid>
                     <div style={{position:"relative"}}>
-                        {isProf && <ProfessorDisplayName as="h3" firstName={profFirstName} lastName={profLastName}></ProfessorDisplayName>}
-                        {isCourse && <CourseDisplayName as="h3" code={courseCode} name={courseName}></CourseDisplayName>}
-                        <Header as="h5">{submission_date}</Header>
+                        {isProf && <ProfessorDisplayName as="h3" firstName={profFirstName} lastName={profLastName} />}
+                        {isCourse && <CourseDisplayName as="h3" code={courseCode} name={courseName} />}
+                        <Header as="h5">{submissionDate}</Header>
                         <div style={{position: "absolute", 
                                     top: 0, 
                                     right: 0,
-                                    fontSize: "16px"}}>ID: {review_id}</div>
+                                    fontSize: "16px"}}>ID: {reviewId}</div>
                     </div>           
                     <p>{content}</p>
                 </Container>
             </Grid.Column>
-            <Grid.Column key={2} width={2}  style={{backgroundColor: "#004E8D", paddingLeft: 0}}>
-                <VotesContainer upvotes={upvotes} downvotes={downvotes} funnys={funnys} />
+            <Grid.Column key={2} style={{backgroundColor: "#004E8D", paddingLeft: 0}}  width={2}>
+                <VotesContainer downvotes={downvotes} funnys={funnys} upvotes={upvotes} />
             </Grid.Column>
             </Grid>
         </Container>
     )
 }
+
+const reviewCardPropTypes = {
+    isProf: PropTypes.bool.isRequired,
+    isCourse: PropTypes.bool.isRequired,
+    submissionDate: PropTypes.string.isRequired,
+    reviewId: PropTypes.string.isRequired,
+    upvotes: PropTypes.number.isRequired,
+    downvotes: PropTypes.number.isRequired,
+    funnys: PropTypes.number.isRequired,
+    profFirstName: PropTypes.string.isRequired,
+    profLastName: PropTypes.string.isRequired,
+    courseCode: PropTypes.string.isRequired,
+    courseName: PropTypes.string.isRequired,
+    content: PropTypes.string.isRequired
+}
+
+ReviewCard.propTypes = reviewCardPropTypes
