@@ -68,7 +68,7 @@ const votesContainerPropTypes = {
 
 VotesContainer.propTypes = votesContainerPropTypes
 
-export default function ReviewCard({isProf, isCourse, submissionDate, reviewId, 
+export default function ReviewCard({onlyProf, onlyCourse, submissionDate, reviewId, 
                                     upvotes, downvotes, funnys, 
                                     profFirstName, profLastName, courseCode, courseName,
                                     content}){
@@ -79,8 +79,8 @@ export default function ReviewCard({isProf, isCourse, submissionDate, reviewId,
                                                     padding: "30px"}} width={14}>
                 <Container fluid>
                     <div style={{position:"relative"}}>
-                        {isProf && <ProfessorDisplayName as="h3" firstName={profFirstName} lastName={profLastName} />}
-                        {isCourse && <CourseDisplayName as="h3" code={courseCode} name={courseName} />}
+                        {!onlyProf && <ProfessorDisplayName as="h3" firstName={profFirstName} lastName={profLastName} />}
+                        {!onlyCourse && <CourseDisplayName as="h3" code={courseCode} name={courseName} />}
                         <Header as="h5">{submissionDate}</Header>
                         <div style={{position: "absolute", 
                                     top: 0, 
@@ -99,8 +99,8 @@ export default function ReviewCard({isProf, isCourse, submissionDate, reviewId,
 }
 
 const reviewCardPropTypes = {
-    isProf: PropTypes.bool.isRequired,
-    isCourse: PropTypes.bool.isRequired,
+    onlyProf: PropTypes.bool.isRequired,
+    onlyCourse: PropTypes.bool.isRequired,
     submissionDate: PropTypes.string.isRequired,
     reviewId: PropTypes.string.isRequired,
     upvotes: PropTypes.number.isRequired,
