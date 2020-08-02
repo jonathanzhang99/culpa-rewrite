@@ -53,14 +53,14 @@ describe("ReviewCard tests setup", () => {
       test(testName, () => {
           const snapshot = render(
               <MemoryRouter>
-                  <ReviewCard onlyProf={onlyProf}
-                              onlyCourse={onlyCourse}
-                              reviewId={reviewId}
-                              submissionDate={submissionDate}
-                              upvotes={upvotes} downvotes={downvotes} funnys={funnys}
+                  <ReviewCard content={content}
+                              courseCode={courseCode}
+                              courseName={courseName}
+                              downvotes={downvotes}
+                              funnys={funnys} onlyCourse={onlyCourse} onlyProf={onlyProf}
                               profFirstName={profFirstName} profLastName={profLastName}
-                              courseCode={courseCode} courseName={courseName}
-                              content={content} />
+                              reviewId={reviewId} submissionDate={submissionDate}
+                              upvotes={upvotes} />
               </MemoryRouter>
           )
           expect(snapshot).toMatchSnapshot()
