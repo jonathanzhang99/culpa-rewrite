@@ -18,17 +18,17 @@ function VotesContainer({upvotes, downvotes, funnys}){
     const [funnyCount, setFunnyCount] = useState(funnys)
 
     function toggleUpvote(){
-        upvoteClicked ? setUpvoteCount(upvoteCount - 1) : setUpvoteCount(upvoteCount + 1)
+        if (upvoteClicked) {setUpvoteCount(upvoteCount - 1)} else {setUpvoteCount(upvoteCount + 1)}
         setUpvoteClicked(!upvoteClicked)
     }
 
     function toggleDownvote(){
-        downvoteClicked ? setDownvoteCount(downvoteCount - 1) : setDownvoteCount(downvoteCount + 1)
+        if (downvoteClicked) {setDownvoteCount(downvoteCount - 1)} else {setDownvoteCount(downvoteCount + 1)}
         setDownvoteClicked(!downvoteClicked)
     }
 
     function toggleFunny(){
-        funnyClicked ? setFunnyCount(funnyCount - 1) : setFunnyCount(funnyCount + 1)
+        if (funnyClicked) {setFunnyCount(funnyCount - 1)} else {setFunnyCount(funnyCount + 1)}
         setFunnyClicked(!funnyClicked)
     }
 
@@ -36,7 +36,7 @@ function VotesContainer({upvotes, downvotes, funnys}){
         <Container>
             <Grid centered style={{padding: "30px 10px", 
                                    height: "100%"}}>
-                <Grid.Row style={{paddingBottom:0}}>
+                <Grid.Row style={{paddingBottom:0, overflow: "show"}}>
                     <Image src={upvoteClicked ? downvoteIcon : upvoteIcon} onClick={toggleUpvote} />
                 </Grid.Row>
                 <Grid.Row style={{padding:0, color:"white"}}>
@@ -61,9 +61,9 @@ function VotesContainer({upvotes, downvotes, funnys}){
 }
 
 const votesContainerPropTypes = {
-    upvotes: PropTypes.num.isRequired,
-    downvotes: PropTypes.num.isRequired,
-    funnys: PropTypes.num.isRequired
+    upvotes: PropTypes.number.isRequired,
+    downvotes: PropTypes.number.isRequired,
+    funnys: PropTypes.number.isRequired
 }
 
 VotesContainer.propTypes = votesContainerPropTypes
