@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Header, Image, Grid } from "semantic-ui-react";
 
 import { CourseDisplayName } from "components/common/CourseDisplay"
@@ -8,7 +8,7 @@ import downvoteIcon from "icons/downvote.png"
 import funnyIcon from "icons/funny.png"
 import upvoteIcon from "icons/upvote.png"
 
-function VotesContainer({upvotes, downvotes, funnys}){
+function VotesContainer({reviewId, upvotes, downvotes, funnys}){
     const [upvoteClicked, setUpvoteClicked] = useState(false)
     const [downvoteClicked, setDownvoteClicked] = useState(false)
     const [funnyClicked, setFunnyClicked] = useState(false)
@@ -17,18 +17,50 @@ function VotesContainer({upvotes, downvotes, funnys}){
     const [downvoteCount, setDownvoteCount] = useState(downvotes)
     const [funnyCount, setFunnyCount] = useState(funnys)
 
+    useEffect(() => {
+        setUpvoteCount(upvotes)
+        setDownvoteCount(downvotes)
+        setFunnyCount(funnys)
+    }, [upvotes, downvotes, funnys])
+
+    const changeVoteCount = async (voteType, action) => {
+        const req = await fetch("/api/votes/change", {
+            method: "POST",
+            body: JSON.stringify({
+                action,
+                voteType,
+                reviewId
+            }),
+            headers: {
+              "Content-Type": "application/json",
+            }
+        });
+        try {
+            const res = await req.json()
+            if (res.error){
+                return res.error;
+            };
+        } catch(err){
+            return err
+        };
+
+        return null
+    }
     function toggleUpvote(){
         if (upvoteClicked) {setUpvoteCount(upvoteCount - 1)} else {setUpvoteCount(upvoteCount + 1)}
+        changeVoteCount('upvote', upvoteClicked ? 'revoke': 'add')
         setUpvoteClicked(!upvoteClicked)
     }
 
     function toggleDownvote(){
         if (downvoteClicked) {setDownvoteCount(downvoteCount - 1)} else {setDownvoteCount(downvoteCount + 1)}
+        changeVoteCount('downvote', downvoteClicked ? 'revoke': 'add')
         setDownvoteClicked(!downvoteClicked)
     }
 
     function toggleFunny(){
         if (funnyClicked) {setFunnyCount(funnyCount - 1)} else {setFunnyCount(funnyCount + 1)}
+        changeVoteCount('funny', funnyClicked ? 'revoke': 'add')
         setFunnyClicked(!funnyClicked)
     }
 
@@ -63,7 +95,8 @@ function VotesContainer({upvotes, downvotes, funnys}){
 const votesContainerPropTypes = {
     upvotes: PropTypes.number.isRequired,
     downvotes: PropTypes.number.isRequired,
-    funnys: PropTypes.number.isRequired
+    funnys: PropTypes.number.isRequired,
+    reviewId: PropTypes.string.isRequired
 }
 
 VotesContainer.propTypes = votesContainerPropTypes
@@ -91,7 +124,7 @@ export default function ReviewCard({onlyProf, onlyCourse, submissionDate, review
                 </Container>
             </Grid.Column>
             <Grid.Column key={2} style={{backgroundColor: "#004E8D", paddingLeft: 0}}  width={2}>
-                <VotesContainer downvotes={downvotes} funnys={funnys} upvotes={upvotes} />
+                <VotesContainer downvotes={downvotes} funnys={funnys} reviewId={reviewId} upvotes={upvotes} />
             </Grid.Column>
             </Grid>
         </Container>
