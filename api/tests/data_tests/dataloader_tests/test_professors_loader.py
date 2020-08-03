@@ -1,12 +1,11 @@
 from api.data import db
 from api.data.dataloaders.professors_loader import get_all_professors, \
     get_professor_courses
-from api.tests import LoadersBaseTest
-from api.tests.data_tests.dataloader_tests.common import \
-    setup_department_professor_courses
+from api.tests import LoadersWritersBaseTest
+from api.tests.data_tests.common import setup_department_professor_courses
 
 
-class ProfessorsLoaderTest(LoadersBaseTest):
+class ProfessorsLoaderTest(LoadersWritersBaseTest):
     def test_load_all_professors(self):
         cur = db.get_cursor()
         cur.execute(

@@ -1,6 +1,6 @@
 import flask
 
-from api.data.dataloaders.reviews_loader import insert_review
+from api.data.datawriters.reviews_writer import insert_review
 
 review_blueprint = flask.Blueprint('review_blueprint', __name__)
 
@@ -18,20 +18,22 @@ def submit_review():
 
     request_json = flask.request.get_json()
 
+    ip_addr = flask.request.remote_addr
     try:
         content = request_json['content']
         workload = request_json['workload']
         evaluation = request_json['evaluation']
         course_professor_id = request_json['course']
     except KeyError:
-        return {'error': 'Missing inputs'}
+        return {'error': 'Missing inputs'}, 401
 
     try:
         review_id = insert_review(
             course_professor_id,
             content,
             workload,
-            evaluation
+            evaluation,
+            ip_addr
         )
     except Exception:
         return {'error': 'Invalid review'}
