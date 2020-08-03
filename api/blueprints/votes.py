@@ -1,5 +1,6 @@
 import flask
 
+from api.data.dataloaders.votes_loader import get_user_votes
 from api.data.datasetters.votes_setter import add_vote, revoke_vote
 
 votes_blueprint = flask.Blueprint('votes_blueprint', __name__)
@@ -33,3 +34,31 @@ def change_vote():
     except Exception as e:
         print(e)
         return {"status": "failure", "failure_msg": str(e)}
+
+
+@votes_blueprint.route('/get_clicked_state', methods=['GET'])
+def get_clicked_state():
+
+    reviewId = int(flask.request.args.get('reviewId'))
+    ip = flask.request.remote_addr
+
+    res = {
+        'upvoteClicked': False,
+        'downvoteClicked': False,
+        'funnyClicked': False
+    }
+
+    try:
+        for vote in get_user_votes(reviewId, ip):
+            if vote['is_agreed']:
+                res['upvoteClicked'] = True
+            elif vote['is_agreed'] == 0:
+                res['downvoteClicked'] = True
+            elif vote['is_funny']:
+                res['funnyClicked'] = True
+
+    except Exception as e:
+        # TODO
+        print(e)
+
+    return res
