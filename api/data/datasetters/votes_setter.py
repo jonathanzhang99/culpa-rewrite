@@ -1,21 +1,28 @@
-from pypika import MySQLQuery as Query, functions as fn
+from pypika import MySQLQuery as Query, functions as fn, Order
 
 from api.data import db
 from api.data.common import vote
 
 
-def add_vote(reviewId, isUpvote, isDownvote, isFunny, ip):
+# insert new vote row corresponding to the review id and the vote type
+def add_vote(reviewId, is_agreed, is_funny, ip):
     cur = db.get_cursor()
     q = Query.into(vote).insert(reviewId, ip, fn.Now(),
-                                isUpvote, isDownvote, isFunny).get_sql()
+                                is_agreed, is_funny).get_sql()
     cur.execute(q)
+    db.get_db().commit()
 
 
-def revoke_vote(reviewId, isUpvote, isDownvote, isFunny, ip):
+# remove the latest vote with the vote type, the review id and the ip address
+def revoke_vote(reviewId, is_agreed, is_funny, ip):
+
     cur = db.get_cursor()
+    # note: currently is_agreed alone is sufficient to indicate vote type;
+    # might require further comparisons if the schema changes
     q = Query.from_(vote).delete().where((vote.review_id == reviewId) &
-                                         (vote.is_agreed == isUpvote) &
-                                         (vote.is_disagreed == isDownvote) &
-                                         (vote.is_funny == isFunny) &
-                                         (vote.ip == ip)).limit(1).get_sql()
+                                         (vote.is_agreed == is_agreed) &
+                                         (vote.ip == ip)) \
+        .orderby(vote.created_at, order=Order.desc) \
+        .limit(1).get_sql()
     cur.execute(q)
+    db.get_db().commit()

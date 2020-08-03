@@ -15,12 +15,18 @@ def change_vote():
         reviewId = params.get('reviewId')
         ip = flask.request.remote_addr
 
+        is_agreed = is_funny = None
+        if voteType == 'upvote':
+            is_agreed = 1
+        elif voteType == 'downvote':
+            is_agreed = 0
+        elif voteType == 'funny':
+            is_funny = 1
+
         if action == "add":
-            add_vote(int(reviewId), voteType == 'upvote',
-                     voteType == 'downvote', voteType == 'funny', ip)
+            add_vote(int(reviewId), is_agreed, is_funny, ip)
         elif action == "revoke":
-            revoke_vote(int(reviewId), voteType == 'upvote',
-                        voteType == 'downvote', voteType == 'funny', ip)
+            revoke_vote(int(reviewId), is_agreed, is_funny, ip)
 
         return {"status": "success", "failure_msg": None}
 
