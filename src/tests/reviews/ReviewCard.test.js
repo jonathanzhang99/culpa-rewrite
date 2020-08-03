@@ -2,7 +2,11 @@ import { render } from "@testing-library/react";
 import React from "react";
 import { MemoryRouter } from "react-router-dom";
 
+import { AuthProvider } from "components/common/Authentication";
+import useDataFetch from "components/common/useDataFetch";
 import ReviewCard from "components/reviews/ReviewCard";
+
+jest.mock('components/common/useDataFetch')
 
 describe("ReviewCard tests setup", () => {
   const testParams = [{
@@ -32,7 +36,7 @@ describe("ReviewCard tests setup", () => {
      profLastName: "",
      courseCode: "COMS1004",
      courseName: "Intro to Programming", 
-     content: "an interesting class"
+     content: "an interesting class",
   }, {
      testName: "courseCard",
      onlyProf: false, 
@@ -48,22 +52,69 @@ describe("ReviewCard tests setup", () => {
      courseName: "", 
      content: "an interesting class"
   }]
+
+  const useDataFetchReturnedValues = [{
+     upvoteClicked: true,
+     downvoteClicked: false,
+     funnyClicked: true,
+     isLoading: false,
+     isError: false
+  }, {
+     upvoteClicked: true,
+     downvoteClicked: true,
+     funnyClicked: true,
+     isLoading: false,
+     isError: false
+  }, {
+     upvoteClicked: false,
+     downvoteClicked: false,
+     funnyClicked: false,
+     isLoading: false,
+     isError: false
+  }, {
+     upvoteClicked: false,
+     downvoteClicked: false,
+     funnyClicked: false,
+     isLoading: true,
+     isError: false
+  }, {
+     upvoteClicked: false,
+     downvoteClicked: false,
+     funnyClicked: false,
+     isLoading: false,
+     isError: true
+  }]
+
   testParams.forEach(({testName, onlyProf, onlyCourse, reviewId, submissionDate, upvotes, downvotes, funnys, 
                        profFirstName, profLastName, courseCode, courseName, content}) => {
-      test(testName, () => {
-          const snapshot = render(
-              <MemoryRouter>
-                  <ReviewCard content={content}
-                              courseCode={courseCode}
-                              courseName={courseName}
-                              downvotes={downvotes}
-                              funnys={funnys} onlyCourse={onlyCourse} onlyProf={onlyProf}
-                              profFirstName={profFirstName} profLastName={profLastName}
-                              reviewId={reviewId} submissionDate={submissionDate}
-                              upvotes={upvotes} />
-              </MemoryRouter>
-          )
-          expect(snapshot).toMatchSnapshot()
-      });
+      useDataFetchReturnedValues.forEach(({upvoteClicked, downvoteClicked, funnyClicked, isLoading, isError}) => {
+        test(testName, () => {
+            useDataFetch.mockReturnValue({
+                  data: { 
+                      upvoteClicked: upvoteClicked,
+                      downvoteClicked: downvoteClicked,
+                      funnyClicked: funnyClicked
+                  }, 
+                  isLoading: isLoading,
+                  isError: isError
+              })
+            const snapshot = render(
+                <AuthProvider>
+                  <MemoryRouter>
+                      <ReviewCard content={content}
+                                  courseCode={courseCode}
+                                  courseName={courseName}
+                                  downvotes={downvotes}
+                                  funnys={funnys} onlyCourse={onlyCourse} onlyProf={onlyProf}
+                                  profFirstName={profFirstName} profLastName={profLastName}
+                                  reviewId={reviewId} submissionDate={submissionDate}
+                                  upvotes={upvotes} />
+                  </MemoryRouter>
+                </AuthProvider>
+            )
+            expect(snapshot).toMatchSnapshot()
+            expect(useDataFetch).toHaveBeenCalled()
+        });
+      })
   });
 });
