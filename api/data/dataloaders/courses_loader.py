@@ -99,7 +99,9 @@ def get_prof_by_course(course_id):
             professor.professor_id,
             professor.first_name,
             professor.last_name,
-            course_instance.course_instance_id
+            course_instance.course_instance_id,
+            course_instance.year,
+            course_instance.semester
     ) \
         .left_join(course_instance) \
         .on(professor.professor_id == course_instance.professor_id) \

@@ -28,14 +28,12 @@ def course_summary(course_id):
     course_summary_json = {
         'courseName': course['name'],
         'departmentName': department['name'],
-        'recentCourseInstances': [{
-            'year': course_instance['year'],
-            'semester': course_instance['semester']
-        } for course_instance in recent_course_instances],
         'associatedProfessors': [{
             'firstName': professor['first_name'],
             'lastName': professor['last_name'],
             'professorId': professor['professor_id'],
+            'year': professor['year'],
+            'semester': professor['semester']
         } for professor in associated_professors]
     }
     return {'courseSummary': course_summary_json}
