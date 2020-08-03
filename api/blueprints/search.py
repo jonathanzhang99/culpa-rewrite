@@ -1,5 +1,8 @@
 import flask
 
+# TEMPORARY DO NOT COMMIT
+from api.data.dataloaders.professors_loader import get_all_professors
+
 search_blueprint = flask.Blueprint('searc_blueprint', __name__)
 
 
@@ -9,7 +12,7 @@ def search():
     GET request should contain two url parameters:
         - entity: One of `['professors', 'courses', 'all']` to
           specify the data source for our results.
-        - q: the query string.
+        - query: the query string.
 
     This function will access the db and retrieve query matches.
     Returns a JSON object with the results.
@@ -17,7 +20,7 @@ def search():
     url_params = flask.request.args
 
     search_entity = url_params.get('entity', 'all')
-    query = url_params.get('q', '')
+    query = url_params.get('query', '')
 
     if len(query) < 2:
         return {'error': 'Query is too insubstantial'}, 400
@@ -25,12 +28,13 @@ def search():
     # TODO: Everything below this line is strictly for testing the
     # `SearchInput` on the frontend and will be removed.
     # Do not iterate on top of this.
-    results = ['test1', 'test2', 'test3']
+    professors = get_all_professors()
     search_results = [{
-        'title': result,
-        'description': f'this is {result}',
-        'content': f'this is the content for {result}'
-    } for result in results]
+        'title': f'{professor["first_name"]} {professor["last_name"]}',
+        'description': 'DO NOT COMMIT',
+        'content': 'DO NOT COMMIT',
+        'professorId': professor["professor_id"]
+    } for professor in professors]
 
     return {
         'searchResults': search_results,
