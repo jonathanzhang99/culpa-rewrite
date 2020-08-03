@@ -4,6 +4,8 @@ import { Container, Header, Image, Grid } from "semantic-ui-react";
 
 import { CourseDisplayName } from "components/common/CourseDisplay"
 import { ProfessorDisplayName } from "components/common/ProfessorDisplay";
+import downvoteClickedIcon from "icons/blue-downvote.png"
+import upvoteClickedIcon from "icons/blue-upvote.png"
 import downvoteIcon from "icons/downvote.png"
 import funnyIcon from "icons/funny.png"
 import upvoteIcon from "icons/upvote.png"
@@ -19,9 +21,15 @@ function VotesContainer({reviewId, upvotes, downvotes, funnys}){
 
     useEffect(() => {
         setUpvoteCount(upvotes)
+    }, [upvotes])
+
+    useEffect(() => {
         setDownvoteCount(downvotes)
+    }, [downvotes])
+
+    useEffect(() => {
         setFunnyCount(funnys)
-    }, [upvotes, downvotes, funnys])
+    }, [funnys])
 
     const changeVoteCount = async (voteType, action) => {
         const req = await fetch("/api/votes/change", {
@@ -69,13 +77,13 @@ function VotesContainer({reviewId, upvotes, downvotes, funnys}){
             <Grid centered style={{padding: "30px 10px", 
                                    height: "100%"}}>
                 <Grid.Row style={{paddingBottom:0, overflow: "show"}}>
-                    <Image src={upvoteClicked ? downvoteIcon : upvoteIcon} onClick={toggleUpvote} />
+                    <Image src={upvoteClicked ? upvoteClickedIcon : upvoteIcon} onClick={toggleUpvote} />
                 </Grid.Row>
                 <Grid.Row style={{padding:0, color:"white"}}>
                     <strong>{upvoteCount}</strong>
                 </Grid.Row>
                 <Grid.Row style={{paddingBottom:0}}>
-                    <Image src={downvoteIcon} onClick={toggleDownvote} />
+                    <Image src={downvoteClicked? downvoteClickedIcon : downvoteIcon} onClick={toggleDownvote} />
                 </Grid.Row>
                 <Grid.Row style={{padding:0, color:"white"}}>
                     <strong>{downvoteCount}</strong>
