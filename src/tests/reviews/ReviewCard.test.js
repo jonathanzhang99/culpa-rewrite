@@ -91,12 +91,12 @@ describe("ReviewCard tests setup", () => {
         test(testName, () => {
             useDataFetch.mockReturnValue({
                   data: { 
-                      upvoteClicked: upvoteClicked,
-                      downvoteClicked: downvoteClicked,
-                      funnyClicked: funnyClicked
+                      upvoteClicked,
+                      downvoteClicked,
+                      funnyClicked
                   }, 
-                  isLoading: isLoading,
-                  isError: isError
+                  isLoading,
+                  isError
               })
             const snapshot = render(
                 <AuthProvider>
