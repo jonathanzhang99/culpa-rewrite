@@ -25,7 +25,7 @@ def submit_review():
         evaluation = request_json['evaluation']
         course_professor_id = request_json['course']
     except KeyError:
-        return {'error': 'Missing inputs'}, 401
+        return {'error': 'Missing inputs'}, 400
 
     try:
         review_id = insert_review(
@@ -36,6 +36,6 @@ def submit_review():
             ip_addr
         )
     except Exception:
-        return {'error': 'Invalid review'}
+        return {'error': 'Invalid review'}, 400
 
     return {'reviewId': review_id}
