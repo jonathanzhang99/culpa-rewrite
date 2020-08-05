@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import React, { useState, useEffect } from "react";
-import { Container, Header, Image, Grid } from "semantic-ui-react";
+import { Container, Header, Image, Grid, Message, Icon } from "semantic-ui-react";
 
 import { CourseDisplayName } from "components/common/CourseDisplay"
 import ErrorComponent from "components/common/ErrorComponent";
@@ -153,12 +153,16 @@ export default function ReviewCard({onlyProf, onlyCourse, submissionDate, review
         return isLoading ? <LoadingComponent /> : <ErrorComponent />;
     }
 
+    const deprecated = Math.floor((new Date() - new Date(submissionDate)) / (3600 * 24 * 365)) > 5
     return (
         <Container fluid>
             <Grid>
             <Grid.Column key={1} style={{backgroundColor:"#F2F2F2", 
                                                     padding: "30px"}} width={14}>
                 <Container fluid>
+                    {deprecated && <Message style={{backgroundColor:"#FFF1F1"}}>
+                        <Icon name="warning circle" color="red" />Please keep in mind that this review is more than 5 years old.
+                    </Message>}
                     <div style={{position:"relative"}}>
                         {!onlyProf && <ProfessorDisplayName as="h3" firstName={profFirstName} lastName={profLastName} />}
                         {!onlyCourse && <CourseDisplayName as="h3" code={courseCode} name={courseName} />}
