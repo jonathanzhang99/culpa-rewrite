@@ -161,7 +161,7 @@ export default function ReviewCard({onlyProf, onlyCourse, submissionDate, review
                                                     padding: "30px"}} width={14}>
                 <Container fluid>
                     {deprecated && <Message style={{backgroundColor:"#FFF1F1"}}>
-                        <Icon name="warning circle" color="red" />Please keep in mind that this review is more than 5 years old.
+                        <Icon color="red" name="warning circle" />Please keep in mind that this review is more than 5 years old.
                     </Message>}
                     <div style={{position:"relative"}}>
                         {!onlyProf && <ProfessorDisplayName as="h3" firstName={profFirstName} lastName={profLastName} />}
