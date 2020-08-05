@@ -1,6 +1,6 @@
 import flask
 
-# TEMPORARY DO NOT COMMIT
+# TEMPORARY DO NOT ITERATE ON TOP OF THIS
 from api.data.dataloaders.professors_loader import get_all_professors
 
 search_blueprint = flask.Blueprint('searc_blueprint', __name__)
@@ -31,8 +31,8 @@ def search():
     professors = get_all_professors()
     search_results = [{
         'title': f'{professor["first_name"]} {professor["last_name"]}',
-        'description': 'DO NOT COMMIT',
-        'content': 'DO NOT COMMIT',
+        'description': 'TEMPORARY',
+        'content': 'TEMPORARY',
         'professorId': professor["professor_id"]
     } for professor in professors]
 
