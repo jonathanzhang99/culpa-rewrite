@@ -57,11 +57,9 @@ CREATE TABLE `review` (
 
 CREATE TABLE `vote` (
   `review_id` INT NOT NULL,
-  `type` VARCHAR(255) NOT NULL,
   `ip` VARCHAR(15) DEFAULT NULL,
   `created_at` DATETIME DEFAULT NULL,
-  `is_agreed` BOOLEAN DEFAULT NULL,
-  `is_funny` BOOLEAN DEFAULT NULL,
+  `type` ENUM('agree', 'disagree', 'funny'),
   CONSTRAINT `fk_vote__review` FOREIGN KEY (`review_id`)
     REFERENCES `review`(`review_id`)
 );
