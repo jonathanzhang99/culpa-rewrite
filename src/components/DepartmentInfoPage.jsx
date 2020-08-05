@@ -34,7 +34,7 @@ export function DepartmentInfo({ departmentCourses, departmentName, departmentPr
       <List>
         {departmentCourses.map(({ courseId, courseName }) => {
           return (
-            <List.Item key={`${courseId}`}>
+            <List.Item key={courseId}>
               <CourseDisplayLink courseId={courseId} name={courseName} />
             </List.Item>
           );
@@ -43,7 +43,7 @@ export function DepartmentInfo({ departmentCourses, departmentName, departmentPr
       <List>
         {departmentProfessors.map(({ professorId, firstName, lastName }) => {
           return (
-            <List.Item key={`${professorId}`}>
+            <List.Item key={professorId}>
               <ProfessorDisplayLink
                 firstName={firstName}
                 lastName={lastName}

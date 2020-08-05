@@ -89,7 +89,6 @@ class DepartmentsTest(BaseTest):
 
         res = self.app.get(
             f'/api/departments/{TEST_DEPARTMENT_ID}')
-        self.maxDiff = None
         self.assertEqual(expected_res, res.json)
 
     @mock.patch('api.blueprints.departments.get_department_professors')
@@ -102,13 +101,9 @@ class DepartmentsTest(BaseTest):
         mock_name.return_value = []
         mock_courses.return_value = []
         mock_professors.return_value = []
-        expected_res = {
-            'departmentName': '',
-            'departmentCourses': [],
-            'departmentProfessors': []
-        }
+        expected_error = {'error': 'Missing department name'}
 
         res = self.app.get(
             f'/api/departments/{TEST_DEPARTMENT_ID}')
-        self.maxDiff = None
-        self.assertEqual(expected_res, res.json)
+        self.assertEqual(res.status_code, 400)
+        self.assertEqual(expected_error, res.json)

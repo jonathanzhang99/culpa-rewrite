@@ -1,10 +1,7 @@
 from pypika import MySQLQuery as Query
 
 from api.data import db
-from api.data.common import course
-from api.data.common import department
-from api.data.common import department_professor
-from api.data.common import professor
+from api.data.common import course, department, department_professor, professor
 
 
 def get_all_departments():

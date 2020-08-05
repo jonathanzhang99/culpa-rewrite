@@ -1,9 +1,7 @@
 import flask
 
-from api.data.dataloaders.departments_loader import get_all_departments
-from api.data.dataloaders.departments_loader import get_department_courses
-from api.data.dataloaders.departments_loader import get_department_name
-from api.data.dataloaders.departments_loader import get_department_professors
+from api.data.dataloaders.departments_loader import get_all_departments, \
+    get_department_courses, get_department_name, get_department_professors
 
 departments_blueprint = flask.Blueprint('departments_blueprint', __name__)
 
@@ -22,7 +20,10 @@ def all_departments():
 @departments_blueprint.route('/<department_id>', methods=['GET'])
 def department_info(department_id):
     name = get_department_name(department_id)
-    name_str = "" if name == [] else name[0]['name']
+
+    if name == [] or 'name' not in name[0]:
+        return {'error': 'Missing department name'}, 400
+    name_str = name[0]['name']
 
     courses = get_department_courses(department_id)
     courses_json = [{
