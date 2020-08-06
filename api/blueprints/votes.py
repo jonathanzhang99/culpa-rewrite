@@ -1,7 +1,7 @@
 import flask
 
 from api.data.dataloaders.votes_loader import get_user_votes
-from api.data.datasetters.votes_setter import add_vote, revoke_vote
+from api.data.datawriters.votes_writer import add_vote, revoke_vote
 
 votes_blueprint = flask.Blueprint('votes_blueprint', __name__)
 
@@ -28,6 +28,8 @@ def change_vote():
             add_vote(int(reviewId), is_agreed, is_funny, ip)
         elif action == "revoke":
             revoke_vote(int(reviewId), is_agreed, is_funny, ip)
+        else:
+            return {"status": "failure", "failure_msg": "invalid argument"}
 
         return {"status": "success", "failure_msg": None}
 

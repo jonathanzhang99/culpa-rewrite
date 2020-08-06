@@ -59,13 +59,11 @@ function VotesContainer({reviewId, upvotes, downvotes, funnys,
         try {
             const res = await req.json()
             if (res.error){
-                return res.error;
+                return res;
             };
         } catch(err){
             return err
         };
-
-        return null
     }
 
     // update state values and send post req to backend when user votes/un-votes
