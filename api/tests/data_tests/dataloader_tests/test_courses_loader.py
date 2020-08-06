@@ -59,7 +59,8 @@ class CoursesLoaderTest(LoadersWritersBaseTest):
 
         res = loader.get_all_courses()
 
-        self.assertEqual(expected_res, res)
+        for i in range(len(res)):
+            self.assertDictEqual(expected_res[i], res[i])
 
     def test_get_course(self):
         self.populate_course()
@@ -108,7 +109,8 @@ class CoursesLoaderTest(LoadersWritersBaseTest):
                          },
                         ]
 
-        self.assertEqual(expected_res, res)
+        for i in range(len(res)):
+            self.assertDictEqual(expected_res[i], res[i])
 
     def test_get_prof_by_course_fail(self):
         '''
@@ -134,4 +136,5 @@ class CoursesLoaderTest(LoadersWritersBaseTest):
                          'department_id': 2,
                          'name': 'department2'}]
 
-        self.assertEqual(expected_res, res)
+        for i in range(len(res)):
+            self.assertDictEqual(expected_res[i], res[i])
