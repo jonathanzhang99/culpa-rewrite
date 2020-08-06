@@ -7,7 +7,7 @@ professors_blueprint = flask.Blueprint('professors_blueprint', __name__)
 
 
 @professors_blueprint.route('/all', methods=['GET'])
-def get_professors():
+def all_professors():
     professors = get_all_professors()
     professors_json = [{
         'firstName': professor['first_name'],
@@ -18,7 +18,7 @@ def get_professors():
 
 
 @professors_blueprint.route('/<id>/courses', methods=['GET'])
-def get_courses(id):
+def professor_courses(id):
     courses = get_professor_courses(id)
 
     # TODO: (Sungbin, JZ) change json to conform to frontend props spec
