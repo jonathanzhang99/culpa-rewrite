@@ -7,8 +7,7 @@ from api.data.common import vote
 def get_user_votes(reviewId, ip):
     cur = db.get_cursor()
     q = Query.from_(vote).select(
-        vote.is_agreed,
-        vote.is_funny
+        vote.type
     ).where(
         (vote.review_id == reviewId) &
         (vote.ip == ip)

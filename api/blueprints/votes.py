@@ -4,6 +4,7 @@ from api.data.dataloaders.votes_loader import get_user_votes
 from api.data.datawriters.votes_writer import add_vote, revoke_vote
 
 votes_blueprint = flask.Blueprint('votes_blueprint', __name__)
+validVoteTypes = ['agree', 'disagree', 'funny']
 
 
 @votes_blueprint.route('/change', methods=['POST'])
@@ -16,26 +17,23 @@ def change_vote():
         reviewId = params.get('reviewId')
         ip = flask.request.remote_addr
 
-        is_agreed = is_funny = None
-        if voteType == 'upvote':
-            is_agreed = 1
-        elif voteType == 'downvote':
-            is_agreed = 0
-        elif voteType == 'funny':
-            is_funny = 1
+        if voteType not in validVoteTypes:
+            return {"status": "failure", "failure_msg": "invalid vote type"}, 400
 
         if action == "add":
-            add_vote(int(reviewId), is_agreed, is_funny, ip)
+            add_vote(int(reviewId), voteType, ip)
+
         elif action == "revoke":
-            revoke_vote(int(reviewId), is_agreed, is_funny, ip)
+            revoke_vote(int(reviewId), voteType, ip)
+
         else:
-            return {"status": "failure", "failure_msg": "invalid argument"}
+            return {"status": "failure", "failure_msg": "invalid action type"}, 400
 
         return {"status": "success", "failure_msg": None}
 
     except Exception as e:
         print(e)
-        return {"status": "failure", "failure_msg": str(e)}
+        return {"status": "failure", "failure_msg": str(e)}, 500
 
 
 @votes_blueprint.route('/get_clicked_state', methods=['GET'])
@@ -52,11 +50,11 @@ def get_clicked_state():
 
     try:
         for vote in get_user_votes(reviewId, ip):
-            if vote['is_agreed']:
+            if vote['type'] == 'agree':
                 res['upvoteClicked'] = True
-            elif vote['is_agreed'] == 0:
+            elif vote['type'] == 'disagree':
                 res['downvoteClicked'] = True
-            elif vote['is_funny']:
+            elif vote['type'] == 'funny':
                 res['funnyClicked'] = True
 
     except Exception as e:

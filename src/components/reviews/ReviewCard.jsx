@@ -69,13 +69,13 @@ function VotesContainer({reviewId, upvotes, downvotes, funnys,
     // update state values and send post req to backend when user votes/un-votes
     function toggleUpvote(){
         if (upvoteClicked) {setUpvoteCount(upvoteCount - 1)} else {setUpvoteCount(upvoteCount + 1)}
-        changeVoteCount('upvote', upvoteClicked ? 'revoke': 'add')
+        changeVoteCount('agree', upvoteClicked ? 'revoke': 'add')
         setUpvoteClicked(!upvoteClicked)
     }
 
     function toggleDownvote(){
         if (downvoteClicked) {setDownvoteCount(downvoteCount - 1)} else {setDownvoteCount(downvoteCount + 1)}
-        changeVoteCount('downvote', downvoteClicked ? 'revoke': 'add')
+        changeVoteCount('disagree', downvoteClicked ? 'revoke': 'add')
         setDownvoteClicked(!downvoteClicked)
     }
 
