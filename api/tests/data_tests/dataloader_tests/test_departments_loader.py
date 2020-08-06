@@ -1,10 +1,10 @@
 from api.data import db
 from api.data.dataloaders.departments_loader import get_all_departments, \
     get_department_courses, get_department_name, get_department_professors
-from api.tests import LoadersBaseTest
+from api.tests import LoadersWritersBaseTest
 
 
-class DepartmentsLoaderTest(LoadersBaseTest):
+class DepartmentsLoaderTest(LoadersWritersBaseTest):
     def test_load_departments(self):
         cur = db.get_cursor()
         cur.execute(
