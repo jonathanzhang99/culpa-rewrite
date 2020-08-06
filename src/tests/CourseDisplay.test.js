@@ -28,7 +28,7 @@ describe("CourseDisplay Components", () => {
       testName: "renders no CourseDisplayLink",
       as: "",
       code: "",
-      courseId: null,
+      courseId: 0,
       name: "",
     },
     {

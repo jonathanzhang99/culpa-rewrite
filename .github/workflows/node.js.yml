@@ -22,4 +22,4 @@ jobs:
       - name: Lint with eslint
         run: yarn lint-js
       - name: Test
-        run: yarn test-frontend
+        run: yarn test-frontend --watchAll=false
