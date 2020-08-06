@@ -18,7 +18,15 @@ class ReviewsLoaderTest(LoadersWritersBaseTest):
         cur = db.get_cursor()
         setup_department_professor_courses(cur)
 
-        insert_review(1, 'gr8 class verma', 'i luv ml', 5, '127.0.0.1')
+        VERMA_MACHINE_LEARNING_ID = 1
+
+        insert_review(
+            VERMA_MACHINE_LEARNING_ID,
+            'gr8 class verma',
+            'i luv ml',
+            5,
+            '127.0.0.1'
+        )
 
         cur.execute(
             'SELECT * FROM review WHERE review.review_id = 1'
@@ -27,7 +35,7 @@ class ReviewsLoaderTest(LoadersWritersBaseTest):
 
         expected_res = {
             'review_id': 1,
-            'course_professor_id': 1,
+            'course_professor_id': VERMA_MACHINE_LEARNING_ID,
             'content': 'gr8 class verma',
             'workload': 'i luv ml',
             'rating': 5,
