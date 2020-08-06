@@ -7,10 +7,12 @@ import "@testing-library/jest-dom/extend-expect";
 
 // Throws errors on prop type mismatches
 beforeEach(() => {
+  jest.spyOn(console, "error");
   jest.spyOn(console, "warn");
 });
 
 afterEach(() => {
   /* eslint-disable no-console */
   expect(console.warn).not.toBeCalled();
+  expect(console.error).not.toBeCalled();
 });
