@@ -28,6 +28,12 @@ export default function CoursePage() {
           firstName: "",
           lastName: "",
           professorId: 0,
+          profDepartments: [
+            {
+              profDepartmentId: 0,
+              profDepartmentName: "",
+            },
+          ],
         },
       ],
     },
