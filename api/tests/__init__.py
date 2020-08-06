@@ -25,7 +25,7 @@ class BaseTest(unittest.TestCase):
         pass
 
 
-class LoadersBaseTest(unittest.TestCase):
+class LoadersWritersBaseTest(unittest.TestCase):
     '''
     This Test Class needs to setup a local mock MySql instance in order to test
     the loaders. A MySql server (v8.X) must be running on the local machine in

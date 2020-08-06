@@ -2,10 +2,10 @@ from werkzeug.security import generate_password_hash
 
 from api.data import db
 from api.data.dataloaders.users_loader import load_user
-from api.tests import LoadersBaseTest
+from api.tests import LoadersWritersBaseTest
 
 
-class UsersLoaderTest(LoadersBaseTest):
+class UsersLoaderTest(LoadersWritersBaseTest):
     def test_load_user(self):
         cur = db.get_cursor()
         password = 'taxthestudents'
