@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import React, { useState } from "react";
-import { Accordion, Table } from "semantic-ui-react";
+import { Icon, Accordion, Table } from "semantic-ui-react";
 
 import { CourseDisplayName } from "components/common/CourseDisplay";
 import CreateReviewButton from "components/common/CreateReviewButton";
@@ -10,6 +10,7 @@ const propTypes = {
   courseId: PropTypes.number.isRequired,
   courseSummary: PropTypes.shape({
     courseName: PropTypes.string.isRequired,
+    courseCallNumber: PropTypes.string.isRequired,
     departmentName: PropTypes.string.isRequired,
     associatedProfessors: PropTypes.array.isRequired,
   }).isRequired,
@@ -26,34 +27,19 @@ export default function CourseSummary({ courseId, courseSummary }) {
 
 function CourseHeader({ courseId, courseSummary }) {
   const [isActive, setActive] = useState(false);
-  const { courseName, departmentName, associatedProfessors } = courseSummary;
+  const {
+    courseName,
+    courseCallNumber,
+    departmentName,
+    associatedProfessors,
+  } = courseSummary;
 
   return (
     <div>
       <h1>
-        <CourseDisplayName code="COURSE_CODE" name={courseName} />
+        <CourseDisplayName code={courseCallNumber} name={courseName} />
       </h1>
       <h3>Department: {departmentName}</h3>
-
-      <h3>
-        Professors:{" "}
-        {associatedProfessors.map((professor, index) => {
-          const { firstName, lastName, professorId } = professor;
-          return (
-            <p>
-              <span>
-                <ProfessorDisplayLink
-                  as="h3"
-                  firstName={firstName}
-                  lastName={lastName}
-                  professorId={professorId}
-                />{" "}
-                {associatedProfessors.length - 1 !== index ? ", " : ""}
-              </span>
-            </p>
-          );
-        })}
-      </h3>
 
       <Accordion>
         <Accordion.Title
@@ -61,7 +47,8 @@ function CourseHeader({ courseId, courseSummary }) {
           as="h3"
           onClick={() => setActive(!isActive)}
         >
-          Show all professors who teach this course
+          <Icon name={!isActive ? "angle down" : "angle up"} />
+          {!isActive ? "Show" : "Hide"} all professors who teach this course
         </Accordion.Title>
         <Accordion.Content active={isActive}>
           {associatedProfessors.map((professor) => {
@@ -72,30 +59,34 @@ function CourseHeader({ courseId, courseSummary }) {
               profDepartments,
             } = professor;
             return (
-              <Table>
+              <Table basic="very" textAlign="left">
                 <Table.Row>
-                  <ProfessorDisplayLink
-                    as="h1"
-                    firstName={firstName}
-                    lastName={lastName}
-                    professorId={professorId}
-                  />
-                </Table.Row>
-                <Table.Row>
-                  {profDepartments.map((department, index) => {
-                    const { profDepartmentId, profDepartmentName } = department;
-                    return (
-                      <text>
-                        {profDepartmentId}: {profDepartmentName}
-                        {profDepartments.length - 1 !== index ? ", " : ""}
-                      </text>
-                    );
-                  })}
+                  <Table.Cell>
+                    <ProfessorDisplayLink
+                      as="span"
+                      firstName={firstName}
+                      lastName={lastName}
+                      professorId={professorId}
+                    />
+                  </Table.Cell>
+                  <Table.Cell>
+                    {profDepartments.map((department, index) => {
+                      const {
+                        profDepartmentId,
+                        profDepartmentName,
+                      } = department;
+                      return (
+                        <text>
+                          {profDepartmentId}: {profDepartmentName}
+                          {profDepartments.length - 1 !== index ? ", " : ""}
+                        </text>
+                      );
+                    })}
+                  </Table.Cell>
                 </Table.Row>
               </Table>
             );
           })}
-          Content
         </Accordion.Content>
       </Accordion>
 

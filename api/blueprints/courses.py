@@ -52,6 +52,7 @@ def course_summary(course_id):
 
     course_summary_json = {
         'courseName': course['name'],
+        'courseCallNumber': course['call_number'],
         'departmentId': course['department_id'],
         'departmentName': department['name'],
         'associatedProfessors': [{
@@ -64,5 +65,4 @@ def course_summary(course_id):
             } for department in professor['departments']],
         } for professor in associated_professors],
     }
-    print(course_summary_json)
     return {'courseSummary': course_summary_json}

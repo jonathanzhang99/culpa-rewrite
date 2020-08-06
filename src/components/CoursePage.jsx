@@ -16,6 +16,7 @@ export default function CoursePage() {
   } = useDataFetch(`/api/courses/${courseId}`, {
     courseSummary: {
       courseName: "",
+      courseCallNumber: "",
       departmentName: "",
       recentCourseInstances: [
         {
