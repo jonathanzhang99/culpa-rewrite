@@ -23,6 +23,8 @@ def submit_review():
         content = request_json['content']
         workload = request_json['workload']
         evaluation = request_json['evaluation']
+
+        # the frontend name is `course` to keep consistency.
         course_professor_id = request_json['course']
     except KeyError:
         return {'error': 'Missing inputs'}, 400

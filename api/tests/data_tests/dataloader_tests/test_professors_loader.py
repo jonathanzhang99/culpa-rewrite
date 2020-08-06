@@ -22,6 +22,8 @@ class ProfessorsLoaderTest(LoadersWritersBaseTest):
         self.assertEqual(expected_res, res)
 
     def test_load_professor_courses_single_course(self):
+        BOLLINGER_PROFESSOR_ID = 2
+
         # retrieve Lee Bollinger's courses
         cur = db.get_cursor()
         setup_department_professor_courses(cur)
@@ -34,10 +36,12 @@ class ProfessorsLoaderTest(LoadersWritersBaseTest):
             }
         ]
 
-        courses = get_professor_courses(2)
+        courses = get_professor_courses(BOLLINGER_PROFESSOR_ID)
         self.assertEqual(expected_courses, courses)
 
     def test_load_professor_courses_multiple_courses(self):
+        VERMA_PROFESSOR_ID = 1
+
         # retrieve Verma's courses
         cur = db.get_cursor()
         setup_department_professor_courses(cur)
@@ -60,5 +64,5 @@ class ProfessorsLoaderTest(LoadersWritersBaseTest):
             'call_number': 'COMS 3157'
         }]
 
-        courses = get_professor_courses(1)
+        courses = get_professor_courses(VERMA_PROFESSOR_ID)
         self.assertEqual(expected_courses, courses)

@@ -1,7 +1,7 @@
 from pypika import MySQLQuery as Query
 
 from api.data import db
-from api.data.common import professor, course, course_professor
+from api.data.common import course, course_professor, professor
 
 
 def get_all_professors():
