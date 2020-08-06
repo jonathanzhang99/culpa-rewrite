@@ -13,17 +13,11 @@ export default function CoursePage() {
     data: { courseSummary },
     isLoading,
     isError,
-  } = useDataFetch(`/api/courses/${courseId}`, {
+  } = useDataFetch(`/api/course/${courseId}`, {
     courseSummary: {
       courseName: "",
       courseCallNumber: "",
       departmentName: "",
-      recentCourseInstances: [
-        {
-          year: 0,
-          semester: 0,
-        },
-      ],
       associatedProfessors: [
         {
           firstName: "",

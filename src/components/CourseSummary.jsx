@@ -25,7 +25,7 @@ export default function CourseSummary({ courseId, courseSummary }) {
   );
 }
 
-function CourseHeader({ courseId, courseSummary }) {
+export function CourseHeader({ courseId, courseSummary }) {
   const [isActive, setActive] = useState(false);
   const {
     courseName,
@@ -59,38 +59,41 @@ function CourseHeader({ courseId, courseSummary }) {
               profDepartments,
             } = professor;
             return (
-              <Table basic="very" textAlign="left">
-                <Table.Row>
-                  <Table.Cell>
-                    <ProfessorDisplayLink
-                      as="span"
-                      firstName={firstName}
-                      lastName={lastName}
-                      professorId={professorId}
-                    />
-                  </Table.Cell>
-                  <Table.Cell>
-                    {profDepartments.map((department, index) => {
-                      const {
-                        profDepartmentId,
-                        profDepartmentName,
-                      } = department;
-                      return (
-                        <text>
-                          {profDepartmentId}: {profDepartmentName}
-                          {profDepartments.length - 1 !== index ? ", " : ""}
-                        </text>
-                      );
-                    })}
-                  </Table.Cell>
-                </Table.Row>
+              <Table basic="very" key={professorId} textAlign="left">
+                <tbody>
+                  {/* this is to prevent bugs from browser inserting <tbody> */}
+                  <Table.Row>
+                    <Table.Cell key={professorId}>
+                      <ProfessorDisplayLink
+                        as="span"
+                        firstName={firstName}
+                        lastName={lastName}
+                        professorId={professorId}
+                      />
+                    </Table.Cell>
+                    <Table.Cell key={`${professorId}_departments`}>
+                      {profDepartments.map((department, index) => {
+                        const {
+                          profDepartmentId,
+                          profDepartmentName,
+                        } = department;
+                        return (
+                          <span key={profDepartmentId}>
+                            {profDepartmentId}: {profDepartmentName}
+                            {profDepartments.length - 1 !== index ? ", " : ""}
+                          </span>
+                        );
+                      })}
+                    </Table.Cell>
+                  </Table.Row>
+                </tbody>
               </Table>
             );
           })}
         </Accordion.Content>
       </Accordion>
 
-      <CreateReviewButton compact color="yellow" courseId={courseId}>
+      <CreateReviewButton compact color="yellow" courseId={courseId.toString()}>
         WRITE A REVIEW FOR {courseName}
       </CreateReviewButton>
     </div>

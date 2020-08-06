@@ -56,5 +56,5 @@ class CoursesTest(BaseTest):
             }]
         }}
 
-        res = self.app.get(f'/api/courses/{course_id}')
+        res = self.app.get(f'/api/course/{course_id}')
         self.assertDictEqual(expected_res, res.json)

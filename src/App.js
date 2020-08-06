@@ -28,7 +28,7 @@ function App() {
             <Route path="/professors">
               <Professors />
             </Route>
-            <Route path="/courses/:courseId">
+            <Route path="/course/:courseId">
               <CoursePage />
             </Route>
             <Route path="/departments">
