@@ -20,6 +20,7 @@ def create_app(config=None):
 
     # register all blueprints here
     app.register_blueprint(auth_blueprint, url_prefix='/api/auth')
+    # TODO: (Dorrie) modify department url to be singular
     app.register_blueprint(
         departments_blueprint,
         url_prefix='/api/departments')

@@ -1,10 +1,3 @@
-import datetime
-
-
-def to_db_datetime(dt):
-    return datetime.datetime.strftime('%Y-%m-%d %H:%M:%S')
-
-
 def setup_department_professor_courses(cur):
     '''
     This is a utility function that will poopulate the
