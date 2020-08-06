@@ -18,7 +18,10 @@ def change_vote():
         ip = flask.request.remote_addr
 
         if voteType not in validVoteTypes:
-            return {"status": "failure", "failure_msg": "invalid vote type"}, 400
+            return {
+                "status": "failure",
+                "failure_msg": "invalid vote type"
+            }, 400
 
         if action == "add":
             add_vote(int(reviewId), voteType, ip)
@@ -27,7 +30,10 @@ def change_vote():
             revoke_vote(int(reviewId), voteType, ip)
 
         else:
-            return {"status": "failure", "failure_msg": "invalid action type"}, 400
+            return {
+                "status": "failure",
+                "failure_msg": "invalid action type"
+            }, 400
 
         return {"status": "success", "failure_msg": None}
 

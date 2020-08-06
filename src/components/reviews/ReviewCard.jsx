@@ -61,6 +61,7 @@ function VotesContainer({reviewId, upvotes, downvotes, funnys,
             if (res.error){
                 return res;
             };
+            return null
         } catch(err){
             return err
         };
