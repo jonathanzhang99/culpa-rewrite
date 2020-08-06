@@ -11,7 +11,8 @@ def get_all_courses():
         .select(
             course.course_id,
             course.name,
-            course.department_id
+            course.department_id,
+            course.call_number,
     ).get_sql()
     cur.execute(query)
     return cur.fetchall()
@@ -42,21 +43,6 @@ def get_department(department_id):
             department.name
     ).where(
             department.department_id == department_id
-    ).get_sql()
-    cur.execute(query)
-    return cur.fetchall()
-
-
-def get_all_course_instances(course_id):
-    cur = db.get_cursor()
-    query = Query.from_(course_professor) \
-        .select(
-            course_professor.course_instance_id,
-            course_professor.year,
-            course_professor.semester,
-            course_professor.course_id
-    ).where(
-            course_professor.course_id == course_id
     ).get_sql()
     cur.execute(query)
     return cur.fetchall()

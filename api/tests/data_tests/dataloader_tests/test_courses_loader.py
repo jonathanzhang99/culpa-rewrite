@@ -1,9 +1,9 @@
 from api.data import db
-from api.tests import LoadersBaseTest
+from api.tests import LoadersWritersBaseTest
 import api.data.dataloaders.courses_loader as loader
 
 
-class CoursesLoaderTest(LoadersBaseTest):
+class CoursesLoaderTest(LoadersWritersBaseTest):
     def populate_department(self):
         cur = db.get_cursor()
         cur.execute(
@@ -15,38 +15,46 @@ class CoursesLoaderTest(LoadersBaseTest):
         cur = db.get_cursor()
         self.populate_department()
         cur.execute(
-            'INSERT INTO course (name, department_id)'
-            'VALUES ("course1", 1), ("course2", 2)'
+            'INSERT INTO course (name, department_id, call_number)'
+            'VALUES ("course1", 1, "XXXX0000"), ("course2", 2, "YYYY0000")'
         )
 
     def populate_professor(self):
         cur = db.get_cursor()
         cur.execute(
-            'INSERT INTO professor (first_name, last_name)'
-            'VALUES ("Nakul", "Verma"), ("Lee", "Bollinger")'
+            'INSERT INTO professor (first_name, last_name, uni)'
+            'VALUES ("Nakul", "Verma", "nv0000"),'
+            '("Lee", "Bollinger", "lb0000")'
         )
 
-    def populate_course_instance(self):
+    def populate_department_professor(self):
+        cur = db.get_cursor()
+        cur.execute(
+            'INSERT INTO department_professor (professor_id, department_id)'
+            'VALUES (1, 1), (1, 2), (2, 2)'
+        )
+
+    def populate_course_professor(self):
         cur = db.get_cursor()
         self.populate_course()
         self.populate_professor()
         cur.execute(
-            'INSERT INTO course_instance'
-            '(professor_id, course_id, year, semester)'
-            'VALUES (1, 1, 1995, 1), (1, 1, 1997, 2), (1, 1, 2001, 1),'
-            '(1, 1, 2008, 2), (2, 1, 2012, 2), (2, 2, 2012, 1),'
-            '(2, 2, 2013, 1)'
+            'INSERT INTO course_professor'
+            '(professor_id, course_id)'
+            'VALUES (1, 1), (2, 1), (2, 2)'
         )
 
     def test_get_all_courses(self):
         self.populate_course()
         expected_res = [{'course_id': 1,
                          'name': 'course1',
-                         'department_id': 1
+                         'department_id': 1,
+                         'call_number': 'XXXX0000',
                          },
                         {'course_id': 2,
                          'name': 'course2',
-                         'department_id': 2
+                         'department_id': 2,
+                         'call_number': 'YYYY0000',
                          }]
 
         res = loader.get_all_courses()
@@ -58,7 +66,8 @@ class CoursesLoaderTest(LoadersBaseTest):
         course_id = 1
         expected_res = [{'course_id': course_id,
                          'name': 'course1',
-                         'department_id': 1
+                         'department_id': 1,
+                         'call_number': 'XXXX0000',
                          }]
 
         res = loader.get_course(course_id)
@@ -76,90 +85,27 @@ class CoursesLoaderTest(LoadersBaseTest):
 
         self.assertTrue(len(res) == 0)
 
-    def test_get_all_course_instances(self):
-        self.populate_course_instance()
-        course_id = 2
-        res = loader.get_all_course_instances(course_id)
+    def test_get_department(self):
+        department_id = 1
+        self.populate_department()
+        expected_res = [{'name': 'department1'}]
 
-        self.assertTrue(len(res) == 2)
-
-    def test_get_recent_course_instance(self):
-        self.populate_course_instance()
-        course_id = 1
-        num_year = 3
-        res = loader.get_recent_course_instance(course_id, num_year)
-        expected_res = [{'course_instance_id': 5,
-                         'year': 2012,
-                         'semester': 2,
-                         'course_id': 1},
-                        {'course_instance_id': 4,
-                         'year': 2008,
-                         'semester': 2,
-                         'course_id': 1},
-                        {'course_instance_id': 3,
-                         'year': 2001,
-                         'semester': 1,
-                         'course_id': 1
-                         }]
-
-        self.assertEqual(expected_res, res)
-
-    def test_get_recent_course_instance_underflow(self):
-        '''
-        Test when requested number of years exceeds number of years in the db
-        '''
-        self.populate_course_instance()
-        course_id = 1
-        num_year = 10
-        res = loader.get_recent_course_instance(course_id, num_year)
-        expected_res = [{'course_instance_id': 5,
-                         'year': 2012,
-                         'semester': 2,
-                         'course_id': 1},
-                        {'course_instance_id': 4,
-                         'year': 2008,
-                         'semester': 2,
-                         'course_id': 1},
-                        {'course_instance_id': 3,
-                         'year': 2001,
-                         'semester': 1,
-                         'course_id': 1},
-                        {'course_instance_id': 2,
-                         'year': 1997,
-                         'semester': 2,
-                         'course_id': 1},
-                        {'course_instance_id': 1,
-                         'year': 1995,
-                         'semester': 1,
-                         'course_id': 1},
-                        ]
+        res = loader.get_department(department_id)
 
         self.assertEqual(expected_res, res)
 
     def test_get_prof_by_course(self):
-        self.populate_course_instance()
+        self.populate_course_professor()
         course_id = 1
         res = loader.get_prof_by_course(course_id)
         expected_res = [{'professor_id': 1,
                          'first_name': 'Nakul',
                          'last_name': 'Verma',
-                         'course_instance_id': 1},
-                        {'professor_id': 1,
-                         'first_name': 'Nakul',
-                         'last_name': 'Verma',
-                         'course_instance_id': 2},
-                        {'professor_id': 1,
-                         'first_name': 'Nakul',
-                         'last_name': 'Verma',
-                         'course_instance_id': 3},
-                        {'professor_id': 1,
-                         'first_name': 'Nakul',
-                         'last_name': 'Verma',
-                         'course_instance_id': 4},
+                         },
                         {'professor_id': 2,
                          'first_name': 'Lee',
                          'last_name': 'Bollinger',
-                         'course_instance_id': 5},
+                         },
                         ]
 
         self.assertEqual(expected_res, res)
@@ -168,7 +114,24 @@ class CoursesLoaderTest(LoadersBaseTest):
         '''
         Test if the function raises ValueError given non-existent course_id
         '''
-        self.populate_course_instance()
+        self.populate_course_professor()
         course_id = 7
         res = loader.get_prof_by_course(course_id)
         self.assertTrue(len(res) == 0)
+
+    def test_get_department_by_prof(self):
+        professor_ids = [1, 2]
+        self.populate_course_professor()
+        self.populate_department_professor()
+        res = loader.get_department_by_prof(professor_ids)
+        expected_res = [{'professor_id': 1,
+                         'department_id': 1,
+                         'name': 'department1'},
+                        {'professor_id': 1,
+                         'department_id': 2,
+                         'name': 'department2'},
+                        {'professor_id': 2,
+                         'department_id': 2,
+                         'name': 'department2'}]
+
+        self.assertEqual(expected_res, res)
