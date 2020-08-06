@@ -49,4 +49,5 @@ class MySQL(object):
 
     def teardown(self, exception):
         if flask.g is not None and 'mysqldb' in flask.g:
+            flask.g.mysqldb.commit()
             flask.g.mysqldb.close()
