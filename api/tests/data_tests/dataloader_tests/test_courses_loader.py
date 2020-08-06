@@ -136,8 +136,5 @@ class CoursesLoaderTest(LoadersWritersBaseTest):
                          'department_id': 2,
                          'name': 'department2'}]
 
-        for i in range(len(res)):
-            print(f'expected_res[{i}] = {expected_res[i]}')
-            print(f'res[{i}] = {res[i]}')
-
-            self.assertDictEqual(expected_res[i], res[i])
+        for row in res:
+            self.assertTrue(row in expected_res)
