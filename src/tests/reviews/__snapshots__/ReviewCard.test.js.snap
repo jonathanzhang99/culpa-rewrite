@@ -19,16 +19,6 @@ Object {
               class="ui fluid container"
             >
               <div
-                class="ui message"
-                style="background-color: rgb(255, 241, 241);"
-              >
-                <i
-                  aria-hidden="true"
-                  class="red warning circle icon"
-                />
-                Please keep in mind that this review is more than 5 years old.
-              </div>
-              <div
                 style="position: relative;"
               >
                 <h5
@@ -131,16 +121,6 @@ Object {
           <div
             class="ui fluid container"
           >
-            <div
-              class="ui message"
-              style="background-color: rgb(255, 241, 241);"
-            >
-              <i
-                aria-hidden="true"
-                class="red warning circle icon"
-              />
-              Please keep in mind that this review is more than 5 years old.
-            </div>
             <div
               style="position: relative;"
             >
@@ -302,16 +282,6 @@ Object {
               class="ui fluid container"
             >
               <div
-                class="ui message"
-                style="background-color: rgb(255, 241, 241);"
-              >
-                <i
-                  aria-hidden="true"
-                  class="red warning circle icon"
-                />
-                Please keep in mind that this review is more than 5 years old.
-              </div>
-              <div
                 style="position: relative;"
               >
                 <h5
@@ -414,16 +384,6 @@ Object {
           <div
             class="ui fluid container"
           >
-            <div
-              class="ui message"
-              style="background-color: rgb(255, 241, 241);"
-            >
-              <i
-                aria-hidden="true"
-                class="red warning circle icon"
-              />
-              Please keep in mind that this review is more than 5 years old.
-            </div>
             <div
               style="position: relative;"
             >
@@ -585,16 +545,6 @@ Object {
               class="ui fluid container"
             >
               <div
-                class="ui message"
-                style="background-color: rgb(255, 241, 241);"
-              >
-                <i
-                  aria-hidden="true"
-                  class="red warning circle icon"
-                />
-                Please keep in mind that this review is more than 5 years old.
-              </div>
-              <div
                 style="position: relative;"
               >
                 <h5
@@ -697,16 +647,6 @@ Object {
           <div
             class="ui fluid container"
           >
-            <div
-              class="ui message"
-              style="background-color: rgb(255, 241, 241);"
-            >
-              <i
-                aria-hidden="true"
-                class="red warning circle icon"
-              />
-              Please keep in mind that this review is more than 5 years old.
-            </div>
             <div
               style="position: relative;"
             >
@@ -1006,16 +946,6 @@ Object {
               class="ui fluid container"
             >
               <div
-                class="ui message"
-                style="background-color: rgb(255, 241, 241);"
-              >
-                <i
-                  aria-hidden="true"
-                  class="red warning circle icon"
-                />
-                Please keep in mind that this review is more than 5 years old.
-              </div>
-              <div
                 style="position: relative;"
               >
                 <h3
@@ -1125,16 +1055,6 @@ Object {
           <div
             class="ui fluid container"
           >
-            <div
-              class="ui message"
-              style="background-color: rgb(255, 241, 241);"
-            >
-              <i
-                aria-hidden="true"
-                class="red warning circle icon"
-              />
-              Please keep in mind that this review is more than 5 years old.
-            </div>
             <div
               style="position: relative;"
             >
@@ -1303,16 +1223,6 @@ Object {
               class="ui fluid container"
             >
               <div
-                class="ui message"
-                style="background-color: rgb(255, 241, 241);"
-              >
-                <i
-                  aria-hidden="true"
-                  class="red warning circle icon"
-                />
-                Please keep in mind that this review is more than 5 years old.
-              </div>
-              <div
                 style="position: relative;"
               >
                 <h3
@@ -1422,16 +1332,6 @@ Object {
           <div
             class="ui fluid container"
           >
-            <div
-              class="ui message"
-              style="background-color: rgb(255, 241, 241);"
-            >
-              <i
-                aria-hidden="true"
-                class="red warning circle icon"
-              />
-              Please keep in mind that this review is more than 5 years old.
-            </div>
             <div
               style="position: relative;"
             >
@@ -1600,16 +1500,6 @@ Object {
               class="ui fluid container"
             >
               <div
-                class="ui message"
-                style="background-color: rgb(255, 241, 241);"
-              >
-                <i
-                  aria-hidden="true"
-                  class="red warning circle icon"
-                />
-                Please keep in mind that this review is more than 5 years old.
-              </div>
-              <div
                 style="position: relative;"
               >
                 <h3
@@ -1719,16 +1609,6 @@ Object {
           <div
             class="ui fluid container"
           >
-            <div
-              class="ui message"
-              style="background-color: rgb(255, 241, 241);"
-            >
-              <i
-                aria-hidden="true"
-                class="red warning circle icon"
-              />
-              Please keep in mind that this review is more than 5 years old.
-            </div>
             <div
               style="position: relative;"
             >
@@ -2035,16 +1915,6 @@ Object {
               class="ui fluid container"
             >
               <div
-                class="ui message"
-                style="background-color: rgb(255, 241, 241);"
-              >
-                <i
-                  aria-hidden="true"
-                  class="red warning circle icon"
-                />
-                Please keep in mind that this review is more than 5 years old.
-              </div>
-              <div
                 style="position: relative;"
               >
                 <h3
@@ -2154,16 +2024,6 @@ Object {
           <div
             class="ui fluid container"
           >
-            <div
-              class="ui message"
-              style="background-color: rgb(255, 241, 241);"
-            >
-              <i
-                aria-hidden="true"
-                class="red warning circle icon"
-              />
-              Please keep in mind that this review is more than 5 years old.
-            </div>
             <div
               style="position: relative;"
             >
@@ -2332,16 +2192,6 @@ Object {
               class="ui fluid container"
             >
               <div
-                class="ui message"
-                style="background-color: rgb(255, 241, 241);"
-              >
-                <i
-                  aria-hidden="true"
-                  class="red warning circle icon"
-                />
-                Please keep in mind that this review is more than 5 years old.
-              </div>
-              <div
                 style="position: relative;"
               >
                 <h3
@@ -2451,16 +2301,6 @@ Object {
           <div
             class="ui fluid container"
           >
-            <div
-              class="ui message"
-              style="background-color: rgb(255, 241, 241);"
-            >
-              <i
-                aria-hidden="true"
-                class="red warning circle icon"
-              />
-              Please keep in mind that this review is more than 5 years old.
-            </div>
             <div
               style="position: relative;"
             >
@@ -2629,16 +2469,6 @@ Object {
               class="ui fluid container"
             >
               <div
-                class="ui message"
-                style="background-color: rgb(255, 241, 241);"
-              >
-                <i
-                  aria-hidden="true"
-                  class="red warning circle icon"
-                />
-                Please keep in mind that this review is more than 5 years old.
-              </div>
-              <div
                 style="position: relative;"
               >
                 <h3
@@ -2748,16 +2578,6 @@ Object {
           <div
             class="ui fluid container"
           >
-            <div
-              class="ui message"
-              style="background-color: rgb(255, 241, 241);"
-            >
-              <i
-                aria-hidden="true"
-                class="red warning circle icon"
-              />
-              Please keep in mind that this review is more than 5 years old.
-            </div>
             <div
               style="position: relative;"
             >
