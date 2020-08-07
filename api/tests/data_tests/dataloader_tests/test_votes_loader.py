@@ -1,37 +1,26 @@
 from api.data import db
 from api.data.dataloaders.votes_loader import get_user_votes
-from api.tests import LoadersBaseTest
+from api.tests import LoadersWritersBaseTest
+from api.tests.data_tests.common import setup_reviews
 from itertools import compress
 
 
-class VotesLoaderTest(LoadersBaseTest):
+class VotesLoaderTest(LoadersWritersBaseTest):
     def test_get_user_votes(self):
         reviewId, ip = '1', '123456789101112'
         timestamp = '2020-01-01 00:00:00'
         vote_cb = [
-            f"({reviewId}, '{ip}', '{timestamp}', 1, NULL)",
-            f"({reviewId}, '{ip}', '{timestamp}', 0, NULL)",
-            f"({reviewId}, '{ip}', '{timestamp}', NULL, 1)"
+            (reviewId, ip, timestamp, 'agree'),
+            (reviewId, ip, timestamp, 'disagree'),
+            (reviewId, ip, timestamp, 'funny')
         ]
-        expected_res = [{
-            'review_id': int(reviewId),
-            'ip': ip,
-            'created_at': timestamp,
-            'is_agreed': 1,
-            'is_funny': None
-        }, {
-            'review_id': int(reviewId),
-            'ip': ip,
-            'created_at': timestamp,
-            'is_agreed': 0,
-            'is_funny': None
-        }, {
-            'review_id': int(reviewId),
-            'ip': ip,
-            'created_at': timestamp,
-            'is_agreed': None,
-            'is_funny': 1
-        }]
+        expected_res = [
+            {'type': 'agree'},
+            {'type': 'disagree'},
+            {'type': 'funny'}
+        ]
+        setup_reviews(db.get_cursor())
+        db.commit()
 
         for upvoteClicked in [True, False]:
             for downvoteClicked in [True, False]:
@@ -47,19 +36,18 @@ class VotesLoaderTest(LoadersBaseTest):
                         funnyClicked=funnyClicked
                     ):
 
-                        sql = ', '.join(list(
-                            compress(vote_cb, [
+                        voteList = list(compress(vote_cb, [
                                 upvoteClicked,
                                 downvoteClicked,
                                 funnyClicked
-                            ])
-                        ))
-                        print("===================================", sql)
+                            ]))
 
                         cur = db.get_cursor()
-                        cur.execute(
-                            'INSERT INTO vote (review_id, ip, created_at,'
-                            'is_agreed, is_funny) VALUES' + sql
+                        cur.executemany(
+                            'INSERT INTO vote'
+                            '(review_id, ip, created_at, type)'
+                            'VALUES (%s, %s, %s, %s)',
+                            voteList
                         )
 
                         res = get_user_votes(reviewId, ip)
@@ -69,3 +57,4 @@ class VotesLoaderTest(LoadersBaseTest):
                                 downvoteClicked,
                                 funnyClicked
                             ])))
+                        db.rollback()

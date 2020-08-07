@@ -9,29 +9,17 @@ class VotesTest(BaseTest):
     def test_change_vote_valid(self, revoke_fn_patch, add_fn_patch):
         actions = ["add", "revoke"]
         reviewId = "12345"
-        voteTypeSpecs = [{
-            'voteType': "upvote",
-            'is_agreed': 1,
-            'is_funny': None
-        }, {
-            'voteType': "downvote",
-            'is_agreed': 0,
-            'is_funny': None
-        }, {
-            'voteType': "funny",
-            'is_agreed': None,
-            'is_funny': 1
-        }]
+        voteTypes = ["agree", "disagree", "funny"]
 
         for action in actions:
-            for voteTypeSpec in voteTypeSpecs:
+            for voteType in voteTypes:
                 with self.subTest(
                     action=action,
-                    voteTypeSpec=voteTypeSpec['voteType'],
+                    voteType=voteType,
                 ):
                     res = self.app.post('/api/votes/change', json=dict(
                         action=action,
-                        voteType=voteTypeSpec['voteType'],
+                        voteType=voteType,
                         reviewId=reviewId
                     ), environ_base={'REMOTE_ADDR': '127.0.0.1'})
 
@@ -43,15 +31,13 @@ class VotesTest(BaseTest):
                     if action == "add":
                         add_fn_patch.assert_called_with(
                             12345,
-                            voteTypeSpec['is_agreed'],
-                            voteTypeSpec['is_funny'],
+                            voteType,
                             "127.0.0.1"
                         )
                     elif action == "revoke":
                         revoke_fn_patch.assert_called_with(
                             12345,
-                            voteTypeSpec['is_agreed'],
-                            voteTypeSpec['is_funny'],
+                            voteType,
                             "127.0.0.1"
                         )
 
@@ -67,7 +53,7 @@ class VotesTest(BaseTest):
             with self.subTest(action=action):
                 res = self.app.post('/api/votes/change', json=dict(
                                 action=action,
-                                voteType='',
+                                voteType='agree',
                                 reviewId='12345'
                             ), environ_base={'REMOTE_ADDR': '127.0.0.1'})
 
@@ -75,13 +61,14 @@ class VotesTest(BaseTest):
                     "status": "failure",
                     "failure_msg": exception_msg
                 })
+                self.assertEqual(res.status_code, 500)
 
     @mock.patch("api.blueprints.votes.get_user_votes")
     def test_get_clicked_state(self, db_fn_patch):
         db_return_vals = [
-            {'is_agreed': 1, 'is_funny': None},
-            {'is_agreed': 0, 'is_funny': None},
-            {'is_agreed': None, 'is_funny': 1}
+            {'type': 'agree'},
+            {'type': 'disagree'},
+            {'type': 'funny'}
         ]
 
         for upvoteClicked in [True, False]:
