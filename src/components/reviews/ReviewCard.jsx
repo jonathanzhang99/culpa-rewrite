@@ -152,7 +152,7 @@ export default function ReviewCard({onlyProf, onlyCourse, submissionDate, review
         return isLoading ? <LoadingComponent /> : <ErrorComponent />;
     }
 
-    const deprecated = Math.floor((new Date() - new Date(submissionDate)) / (3600 * 24 * 365)) > 5
+    const deprecated = Math.floor((new Date() - new Date(submissionDate)) / (1000 * 3600 * 24 * 365)) >= 5
     return (
         <Container fluid>
             <Grid>
