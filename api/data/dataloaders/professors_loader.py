@@ -35,3 +35,18 @@ def get_professor_courses(professor_id):
         .get_sql()
     cur.execute(query)
     return cur.fetchall()
+
+
+def get_cp_id_by_prof(prof_id):
+    '''
+    loads course_professor_ids related to a specific prof
+    '''
+    cur = db.get_cursor()
+    q = Query.from_(course_professor).select(
+        course_professor.course_professor_id
+    ).where(
+        course_professor.professor_id == prof_id
+    ).get_sql()
+    cur.execute(q)
+
+    return cur.fetchall()

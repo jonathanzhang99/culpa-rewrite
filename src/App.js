@@ -8,6 +8,7 @@ import DepartmentsPage from "components/DepartmentsPage";
 import Login from "components/LoginPage";
 import NavigationBar from "components/NavigationBar";
 import Professors from "components/ProfessorsPage";
+import ReviewsPage from "components/ReviewsPage"
 
 function App() {
   return (
@@ -23,6 +24,9 @@ function App() {
             </ProtectedRoute>
             <Route path="/review">
               <ReviewForm />
+            </Route>
+            <Route path="/reviews">
+              <ReviewsPage/>
             </Route>
             <Route path="/professors">
               <Professors />

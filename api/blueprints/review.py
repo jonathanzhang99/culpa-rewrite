@@ -1,5 +1,8 @@
 import flask
 
+from api.data.dataloaders.courses_loader import get_cp_id_by_course
+from api.data.dataloaders.professors_loader import get_cp_id_by_prof
+from api.data.dataloaders.reviews_loader import get_reviews_by_cp_id
 from api.data.datawriters.reviews_writer import insert_review
 
 review_blueprint = flask.Blueprint('review_blueprint', __name__)
@@ -41,3 +44,36 @@ def submit_review():
         return {'error': 'Invalid review'}, 400
 
     return {'reviewId': review_id}
+
+
+@review_blueprint.route('/get', methods=['GET'])
+def get_reviews():
+    args = flask.request.args
+    if args.get('type') == 'professor':
+        cp_ids = get_cp_id_by_prof(args.get('professorId'))
+    elif args.get('type') == 'course':
+        cp_ids = get_cp_id_by_course(args.get('courseId'))
+    else:
+        return {
+            "error": "invalid page type"
+        }, 400
+
+    try:
+        cp_id_list = [x['course_professor_id'] for x in cp_ids]
+        reviews = get_reviews_by_cp_id(cp_id_list)
+        json = [{
+            'id': review['review_id'],
+            'content': review['content'],
+            'workload': review['workload'],
+            'rating': review['rating'],
+            'submissionDate': review['submission_date'],
+            'upvotes': int(review['upvotes']),
+            'downvotes': int(review['downvotes']),
+            'funnys': int(review['funnys'])
+        } for review in reviews]
+        return {'reviews': json}
+
+    except Exception as e:
+        # print statement for debugging
+        print(e)
+        return {"error": str(e)}, 500
