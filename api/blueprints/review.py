@@ -48,7 +48,22 @@ def submit_review():
 
 @review_blueprint.route('/get', methods=['GET'])
 def get_reviews():
+    sorting_spec = {
+        'best': ['rating', True],
+        'worst': ['rating', False],
+        'newest': ['submission_date', True],
+        'oldest': ['submission_date', False],
+        'most agreed': ['upvotes', True],
+        'most disagreed': ['downvotes', True]
+    }
+
     args = flask.request.args
+    sorting = args.get('sorting').lower() if 'sorting' in args else None
+    if sorting and sorting not in sorting_spec:
+        return {
+            "error": "invalid sorting setting"
+        }, 400
+
     if args.get('type') == 'professor':
         cp_ids = get_cp_id_by_prof(args.get('professorId'))
     elif args.get('type') == 'course':
@@ -59,8 +74,13 @@ def get_reviews():
         }, 400
 
     try:
+        if sorting:
+            sort_crit, sort_desc = sorting_spec[sorting]
         cp_id_list = [x['course_professor_id'] for x in cp_ids]
-        reviews = get_reviews_by_cp_id(cp_id_list)
+        reviews = get_reviews_by_cp_id(
+            cp_id_list, sort_crit, sort_desc
+        ) if sorting else get_reviews_by_cp_id(cp_id_list)
+
         json = [{
             'id': review['review_id'],
             'content': review['content'],
