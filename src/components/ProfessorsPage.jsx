@@ -46,7 +46,7 @@ export default function Professors() {
     data: { professors },
     isLoading,
     isError,
-  } = useDataFetch("/api/professors/all", {
+  } = useDataFetch("/api/professor/all", {
     professors: [],
   });
 
