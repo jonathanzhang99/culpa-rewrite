@@ -36,8 +36,30 @@ class CoursesLoaderTest(LoadersWritersBaseTest):
         self.assertTrue(len(res) == 0)
 
     def test_get_department_professors(self):
-        # TODO: populate doesn't include populating department_professor
         self.populate()
         course_id = 1
+        expected_res = [{'professor_id': 1,
+                         'first_name': 'Nakul',
+                         'last_name': 'Verma',
+                         'department_id': 1,
+                         'name': 'Computer Science'},
+                        {'professor_id': 1,
+                         'first_name': 'Nakul',
+                         'last_name': 'Verma',
+                         'department_id': 3,
+                         'name': 'Mathematics'}]
         res = get_department_professors(course_id)
-        print(res)
+
+        for i in range(len(res)):
+            self.assertDictEqual(expected_res[i], res[i])
+
+    def test_get_department_professors_fail(self):
+        '''
+        Test when no matching course is found
+        '''
+        self.populate()
+        course_id = 20
+
+        res = get_department_professors(course_id)
+
+        self.assertTrue(len(res) == 0)
