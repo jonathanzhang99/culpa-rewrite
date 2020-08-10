@@ -9,12 +9,11 @@ export default function ReviewsPage() {
     // example courseId and sorting for testing
     // valid values for sorting: best, worst, oldest, newest, most disagreed
     const courseId = 38
-    const sorting = "most agreed"
     const { 
         data : { reviews },
         isLoading,
         isError,
-    } = useDataFetch(`/api/review/get?type=course&courseId=${courseId}&sorting=${sorting}`, {
+    } = useDataFetch(`/api/review/get?type=course&courseId=${courseId}`, {
         reviews: []
     })
 
@@ -25,7 +24,10 @@ export default function ReviewsPage() {
     return (
         <div>
             <p>placeholder for other components</p>
-            <ReviewSection reviews={reviews}/>
+            <ReviewSection assocList={[]}
+                           idProp={38} 
+                           initReviews={reviews}
+                           pageTypeProp="course" />
         </div>
     )
 }

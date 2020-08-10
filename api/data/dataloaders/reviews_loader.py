@@ -1,10 +1,10 @@
-from pypika import functions as fn, MySQLQuery as Query, Case, Order
+from pypika import functions as fn, MySQLQuery as Query, Case, Criterion, Order
 
 from api.data import db
 from api.data.common import review, vote
 
 
-def get_reviews_by_cp_id(course_prof_ids, sort_crit=None, sort_desc=None):
+def get_reviews_by_cp_id(course_prof_ids, ip, sort_crit=None, sort_desc=None):
     cur = db.get_cursor()
     q = Query.from_(review).join(vote).on(
         review.review_id == vote.review_id
@@ -31,6 +31,24 @@ def get_reviews_by_cp_id(course_prof_ids, sort_crit=None, sort_desc=None):
         fn.Sum(Case().when(
             vote.type == "funny", 1
         ).else_(0)).as_('funnys'),
+        fn.Sum(Case().when(
+            Criterion.all([
+                vote.type == "agree",
+                vote.ip == ip
+            ]), 1
+        ).else_(0)).as_('upvote_clicked'),
+        fn.Sum(Case().when(
+            Criterion.all([
+                vote.type == "disagree",
+                vote.ip == ip
+            ]), 1
+        ).else_(0)).as_('downvote_clicked'),
+        fn.Sum(Case().when(
+            Criterion.all([
+                vote.type == "funny",
+                vote.ip == ip
+            ]), 1
+        ).else_(0)).as_('funny_clicked')
     )
 
     if sort_crit and sort_desc:

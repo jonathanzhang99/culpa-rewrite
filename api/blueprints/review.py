@@ -46,7 +46,7 @@ def submit_review():
     return {'reviewId': review_id}
 
 
-@review_blueprint.route('/get', methods=['GET'])
+@review_blueprint.route('/get', methods=['GET', 'POST'])
 def get_reviews():
     sorting_spec = {
         'best': ['rating', True],
@@ -57,29 +57,37 @@ def get_reviews():
         'most disagreed': ['downvotes', True]
     }
 
-    args = flask.request.args
-    sorting = args.get('sorting').lower() if 'sorting' in args else None
-    if sorting and sorting not in sorting_spec:
-        return {
-            "error": "invalid sorting setting"
-        }, 400
+    ip = flask.request.remote_addr
+    url_args = flask.request.args
+    body_params = flask.request.get_json()
 
-    if args.get('type') == 'professor':
-        cp_ids = get_cp_id_by_prof(args.get('professorId'))
-    elif args.get('type') == 'course':
-        cp_ids = get_cp_id_by_course(args.get('courseId'))
+    # getting basic information: page type and id
+    if url_args.get('type') == 'professor':
+        cp_ids = get_cp_id_by_prof(url_args.get('professorId'))
+    elif url_args.get('type') == 'course':
+        cp_ids = get_cp_id_by_course(url_args.get('courseId'))
     else:
         return {
             "error": "invalid page type"
         }, 400
+
+    # getting sorting and filtering settings
+    sorting = None
+    if body_params:
+        if 'sorting' in body_params:
+            sorting = body_params.get('sorting').lower()
+            if sorting not in sorting_spec:
+                return {
+                    "error": "invalid sorting setting"
+                }, 400
 
     try:
         if sorting:
             sort_crit, sort_desc = sorting_spec[sorting]
         cp_id_list = [x['course_professor_id'] for x in cp_ids]
         reviews = get_reviews_by_cp_id(
-            cp_id_list, sort_crit, sort_desc
-        ) if sorting else get_reviews_by_cp_id(cp_id_list)
+            cp_id_list, ip, sort_crit, sort_desc
+        ) if sorting else get_reviews_by_cp_id(cp_id_list, ip)
 
         json = [{
             'id': review['review_id'],
@@ -89,7 +97,10 @@ def get_reviews():
             'submissionDate': review['submission_date'],
             'upvotes': int(review['upvotes']),
             'downvotes': int(review['downvotes']),
-            'funnys': int(review['funnys'])
+            'funnys': int(review['funnys']),
+            'upvoteClicked': bool(review['upvote_clicked']),
+            'downvoteClicked': bool(review['downvote_clicked']),
+            'funnyClicked': bool(review['funny_clicked'])
         } for review in reviews]
         return {'reviews': json}
 
