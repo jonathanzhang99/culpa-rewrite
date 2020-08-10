@@ -18,28 +18,12 @@ export default function CoursePage() {
       courseName: "",
       courseCallNumber: "",
       departmentName: "",
-      associatedProfessors: [
-        {
-          firstName: "",
-          lastName: "",
-          professorId: 0,
-          profDepartments: [
-            {
-              profDepartmentId: 0,
-              profDepartmentName: "",
-            },
-          ],
-        },
-      ],
+      associatedProfessors: [],
     },
   });
 
-  if (isLoading) {
-    return <LoadingComponent />;
-  }
-
-  if (isError) {
-    return <ErrorComponent />;
+  if (isLoading || isError) {
+    return isLoading ? <LoadingComponent /> : <ErrorComponent />;
   }
 
   return <CourseSummary courseId={courseId} courseSummary={courseSummary} />;

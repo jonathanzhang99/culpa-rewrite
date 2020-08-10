@@ -26,7 +26,7 @@ export default function CourseSummary({ courseId, courseSummary }) {
 }
 
 export function CourseHeader({ courseId, courseSummary }) {
-  const [isActive, setActive] = useState(false);
+  const [isAccordionActive, setAccordionActive] = useState(false);
   const {
     courseName,
     courseCallNumber,
@@ -43,29 +43,30 @@ export function CourseHeader({ courseId, courseSummary }) {
 
       <Accordion>
         <Accordion.Title
-          active={isActive}
+          active={isAccordionActive}
           as="h3"
-          onClick={() => setActive(!isActive)}
+          onClick={() => setAccordionActive(!isAccordionActive)}
         >
-          <Icon name={!isActive ? "angle down" : "angle up"} />
-          {!isActive ? "Show" : "Hide"} all professors who teach this course
+          <Icon name={!isAccordionActive ? "angle down" : "angle up"} />
+          {!isAccordionActive ? "Show" : "Hide"} all professors who teach this
+          course
         </Accordion.Title>
-        <Accordion.Content active={isActive}>
-          {associatedProfessors.map((professor) => {
-            const {
-              firstName,
-              lastName,
-              professorId,
-              profDepartments,
-            } = professor;
-            return (
-              <Table basic="very" key={professorId} textAlign="left">
+        <Accordion.Content active={isAccordionActive}>
+          <Table basic="very" textAlign="left">
+            {associatedProfessors.map((professor) => {
+              const {
+                firstName,
+                lastName,
+                professorId,
+                profDepartments,
+              } = professor;
+              return (
                 <tbody>
                   {/* this is to prevent bugs from browser inserting <tbody> */}
                   <Table.Row>
                     <Table.Cell key={professorId}>
                       <ProfessorDisplayLink
-                        as="span"
+                        as="h5"
                         firstName={firstName}
                         lastName={lastName}
                         professorId={professorId}
@@ -87,9 +88,9 @@ export function CourseHeader({ courseId, courseSummary }) {
                     </Table.Cell>
                   </Table.Row>
                 </tbody>
-              </Table>
-            );
-          })}
+              );
+            })}
+          </Table>
         </Accordion.Content>
       </Accordion>
 
