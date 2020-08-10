@@ -1,7 +1,7 @@
 from collections import defaultdict
 import flask
 
-from api.data.dataloaders.courses_loader import get_course, get_professor_departments
+from api.data.dataloaders.courses_loader import get_course, get_department_professors
 
 courses_blueprint = flask.Blueprint('courses_blueprint', __name__)
 
@@ -11,7 +11,7 @@ def course_summary(course_id):
     # Fetch course info and all related professors
     try:
         course = get_course(course_id)[0]
-        professor_departments = get_professor_departments(course_id)
+        department_professors = get_department_professors(course_id)
     except Exception:
         return {'courseSummary': {
             'courseName': "",
@@ -21,7 +21,7 @@ def course_summary(course_id):
         }}, 400
 
     associated_professors = {}
-    for pd in professor_departments:
+    for pd in department_professors:
         professor_id = pd['professor_id']
         if pd['professor_id'] not in associated_professors.keys():
             associated_professors[professor_id] = {
