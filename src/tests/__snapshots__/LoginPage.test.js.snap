@@ -67,7 +67,7 @@ Object {
           name="submit"
           type="submit"
         >
-          Submit
+          SUBMIT
         </button>
       </form>
     </div>
@@ -135,7 +135,7 @@ Object {
         name="submit"
         type="submit"
       >
-        Submit
+        SUBMIT
       </button>
     </form>
   </div>,

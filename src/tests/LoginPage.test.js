@@ -6,13 +6,11 @@ import { AuthContext } from "components/common/Authentication";
 import Login from "components/LoginPage";
 
 describe("Login Component Tests", () => {
-  const loginSuccess = jest.fn(() => {
-    Promise.resolve();
-  });
+  const loginSuccess = jest.fn(() => Promise.resolve({ token: "aaa.bbb.ccc" }));
 
-  const loginFailure = jest.fn(() => {
-    return Promise.resolve("oops something broke!");
-  });
+  const loginFailure = jest.fn(() =>
+    Promise.resolve({ error: "oops something broke!" })
+  );
 
   test("should render", () => {
     const snapshot = render(
@@ -24,8 +22,6 @@ describe("Login Component Tests", () => {
   });
 
   describe("server Login Successful", () => {
-    jest.mock("react-router-dom");
-
     beforeEach(() => {
       render(
         <MemoryRouter>
@@ -36,12 +32,12 @@ describe("Login Component Tests", () => {
       );
     });
 
-    test("should fail when submission without", async () => {
+    test("should error when submission without inputs", async () => {
       await act(async () => {
         fireEvent.submit(screen.getByRole("button"));
       });
-      expect(await screen.getByText(/missing username/i)).toBeTruthy();
-      expect(await screen.getByText(/missing password/i)).toBeTruthy();
+      expect(await screen.getByText(/missing username/i)).toBeInTheDocument();
+      expect(await screen.getByText(/missing password/i)).toBeInTheDocument();
       expect(loginSuccess).not.toBeCalled();
     });
 
@@ -54,14 +50,14 @@ describe("Login Component Tests", () => {
         });
         fireEvent.submit(screen.getByRole("button"));
       });
-      expect(await screen.getByText(/missing password/i)).toBeTruthy();
+      expect(await screen.getByText(/missing password/i)).toBeInTheDocument();
       expect(screen.getByRole("textbox", { name: /username/i }).value).toBe(
         "test"
       );
       expect(loginSuccess).not.toBeCalled();
     });
 
-    test("should error whens ubmission without password", async () => {
+    test("should error when submission without password", async () => {
       await act(async () => {
         fireEvent.input(screen.getByLabelText(/password/i), {
           target: {
@@ -70,7 +66,7 @@ describe("Login Component Tests", () => {
         });
         fireEvent.submit(screen.getByRole("button"));
       });
-      expect(await screen.getByText(/missing username/i)).toBeTruthy();
+      expect(await screen.getByText(/missing username/i)).toBeInTheDocument();
       expect(screen.getByLabelText(/password/i).value).toBe("password");
       expect(loginSuccess).not.toBeCalled();
     });
@@ -106,7 +102,7 @@ describe("Login Component Tests", () => {
         </MemoryRouter>
       );
     });
-    test("should throw error when improperly authenticated", async () => {
+    test("should error when improperly authenticated", async () => {
       await act(async () => {
         fireEvent.input(screen.getByRole("textbox", { name: /username/i }), {
           target: {
@@ -121,7 +117,9 @@ describe("Login Component Tests", () => {
         fireEvent.submit(screen.getByRole("button"));
       });
 
-      expect(await screen.getByText("oops something broke!")).toBeTruthy();
+      expect(
+        await screen.getByText("oops something broke!")
+      ).toBeInTheDocument();
       expect(loginFailure).toHaveBeenCalledWith({
         username: "test",
         password: "password",

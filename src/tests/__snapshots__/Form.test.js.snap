@@ -437,7 +437,7 @@ Object {
           type="submit"
           value="submit"
         >
-          Submit
+          SUBMIT
         </button>
       </form>
     </div>
@@ -482,7 +482,7 @@ Object {
         type="submit"
         value="submit"
       >
-        Submit
+        SUBMIT
       </button>
     </form>
   </div>,

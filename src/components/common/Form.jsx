@@ -2,9 +2,9 @@
 import PropTypes from "prop-types";
 import React from "react";
 import { useForm, Controller } from "react-hook-form";
-import { Form as SemanticForm, Message } from "semantic-ui-react";
+import { Form as SemanticForm, Message, Divider } from "semantic-ui-react";
 
-import { Submit } from "components/common/Inputs";
+import { Submit, SubmitConfirm } from "components/common/Inputs";
 
 const FORMERRORS = "form";
 
@@ -16,28 +16,44 @@ const propTypes = {
   ]),
   onSubmit: PropTypes.func.isRequired,
   onSuccess: PropTypes.func.isRequired,
+  mode: PropTypes.oneOf(["onSubmit", "onChange"]),
 };
 
 const defaultProps = {
   defaultValues: {},
   children: [],
+  mode: "onSubmit",
 };
 
 export function FormGroup({ children, ...rest }) {
   return <SemanticForm.Group {...rest}>{children}</SemanticForm.Group>; // eslint-disable-line react/jsx-props-no-spreading
 }
 
-export default function Form({ defaultValues, children, onSubmit, onSuccess }) {
-  const { handleSubmit, control, errors, setError, clearErrors } = useForm({
+export default function Form({
+  defaultValues,
+  children,
+  onSubmit,
+  onSuccess,
+  mode,
+}) {
+  const {
+    handleSubmit,
+    control,
+    errors,
+    setError,
+    clearErrors,
+    trigger,
+  } = useForm({
     defaultValues,
+    mode,
   });
 
   const onSubmitWithHandlers = async (data) => {
-    const submissionError = await onSubmit(data);
-    if (submissionError) {
-      setError(FORMERRORS, { type: "server", message: submissionError });
+    const result = await onSubmit(data);
+    if (result.error) {
+      setError(FORMERRORS, { type: "server", message: result.error });
     } else {
-      onSuccess(data);
+      onSuccess(result, data);
     }
   };
 
@@ -51,12 +67,13 @@ export default function Form({ defaultValues, children, onSubmit, onSuccess }) {
     return error ? { content: error.message } : null;
   };
 
+  const excludedTypes = [Submit, Divider];
   // react-hook-forms supports uncontrolled components whereas semantic-ui exposes
   // controlled components. In order to integrate both, we use the Controller
   // component from react-hook-forms to facilitate the interaction.
   const registerControlledComponents = (controlledComponents) => {
     return React.Children.map(controlledComponents, (child) => {
-      if (React.isValidElement(child) && child.type !== Submit) {
+      if (React.isValidElement(child) && !excludedTypes.includes(child.type)) {
         if (child.type === FormGroup) {
           return (
             <child.type {...child.props}>
@@ -64,6 +81,13 @@ export default function Form({ defaultValues, children, onSubmit, onSuccess }) {
             </child.type>
           );
         }
+        if (child.type === SubmitConfirm) {
+          return React.cloneElement(child, {
+            trigger,
+            handleSubmit: handleSubmitWithErrors,
+          });
+        }
+
         const { name, rules } = child.props;
         return (
           <Controller

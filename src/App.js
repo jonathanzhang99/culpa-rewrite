@@ -2,10 +2,10 @@ import React from "react";
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 
 import { AuthProvider, ProtectedRoute } from "components/common/Authentication";
-import ReviewForm from "components/CreateReviewPage";
+import CreateReviewPage from "components/CreateReviewPage";
 import DepartmentInfoPage from "components/DepartmentInfoPage";
 import DepartmentsPage from "components/DepartmentsPage";
-import Login from "components/LoginPage";
+import LoginPage from "components/LoginPage";
 import NavigationBar from "components/NavigationBar";
 import Professors from "components/ProfessorsPage";
 import ReviewsPage from "components/ReviewsPage"
@@ -17,13 +17,13 @@ function App() {
         <NavigationBar>
           <Switch>
             <Route exact path="/login">
-              <Login />
+              <LoginPage />
             </Route>
             <ProtectedRoute exact path="/admin">
               <h1>Admin only page!!</h1>
             </ProtectedRoute>
             <Route path="/review">
-              <ReviewForm />
+              <CreateReviewPage />
             </Route>
             <Route path="/reviews">
               <ReviewsPage/>
