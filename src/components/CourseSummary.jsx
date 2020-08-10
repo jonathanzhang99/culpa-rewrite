@@ -53,17 +53,17 @@ export function CourseHeader({ courseId, courseSummary }) {
         </Accordion.Title>
         <Accordion.Content active={isAccordionActive}>
           <Table basic="very" textAlign="left">
-            {associatedProfessors.map((professor) => {
-              const {
-                firstName,
-                lastName,
-                professorId,
-                profDepartments,
-              } = professor;
-              return (
-                <tbody>
-                  {/* this is to prevent bugs from browser inserting <tbody> */}
-                  <Table.Row>
+            <tbody>
+              {/* this is to prevent bugs from browser inserting <tbody> */}
+              {associatedProfessors.map((professor) => {
+                const {
+                  firstName,
+                  lastName,
+                  professorId,
+                  profDepartments,
+                } = professor;
+                return (
+                  <Table.Row key={professorId}>
                     <Table.Cell key={professorId}>
                       <ProfessorDisplayLink
                         as="h5"
@@ -87,9 +87,9 @@ export function CourseHeader({ courseId, courseSummary }) {
                       })}
                     </Table.Cell>
                   </Table.Row>
-                </tbody>
-              );
-            })}
+                );
+              })}
+            </tbody>
           </Table>
         </Accordion.Content>
       </Accordion>

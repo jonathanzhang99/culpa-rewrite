@@ -48,13 +48,13 @@ Object {
                     <a
                       href="/professors/0"
                     >
-                      <span
+                      <h5
                         class="ui header"
                       >
                         
                          
                         
-                      </span>
+                      </h5>
                     </a>
                   </td>
                   <td
@@ -129,13 +129,13 @@ Object {
                   <a
                     href="/professors/0"
                   >
-                    <span
+                    <h5
                       class="ui header"
                     >
                       
                        
                       
-                    </span>
+                    </h5>
                   </a>
                 </td>
                 <td
@@ -267,13 +267,13 @@ Object {
                     <a
                       href="/professors/1"
                     >
-                      <span
+                      <h5
                         class="ui header"
                       >
                         Nakul
                          
                         Verma
-                      </span>
+                      </h5>
                     </a>
                   </td>
                   <td
@@ -354,13 +354,13 @@ Object {
                   <a
                     href="/professors/1"
                   >
-                    <span
+                    <h5
                       class="ui header"
                     >
                       Nakul
                        
                       Verma
-                    </span>
+                    </h5>
                   </a>
                 </td>
                 <td
