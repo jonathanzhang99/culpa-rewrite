@@ -7,7 +7,6 @@ import ReviewSection from "components/reviews/ReviewSection"
 
 export default function ReviewsPage() {
     // example courseId and sorting for testing
-    // valid values for sorting: best, worst, oldest, newest, most disagreed
     const courseId = 38
     const { 
         data : { reviews },

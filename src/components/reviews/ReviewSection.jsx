@@ -56,7 +56,7 @@ export default function ReviewSection({initReviews, pageTypeProp, idProp, assocL
         sorting: '',
         filters: {
             assocListLimit: assocList,
-            yearLimit: null,
+            yearLimit: 2,
             voteType: ''
         }
     })
@@ -69,7 +69,7 @@ export default function ReviewSection({initReviews, pageTypeProp, idProp, assocL
             },
             body: JSON.stringify({
                 sorting: state.sorting,
-                filterList: state.filters.assocList,
+                filterList: state.filters.assocListLimit,
                 filterYearLimit: state.filters.yearLimit,
                 filterVoteType: state.filters.voteType
             })
@@ -129,6 +129,7 @@ const propTypes = {
             upvoteClicked: PropTypes.bool.isRequired,
             downvoteClicked: PropTypes.bool.isRequired,
             funnyClicked: PropTypes.bool.isRequired,
+            deprecated: PropTypes.bool.isRequired
         })
     ).isRequired,
     pageTypeProp: PropTypes.string.isRequired,

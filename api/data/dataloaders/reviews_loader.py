@@ -1,10 +1,23 @@
-from pypika import functions as fn, MySQLQuery as Query, Case, Criterion, Order
+from pypika import functions as fn, \
+    MySQLQuery as Query, \
+    Case, \
+    Criterion, \
+    CustomFunction, \
+    Order
 
 from api.data import db
 from api.data.common import review, vote
 
+DateDiff = CustomFunction('DATEDIFF', ['start_date', 'end_date'])
 
-def get_reviews_by_cp_id(course_prof_ids, ip, sort_crit=None, sort_desc=None):
+
+def get_reviews_by_cp_id(
+    course_prof_ids,
+    ip,
+    sort_crit=None,
+    sort_desc=None,
+    filter_year=None
+):
     cur = db.get_cursor()
     q = Query.from_(review).join(vote).on(
         review.review_id == vote.review_id
@@ -48,7 +61,11 @@ def get_reviews_by_cp_id(course_prof_ids, ip, sort_crit=None, sort_desc=None):
                 vote.type == "funny",
                 vote.ip == ip
             ]), 1
-        ).else_(0)).as_('funny_clicked')
+        ).else_(0)).as_('funny_clicked'),
+        Case().when(
+            DateDiff(fn.Now(), review.submission_date) >= 5 * 365,
+            True
+        ).else_(False).as_('deprecated'),
     )
 
     if sort_crit and sort_desc:
@@ -68,6 +85,11 @@ def get_reviews_by_cp_id(course_prof_ids, ip, sort_crit=None, sort_desc=None):
             ).else_(0))
 
         q = q.orderby(crit, order=order)
+
+    if filter_year:
+        q = q.where(
+            DateDiff(fn.Now(), review.submission_date) <= filter_year * 365
+        )
 
     cur.execute(q.get_sql())
     return cur.fetchall()

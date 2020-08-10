@@ -56,38 +56,47 @@ def get_reviews():
         'most agreed': ['upvotes', True],
         'most disagreed': ['downvotes', True]
     }
+    valid_page_types = {
+        'professor': get_cp_id_by_prof,
+        'course': get_cp_id_by_course
+    }
 
     ip = flask.request.remote_addr
     url_args = flask.request.args
     body_params = flask.request.get_json()
 
     # getting basic information: page type and id
-    if url_args.get('type') == 'professor':
-        cp_ids = get_cp_id_by_prof(url_args.get('professorId'))
-    elif url_args.get('type') == 'course':
-        cp_ids = get_cp_id_by_course(url_args.get('courseId'))
-    else:
+    page_type = url_args.get('type').lower()
+    if page_type not in valid_page_types:
         return {
             "error": "invalid page type"
         }, 400
 
     # getting sorting and filtering settings
-    sorting = None
+    sort_crit, sort_desc = None, None
+    filter_list, filter_year = None, None
     if body_params:
-        if 'sorting' in body_params:
-            sorting = body_params.get('sorting').lower()
-            if sorting not in sorting_spec:
-                return {
-                    "error": "invalid sorting setting"
-                }, 400
+        sorting = body_params.get('sorting').lower()
+        if sorting not in sorting_spec:
+            return {
+                "error": "invalid sorting setting"
+            }, 400
+
+        sort_crit, sort_desc = sorting_spec[sorting]
+        filter_list = body_params.get('filterList')
+        filter_year = body_params.get('filterYearLimit')
 
     try:
-        if sorting:
-            sort_crit, sort_desc = sorting_spec[sorting]
+        cp_ids = valid_page_types[page_type](
+            url_args.get(f'{page_type}Id'),
+            filter_list
+        )
         cp_id_list = [x['course_professor_id'] for x in cp_ids]
+
+        # fetching db data and parsing
         reviews = get_reviews_by_cp_id(
-            cp_id_list, ip, sort_crit, sort_desc
-        ) if sorting else get_reviews_by_cp_id(cp_id_list, ip)
+            cp_id_list, ip, sort_crit, sort_desc, filter_year
+        ) if cp_id_list else []
 
         json = [{
             'id': review['review_id'],
@@ -100,7 +109,8 @@ def get_reviews():
             'funnys': int(review['funnys']),
             'upvoteClicked': bool(review['upvote_clicked']),
             'downvoteClicked': bool(review['downvote_clicked']),
-            'funnyClicked': bool(review['funny_clicked'])
+            'funnyClicked': bool(review['funny_clicked']),
+            'deprecated': bool(review['deprecated'])
         } for review in reviews]
         return {'reviews': json}
 
