@@ -60,12 +60,13 @@ def get_reviews():
         'professor': get_cp_id_by_prof,
         'course': get_cp_id_by_course
     }
+    valid_filter_votes = ['upvotes', 'downvotes', 'funnys']
 
     ip = flask.request.remote_addr
     url_args = flask.request.args
     body_params = flask.request.get_json()
 
-    # getting basic information: page type and id
+    # getting basic information: page type
     page_type = url_args.get('type').lower()
     if page_type not in valid_page_types:
         return {
@@ -73,18 +74,25 @@ def get_reviews():
         }, 400
 
     # getting sorting and filtering settings
-    sort_crit, sort_desc = None, None
-    filter_list, filter_year = None, None
+    # default: sort by date
+    sort_crit, sort_desc = sorting_spec['newest']
+    filter_list, filter_year, filter_vote = None, None, None
     if body_params:
         sorting = body_params.get('sorting').lower()
-        if sorting not in sorting_spec:
-            return {
-                "error": "invalid sorting setting"
-            }, 400
-
-        sort_crit, sort_desc = sorting_spec[sorting]
         filter_list = body_params.get('filterList')
         filter_year = body_params.get('filterYearLimit')
+        filter_vote = body_params.get('filterVoteType')
+
+        if filter_vote and filter_vote not in valid_filter_votes:
+            return {
+                "error": "invalid filter vote type setting"
+            }, 400
+        if sorting:
+            if sorting not in sorting_spec:
+                return {
+                    "error": "invalid sorting setting"
+                }, 400
+            sort_crit, sort_desc = sorting_spec[sorting]
 
     try:
         cp_ids = valid_page_types[page_type](
@@ -93,10 +101,17 @@ def get_reviews():
         )
         cp_id_list = [x['course_professor_id'] for x in cp_ids]
 
-        # fetching db data and parsing
         reviews = get_reviews_by_cp_id(
             cp_id_list, ip, sort_crit, sort_desc, filter_year
         ) if cp_id_list else []
+
+        # filter by vote in this layer to avoid too much calculation in db
+        if filter_vote:
+            reviews = list(filter(
+                lambda x: x[filter_vote] == max(
+                    x['upvotes'], x['downvotes'], x['funnys']
+                ), reviews
+            ))
 
         json = [{
             'id': review['review_id'],

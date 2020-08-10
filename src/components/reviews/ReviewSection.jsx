@@ -55,13 +55,14 @@ export default function ReviewSection({initReviews, pageTypeProp, idProp, assocL
         id: idProp,
         sorting: '',
         filters: {
-            assocListLimit: assocList,
-            yearLimit: 2,
+            assocListLimit: [],
+            yearLimit: null,
             voteType: ''
         }
     })
 
     const fetchReviews = async () => {
+        dispatch({type: 'FETCH_START'})
         const res = await fetch(`/api/review/get?type=${state.pageType}&${state.pageType}Id=${state.id}`, {
             method: "POST",
             headers: {
@@ -107,10 +108,11 @@ export default function ReviewSection({initReviews, pageTypeProp, idProp, assocL
                 dispatch({
                     type: "CHANGE_SORTING",
                     payload: {
-                        sorting: "newest"
+                        sorting: "oldest",
+                        assocList // put here only to avoid lint errors
                     }
                 })
-            }}>Change sorting button</Button>
+            }}>Change sorting to oldest button (for testing)</Button>
         </div>
     )
 }
