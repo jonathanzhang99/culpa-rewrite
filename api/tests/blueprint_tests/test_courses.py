@@ -4,36 +4,33 @@ from api.tests import BaseTest
 
 class CoursesTest(BaseTest):
 
-    @mock.patch('api.blueprints.courses.loader')
-    def test_course_summary(self, mock_loader):
+    @mock.patch('api.blueprints.courses.get_department_professors')
+    @mock.patch('api.blueprints.courses.get_course')
+    def test_course_summary(self, mock_get_course,
+                            mock_get_department_professors):
         course_id = 1
 
-        mock_loader.get_course.return_value = [{
+        mock_get_course.return_value = [{
             'course_id': course_id,
             'name': 'Machine Learning',
             'department_id': 1,
             'call_number': 'COMS4771',
+            'department_name': 'Computer Science',
         }]
 
-        mock_loader.get_department.return_value = [{
-            'name': 'Computer Science'
-        }]
-
-        mock_loader.get_prof_by_course.return_value = [{
+        mock_get_department_professors.return_value = [{
             'professor_id': 2,
             'first_name': 'Nakul',
             'last_name': 'Verma',
-        }]
-
-        mock_loader.get_department_by_prof.return_value = [{
-            'professor_id': 2,
-            'department_id': 1,
             'name': 'Computer Science',
+            'department_id': 1,
         },
             {
             'professor_id': 2,
-            'department_id': 2,
+            'first_name': 'Nakul',
+            'last_name': 'Verma',
             'name': 'Law',
+            'department_id': 2,
         }]
 
         expected_res = {'courseSummary': {

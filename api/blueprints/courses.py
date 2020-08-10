@@ -1,7 +1,7 @@
-from collections import defaultdict
 import flask
 
-from api.data.dataloaders.courses_loader import get_course, get_department_professors
+from api.data.dataloaders.courses_loader import get_course, \
+    get_department_professors
 
 courses_blueprint = flask.Blueprint('courses_blueprint', __name__)
 
