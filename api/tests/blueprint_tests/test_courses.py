@@ -55,3 +55,60 @@ class CoursesTest(BaseTest):
 
         res = self.app.get(f'/api/course/{course_id}')
         self.assertDictEqual(expected_res, res.json)
+
+    @mock.patch('api.blueprints.courses.get_department_professors')
+    @mock.patch('api.blueprints.courses.get_course')
+    def test_course_summary_no_course(self, mock_get_course,
+                                      mock_get_department_professors):
+        course_id = 20
+
+        mock_get_course.return_value = []
+
+        mock_get_department_professors.return_value = []
+
+        expected_res = {'courseSummary': {}}
+        res = self.app.get(f'/api/course/{course_id}')
+
+        self.assertDictEqual(expected_res, res.json)
+
+    @mock.patch('api.blueprints.courses.get_department_professors')
+    @mock.patch('api.blueprints.courses.get_course')
+    def test_course_summary_no_professors(self, mock_get_course,
+                                          mock_get_department_professors):
+        course_id = 1
+
+        mock_get_course.return_value = [{
+            'course_id': course_id,
+            'name': 'Machine Learning',
+            'department_id': 1,
+            'call_number': 'COMS4771',
+            'department_name': 'Computer Science',
+        }]
+
+        mock_get_department_professors.return_value = []
+
+        expected_res = {'courseSummary': {
+            'courseName': 'Machine Learning',
+            'courseCallNumber': 'COMS4771',
+            'departmentId': 1,
+            'departmentName': 'Computer Science',
+            'associatedProfessors': []}
+        }
+
+        res = self.app.get(f'/api/course/{course_id}')
+
+        self.assertDictEqual(expected_res, res.json)
+
+    @mock.patch('api.blueprints.courses.get_department_professors')
+    @mock.patch('api.blueprints.courses.get_course')
+    def test_course_summary_db_failure(self, mock_get_course,
+                                       mock_get_department_professors):
+        course_id = 1
+
+        mock_get_course.side_effect = Exception()
+        mock_get_department_professors.side_effect = Exception()
+
+        expected_res = {'error': 'db error occurred'}
+        res = self.app.get(f'/api/course/{course_id}')
+
+        self.assertEqual(expected_res, res.json)
