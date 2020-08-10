@@ -101,14 +101,14 @@ describe("ReviewCard tests setup", () => {
             const snapshot = render(
                 <AuthProvider>
                   <MemoryRouter>
-                      <ReviewCard content={content}
-                                  courseCode={courseCode}
-                                  courseName={courseName} deprecated
+                      <ReviewCard deprecated
+                                  content={content}
+                                  courseCode={courseCode} courseName={courseName}
                                   initDownvoteCount={downvotes}
-                                  initFunnyCount={funnys} onlyCourse={onlyCourse} onlyProf={onlyProf}
-                                  profFirstName={profFirstName} profLastName={profLastName}
-                                  reviewId={reviewId} submissionDate={submissionDate}
-                                  initUpvoteCount={upvotes} />
+                                  initFunnyCount={funnys} initUpvoteCount={upvotes} onlyCourse={onlyCourse}
+                                  onlyProf={onlyProf} profFirstName={profFirstName}
+                                  profLastName={profLastName} reviewId={reviewId}
+                                  submissionDate={submissionDate} />
                   </MemoryRouter>
                 </AuthProvider>
             )
