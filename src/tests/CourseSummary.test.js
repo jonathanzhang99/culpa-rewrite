@@ -29,6 +29,28 @@ describe("CourseSummary Components", () => {
       },
     },
     {
+      testName: "empty professors CourseSummary",
+      courseId: 0,
+      courseSummary: {
+        courseName: "Machine Learning",
+        courseCallNumber: "COMS4771",
+        departmentName: "Computer Science",
+        associatedProfessors: [
+          {
+            firstName: "",
+            lastName: "",
+            professorId: 0,
+            profDepartments: [
+              {
+                profDepartmentId: 0,
+                profDepartmentName: "",
+              },
+            ],
+          },
+        ],
+      },
+    },
+    {
       testName: "valid props CourseSummary",
       courseId: 1,
       courseSummary: {

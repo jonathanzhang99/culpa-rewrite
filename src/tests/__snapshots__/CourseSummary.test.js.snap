@@ -1,5 +1,224 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`CourseSummary Components empty professors CourseSummary 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div>
+        <h1>
+          <p
+            class="ui header"
+          >
+            COMS4771
+             
+            Machine Learning
+          </p>
+        </h1>
+        <h3>
+          Department: 
+          Computer Science
+        </h3>
+        <div
+          class="accordion ui"
+        >
+          <h3
+            class="title"
+          >
+            <i
+              aria-hidden="true"
+              class="angle down icon"
+            />
+            Show
+             all professors who teach this course
+          </h3>
+          <div
+            class="content"
+          >
+            <table
+              class="ui very basic left aligned table"
+            >
+              <tbody>
+                <tr
+                  class=""
+                >
+                  <td
+                    class=""
+                  >
+                    <a
+                      href="/professors/0"
+                    >
+                      <h5
+                        class="ui header"
+                      >
+                        
+                         
+                        
+                      </h5>
+                    </a>
+                  </td>
+                  <td
+                    class=""
+                  >
+                    <span>
+                      0
+                      : 
+                      
+                      
+                    </span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <a
+          href="/review"
+        >
+          <button
+            class="ui yellow compact button"
+          >
+            WRITE A REVIEW FOR 
+            Machine Learning
+          </button>
+        </a>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div>
+      <h1>
+        <p
+          class="ui header"
+        >
+          COMS4771
+           
+          Machine Learning
+        </p>
+      </h1>
+      <h3>
+        Department: 
+        Computer Science
+      </h3>
+      <div
+        class="accordion ui"
+      >
+        <h3
+          class="title"
+        >
+          <i
+            aria-hidden="true"
+            class="angle down icon"
+          />
+          Show
+           all professors who teach this course
+        </h3>
+        <div
+          class="content"
+        >
+          <table
+            class="ui very basic left aligned table"
+          >
+            <tbody>
+              <tr
+                class=""
+              >
+                <td
+                  class=""
+                >
+                  <a
+                    href="/professors/0"
+                  >
+                    <h5
+                      class="ui header"
+                    >
+                      
+                       
+                      
+                    </h5>
+                  </a>
+                </td>
+                <td
+                  class=""
+                >
+                  <span>
+                    0
+                    : 
+                    
+                    
+                  </span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <a
+        href="/review"
+      >
+        <button
+          class="ui yellow compact button"
+        >
+          WRITE A REVIEW FOR 
+          Machine Learning
+        </button>
+      </a>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
 exports[`CourseSummary Components empty props CourseSummary 1`] = `
 Object {
   "asFragment": [Function],
