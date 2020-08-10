@@ -9,8 +9,16 @@ courses_blueprint = flask.Blueprint('courses_blueprint', __name__)
 @courses_blueprint.route('/<course_id>', methods=['GET'])
 def course_summary(course_id):
     # Fetch course info and all related professors
-    course = get_course(course_id)[0]
-    professor_departments = get_professor_departments(course_id)
+    try:
+        course = get_course(course_id)[0]
+        professor_departments = get_professor_departments(course_id)
+    except Exception:
+        return {'courseSummary': {
+            'courseName': "",
+            'courseCallNumber': "",
+            'departmentName': "",
+            'associatedProfessors': [],
+        }}, 400
 
     associated_professors = {}
     for pd in professor_departments:
