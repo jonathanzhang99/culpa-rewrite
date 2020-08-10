@@ -115,13 +115,20 @@ function VotesContainer({
     dispatch({ type: "RESET_VOTE_COUNT" });
   }, [initUpvoteCount, initDownvoteCount, initFunnyCount]);
 
+  // ensure that up/downvotes are mutually exclusive
+  const handleUpDownvote = (type) => {
+    dispatch({ type: `TOGGLE_${type.toUpperCase()}`})
+    if (state.upvoteClicked !== state.downvoteClicked) {
+         dispatch({type: type === "upvote" ? 'TOGGLE_DOWNVOTE' : 'TOGGLE_UPVOTE'})
+    }
+  }
   return (
     <Container>
       <Grid centered style={{ padding: "30px 10px", height: "100%" }}>
         <Grid.Row style={{ paddingBottom: 0, overflow: "show" }}>
           <Image
             src={state.upvoteClicked ? upvoteClickedIcon : upvoteIcon}
-            onClick={() => dispatch({ type: "TOGGLE_UPVOTE" })}
+            onClick={() => handleUpDownvote("upvote")}
           />
         </Grid.Row>
         <Grid.Row style={{ padding: 0, color: "white" }}>
@@ -130,7 +137,7 @@ function VotesContainer({
         <Grid.Row style={{ paddingBottom: 0 }}>
           <Image
             src={state.downvoteClicked ? downvoteClickedIcon : downvoteIcon}
-            onClick={() => dispatch({ type: "TOGGLE_DOWNVOTE" })}
+            onClick={() => handleUpDownvote("downvote")}
           />
         </Grid.Row>
         <Grid.Row style={{ padding: 0, color: "white" }}>

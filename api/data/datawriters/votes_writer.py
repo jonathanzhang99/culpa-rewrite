@@ -15,7 +15,6 @@ def add_vote(reviewId, voteType, ip):
     ).get_sql()
 
     cur.execute(q)
-    db.get_db().commit()
 
 
 # remove the latest vote with the vote type, the review id and the ip address
