@@ -3,12 +3,16 @@ import flask
 from api.data.dataloaders.votes_loader import get_user_votes
 from api.data.datawriters.votes_writer import add_vote, revoke_vote
 
-votes_blueprint = flask.Blueprint('votes_blueprint', __name__)
+vote_blueprint = flask.Blueprint('vote_blueprint', __name__)
 validVoteTypes = ['agree', 'disagree', 'funny']
 
 
-@votes_blueprint.route('/change', methods=['POST'])
+@vote_blueprint.route('/change', methods=['POST'])
 def change_vote():
+    '''
+    function for adding/revoking a specific vote type
+    for a review from an ip address
+    '''
     try:
         params = flask.request.json
 
@@ -17,34 +21,26 @@ def change_vote():
         reviewId = params.get('reviewId')
         ip = flask.request.remote_addr
 
-        if voteType not in validVoteTypes:
-            return {
-                "status": "failure",
-                "failure_msg": "invalid vote type"
-            }, 400
+        actionMap = {'add': add_vote, 'revoke': revoke_vote}
 
-        if action == "add":
-            add_vote(int(reviewId), voteType, ip)
+        if voteType not in validVoteTypes or action not in actionMap:
+            return {"error": "invalid request"}, 400
 
-        elif action == "revoke":
-            revoke_vote(int(reviewId), voteType, ip)
-
-        else:
-            return {
-                "status": "failure",
-                "failure_msg": "invalid action type"
-            }, 400
-
-        return {"status": "success", "failure_msg": None}
+        actionMap[action](int(reviewId), voteType, ip)
+        return {"status": "success"}
 
     except Exception as e:
         print(e)
-        return {"status": "failure", "failure_msg": str(e)}, 500
+        return {"error": str(e)}, 500
 
 
-@votes_blueprint.route('/get_clicked_state', methods=['GET'])
+@vote_blueprint.route('/get_clicked_state', methods=['GET'])
 def get_clicked_state():
-
+    '''
+    function for getting the votes from a specific ip addr
+    for a specific review, including whether this user has
+    clicked 'upvote', 'downvote', or 'funny'
+    '''
     reviewId = int(flask.request.args.get('reviewId'))
     ip = flask.request.remote_addr
 
@@ -64,7 +60,7 @@ def get_clicked_state():
                 res['funnyClicked'] = True
 
     except Exception as e:
-        # TODO
         print(e)
+        return {"error": str(e)}, 500
 
     return res

@@ -13,16 +13,16 @@ import downvoteIcon from "icons/downvote.png"
 import funnyIcon from "icons/funny.png"
 import upvoteIcon from "icons/upvote.png"
 
-function VotesContainer({reviewId, upvotes, downvotes, funnys,
+function VotesContainer({reviewId, initUpvoteCount, initDownvoteCount, initFunnyCount,
                          upvoteClickedProp, downvoteClickedProp, funnyClickedProp}){
 
     const [upvoteClicked, setUpvoteClicked] = useState(upvoteClickedProp)
     const [downvoteClicked, setDownvoteClicked] = useState(downvoteClickedProp)
     const [funnyClicked, setFunnyClicked] = useState(funnyClickedProp)
 
-    const [upvoteCount, setUpvoteCount] = useState(upvotes)
-    const [downvoteCount, setDownvoteCount] = useState(downvotes)
-    const [funnyCount, setFunnyCount] = useState(funnys)
+    const [upvoteCount, setUpvoteCount] = useState(initUpvoteCount)
+    const [downvoteCount, setDownvoteCount] = useState(initDownvoteCount)
+    const [funnyCount, setFunnyCount] = useState(initFunnyCount)
 
     useEffect(() => {
         setUpvoteClicked(upvoteClickedProp)
@@ -32,20 +32,20 @@ function VotesContainer({reviewId, upvotes, downvotes, funnys,
 
     // update vote counts when the vote counts fetched from the db has changed
     useEffect(() => {
-        setUpvoteCount(upvotes)
-    }, [upvotes])
+        setUpvoteCount(initUpvoteCount)
+    }, [initUpvoteCount])
 
     useEffect(() => {
-        setDownvoteCount(downvotes)
-    }, [downvotes])
+        setDownvoteCount(initDownvoteCount)
+    }, [initDownvoteCount])
 
     useEffect(() => {
-        setFunnyCount(funnys)
-    }, [funnys])
+        setFunnyCount(initFunnyCount)
+    }, [initFunnyCount])
 
     // function for adding / revoking a vote for a review
     const changeVoteCount = async (voteType, action) => {
-        const req = await fetch("/api/votes/change", {
+        const req = await fetch("/api/vote/change", {
             method: "POST",
             body: JSON.stringify({
                 action,
@@ -57,31 +57,27 @@ function VotesContainer({reviewId, upvotes, downvotes, funnys,
             }
         });
         try {
-            const res = await req.json()
-            if (res.error){
-                return res;
-            };
-            return null
+            return await req.json()
         } catch(err){
-            return err
+            return {error: err}
         };
     }
 
     // update state values and send post req to backend when user votes/un-votes
-    function toggleUpvote(){
-        if (upvoteClicked) {setUpvoteCount(upvoteCount - 1)} else {setUpvoteCount(upvoteCount + 1)}
+    const toggleUpvote = () => {
+        upvoteClicked ? setUpvoteCount(upvoteCount - 1) : setUpvoteCount(upvoteCount + 1)
         changeVoteCount('agree', upvoteClicked ? 'revoke': 'add')
         setUpvoteClicked(!upvoteClicked)
     }
 
-    function toggleDownvote(){
-        if (downvoteClicked) {setDownvoteCount(downvoteCount - 1)} else {setDownvoteCount(downvoteCount + 1)}
+    const toggleDownvote = () => {
+        downvoteClicked ? setDownvoteCount(downvoteCount - 1) : setDownvoteCount(downvoteCount + 1)
         changeVoteCount('disagree', downvoteClicked ? 'revoke': 'add')
         setDownvoteClicked(!downvoteClicked)
     }
 
-    function toggleFunny(){
-        if (funnyClicked) {setFunnyCount(funnyCount - 1)} else {setFunnyCount(funnyCount + 1)}
+    const toggleFunny = () => {
+        funnyClicked ? setFunnyCount(funnyCount - 1) : setFunnyCount(funnyCount + 1)
         changeVoteCount('funny', funnyClicked ? 'revoke': 'add')
         setFunnyClicked(!funnyClicked)
     }
@@ -114,9 +110,9 @@ function VotesContainer({reviewId, upvotes, downvotes, funnys,
 }
 
 const votesContainerPropTypes = {
-    upvotes: PropTypes.number.isRequired,
-    downvotes: PropTypes.number.isRequired,
-    funnys: PropTypes.number.isRequired,
+    initUpvoteCount: PropTypes.number.isRequired,
+    initDownvoteCount: PropTypes.number.isRequired,
+    initFunnyCount: PropTypes.number.isRequired,
     reviewId: PropTypes.string.isRequired,
     upvoteClickedProp: PropTypes.bool,
     downvoteClickedProp: PropTypes.bool,
@@ -133,7 +129,7 @@ VotesContainer.propTypes = votesContainerPropTypes
 VotesContainer.defaultProps = votesContainerDefaultProps
 
 export default function ReviewCard({onlyProf, onlyCourse, submissionDate, reviewId, 
-                                    upvotes, downvotes, funnys, 
+                                    initUpvoteCount, initDownvoteCount, initFunnyCount,
                                     profFirstName, profLastName, courseCode, courseName,
                                     content}){
     
@@ -142,7 +138,7 @@ export default function ReviewCard({onlyProf, onlyCourse, submissionDate, review
         data: { upvoteClicked, downvoteClicked, funnyClicked },
         isLoading,
         isError,
-    } = useDataFetch(`/api/votes/get_clicked_state?reviewId=${reviewId}`, {
+    } = useDataFetch(`/api/vote/get_clicked_state?reviewId=${reviewId}`, {
         upvoteClicked: false,
         downvoteClicked: false,
         funnyClicked: false
@@ -175,10 +171,13 @@ export default function ReviewCard({onlyProf, onlyCourse, submissionDate, review
                 </Container>
             </Grid.Column>
             <Grid.Column key={2} style={{backgroundColor: "#004E8D", paddingLeft: 0}}  width={2}>
-                <VotesContainer downvoteClickedProp={downvoteClicked} downvotes={downvotes} funnyClickedProp={funnyClicked} funnys={funnys} 
+                <VotesContainer downvoteClickedProp={downvoteClicked} 
+                                initDownvoteCount={initDownvoteCount} 
+                                funnyClickedProp={funnyClicked} 
+                                initFunnyCount={initFunnyCount} 
                                 reviewId={reviewId} 
                                 upvoteClickedProp={upvoteClicked} 
-                                upvotes={upvotes} />
+                                initUpvoteCount={initUpvoteCount} />
             </Grid.Column>
             </Grid>
         </Container>
@@ -190,9 +189,9 @@ const reviewCardPropTypes = {
     onlyCourse: PropTypes.bool.isRequired,
     submissionDate: PropTypes.string.isRequired,
     reviewId: PropTypes.string.isRequired,
-    upvotes: PropTypes.number.isRequired,
-    downvotes: PropTypes.number.isRequired,
-    funnys: PropTypes.number.isRequired,
+    initDownvoteCount: PropTypes.number.isRequired,
+    initUpvoteCount: PropTypes.number.isRequired,
+    initUpvoteCount: PropTypes.number.isRequired,
     profFirstName: PropTypes.string.isRequired,
     profLastName: PropTypes.string.isRequired,
     courseCode: PropTypes.string.isRequired,

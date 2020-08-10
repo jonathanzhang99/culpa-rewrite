@@ -1,4 +1,4 @@
-from pypika import MySQLQuery as Query
+from pypika import MySQLQuery as Query, Criterion
 
 from api.data import db
 from api.data.common import vote
@@ -9,8 +9,10 @@ def get_user_votes(reviewId, ip):
     q = Query.from_(vote).select(
         vote.type
     ).where(
-        (vote.review_id == reviewId) &
-        (vote.ip == ip)
+        Criterion.all([
+            vote.review_id == reviewId,
+            vote.ip == ip
+        ])
     ).get_sql()
 
     cur.execute(q)

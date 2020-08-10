@@ -3,46 +3,38 @@ from api.tests import BaseTest
 from itertools import compress
 
 
-class VotesTest(BaseTest):
-    @mock.patch("api.blueprints.votes.add_vote")
-    @mock.patch("api.blueprints.votes.revoke_vote")
+class VoteTest(BaseTest):
+    @mock.patch("api.blueprints.vote.add_vote")
+    @mock.patch("api.blueprints.vote.revoke_vote")
     def test_change_vote_valid(self, revoke_fn_patch, add_fn_patch):
-        actions = ["add", "revoke"]
+        actionMap = {'add': add_fn_patch, 'revoke': revoke_fn_patch}
         reviewId = "12345"
         voteTypes = ["agree", "disagree", "funny"]
 
-        for action in actions:
+        for action in actionMap:
             for voteType in voteTypes:
                 with self.subTest(
                     action=action,
                     voteType=voteType,
                 ):
-                    res = self.app.post('/api/votes/change', json=dict(
+                    res = self.app.post('/api/vote/change', json=dict(
                         action=action,
                         voteType=voteType,
                         reviewId=reviewId
                     ), environ_base={'REMOTE_ADDR': '127.0.0.1'})
 
                     self.assertEqual(res.json, {
-                        "status": "success",
-                        "failure_msg": None
+                        "status": "success"
                     })
 
-                    if action == "add":
-                        add_fn_patch.assert_called_with(
-                            12345,
-                            voteType,
-                            "127.0.0.1"
-                        )
-                    elif action == "revoke":
-                        revoke_fn_patch.assert_called_with(
-                            12345,
-                            voteType,
-                            "127.0.0.1"
-                        )
+                    actionMap[action].assert_called_with(
+                        12345,
+                        voteType,
+                        "127.0.0.1"
+                    )
 
-    @mock.patch("api.blueprints.votes.add_vote")
-    @mock.patch("api.blueprints.votes.revoke_vote")
+    @mock.patch("api.blueprints.vote.add_vote")
+    @mock.patch("api.blueprints.vote.revoke_vote")
     def test_change_vote_error(self, revoke_fn_patch, add_fn_patch):
         exception_msg = "test exception"
         add_fn_patch.side_effect = Exception(exception_msg)
@@ -51,19 +43,18 @@ class VotesTest(BaseTest):
 
         for action in actions:
             with self.subTest(action=action):
-                res = self.app.post('/api/votes/change', json=dict(
+                res = self.app.post('/api/vote/change', json=dict(
                                 action=action,
                                 voteType='agree',
                                 reviewId='12345'
                             ), environ_base={'REMOTE_ADDR': '127.0.0.1'})
 
                 self.assertEqual(res.json, {
-                    "status": "failure",
-                    "failure_msg": exception_msg
+                    "error": exception_msg
                 })
                 self.assertEqual(res.status_code, 500)
 
-    @mock.patch("api.blueprints.votes.get_user_votes")
+    @mock.patch("api.blueprints.vote.get_user_votes")
     def test_get_clicked_state(self, db_fn_patch):
         db_return_vals = [
             {'type': 'agree'},
@@ -88,7 +79,7 @@ class VotesTest(BaseTest):
                         )
 
                         res = self.app.get(
-                            "api/votes/get_clicked_state",
+                            "api/vote/get_clicked_state",
                             query_string={'reviewId': '12345'}
                         )
 
