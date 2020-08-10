@@ -170,6 +170,7 @@ VotesContainer.propTypes = votesContainerPropTypes;
 VotesContainer.defaultProps = votesContainerDefaultProps;
 
 export default function ReviewCard({
+  workload,
   onlyProf,
   onlyCourse,
   submissionDate,
@@ -242,6 +243,8 @@ export default function ReviewCard({
               </div>
             </div>
             <p>{content}</p>
+            <Header as='h5'>Workload</Header>
+            <p>{workload}</p>
           </Container>
         </Grid.Column>
         <Grid.Column
@@ -265,6 +268,7 @@ export default function ReviewCard({
 }
 
 const reviewCardPropTypes = {
+  workload: PropTypes.string,
   onlyProf: PropTypes.bool.isRequired,
   onlyCourse: PropTypes.bool.isRequired,
   submissionDate: PropTypes.string.isRequired,
@@ -274,10 +278,17 @@ const reviewCardPropTypes = {
   initFunnyCount: PropTypes.number.isRequired,
   profFirstName: PropTypes.string.isRequired,
   profLastName: PropTypes.string.isRequired,
-  deprecated: PropTypes.bool.isRequired,
+  deprecated: PropTypes.bool,
   courseCode: PropTypes.string.isRequired,
   courseName: PropTypes.string.isRequired,
-  content: PropTypes.string.isRequired,
+  content: PropTypes.string,
 };
 
+const reviewCardDefaultProps = {
+    workload: "",
+    deprecated: false,
+    content: ""
+}
+
 ReviewCard.propTypes = reviewCardPropTypes;
+ReviewCard.defaultProps = reviewCardDefaultProps;
