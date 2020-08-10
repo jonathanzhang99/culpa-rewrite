@@ -416,6 +416,7 @@ export function SubmitConfirm({ trigger, handleSubmit, content, header }) {
           <Modal.Description>{content}</Modal.Description>
         </Modal.Content>
         <Modal.Actions>
+          {/* TODO: Currently gives no options to specify custom buttons/text */}
           <Button onClick={closeConfirm}>Edit Review</Button>
           <Submit onClick={handleSubmit} />
         </Modal.Actions>

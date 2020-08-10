@@ -18,7 +18,7 @@ export default function CreateReviewPage() {
 
   const evaluationTexts = [
     "One of the worst experiences at Columbia. Avoid at all costs",
-    "Strongly negative experience. Take only if necessary",
+    "Strong negative experience. Take only if necessary",
     "Both negatives and positives much like life itself",
     "Strong positive experience. Take if possible",
     "A Columbia gem. Life-changing moments await",

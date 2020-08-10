@@ -6,13 +6,11 @@ import { AuthContext } from "components/common/Authentication";
 import Login from "components/LoginPage";
 
 describe("Login Component Tests", () => {
-  const loginSuccess = jest.fn(() => {
-    return Promise.resolve({ token: "asdasd" });
-  });
+  const loginSuccess = jest.fn(() => Promise.resolve({ token: "aaa.bbb.ccc" }));
 
-  const loginFailure = jest.fn(() => {
-    return Promise.resolve({ error: "oops something broke!" });
-  });
+  const loginFailure = jest.fn(() =>
+    Promise.resolve({ error: "oops something broke!" })
+  );
 
   test("should render", () => {
     const snapshot = render(
@@ -34,7 +32,7 @@ describe("Login Component Tests", () => {
       );
     });
 
-    test("should fail when submission without", async () => {
+    test("should error when submission without inputs", async () => {
       await act(async () => {
         fireEvent.submit(screen.getByRole("button"));
       });
@@ -104,7 +102,7 @@ describe("Login Component Tests", () => {
         </MemoryRouter>
       );
     });
-    test("should throw error when improperly authenticated", async () => {
+    test("should error when improperly authenticated", async () => {
       await act(async () => {
         fireEvent.input(screen.getByRole("textbox", { name: /username/i }), {
           target: {

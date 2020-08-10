@@ -192,7 +192,7 @@ Object {
               <label
                 for="evaluation-radio-button-2"
               >
-                Strongly negative experience. Take only if necessary
+                Strong negative experience. Take only if necessary
               </label>
             </div>
           </div>
@@ -461,7 +461,7 @@ Object {
             <label
               for="evaluation-radio-button-2"
             >
-              Strongly negative experience. Take only if necessary
+              Strong negative experience. Take only if necessary
             </label>
           </div>
         </div>
