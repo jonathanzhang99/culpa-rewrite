@@ -19,6 +19,16 @@ Object {
               class="ui fluid container"
             >
               <div
+                class="ui message"
+                style="background-color: rgb(255, 241, 241);"
+              >
+                <i
+                  aria-hidden="true"
+                  class="red warning circle icon"
+                />
+                Please keep in mind that this review is more than 5 years old.
+              </div>
+              <div
                 style="position: relative;"
               >
                 <h5
@@ -62,7 +72,9 @@ Object {
                   class="row"
                   style="padding: 0px; color: white;"
                 >
-                  <strong />
+                  <strong>
+                    10
+                  </strong>
                 </div>
                 <div
                   class="row"
@@ -77,7 +89,9 @@ Object {
                   class="row"
                   style="padding: 0px; color: white;"
                 >
-                  <strong />
+                  <strong>
+                    2
+                  </strong>
                 </div>
                 <div
                   class="row"
@@ -92,7 +106,9 @@ Object {
                   class="row"
                   style="padding: 0px; color: white;"
                 >
-                  <strong />
+                  <strong>
+                    3
+                  </strong>
                 </div>
               </div>
             </div>
@@ -115,6 +131,16 @@ Object {
           <div
             class="ui fluid container"
           >
+            <div
+              class="ui message"
+              style="background-color: rgb(255, 241, 241);"
+            >
+              <i
+                aria-hidden="true"
+                class="red warning circle icon"
+              />
+              Please keep in mind that this review is more than 5 years old.
+            </div>
             <div
               style="position: relative;"
             >
@@ -159,7 +185,9 @@ Object {
                 class="row"
                 style="padding: 0px; color: white;"
               >
-                <strong />
+                <strong>
+                  10
+                </strong>
               </div>
               <div
                 class="row"
@@ -174,7 +202,9 @@ Object {
                 class="row"
                 style="padding: 0px; color: white;"
               >
-                <strong />
+                <strong>
+                  2
+                </strong>
               </div>
               <div
                 class="row"
@@ -189,7 +219,9 @@ Object {
                 class="row"
                 style="padding: 0px; color: white;"
               >
-                <strong />
+                <strong>
+                  3
+                </strong>
               </div>
             </div>
           </div>
@@ -270,6 +302,16 @@ Object {
               class="ui fluid container"
             >
               <div
+                class="ui message"
+                style="background-color: rgb(255, 241, 241);"
+              >
+                <i
+                  aria-hidden="true"
+                  class="red warning circle icon"
+                />
+                Please keep in mind that this review is more than 5 years old.
+              </div>
+              <div
                 style="position: relative;"
               >
                 <h5
@@ -313,7 +355,9 @@ Object {
                   class="row"
                   style="padding: 0px; color: white;"
                 >
-                  <strong />
+                  <strong>
+                    10
+                  </strong>
                 </div>
                 <div
                   class="row"
@@ -328,7 +372,9 @@ Object {
                   class="row"
                   style="padding: 0px; color: white;"
                 >
-                  <strong />
+                  <strong>
+                    2
+                  </strong>
                 </div>
                 <div
                   class="row"
@@ -343,7 +389,9 @@ Object {
                   class="row"
                   style="padding: 0px; color: white;"
                 >
-                  <strong />
+                  <strong>
+                    3
+                  </strong>
                 </div>
               </div>
             </div>
@@ -366,6 +414,16 @@ Object {
           <div
             class="ui fluid container"
           >
+            <div
+              class="ui message"
+              style="background-color: rgb(255, 241, 241);"
+            >
+              <i
+                aria-hidden="true"
+                class="red warning circle icon"
+              />
+              Please keep in mind that this review is more than 5 years old.
+            </div>
             <div
               style="position: relative;"
             >
@@ -410,7 +468,9 @@ Object {
                 class="row"
                 style="padding: 0px; color: white;"
               >
-                <strong />
+                <strong>
+                  10
+                </strong>
               </div>
               <div
                 class="row"
@@ -425,7 +485,9 @@ Object {
                 class="row"
                 style="padding: 0px; color: white;"
               >
-                <strong />
+                <strong>
+                  2
+                </strong>
               </div>
               <div
                 class="row"
@@ -440,7 +502,9 @@ Object {
                 class="row"
                 style="padding: 0px; color: white;"
               >
-                <strong />
+                <strong>
+                  3
+                </strong>
               </div>
             </div>
           </div>
@@ -521,6 +585,16 @@ Object {
               class="ui fluid container"
             >
               <div
+                class="ui message"
+                style="background-color: rgb(255, 241, 241);"
+              >
+                <i
+                  aria-hidden="true"
+                  class="red warning circle icon"
+                />
+                Please keep in mind that this review is more than 5 years old.
+              </div>
+              <div
                 style="position: relative;"
               >
                 <h5
@@ -564,7 +638,9 @@ Object {
                   class="row"
                   style="padding: 0px; color: white;"
                 >
-                  <strong />
+                  <strong>
+                    10
+                  </strong>
                 </div>
                 <div
                   class="row"
@@ -579,7 +655,9 @@ Object {
                   class="row"
                   style="padding: 0px; color: white;"
                 >
-                  <strong />
+                  <strong>
+                    2
+                  </strong>
                 </div>
                 <div
                   class="row"
@@ -594,7 +672,9 @@ Object {
                   class="row"
                   style="padding: 0px; color: white;"
                 >
-                  <strong />
+                  <strong>
+                    3
+                  </strong>
                 </div>
               </div>
             </div>
@@ -617,6 +697,16 @@ Object {
           <div
             class="ui fluid container"
           >
+            <div
+              class="ui message"
+              style="background-color: rgb(255, 241, 241);"
+            >
+              <i
+                aria-hidden="true"
+                class="red warning circle icon"
+              />
+              Please keep in mind that this review is more than 5 years old.
+            </div>
             <div
               style="position: relative;"
             >
@@ -661,7 +751,9 @@ Object {
                 class="row"
                 style="padding: 0px; color: white;"
               >
-                <strong />
+                <strong>
+                  10
+                </strong>
               </div>
               <div
                 class="row"
@@ -676,7 +768,9 @@ Object {
                 class="row"
                 style="padding: 0px; color: white;"
               >
-                <strong />
+                <strong>
+                  2
+                </strong>
               </div>
               <div
                 class="row"
@@ -691,7 +785,9 @@ Object {
                 class="row"
                 style="padding: 0px; color: white;"
               >
-                <strong />
+                <strong>
+                  3
+                </strong>
               </div>
             </div>
           </div>
@@ -910,6 +1006,16 @@ Object {
               class="ui fluid container"
             >
               <div
+                class="ui message"
+                style="background-color: rgb(255, 241, 241);"
+              >
+                <i
+                  aria-hidden="true"
+                  class="red warning circle icon"
+                />
+                Please keep in mind that this review is more than 5 years old.
+              </div>
+              <div
                 style="position: relative;"
               >
                 <h3
@@ -960,7 +1066,9 @@ Object {
                   class="row"
                   style="padding: 0px; color: white;"
                 >
-                  <strong />
+                  <strong>
+                    10
+                  </strong>
                 </div>
                 <div
                   class="row"
@@ -975,7 +1083,9 @@ Object {
                   class="row"
                   style="padding: 0px; color: white;"
                 >
-                  <strong />
+                  <strong>
+                    2
+                  </strong>
                 </div>
                 <div
                   class="row"
@@ -990,7 +1100,9 @@ Object {
                   class="row"
                   style="padding: 0px; color: white;"
                 >
-                  <strong />
+                  <strong>
+                    3
+                  </strong>
                 </div>
               </div>
             </div>
@@ -1013,6 +1125,16 @@ Object {
           <div
             class="ui fluid container"
           >
+            <div
+              class="ui message"
+              style="background-color: rgb(255, 241, 241);"
+            >
+              <i
+                aria-hidden="true"
+                class="red warning circle icon"
+              />
+              Please keep in mind that this review is more than 5 years old.
+            </div>
             <div
               style="position: relative;"
             >
@@ -1064,7 +1186,9 @@ Object {
                 class="row"
                 style="padding: 0px; color: white;"
               >
-                <strong />
+                <strong>
+                  10
+                </strong>
               </div>
               <div
                 class="row"
@@ -1079,7 +1203,9 @@ Object {
                 class="row"
                 style="padding: 0px; color: white;"
               >
-                <strong />
+                <strong>
+                  2
+                </strong>
               </div>
               <div
                 class="row"
@@ -1094,7 +1220,9 @@ Object {
                 class="row"
                 style="padding: 0px; color: white;"
               >
-                <strong />
+                <strong>
+                  3
+                </strong>
               </div>
             </div>
           </div>
@@ -1175,6 +1303,16 @@ Object {
               class="ui fluid container"
             >
               <div
+                class="ui message"
+                style="background-color: rgb(255, 241, 241);"
+              >
+                <i
+                  aria-hidden="true"
+                  class="red warning circle icon"
+                />
+                Please keep in mind that this review is more than 5 years old.
+              </div>
+              <div
                 style="position: relative;"
               >
                 <h3
@@ -1225,7 +1363,9 @@ Object {
                   class="row"
                   style="padding: 0px; color: white;"
                 >
-                  <strong />
+                  <strong>
+                    10
+                  </strong>
                 </div>
                 <div
                   class="row"
@@ -1240,7 +1380,9 @@ Object {
                   class="row"
                   style="padding: 0px; color: white;"
                 >
-                  <strong />
+                  <strong>
+                    2
+                  </strong>
                 </div>
                 <div
                   class="row"
@@ -1255,7 +1397,9 @@ Object {
                   class="row"
                   style="padding: 0px; color: white;"
                 >
-                  <strong />
+                  <strong>
+                    3
+                  </strong>
                 </div>
               </div>
             </div>
@@ -1278,6 +1422,16 @@ Object {
           <div
             class="ui fluid container"
           >
+            <div
+              class="ui message"
+              style="background-color: rgb(255, 241, 241);"
+            >
+              <i
+                aria-hidden="true"
+                class="red warning circle icon"
+              />
+              Please keep in mind that this review is more than 5 years old.
+            </div>
             <div
               style="position: relative;"
             >
@@ -1329,7 +1483,9 @@ Object {
                 class="row"
                 style="padding: 0px; color: white;"
               >
-                <strong />
+                <strong>
+                  10
+                </strong>
               </div>
               <div
                 class="row"
@@ -1344,7 +1500,9 @@ Object {
                 class="row"
                 style="padding: 0px; color: white;"
               >
-                <strong />
+                <strong>
+                  2
+                </strong>
               </div>
               <div
                 class="row"
@@ -1359,7 +1517,9 @@ Object {
                 class="row"
                 style="padding: 0px; color: white;"
               >
-                <strong />
+                <strong>
+                  3
+                </strong>
               </div>
             </div>
           </div>
@@ -1440,6 +1600,16 @@ Object {
               class="ui fluid container"
             >
               <div
+                class="ui message"
+                style="background-color: rgb(255, 241, 241);"
+              >
+                <i
+                  aria-hidden="true"
+                  class="red warning circle icon"
+                />
+                Please keep in mind that this review is more than 5 years old.
+              </div>
+              <div
                 style="position: relative;"
               >
                 <h3
@@ -1490,7 +1660,9 @@ Object {
                   class="row"
                   style="padding: 0px; color: white;"
                 >
-                  <strong />
+                  <strong>
+                    10
+                  </strong>
                 </div>
                 <div
                   class="row"
@@ -1505,7 +1677,9 @@ Object {
                   class="row"
                   style="padding: 0px; color: white;"
                 >
-                  <strong />
+                  <strong>
+                    2
+                  </strong>
                 </div>
                 <div
                   class="row"
@@ -1520,7 +1694,9 @@ Object {
                   class="row"
                   style="padding: 0px; color: white;"
                 >
-                  <strong />
+                  <strong>
+                    3
+                  </strong>
                 </div>
               </div>
             </div>
@@ -1543,6 +1719,16 @@ Object {
           <div
             class="ui fluid container"
           >
+            <div
+              class="ui message"
+              style="background-color: rgb(255, 241, 241);"
+            >
+              <i
+                aria-hidden="true"
+                class="red warning circle icon"
+              />
+              Please keep in mind that this review is more than 5 years old.
+            </div>
             <div
               style="position: relative;"
             >
@@ -1594,7 +1780,9 @@ Object {
                 class="row"
                 style="padding: 0px; color: white;"
               >
-                <strong />
+                <strong>
+                  10
+                </strong>
               </div>
               <div
                 class="row"
@@ -1609,7 +1797,9 @@ Object {
                 class="row"
                 style="padding: 0px; color: white;"
               >
-                <strong />
+                <strong>
+                  2
+                </strong>
               </div>
               <div
                 class="row"
@@ -1624,7 +1814,9 @@ Object {
                 class="row"
                 style="padding: 0px; color: white;"
               >
-                <strong />
+                <strong>
+                  3
+                </strong>
               </div>
             </div>
           </div>
@@ -1843,6 +2035,16 @@ Object {
               class="ui fluid container"
             >
               <div
+                class="ui message"
+                style="background-color: rgb(255, 241, 241);"
+              >
+                <i
+                  aria-hidden="true"
+                  class="red warning circle icon"
+                />
+                Please keep in mind that this review is more than 5 years old.
+              </div>
+              <div
                 style="position: relative;"
               >
                 <h3
@@ -1893,7 +2095,9 @@ Object {
                   class="row"
                   style="padding: 0px; color: white;"
                 >
-                  <strong />
+                  <strong>
+                    10
+                  </strong>
                 </div>
                 <div
                   class="row"
@@ -1908,7 +2112,9 @@ Object {
                   class="row"
                   style="padding: 0px; color: white;"
                 >
-                  <strong />
+                  <strong>
+                    2
+                  </strong>
                 </div>
                 <div
                   class="row"
@@ -1923,7 +2129,9 @@ Object {
                   class="row"
                   style="padding: 0px; color: white;"
                 >
-                  <strong />
+                  <strong>
+                    3
+                  </strong>
                 </div>
               </div>
             </div>
@@ -1946,6 +2154,16 @@ Object {
           <div
             class="ui fluid container"
           >
+            <div
+              class="ui message"
+              style="background-color: rgb(255, 241, 241);"
+            >
+              <i
+                aria-hidden="true"
+                class="red warning circle icon"
+              />
+              Please keep in mind that this review is more than 5 years old.
+            </div>
             <div
               style="position: relative;"
             >
@@ -1997,7 +2215,9 @@ Object {
                 class="row"
                 style="padding: 0px; color: white;"
               >
-                <strong />
+                <strong>
+                  10
+                </strong>
               </div>
               <div
                 class="row"
@@ -2012,7 +2232,9 @@ Object {
                 class="row"
                 style="padding: 0px; color: white;"
               >
-                <strong />
+                <strong>
+                  2
+                </strong>
               </div>
               <div
                 class="row"
@@ -2027,7 +2249,9 @@ Object {
                 class="row"
                 style="padding: 0px; color: white;"
               >
-                <strong />
+                <strong>
+                  3
+                </strong>
               </div>
             </div>
           </div>
@@ -2108,6 +2332,16 @@ Object {
               class="ui fluid container"
             >
               <div
+                class="ui message"
+                style="background-color: rgb(255, 241, 241);"
+              >
+                <i
+                  aria-hidden="true"
+                  class="red warning circle icon"
+                />
+                Please keep in mind that this review is more than 5 years old.
+              </div>
+              <div
                 style="position: relative;"
               >
                 <h3
@@ -2158,7 +2392,9 @@ Object {
                   class="row"
                   style="padding: 0px; color: white;"
                 >
-                  <strong />
+                  <strong>
+                    10
+                  </strong>
                 </div>
                 <div
                   class="row"
@@ -2173,7 +2409,9 @@ Object {
                   class="row"
                   style="padding: 0px; color: white;"
                 >
-                  <strong />
+                  <strong>
+                    2
+                  </strong>
                 </div>
                 <div
                   class="row"
@@ -2188,7 +2426,9 @@ Object {
                   class="row"
                   style="padding: 0px; color: white;"
                 >
-                  <strong />
+                  <strong>
+                    3
+                  </strong>
                 </div>
               </div>
             </div>
@@ -2211,6 +2451,16 @@ Object {
           <div
             class="ui fluid container"
           >
+            <div
+              class="ui message"
+              style="background-color: rgb(255, 241, 241);"
+            >
+              <i
+                aria-hidden="true"
+                class="red warning circle icon"
+              />
+              Please keep in mind that this review is more than 5 years old.
+            </div>
             <div
               style="position: relative;"
             >
@@ -2262,7 +2512,9 @@ Object {
                 class="row"
                 style="padding: 0px; color: white;"
               >
-                <strong />
+                <strong>
+                  10
+                </strong>
               </div>
               <div
                 class="row"
@@ -2277,7 +2529,9 @@ Object {
                 class="row"
                 style="padding: 0px; color: white;"
               >
-                <strong />
+                <strong>
+                  2
+                </strong>
               </div>
               <div
                 class="row"
@@ -2292,7 +2546,9 @@ Object {
                 class="row"
                 style="padding: 0px; color: white;"
               >
-                <strong />
+                <strong>
+                  3
+                </strong>
               </div>
             </div>
           </div>
@@ -2373,6 +2629,16 @@ Object {
               class="ui fluid container"
             >
               <div
+                class="ui message"
+                style="background-color: rgb(255, 241, 241);"
+              >
+                <i
+                  aria-hidden="true"
+                  class="red warning circle icon"
+                />
+                Please keep in mind that this review is more than 5 years old.
+              </div>
+              <div
                 style="position: relative;"
               >
                 <h3
@@ -2423,7 +2689,9 @@ Object {
                   class="row"
                   style="padding: 0px; color: white;"
                 >
-                  <strong />
+                  <strong>
+                    10
+                  </strong>
                 </div>
                 <div
                   class="row"
@@ -2438,7 +2706,9 @@ Object {
                   class="row"
                   style="padding: 0px; color: white;"
                 >
-                  <strong />
+                  <strong>
+                    2
+                  </strong>
                 </div>
                 <div
                   class="row"
@@ -2453,7 +2723,9 @@ Object {
                   class="row"
                   style="padding: 0px; color: white;"
                 >
-                  <strong />
+                  <strong>
+                    3
+                  </strong>
                 </div>
               </div>
             </div>
@@ -2476,6 +2748,16 @@ Object {
           <div
             class="ui fluid container"
           >
+            <div
+              class="ui message"
+              style="background-color: rgb(255, 241, 241);"
+            >
+              <i
+                aria-hidden="true"
+                class="red warning circle icon"
+              />
+              Please keep in mind that this review is more than 5 years old.
+            </div>
             <div
               style="position: relative;"
             >
@@ -2527,7 +2809,9 @@ Object {
                 class="row"
                 style="padding: 0px; color: white;"
               >
-                <strong />
+                <strong>
+                  10
+                </strong>
               </div>
               <div
                 class="row"
@@ -2542,7 +2826,9 @@ Object {
                 class="row"
                 style="padding: 0px; color: white;"
               >
-                <strong />
+                <strong>
+                  2
+                </strong>
               </div>
               <div
                 class="row"
@@ -2557,7 +2843,9 @@ Object {
                 class="row"
                 style="padding: 0px; color: white;"
               >
-                <strong />
+                <strong>
+                  3
+                </strong>
               </div>
             </div>
           </div>

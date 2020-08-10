@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useReducer } from "react";
 import { Container, Header, Image, Grid, Message, Icon } from "semantic-ui-react";
 
 import { CourseDisplayName } from "components/common/CourseDisplay"
@@ -15,33 +15,6 @@ import upvoteIcon from "icons/upvote.png"
 
 function VotesContainer({reviewId, initUpvoteCount, initDownvoteCount, initFunnyCount,
                          upvoteClickedProp, downvoteClickedProp, funnyClickedProp}){
-
-    const [upvoteClicked, setUpvoteClicked] = useState(upvoteClickedProp)
-    const [downvoteClicked, setDownvoteClicked] = useState(downvoteClickedProp)
-    const [funnyClicked, setFunnyClicked] = useState(funnyClickedProp)
-
-    const [upvoteCount, setUpvoteCount] = useState(initUpvoteCount)
-    const [downvoteCount, setDownvoteCount] = useState(initDownvoteCount)
-    const [funnyCount, setFunnyCount] = useState(initFunnyCount)
-
-    useEffect(() => {
-        setUpvoteClicked(upvoteClickedProp)
-        setDownvoteClicked(downvoteClickedProp)
-        setFunnyClicked(funnyClickedProp)
-    }, [upvoteClickedProp, downvoteClickedProp, funnyClickedProp])
-
-    // update vote counts when the vote counts fetched from the db has changed
-    useEffect(() => {
-        setUpvoteCount(initUpvoteCount)
-    }, [initUpvoteCount])
-
-    useEffect(() => {
-        setDownvoteCount(initDownvoteCount)
-    }, [initDownvoteCount])
-
-    useEffect(() => {
-        setFunnyCount(initFunnyCount)
-    }, [initFunnyCount])
 
     // function for adding / revoking a vote for a review
     const changeVoteCount = async (voteType, action) => {
@@ -63,46 +36,90 @@ function VotesContainer({reviewId, initUpvoteCount, initDownvoteCount, initFunny
         };
     }
 
-    // update state values and send post req to backend when user votes/un-votes
-    const toggleUpvote = () => {
-        upvoteClicked ? setUpvoteCount(upvoteCount - 1) : setUpvoteCount(upvoteCount + 1)
-        changeVoteCount('agree', upvoteClicked ? 'revoke': 'add')
-        setUpvoteClicked(!upvoteClicked)
+    const reducer = (state, action) => {
+        switch (action.type) {
+            case "RESET_CLICKED_STATE":
+                return {
+                    ...state,
+                    upvoteClicked: upvoteClickedProp,
+                    downvoteClicked: downvoteClickedProp,
+                    funnyClicked: funnyClickedProp
+                };
+            case "RESET_VOTE_COUNT":
+                return {
+                    ...state,
+                    upvoteCount: initUpvoteCount,
+                    downvoteCount: initDownvoteCount,
+                    funnyCount: initFunnyCount
+                };
+            case "TOGGLE_UPVOTE":
+                changeVoteCount('agree', state.upvoteClicked ? 'revoke' : 'add')
+                return {
+                    ...state,
+                    upvoteCount: state.upvoteClicked ? state.upvoteCount - 1 : state.upvoteCount + 1,
+                    upvoteClicked: !state.upvoteClicked
+                };
+            case "TOGGLE_DOWNVOTE":
+                changeVoteCount('disagree', state.downvoteClicked ? 'revoke' : 'add')
+                return {
+                    ...state,
+                    downvoteCount: state.downvoteClicked ? state.downvoteCount - 1 : state.downvoteCount + 1,
+                    downvoteClicked: !state.downvoteClicked
+                };
+            case "TOGGLE_FUNNY":
+                changeVoteCount('funny', state.funnyClicked ? 'revoke' : 'add')
+                return {
+                    ...state,
+                    funnyCount: state.funnyClicked ? state.funnyCount - 1 : state.funnyCount + 1,
+                    funnyClicked: !state.funnyClicked
+                };
+            default: 
+                throw new Error();
+        }
     }
+ 
+    const [state, dispatch] = useReducer(reducer, {
+        upvoteClicked: false,
+        downvoteClicked: false,
+        funnyClicked: false,
+        upvoteCount: initUpvoteCount,
+        downvoteCount: initDownvoteCount,
+        funnyCount: initFunnyCount
+    })
 
-    const toggleDownvote = () => {
-        downvoteClicked ? setDownvoteCount(downvoteCount - 1) : setDownvoteCount(downvoteCount + 1)
-        changeVoteCount('disagree', downvoteClicked ? 'revoke': 'add')
-        setDownvoteClicked(!downvoteClicked)
-    }
+    useEffect(() => {
+        dispatch({type: 'RESET_CLICKED_STATE'})
+    }, [upvoteClickedProp, downvoteClickedProp, funnyClickedProp])
 
-    const toggleFunny = () => {
-        funnyClicked ? setFunnyCount(funnyCount - 1) : setFunnyCount(funnyCount + 1)
-        changeVoteCount('funny', funnyClicked ? 'revoke': 'add')
-        setFunnyClicked(!funnyClicked)
-    }
+    // update vote counts when the vote counts fetched from the db has changed
+    useEffect(() => {
+        dispatch({type: 'RESET_VOTE_COUNT'})
+    }, [initUpvoteCount, initDownvoteCount, initFunnyCount])
 
     return (
         <Container>
             <Grid centered style={{padding: "30px 10px", 
                                    height: "100%"}}>
                 <Grid.Row style={{paddingBottom:0, overflow: "show"}}>
-                    <Image src={upvoteClicked ? upvoteClickedIcon : upvoteIcon} onClick={toggleUpvote} />
+                    <Image src={state.upvoteClicked ? upvoteClickedIcon : upvoteIcon}
+                           onClick={() => dispatch({type: 'TOGGLE_UPVOTE'})} />
                 </Grid.Row>
                 <Grid.Row style={{padding:0, color:"white"}}>
-                    <strong>{upvoteCount}</strong>
+                    <strong>{state.upvoteCount}</strong>
                 </Grid.Row>
                 <Grid.Row style={{paddingBottom:0}}>
-                    <Image src={downvoteClicked? downvoteClickedIcon : downvoteIcon} onClick={toggleDownvote} />
+                    <Image src={state.downvoteClicked? downvoteClickedIcon : downvoteIcon}
+                           onClick={() => dispatch({type: 'TOGGLE_DOWNVOTE'})} />
                 </Grid.Row>
                 <Grid.Row style={{padding:0, color:"white"}}>
-                    <strong>{downvoteCount}</strong>
+                    <strong>{state.downvoteCount}</strong>
                 </Grid.Row>
                 <Grid.Row style={{paddingBottom:0}}>
-                    <Image src={funnyIcon} onClick={toggleFunny} />
+                    <Image src={funnyIcon}
+                           onClick={() => dispatch({type: 'TOGGLE_FUNNY'})} />
                 </Grid.Row>
                 <Grid.Row style={{padding:0, color:"white"}}>
-                    <strong>{funnyCount}</strong>
+                    <strong>{state.funnyCount}</strong>
                 </Grid.Row>
             </Grid> 
         </Container>
@@ -130,8 +147,8 @@ VotesContainer.defaultProps = votesContainerDefaultProps
 
 export default function ReviewCard({onlyProf, onlyCourse, submissionDate, reviewId, 
                                     initUpvoteCount, initDownvoteCount, initFunnyCount,
-                                    profFirstName, profLastName, courseCode, courseName,
-                                    content}){
+                                    profFirstName, profLastName, deprecated, courseCode, 
+                                    courseName, content}){
     
     // get clicked state of each button for this specific user
     const {
@@ -148,7 +165,6 @@ export default function ReviewCard({onlyProf, onlyCourse, submissionDate, review
         return isLoading ? <LoadingComponent /> : <ErrorComponent />;
     }
 
-    const deprecated = Math.floor((new Date() - new Date(submissionDate)) / (1000 * 3600 * 24 * 365)) >= 5
     return (
         <Container fluid>
             <Grid>
@@ -172,12 +188,12 @@ export default function ReviewCard({onlyProf, onlyCourse, submissionDate, review
             </Grid.Column>
             <Grid.Column key={2} style={{backgroundColor: "#004E8D", paddingLeft: 0}}  width={2}>
                 <VotesContainer downvoteClickedProp={downvoteClicked} 
-                                initDownvoteCount={initDownvoteCount} 
                                 funnyClickedProp={funnyClicked} 
+                                initDownvoteCount={initDownvoteCount} 
                                 initFunnyCount={initFunnyCount} 
+                                initUpvoteCount={initUpvoteCount} 
                                 reviewId={reviewId} 
-                                upvoteClickedProp={upvoteClicked} 
-                                initUpvoteCount={initUpvoteCount} />
+                                upvoteClickedProp={upvoteClicked} />
             </Grid.Column>
             </Grid>
         </Container>
@@ -191,9 +207,10 @@ const reviewCardPropTypes = {
     reviewId: PropTypes.string.isRequired,
     initDownvoteCount: PropTypes.number.isRequired,
     initUpvoteCount: PropTypes.number.isRequired,
-    initUpvoteCount: PropTypes.number.isRequired,
+    initFunnyCount: PropTypes.number.isRequired,
     profFirstName: PropTypes.string.isRequired,
     profLastName: PropTypes.string.isRequired,
+    deprecated: PropTypes.bool.isRequired,
     courseCode: PropTypes.string.isRequired,
     courseName: PropTypes.string.isRequired,
     content: PropTypes.string.isRequired

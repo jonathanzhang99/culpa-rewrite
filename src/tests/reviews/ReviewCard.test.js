@@ -103,12 +103,12 @@ describe("ReviewCard tests setup", () => {
                   <MemoryRouter>
                       <ReviewCard content={content}
                                   courseCode={courseCode}
-                                  courseName={courseName}
-                                  downvotes={downvotes}
-                                  funnys={funnys} onlyCourse={onlyCourse} onlyProf={onlyProf}
+                                  courseName={courseName} deprecated
+                                  initDownvoteCount={downvotes}
+                                  initFunnyCount={funnys} onlyCourse={onlyCourse} onlyProf={onlyProf}
                                   profFirstName={profFirstName} profLastName={profLastName}
                                   reviewId={reviewId} submissionDate={submissionDate}
-                                  upvotes={upvotes} />
+                                  initUpvoteCount={upvotes} />
                   </MemoryRouter>
                 </AuthProvider>
             )
