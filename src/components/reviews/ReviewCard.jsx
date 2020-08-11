@@ -110,11 +110,12 @@ export function VotesContainer({
     funnyCount: votes.initFunnyCount,
   });
 
+  // update votes when prop changes are detected
+  // TODO: examine if this is actually necessary (wouldn't prop change directly trigger re-render?)
   useEffect(() => {
     dispatch({ type: "RESET_CLICKED_STATE" });
   }, [votes.upvoteClicked, votes.downvoteClicked, votes.funnyClicked]);
 
-  // update vote counts when the vote counts fetched from the db has changed
   useEffect(() => {
     dispatch({ type: "RESET_VOTE_COUNT" });
   }, [votes.initUpvoteCount, votes.initDownvoteCount, votes.initFunnyCount]);
