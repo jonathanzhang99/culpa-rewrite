@@ -11,12 +11,19 @@ review_blueprint = flask.Blueprint('review_blueprint', __name__)
 
 
 def parse_review(review, r_type):
+    '''
+    static method for parsing a review into a json object
+    '''
     cp_id = review['course_professor_id']
     course_code, course_name, prof_first, prof_last = '', '', '', ''
-    if r_type == 'course':
-        prof_first, prof_last = get_prof_by_cp_id(cp_id)
-    else:
-        course_code, course_name = get_course_by_cp_id(cp_id)
+    try:
+        if r_type == 'course':
+            prof_first, prof_last = get_prof_by_cp_id(cp_id)
+        else:
+            course_code, course_name = get_course_by_cp_id(cp_id)
+    except Exception as e:
+        print(e)
+        raise
 
     return {
             'id': review['review_id'],
