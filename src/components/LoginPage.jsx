@@ -5,7 +5,7 @@ import { AuthContext } from "components/common/Authentication";
 import Form from "components/common/Form";
 import { TextInput, PasswordInput, Submit } from "components/common/Inputs";
 
-export default function Login() {
+export default function LoginPage() {
   const history = useHistory();
   const { login } = useContext(AuthContext);
   const onSuccess = () => {
