@@ -17,7 +17,7 @@ function dataFetchReducer(state, action) {
         isError: false,
         data: action.payload,
       };
-    case "FETCH_FALURE":
+    case "FETCH_FAILURE":
       return {
         ...state,
         isLoading: false,

@@ -8,6 +8,7 @@ import DepartmentsPage from "components/DepartmentsPage";
 import LoginPage from "components/LoginPage";
 import NavigationBar from "components/NavigationBar";
 import Professors from "components/ProfessorsPage";
+import Reviews from "components/ReviewsPage"
 
 function App() {
   return (
@@ -21,6 +22,10 @@ function App() {
             <ProtectedRoute exact path="/admin">
               <h1>Admin only page!!</h1>
             </ProtectedRoute>
+            {/* temporary page for debugging review card */}
+            <Route path="/reviews">
+              <Reviews />
+            </Route>
             <Route path="/review">
               <CreateReviewPage />
             </Route>
