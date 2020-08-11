@@ -1,7 +1,9 @@
 import flask
 
-from api.data.dataloaders.courses_loader import get_cp_id_by_course, get_course_by_cp_id
-from api.data.dataloaders.professors_loader import get_cp_id_by_prof, get_prof_by_cp_id
+from api.data.dataloaders.courses_loader import get_cp_id_by_course, \
+    get_course_by_cp_id
+from api.data.dataloaders.professors_loader import get_cp_id_by_prof, \
+    get_prof_by_cp_id
 from api.data.dataloaders.reviews_loader import get_reviews_by_cp_id
 from api.data.datawriters.reviews_writer import insert_review
 
@@ -34,6 +36,7 @@ def parse_review(review, r_type):
             'profFirstName': prof_first,
             'profLastName': prof_last
         }
+
 
 @review_blueprint.route('/submit', methods=['POST'])
 def submit_review():

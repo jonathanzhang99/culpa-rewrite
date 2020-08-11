@@ -93,8 +93,6 @@ export default function ReviewSection({initReviews, pageTypeProp, idProp, assocL
         if(state.reload){
             fetchReviews()
             dispatch({type: "RELOAD_END"})
-        } else {
-            console.log(state.reviews)
         }
     })
 
