@@ -1,9 +1,8 @@
 import flask
-
+import datetime
 from api.data.datawriters.votes_writer import add_vote, revoke_vote
 
 vote_blueprint = flask.Blueprint('vote_blueprint', __name__)
-validVoteTypes = ['agree', 'disagree', 'funny']
 
 
 @vote_blueprint.route('/change', methods=['POST'])
@@ -21,13 +20,18 @@ def change_vote():
         ip = flask.request.remote_addr
 
         actionMap = {'add': add_vote, 'revoke': revoke_vote}
+        validVoteTypes = ['agree', 'disagree', 'funny']
 
         if voteType not in validVoteTypes or action not in actionMap:
             return {"error": "invalid request"}, 400
 
-        actionMap[action](int(reviewId), voteType, ip)
-        return {"status": "success"}
+        actionMap[action](
+            int(reviewId),
+            voteType,
+            ip,
+            datetime.datetime.utcnow()
+        )
+        return {}, 200
 
     except Exception as e:
-        print(e)
-        return {"error": str(e)}, 500
+        return {"error": str(e)}, 400

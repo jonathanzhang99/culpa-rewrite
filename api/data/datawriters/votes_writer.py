@@ -1,16 +1,16 @@
-from pypika import MySQLQuery as Query, functions as fn, Criterion, Order
+from pypika import MySQLQuery as Query, Criterion, Order
 
 from api.data import db
 from api.data.common import vote
 
 
 # insert new vote row corresponding to the review id and the vote type
-def add_vote(reviewId, voteType, ip):
+def add_vote(reviewId, voteType, ip, created_at):
     cur = db.get_cursor()
     q = Query.into(vote).insert(
         reviewId,
         ip,
-        fn.Now(),
+        created_at,
         voteType
     ).get_sql()
 
@@ -18,7 +18,7 @@ def add_vote(reviewId, voteType, ip):
 
 
 # remove the latest vote with the vote type, the review id and the ip address
-def revoke_vote(reviewId, voteType, ip):
+def revoke_vote(reviewId, voteType, ip, created_at=None):
 
     cur = db.get_cursor()
     q = Query.from_(vote).delete().where(

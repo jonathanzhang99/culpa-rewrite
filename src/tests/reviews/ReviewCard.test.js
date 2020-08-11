@@ -5,85 +5,70 @@ import { MemoryRouter } from "react-router-dom";
 import { AuthProvider } from "components/common/Authentication";
 import ReviewCard from "components/reviews/ReviewCard";
 
-jest.mock('components/common/useDataFetch')
-
 describe("ReviewCard tests setup", () => {
-  const testParams = [{
-     testName: "complete & normal",
-     onlyProf: true, 
-     onlyCourse: true, 
-     reviewId: 12345,
-     submissionDate: "2020-02-01",
-     upvotes: 10,
-     downvotes: 2,
-     funnys: 3,
-     profFirstName: "Adam",
-     profLastName: "Canon",
-     courseCode: "COMS1004",
-     courseName: "Intro to Programming", 
-     content: "an interesting class"
+  const diffTypes = [{
+     reviewType: 'course',
+     reviewHeader: {
+        courseId: 12345,
+        courseName: "intro to programming",
+        courseCode: "COMS1004"
+     }
   }, {
-     testName: "profCard",
-     onlyProf: true, 
-     onlyCourse: false, 
-     reviewId: 12345,
-     submissionDate: "2020-02-01",
-     upvotes: 10,
-     downvotes: 2,
-     funnys: 3,
-     profFirstName: "",
-     profLastName: "",
-     courseCode: "COMS1004",
-     courseName: "Intro to Programming", 
-     content: "an interesting class",
-  }, {
-     testName: "courseCard",
-     onlyProf: false, 
-     onlyCourse: true, 
-     reviewId: 12345,
-     submissionDate: "2020-02-01",
-     upvotes: 10,
-     downvotes: 2,
-     funnys: 3,
-     profFirstName: "Adam",
-     profLastName: "Canon",
-     courseCode: "",
-     courseName: "", 
-     content: "an interesting class"
+     reviewType: 'professor',
+     reviewHeader: {
+        profFirstName: "Adam",
+        profLastName: "Canon",
+        profId: 12345,
+        uni: "12345"
+     }
   }]
 
-  const clickedStates = [{
+  const diffVotes = [{
+     initUpvoteCount: 10,
+     initDownvoteCount: 2,
+     initFunnyCount: 3,
      upvoteClicked: true,
      downvoteClicked: false,
      funnyClicked: true,
   }, {
+     initUpvoteCount: 10,
+     initDownvoteCount: 2,
+     initFunnyCount: 3,
      upvoteClicked: true,
      downvoteClicked: true,
      funnyClicked: true,
   }, {
+     initUpvoteCount: 10,
+     initDownvoteCount: 2,
+     initFunnyCount: 3,
      upvoteClicked: false,
      downvoteClicked: false,
      funnyClicked: false,
   }]
 
-  testParams.forEach(({testName, onlyProf, onlyCourse, reviewId, submissionDate, upvotes, downvotes, funnys, 
-                       profFirstName, profLastName, courseCode, courseName, content}) => {
-      clickedStates.forEach(({upvoteClicked, downvoteClicked, funnyClicked}) => {
-        test(testName, () => {
+  const basicInfo = {
+      content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      deprecated: true,
+      reviewId: 1,
+      submissionDate: "2014-07-31",
+      workload: "Excepteur sint occaecat cupidatat non proident."
+  }
+
+  diffTypes.forEach(({reviewType, reviewHeader}) => {
+      diffVotes.forEach((votes) => {
+        test("review card test", () => {
             const snapshot = render(
                 <AuthProvider>
                   <MemoryRouter>
-                      <ReviewCard deprecated
-                                  content={content}
-                                  courseCode={courseCode} courseName={courseName}
-                                  downvoteClicked={downvoteClicked}
-                                  funnyClicked={funnyClicked}
-                                  initDownvoteCount={downvotes}
-                                  initFunnyCount={funnys} initUpvoteCount={upvotes} onlyCourse={onlyCourse}
-                                  onlyProf={onlyProf} profFirstName={profFirstName}
-                                  profLastName={profLastName} reviewId={reviewId}
-                                  submissionDate={submissionDate} 
-                                  upvoteClicked={upvoteClicked}/>
+                      <ReviewCard content={basicInfo.content}
+                                  deprecated={basicInfo.deprecated}
+                                  rating={basicInfo.rating}
+                                  reviewHeader={reviewHeader}
+                                  reviewId={basicInfo.reviewId}
+                                  reviewType={reviewType} 
+                                  submissionDate={basicInfo.submissionDate}
+                                  votes={votes}
+                                  workload={basicInfo.workload}/>
                   </MemoryRouter>
                 </AuthProvider>
             )

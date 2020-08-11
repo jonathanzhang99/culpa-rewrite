@@ -17,14 +17,21 @@ import downvoteIcon from "icons/downvote.png";
 import funnyIcon from "icons/funny.png";
 import upvoteIcon from "icons/upvote.png";
 
-function VotesContainer({
+const propTypesVotesContainer = {
+  reviewId: PropTypes.number.isRequired,
+  votes: PropTypes.shape({
+    initUpvoteCount: PropTypes.number.isRequired,
+    initDownvoteCount: PropTypes.number.isRequired,
+    initFunnyCount: PropTypes.number.isRequired,
+    upvoteClicked: PropTypes.bool.isRequired,
+    downvoteClicked: PropTypes.bool.isRequired,
+    funnyClicked: PropTypes.bool.isRequired,
+  }).isRequired,
+};
+
+export function VotesContainer({
   reviewId,
-  initUpvoteCount,
-  initDownvoteCount,
-  initFunnyCount,
-  upvoteClickedProp,
-  downvoteClickedProp,
-  funnyClickedProp,
+  votes
 }) {
   // function for adding / revoking a vote for a review
   const changeVoteCount = async (voteType, action) => {
@@ -51,16 +58,16 @@ function VotesContainer({
       case "RESET_CLICKED_STATE":
         return {
           ...state,
-          upvoteClicked: upvoteClickedProp,
-          downvoteClicked: downvoteClickedProp,
-          funnyClicked: funnyClickedProp,
+          upvoteClicked: votes.upvoteClicked,
+          downvoteClicked: votes.downvoteClicked,
+          funnyClicked: votes.funnyClicked,
         };
       case "RESET_VOTE_COUNT":
         return {
           ...state,
-          upvoteCount: initUpvoteCount,
-          downvoteCount: initDownvoteCount,
-          funnyCount: initFunnyCount,
+          upvoteCount: votes.initUpvoteCount,
+          downvoteCount: votes.initDownvoteCount,
+          funnyCount: votes.initFunnyCount,
         };
       case "TOGGLE_UPVOTE":
         changeVoteCount("agree", state.upvoteClicked ? "revoke" : "add");
@@ -95,30 +102,33 @@ function VotesContainer({
   };
 
   const [state, dispatch] = useReducer(reducer, {
-    upvoteClicked: false,
-    downvoteClicked: false,
-    funnyClicked: false,
-    upvoteCount: initUpvoteCount,
-    downvoteCount: initDownvoteCount,
-    funnyCount: initFunnyCount,
+    upvoteClicked: votes.upvoteClicked,
+    downvoteClicked: votes.downvoteClicked,
+    funnyClicked: votes.funnyClicked,
+    upvoteCount: votes.initUpvoteCount,
+    downvoteCount: votes.initDownvoteCount,
+    funnyCount: votes.initFunnyCount,
   });
 
   useEffect(() => {
     dispatch({ type: "RESET_CLICKED_STATE" });
-  }, [upvoteClickedProp, downvoteClickedProp, funnyClickedProp]);
+  }, [votes.upvoteClicked, votes.downvoteClicked, votes.funnyClicked]);
 
   // update vote counts when the vote counts fetched from the db has changed
   useEffect(() => {
     dispatch({ type: "RESET_VOTE_COUNT" });
-  }, [initUpvoteCount, initDownvoteCount, initFunnyCount]);
+  }, [votes.initUpvoteCount, votes.initDownvoteCount, votes.initFunnyCount]);
 
   // ensure that up/downvotes are mutually exclusive
   const handleUpDownvote = (type) => {
-    dispatch({ type: `TOGGLE_${type.toUpperCase()}`})
-    if (state.upvoteClicked !== state.downvoteClicked) {
-         dispatch({type: type === "upvote" ? 'TOGGLE_DOWNVOTE' : 'TOGGLE_UPVOTE'})
+    if (type === 'upvote' && state.downvoteClicked && !state.upvoteClicked){
+      dispatch({type: 'TOGGLE_DOWNVOTE'})
+    } else if (type === 'downvote' && state.upvoteClicked && !state.downvoteClicked){
+      dispatch({type: 'TOGGLE_UPVOTE'})
     }
+    dispatch({ type: `TOGGLE_${type.toUpperCase()}`})
   }
+
   return (
     <Container>
       <Grid centered style={{ padding: "30px 10px", height: "100%" }}>
@@ -154,43 +164,53 @@ function VotesContainer({
   );
 }
 
-const votesContainerPropTypes = {
-  initUpvoteCount: PropTypes.number.isRequired,
-  initDownvoteCount: PropTypes.number.isRequired,
-  initFunnyCount: PropTypes.number.isRequired,
+VotesContainer.propTypes = propTypesVotesContainer;
+
+const propTypesReviewCard = {
+  reviewType: PropTypes.oneOf(['professor', 'course']).isRequired,
+  reviewHeader: PropTypes.oneOfType([
+    PropTypes.shape({
+      courseId: PropTypes.number.isRequired,
+      courseName: PropTypes.string.isRequired,
+      courseCode: PropTypes.string.isRequired,
+    }),
+    PropTypes.shape({
+      profId: PropTypes.number.isRequired,
+      profFirstName: PropTypes.string.isRequired,
+      profLastName: PropTypes.string.isRequired,
+      uni: PropTypes.string.isRequired
+    }),
+  ]).isRequired,
+  votes: PropTypes.shape({
+    initUpvoteCount: PropTypes.number.isRequired,
+    initDownvoteCount: PropTypes.number.isRequired,
+    initFunnyCount: PropTypes.number.isRequired,
+    upvoteClicked: PropTypes.bool.isRequired,
+    downvoteClicked: PropTypes.bool.isRequired,
+    funnyClicked: PropTypes.bool.isRequired,
+  }).isRequired,
+  workload: PropTypes.string,
+  submissionDate: PropTypes.string.isRequired,
   reviewId: PropTypes.number.isRequired,
-  upvoteClickedProp: PropTypes.bool,
-  downvoteClickedProp: PropTypes.bool,
-  funnyClickedProp: PropTypes.bool,
+  deprecated: PropTypes.bool,
+  content: PropTypes.string,
 };
 
-const votesContainerDefaultProps = {
-  upvoteClickedProp: false,
-  downvoteClickedProp: false,
-  funnyClickedProp: false,
-};
-
-VotesContainer.propTypes = votesContainerPropTypes;
-VotesContainer.defaultProps = votesContainerDefaultProps;
+const defaultPropsReviewCard = {
+    workload: "",
+    deprecated: false,
+    content: ""
+}
 
 export default function ReviewCard({
-  upvoteClicked,
+  reviewType,
+  reviewHeader,
+  votes,
   workload,
-  onlyProf,
-  onlyCourse,
   submissionDate,
   reviewId,
-  initUpvoteCount,
-  initDownvoteCount,
-  initFunnyCount,
-  profFirstName,
-  profLastName,
-  funnyClicked,
-  downvoteClicked,
   deprecated,
-  courseCode,
-  courseName,
-  content,
+  content
 }) {
 
   return (
@@ -209,18 +229,17 @@ export default function ReviewCard({
               </Message>
             )}
             <div style={{ position: "relative" }}>
-              {!onlyProf && (
+              {reviewType === 'professor' ? (
                 <ProfessorDisplayName
                   as="h3"
-                  firstName={profFirstName}
-                  lastName={profLastName}
+                  firstName={reviewHeader.profFirstName}
+                  lastName={reviewHeader.profLastName}
                 />
-              )}
-              {!onlyCourse && (
+              ) : (
                 <CourseDisplayName
                   as="h3"
-                  code={courseCode}
-                  name={courseName}
+                  code={reviewHeader.courseCode}
+                  name={reviewHeader.courseName}
                 />
               )}
               <Header as="h5">{submissionDate}</Header>
@@ -246,13 +265,8 @@ export default function ReviewCard({
           width={2}
         >
           <VotesContainer
-            downvoteClickedProp={downvoteClicked}
-            funnyClickedProp={funnyClicked}
-            initDownvoteCount={initDownvoteCount}
-            initFunnyCount={initFunnyCount}
-            initUpvoteCount={initUpvoteCount}
             reviewId={reviewId}
-            upvoteClickedProp={upvoteClicked}
+            votes={votes}
           />
         </Grid.Column>
       </Grid>
@@ -260,31 +274,5 @@ export default function ReviewCard({
   );
 }
 
-const reviewCardPropTypes = {
-  upvoteClicked: PropTypes.bool.isRequired,
-  workload: PropTypes.string,
-  onlyProf: PropTypes.bool.isRequired,
-  onlyCourse: PropTypes.bool.isRequired,
-  submissionDate: PropTypes.string.isRequired,
-  reviewId: PropTypes.number.isRequired,
-  initDownvoteCount: PropTypes.number.isRequired,
-  initUpvoteCount: PropTypes.number.isRequired,
-  initFunnyCount: PropTypes.number.isRequired,
-  profFirstName: PropTypes.string.isRequired,
-  profLastName: PropTypes.string.isRequired,
-  funnyClicked: PropTypes.bool.isRequired,
-  downvoteClicked: PropTypes.bool.isRequired,
-  deprecated: PropTypes.bool,
-  courseCode: PropTypes.string.isRequired,
-  courseName: PropTypes.string.isRequired,
-  content: PropTypes.string,
-};
-
-const reviewCardDefaultProps = {
-    workload: "",
-    deprecated: false,
-    content: ""
-}
-
-ReviewCard.propTypes = reviewCardPropTypes;
-ReviewCard.defaultProps = reviewCardDefaultProps;
+ReviewCard.propTypes = propTypesReviewCard;
+ReviewCard.defaultProps = defaultPropsReviewCard;

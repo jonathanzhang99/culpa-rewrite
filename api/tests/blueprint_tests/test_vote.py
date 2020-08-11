@@ -22,14 +22,13 @@ class VoteTest(BaseTest):
                         reviewId=reviewId
                     ), environ_base={'REMOTE_ADDR': '127.0.0.1'})
 
-                    self.assertEqual(res.json, {
-                        "status": "success"
-                    })
+                    self.assertEqual(res.status_code, 200)
 
                     actionMap[action].assert_called_with(
                         12345,
                         voteType,
-                        "127.0.0.1"
+                        "127.0.0.1",
+                        mock.ANY
                     )
 
     @mock.patch("api.blueprints.vote.add_vote")
@@ -51,4 +50,4 @@ class VoteTest(BaseTest):
                 self.assertEqual(res.json, {
                     "error": exception_msg
                 })
-                self.assertEqual(res.status_code, 500)
+                self.assertEqual(res.status_code, 400)

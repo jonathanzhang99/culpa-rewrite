@@ -7,13 +7,13 @@ from api.tests.data_tests.common import setup_reviews
 class VotesWriterTest(LoadersWritersBaseTest):
     def test_add_vote(self):
         voteTypes = ['agree', 'disagree', 'funny']
-        reviewId, ip = 1, '123456789101112'
+        reviewId, ip, time = 1, '123456789101112', '2020-02-02'
         setup_reviews(db.get_cursor())
         db.commit()
 
         for voteType in voteTypes:
             with self.subTest(voteType):
-                add_vote(reviewId, voteType, ip)
+                add_vote(reviewId, voteType, ip, time)
                 cur = db.get_cursor()
                 cur.execute(
                     'SELECT review_id, ip, type '
