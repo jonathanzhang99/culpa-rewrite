@@ -18,6 +18,11 @@ def get_reviews_by_cp_id(
     sort_desc=None,
     filter_year=None
 ):
+    '''
+    loads all reviews and votes associated with a list of cp_ids,
+    supports sorting by time/vote/rating and filtering by time,
+    also loads the clicked state of buttons for a specific user
+    '''
     cur = db.get_cursor()
     q = Query.from_(review).join(vote).on(
         review.review_id == vote.review_id
@@ -72,21 +77,18 @@ def get_reviews_by_cp_id(
 
     if sort_crit and sort_desc:
         order = Order.desc if sort_desc else Order.asc
-        crit = None
-        if sort_crit == 'rating':
-            crit = review.rating
-        elif sort_crit == 'submission_date':
-            crit = review.submission_date
-        elif sort_crit == 'upvotes':
-            crit = fn.Sum(Case().when(
-                vote.type == "agree", 1
-            ).else_(0))
-        else:
-            crit = fn.Sum(Case().when(
-                vote.type == "disagree", 1
-            ).else_(0))
+        sort_crit_map = {
+            'rating': review.rating,
+            'submission_date': review.submission_date,
+            'upvotes': fn.Sum(Case().when(
+                            vote.type == "agree", 1
+                        ).else_(0)),
+            'downvotes': fn.Sum(Case().when(
+                            vote.type == "disagree", 1
+                        ).else_(0)),
+        }
 
-        q = q.orderby(crit, order=order)
+        q = q.orderby(sort_crit_map[sort_crit], order=order)
 
     if filter_year:
         q = q.where(

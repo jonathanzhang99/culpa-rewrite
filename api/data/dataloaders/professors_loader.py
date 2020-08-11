@@ -59,6 +59,9 @@ def get_cp_id_by_prof(prof_id, course_ids=None):
 
 
 def get_prof_by_cp_id(cp_id):
+    '''
+    loads info of professors related to a cp_id
+    '''
     cur = db.get_cursor()
     q = Query.from_(professor).join(course_professor).on(
         professor.professor_id == course_professor.professor_id

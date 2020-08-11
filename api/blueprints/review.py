@@ -85,6 +85,14 @@ def submit_review():
 
 @review_blueprint.route('/get', methods=['GET', 'POST'])
 def get_reviews():
+    '''
+    loads reviews for a specific prof/course,
+    supports sorting/filtering,
+    used by both the Course/ProfessorPage (GET req through
+    useDataFetch upon initial rendering) and the
+    shared ReviewSection component (POST req when sorting
+    and/or filtering criteria is changed)
+    '''
     sorting_spec = {
         'best': ['rating', True],
         'worst': ['rating', False],
