@@ -4,8 +4,8 @@ from api.tests import BaseTest
 
 class CoursesTest(BaseTest):
 
-    @mock.patch('api.blueprints.courses.get_department_professors')
-    @mock.patch('api.blueprints.courses.get_course')
+    @mock.patch('api.blueprints.course.get_department_professors')
+    @mock.patch('api.blueprints.course.get_course')
     def test_course_summary(self, mock_get_course,
                             mock_get_department_professors):
         course_id = 1
@@ -56,8 +56,8 @@ class CoursesTest(BaseTest):
         res = self.app.get(f'/api/course/{course_id}')
         self.assertDictEqual(expected_res, res.json)
 
-    @mock.patch('api.blueprints.courses.get_department_professors')
-    @mock.patch('api.blueprints.courses.get_course')
+    @mock.patch('api.blueprints.course.get_department_professors')
+    @mock.patch('api.blueprints.course.get_course')
     def test_course_summary_no_course(self, mock_get_course,
                                       mock_get_department_professors):
         course_id = 20
@@ -66,13 +66,13 @@ class CoursesTest(BaseTest):
 
         mock_get_department_professors.return_value = []
 
-        expected_res = {'courseSummary': {}}
+        expected_res = {'error': 'course not found'}
         res = self.app.get(f'/api/course/{course_id}')
 
         self.assertDictEqual(expected_res, res.json)
 
-    @mock.patch('api.blueprints.courses.get_department_professors')
-    @mock.patch('api.blueprints.courses.get_course')
+    @mock.patch('api.blueprints.course.get_department_professors')
+    @mock.patch('api.blueprints.course.get_course')
     def test_course_summary_no_professors(self, mock_get_course,
                                           mock_get_department_professors):
         course_id = 1
@@ -99,8 +99,8 @@ class CoursesTest(BaseTest):
 
         self.assertDictEqual(expected_res, res.json)
 
-    @mock.patch('api.blueprints.courses.get_department_professors')
-    @mock.patch('api.blueprints.courses.get_course')
+    @mock.patch('api.blueprints.course.get_department_professors')
+    @mock.patch('api.blueprints.course.get_course')
     def test_course_summary_db_failure(self, mock_get_course,
                                        mock_get_department_professors):
         course_id = 1

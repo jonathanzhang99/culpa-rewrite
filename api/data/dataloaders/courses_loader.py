@@ -17,7 +17,7 @@ def get_course(course_id):
             course.department_id,
             course.call_number,
             department.name.as_('department_name'),
-    ) \
+        ) \
         .inner_join(department) \
         .on(course.department_id == department.department_id) \
         .where(course.course_id == course_id).get_sql()
@@ -34,7 +34,7 @@ def get_department_professors(course_id):
             professor.last_name,
             department.department_id,
             department.name,
-    ) \
+        ) \
         .inner_join(professor) \
         .on(course_professor.professor_id == professor.professor_id) \
         .inner_join(department_professor) \

@@ -33,7 +33,7 @@ class CoursesLoaderTest(LoadersWritersBaseTest):
 
         res = get_course(course_id)
 
-        self.assertTrue(len(res) == 0)
+        self.assertEqual((), res)
 
     def test_get_department_professors(self):
         self.populate()
@@ -62,4 +62,4 @@ class CoursesLoaderTest(LoadersWritersBaseTest):
 
         res = get_department_professors(course_id)
 
-        self.assertTrue(len(res) == 0)
+        self.assertEqual((), res)
