@@ -131,7 +131,11 @@ const propTypes = {
             upvoteClicked: PropTypes.bool.isRequired,
             downvoteClicked: PropTypes.bool.isRequired,
             funnyClicked: PropTypes.bool.isRequired,
-            deprecated: PropTypes.bool.isRequired
+            deprecated: PropTypes.bool.isRequired,
+            courseName: PropTypes.string.isRequired,
+            courseCode: PropTypes.string.isRequired,
+            profFirstName: PropTypes.string.isRequired,
+            profLastName: PropTypes.string.isRequired,
         })
     ).isRequired,
     pageTypeProp: PropTypes.string.isRequired,
