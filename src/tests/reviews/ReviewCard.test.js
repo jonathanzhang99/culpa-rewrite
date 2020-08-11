@@ -3,7 +3,6 @@ import React from "react";
 import { MemoryRouter } from "react-router-dom";
 
 import { AuthProvider } from "components/common/Authentication";
-import useDataFetch from "components/common/useDataFetch";
 import ReviewCard from "components/reviews/ReviewCard";
 
 jest.mock('components/common/useDataFetch')
@@ -13,7 +12,7 @@ describe("ReviewCard tests setup", () => {
      testName: "complete & normal",
      onlyProf: true, 
      onlyCourse: true, 
-     reviewId: "12345",
+     reviewId: 12345,
      submissionDate: "2020-02-01",
      upvotes: 10,
      downvotes: 2,
@@ -27,7 +26,7 @@ describe("ReviewCard tests setup", () => {
      testName: "profCard",
      onlyProf: true, 
      onlyCourse: false, 
-     reviewId: "12345",
+     reviewId: 12345,
      submissionDate: "2020-02-01",
      upvotes: 10,
      downvotes: 2,
@@ -41,7 +40,7 @@ describe("ReviewCard tests setup", () => {
      testName: "courseCard",
      onlyProf: false, 
      onlyCourse: true, 
-     reviewId: "12345",
+     reviewId: 12345,
      submissionDate: "2020-02-01",
      upvotes: 10,
      downvotes: 2,
@@ -53,67 +52,42 @@ describe("ReviewCard tests setup", () => {
      content: "an interesting class"
   }]
 
-  const useDataFetchReturnedValues = [{
+  const clickedStates = [{
      upvoteClicked: true,
      downvoteClicked: false,
      funnyClicked: true,
-     isLoading: false,
-     isError: false
   }, {
      upvoteClicked: true,
      downvoteClicked: true,
      funnyClicked: true,
-     isLoading: false,
-     isError: false
   }, {
      upvoteClicked: false,
      downvoteClicked: false,
      funnyClicked: false,
-     isLoading: false,
-     isError: false
-  }, {
-     upvoteClicked: false,
-     downvoteClicked: false,
-     funnyClicked: false,
-     isLoading: true,
-     isError: false
-  }, {
-     upvoteClicked: false,
-     downvoteClicked: false,
-     funnyClicked: false,
-     isLoading: false,
-     isError: true
   }]
 
   testParams.forEach(({testName, onlyProf, onlyCourse, reviewId, submissionDate, upvotes, downvotes, funnys, 
                        profFirstName, profLastName, courseCode, courseName, content}) => {
-      useDataFetchReturnedValues.forEach(({upvoteClicked, downvoteClicked, funnyClicked, isLoading, isError}) => {
+      clickedStates.forEach(({upvoteClicked, downvoteClicked, funnyClicked}) => {
         test(testName, () => {
-            useDataFetch.mockReturnValue({
-                  data: { 
-                      upvoteClicked,
-                      downvoteClicked,
-                      funnyClicked
-                  }, 
-                  isLoading,
-                  isError
-              })
             const snapshot = render(
                 <AuthProvider>
                   <MemoryRouter>
                       <ReviewCard deprecated
                                   content={content}
                                   courseCode={courseCode} courseName={courseName}
+                                  downvoteClicked={downvoteClicked}
+                                  funnyClicked={funnyClicked}
                                   initDownvoteCount={downvotes}
                                   initFunnyCount={funnys} initUpvoteCount={upvotes} onlyCourse={onlyCourse}
                                   onlyProf={onlyProf} profFirstName={profFirstName}
                                   profLastName={profLastName} reviewId={reviewId}
-                                  submissionDate={submissionDate} />
+                                  submissionDate={submissionDate} 
+                                  upvoteClicked={upvoteClicked}/>
                   </MemoryRouter>
                 </AuthProvider>
             )
             expect(snapshot).toMatchSnapshot()
-            expect(useDataFetch).toHaveBeenCalled()
         });
       })
   });

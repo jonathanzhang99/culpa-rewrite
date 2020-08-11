@@ -10,10 +10,7 @@ import {
 } from "semantic-ui-react";
 
 import { CourseDisplayName } from "components/common/CourseDisplay";
-import ErrorComponent from "components/common/ErrorComponent";
-import LoadingComponent from "components/common/LoadingComponent";
 import { ProfessorDisplayName } from "components/common/ProfessorDisplay";
-import useDataFetch from "components/common/useDataFetch";
 import downvoteClickedIcon from "icons/blue-downvote.png";
 import upvoteClickedIcon from "icons/blue-upvote.png";
 import downvoteIcon from "icons/downvote.png";
@@ -161,7 +158,7 @@ const votesContainerPropTypes = {
   initUpvoteCount: PropTypes.number.isRequired,
   initDownvoteCount: PropTypes.number.isRequired,
   initFunnyCount: PropTypes.number.isRequired,
-  reviewId: PropTypes.string.isRequired,
+  reviewId: PropTypes.number.isRequired,
   upvoteClickedProp: PropTypes.bool,
   downvoteClickedProp: PropTypes.bool,
   funnyClickedProp: PropTypes.bool,
@@ -177,6 +174,7 @@ VotesContainer.propTypes = votesContainerPropTypes;
 VotesContainer.defaultProps = votesContainerDefaultProps;
 
 export default function ReviewCard({
+  upvoteClicked,
   workload,
   onlyProf,
   onlyCourse,
@@ -187,25 +185,13 @@ export default function ReviewCard({
   initFunnyCount,
   profFirstName,
   profLastName,
+  funnyClicked,
+  downvoteClicked,
   deprecated,
   courseCode,
   courseName,
   content,
 }) {
-  // get clicked state of each button for this specific user
-  const {
-    data: { upvoteClicked, downvoteClicked, funnyClicked },
-    isLoading,
-    isError,
-  } = useDataFetch(`/api/vote/get_clicked_state?reviewId=${reviewId}`, {
-    upvoteClicked: false,
-    downvoteClicked: false,
-    funnyClicked: false,
-  });
-
-  if (isLoading || isError) {
-    return isLoading ? <LoadingComponent /> : <ErrorComponent />;
-  }
 
   return (
     <Container fluid>
@@ -275,16 +261,19 @@ export default function ReviewCard({
 }
 
 const reviewCardPropTypes = {
+  upvoteClicked: PropTypes.bool.isRequired,
   workload: PropTypes.string,
   onlyProf: PropTypes.bool.isRequired,
   onlyCourse: PropTypes.bool.isRequired,
   submissionDate: PropTypes.string.isRequired,
-  reviewId: PropTypes.string.isRequired,
+  reviewId: PropTypes.number.isRequired,
   initDownvoteCount: PropTypes.number.isRequired,
   initUpvoteCount: PropTypes.number.isRequired,
   initFunnyCount: PropTypes.number.isRequired,
   profFirstName: PropTypes.string.isRequired,
   profLastName: PropTypes.string.isRequired,
+  funnyClicked: PropTypes.bool.isRequired,
+  downvoteClicked: PropTypes.bool.isRequired,
   deprecated: PropTypes.bool,
   courseCode: PropTypes.string.isRequired,
   courseName: PropTypes.string.isRequired,
