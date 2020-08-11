@@ -1,12 +1,39 @@
 import flask
 
-from api.data.dataloaders.courses_loader import get_cp_id_by_course
-from api.data.dataloaders.professors_loader import get_cp_id_by_prof
+from api.data.dataloaders.courses_loader import get_cp_id_by_course, get_course_by_cp_id
+from api.data.dataloaders.professors_loader import get_cp_id_by_prof, get_prof_by_cp_id
 from api.data.dataloaders.reviews_loader import get_reviews_by_cp_id
 from api.data.datawriters.reviews_writer import insert_review
 
 review_blueprint = flask.Blueprint('review_blueprint', __name__)
 
+
+def parse_review(review, r_type):
+    cp_id = review['course_professor_id']
+    course_code, course_name, prof_first, prof_last = '', '', '', ''
+    if r_type == 'course':
+        prof_first, prof_last = get_prof_by_cp_id(cp_id)
+    else:
+        course_code, course_name = get_course_by_cp_id(cp_id)
+
+    return {
+            'id': review['review_id'],
+            'content': review['content'],
+            'workload': review['workload'],
+            'rating': review['rating'],
+            'submissionDate': review['submission_date'],
+            'upvotes': int(review['upvotes']),
+            'downvotes': int(review['downvotes']),
+            'funnys': int(review['funnys']),
+            'upvoteClicked': bool(review['upvote_clicked']),
+            'downvoteClicked': bool(review['downvote_clicked']),
+            'funnyClicked': bool(review['funny_clicked']),
+            'deprecated': bool(review['deprecated']),
+            'courseName': course_name,
+            'courseCode': course_code,
+            'profFirstName': prof_first,
+            'profLastName': prof_last
+        }
 
 @review_blueprint.route('/submit', methods=['POST'])
 def submit_review():
@@ -113,20 +140,7 @@ def get_reviews():
                 ), reviews
             ))
 
-        json = [{
-            'id': review['review_id'],
-            'content': review['content'],
-            'workload': review['workload'],
-            'rating': review['rating'],
-            'submissionDate': review['submission_date'],
-            'upvotes': int(review['upvotes']),
-            'downvotes': int(review['downvotes']),
-            'funnys': int(review['funnys']),
-            'upvoteClicked': bool(review['upvote_clicked']),
-            'downvoteClicked': bool(review['downvote_clicked']),
-            'funnyClicked': bool(review['funny_clicked']),
-            'deprecated': bool(review['deprecated'])
-        } for review in reviews]
+        json = [parse_review(review, page_type) for review in reviews]
         return {'reviews': json}
 
     except Exception as e:

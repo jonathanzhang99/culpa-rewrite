@@ -24,12 +24,14 @@ def get_reviews_by_cp_id(
     ).where(
         review.course_professor_id.isin(course_prof_ids)
     ).groupby(
+        review.course_professor_id,
         review.review_id,
         review.content,
         review.workload,
         review.rating,
         review.submission_date
     ).select(
+        review.course_professor_id,
         review.review_id,
         review.content,
         review.workload,

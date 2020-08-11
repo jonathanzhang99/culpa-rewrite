@@ -56,3 +56,19 @@ def get_cp_id_by_prof(prof_id, course_ids=None):
 
     cur.execute(q.get_sql())
     return cur.fetchall()
+
+
+def get_prof_by_cp_id(cp_id):
+    cur = db.get_cursor()
+    q = Query.from_(professor).join(course_professor).on(
+        professor.professor_id == course_professor.professor_id
+    ).where(
+        course_professor.course_professor_id == cp_id
+    ).select(
+        professor.first_name,
+        professor.last_name
+    ).get_sql()
+    cur.execute(q)
+
+    res = cur.fetchone()
+    return [res['first_name'], res['last_name']]

@@ -1,7 +1,7 @@
 from pypika import MySQLQuery as Query
 
 from api.data import db
-from api.data.common import course_professor
+from api.data.common import course, course_professor
 
 
 def get_cp_id_by_course(course_id, prof_ids=None):
@@ -23,3 +23,19 @@ def get_cp_id_by_course(course_id, prof_ids=None):
 
     cur.execute(q.get_sql())
     return cur.fetchall()
+
+
+def get_course_by_cp_id(cp_id):
+    cur = db.get_cursor()
+    q = Query.from_(course).join(course_professor).on(
+        course.course_id == course_professor.course_id
+    ).where(
+        course_professor.course_professor_id == cp_id
+    ).select(
+        course.call_number,
+        course.name,
+    ).get_sql()
+    cur.execute(q)
+
+    res = cur.fetchone()
+    return [res['call_number'], res['name']]
