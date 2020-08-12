@@ -168,7 +168,7 @@ Object {
   "baseElement": <body>
     <div>
       <a
-        href="/courses/null"
+        href="/courses/0"
       >
         <div
           class="ui header"
@@ -182,7 +182,7 @@ Object {
   </body>,
   "container": <div>
     <a
-      href="/courses/null"
+      href="/courses/0"
     >
       <div
         class="ui header"
