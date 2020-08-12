@@ -3,12 +3,13 @@ import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 
 import { AuthProvider, ProtectedRoute } from "components/common/Authentication";
 import CoursePage from "components/CoursePage";
-import ReviewForm from "components/CreateReviewPage";
+import CreateReviewPage from "components/CreateReviewPage";
 import DepartmentInfoPage from "components/DepartmentInfoPage";
 import DepartmentsPage from "components/DepartmentsPage";
-import Login from "components/LoginPage";
+import LoginPage from "components/LoginPage";
 import NavigationBar from "components/NavigationBar";
 import Professors from "components/ProfessorsPage";
+import Reviews from "components/ReviewsPage";
 
 function App() {
   return (
@@ -17,13 +18,17 @@ function App() {
         <NavigationBar>
           <Switch>
             <Route exact path="/login">
-              <Login />
+              <LoginPage />
             </Route>
             <ProtectedRoute exact path="/admin">
               <h1>Admin only page!!</h1>
             </ProtectedRoute>
+            {/* temporary page for debugging review card */}
+            <Route path="/reviews">
+              <Reviews />
+            </Route>
             <Route path="/review">
-              <ReviewForm />
+              <CreateReviewPage />
             </Route>
             <Route path="/professors">
               <Professors />
