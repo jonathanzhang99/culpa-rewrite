@@ -27,14 +27,15 @@ def course_summary(course_id):
         professor_id = dp_row['professor_id']
         if not associated_professors.get(professor_id):
             associated_professors[professor_id] = {
-                'first_name': dp_row['first_name'],
-                'last_name': dp_row['last_name'],
-                'departments': []
+                'firstName': dp_row['first_name'],
+                'lastName': dp_row['last_name'],
+                'profDepartments': [],
+                'professorId': professor_id,
             }
 
-        associated_professors[professor_id]['departments'].append({
-            'department_id': dp_row['department_id'],
-            'name': dp_row['name'],
+        associated_professors[professor_id]['profDepartments'].append({
+            'profDepartmentId': dp_row['department_id'],
+            'profDepartmentName': dp_row['name'],
         })
 
     course_summary_json = {
@@ -42,14 +43,6 @@ def course_summary(course_id):
         'courseCallNumber': course['call_number'],
         'departmentId': course['department_id'],
         'departmentName': course['department_name'],
-        'associatedProfessors': [{
-            'firstName': professor['first_name'],
-            'lastName': professor['last_name'],
-            'professorId': professor_id,
-            'profDepartments': [{
-                'profDepartmentId': department['department_id'],
-                'profDepartmentName': department['name']
-            } for department in professor['departments']],
-        } for professor_id, professor in associated_professors.items()],
+        'associatedProfessors': list(associated_professors.values()),
     }
     return {'courseSummary': course_summary_json}
