@@ -3,6 +3,7 @@ from flask import Flask
 from api.blueprints.auth import auth_blueprint
 from api.blueprints.departments import departments_blueprint
 from api.blueprints.professors import professors_blueprint
+from api.blueprints.course import course_blueprint
 from api.blueprints.review import review_blueprint
 from api.blueprints.search import search_blueprint
 from api.blueprints.vote import vote_blueprint
@@ -26,6 +27,7 @@ def create_app(config=None):
         departments_blueprint,
         url_prefix='/api/departments')
     app.register_blueprint(professors_blueprint, url_prefix='/api/professor')
+    app.register_blueprint(course_blueprint, url_prefix='/api/course')
     app.register_blueprint(review_blueprint, url_prefix='/api/review')
     app.register_blueprint(search_blueprint, url_prefix='/api/search')
     app.register_blueprint(vote_blueprint, url_prefix='/api/vote')

@@ -56,6 +56,19 @@ def setup_department_professor_courses(cur):
         course_professor
     )
 
+    department_professor = [
+        (1, 1),  # Verma, Computer Science
+        (1, 3),  # Verma, Mathematics
+        (2, 2),  # Bollinger, Law
+        (3, 1),  # JWL, Computer Science
+    ]
+
+    cur.executemany(
+        'INSERT INTO department_professor (professor_id, department_id)'
+        'VALUES (%s, %s)',
+        department_professor
+    )
+
 
 # NOTE: this function calls setup_department_professor_courses
 def setup_reviews(cur):

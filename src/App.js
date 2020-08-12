@@ -2,13 +2,14 @@ import React from "react";
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 
 import { AuthProvider, ProtectedRoute } from "components/common/Authentication";
+import CoursePage from "components/CoursePage";
 import CreateReviewPage from "components/CreateReviewPage";
 import DepartmentInfoPage from "components/DepartmentInfoPage";
 import DepartmentsPage from "components/DepartmentsPage";
 import LoginPage from "components/LoginPage";
 import NavigationBar from "components/NavigationBar";
 import Professors from "components/ProfessorsPage";
-import Reviews from "components/ReviewsPage"
+import Reviews from "components/ReviewsPage";
 
 function App() {
   return (
@@ -31,6 +32,9 @@ function App() {
             </Route>
             <Route path="/professors">
               <Professors />
+            </Route>
+            <Route path="/course/:courseId">
+              <CoursePage />
             </Route>
             <Route path="/departments">
               <DepartmentsPage />
