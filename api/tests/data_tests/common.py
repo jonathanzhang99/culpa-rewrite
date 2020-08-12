@@ -67,6 +67,8 @@ def setup_department_professor_courses(cur):
         'INSERT INTO department_professor (professor_id, department_id)'
         'VALUES (%s, %s)',
         department_professor
+    )
+
 
 # NOTE: this function calls setup_department_professor_courses
 def setup_reviews(cur):
@@ -79,7 +81,7 @@ def setup_reviews(cur):
     # preliminary setup
     setup_department_professor_courses(cur)
 
-    reviews=[
+    reviews = [
         (2, 'demo content 1', '123.0.0.1', 'demo workload 1', 3, '2020-02-10'),
         (2, 'demo content 2', '123.0.0.1', 'demo workload 2', 3, '2017-02-10'),
         (3, 'demo content 3', '123.0.0.1', 'demo workload 3', 3, '2015-02-10'),
@@ -106,7 +108,7 @@ def setup_votes(cur):
     '''
     setup_reviews(cur)
 
-    votes=[
+    votes = [
         (1, "123.456.78.910", "2020-08-11", "agree"),
         (1, "123.456.78.911", "2020-04-03", "disagree"),
         (2, "123.456.78.910", "2018-08-11", "funny"),
