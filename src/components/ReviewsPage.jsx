@@ -24,9 +24,9 @@ export default function ReviewsPage() {
         <div>
             <p>placeholder for other components</p>
             <ReviewSection assocList={[]}
-                           idProp={38} 
+                           id={38} 
                            initReviews={reviews}
-                           pageTypeProp="course" />
+                           pageType="course" />
         </div>
     )
 }

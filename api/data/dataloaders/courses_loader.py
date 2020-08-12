@@ -35,10 +35,10 @@ def get_course_by_cp_id(cp_id):
     ).where(
         course_professor.course_professor_id == cp_id
     ).select(
+        course.course_id,
         course.call_number,
         course.name,
     ).get_sql()
     cur.execute(q)
 
-    res = cur.fetchone()
-    return [res['call_number'], res['name']]
+    return cur.fetchone()

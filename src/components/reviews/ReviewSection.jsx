@@ -5,7 +5,7 @@ import { Button } from "semantic-ui-react"
 import ErrorComponent from "components/common/ErrorComponent";
 import LoadingComponent from "components/common/LoadingComponent";
 
-export default function ReviewSection({initReviews, pageTypeProp, idProp, assocList}){
+export default function ReviewSection({initReviews, pageType, id, assocList}){
     const reducer = (state, action) => {
         switch(action.type){
             case "RELOAD_START":
@@ -51,8 +51,8 @@ export default function ReviewSection({initReviews, pageTypeProp, idProp, assocL
         isLoading: false,
         isError: false,
         reviews: initReviews,
-        pageType: pageTypeProp,
-        id: idProp,
+        pageType,
+        id,
         sorting: '',
         filters: {
             assocListLimit: [],
@@ -120,26 +120,37 @@ export default function ReviewSection({initReviews, pageTypeProp, idProp, assocL
 const propTypes = {
     initReviews: PropTypes.arrayOf(
         PropTypes.shape({
-            id: PropTypes.number.isRequired,
-            content: PropTypes.string.isRequired,
-            workload: PropTypes.string.isRequired,
-            rating: PropTypes.number.isRequired,
+            reviewType: PropTypes.oneOf(['professor', 'course']).isRequired,
+            reviewHeader: PropTypes.oneOfType([
+                PropTypes.shape({
+                    courseId: PropTypes.number.isRequired,
+                    courseName: PropTypes.string.isRequired,
+                    courseCode: PropTypes.string.isRequired,
+                }),
+                PropTypes.shape({
+                    profId: PropTypes.number.isRequired,
+                    profFirstName: PropTypes.string.isRequired,
+                    profLastName: PropTypes.string.isRequired,
+                    uni: PropTypes.string.isRequired
+                }),
+            ]).isRequired,
+            votes: PropTypes.shape({
+                initUpvoteCount: PropTypes.number.isRequired,
+                initDownvoteCount: PropTypes.number.isRequired,
+                initFunnyCount: PropTypes.number.isRequired,
+                upvoteClicked: PropTypes.bool.isRequired,
+                downvoteClicked: PropTypes.bool.isRequired,
+                funnyClicked: PropTypes.bool.isRequired,
+            }).isRequired,
+            workload: PropTypes.string,
             submissionDate: PropTypes.string.isRequired,
-            upvotes: PropTypes.number.isRequired,
-            downvotes: PropTypes.number.isRequired,
-            funnys: PropTypes.number.isRequired,
-            upvoteClicked: PropTypes.bool.isRequired,
-            downvoteClicked: PropTypes.bool.isRequired,
-            funnyClicked: PropTypes.bool.isRequired,
-            deprecated: PropTypes.bool.isRequired,
-            courseName: PropTypes.string.isRequired,
-            courseCode: PropTypes.string.isRequired,
-            profFirstName: PropTypes.string.isRequired,
-            profLastName: PropTypes.string.isRequired,
+            reviewId: PropTypes.number.isRequired,
+            deprecated: PropTypes.bool,
+            content: PropTypes.string,
         })
     ).isRequired,
-    pageTypeProp: PropTypes.string.isRequired,
-    idProp: PropTypes.number.isRequired,
+    pageType: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
     assocList: PropTypes.arrayOf(
         PropTypes.number
     ).isRequired

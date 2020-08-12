@@ -68,11 +68,7 @@ def get_reviews_by_cp_id(
                 vote.type == "funny",
                 vote.ip == ip
             ]), 1
-        ).else_(0)).as_('funny_clicked'),
-        Case().when(
-            DateDiff(fn.Now(), review.submission_date) >= 5 * 365,
-            True
-        ).else_(False).as_('deprecated'),
+        ).else_(0)).as_('funny_clicked')
     )
 
     if sort_crit and sort_desc:

@@ -1,4 +1,5 @@
 import flask
+from datetime import datetime, timedelta
 
 from api.data.dataloaders.courses_loader import get_cp_id_by_course, \
     get_course_by_cp_id
@@ -14,34 +15,48 @@ def parse_review(review, r_type):
     '''
     static method for parsing a review into a json object
     '''
+    deprecated = (
+        datetime.utcnow() - review['submission_date']
+    ) / timedelta(days=1) >= 5 * 365
+
     cp_id = review['course_professor_id']
-    course_code, course_name, prof_first, prof_last = '', '', '', ''
     try:
         if r_type == 'course':
-            prof_first, prof_last = get_prof_by_cp_id(cp_id)
+            res = get_prof_by_cp_id(cp_id)
+            reviewHeader = {
+                'profId': res['professor_id'],
+                'profFirstName': res['first_name'],
+                'profLastName': res['last_name'],
+                'uni': res['uni']
+            }
         else:
-            course_code, course_name = get_course_by_cp_id(cp_id)
+            res = get_course_by_cp_id(cp_id)
+            reviewHeader = {
+                'courseId': res['course_id'],
+                'courseName': res['name'],
+                'courseCode': res['call_number']
+            }
+
     except Exception as e:
         print(e)
         raise
 
     return {
-            'id': review['review_id'],
+            'reviewType': r_type,
+            'reviewHeader': reviewHeader,
+            'votes': {
+                'initUpvoteCount': int(review['upvotes']),
+                'initDownvoteCount': int(review['downvotes']),
+                'initFunnyCount': int(review['funnys']),
+                'upvoteClicked': bool(review['upvote_clicked']),
+                'downvoteClicked': bool(review['downvote_clicked']),
+                'funnyClicked': bool(review['funny_clicked']),
+            },
+            'reviewId': review['review_id'],
             'content': review['content'],
             'workload': review['workload'],
-            'rating': review['rating'],
             'submissionDate': review['submission_date'],
-            'upvotes': int(review['upvotes']),
-            'downvotes': int(review['downvotes']),
-            'funnys': int(review['funnys']),
-            'upvoteClicked': bool(review['upvote_clicked']),
-            'downvoteClicked': bool(review['downvote_clicked']),
-            'funnyClicked': bool(review['funny_clicked']),
-            'deprecated': bool(review['deprecated']),
-            'courseName': course_name,
-            'courseCode': course_code,
-            'profFirstName': prof_first,
-            'profLastName': prof_last
+            'deprecated': deprecated,
         }
 
 
