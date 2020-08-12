@@ -1,8 +1,10 @@
-import { render } from "@testing-library/react";
+import { render, fireEvent, screen, cleanup } from "@testing-library/react";
 import React from "react";
 import { MemoryRouter } from "react-router-dom";
 
 import { CourseHeader } from "components/CourseSummary";
+
+afterEach(cleanup);
 
 describe("CourseSummary Components", () => {
   const courseHeaderTestCases = [
@@ -86,6 +88,57 @@ describe("CourseSummary Components", () => {
         </MemoryRouter>
       );
       expect(snapshot).toMatchSnapshot();
+    });
+  });
+
+  courseHeaderTestCases.forEach(({ testName, courseId, courseSummary }) => {
+    const unfoldTestName = `${testName} unfolds accordion`;
+    test(unfoldTestName, () => {
+      const { getByText } = render(
+        <MemoryRouter>
+          <CourseHeader courseId={courseId} courseSummary={courseSummary} />
+        </MemoryRouter>
+      );
+      expect(
+        screen.queryByText("Show all professors who teach this course")
+      ).toBeInTheDocument();
+
+      fireEvent.click(getByText("Show all professors who teach this course"));
+      expect(
+        screen.queryByText("Hide all professors who teach this course")
+      ).toBeInTheDocument();
+
+      fireEvent.click(getByText("Hide all professors who teach this course"));
+      expect(
+        screen.queryByText("Show all professors who teach this course")
+      ).toBeInTheDocument();
+    });
+  });
+
+  courseHeaderTestCases.forEach(({ testName, courseId, courseSummary }) => {
+    const unfoldTestName = `${testName} unfolds accordion`;
+    test(unfoldTestName, () => {
+      render(
+        <MemoryRouter>
+          <CourseHeader courseId={courseId} courseSummary={courseSummary} />
+        </MemoryRouter>
+      );
+      expect(screen.getByTestId("accordion-button")).toHaveAttribute(
+        "aria-hidden",
+        "true"
+      );
+
+      fireEvent.click(screen.getByTestId("accordion-title"));
+      expect(screen.getByTestId("accordion-button")).toHaveAttribute(
+        "aria-hidden",
+        "true"
+      );
+
+      fireEvent.click(screen.getByTestId("accordion-title"));
+      expect(screen.getByTestId("accordion-button")).toHaveAttribute(
+        "aria-hidden",
+        "true"
+      );
     });
   });
 });
