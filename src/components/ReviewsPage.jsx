@@ -7,12 +7,12 @@ import ReviewSection from "components/reviews/ReviewSection"
 
 export default function ReviewsPage() {
     // example courseId and sorting for testing
-    const courseId = 38
+    const professorId = 40
     const { 
         data : { reviews },
         isLoading,
         isError,
-    } = useDataFetch(`/api/review/get?type=course&courseId=${courseId}`, {
+    } = useDataFetch(`/api/review/get?type=professor&professorId=${professorId}`, {
         reviews: []
     })
 
@@ -24,9 +24,9 @@ export default function ReviewsPage() {
         <div>
             <p>placeholder for other components</p>
             <ReviewSection assocList={[]}
-                           id={38} 
+                           id={40} 
                            initReviews={reviews}
-                           pageType="course" />
+                           pageType="professor" />
         </div>
     )
 }

@@ -11,7 +11,7 @@ from api.data.common import review, vote
 DateDiff = CustomFunction('DATEDIFF', ['start_date', 'end_date'])
 
 
-def get_reviews_by_cp_id(
+def get_reviews_db(
     course_prof_ids,
     ip,
     sort_crit=None,

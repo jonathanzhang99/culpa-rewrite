@@ -2,16 +2,16 @@ import flask
 from datetime import datetime, timedelta
 
 from api.data.dataloaders.courses_loader import get_cp_id_by_course, \
-    get_course_by_cp_id
+    get_course_by_id
 from api.data.dataloaders.professors_loader import get_cp_id_by_prof, \
-    get_prof_by_cp_id
-from api.data.dataloaders.reviews_loader import get_reviews_by_cp_id
+    get_prof_by_id
+from api.data.dataloaders.reviews_loader import get_reviews_db
 from api.data.datawriters.reviews_writer import insert_review
 
 review_blueprint = flask.Blueprint('review_blueprint', __name__)
 
 
-def parse_review(review, r_type):
+def parse_review(review, r_type, id):
     '''
     static method for parsing a review into a json object
     '''
@@ -19,10 +19,9 @@ def parse_review(review, r_type):
         datetime.utcnow() - review['submission_date']
     ) / timedelta(days=1) >= 5 * 365
 
-    cp_id = review['course_professor_id']
     try:
         if r_type == 'course':
-            res = get_prof_by_cp_id(cp_id)
+            res = get_prof_by_id(id)
             reviewHeader = {
                 'profId': res['professor_id'],
                 'profFirstName': res['first_name'],
@@ -30,7 +29,7 @@ def parse_review(review, r_type):
                 'uni': res['uni']
             }
         else:
-            res = get_course_by_cp_id(cp_id)
+            res = get_course_by_id(id)
             reviewHeader = {
                 'courseId': res['course_id'],
                 'courseName': res['name'],
@@ -159,11 +158,15 @@ def get_reviews():
             url_args.get(f'{page_type}Id'),
             filter_list
         )
-        cp_id_list = [x['course_professor_id'] for x in cp_ids]
+        cp_id_map = {
+            x['course_professor_id']: x[
+                'course_id' if page_type == 'professor' else 'professor_id'
+            ] for x in cp_ids
+        }
 
-        reviews = get_reviews_by_cp_id(
-            cp_id_list, ip, sort_crit, sort_desc, filter_year
-        ) if cp_id_list else []
+        reviews = get_reviews_db(
+            list(cp_id_map.keys()), ip, sort_crit, sort_desc, filter_year
+        ) if cp_id_map else []
 
         # filter by vote in this layer to avoid too much calculation in db
         if filter_vote:
@@ -173,7 +176,11 @@ def get_reviews():
                 ), reviews
             ))
 
-        json = [parse_review(review, page_type) for review in reviews]
+        json = [parse_review(
+            review,
+            page_type,
+            cp_id_map[review['course_professor_id']]
+        ) for review in reviews]
         return {'reviews': json}
 
     except Exception as e:
