@@ -24,12 +24,10 @@ Object {
         >
           <h3
             class="title"
-            data-testid="accordion-title"
           >
             <i
               aria-hidden="true"
               class="angle down icon"
-              data-testid="accordion-button"
             />
             Show
              all professors who teach this course
@@ -107,12 +105,10 @@ Object {
       >
         <h3
           class="title"
-          data-testid="accordion-title"
         >
           <i
             aria-hidden="true"
             class="angle down icon"
-            data-testid="accordion-button"
           />
           Show
            all professors who teach this course
@@ -247,12 +243,10 @@ Object {
         >
           <h3
             class="title"
-            data-testid="accordion-title"
           >
             <i
               aria-hidden="true"
               class="angle down icon"
-              data-testid="accordion-button"
             />
             Show
              all professors who teach this course
@@ -330,12 +324,10 @@ Object {
       >
         <h3
           class="title"
-          data-testid="accordion-title"
         >
           <i
             aria-hidden="true"
             class="angle down icon"
-            data-testid="accordion-button"
           />
           Show
            all professors who teach this course
@@ -470,12 +462,10 @@ Object {
         >
           <h3
             class="title"
-            data-testid="accordion-title"
           >
             <i
               aria-hidden="true"
               class="angle down icon"
-              data-testid="accordion-button"
             />
             Show
              all professors who teach this course
@@ -559,12 +549,10 @@ Object {
       >
         <h3
           class="title"
-          data-testid="accordion-title"
         >
           <i
             aria-hidden="true"
             class="angle down icon"
-            data-testid="accordion-button"
           />
           Show
            all professors who teach this course

@@ -45,13 +45,9 @@ export function CourseHeader({ courseId, courseSummary }) {
         <Accordion.Title
           active={isAccordionActive}
           as="h3"
-          data-testid="accordion-title"
           onClick={() => setAccordionActive(!isAccordionActive)}
         >
-          <Icon
-            data-testid="accordion-button"
-            name={!isAccordionActive ? "angle down" : "angle up"}
-          />
+          <Icon name={!isAccordionActive ? "angle down" : "angle up"} />
           {!isAccordionActive ? "Show" : "Hide"} all professors who teach this
           course
         </Accordion.Title>

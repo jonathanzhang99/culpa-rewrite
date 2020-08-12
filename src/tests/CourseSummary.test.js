@@ -91,54 +91,33 @@ describe("CourseSummary Components", () => {
     });
   });
 
+  /* semantic-ui react does not change html for folding/unfolding so 
+     checking for button string change instead */
   courseHeaderTestCases.forEach(({ testName, courseId, courseSummary }) => {
-    const unfoldTestName = `${testName} unfolds accordion`;
-    test(unfoldTestName, () => {
-      const { getByText } = render(
-        <MemoryRouter>
-          <CourseHeader courseId={courseId} courseSummary={courseSummary} />
-        </MemoryRouter>
-      );
-      expect(
-        screen.queryByText("Show all professors who teach this course")
-      ).toBeInTheDocument();
-
-      fireEvent.click(getByText("Show all professors who teach this course"));
-      expect(
-        screen.queryByText("Hide all professors who teach this course")
-      ).toBeInTheDocument();
-
-      fireEvent.click(getByText("Hide all professors who teach this course"));
-      expect(
-        screen.queryByText("Show all professors who teach this course")
-      ).toBeInTheDocument();
-    });
-  });
-
-  courseHeaderTestCases.forEach(({ testName, courseId, courseSummary }) => {
-    const unfoldTestName = `${testName} unfolds accordion`;
+    const unfoldTestName = `${testName} unfolds and folds accordion`;
     test(unfoldTestName, () => {
       render(
         <MemoryRouter>
           <CourseHeader courseId={courseId} courseSummary={courseSummary} />
         </MemoryRouter>
       );
-      expect(screen.getByTestId("accordion-button")).toHaveAttribute(
-        "aria-hidden",
-        "true"
-      );
+      expect(
+        screen.queryByText("Show all professors who teach this course")
+      ).toBeInTheDocument();
 
-      fireEvent.click(screen.getByTestId("accordion-title"));
-      expect(screen.getByTestId("accordion-button")).toHaveAttribute(
-        "aria-hidden",
-        "true"
+      fireEvent.click(
+        screen.getByText("Show all professors who teach this course")
       );
+      expect(
+        screen.queryByText("Hide all professors who teach this course")
+      ).toBeInTheDocument();
 
-      fireEvent.click(screen.getByTestId("accordion-title"));
-      expect(screen.getByTestId("accordion-button")).toHaveAttribute(
-        "aria-hidden",
-        "true"
+      fireEvent.click(
+        screen.getByText("Hide all professors who teach this course")
       );
+      expect(
+        screen.queryByText("Show all professors who teach this course")
+      ).toBeInTheDocument();
     });
   });
 });
