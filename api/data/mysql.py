@@ -47,6 +47,14 @@ class MySQL(object):
                 flask.g.mysqldb = self.connect()
             return flask.g.get('mysqldb')
 
+    def commit(self):
+        if flask.g is not None and 'mysqldb' in flask.g:
+            flask.g.mysqldb.commit()
+
+    def rollback(self):
+        if flask.g is not None and 'mysqldb' in flask.g:
+            flask.g.mysqldb.rollback()
+
     def teardown(self, exception):
         if flask.g is not None and 'mysqldb' in flask.g:
             flask.g.mysqldb.commit()

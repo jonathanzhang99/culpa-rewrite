@@ -55,3 +55,61 @@ def setup_department_professor_courses(cur):
         'VALUES (%s, %s)',
         course_professor
     )
+
+
+# NOTE: this function calls setup_department_professor_courses
+def setup_reviews(cur):
+    '''
+    This is a utility function that will poopulate the
+    departments, professor, courses, course_professor and
+    review tables with a minimum set of data for testing.
+    '''
+
+    # preliminary setup
+    setup_department_professor_courses(cur)
+
+    reviews = [
+        (2, 'demo content 1', '123.0.0.1', 'demo workload 1', 3, '2020-02-10'),
+        (2, 'demo content 2', '123.0.0.1', 'demo workload 2', 3, '2017-02-10'),
+        (3, 'demo content 3', '123.0.0.1', 'demo workload 3', 3, '2015-02-10'),
+        (5, 'demo content 4', '123.0.0.1', 'demo workload 4', 3, '2019-10-13'),
+        (5, 'demo content 5', '123.0.0.1', 'demo workload 5', 3, '2018-09-01'),
+        (5, 'demo content 6', '123.0.0.1', 'demo workload 6', 3, '2016-05-20'),
+    ]
+
+    cur.executemany(
+        'INSERT INTO review'
+        '(course_professor_id, content, ip, workload, rating, submission_date)'
+        'VALUES (%s, %s, %s, %s, %s, %s)',
+        reviews
+    )
+
+
+# NOTE: this function calls setup_reviews
+def setup_votes(cur):
+    '''
+    This is a utility function that will poopulate the
+    departments, professor, courses, course_professor,
+    review and vote tables with a minimum set of data
+    for testing.
+    '''
+    setup_reviews(cur)
+
+    votes = [
+        (1, "123.456.78.910", "2020-08-11", "agree"),
+        (1, "123.456.78.911", "2020-04-03", "disagree"),
+        (2, "123.456.78.910", "2018-08-11", "funny"),
+        (3, "123.456.78.910", "2016-01-21", "agree"),
+        (3, "123.456.78.911", "2018-11-09", "agree"),
+        (3, "123.456.78.912", "2019-02-04", "funny"),
+        (5, "123.456.78.910", "2018-10-23", "disagree"),
+        (5, "123.456.78.912", "2018-12-11", "disagree"),
+        (5, "123.456.78.913", "2019-03-12", "agree"),
+        (5, "123.456.78.914", "2019-08-17", "funny"),
+    ]
+
+    cur.executemany(
+        'INSERT INTO vote (review_id, ip, created_at, type)'
+        'VALUES (%s, %s, %s, %s)',
+        votes
+    )

@@ -22,6 +22,10 @@ function App() {
             <ProtectedRoute exact path="/admin">
               <h1>Admin only page!!</h1>
             </ProtectedRoute>
+            {/* temporary page for debugging review card */}
+            <Route path="/reviews">
+              <Reviews />
+            </Route>
             <Route path="/review">
               <CreateReviewPage />
             </Route>
