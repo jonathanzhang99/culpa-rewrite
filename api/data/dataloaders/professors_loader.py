@@ -63,3 +63,4 @@ def search_professor(search_query, limit=None):
         .get_sql()
 
     cur.execute(query)
+    return cur.fetchall()

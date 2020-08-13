@@ -58,7 +58,7 @@ def search_course(search_query, limit=None):
                 search_params
             ).as_('score')
 
-    query = Query.from_(professor) \
+    query = Query.from_(course) \
         .select(
             course.course_id,
             course.name,
@@ -70,3 +70,4 @@ def search_course(search_query, limit=None):
         .get_sql()
 
     cur.execute(query)
+    return cur.fetchall()
