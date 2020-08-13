@@ -2,7 +2,7 @@ import flask
 import pymysql
 
 from pymysql.cursors import DictCursor
-from pymysql.err import IntegrityError, DataError, OperationalError
+from pymysql.err import IntegrityError, DataError
 
 
 class MySQL(object):
@@ -18,6 +18,7 @@ class MySQL(object):
         Registers the teardown function with the current app context. Required
         to successfully close a database connection after each request
         '''
+        self.register_db_error_handlers()
         app.teardown_request(self.teardown)
 
     def connect(self):
@@ -62,7 +63,12 @@ class MySQL(object):
             flask.g.mysqldb.close()
 
     def register_db_error_handlers(self):
+        '''
+        This function catches all errors that may be caused by the user.
+        DB server exceptions will still crash and raise 500 errors.
+        '''
         if not self.app:
+            print('UH OH ')
             return
 
         @self.app.errorhandler(IntegrityError)
