@@ -29,15 +29,12 @@ def submit_review():
     except KeyError:
         return {'error': 'Missing inputs'}, 400
 
-    try:
-        review_id = insert_review(
-            course_professor_id,
-            content,
-            workload,
-            evaluation,
-            ip_addr
-        )
-    except Exception:
-        return {'error': 'Invalid review'}, 400
+    review_id = insert_review(
+        course_professor_id,
+        content,
+        workload,
+        evaluation,
+        ip_addr
+    )
 
     return {'reviewId': review_id}

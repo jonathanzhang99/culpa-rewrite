@@ -9,19 +9,15 @@ course_blueprint = flask.Blueprint('course_blueprint', __name__)
 @course_blueprint.route('/<course_id>', methods=['GET'])
 def course_summary(course_id):
     # Fetch course info and all related professors
-    try:
-        course = get_course(course_id)
-        department_professors = get_department_professors(course_id)
-    except Exception:
-        return {'error': 'db error occurred'}, 400
+    course = get_course(course_id)
+    department_professors = get_department_professors(course_id)
 
     # Access the only element here to prevent IndexError being handled
     # as DB error
-    try:
-        course = course[0]
-    except IndexError:
+    if not course:
         return {'error': 'course not found'}, 404
 
+    course = course[0]
     associated_professors = {}
     for dp_row in department_professors:
         professor_id = dp_row['professor_id']
