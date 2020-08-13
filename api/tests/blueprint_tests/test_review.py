@@ -59,7 +59,7 @@ class ReviewTest(BaseTest):
             'evaluation': 5,
         }
 
-        expected_error = {'error': 'Invalid review'}
+        expected_error = {'error': 'Invalid data'}
 
         res = self.app.post('/api/review/submit',
                             json=review_data,

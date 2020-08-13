@@ -1,4 +1,7 @@
 from unittest import mock
+
+from pymysql.err import IntegrityError
+
 from api.tests import BaseTest
 
 
@@ -34,9 +37,8 @@ class VoteTest(BaseTest):
     @mock.patch("api.blueprints.vote.add_vote")
     @mock.patch("api.blueprints.vote.revoke_vote")
     def test_change_vote_error(self, revoke_fn_patch, add_fn_patch):
-        exception_msg = "test exception"
-        add_fn_patch.side_effect = Exception(exception_msg)
-        revoke_fn_patch.side_effect = Exception(exception_msg)
+        add_fn_patch.side_effect = IntegrityError
+        revoke_fn_patch.side_effect = IntegrityError
         actions = ['add', 'revoke']
 
         for action in actions:
@@ -47,7 +49,5 @@ class VoteTest(BaseTest):
                                 reviewId='12345'
                             ), environ_base={'REMOTE_ADDR': '127.0.0.1'})
 
-                self.assertEqual(res.json, {
-                    "error": exception_msg
-                })
+                self.assertEqual(res.json, {"error": 'Invalid data'})
                 self.assertEqual(res.status_code, 400)

@@ -1,4 +1,7 @@
 from unittest import mock
+
+from pymysql.err import IntegrityError
+
 from api.tests import BaseTest
 
 
@@ -105,10 +108,9 @@ class CoursesTest(BaseTest):
                                        mock_get_department_professors):
         course_id = 1
 
-        mock_get_course.side_effect = Exception()
-        mock_get_department_professors.side_effect = Exception()
+        mock_get_course.side_effect = IntegrityError()
 
-        expected_res = {'error': 'db error occurred'}
+        expected_res = {'error': 'Invalid data'}
         res = self.app.get(f'/api/course/{course_id}')
 
         self.assertEqual(expected_res, res.json)

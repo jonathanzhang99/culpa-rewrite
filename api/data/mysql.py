@@ -18,7 +18,7 @@ class MySQL(object):
         Registers the teardown function with the current app context. Required
         to successfully close a database connection after each request
         '''
-        self.register_db_error_handlers()
+        self.register_db_error_handlers(app)
         app.teardown_request(self.teardown)
 
     def connect(self):
@@ -62,19 +62,20 @@ class MySQL(object):
             flask.g.mysqldb.commit()
             flask.g.mysqldb.close()
 
-    def register_db_error_handlers(self):
+    def register_db_error_handlers(self, app=None):
         '''
         This function catches all errors that may be caused by the user.
         DB server exceptions will still crash and raise 500 errors.
         '''
-        if not self.app:
+        app = app or self.app
+        if not app:
             print('UH OH ')
             return
 
-        @self.app.errorhandler(IntegrityError)
+        @app.errorhandler(IntegrityError)
         def handle_integrity_error(e):
             return {'error': 'Invalid data'}, 400
 
-        @self.app.errorhandler(DataError)
+        @app.errorhandler(DataError)
         def handle_data_error(e):
             return {'error': 'Invalid data'}, 400
