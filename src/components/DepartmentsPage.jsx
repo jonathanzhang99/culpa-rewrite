@@ -25,7 +25,9 @@ export function Departments({ departments }) {
         {departments.map(({ departmentId, departmentName }) => {
           return (
             <List.Item key={departmentId}>
-              <Link to={{ pathname: `/department/${departmentId}` }}>{departmentName}</Link>
+              <Link to={{ pathname: `/department/${departmentId}` }}>
+                {departmentName}
+              </Link>
             </List.Item>
           );
         })}
@@ -39,7 +41,7 @@ export default function DepartmentsPage() {
     data: { departments },
     isLoading,
     isError,
-  } = useDataFetch("/api/departments/all", {
+  } = useDataFetch("/api/department/all", {
     departments: [],
   });
 
