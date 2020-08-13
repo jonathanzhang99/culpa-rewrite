@@ -3,10 +3,10 @@ import flask
 from api.data.dataloaders.departments_loader import get_all_departments, \
     get_department_courses, get_department_name, get_department_professors
 
-departments_blueprint = flask.Blueprint('departments_blueprint', __name__)
+department_blueprint = flask.Blueprint('department_blueprint', __name__)
 
 
-@departments_blueprint.route('/all', methods=['GET'])
+@department_blueprint.route('/all', methods=['GET'])
 def all_departments():
     departments = get_all_departments()
     departments_json = [{
@@ -17,7 +17,7 @@ def all_departments():
     return {'departments': departments_json}
 
 
-@departments_blueprint.route('/<department_id>', methods=['GET'])
+@department_blueprint.route('/<department_id>', methods=['GET'])
 def department_info(department_id):
     name = get_department_name(department_id)
 

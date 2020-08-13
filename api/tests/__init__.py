@@ -67,6 +67,7 @@ class LoadersWritersBaseTest(unittest.TestCase):
         self.app = app.test_client()
         self.app_ctx = app.app_context()
         self.app_ctx.push()
+        self.cur = db.get_cursor()
 
     def tearDown(self):
         '''

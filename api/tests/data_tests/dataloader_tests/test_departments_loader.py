@@ -1,4 +1,3 @@
-from api.data import db
 from api.data.dataloaders.departments_loader import get_all_departments, \
     get_department_courses, get_department_name, get_department_professors
 from api.tests import LoadersWritersBaseTest
@@ -6,8 +5,7 @@ from api.tests import LoadersWritersBaseTest
 
 class DepartmentsLoaderTest(LoadersWritersBaseTest):
     def test_load_departments(self):
-        cur = db.get_cursor()
-        cur.execute(
+        self.cur.execute(
             'INSERT INTO department (name)'
             'VALUES ("test1")'
         )
@@ -22,8 +20,7 @@ class DepartmentsLoaderTest(LoadersWritersBaseTest):
     def test_load_name(self):
         TEST_DEPARTMENT_ID = 1
 
-        cur = db.get_cursor()
-        cur.execute(
+        self.cur.execute(
             'INSERT INTO department (name)'
             'VALUES ("test1")'
         )
@@ -36,12 +33,11 @@ class DepartmentsLoaderTest(LoadersWritersBaseTest):
     def test_load_courses(self):
         TEST_DEPARTMENT_ID = 1
 
-        cur = db.get_cursor()
-        cur.execute(
+        self.cur.execute(
             'INSERT INTO department (name)'
             'VALUES ("test1")'
         )
-        cur.execute(
+        self.cur.execute(
             'INSERT INTO course (name, department_id)'
             f'VALUES ("test1", {TEST_DEPARTMENT_ID})'
         )
@@ -56,8 +52,7 @@ class DepartmentsLoaderTest(LoadersWritersBaseTest):
     def test_load_courses_empty(self):
         TEST_DEPARTMENT_ID = 1
 
-        cur = db.get_cursor()
-        cur.execute(
+        self.cur.execute(
             'INSERT INTO department (name)'
             'VALUES ("test1")'
         )
@@ -69,8 +64,7 @@ class DepartmentsLoaderTest(LoadersWritersBaseTest):
     def test_load_professors(self):
         TEST_DEPARTMENT_ID = 1
 
-        cur = db.get_cursor()
-        cur.execute(
+        self.cur.execute(
             'INSERT INTO department (name)'
             'VALUES ("test1")'
         )
@@ -79,16 +73,16 @@ class DepartmentsLoaderTest(LoadersWritersBaseTest):
             ('test2first', 'test2last'),
             ('test3first', 'test3last')
         ]
-        cur.executemany(
+        self.cur.executemany(
             'INSERT INTO professor (first_name, last_name)'
             'VALUES (%s, %s)',
             professors
         )
-        cur.execute(
+        self.cur.execute(
             'INSERT INTO department_professor (professor_id, department_id)'
             f'VALUES (1, {TEST_DEPARTMENT_ID})'
         )
-        cur.execute(
+        self.cur.execute(
             'INSERT INTO department_professor (professor_id, department_id)'
             f'VALUES (2, {TEST_DEPARTMENT_ID})'
         )
@@ -112,8 +106,7 @@ class DepartmentsLoaderTest(LoadersWritersBaseTest):
     def test_load_professors_empty(self):
         TEST_DEPARTMENT_ID = 1
 
-        cur = db.get_cursor()
-        cur.execute(
+        self.cur.execute(
             'INSERT INTO department (name)'
             'VALUES ("test1")'
         )

@@ -8,26 +8,25 @@ class VotesWriterTest(LoadersWritersBaseTest):
     def test_add_vote(self):
         voteTypes = ['agree', 'disagree', 'funny']
         reviewId, ip, time = 1, '123456789101112', '2020-02-02'
-        setup_reviews(db.get_cursor())
+        setup_reviews(self.cur)
         db.commit()
 
         for voteType in voteTypes:
             with self.subTest(voteType):
                 add_vote(reviewId, voteType, ip, time)
-                cur = db.get_cursor()
-                cur.execute(
+                self.cur.execute(
                     'SELECT review_id, ip, type '
                     f'FROM vote WHERE review_id = {reviewId} '
                     f'AND ip = "{ip}"'
                 )
-                self.assertEqual(cur.fetchone(), {
+                self.assertEqual(self.cur.fetchone(), {
                     'review_id': reviewId,
                     'ip': ip,
                     'type': voteType
                 })
 
                 # cleanup
-                cur.execute(
+                self.cur.execute(
                     f'DELETE FROM vote WHERE review_id = {reviewId} '
                     f'AND ip = "{ip}"'
                 )
@@ -36,20 +35,20 @@ class VotesWriterTest(LoadersWritersBaseTest):
     def test_revoke_vote(self):
         voteTypes = ['agree', 'disagree', 'funny']
         reviewId, ip = 1, '123456789101112'
-        setup_reviews(db.get_cursor())
+        setup_reviews(self.cur)
         db.commit()
 
         for voteType in voteTypes:
             with self.subTest(voteType):
-                cur = db.get_cursor()
-                cur.execute(
+                self.cur.execute(
                     'INSERT INTO vote VALUES'
                     f'({reviewId}, "{ip}", NOW(), "{voteType}")'
                 )
                 revoke_vote(
                     reviewId,
                     voteType,
-                    ip)
+                    ip
+                )
 
-                self.assertEqual(cur.rowcount, 1)
+                self.assertEqual(self.cur.rowcount, 1)
                 db.rollback()
