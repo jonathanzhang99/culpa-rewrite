@@ -2,6 +2,7 @@ import flask
 import pymysql
 
 from pymysql.cursors import DictCursor
+from pymysql.err import IntegrityError, DataError, OperationalError
 
 
 class MySQL(object):
@@ -59,3 +60,15 @@ class MySQL(object):
         if flask.g is not None and 'mysqldb' in flask.g:
             flask.g.mysqldb.commit()
             flask.g.mysqldb.close()
+
+    def register_db_error_handlers(self):
+        if not self.app:
+            return
+
+        @self.app.errorhandler(IntegrityError)
+        def handle_integrity_error(e):
+            return {'error': 'Invalid data'}, 400
+
+        @self.app.errorhandler(DataError)
+        def handle_data_error(e):
+            return {'error': 'Invalid data'}, 400
