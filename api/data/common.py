@@ -16,7 +16,6 @@ flag = Table('flag')
 
 class Match(Function):
     def __init__(self, *args):
-        self.against_clause = False
         self.against_args = []
         super(Match, self).__init__('MATCH', *args)
 
