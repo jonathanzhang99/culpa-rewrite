@@ -15,24 +15,26 @@ flag = Table('flag')
 
 
 class Match(Function):
+    '''
+    This is a custom PyPika extension that uses the built-in abstractions from
+    the library in order to provide support for MySql Fulltext search quueries.
+    Please refer to the following link to see the original definitions that
+    this class extends.
+
+    https://github.com/kayak/pypika/blob/9ebe5bccb13a957287c6556dcc531f073407dd51/pypika/terms.py#L1113
+    '''
     def __init__(self, *args):
-        self.against_args = []
+        self.against_param = None
         super(Match, self).__init__('MATCH', *args)
 
-    def against(self, *args):
-        self.against_args = [self.wrap_constant(param) for param in args]
+    def against(self, param):
+        self.against_param = self.wrap_constant(param)
         return self
 
     def get_function_sql(self, **kwargs):
         sql = super().get_function_sql(**kwargs)
 
-        if self.against_args:
-            against_args = ','.join(
-                param.get_sql(with_alias=False, **kwargs)
-                if hasattr(param, 'get_sql')
-                else str(param)
-                for param in self.against_args
-            )
-            sql = f'{sql} AGAINST ({against_args} IN BOOLEAN MODE)'
+        if self.against_param:
+            sql = f'{sql} AGAINST ({self.against_param} IN BOOLEAN MODE)'
 
         return sql
