@@ -26,7 +26,11 @@ const propTypes = {
   ).isRequired,
 };
 
-export function DepartmentInfo({ departmentCourses, departmentName, departmentProfessors }) {
+export function DepartmentInfo({
+  departmentCourses,
+  departmentName,
+  departmentProfessors,
+}) {
   return (
     // TODO: Add styling into two columns with alphabetical sections
     <div>
@@ -63,7 +67,7 @@ export default function DepartmentInfoPage() {
     data: { departmentName, departmentCourses, departmentProfessors },
     isLoading,
     isError,
-  } = useDataFetch(`/api/departments/${departmentId}`, {
+  } = useDataFetch(`/api/department/${departmentId}`, {
     departmentName: "",
     departmentCourses: [],
     departmentProfessors: [],
@@ -75,7 +79,7 @@ export default function DepartmentInfoPage() {
 
   return (
     <DepartmentInfo
-    departmentCourses={departmentCourses}
+      departmentCourses={departmentCourses}
       departmentName={departmentName}
       departmentProfessors={departmentProfessors}
     />
