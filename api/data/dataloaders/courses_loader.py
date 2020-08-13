@@ -1,8 +1,8 @@
-from pypika import MySQLQuery as Query
+from pypika import MySQLQuery as Query, Order
 
 from api.data import db
 from api.data.common import course, course_professor, professor, \
-    department, department_professor
+    department, department_professor, Match
 
 
 def get_course(course_id):
@@ -42,5 +42,32 @@ def get_department_professors(course_id):
         .inner_join(department) \
         .on(department_professor.department_id == department.department_id) \
         .where(course_professor.course_id == course_id).get_sql()
+    cur.execute(query)
+    return cur.fetchall()
+
+
+def search_course(search_query, limit=None):
+    cur = db.get_cursor()
+
+    search_params = [param + '*' for param in search_query.split()]
+    search_params = ' '.join(search_params)
+    match = Match(
+                course.name,
+                course.call_number
+            ).against(
+                search_params
+            ).as_('score')
+
+    query = Query.from_(course) \
+        .select(
+            course.course_id,
+            course.name,
+            course.call_number,
+            match
+        ).where(match > 0) \
+        .orderby('score', order=Order.desc) \
+        .limit(limit) \
+        .get_sql()
+
     cur.execute(query)
     return cur.fetchall()

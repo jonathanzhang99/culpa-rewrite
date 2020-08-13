@@ -9,18 +9,20 @@ CREATE TABLE `course` (
   `name` VARCHAR(255) NOT NULL,
   `department_id` INT NOT NULL,
   `call_number` VARCHAR(15) NULL,
+  FULLTEXT KEY course_search_index (name, call_number),
   PRIMARY KEY (`course_id`),
   CONSTRAINT `fk_course__department` FOREIGN KEY (`department_id`)
     REFERENCES `department` (`department_id`)
-);
+) ENGINE=InnoDB;
 
 CREATE TABLE `professor` (
   `professor_id` INT NOT NULL AUTO_INCREMENT,
   `first_name` VARCHAR(45) NULL,
   `last_name` VARCHAR(45) NULL,
   `uni` VARCHAR(15) NULL,
+  FULLTEXT KEY professor_search_index (first_name, last_name, uni),
   PRIMARY KEY (`professor_id`)
-);
+) ENGINE=InnoDB;
 
 CREATE TABLE `department_professor`(
   `professor_id` INT NOT NULL,
