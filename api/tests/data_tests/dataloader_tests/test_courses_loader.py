@@ -1,4 +1,3 @@
-from api.data import db
 from api.data.dataloaders.courses_loader import get_course, \
     get_department_professors
 from api.tests import LoadersWritersBaseTest
@@ -6,12 +5,8 @@ from api.tests.data_tests.common import setup_department_professor_courses
 
 
 class CoursesLoaderTest(LoadersWritersBaseTest):
-    def populate(self):
-        cur = db.get_cursor()
-        setup_department_professor_courses(cur)
-
     def test_get_course(self):
-        self.populate()
+        setup_department_professor_courses(self.cur)
         course_id = 1
         expected_res = [{'course_id': course_id,
                          'name': 'Machine Learning',
@@ -28,7 +23,7 @@ class CoursesLoaderTest(LoadersWritersBaseTest):
         '''
         Test when get_course couldn't find a matching course in the db
         '''
-        self.populate()
+        setup_department_professor_courses(self.cur)
         course_id = 20
 
         res = get_course(course_id)
@@ -36,7 +31,7 @@ class CoursesLoaderTest(LoadersWritersBaseTest):
         self.assertEqual((), res)
 
     def test_get_department_professors(self):
-        self.populate()
+        setup_department_professor_courses(self.cur)
         course_id = 1
         expected_res = [{'professor_id': 1,
                          'first_name': 'Nakul',
@@ -57,7 +52,7 @@ class CoursesLoaderTest(LoadersWritersBaseTest):
         '''
         Test when no matching course is found
         '''
-        self.populate()
+        setup_department_professor_courses(self.cur)
         course_id = 20
 
         res = get_department_professors(course_id)
