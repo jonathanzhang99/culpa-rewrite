@@ -10,7 +10,7 @@ export default function CoursePage() {
   const { courseId } = useParams();
 
   const {
-    data: { courseSummary },
+    data: { courseSummary, reviewSummary },
     isLoading,
     isError,
   } = useDataFetch(`/api/course/${courseId}`, {
@@ -20,11 +20,29 @@ export default function CoursePage() {
       departmentName: "",
       associatedProfessors: [],
     },
+    reviewSummary: {
+      positiveReview: {
+        reviewType: "course",
+        reviewHeader: {},
+        votes: {},
+      },
+      negativeReview: {
+        reviewType: "course",
+        reviewHeader: {},
+        votes: {},
+      },
+    },
   });
 
   if (isLoading || isError) {
     return isLoading ? <LoadingComponent /> : <ErrorComponent />;
   }
 
-  return <CourseSummary courseId={courseId} courseSummary={courseSummary} />;
+  return (
+    <CourseSummary
+      courseId={courseId}
+      courseSummary={courseSummary}
+      reviewSummary={reviewSummary}
+    />
+  );
 }
