@@ -229,7 +229,7 @@ function ReviewSummary({ reviewSummary }) {
     );
   }
 
-  return "";
+  return null;
 }
 
 ReviewSummary.propTypes = propTypesReviewSummary;
