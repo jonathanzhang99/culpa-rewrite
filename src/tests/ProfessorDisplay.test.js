@@ -29,7 +29,7 @@ describe("ProfessorDisplay Components", () => {
       as: "",
       firstName: "",
       lastName: "",
-      professorId: null,
+      professorId: 0,
     },
     {
       testName: "renders ProfessorDisplayLink",

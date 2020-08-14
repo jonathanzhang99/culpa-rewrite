@@ -90,17 +90,14 @@ export function AuthProvider({ children }) {
       const result = await response.json();
 
       // Require that the backend sends either a token or an error
-      if (result.error) {
-        dispatch({ type: "LOGIN_FAILURE" });
-        return result.error;
-      }
-      dispatch({ type: "LOGIN_SUCCESS", payload: result.token });
+      result.error
+        ? dispatch({ type: "LOGIN_FAILURE" })
+        : dispatch({ type: "LOGIN_SUCCESS", payload: result.token });
+      return result;
     } catch (err) {
       dispatch({ type: "LOGIN_ERROR" });
       return err;
     }
-
-    return null;
   };
 
   // `logout` simply removes the token from the client. It does NOT

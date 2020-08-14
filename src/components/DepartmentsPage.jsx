@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import React from "react";
+import { Link } from "react-router-dom";
 import { Header, List } from "semantic-ui-react";
 
 import ErrorComponent from "components/common/ErrorComponent";
@@ -9,34 +10,38 @@ import useDataFetch from "components/common/useDataFetch";
 const propTypes = {
   departments: PropTypes.arrayOf(
     PropTypes.shape({
-      name: PropTypes.string,
+      departmentId: PropTypes.number.isRequired,
+      departmentName: PropTypes.string.isRequired,
     }).isRequired
   ).isRequired,
 };
 
-export function DepartmentsSection({ departments }) {
-  // TODO: Implement Department Section
-
+export function Departments({ departments }) {
   return (
+    // TODO: Add styling into two columns with alphabetical sections
     <div>
       <Header>List of Departments</Header>
       <List>
-        {departments.map(({ name }) => {
-          return <List.Item key={`${name}`}>{name}</List.Item>;
+        {departments.map(({ departmentId, departmentName }) => {
+          return (
+            <List.Item key={departmentId}>
+              <Link to={{ pathname: `/department/${departmentId}` }}>
+                {departmentName}
+              </Link>
+            </List.Item>
+          );
         })}
       </List>
     </div>
   );
 }
 
-DepartmentsSection.propTypes = propTypes;
-
-export default function Departments() {
+export default function DepartmentsPage() {
   const {
     data: { departments },
     isLoading,
     isError,
-  } = useDataFetch("/api/departments/all", {
+  } = useDataFetch("/api/department/all", {
     departments: [],
   });
 
@@ -44,5 +49,7 @@ export default function Departments() {
     return isLoading ? <LoadingComponent /> : <ErrorComponent />;
   }
 
-  return <DepartmentsSection departments={departments} />;
+  return <Departments departments={departments} />;
 }
+
+Departments.propTypes = propTypes;

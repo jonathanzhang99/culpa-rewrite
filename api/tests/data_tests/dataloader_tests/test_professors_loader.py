@@ -1,12 +1,18 @@
 from api.data import db
-from api.data.dataloaders.professors_loader import get_all_professors
-from api.tests import LoadersBaseTest
+from api.data.dataloaders.professors_loader import get_all_professors, \
+    get_professor_courses, search_professor
+from api.tests import LoadersWritersBaseTest
+from api.tests.data_tests.common import setup_department_professor_courses
 
 
-class ProfessorsLoaderTest(LoadersBaseTest):
-    def test_load_professors(self):
-        cur = db.get_cursor()
-        cur.execute(
+VERMA_PROFESSOR_ID = 1
+BOLLINGER_PROFESSOR_ID = 2
+JWL_PROFESSOR_ID = 3
+
+
+class ProfessorsLoaderTest(LoadersWritersBaseTest):
+    def test_load_all_professors(self):
+        self.cur.execute(
             'INSERT INTO professor (first_name, last_name)'
             'VALUES ("test1", "test1")'
         )
@@ -18,3 +24,115 @@ class ProfessorsLoaderTest(LoadersBaseTest):
         res = get_all_professors()
 
         self.assertEqual(expected_res, res)
+
+    def test_load_professor_courses_single_course(self):
+        # retrieve Lee Bollinger's courses
+        setup_department_professor_courses(self.cur)
+
+        expected_courses = [
+            {
+                'course_professor_id': 7,
+                'name': 'Freedom of Speech and Press',
+                'call_number': 'POLS 3285'
+            }
+        ]
+
+        courses = get_professor_courses(BOLLINGER_PROFESSOR_ID)
+        self.assertEqual(expected_courses, courses)
+
+    def test_load_professor_courses_multiple_courses(self):
+        # retrieve Verma's courses
+        setup_department_professor_courses(self.cur)
+
+        expected_courses = [{
+            'course_professor_id': 1,
+            'name': 'Machine Learning',
+            'call_number': 'COMS 4771'
+        }, {
+            'course_professor_id': 2,
+            'name': 'Advanced Machine Learning',
+            'call_number': 'COMS 4774'
+        }, {
+            'course_professor_id': 3,
+            'name': 'Mathematics of Machine Learning',
+            'call_number': 'MATH FAKE'
+        }, {
+            'course_professor_id': 4,
+            'name': 'Advanced Programming',
+            'call_number': 'COMS 3157'
+        }]
+
+        courses = get_professor_courses(VERMA_PROFESSOR_ID)
+        self.assertEqual(expected_courses, courses)
+
+    def test_search_professor_by_name(self):
+        setup_department_professor_courses(self.cur)
+        db.commit()
+
+        results = search_professor('nakul verma')
+        self.assertEqual(len(results), 1)
+
+        # assert the data formatting is correct
+        self.assertEqual(
+            set(results[0].keys()),
+            set([
+                'first_name',
+                'last_name',
+                'professor_id',
+                'score',
+                'uni'
+            ])
+        )
+
+        # The mysql relevancy ranking algorithm (TF-IDF, BM25 varaiant) should
+        # all be > 0 but individual values will differ across OS.
+        self.assertGreater(results[0].get('score'), 0.4)
+
+        # We only compare `professor_id` and not the entire object because
+        # score suffers from floating point precision errors which may easily
+        # differ between OS/updates.
+        self.assertEqual(results[0].get('professor_id'), VERMA_PROFESSOR_ID)
+
+    def test_search_multiple_professors_by_name(self):
+        setup_department_professor_courses(self.cur)
+        db.commit()
+
+        results = search_professor('lee')
+        self.assertEqual(len(results), 2)
+        expected_professor_ids = [BOLLINGER_PROFESSOR_ID, JWL_PROFESSOR_ID]
+
+        for prof, expected_prof_id in zip(results, expected_professor_ids):
+            self.assertGreater(prof.get('score'), 0)
+            self.assertEqual(prof.get('professor_id'), expected_prof_id)
+
+    def test_search_professor_by_uni(self):
+        setup_department_professor_courses(self.cur)
+        db.commit()
+
+        results = search_professor('lcb50')
+
+        self.assertEqual(len(results), 1)
+        self.assertGreater(results[0].get('score'), 0.2)
+        self.assertEqual(
+            results[0].get('professor_id'), BOLLINGER_PROFESSOR_ID
+        )
+
+    def test_search_professor_with_limit(self):
+        setup_department_professor_courses(self.cur)
+        db.commit()
+
+        results = search_professor('lee', limit=1)
+
+        self.assertEqual(len(results), 1)
+        self.assertGreater(results[0].get('score'), 0)
+        self.assertEqual(
+            results[0].get('professor_id'), BOLLINGER_PROFESSOR_ID
+        )
+
+    def test_search_professor_no_results(self):
+        setup_department_professor_courses(self.cur)
+        db.commit()
+
+        results = search_professor('yannakakis', limit=1)
+
+        self.assertEqual(len(results), 0)
