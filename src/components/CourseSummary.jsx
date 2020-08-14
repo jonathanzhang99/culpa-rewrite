@@ -177,19 +177,9 @@ const defaultPropsReviewSummary = {
 };
 
 function ReviewSummary({ reviewSummary }) {
-  const [isPositiveReviewPresent, setPositiveReviewPresent] = useState(false);
-  const [isNegativeReviewPresent, setNegativeReviewPresent] = useState(false);
-
   const { positiveReview, negativeReview } = reviewSummary;
 
-  if (positiveReview.length !== 0) {
-    setPositiveReviewPresent(true);
-  }
-  if (negativeReview.length !== 0) {
-    setNegativeReviewPresent(true);
-  }
-
-  if (isPositiveReviewPresent && isNegativeReviewPresent) {
+  if (positiveReview && negativeReview) {
     return (
       <Container>
         <Grid>
@@ -209,7 +199,7 @@ function ReviewSummary({ reviewSummary }) {
     );
   }
 
-  if (isPositiveReviewPresent) {
+  if (positiveReview) {
     return (
       <Container>
         <Grid>
@@ -224,7 +214,7 @@ function ReviewSummary({ reviewSummary }) {
     );
   }
 
-  if (isNegativeReviewPresent) {
+  if (negativeReview) {
     return (
       <Container>
         <Grid>
