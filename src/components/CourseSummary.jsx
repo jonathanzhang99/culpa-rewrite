@@ -235,6 +235,30 @@ function ReviewSummary({ reviewSummary }) {
 ReviewSummary.propTypes = propTypesReviewSummary;
 ReviewSummary.defaultProps = defaultPropsReviewSummary;
 
+const propTypesCourseReviewCard = {
+  review: PropTypes.shape({
+    reviewType: PropTypes.string.isRequired,
+    reviewHeader: PropTypes.shape({
+      courseId: PropTypes.number.isRequired,
+      courseName: PropTypes.string.isRequired,
+      courseCode: PropTypes.string.isRequired,
+    }).isRequired,
+    votes: PropTypes.shape({
+      initUpvoteCount: PropTypes.number.isRequired,
+      initDownvoteCount: PropTypes.number.isRequired,
+      initFunnyCount: PropTypes.number.isRequired,
+      upvoteClicked: PropTypes.bool.isRequired,
+      downvoteClicked: PropTypes.bool.isRequired,
+      funnyClicked: PropTypes.bool.isRequired,
+    }).isRequired,
+    workload: PropTypes.string,
+    submissionDate: PropTypes.string.isRequired,
+    reviewId: PropTypes.number.isRequired,
+    deprecated: PropTypes.bool,
+    content: PropTypes.string,
+  }).isRequired,
+};
+
 function CourseReviewCard({ review }) {
   const {
     reviewType,
@@ -260,3 +284,5 @@ function CourseReviewCard({ review }) {
     />
   );
 }
+
+CourseReviewCard.propTypes = propTypesCourseReviewCard;
