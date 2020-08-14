@@ -7,7 +7,48 @@ import CreateReviewButton from "components/common/CreateReviewButton";
 import { ProfessorDisplayLink } from "components/common/ProfessorDisplay";
 import ReviewCard from "components/reviews/ReviewCard";
 
-const propTypes = {
+const propTypesCourseSummary = {
+  courseId: PropTypes.number.isRequired,
+  courseSummary: PropTypes.shape({
+    courseName: PropTypes.string.isRequired,
+    courseCallNumber: PropTypes.string.isRequired,
+    departmentName: PropTypes.string.isRequired,
+    associatedProfessors: PropTypes.array.isRequired,
+  }).isRequired,
+  reviewSummary: PropTypes.shape({
+    positiveReview: PropTypes.array,
+    negativeReview: PropTypes.array,
+  }),
+};
+
+const defaultPropsCourseSummary = {
+  reviewSummary: {
+    positiveReivew: {},
+    negativeReview: {},
+  },
+};
+
+export default function CourseSummary({
+  courseId,
+  courseSummary,
+  reviewSummary,
+}) {
+  return (
+    <Grid>
+      <Grid.Row>
+        <CourseHeader courseId={courseId} courseSummary={courseSummary} />
+      </Grid.Row>
+      <Grid.Row>
+        <ReviewSummary reviewSummary={reviewSummary} />
+      </Grid.Row>
+    </Grid>
+  );
+}
+
+CourseSummary.propTypes = propTypesCourseSummary;
+CourseSummary.defaultProps = defaultPropsCourseSummary;
+
+const propTypesCourseHeader = {
   courseId: PropTypes.number.isRequired,
   courseSummary: PropTypes.shape({
     courseName: PropTypes.string.isRequired,
@@ -16,19 +57,6 @@ const propTypes = {
     associatedProfessors: PropTypes.array.isRequired,
   }).isRequired,
 };
-
-export default function CourseSummary({ courseId, courseSummary }) {
-  return (
-    <Grid>
-      <Grid.Row>
-        <CourseHeader courseId={courseId} courseSummary={courseSummary} />
-      </Grid.Row>
-      <Grid.Row>
-        <ReviewSummary />
-      </Grid.Row>
-    </Grid>
-  );
-}
 
 export function CourseHeader({ courseId, courseSummary }) {
   const [isAccordionActive, setAccordionActive] = useState(false);
@@ -132,79 +160,113 @@ export function CourseHeader({ courseId, courseSummary }) {
   );
 }
 
+CourseHeader.propTypes = propTypesCourseHeader;
+
+const propTypesReviewSummary = {
+  reviewSummary: PropTypes.shape({
+    positiveReview: PropTypes.array,
+    negativeReview: PropTypes.array,
+  }),
+};
+
+const defaultPropsReviewSummary = {
+  reviewSummary: {
+    positiveReivew: {},
+    negativeReview: {},
+  },
+};
+
 function ReviewSummary({ reviewSummary }) {
-  const { positiveReviewSummary, negativeReviewSummary } = reviewSummary;
-  const positiveReviewSummary = {
-    reviewType: "course",
-    reviewHeader: {
-      courseId: 1,
-      courseName: "Machine Learning",
-      courseCode: "COMS 4771",
-    },
-    votes: {
-      initUpvoteCount: 10,
-      initDownvoteCount: 2,
-      initFunnyCount: 27,
-      upvoteClicked: false,
-      downvoteClicked: false,
-      funnyClicked: false,
-    },
-    workload: "",
-    submissionDate: "2020-01-15",
-    reviewId: 1,
-    deprecated: false,
-    content: "This is a review.",
-  };
+  const [isPositiveReviewPresent, setPositiveReviewPresent] = useState(false);
+  const [isNegativeReviewPresent, setNegativeReviewPresent] = useState(false);
 
-  const negativeReviewSummary = {
-    reviewType: "course",
-    reviewHeader: {
-      courseId: 1,
-      courseName: "Machine Learning",
-      courseCode: "COMS 4771",
-    },
-    votes: {
-      initUpvoteCount: 10,
-      initDownvoteCount: 2,
-      initFunnyCount: 27,
-      upvoteClicked: false,
-      downvoteClicked: false,
-      funnyClicked: false,
-    },
-    workload: "",
-    submissionDate: "2020-01-15",
-    reviewId: 1,
-    deprecated: false,
-    content: "This is a review.",
-  };
+  const { positiveReview, negativeReview } = reviewSummary;
 
-  return (
-    <Container>
-      <Grid>
-        <Grid.Row>
-          <Grid.Column width={7}>
-            <h3>Most Positive Review</h3>
-            <ReviewCard
-              content={positiveReviewSummary.content}
-              deprecated={positiveReviewSummary.deprecated}
-              reviewHeader={positiveReviewSummary.reviewHeader}
-              reviewId={positiveReviewSummary.reviewId}
-              reviewType={positiveReviewSummary.reviewType}
-              submissionDate={positiveReviewSummary.submissionDate}
-              votes={positiveReviewSummary.votes}
-              workload={positiveReviewSummary.workload}
-            />
-          </Grid.Column>
-          <Grid.Column width={1} />
-          <Grid.Column width={7}>
-            <h3>Most Negative Review</h3>
-            <ReviewCard {...negativeReviewSummary} />
-          </Grid.Column>
-        </Grid.Row>
-      </Grid>
-    </Container>
-  );
+  if (positiveReview.length !== 0) {
+    setPositiveReviewPresent(true);
+  }
+  if (negativeReview.length !== 0) {
+    setNegativeReviewPresent(true);
+  }
+
+  if (isPositiveReviewPresent && isNegativeReviewPresent) {
+    return (
+      <Container>
+        <Grid>
+          <Grid.Row>
+            <Grid.Column width={7}>
+              <h3>Most Positive Review</h3>
+              <CourseReviewCard review={positiveReview} />
+            </Grid.Column>
+            <Grid.Column width={1} />
+            <Grid.Column width={7}>
+              <h3>Most Negative Review</h3>
+              <CourseReviewCard review={negativeReview} />
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+      </Container>
+    );
+  }
+
+  if (isPositiveReviewPresent) {
+    return (
+      <Container>
+        <Grid>
+          <Grid.Row>
+            <Grid.Column width={14}>
+              <h3>Most Positive Review</h3>
+              <CourseReviewCard review={positiveReview} />
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+      </Container>
+    );
+  }
+
+  if (isNegativeReviewPresent) {
+    return (
+      <Container>
+        <Grid>
+          <Grid.Row>
+            <Grid.Column width={14}>
+              <h3>Most Negative Review</h3>
+              <CourseReviewCard review={negativeReview} />
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+      </Container>
+    );
+  }
+
+  return "";
 }
 
-CourseSummary.propTypes = propTypes;
-CourseHeader.propTypes = propTypes;
+ReviewSummary.propTypes = propTypesReviewSummary;
+ReviewSummary.defaultProps = defaultPropsReviewSummary;
+
+function CourseReviewCard({ review }) {
+  const {
+    reviewType,
+    reviewHeader,
+    votes,
+    workload,
+    submissionDate,
+    reviewId,
+    deprecated,
+    content,
+  } = review;
+
+  return (
+    <ReviewCard
+      content={content}
+      deprecated={deprecated}
+      reviewHeader={reviewHeader}
+      reviewId={reviewId}
+      reviewType={reviewType}
+      submissionDate={submissionDate}
+      votes={votes}
+      workload={workload}
+    />
+  );
+}
