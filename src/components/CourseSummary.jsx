@@ -1,10 +1,11 @@
 import PropTypes from "prop-types";
 import React, { useState } from "react";
-import { Icon, Accordion, Table } from "semantic-ui-react";
+import { Icon, Accordion, Table, Grid, Container } from "semantic-ui-react";
 
 import { CourseDisplayName } from "components/common/CourseDisplay";
 import CreateReviewButton from "components/common/CreateReviewButton";
 import { ProfessorDisplayLink } from "components/common/ProfessorDisplay";
+import ReviewCard from "components/reviews/ReviewCard";
 
 const propTypes = {
   courseId: PropTypes.number.isRequired,
@@ -18,10 +19,14 @@ const propTypes = {
 
 export default function CourseSummary({ courseId, courseSummary }) {
   return (
-    <div>
-      <CourseHeader courseId={courseId} courseSummary={courseSummary} />
-      <ReviewSummary />
-    </div>
+    <Grid>
+      <Grid.Row>
+        <CourseHeader courseId={courseId} courseSummary={courseSummary} />
+      </Grid.Row>
+      <Grid.Row>
+        <ReviewSummary />
+      </Grid.Row>
+    </Grid>
   );
 }
 
@@ -112,7 +117,7 @@ export function CourseHeader({ courseId, courseSummary }) {
   );
 
   return (
-    <div>
+    <Container>
       <h1>
         <CourseDisplayName code={courseCallNumber} name={courseName} />
       </h1>
@@ -123,12 +128,82 @@ export function CourseHeader({ courseId, courseSummary }) {
       <CreateReviewButton compact color="yellow" courseId={courseId.toString()}>
         WRITE A REVIEW FOR {courseName}
       </CreateReviewButton>
-    </div>
+    </Container>
   );
 }
 
-function ReviewSummary() {
-  return "Review Summary here";
+function ReviewSummary({ reviewSummary }) {
+  const { positiveReviewSummary, negativeReviewSummary } = reviewSummary;
+  const positiveReviewSummary = {
+    reviewType: "course",
+    reviewHeader: {
+      courseId: 1,
+      courseName: "Machine Learning",
+      courseCode: "COMS 4771",
+    },
+    votes: {
+      initUpvoteCount: 10,
+      initDownvoteCount: 2,
+      initFunnyCount: 27,
+      upvoteClicked: false,
+      downvoteClicked: false,
+      funnyClicked: false,
+    },
+    workload: "",
+    submissionDate: "2020-01-15",
+    reviewId: 1,
+    deprecated: false,
+    content: "This is a review.",
+  };
+
+  const negativeReviewSummary = {
+    reviewType: "course",
+    reviewHeader: {
+      courseId: 1,
+      courseName: "Machine Learning",
+      courseCode: "COMS 4771",
+    },
+    votes: {
+      initUpvoteCount: 10,
+      initDownvoteCount: 2,
+      initFunnyCount: 27,
+      upvoteClicked: false,
+      downvoteClicked: false,
+      funnyClicked: false,
+    },
+    workload: "",
+    submissionDate: "2020-01-15",
+    reviewId: 1,
+    deprecated: false,
+    content: "This is a review.",
+  };
+
+  return (
+    <Container>
+      <Grid>
+        <Grid.Row>
+          <Grid.Column width={7}>
+            <h3>Most Positive Review</h3>
+            <ReviewCard
+              content={positiveReviewSummary.content}
+              deprecated={positiveReviewSummary.deprecated}
+              reviewHeader={positiveReviewSummary.reviewHeader}
+              reviewId={positiveReviewSummary.reviewId}
+              reviewType={positiveReviewSummary.reviewType}
+              submissionDate={positiveReviewSummary.submissionDate}
+              votes={positiveReviewSummary.votes}
+              workload={positiveReviewSummary.workload}
+            />
+          </Grid.Column>
+          <Grid.Column width={1} />
+          <Grid.Column width={7}>
+            <h3>Most Negative Review</h3>
+            <ReviewCard {...negativeReviewSummary} />
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
+    </Container>
+  );
 }
 
 CourseSummary.propTypes = propTypes;
