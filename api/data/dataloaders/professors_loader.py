@@ -76,6 +76,7 @@ def get_prof_by_id(id):
 
     return cur.fetchone()
 
+
 def search_professor(search_query, limit=None):
     cur = db.get_cursor()
 
