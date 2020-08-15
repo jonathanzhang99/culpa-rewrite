@@ -1,4 +1,3 @@
-from api.data import db
 from api.data.dataloaders.professors_loader import get_all_professors, \
     get_professor_courses, get_cp_id_by_prof, get_prof_by_id
 from api.tests import LoadersWritersBaseTest
@@ -7,8 +6,7 @@ from api.tests.data_tests.common import setup_department_professor_courses
 
 class ProfessorsLoaderTest(LoadersWritersBaseTest):
     def test_load_all_professors(self):
-        cur = db.get_cursor()
-        cur.execute(
+        self.cur.execute(
             'INSERT INTO professor (first_name, last_name)'
             'VALUES ("test1", "test1")'
         )
@@ -25,8 +23,7 @@ class ProfessorsLoaderTest(LoadersWritersBaseTest):
         BOLLINGER_PROFESSOR_ID = 2
 
         # retrieve Lee Bollinger's courses
-        cur = db.get_cursor()
-        setup_department_professor_courses(cur)
+        setup_department_professor_courses(self.cur)
 
         expected_courses = [
             {
@@ -43,8 +40,7 @@ class ProfessorsLoaderTest(LoadersWritersBaseTest):
         VERMA_PROFESSOR_ID = 1
 
         # retrieve Verma's courses
-        cur = db.get_cursor()
-        setup_department_professor_courses(cur)
+        setup_department_professor_courses(self.cur)
 
         expected_courses = [{
             'course_professor_id': 1,
@@ -124,8 +120,7 @@ class ProfessorsLoaderTest(LoadersWritersBaseTest):
                 'expected_res': ()
             },
         ]
-        cur = db.get_cursor()
-        setup_department_professor_courses(cur)
+        setup_department_professor_courses(self.cur)
         for test_case in test_cases:
             with self.subTest(test_case):
                 res = get_cp_id_by_prof(
@@ -135,8 +130,7 @@ class ProfessorsLoaderTest(LoadersWritersBaseTest):
                 self.assertEqual(res, test_case['expected_res'])
 
     def test_get_prof_by_id(self):
-        cur = db.get_cursor()
-        setup_department_professor_courses(cur)
+        setup_department_professor_courses(self.cur)
         test_cases = [
             {
                 'id': 1,

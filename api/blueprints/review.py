@@ -119,7 +119,6 @@ def get_reviews():
         'professor': get_cp_id_by_prof,
         'course': get_cp_id_by_course
     }
-    valid_filter_votes = ['upvotes', 'downvotes', 'funnys']
 
     ip = flask.request.remote_addr
     url_args = flask.request.args
@@ -135,17 +134,12 @@ def get_reviews():
     # getting sorting and filtering settings
     # default: sort by date
     sort_crit, sort_desc = sorting_spec['newest']
-    filter_list, filter_year, filter_vote = None, None, None
+    filter_list, filter_year = None, None
     if body_params:
         sorting = body_params.get('sorting').lower()
         filter_list = body_params.get('filterList')
-        filter_year = body_params.get('filterYearLimit')
-        filter_vote = body_params.get('filterVoteType')
+        filter_year = body_params.get('filterYear')
 
-        if filter_vote and filter_vote not in valid_filter_votes:
-            return {
-                "error": "invalid filter vote type setting"
-            }, 400
         if sorting:
             if sorting not in sorting_spec:
                 return {
@@ -155,7 +149,7 @@ def get_reviews():
 
     try:
         cp_ids = valid_page_types[page_type](
-            url_args.get(f'{page_type}Id'),
+            int(url_args.get(f'{page_type}Id')),
             filter_list
         )
         cp_id_map = {
@@ -167,14 +161,6 @@ def get_reviews():
         reviews = get_reviews_db(
             list(cp_id_map.keys()), ip, sort_crit, sort_desc, filter_year
         ) if cp_id_map else []
-
-        # filter by vote in this layer to avoid too much calculation in db
-        if filter_vote:
-            reviews = list(filter(
-                lambda x: x[filter_vote] == max(
-                    x['upvotes'], x['downvotes'], x['funnys']
-                ), reviews
-            ))
 
         json = [parse_review(
             review,

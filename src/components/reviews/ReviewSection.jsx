@@ -56,7 +56,7 @@ export default function ReviewSection({initReviews, pageType, id, assocList}){
         sorting: '',
         filters: {
             assocListLimit: [],
-            yearLimit: null,
+            year: null,
             voteType: ''
         }
     })
@@ -71,7 +71,7 @@ export default function ReviewSection({initReviews, pageType, id, assocList}){
             body: JSON.stringify({
                 sorting: state.sorting,
                 filterList: state.filters.assocListLimit,
-                filterYearLimit: state.filters.yearLimit,
+                filterYear: state.filters.year,
                 filterVoteType: state.filters.voteType
             })
         })
@@ -93,8 +93,6 @@ export default function ReviewSection({initReviews, pageType, id, assocList}){
         if(state.reload){
             fetchReviews()
             dispatch({type: "RELOAD_END"})
-        } else {
-            console.log(state.reviews)
         }
     })
 

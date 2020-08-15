@@ -3,7 +3,7 @@ from api.tests import BaseTest
 
 
 class ProfessorsTest(BaseTest):
-    @mock.patch('api.blueprints.professors.get_all_professors')
+    @mock.patch('api.blueprints.professor.get_all_professors')
     def test_retrieve_all_professors(self, mock_professors):
         mock_professors.return_value = [{
             'professors_id': 1,
@@ -29,7 +29,7 @@ class ProfessorsTest(BaseTest):
         res = self.app.get('/api/professor/all')
         self.assertEqual(expected_res, res.json)
 
-    @mock.patch('api.blueprints.professors.get_all_professors')
+    @mock.patch('api.blueprints.professor.get_all_professors')
     def test_retrieve_all_professors_empty(self, mock_professors):
         mock_professors.return_value = []
         expected_res = {

@@ -3,7 +3,8 @@ from pypika import functions as fn, \
     Case, \
     Criterion, \
     CustomFunction, \
-    Order
+    Order, \
+    JoinType
 
 from api.data import db
 from api.data.common import review, vote
@@ -24,7 +25,8 @@ def get_reviews_db(
     also loads the clicked state of buttons for a specific user
     '''
     cur = db.get_cursor()
-    q = Query.from_(review).join(vote).on(
+
+    q = Query.from_(review).join(vote, JoinType.left).on(
         review.review_id == vote.review_id
     ).where(
         review.course_professor_id.isin(course_prof_ids)
