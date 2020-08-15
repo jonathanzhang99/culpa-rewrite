@@ -12,12 +12,12 @@ def setup_department_professor_courses(cur):
     )
 
     courses = [
-        ('Machine Learning', 1, 'COMS 4771'),
-        ('Advanced Machine Learning', 1, 'COMS 4774'),
-        ('Operating Systems', 1, 'COMS 4118'),
-        ('Advanced Programming', 1, 'COMS 3157'),
-        ('Freedom of Speech and Press', 2, 'POLS 3285'),
-        ('Mathematics of Machine Learning', 3, 'MATH FAKE'),
+        ('Machine Learning', 1, 'COMS 4771'),                   # course_id: 1
+        ('Advanced Machine Learning', 1, 'COMS 4774'),          # course_id: 2
+        ('Operating Systems', 1, 'COMS 4118'),                  # course_id: 3
+        ('Advanced Programming', 1, 'COMS 3157'),               # course_id: 4
+        ('Freedom of Speech and Press', 2, 'POLS 3285'),        # course_id: 5
+        ('Mathematics of Machine Learning', 3, 'MATH FAKE'),    # course_id: 6
     ]
     cur.executemany(
         'INSERT INTO course (name, department_id, call_number)'
@@ -27,7 +27,7 @@ def setup_department_professor_courses(cur):
 
     professors = [
         ('Nakul', 'Verma', 'nv2274'),   # professor_id: 1
-        ('Lee', "Bollinger", "lcb50"),  # professor_id: 2
+        ('Lee', 'Bollinger', 'lcb50'),  # professor_id: 2
         ('Jae W', 'Lee', 'jwl3')        # professor_id: 3
     ]
     cur.executemany(
