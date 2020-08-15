@@ -1,7 +1,7 @@
 from api.data import db
 from api.data.dataloaders.courses_loader import get_course, \
     get_department_professors, search_course, get_cp_id_by_course, \
-    get_course_by_id
+    get_course_list
 from api.tests import LoadersWritersBaseTest
 from api.tests.data_tests.common import setup_department_professor_courses
 
@@ -61,34 +61,38 @@ class CoursesLoaderTest(LoadersWritersBaseTest):
                 )
                 self.assertEqual(res, test_case['expected_res'])
 
-    def test_get_course_by_id(self):
+    def test_get_course_list(self):
         setup_department_professor_courses(self.cur)
         test_cases = [
             {
-                'id': 1,
-                'expected_res': {
+                'id': [1, 4],
+                'expected_res': [{
                     'course_id': 1,
                     'name': 'Machine Learning',
                     'call_number': 'COMS 4771'
-                }
-            },
-            {
-                'id': 4,
-                'expected_res': {
+                }, {
                     'course_id': 4,
                     'name': 'Advanced Programming',
                     'call_number': 'COMS 3157'
-                }
+                }]
             },
             {
-                'id': 12345,
-                'expected_res': None
+                'id': [4],
+                'expected_res': [{
+                    'course_id': 4,
+                    'name': 'Advanced Programming',
+                    'call_number': 'COMS 3157'
+                }]
+            },
+            {
+                'id': [12345],
+                'expected_res': ()
             }
         ]
 
         for test_case in test_cases:
             with self.subTest(test_case):
-                res = get_course_by_id(test_case['id'])
+                res = get_course_list(test_case['id'])
                 self.assertEqual(res, test_case['expected_res'])
 
     def test_get_course(self):

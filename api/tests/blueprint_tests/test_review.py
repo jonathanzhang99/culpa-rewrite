@@ -70,13 +70,10 @@ class ReviewTest(BaseTest):
         self.assertEqual(res.status_code, 400)
         self.assertEqual(expected_error, res.json)
 
-    @mock.patch("api.blueprints.review.get_course_by_id")
-    @mock.patch("api.blueprints.review.get_prof_by_id")
-    def test_parse_review(self, get_prof_mock, get_course_mock):
+    def test_parse_review(self):
         types = [{
             'r_type': 'course',
-            'fn': get_prof_mock,
-            'fn_return': {
+            'header_data': {
                 'professor_id': 12345,
                 'uni': '12345',
                 'first_name': 'John',
@@ -90,8 +87,7 @@ class ReviewTest(BaseTest):
             }
         }, {
             'r_type': 'professor',
-            'fn': get_course_mock,
-            'fn_return': {
+            'header_data': {
                 'course_id': 12345,
                 'name': 'testtest',
                 'call_number': '12345'
@@ -125,16 +121,17 @@ class ReviewTest(BaseTest):
             'workload': 'test workload',
         }
 
-        id = 11111
         for type_ in types:
             for date in dates:
                 with self.subTest(type_=type_, date=date):
-                    type_['fn'].return_value = type_['fn_return']
                     review['submission_date'] = date['submission_date']
 
-                    res = parse_review(review, type_['r_type'], id)
+                    res = parse_review(
+                        review,
+                        type_['r_type'],
+                        type_['header_data']
+                    )
 
-                    type_['fn'].assert_called_with(id)
                     self.assertEqual(res, {
                         'reviewType': type_['r_type'],
                         'reviewHeader': type_['expected_review_header'],
@@ -153,7 +150,8 @@ class ReviewTest(BaseTest):
                         'deprecated': date['deprecated']
                     })
 
-    # @mock.patch("__main__.parse_review")
+    @mock.patch("api.blueprints.review.get_course_list")
+    @mock.patch("api.blueprints.review.get_prof_list")
     @mock.patch("api.blueprints.review.get_reviews_db")
     @mock.patch("api.blueprints.review.get_cp_id_by_course")
     @mock.patch("api.blueprints.review.get_cp_id_by_prof")
@@ -162,18 +160,29 @@ class ReviewTest(BaseTest):
         cp_by_prof_mock,
         cp_by_course_mock,
         get_reviews_db_mock,
+        get_prof_list_mock,
+        get_course_list_mock
     ):
         cases = [{
             'type': 'course',
             'fn': cp_by_course_mock,
+            'fn2': get_prof_list_mock,
             'fn_return': [{
                 'course_professor_id': 6,
                 'professor_id': 3
             }],
-            'cp_ids': [6]
+            'cp_ids': [6],
+            'header_ids': [3],
+            'fn2_return': [{
+                'professor_id': 3,
+                'first_name': 'Jae W',
+                'last_name': 'Lee',
+                'uni': 'jwl3'
+            }]
         }, {
             'type': 'professor',
             'fn': cp_by_prof_mock,
+            'fn2': get_course_list_mock,
             'fn_return': [{
                 'course_professor_id': 5,
                 'course_id': 4
@@ -181,7 +190,17 @@ class ReviewTest(BaseTest):
                 'course_professor_id': 6,
                 'course_id': 3
             }],
-            'cp_ids': [5, 6]
+            'cp_ids': [5, 6],
+            'header_ids': [4, 3],
+            'fn2_return': [{
+                'course_id': 3,
+                'call_number': 'COMS 4118',
+                'name': 'Operating Systems'
+            }, {
+                'course_id': 4,
+                'call_number': 'COMS 3157',
+                'name': 'Advanced Programming'
+            }]
         }]
         id, ip = 3, "123.456.78.910"
 
@@ -189,6 +208,7 @@ class ReviewTest(BaseTest):
             with self.subTest(case=case):
                 r_type = case['type']
                 case['fn'].return_value = case['fn_return']
+                case['fn2'].return_value = case['fn2_return']
                 get_reviews_db_mock.return_value = [
                     mock.Mock() for _ in case['fn_return']
                 ]
@@ -199,6 +219,7 @@ class ReviewTest(BaseTest):
                 )
 
                 case['fn'].assert_called_with(id, None)
+                case['fn2'].assert_called_with(case['header_ids'])
                 get_reviews_db_mock.assert_called_with(
                     case['cp_ids'],
                     ip,
@@ -221,6 +242,8 @@ class ReviewTest(BaseTest):
                 # parse_review_mock.assert_has_calls(calls)
                 # parse_review_mock.assert_called()
 
+    @mock.patch("api.blueprints.review.get_course_list")
+    @mock.patch("api.blueprints.review.get_prof_list")
     @mock.patch("api.blueprints.review.get_reviews_db")
     @mock.patch("api.blueprints.review.get_cp_id_by_course")
     @mock.patch("api.blueprints.review.get_cp_id_by_prof")
@@ -229,6 +252,8 @@ class ReviewTest(BaseTest):
         cp_by_prof_mock,
         cp_by_course_mock,
         get_reviews_db_mock,
+        get_prof_list_mock,
+        get_course_list_mock
     ):
         res = self.app.get(
             f'/api/review/get?type=invalid_type&invalidId={id}',
@@ -240,7 +265,11 @@ class ReviewTest(BaseTest):
         cp_by_prof_mock.assert_not_called()
         cp_by_course_mock.assert_not_called()
         get_reviews_db_mock.assert_not_called()
+        get_course_list_mock.assert_not_called()
+        get_prof_list_mock.assert_not_called()
 
+    @mock.patch("api.blueprints.review.get_course_list")
+    @mock.patch("api.blueprints.review.get_prof_list")
     @mock.patch("api.blueprints.review.get_reviews_db")
     @mock.patch("api.blueprints.review.get_cp_id_by_course")
     @mock.patch("api.blueprints.review.get_cp_id_by_prof")
@@ -249,6 +278,8 @@ class ReviewTest(BaseTest):
         cp_by_prof_mock,
         cp_by_course_mock,
         get_reviews_db_mock,
+        get_prof_list_mock,
+        get_course_list_mock
     ):
         '''
         tests if the pipeline is passing on the right args.
@@ -267,15 +298,24 @@ class ReviewTest(BaseTest):
         cases = [{
             'type': 'course',
             'fn': cp_by_course_mock,
+            'fn2': get_prof_list_mock,
             'fn_return': [{
                 'course_professor_id': 6,
                 'professor_id': 3
             }],
             'cp_ids': [6],
+            'header_ids': [3],
+            'fn2_return': [{
+                'professor_id': 3,
+                'first_name': 'Jae W',
+                'last_name': 'Lee',
+                'uni': 'jwl3'
+            }],
             'filter_list': [3]
         }, {
             'type': 'professor',
             'fn': cp_by_prof_mock,
+            'fn2': get_course_list_mock,
             'fn_return': [{
                 'course_professor_id': 5,
                 'course_id': 4
@@ -284,6 +324,16 @@ class ReviewTest(BaseTest):
                 'course_id': 3
             }],
             'cp_ids': [5, 6],
+            'header_ids': [4, 3],
+            'fn2_return': [{
+                'course_id': 3,
+                'call_number': 'COMS 4118',
+                'name': 'Operating Systems'
+            }, {
+                'course_id': 4,
+                'call_number': 'COMS 3157',
+                'name': 'Advanced Programming'
+            }],
             'filter_list': [4]
         }]
         id, ip = 3, "123.456.78.910"
@@ -294,6 +344,7 @@ class ReviewTest(BaseTest):
                 with self.subTest(case=case, sorting=sorting):
                     r_type = case['type']
                     case['fn'].return_value = case['fn_return']
+                    case['fn2'].return_value = case['fn2_return']
 
                     res = self.app.post(
                         f'/api/review/get?type={r_type}&{r_type}Id={id}',
@@ -310,6 +361,7 @@ class ReviewTest(BaseTest):
                         id,
                         case['filter_list']
                     )
+                    case['fn2'].assert_called_with(case['header_ids'])
                     get_reviews_db_mock.assert_called_with(
                         case['cp_ids'],
                         ip,

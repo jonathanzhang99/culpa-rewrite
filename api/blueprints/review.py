@@ -2,16 +2,16 @@ import flask
 from datetime import datetime, timedelta
 
 from api.data.dataloaders.courses_loader import get_cp_id_by_course, \
-    get_course_by_id
+    get_course_list
 from api.data.dataloaders.professors_loader import get_cp_id_by_prof, \
-    get_prof_by_id
+    get_prof_list
 from api.data.dataloaders.reviews_loader import get_reviews_db
 from api.data.datawriters.reviews_writer import insert_review
 
 review_blueprint = flask.Blueprint('review_blueprint', __name__)
 
 
-def parse_review(review, r_type, id):
+def parse_review(review, r_type, header_data):
     '''
     static method for parsing a review into a json object
     '''
@@ -19,26 +19,19 @@ def parse_review(review, r_type, id):
         datetime.utcnow() - review['submission_date']
     ) / timedelta(days=1) >= 5 * 365
 
-    try:
-        if r_type == 'course':
-            res = get_prof_by_id(id)
-            reviewHeader = {
-                'profId': res['professor_id'],
-                'profFirstName': res['first_name'],
-                'profLastName': res['last_name'],
-                'uni': res['uni']
-            }
-        else:
-            res = get_course_by_id(id)
-            reviewHeader = {
-                'courseId': res['course_id'],
-                'courseName': res['name'],
-                'courseCode': res['call_number']
-            }
-
-    except Exception as e:
-        print(e)
-        raise
+    if r_type == 'course':
+        reviewHeader = {
+            'profId': header_data['professor_id'],
+            'profFirstName': header_data['first_name'],
+            'profLastName': header_data['last_name'],
+            'uni': header_data['uni']
+        }
+    else:
+        reviewHeader = {
+            'courseId': header_data['course_id'],
+            'courseName': header_data['name'],
+            'courseCode': header_data['call_number']
+        }
 
     return {
             'reviewType': r_type,
@@ -113,8 +106,8 @@ def get_reviews():
         'most disagreed': ['downvotes', True]
     }
     valid_page_types = {
-        'professor': get_cp_id_by_prof,
-        'course': get_cp_id_by_course
+        'professor': [get_cp_id_by_prof, get_course_list],
+        'course': [get_cp_id_by_course, get_prof_list]
     }
 
     ip = flask.request.remote_addr
@@ -145,15 +138,18 @@ def get_reviews():
             sort_crit, sort_desc = sorting_spec[sorting]
 
     try:
-        cp_ids = valid_page_types[page_type](
+        other_type = 'course' if page_type == 'professor' else 'professor'
+        cp_ids = valid_page_types[page_type][0](
             int(url_args.get(f'{page_type}Id')),
             filter_list
         )
         cp_id_map = {
-            x['course_professor_id']: x[
-                'course_id' if page_type == 'professor' else 'professor_id'
-            ] for x in cp_ids
+            x['course_professor_id']: x[f'{other_type}_id'] for x in cp_ids
         }
+        header_data = {x[f'{other_type}_id']: x for x
+                       in valid_page_types[page_type][1](
+                           list(cp_id_map.values())
+                       )}
 
         reviews = get_reviews_db(
             list(cp_id_map.keys()), ip, sort_crit, sort_desc, filter_year
@@ -162,7 +158,7 @@ def get_reviews():
         json = [parse_review(
             review,
             page_type,
-            cp_id_map[review['course_professor_id']]
+            header_data[cp_id_map[review['course_professor_id']]]
         ) for review in reviews]
         return {'reviews': json}
 

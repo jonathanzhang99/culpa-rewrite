@@ -27,13 +27,13 @@ def get_cp_id_by_course(course_id, prof_ids=None):
     return cur.fetchall()
 
 
-def get_course_by_id(id):
+def get_course_list(course_ids):
     '''
-    loads info of courses related to a cp_id
+    loads info of courses related to a list of course_id
     '''
     cur = db.get_cursor()
     q = Query.from_(course).where(
-        course.course_id == id
+        course.course_id.isin(course_ids)
     ).select(
         course.course_id,
         course.call_number,
@@ -41,7 +41,7 @@ def get_course_by_id(id):
     ).get_sql()
     cur.execute(q)
 
-    return cur.fetchone()
+    return cur.fetchall()
 
 
 def get_course(course_id):

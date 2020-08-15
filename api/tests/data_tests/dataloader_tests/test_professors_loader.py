@@ -1,6 +1,6 @@
 from api.data import db
 from api.data.dataloaders.professors_loader import get_all_professors, \
-    get_professor_courses, get_cp_id_by_prof, get_prof_by_id, \
+    get_professor_courses, get_cp_id_by_prof, get_prof_list, \
     search_professor
 from api.tests import LoadersWritersBaseTest
 from api.tests.data_tests.common import setup_department_professor_courses
@@ -132,36 +132,41 @@ class ProfessorsLoaderTest(LoadersWritersBaseTest):
                 )
                 self.assertEqual(res, test_case['expected_res'])
 
-    def test_get_prof_by_id(self):
+    def test_get_prof_list(self):
         setup_department_professor_courses(self.cur)
         test_cases = [
             {
-                'id': 1,
-                'expected_res': {
+                'id': [1, 3],
+                'expected_res': [{
                     'professor_id': 1,
                     'uni': 'nv2274',
                     'first_name': 'Nakul',
                     'last_name': 'Verma'
-                }
-            },
-            {
-                'id': 3,
-                'expected_res': {
+                }, {
                     'professor_id': 3,
                     'uni': 'jwl3',
                     'first_name': 'Jae W',
                     'last_name': 'Lee'
-                }
+                }]
             },
             {
-                'id': 12345,
-                'expected_res': None
+                'id': [3],
+                'expected_res': [{
+                    'professor_id': 3,
+                    'uni': 'jwl3',
+                    'first_name': 'Jae W',
+                    'last_name': 'Lee'
+                }]
+            },
+            {
+                'id': [12345],
+                'expected_res': ()
             }
         ]
 
         for test_case in test_cases:
             with self.subTest(test_case):
-                res = get_prof_by_id(test_case['id'])
+                res = get_prof_list(test_case['id'])
                 self.assertEqual(res, test_case['expected_res'])
 
     def test_search_professor_by_name(self):

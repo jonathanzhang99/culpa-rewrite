@@ -59,13 +59,13 @@ def get_cp_id_by_prof(prof_id, course_ids=None):
     return cur.fetchall()
 
 
-def get_prof_by_id(id):
+def get_prof_list(prof_ids):
     '''
-    loads info of professors related to a cp_id
+    loads info of professors related to a list of prof_id
     '''
     cur = db.get_cursor()
     q = Query.from_(professor).where(
-        professor.professor_id == id
+        professor.professor_id.isin(prof_ids)
     ).select(
         professor.professor_id,
         professor.uni,
@@ -74,7 +74,7 @@ def get_prof_by_id(id):
     ).get_sql()
     cur.execute(q)
 
-    return cur.fetchone()
+    return cur.fetchall()
 
 
 def search_professor(search_query, limit=None):
