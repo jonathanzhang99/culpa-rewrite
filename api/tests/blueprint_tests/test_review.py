@@ -287,8 +287,8 @@ class ReviewTest(BaseTest):
         is tested along with get_reviews_db, not here
         '''
         sorting_spec = {
-            'best': ['rating', True],
-            'worst': ['rating', False],
+            'most positive': ['rating', True],
+            'most negative': ['rating', False],
             'newest': ['submission_date', True],
             'oldest': ['submission_date', False],
             'most agreed': ['upvotes', True],

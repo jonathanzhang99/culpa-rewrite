@@ -15,6 +15,7 @@ def parse_review(review, r_type, header_data):
     '''
     static method for parsing a review into a json object
     '''
+    formatted_date = review['submission_date'].strftime("%b-%d-%Y")
     deprecated = (
         datetime.utcnow() - review['submission_date']
     ) / timedelta(days=1) >= 5 * 365
@@ -47,7 +48,7 @@ def parse_review(review, r_type, header_data):
             'reviewId': review['review_id'],
             'content': review['content'],
             'workload': review['workload'],
-            'submissionDate': review['submission_date'],
+            'submissionDate': formatted_date,
             'deprecated': deprecated,
         }
 
@@ -98,8 +99,8 @@ def get_reviews():
     and/or filtering criteria is changed)
     '''
     sorting_spec = {
-        'best': ['rating', True],
-        'worst': ['rating', False],
+        'most positive': ['rating', True],
+        'most negative': ['rating', False],
         'newest': ['submission_date', True],
         'oldest': ['submission_date', False],
         'most agreed': ['upvotes', True],

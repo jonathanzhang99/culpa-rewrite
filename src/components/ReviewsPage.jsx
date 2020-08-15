@@ -1,4 +1,5 @@
 import React from "react";
+import { Container } from "semantic-ui-react"
 
 import ErrorComponent from "components/common/ErrorComponent";
 import LoadingComponent from "components/common/LoadingComponent";
@@ -8,6 +9,12 @@ import ReviewSection from "components/reviews/ReviewSection"
 export default function ReviewsPage() {
     // example courseId and sorting for testing
     const professorId = 40
+    const exampleAssocList = [{
+        'courseId': 38,
+        'courseCode': 'COMS W4170',
+        'courseName': 'User Interface Design'
+    }]
+    
     const { 
         data : { reviews },
         isLoading,
@@ -21,12 +28,12 @@ export default function ReviewsPage() {
       }
 
     return (
-        <div>
+        <Container style={{minHeight: '100vh'}}>
             <p>placeholder for other components</p>
-            <ReviewSection assocList={[]}
+            <ReviewSection assocList={exampleAssocList}
                            id={40} 
                            initReviews={reviews}
                            pageType="professor" />
-        </div>
+        </Container>
     )
 }

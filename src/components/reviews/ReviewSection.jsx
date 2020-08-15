@@ -1,9 +1,10 @@
 import PropTypes from "prop-types";
 import React, { useEffect, useReducer } from "react"
-import { Button } from "semantic-ui-react"
+import { Container, Dropdown, Grid } from "semantic-ui-react"
 
 import ErrorComponent from "components/common/ErrorComponent";
 import LoadingComponent from "components/common/LoadingComponent";
+import ReviewCard from "components/reviews/ReviewCard"
 
 export default function ReviewSection({initReviews, pageType, id, assocList}){
     const reducer = (state, action) => {
@@ -42,6 +43,23 @@ export default function ReviewSection({initReviews, pageType, id, assocList}){
                     ...state,
                     sorting: action.payload.sorting
                 };
+            case "CHANGE_FILTER_YEAR":
+                return {
+                    ...state,
+                    filters: {
+                        assocListLimit: state.filters.assocListLimit,
+                        year: action.payload.filterYear,
+                        yearText: action.payload.filterYearText
+                    }
+                }
+            case "CHANGE_FILTER_ASSOC_LIST":
+                return {
+                    ...state,
+                    filters: {
+                        ...state.filters,
+                        assocListLimit: action.payload.assocListLimit
+                    }
+                }
             default:
                 throw new Error()
         }
@@ -51,13 +69,14 @@ export default function ReviewSection({initReviews, pageType, id, assocList}){
         isLoading: false,
         isError: false,
         reviews: initReviews,
+        assocList,
         pageType,
         id,
         sorting: '',
         filters: {
             assocListLimit: [],
             year: null,
-            voteType: ''
+            yearText: '',
         }
     })
 
@@ -72,7 +91,6 @@ export default function ReviewSection({initReviews, pageType, id, assocList}){
                 sorting: state.sorting,
                 filterList: state.filters.assocListLimit,
                 filterYear: state.filters.year,
-                filterVoteType: state.filters.voteType
             })
         })
         try {
@@ -83,6 +101,7 @@ export default function ReviewSection({initReviews, pageType, id, assocList}){
                 dispatch({type: "FETCH_SUCCESS", payload: result})
             }
             return result
+
         } catch(error){
             dispatch({type: "FETCH_FAILURE", payload: error})
             return {'error': error}
@@ -93,6 +112,8 @@ export default function ReviewSection({initReviews, pageType, id, assocList}){
         if(state.reload){
             fetchReviews()
             dispatch({type: "RELOAD_END"})
+        } else {
+            console.log(state)
         }
     })
 
@@ -100,20 +121,116 @@ export default function ReviewSection({initReviews, pageType, id, assocList}){
         return state.isLoading ? <LoadingComponent /> : <ErrorComponent />;
     }
 
+    const sortingOptions = [
+        {key: 0, text: 'None', value: ''},
+        {key: 1, text: 'Most Positive', value: 'Most Positive'},
+        {key: 2, text: 'Most Negative', value: 'Most Negative'},
+        {key: 3, text: 'Newest', value: 'Newest'},
+        {key: 4, text: 'Oldest', value: 'Oldest'},
+        {key: 5, text: 'Most Agreed', value: 'Most Agreed'},
+        {key: 6, text: 'Most Disagreed', value: 'Most Disagreed'}
+    ]
+
+    const onSortChange = (e, data) => {
+        dispatch({type: "RELOAD_START"})
+        dispatch({type: 'CHANGE_SORTING', payload: {sorting: data.value}})
+    }
+
+    const filterYearOptions = [
+        {key: 0, text: 'None', value: null},
+        {key: 1, text: 'Written within 2 years', value: 2},
+        {key: 2, text: 'Written within 5 years', value: 5}
+    ]
+
+    const onFilterYearChange = (e, data) => {
+        dispatch({type: "RELOAD_START"})
+        dispatch({type: 'CHANGE_FILTER_YEAR', payload: {
+            filterYear: data.value,
+            filterYearText: data.text
+        }})
+    }
+
+    const filterAssocListOptions = state.assocList.map((item) => {
+        const oType = state.pageType === 'professor' ? 'course' : 'professor'
+        return ({
+            key: item[`${oType}Id`],
+            value: item[`${oType}Id`],
+            text: oType === 'professor' ? 
+                `${item.firstName} ${item.lastName}` :
+                `[${item.courseCode}] ${item.courseName}`
+        })
+    })
+
+    const onFilterAssocListChange = (e, data) => {
+        dispatch({type: "RELOAD_START"})
+        dispatch({
+            type: "CHANGE_FILTER_ASSOC_LIST",
+            payload: {
+                assocListLimit: data.value
+            }
+        })
+    }
     return (
-        <div>
-            <p>placeholder for review section</p>
-            <Button onClick={() =>{
-                dispatch({type: "RELOAD_START"})
-                dispatch({
-                    type: "CHANGE_SORTING",
-                    payload: {
-                        sorting: "oldest",
-                        assocList // put here only to avoid lint errors
-                    }
-                })
-            }}>Change sorting to oldest button (for testing)</Button>
-        </div>
+        <Container fluid>
+            <Grid>
+                <Grid.Row key={1}>
+                    <Grid.Column key={1} width={4}>
+                        <Dropdown 
+                            fluid
+                            selection
+                            options={sortingOptions}
+                            placeholder="Sort by"
+                            text={state.sorting}
+                            value={state.sorting}
+                            onChange={onSortChange}
+                        />
+                    </Grid.Column>
+                    <Grid.Column key={2} width={4}>
+                        <Dropdown 
+                                fluid
+                                selection
+                                options={filterYearOptions}
+                                placeholder="Filter by"
+                                text={state.filters.yearText}
+                                value={state.filters.year}
+                                onChange={onFilterYearChange}
+                            />
+                    </Grid.Column>
+                    <Grid.Column key={3} width={1} />
+                    <Grid.Column key={4} width={7}>
+                        <Dropdown
+                            fluid
+                            multiple
+                            search
+                            selection
+                            options={filterAssocListOptions}
+                            placeholder={state.pageType === 'professor' ?
+                                'Search for a specific course' : 
+                                'Search for a specific professor'
+                            }
+                            onChange={onFilterAssocListChange}
+                            value={state.filters.assocListLimit}
+                        />
+                    </Grid.Column>
+                </Grid.Row>
+                <Grid.Row key={2}>
+                    {state.reviews.map((review) => {return (
+                        <ReviewCard 
+                            content={review.content}
+                            deprecated={review.deprecated}
+                            key={review.reviewId}
+                            reviewHeader={review.reviewHeader}
+                            reviewId={review.reviewId}
+                            reviewType={review.reviewType}
+                            submissionDate={review.submissionDate}
+                            votes={review.votes}
+                            workload={review.workload}
+                        />
+                    )})}
+                </Grid.Row>
+            </Grid>
+            
+        </Container>
     )
 }
 
@@ -152,7 +269,18 @@ const propTypes = {
     pageType: PropTypes.string.isRequired,
     id: PropTypes.number.isRequired,
     assocList: PropTypes.arrayOf(
-        PropTypes.number
+        PropTypes.oneOfType([
+            PropTypes.shape({
+                professorId: PropTypes.number.isRequired,
+                firstName: PropTypes.string.isRequired,
+                lastName: PropTypes.string.isRequired
+            }),
+            PropTypes.shape({
+                courseId: PropTypes.number.isRequired,
+                courseCode: PropTypes.string.isRequired,
+                courseName: PropTypes.string.isRequired
+            })
+        ])
     ).isRequired
 }
 
