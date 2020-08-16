@@ -55,7 +55,6 @@ def get_cp_id_by_prof(prof_id, course_ids=None):
             course_professor.course_id.isin(course_ids)
         )
 
-    print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!", q.get_sql())
     cur.execute(q.get_sql())
     return cur.fetchall()
 

@@ -15,7 +15,7 @@ def parse_review(review, r_type, header_data):
     '''
     static method for parsing a review into a json object
     '''
-    formatted_date = review['submission_date'].strftime("%b-%d-%Y")
+    formatted_date = review['submission_date'].strftime("%b %d, %Y")
     deprecated = (
         datetime.utcnow() - review['submission_date']
     ) / timedelta(days=1) >= 5 * 365

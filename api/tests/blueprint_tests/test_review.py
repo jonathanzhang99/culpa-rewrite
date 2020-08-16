@@ -101,10 +101,12 @@ class ReviewTest(BaseTest):
         dates = [
             {
                 'submission_date': datetime.strptime('2014-01-01', '%Y-%m-%d'),
+                'formatted_date': 'Jan 01, 2014',
                 'deprecated': True
             },
             {
                 'submission_date': datetime.strptime('2019-01-01', '%Y-%m-%d'),
+                'formatted_date': 'Jan 01, 2019',
                 'deprecated': False
             },
         ]
@@ -143,7 +145,7 @@ class ReviewTest(BaseTest):
                             'downvoteClicked': review['downvote_clicked'],
                             'funnyClicked': review['funny_clicked']
                         },
-                        'submissionDate': review['submission_date'],
+                        'submissionDate': date['formatted_date'],
                         'workload': review['workload'],
                         'content': review['content'],
                         'reviewId': review['review_id'],
