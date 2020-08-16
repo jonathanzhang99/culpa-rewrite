@@ -9,17 +9,17 @@ describe("ReviewCard tests setup", () => {
   const diffTypes = [{
      reviewType: 'course',
      reviewHeader: {
-        courseId: 12345,
-        courseName: "intro to programming",
-        courseCode: "COMS1004"
-     }
-  }, {
-     reviewType: 'professor',
-     reviewHeader: {
         profFirstName: "Adam",
         profLastName: "Canon",
         profId: 12345,
         uni: "12345"
+     }
+  }, {
+     reviewType: 'professor',
+     reviewHeader: {
+        courseId: 12345,
+        courseName: "intro to programming",
+        courseCode: "COMS1004"
      }
   }]
 

@@ -112,8 +112,6 @@ export default function ReviewSection({initReviews, pageType, id, assocList}){
         if(state.reload){
             fetchReviews()
             dispatch({type: "RELOAD_END"})
-        } else {
-            console.log(state)
         }
     })
 
@@ -208,8 +206,8 @@ export default function ReviewSection({initReviews, pageType, id, assocList}){
                                 'Search for a specific course' : 
                                 'Search for a specific professor'
                             }
-                            onChange={onFilterAssocListChange}
                             value={state.filters.assocListLimit}
+                            onChange={onFilterAssocListChange}
                         />
                     </Grid.Column>
                 </Grid.Row>
