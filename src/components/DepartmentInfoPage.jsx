@@ -1,9 +1,10 @@
 import PropTypes from "prop-types";
 import React from "react";
 import { useParams } from "react-router-dom";
-import { Header, List } from "semantic-ui-react";
+import { List } from "semantic-ui-react";
 
 import { CourseDisplayLink } from "components/common/CourseDisplay";
+import { DepartmentDisplayName } from "components/common/DepartmentDisplay";
 import ErrorComponent from "components/common/ErrorComponent";
 import LoadingComponent from "components/common/LoadingComponent";
 import { ProfessorDisplayLink } from "components/common/ProfessorDisplay";
@@ -34,12 +35,12 @@ export function DepartmentInfo({
   return (
     // TODO: Add styling into two columns with alphabetical sections
     <div>
-      <Header>{departmentName}</Header>
+      <DepartmentDisplayName departmentName={departmentName} />
       <List>
         {departmentCourses.map(({ courseId, courseName }) => {
           return (
             <List.Item key={courseId}>
-              <CourseDisplayLink courseId={courseId} name={courseName} />
+              <CourseDisplayLink courseId={courseId} courseName={courseName} />
             </List.Item>
           );
         })}

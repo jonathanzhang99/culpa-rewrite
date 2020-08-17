@@ -31,13 +31,11 @@ Object {
               <div
                 style="position: relative;"
               >
-                <h3
-                  class="ui header"
-                >
+                <span>
                   COMS1004
                    
                   intro to programming
-                </h3>
+                </span>
                 <h5
                   class="ui header"
                 >
@@ -159,13 +157,11 @@ Object {
             <div
               style="position: relative;"
             >
-              <h3
-                class="ui header"
-              >
+              <span>
                 COMS1004
                  
                 intro to programming
-              </h3>
+              </span>
               <h5
                 class="ui header"
               >
@@ -344,13 +340,11 @@ Object {
               <div
                 style="position: relative;"
               >
-                <h3
-                  class="ui header"
-                >
+                <span>
                   COMS1004
                    
                   intro to programming
-                </h3>
+                </span>
                 <h5
                   class="ui header"
                 >
@@ -472,13 +466,11 @@ Object {
             <div
               style="position: relative;"
             >
-              <h3
-                class="ui header"
-              >
+              <span>
                 COMS1004
                  
                 intro to programming
-              </h3>
+              </span>
               <h5
                 class="ui header"
               >
@@ -657,13 +649,11 @@ Object {
               <div
                 style="position: relative;"
               >
-                <h3
-                  class="ui header"
-                >
+                <span>
                   COMS1004
                    
                   intro to programming
-                </h3>
+                </span>
                 <h5
                   class="ui header"
                 >
@@ -785,13 +775,11 @@ Object {
             <div
               style="position: relative;"
             >
-              <h3
-                class="ui header"
-              >
+              <span>
                 COMS1004
                  
                 intro to programming
-              </h3>
+              </span>
               <h5
                 class="ui header"
               >
@@ -970,13 +958,11 @@ Object {
               <div
                 style="position: relative;"
               >
-                <h3
-                  class="ui header"
-                >
+                <span>
                   Adam
                    
                   Canon
-                </h3>
+                </span>
                 <h5
                   class="ui header"
                 >
@@ -1098,13 +1084,11 @@ Object {
             <div
               style="position: relative;"
             >
-              <h3
-                class="ui header"
-              >
+              <span>
                 Adam
                  
                 Canon
-              </h3>
+              </span>
               <h5
                 class="ui header"
               >
@@ -1283,13 +1267,11 @@ Object {
               <div
                 style="position: relative;"
               >
-                <h3
-                  class="ui header"
-                >
+                <span>
                   Adam
                    
                   Canon
-                </h3>
+                </span>
                 <h5
                   class="ui header"
                 >
@@ -1411,13 +1393,11 @@ Object {
             <div
               style="position: relative;"
             >
-              <h3
-                class="ui header"
-              >
+              <span>
                 Adam
                  
                 Canon
-              </h3>
+              </span>
               <h5
                 class="ui header"
               >
@@ -1596,13 +1576,11 @@ Object {
               <div
                 style="position: relative;"
               >
-                <h3
-                  class="ui header"
-                >
+                <span>
                   Adam
                    
                   Canon
-                </h3>
+                </span>
                 <h5
                   class="ui header"
                 >
@@ -1724,13 +1702,11 @@ Object {
             <div
               style="position: relative;"
             >
-              <h3
-                class="ui header"
-              >
+              <span>
                 Adam
                  
                 Canon
-              </h3>
+              </span>
               <h5
                 class="ui header"
               >
