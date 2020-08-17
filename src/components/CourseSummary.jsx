@@ -7,8 +7,52 @@ import CreateReviewButton from "components/common/CreateReviewButton";
 import { ProfessorDisplayLink } from "components/common/ProfessorDisplay";
 import ReviewCard from "components/reviews/ReviewCard";
 
+const reviewPropType = PropTypes.shape({
+  reviewType: PropTypes.string.isRequired,
+  reviewHeader: PropTypes.shape({
+    courseId: PropTypes.number.isRequired,
+    courseName: PropTypes.string.isRequired,
+    courseCode: PropTypes.string.isRequired,
+  }).isRequired,
+  votes: PropTypes.shape({
+    initUpvoteCount: PropTypes.number.isRequired,
+    initDownvoteCount: PropTypes.number.isRequired,
+    initFunnyCount: PropTypes.number.isRequired,
+    upvoteClicked: PropTypes.bool.isRequired,
+    downvoteClicked: PropTypes.bool.isRequired,
+    funnyClicked: PropTypes.bool.isRequired,
+  }).isRequired,
+  workload: PropTypes.string,
+  submissionDate: PropTypes.string.isRequired,
+  reviewId: PropTypes.number.isRequired,
+  deprecated: PropTypes.bool,
+  content: PropTypes.string,
+});
+
+const defaultReview = {
+  reviewType: "course",
+  reviewHeader: {
+    courseId: 0,
+    courseName: "Course Name",
+    courseCode: "Course Code",
+  },
+  votes: {
+    initUpvoteCount: 0,
+    initDownvoteCount: 0,
+    initFunnyCount: 0,
+    upvoteClicked: false,
+    downvoteClicked: false,
+    funnyClicked: false,
+  },
+  workload: "",
+  submissionDate: "",
+  reviewId: 0,
+  deprecated: false,
+  content: "This is a review.",
+};
+
 const propTypesCourseSummary = {
-  courseId: PropTypes.number.isRequired,
+  courseId: PropTypes.string.isRequired,
   courseSummary: PropTypes.shape({
     courseName: PropTypes.string.isRequired,
     courseCallNumber: PropTypes.string.isRequired,
@@ -16,15 +60,15 @@ const propTypesCourseSummary = {
     associatedProfessors: PropTypes.array.isRequired,
   }).isRequired,
   reviewSummary: PropTypes.shape({
-    positiveReview: PropTypes.array,
-    negativeReview: PropTypes.array,
+    positiveReview: reviewPropType,
+    negativeReview: reviewPropType,
   }),
 };
 
 const defaultPropsCourseSummary = {
   reviewSummary: {
-    positiveReivew: {},
-    negativeReview: {},
+    positiveReivew: defaultReview,
+    negativeReview: defaultReview,
   },
 };
 
@@ -49,7 +93,7 @@ CourseSummary.propTypes = propTypesCourseSummary;
 CourseSummary.defaultProps = defaultPropsCourseSummary;
 
 const propTypesCourseHeader = {
-  courseId: PropTypes.number.isRequired,
+  courseId: PropTypes.string.isRequired,
   courseSummary: PropTypes.shape({
     courseName: PropTypes.string.isRequired,
     courseCallNumber: PropTypes.string.isRequired,
@@ -164,15 +208,15 @@ CourseHeader.propTypes = propTypesCourseHeader;
 
 const propTypesReviewSummary = {
   reviewSummary: PropTypes.shape({
-    positiveReview: PropTypes.array,
-    negativeReview: PropTypes.array,
+    positiveReview: reviewPropType,
+    negativeReview: reviewPropType,
   }),
 };
 
 const defaultPropsReviewSummary = {
   reviewSummary: {
-    positiveReivew: {},
-    negativeReview: {},
+    positiveReivew: defaultReview,
+    negativeReview: defaultReview,
   },
 };
 
@@ -236,27 +280,7 @@ ReviewSummary.propTypes = propTypesReviewSummary;
 ReviewSummary.defaultProps = defaultPropsReviewSummary;
 
 const propTypesCourseReviewCard = {
-  review: PropTypes.shape({
-    reviewType: PropTypes.string.isRequired,
-    reviewHeader: PropTypes.shape({
-      courseId: PropTypes.number.isRequired,
-      courseName: PropTypes.string.isRequired,
-      courseCode: PropTypes.string.isRequired,
-    }).isRequired,
-    votes: PropTypes.shape({
-      initUpvoteCount: PropTypes.number.isRequired,
-      initDownvoteCount: PropTypes.number.isRequired,
-      initFunnyCount: PropTypes.number.isRequired,
-      upvoteClicked: PropTypes.bool.isRequired,
-      downvoteClicked: PropTypes.bool.isRequired,
-      funnyClicked: PropTypes.bool.isRequired,
-    }).isRequired,
-    workload: PropTypes.string,
-    submissionDate: PropTypes.string.isRequired,
-    reviewId: PropTypes.number.isRequired,
-    deprecated: PropTypes.bool,
-    content: PropTypes.string,
-  }).isRequired,
+  review: reviewPropType.isRequired,
 };
 
 function CourseReviewCard({ review }) {

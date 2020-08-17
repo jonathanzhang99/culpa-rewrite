@@ -9,6 +9,28 @@ import CourseSummary from "components/CourseSummary";
 export default function CoursePage() {
   const { courseId } = useParams();
 
+  const defaultReview = {
+    reviewType: "course",
+    reviewHeader: {
+      courseId: 0,
+      courseName: "Course Name",
+      courseCode: "Course Code",
+    },
+    votes: {
+      initUpvoteCount: 0,
+      initDownvoteCount: 0,
+      initFunnyCount: 0,
+      upvoteClicked: false,
+      downvoteClicked: false,
+      funnyClicked: false,
+    },
+    workload: "",
+    submissionDate: "",
+    reviewId: 0,
+    deprecated: false,
+    content: "This is a review.",
+  };
+
   const {
     data: { courseSummary, reviewSummary },
     isLoading,
@@ -20,17 +42,9 @@ export default function CoursePage() {
       departmentName: "",
       associatedProfessors: [],
     },
-    reviewSummary: {
-      positiveReview: {
-        reviewType: "course",
-        reviewHeader: {},
-        votes: {},
-      },
-      negativeReview: {
-        reviewType: "course",
-        reviewHeader: {},
-        votes: {},
-      },
+    review_summary: {
+      positiveReview: defaultReview,
+      negativeReview: defaultReview,
     },
   });
 
