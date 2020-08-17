@@ -46,7 +46,7 @@ Object {
                     class=""
                   >
                     <a
-                      href="/professors/0"
+                      href="/professor/0"
                     >
                       <h5
                         class="ui header"
@@ -127,7 +127,7 @@ Object {
                   class=""
                 >
                   <a
-                    href="/professors/0"
+                    href="/professor/0"
                   >
                     <h5
                       class="ui header"
@@ -265,7 +265,7 @@ Object {
                     class=""
                   >
                     <a
-                      href="/professors/0"
+                      href="/professor/0"
                     >
                       <h5
                         class="ui header"
@@ -346,7 +346,7 @@ Object {
                   class=""
                 >
                   <a
-                    href="/professors/0"
+                    href="/professor/0"
                   >
                     <h5
                       class="ui header"
@@ -484,7 +484,7 @@ Object {
                     class=""
                   >
                     <a
-                      href="/professors/1"
+                      href="/professor/1"
                     >
                       <h5
                         class="ui header"
@@ -571,7 +571,7 @@ Object {
                   class=""
                 >
                   <a
-                    href="/professors/1"
+                    href="/professor/1"
                   >
                     <h5
                       class="ui header"
