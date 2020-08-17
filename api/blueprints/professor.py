@@ -14,7 +14,7 @@ def professor_summary(professor_id):
     # TODO: Fetch professor nugget status
 
     name = get_professor_name(professor_id)
-    if name == []:
+    if not name:
         return {'error': 'Missing professor name'}, 400
 
     courses = get_professor_courses(professor_id)

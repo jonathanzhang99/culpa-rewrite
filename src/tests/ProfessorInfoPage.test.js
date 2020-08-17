@@ -9,6 +9,7 @@ describe("ProfessorInfoPage Component", () => {
   const loginSuccess = jest.fn(() => {
     Promise.resolve();
   });
+  const TEST_PROFESSOR_ID_PARAM = 1;
   const testCases = [
     {
       name: "renders no info",
@@ -37,7 +38,7 @@ describe("ProfessorInfoPage Component", () => {
   testCases.forEach(({ name, firstName, lastName, courses }) => {
     test(name, () => {
       const snapshot = render(
-        <MemoryRouter initialEntries={[1]}>
+        <MemoryRouter initialEntries={[TEST_PROFESSOR_ID_PARAM]}>
           <Route path=":professorId">
             <AuthContext.Provider value={{ login: loginSuccess }}>
               <ProfessorInfoPage
