@@ -11,53 +11,62 @@ describe("CourseDisplay Components", () => {
   const nameTestCases = [
     {
       testName: "renders no CourseDisplayName",
-      as: "",
       code: "",
-      name: "",
+      courseName: "",
     },
     {
-      testName: "renders CourseDisplayName",
-      as: "h3",
+      testName: "renders CourseDisplayName as span",
       code: "COMS4771",
-      name: "Machine Learning",
+      courseName: "Machine Learning",
+    },
+    {
+      testName: "renders CourseDisplayName as Header",
+      code: "COMS4771",
+      courseName: "Machine Learning",
+      type: "header",
     },
   ];
 
   const linkTestCases = [
     {
       testName: "renders no CourseDisplayLink",
-      as: "",
       code: "",
       courseId: 0,
-      name: "",
+      courseName: "",
     },
     {
-      testName: "renders CourseDisplayLink",
-      as: "h1",
+      testName: "renders CourseDisplayLink as span",
       code: "COMS4771",
       courseId: 3,
-      name: "Machine Learning",
+      courseName: "Machine Learning",
+    },
+    {
+      testName: "renders CourseDisplayLink as Header",
+      code: "COMS4771",
+      courseId: 3,
+      courseName: "Machine Learning",
+      type: "header",
     },
   ];
 
-  nameTestCases.forEach(({ testName, as, code, name }) => {
+  nameTestCases.forEach(({ testName, code, courseName, type }) => {
     test(testName, () => {
       const snapshot = render(
-        <CourseDisplayName as={as} code={code} name={name} />
+        <CourseDisplayName code={code} courseName={courseName} type={type} />
       );
       expect(snapshot).toMatchSnapshot();
     });
   });
 
-  linkTestCases.forEach(({ testName, as, code, courseId, name }) => {
+  linkTestCases.forEach(({ testName, code, courseId, courseName, type }) => {
     test(testName, () => {
       const snapshot = render(
         <MemoryRouter>
           <CourseDisplayLink
-            as={as}
             code={code}
             courseId={courseId}
-            name={name}
+            courseName={courseName}
+            type={type}
           />
         </MemoryRouter>
       );

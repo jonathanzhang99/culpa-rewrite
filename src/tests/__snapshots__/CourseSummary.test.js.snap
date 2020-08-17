@@ -7,13 +7,11 @@ Object {
     <div>
       <div>
         <h1>
-          <p
-            class="ui header"
-          >
+          <span>
             COMS4771
              
             Machine Learning
-          </p>
+          </span>
         </h1>
         <h3>
           Department: 
@@ -46,15 +44,13 @@ Object {
                     class=""
                   >
                     <a
-                      href="/professors/0"
+                      href="/professor/0"
                     >
-                      <h5
-                        class="ui header"
-                      >
+                      <span>
                         
                          
                         
-                      </h5>
+                      </span>
                     </a>
                   </td>
                   <td
@@ -88,13 +84,11 @@ Object {
   "container": <div>
     <div>
       <h1>
-        <p
-          class="ui header"
-        >
+        <span>
           COMS4771
            
           Machine Learning
-        </p>
+        </span>
       </h1>
       <h3>
         Department: 
@@ -127,15 +121,13 @@ Object {
                   class=""
                 >
                   <a
-                    href="/professors/0"
+                    href="/professor/0"
                   >
-                    <h5
-                      class="ui header"
-                    >
+                    <span>
                       
                        
                       
-                    </h5>
+                    </span>
                   </a>
                 </td>
                 <td
@@ -226,13 +218,11 @@ Object {
     <div>
       <div>
         <h1>
-          <p
-            class="ui header"
-          >
+          <span>
             
              
             
-          </p>
+          </span>
         </h1>
         <h3>
           Department: 
@@ -265,15 +255,13 @@ Object {
                     class=""
                   >
                     <a
-                      href="/professors/0"
+                      href="/professor/0"
                     >
-                      <h5
-                        class="ui header"
-                      >
+                      <span>
                         
                          
                         
-                      </h5>
+                      </span>
                     </a>
                   </td>
                   <td
@@ -307,13 +295,11 @@ Object {
   "container": <div>
     <div>
       <h1>
-        <p
-          class="ui header"
-        >
+        <span>
           
            
           
-        </p>
+        </span>
       </h1>
       <h3>
         Department: 
@@ -346,15 +332,13 @@ Object {
                   class=""
                 >
                   <a
-                    href="/professors/0"
+                    href="/professor/0"
                   >
-                    <h5
-                      class="ui header"
-                    >
+                    <span>
                       
                        
                       
-                    </h5>
+                    </span>
                   </a>
                 </td>
                 <td
@@ -445,13 +429,11 @@ Object {
     <div>
       <div>
         <h1>
-          <p
-            class="ui header"
-          >
+          <span>
             COMS4771
              
             Machine Learning
-          </p>
+          </span>
         </h1>
         <h3>
           Department: 
@@ -484,15 +466,13 @@ Object {
                     class=""
                   >
                     <a
-                      href="/professors/1"
+                      href="/professor/1"
                     >
-                      <h5
-                        class="ui header"
-                      >
+                      <span>
                         Nakul
                          
                         Verma
-                      </h5>
+                      </span>
                     </a>
                   </td>
                   <td
@@ -532,13 +512,11 @@ Object {
   "container": <div>
     <div>
       <h1>
-        <p
-          class="ui header"
-        >
+        <span>
           COMS4771
            
           Machine Learning
-        </p>
+        </span>
       </h1>
       <h3>
         Department: 
@@ -571,15 +549,13 @@ Object {
                   class=""
                 >
                   <a
-                    href="/professors/1"
+                    href="/professor/1"
                   >
-                    <h5
-                      class="ui header"
-                    >
+                    <span>
                       Nakul
                        
                       Verma
-                    </h5>
+                    </span>
                   </a>
                 </td>
                 <td

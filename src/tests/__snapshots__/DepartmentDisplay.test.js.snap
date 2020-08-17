@@ -1,33 +1,29 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ProfessorDisplay Components renders ProfessorDisplayLink as Header 1`] = `
+exports[`DepartmentDisplay Components renders DepartmentDisplayLink as Header 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
       <a
-        href="/professor/2339"
+        href="/department/29"
       >
         <div
           class="ui header"
         >
-          Nakul
-           
-          Verma
+          Computer Science
         </div>
       </a>
     </div>
   </body>,
   "container": <div>
     <a
-      href="/professor/2339"
+      href="/department/29"
     >
       <div
         class="ui header"
       >
-        Nakul
-         
-        Verma
+        Computer Science
       </div>
     </a>
   </div>,
@@ -85,30 +81,26 @@ Object {
 }
 `;
 
-exports[`ProfessorDisplay Components renders ProfessorDisplayLink as span 1`] = `
+exports[`DepartmentDisplay Components renders DepartmentDisplayLink as span 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
       <a
-        href="/professor/2339"
+        href="/department/29"
       >
         <span>
-          Nakul
-           
-          Verma
+          Computer Science
         </span>
       </a>
     </div>
   </body>,
   "container": <div>
     <a
-      href="/professor/2339"
+      href="/department/29"
     >
       <span>
-        Nakul
-         
-        Verma
+        Computer Science
       </span>
     </a>
   </div>,
@@ -166,7 +158,7 @@ Object {
 }
 `;
 
-exports[`ProfessorDisplay Components renders ProfessorDisplayName as Header 1`] = `
+exports[`DepartmentDisplay Components renders DepartmentDisplayName as Header 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
@@ -174,9 +166,7 @@ Object {
       <div
         class="ui header"
       >
-        Nakul
-         
-        Verma
+        Computer Science
       </div>
     </div>
   </body>,
@@ -184,9 +174,7 @@ Object {
     <div
       class="ui header"
     >
-      Nakul
-       
-      Verma
+      Computer Science
     </div>
   </div>,
   "debug": [Function],
@@ -243,23 +231,19 @@ Object {
 }
 `;
 
-exports[`ProfessorDisplay Components renders ProfessorDisplayName as span 1`] = `
+exports[`DepartmentDisplay Components renders DepartmentDisplayName as span 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
       <span>
-        Nakul
-         
-        Verma
+        Computer Science
       </span>
     </div>
   </body>,
   "container": <div>
     <span>
-      Nakul
-       
-      Verma
+      Computer Science
     </span>
   </div>,
   "debug": [Function],
@@ -316,31 +300,23 @@ Object {
 }
 `;
 
-exports[`ProfessorDisplay Components renders no ProfessorDisplayLink 1`] = `
+exports[`DepartmentDisplay Components renders no DepartmentDisplayLink 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
       <a
-        href="/professor/0"
+        href="/department/0"
       >
-        <span>
-          
-           
-          
-        </span>
+        <span />
       </a>
     </div>
   </body>,
   "container": <div>
     <a
-      href="/professor/0"
+      href="/department/0"
     >
-      <span>
-        
-         
-        
-      </span>
+      <span />
     </a>
   </div>,
   "debug": [Function],
@@ -397,24 +373,16 @@ Object {
 }
 `;
 
-exports[`ProfessorDisplay Components renders no ProfessorDisplayName 1`] = `
+exports[`DepartmentDisplay Components renders no DepartmentDisplayName 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <span>
-        
-         
-        
-      </span>
+      <span />
     </div>
   </body>,
   "container": <div>
-    <span>
-      
-       
-      
-    </span>
+    <span />
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],

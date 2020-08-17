@@ -4,39 +4,40 @@ import { Link } from "react-router-dom";
 import { Header } from "semantic-ui-react";
 
 const propTypesCourseDisplayName = {
-  as: PropTypes.string,
-  name: PropTypes.string.isRequired,
   code: PropTypes.string,
+  courseName: PropTypes.string.isRequired,
+  type: PropTypes.oneOf(["header", "text"]),
 };
 
 const propTypesCourseDisplayLink = {
-  as: PropTypes.string,
-  courseId: PropTypes.number.isRequired,
-  name: PropTypes.string.isRequired,
   code: PropTypes.string,
+  courseId: PropTypes.number.isRequired,
+  courseName: PropTypes.string.isRequired,
+  type: PropTypes.oneOf(["header", "text"]),
 };
 
 const defaultProps = {
-  as: "p",
   code: "",
+  type: "text",
 };
 
-export function CourseDisplayName({ as, code, name }) {
+export function CourseDisplayName({ code, courseName, type }) {
+  const Display = type === "header" ? Header : "span";
   return (
-    <Header as={as}>
-      {code} {name}
-    </Header>
+    <Display>
+      {code} {courseName}
+    </Display>
   );
 }
 
-export function CourseDisplayLink({ as, courseId, code, name }) {
+export function CourseDisplayLink({ code, courseId, courseName, type }) {
   return (
     <Link
       to={{
-        pathname: `/courses/${courseId}`,
+        pathname: `/course/${courseId}`,
       }}
     >
-      <CourseDisplayName as={as} code={code} name={name} />
+      <CourseDisplayName code={code} courseName={courseName} type={type} />
     </Link>
   );
 }

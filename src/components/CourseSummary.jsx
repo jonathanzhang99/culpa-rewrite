@@ -37,7 +37,7 @@ export function CourseHeader({ courseId, courseSummary }) {
   return (
     <div>
       <h1>
-        <CourseDisplayName code={courseCallNumber} name={courseName} />
+        <CourseDisplayName code={courseCallNumber} courseName={courseName} />
       </h1>
       <h3>Department: {departmentName}</h3>
 
@@ -66,7 +66,6 @@ export function CourseHeader({ courseId, courseSummary }) {
                   <Table.Row key={professorId}>
                     <Table.Cell key={professorId}>
                       <ProfessorDisplayLink
-                        as="h5"
                         firstName={firstName}
                         lastName={lastName}
                         professorId={professorId}
