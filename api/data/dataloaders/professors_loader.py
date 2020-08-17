@@ -4,6 +4,8 @@ from api.data import db
 from api.data.common import course, course_professor, professor, Match
 
 
+# TODO: This method is temporary to test search functionality
+# and should be removed in the future
 def get_all_professors():
     cur = db.get_cursor()
     query = Query.from_(professor) \
@@ -12,6 +14,19 @@ def get_all_professors():
             professor.first_name,
             professor.last_name
     ).get_sql()
+    cur.execute(query)
+    return cur.fetchall()
+
+
+def get_professor_name(professor_id):
+    cur = db.get_cursor()
+    query = Query.from_(professor) \
+        .select(
+            professor.first_name,
+            professor.last_name,
+        ).where(
+            professor.professor_id == professor_id
+        ).get_sql()
     cur.execute(query)
     return cur.fetchall()
 
