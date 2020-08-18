@@ -12,7 +12,7 @@ export default function ReviewsPage() {
         data : { reviews },
         isLoading,
         isError,
-    } = useDataFetch(`/api/review/get?type=professor&professorId=${professorId}`, {
+    } = useDataFetch(`/api/review/get/professor/${professorId}`, {
         reviews: []
     })
 

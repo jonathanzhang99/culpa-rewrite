@@ -63,17 +63,17 @@ export default function ReviewSection({initReviews, pageType, id, assocList}){
 
     const fetchReviews = async () => {
         dispatch({type: 'FETCH_START'})
-        const res = await fetch(`/api/review/get?type=${state.pageType}&${state.pageType}Id=${state.id}`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
+        let filter_list = state.filters.assocListLimit.join(',')
+        const res = await fetch(
+            `/api/review/get/${state.pageType}/${state.id}`
+            + `?sorting=${state.sorting}`
+            + `&filter_list=${filter_list}`
+            + `&filter_year=${state.filters.year}`, 
+            {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
             },
-            body: JSON.stringify({
-                sorting: state.sorting,
-                filterList: state.filters.assocListLimit,
-                filterYear: state.filters.year,
-                filterVoteType: state.filters.voteType
-            })
         })
         try {
             const result = await res.json()

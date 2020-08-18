@@ -37,46 +37,6 @@ def get_professor_courses(professor_id):
     return cur.fetchall()
 
 
-def get_cp_id_by_prof(prof_id, course_ids=None):
-    '''
-    loads course_professor_ids related to a specific prof,
-    also allowing for filtering by course ids
-    '''
-    cur = db.get_cursor()
-    q = Query.from_(course_professor).select(
-        course_professor.course_professor_id,
-        course_professor.course_id
-    ).where(
-        course_professor.professor_id == prof_id
-    )
-
-    if course_ids:
-        q = q.where(
-            course_professor.course_id.isin(course_ids)
-        )
-
-    cur.execute(q.get_sql())
-    return cur.fetchall()
-
-
-def get_prof_list(prof_ids):
-    '''
-    loads info of professors related to a list of prof_id
-    '''
-    cur = db.get_cursor()
-    q = Query.from_(professor).where(
-        professor.professor_id.isin(prof_ids)
-    ).select(
-        professor.professor_id,
-        professor.uni,
-        professor.first_name,
-        professor.last_name
-    ).get_sql()
-    cur.execute(q)
-
-    return cur.fetchall()
-
-
 def search_professor(search_query, limit=None):
     cur = db.get_cursor()
 

@@ -15,6 +15,9 @@ class BaseConfig():
     MYSQL_USE_UNICODE = True
     MYSQL_USE_DICTCURSOR = True
 
+    # Miscellaneous
+    REVIEW_DEPRECATED_THRESHOLD_DAYS = 5 * 365
+
 
 class ProductionConfig(BaseConfig):
     pass
