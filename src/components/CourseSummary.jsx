@@ -34,7 +34,82 @@ export function CourseHeader({ courseId, courseSummary }) {
     associatedProfessors,
   } = courseSummary;
 
-  const isUsingAccordion = associatedProfessors.length > 5;
+  const displayAccordion = associatedProfessors.length > 5;
+
+  const ProfessorAccordion = (
+    <Accordion>
+      <Accordion.Title
+        active={isAccordionActive}
+        as="h3"
+        onClick={() => setAccordionActive(!isAccordionActive)}
+      >
+        <Icon name={!isAccordionActive ? "angle down" : "angle up"} />
+        {!isAccordionActive ? "Show" : "Hide"} all professors who teach this
+        course
+      </Accordion.Title>
+      <Accordion.Content active={isAccordionActive}>
+        <Table basic="very" textAlign="left">
+          <tbody>
+            {/* this is to prevent bugs from browser inserting <tbody> */}
+            {associatedProfessors.map((professor) => {
+              const {
+                firstName,
+                lastName,
+                professorId,
+                profDepartments,
+              } = professor;
+              return (
+                <Table.Row key={professorId}>
+                  <Table.Cell key={professorId}>
+                    <ProfessorDisplayLink
+                      as="h5"
+                      firstName={firstName}
+                      lastName={lastName}
+                      professorId={professorId}
+                    />
+                  </Table.Cell>
+                  <Table.Cell key={`${professorId}_departments`}>
+                    {profDepartments.map((department, index) => {
+                      const {
+                        profDepartmentId,
+                        profDepartmentName,
+                      } = department;
+                      return (
+                        <span key={profDepartmentId}>
+                          {profDepartmentId}: {profDepartmentName}
+                          {profDepartments.length - 1 !== index ? ", " : ""}
+                        </span>
+                      );
+                    })}
+                  </Table.Cell>
+                </Table.Row>
+              );
+            })}
+          </tbody>
+        </Table>
+      </Accordion.Content>
+    </Accordion>
+  );
+
+  const ProfessorList = (
+    <h3>
+      Professors:{" "}
+      {associatedProfessors.map((professor, index) => {
+        const { firstName, lastName, professorId } = professor;
+        return (
+          <span key={`${lastName}_${professorId}`}>
+            <ProfessorDisplayLink
+              as="span"
+              firstName={firstName}
+              lastName={lastName}
+              professorId={professorId}
+            />
+            {associatedProfessors.length - 1 !== index ? ", " : ""}
+          </span>
+        );
+      })}
+    </h3>
+  );
 
   return (
     <div>
@@ -43,78 +118,7 @@ export function CourseHeader({ courseId, courseSummary }) {
       </h1>
       <h3>Department: {departmentName}</h3>
 
-      {isUsingAccordion ? (
-        <Accordion>
-          <Accordion.Title
-            active={isAccordionActive}
-            as="h3"
-            onClick={() => setAccordionActive(!isAccordionActive)}
-          >
-            <Icon name={!isAccordionActive ? "angle down" : "angle up"} />
-            {!isAccordionActive ? "Show" : "Hide"} all professors who teach this
-            course
-          </Accordion.Title>
-          <Accordion.Content active={isAccordionActive}>
-            <Table basic="very" textAlign="left">
-              <tbody>
-                {/* this is to prevent bugs from browser inserting <tbody> */}
-                {associatedProfessors.map((professor) => {
-                  const {
-                    firstName,
-                    lastName,
-                    professorId,
-                    profDepartments,
-                  } = professor;
-                  return (
-                    <Table.Row key={professorId}>
-                      <Table.Cell key={professorId}>
-                        <ProfessorDisplayLink
-                          as="h5"
-                          firstName={firstName}
-                          lastName={lastName}
-                          professorId={professorId}
-                        />
-                      </Table.Cell>
-                      <Table.Cell key={`${professorId}_departments`}>
-                        {profDepartments.map((department, index) => {
-                          const {
-                            profDepartmentId,
-                            profDepartmentName,
-                          } = department;
-                          return (
-                            <span key={profDepartmentId}>
-                              {profDepartmentId}: {profDepartmentName}
-                              {profDepartments.length - 1 !== index ? ", " : ""}
-                            </span>
-                          );
-                        })}
-                      </Table.Cell>
-                    </Table.Row>
-                  );
-                })}
-              </tbody>
-            </Table>
-          </Accordion.Content>
-        </Accordion>
-      ) : (
-        <h3>
-          Professors:{" "}
-          {associatedProfessors.map((professor, index) => {
-            const { firstName, lastName, professorId } = professor;
-            return (
-              <span key={`${lastName}_${professorId}`}>
-                <ProfessorDisplayLink
-                  as="span"
-                  firstName={firstName}
-                  lastName={lastName}
-                  professorId={professorId}
-                />
-                {associatedProfessors.length - 1 !== index ? ", " : ""}
-              </span>
-            );
-          })}
-        </h3>
-      )}
+      {displayAccordion ? ProfessorAccordion : ProfessorList}
 
       <CreateReviewButton compact color="yellow" courseId={courseId.toString()}>
         WRITE A REVIEW FOR {courseName}
