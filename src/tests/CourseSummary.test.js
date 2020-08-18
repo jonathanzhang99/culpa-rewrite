@@ -78,6 +78,107 @@ describe("CourseSummary Components", () => {
         ],
       },
     },
+    {
+      testName: "Shows six professors in a list",
+      courseId: 1,
+      courseSummary: {
+        courseName: "Machine Learning",
+        courseCallNumber: "COMS4771",
+        departmentName: "Computer Science",
+        associatedProfessors: [
+          {
+            firstName: "Professor",
+            lastName: "One",
+            professorId: 1,
+            profDepartments: [
+              {
+                profDepartmentId: 1,
+                profDepartmentName: "Computer Science",
+              },
+              {
+                profDepartmentId: 2,
+                profDepartmentName: "Law",
+              },
+            ],
+          },
+          {
+            firstName: "Professor",
+            lastName: "Two",
+            professorId: 2,
+            profDepartments: [
+              {
+                profDepartmentId: 1,
+                profDepartmentName: "Computer Science",
+              },
+              {
+                profDepartmentId: 2,
+                profDepartmentName: "Law",
+              },
+            ],
+          },
+          {
+            firstName: "Professor",
+            lastName: "Three",
+            professorId: 3,
+            profDepartments: [
+              {
+                profDepartmentId: 1,
+                profDepartmentName: "Computer Science",
+              },
+              {
+                profDepartmentId: 2,
+                profDepartmentName: "Law",
+              },
+            ],
+          },
+          {
+            firstName: "Professor",
+            lastName: "Four",
+            professorId: 4,
+            profDepartments: [
+              {
+                profDepartmentId: 1,
+                profDepartmentName: "Computer Science",
+              },
+              {
+                profDepartmentId: 2,
+                profDepartmentName: "Law",
+              },
+            ],
+          },
+          {
+            firstName: "Professor",
+            lastName: "Five",
+            professorId: 5,
+            profDepartments: [
+              {
+                profDepartmentId: 1,
+                profDepartmentName: "Computer Science",
+              },
+              {
+                profDepartmentId: 2,
+                profDepartmentName: "Law",
+              },
+            ],
+          },
+          {
+            firstName: "Professor",
+            lastName: "Six",
+            professorId: 6,
+            profDepartments: [
+              {
+                profDepartmentId: 1,
+                profDepartmentName: "Computer Science",
+              },
+              {
+                profDepartmentId: 2,
+                profDepartmentName: "Law",
+              },
+            ],
+          },
+        ],
+      },
+    },
   ];
 
   courseHeaderTestCases.forEach(({ testName, courseId, courseSummary }) => {
