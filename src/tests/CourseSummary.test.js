@@ -53,7 +53,7 @@ describe("CourseSummary Components", () => {
       },
     },
     {
-      testName: "valid props CourseSummary",
+      testName: "Shows one professor in a list",
       courseId: 1,
       courseSummary: {
         courseName: "Machine Learning",
@@ -64,6 +64,107 @@ describe("CourseSummary Components", () => {
             firstName: "Nakul",
             lastName: "Verma",
             professorId: 1,
+            profDepartments: [
+              {
+                profDepartmentId: 1,
+                profDepartmentName: "Computer Science",
+              },
+              {
+                profDepartmentId: 2,
+                profDepartmentName: "Law",
+              },
+            ],
+          },
+        ],
+      },
+    },
+    {
+      testName: "Shows six professors in a list",
+      courseId: 1,
+      courseSummary: {
+        courseName: "Machine Learning",
+        courseCallNumber: "COMS4771",
+        departmentName: "Computer Science",
+        associatedProfessors: [
+          {
+            firstName: "Professor",
+            lastName: "One",
+            professorId: 1,
+            profDepartments: [
+              {
+                profDepartmentId: 1,
+                profDepartmentName: "Computer Science",
+              },
+              {
+                profDepartmentId: 2,
+                profDepartmentName: "Law",
+              },
+            ],
+          },
+          {
+            firstName: "Professor",
+            lastName: "Two",
+            professorId: 2,
+            profDepartments: [
+              {
+                profDepartmentId: 1,
+                profDepartmentName: "Computer Science",
+              },
+              {
+                profDepartmentId: 2,
+                profDepartmentName: "Law",
+              },
+            ],
+          },
+          {
+            firstName: "Professor",
+            lastName: "Three",
+            professorId: 3,
+            profDepartments: [
+              {
+                profDepartmentId: 1,
+                profDepartmentName: "Computer Science",
+              },
+              {
+                profDepartmentId: 2,
+                profDepartmentName: "Law",
+              },
+            ],
+          },
+          {
+            firstName: "Professor",
+            lastName: "Four",
+            professorId: 4,
+            profDepartments: [
+              {
+                profDepartmentId: 1,
+                profDepartmentName: "Computer Science",
+              },
+              {
+                profDepartmentId: 2,
+                profDepartmentName: "Law",
+              },
+            ],
+          },
+          {
+            firstName: "Professor",
+            lastName: "Five",
+            professorId: 5,
+            profDepartments: [
+              {
+                profDepartmentId: 1,
+                profDepartmentName: "Computer Science",
+              },
+              {
+                profDepartmentId: 2,
+                profDepartmentName: "Law",
+              },
+            ],
+          },
+          {
+            firstName: "Professor",
+            lastName: "Six",
+            professorId: 6,
             profDepartments: [
               {
                 profDepartmentId: 1,
@@ -90,34 +191,135 @@ describe("CourseSummary Components", () => {
       expect(snapshot).toMatchSnapshot();
     });
   });
+  
 
   /* semantic-ui react does not change html for folding/unfolding so 
-     checking for button string change instead */
-  courseHeaderTestCases.forEach(({ testName, courseId, courseSummary }) => {
-    const unfoldTestName = `${testName} unfolds and folds accordion`;
-    test(unfoldTestName, () => {
-      render(
-        <MemoryRouter>
-          <CourseHeader courseId={courseId} courseSummary={courseSummary} />
-        </MemoryRouter>
-      );
-      expect(
-        screen.queryByText("Show all professors who teach this course")
-      ).toBeInTheDocument();
-
-      fireEvent.click(
-        screen.getByText("Show all professors who teach this course")
-      );
-      expect(
-        screen.queryByText("Hide all professors who teach this course")
-      ).toBeInTheDocument();
-
-      fireEvent.click(
-        screen.getByText("Hide all professors who teach this course")
-      );
-      expect(
-        screen.queryByText("Show all professors who teach this course")
-      ).toBeInTheDocument();
-    });
+   checking for button string change instead */
+  test("Shows six professors in an accordion", () => {
+    const courseId = 1;
+    const courseSummary = {
+      courseName: "Machine Learning",
+      courseCallNumber: "COMS4771",
+      departmentName: "Computer Science",
+      associatedProfessors: [
+        {
+          firstName: "Professor",
+          lastName: "One",
+          professorId: 1,
+          profDepartments: [
+            {
+              profDepartmentId: 1,
+              profDepartmentName: "Computer Science",
+            },
+            {
+              profDepartmentId: 2,
+              profDepartmentName: "Law",
+            },
+          ],
+        },
+        {
+          firstName: "Professor",
+          lastName: "Two",
+          professorId: 2,
+          profDepartments: [
+            {
+              profDepartmentId: 1,
+              profDepartmentName: "Computer Science",
+            },
+            {
+              profDepartmentId: 2,
+              profDepartmentName: "Law",
+            },
+          ],
+        },
+        {
+          firstName: "Professor",
+          lastName: "Three",
+          professorId: 3,
+          profDepartments: [
+            {
+              profDepartmentId: 1,
+              profDepartmentName: "Computer Science",
+            },
+            {
+              profDepartmentId: 2,
+              profDepartmentName: "Law",
+            },
+          ],
+        },
+        {
+          firstName: "Professor",
+          lastName: "Four",
+          professorId: 4,
+          profDepartments: [
+            {
+              profDepartmentId: 1,
+              profDepartmentName: "Computer Science",
+            },
+            {
+              profDepartmentId: 2,
+              profDepartmentName: "Law",
+            },
+          ],
+        },
+        {
+          firstName: "Professor",
+          lastName: "Five",
+          professorId: 5,
+          profDepartments: [
+            {
+              profDepartmentId: 1,
+              profDepartmentName: "Computer Science",
+            },
+            {
+              profDepartmentId: 2,
+              profDepartmentName: "Law",
+            },
+          ],
+        },
+        {
+          firstName: "Professor",
+          lastName: "Six",
+          professorId: 6,
+          profDepartments: [
+            {
+              profDepartmentId: 1,
+              profDepartmentName: "Computer Science",
+            },
+            {
+              profDepartmentId: 2,
+              profDepartmentName: "Law",
+            },
+          ],
+        },
+      ],
+    };
+  
+    render(
+      <MemoryRouter>
+        <CourseHeader courseId={courseId} courseSummary={courseSummary} />
+      </MemoryRouter>
+    );
+    expect(
+      screen.queryByText("Show all professors who teach this course")
+    ).toBeInTheDocument();
+  
+    fireEvent.click(
+      screen.getByText("Show all professors who teach this course")
+    );
+    expect(
+      screen.queryByText("Hide all professors who teach this course")
+    ).toBeInTheDocument();
+  
+    fireEvent.click(
+      screen.getByText("Hide all professors who teach this course")
+    );
+    expect(
+      screen.queryByText("Show all professors who teach this course")
+    ).toBeInTheDocument();
+    
   });
+
 });
+
+
