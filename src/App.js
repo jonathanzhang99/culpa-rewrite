@@ -8,8 +8,8 @@ import DepartmentInfoPage from "components/DepartmentInfoPage";
 import DepartmentsPage from "components/DepartmentsPage";
 import LoginPage from "components/LoginPage";
 import NavigationBar from "components/NavigationBar";
-import Professors from "components/ProfessorsPage";
-import ReviewsPage from "components/ReviewsPage"
+import ProfessorInfoPage from "components/ProfessorInfoPage";
+import ReviewsPage from "components/ReviewsPage";
 
 function App() {
   return (
@@ -30,8 +30,8 @@ function App() {
             <Route path="/reviews">
               <ReviewsPage/>
             </Route>
-            <Route path="/professors">
-              <Professors />
+            <Route path="/professor/:professorId">
+              <ProfessorInfoPage />
             </Route>
             <Route path="/course/:courseId">
               <CoursePage />

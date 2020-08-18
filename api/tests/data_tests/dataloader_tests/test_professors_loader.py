@@ -1,7 +1,11 @@
 from api.data import db
 from api.data.dataloaders.professors_loader import get_all_professors, \
+<<<<<<< HEAD
     get_professor_courses, get_cp_id_by_prof, get_prof_list, \
     search_professor
+=======
+    get_professor_courses, get_professor_name, search_professor
+>>>>>>> 6f7828242d5767648be38f993b23384fec86a74c
 from api.tests import LoadersWritersBaseTest
 from api.tests.data_tests.common import setup_department_professor_courses
 
@@ -9,10 +13,13 @@ from api.tests.data_tests.common import setup_department_professor_courses
 VERMA_PROFESSOR_ID = 1
 BOLLINGER_PROFESSOR_ID = 2
 JWL_PROFESSOR_ID = 3
+BAD_PROFESSOR_ID = -1
 
 
 class ProfessorsLoaderTest(LoadersWritersBaseTest):
-    def test_load_all_professors(self):
+    # TODO: This method is temporary to test search functionality
+    # and should be removed in the future
+    def test_get_all_professors(self):
         self.cur.execute(
             'INSERT INTO professor (first_name, last_name)'
             'VALUES ("test1", "test1")'
@@ -26,7 +33,7 @@ class ProfessorsLoaderTest(LoadersWritersBaseTest):
 
         self.assertEqual(expected_res, res)
 
-    def test_load_professor_courses_single_course(self):
+    def test_get_professor_courses_single_course(self):
         # retrieve Lee Bollinger's courses
         setup_department_professor_courses(self.cur)
 
@@ -41,7 +48,7 @@ class ProfessorsLoaderTest(LoadersWritersBaseTest):
         courses = get_professor_courses(BOLLINGER_PROFESSOR_ID)
         self.assertEqual(expected_courses, courses)
 
-    def test_load_professor_courses_multiple_courses(self):
+    def test_get_professor_courses_multiple_courses(self):
         # retrieve Verma's courses
         setup_department_professor_courses(self.cur)
 
@@ -66,6 +73,22 @@ class ProfessorsLoaderTest(LoadersWritersBaseTest):
         courses = get_professor_courses(VERMA_PROFESSOR_ID)
         self.assertEqual(expected_courses, courses)
 
+    def test_get_professor_name(self):
+        setup_department_professor_courses(self.cur)
+
+        expected_name = [{
+            'first_name': 'Nakul',
+            'last_name': 'Verma'
+        }]
+
+        name = get_professor_name(VERMA_PROFESSOR_ID)
+        self.assertEqual(expected_name, name)
+
+    def test_get_professor_name_empty(self):
+        setup_department_professor_courses(self.cur)
+
+        res = get_professor_name(BAD_PROFESSOR_ID)
+        self.assertFalse(res)
 
     def test_search_professor_by_name(self):
         setup_department_professor_courses(self.cur)

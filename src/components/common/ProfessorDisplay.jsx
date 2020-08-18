@@ -32,7 +32,7 @@ export function ProfessorDisplayLink({ as, professorId, firstName, lastName }) {
   return (
     <Link
       to={{
-        pathname: `/professors/${professorId}`,
+        pathname: `/professor/${professorId}`,
       }}
     >
       <ProfessorDisplayName as={as} firstName={firstName} lastName={lastName} />

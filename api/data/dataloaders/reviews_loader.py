@@ -10,19 +10,33 @@ from api.data import db
 from api.data.common import course, course_professor, professor, review, vote
 
 DateDiff = CustomFunction('DATEDIFF', ['start_date', 'end_date'])
-
 professor_header_fields = [
     professor.professor_id,
     professor.first_name,
     professor.last_name,
     professor.uni
 ]
-
 course_header_fields = [
     course.course_id,
     course.call_number,
     course.name
 ]
+
+
+# valid vote types: agree, disagree, funny
+def vote_count(vote_type):
+    return fn.Sum(Case().when(
+                vote.type == vote_type, 1
+            ).else_(0)).as_(f'{vote_type}s')
+
+
+def vote_clicked(vote_type, ip):
+    return fn.Sum(Case().when(
+                Criterion.all([
+                    vote.type == vote_type,
+                    vote.ip == ip
+                ]), 1
+            ).else_(0)).as_(f'{vote_type}_clicked')
 
 
 def prepare_professor_query_prefix(id, filter_list=None):
@@ -65,34 +79,6 @@ def get_reviews_db(
     supports sorting by time/vote/rating and filtering by time,
     also loads the clicked state of buttons for a specific user
     '''
-    upvotes = fn.Sum(Case().when(
-                  vote.type == "agree", 1
-              ).else_(0))
-    downvotes = fn.Sum(Case().when(
-                    vote.type == "disagree", 1
-                ).else_(0))
-    funnys = fn.Sum(Case().when(
-                vote.type == "funny", 1
-             ).else_(0))
-    upvote_clicked = fn.Sum(Case().when(
-                        Criterion.all([
-                            vote.type == "agree",
-                            vote.ip == ip
-                        ]), 1
-                    ).else_(0))
-    downvote_clicked = fn.Sum(Case().when(
-                            Criterion.all([
-                                vote.type == "disgree",
-                                vote.ip == ip
-                            ]), 1
-                        ).else_(0))
-    funny_clicked = fn.Sum(Case().when(
-                        Criterion.all([
-                            vote.type == "funny",
-                            vote.ip == ip
-                        ]), 1
-                    ).else_(0))
-
     cur = db.get_cursor()
 
     q, header_fields = query_prefix
@@ -114,12 +100,12 @@ def get_reviews_db(
         review.workload,
         review.rating,
         review.submission_date,
-        upvotes.as_('upvotes'),
-        downvotes.as_('downvotes'),
-        funnys.as_('funnys'),
-        upvote_clicked.as_('upvote_clicked'),
-        downvote_clicked.as_('downvote_clicked'),
-        funny_clicked.as_('funny_clicked')
+        vote_count('agree'),
+        vote_count('disagree'),
+        vote_count('funny'),
+        vote_clicked('agree', ip),
+        vote_clicked('disagree', ip),
+        vote_clicked('funny', ip)
     )
 
     if sort_criterion and sort_order:
@@ -127,8 +113,8 @@ def get_reviews_db(
         sort_criterion_map = {
             'rating': review.rating,
             'submission_date': review.submission_date,
-            'upvotes': upvotes,
-            'downvotes': downvotes,
+            'upvotes': vote_count('agree'),
+            'downvotes': vote_count('disagree'),
         }
 
         q = q.orderby(sort_criterion_map[sort_criterion], order=order)
