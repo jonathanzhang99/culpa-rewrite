@@ -56,7 +56,7 @@ class CoursesTest(BaseTest):
             }]
         }}
 
-        res = self.app.get(f'/api/course/{course_id}')
+        res = self.client.get(f'/api/course/{course_id}')
         self.assertDictEqual(expected_res, res.json)
 
     @mock.patch('api.blueprints.course.get_department_professors')
@@ -70,7 +70,7 @@ class CoursesTest(BaseTest):
         mock_get_department_professors.return_value = []
 
         expected_res = {'error': 'course not found'}
-        res = self.app.get(f'/api/course/{course_id}')
+        res = self.client.get(f'/api/course/{course_id}')
 
         self.assertDictEqual(expected_res, res.json)
 
@@ -98,7 +98,7 @@ class CoursesTest(BaseTest):
             'associatedProfessors': []}
         }
 
-        res = self.app.get(f'/api/course/{course_id}')
+        res = self.client.get(f'/api/course/{course_id}')
 
         self.assertDictEqual(expected_res, res.json)
 
@@ -111,6 +111,6 @@ class CoursesTest(BaseTest):
         mock_get_course.side_effect = IntegrityError()
 
         expected_res = {'error': 'Invalid data'}
-        res = self.app.get(f'/api/course/{course_id}')
+        res = self.client.get(f'/api/course/{course_id}')
 
         self.assertEqual(expected_res, res.json)
