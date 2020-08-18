@@ -39,7 +39,7 @@ class ProfessorsTest(BaseTest):
             ]
         }
 
-        res = self.app.get(f'/api/professor/{TEST_PROFESSOR_ID}')
+        res = self.client.get(f'/api/professor/{TEST_PROFESSOR_ID}')
         self.assertEqual(expected_res, res.json)
 
     @mock.patch('api.blueprints.professor.get_professor_courses')
@@ -57,7 +57,7 @@ class ProfessorsTest(BaseTest):
             'courses': []
         }
 
-        res = self.app.get(f'/api/professor/{TEST_PROFESSOR_ID}')
+        res = self.client.get(f'/api/professor/{TEST_PROFESSOR_ID}')
         self.assertEqual(expected_res, res.json)
 
     @mock.patch('api.blueprints.professor.get_professor_courses')
@@ -68,7 +68,7 @@ class ProfessorsTest(BaseTest):
         mock_professor_courses.return_value = []
         expected_error = {'error': 'Missing professor name'}
 
-        res = self.app.get(f'/api/professor/{TEST_PROFESSOR_ID}')
+        res = self.client.get(f'/api/professor/{TEST_PROFESSOR_ID}')
         self.assertEqual(res.status_code, 400)
         self.assertEqual(expected_error, res.json)
 
@@ -97,7 +97,7 @@ class ProfessorsTest(BaseTest):
             ]
         }
 
-        res = self.app.get(f'/api/professor/{TEST_PROFESSOR_ID}/courses')
+        res = self.client.get(f'/api/professor/{TEST_PROFESSOR_ID}/courses')
         self.assertEqual(expected_res, res.json)
 
     @mock.patch('api.blueprints.professor.get_professor_courses')
@@ -107,5 +107,5 @@ class ProfessorsTest(BaseTest):
             'courses': []
         }
 
-        res = self.app.get(f'/api/professor/{TEST_PROFESSOR_ID}/courses')
+        res = self.client.get(f'/api/professor/{TEST_PROFESSOR_ID}/courses')
         self.assertEqual(expected_res, res.json)

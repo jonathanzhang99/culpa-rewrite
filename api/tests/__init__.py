@@ -15,8 +15,8 @@ class BaseTest(unittest.TestCase):
     '''
 
     def setUp(self):
-        app = create_app(configs['testing'])
-        self.app = app.test_client()
+        self.app = create_app(configs['testing'])
+        self.client = self.app.test_client()
 
     def tearDown(self):
         '''
@@ -43,10 +43,11 @@ class LoadersWritersBaseTest(unittest.TestCase):
         necessary that the Schema file always remains up to date with the
         live db.
         '''
-        app = create_app(configs['testing'])
+        self.app = create_app(configs['testing'])
+        self.app_ctx = self.app.app_context()
 
         # initialize db
-        with app.app_context():
+        with self.app_ctx:
             conn = db.get_db()
 
             # Test database should not exist
@@ -62,10 +63,9 @@ class LoadersWritersBaseTest(unittest.TestCase):
                     conn.cursor().execute(query)
 
         # change config so that future connections use the newly created db
-        app.config['MYSQL_DATABASE_DB'] = self.MYSQL_DATABASE_DB
+        self.app.config['MYSQL_DATABASE_DB'] = self.MYSQL_DATABASE_DB
 
-        self.app = app.test_client()
-        self.app_ctx = app.app_context()
+        self.client = self.app.test_client()
         self.app_ctx.push()
         self.cur = db.get_cursor()
 
@@ -81,17 +81,17 @@ class LoadersWritersBaseTest(unittest.TestCase):
 
 class AuthBaseTest(unittest.TestCase):
     def setUp(self):
-        app = create_app(configs['testing'])
+        self.app = create_app(configs['testing'])
 
         self.protected_url = '/protected'
-        self.secret = app.config['SECRET_KEY']
+        self.secret = self.app.config['SECRET_KEY']
 
-        @app.route(self.protected_url, methods=['GET'])
+        @self.app.route(self.protected_url, methods=['GET'])
         @login_required
         def protected():
             return {'msg': 'success!'}
 
-        self.app = app.test_client()
+        self.client = self.app.test_client()
 
     def tearDown(self):
         pass

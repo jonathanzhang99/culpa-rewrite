@@ -19,9 +19,9 @@ class ReviewTest(BaseTest):
 
         expected_res = {'reviewId': 0}
 
-        res = self.app.post('/api/review/submit',
-                            json=review_data,
-                            environ_base={'REMOTE_ADDR': '127.0.0.1'})
+        res = self.client.post('/api/review/submit',
+                               json=review_data,
+                               environ_base={'REMOTE_ADDR': '127.0.0.1'})
 
         self.assertEqual(expected_res, res.json)
 
@@ -42,9 +42,11 @@ class ReviewTest(BaseTest):
                 invalid_review_data = {k: v for k, v in review_data.items()
                                        if k != removed_key}
 
-                res = self.app.post('/api/review/submit',
-                                    json=invalid_review_data,
-                                    environ_base={'REMOTE_ADDR': '127.0.0.1'})
+                res = self.client.post('/api/review/submit',
+                                       json=invalid_review_data,
+                                       environ_base={
+                                           'REMOTE_ADDR': '127.0.0.1'
+                                        })
 
                 self.assertEqual(res.status_code, 400)
                 self.assertEqual(expected_error, res.json)
@@ -61,9 +63,9 @@ class ReviewTest(BaseTest):
 
         expected_error = {'error': 'Invalid data'}
 
-        res = self.app.post('/api/review/submit',
-                            json=review_data,
-                            environ_base={'REMOTE_ADDR': '127.0.0.1'})
+        res = self.client.post('/api/review/submit',
+                               json=review_data,
+                               environ_base={'REMOTE_ADDR': '127.0.0.1'})
 
         self.assertEqual(res.status_code, 400)
         self.assertEqual(expected_error, res.json)

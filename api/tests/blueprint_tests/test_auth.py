@@ -29,7 +29,7 @@ class AuthTest(BaseTest):
             'token': 'test_token'
         }
 
-        res = self.app.post('/api/auth/login', json=request_data)
+        res = self.client.post('/api/auth/login', json=request_data)
         self.assertEqual(expected_res, res.json)
 
     def test_login_with_invalid_credentials(self,
@@ -42,7 +42,7 @@ class AuthTest(BaseTest):
 
         expected_res = {'error': 'Incorrect login credentials'}
 
-        res = self.app.post('/api/auth/login', json=request_data)
+        res = self.client.post('/api/auth/login', json=request_data)
         self.assertEqual(401, res.status_code)
         self.assertEqual(expected_res, res.json)
 
@@ -57,7 +57,7 @@ class AuthTest(BaseTest):
 
         expected_res = {'error': 'Incorrect login credentials'}
 
-        res = self.app.post('/api/auth/login', json=request_data)
+        res = self.client.post('/api/auth/login', json=request_data)
         self.assertEqual(401, res.status_code)
         self.assertEqual(expected_res, res.json)
 
@@ -70,6 +70,6 @@ class AuthTest(BaseTest):
 
         expected_res = {'error': 'Missing login credentials'}
 
-        res = self.app.post('/api/auth/login', json=request_data)
+        res = self.client.post('/api/auth/login', json=request_data)
         self.assertEqual(401, res.status_code)
         self.assertEqual(expected_res, res.json)
