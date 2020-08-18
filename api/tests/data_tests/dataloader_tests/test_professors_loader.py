@@ -1,11 +1,6 @@
 from api.data import db
 from api.data.dataloaders.professors_loader import get_all_professors, \
-<<<<<<< HEAD
-    get_professor_courses, get_cp_id_by_prof, get_prof_list, \
-    search_professor
-=======
     get_professor_courses, get_professor_name, search_professor
->>>>>>> 6f7828242d5767648be38f993b23384fec86a74c
 from api.tests import LoadersWritersBaseTest
 from api.tests.data_tests.common import setup_department_professor_courses
 
