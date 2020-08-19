@@ -115,7 +115,6 @@ def get_reviews(page_type, id):
 
     ip = flask.request.remote_addr
     url_args = flask.request.args
-
     # getting basic information: page type
     if page_type not in page_type_and_loaders:
         return {
@@ -138,7 +137,7 @@ def get_reviews(page_type, id):
             sort_criterion, sort_order = sorting_spec[sorting]
         if filter_list_raw:
             filter_list = [int(x) for x in filter_list_raw.split(',')]
-        if filter_year_raw and filter_year_raw != 'null':
+        if filter_year_raw and filter_year_raw not in ['null', 'None']:
             filter_year = int(filter_year_raw)
 
     reviews = get_reviews_db(
