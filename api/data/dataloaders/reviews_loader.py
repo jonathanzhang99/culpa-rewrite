@@ -67,7 +67,7 @@ def prepare_course_query_prefix(id, filter_list=None):
     return [q, professor_header_fields]
 
 
-def get_reviews_db(
+def get_reviews_by_page_attr(
     query_prefix,
     ip,
     sort_criterion=None,
