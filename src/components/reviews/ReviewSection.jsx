@@ -63,11 +63,11 @@ export default function ReviewSection({initReviews, pageType, id, assocList}){
 
     const fetchReviews = async () => {
         dispatch({type: 'FETCH_START'})
-        let filter_list = state.filters.assocListLimit.join(',')
+        const filterList = state.filters.assocListLimit.join(',')
         const res = await fetch(
             `/api/review/get/${state.pageType}/${state.id}`
             + `?sorting=${state.sorting}`
-            + `&filter_list=${filter_list}`
+            + `&filter_list=${filterLlist}`
             + `&filter_year=${state.filters.year}`, 
             {
                 method: "GET",
