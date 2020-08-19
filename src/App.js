@@ -9,7 +9,6 @@ import DepartmentsPage from "components/DepartmentsPage";
 import LoginPage from "components/LoginPage";
 import NavigationBar from "components/NavigationBar";
 import ProfessorInfoPage from "components/ProfessorInfoPage";
-import ReviewsPage from "components/ReviewsPage";
 
 function App() {
   return (
