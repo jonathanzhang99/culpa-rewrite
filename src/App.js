@@ -27,9 +27,6 @@ function App() {
             <Route path="/review">
               <CreateReviewPage />
             </Route>
-            <Route path="/reviews">
-              <ReviewsPage/>
-            </Route>
             <Route path="/professor/:professorId">
               <ProfessorInfoPage />
             </Route>
