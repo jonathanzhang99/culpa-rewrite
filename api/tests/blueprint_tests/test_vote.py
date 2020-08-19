@@ -19,7 +19,7 @@ class VoteTest(BaseTest):
                     action=action,
                     voteType=voteType,
                 ):
-                    res = self.app.post('/api/vote/change', json=dict(
+                    res = self.client.post('/api/vote/change', json=dict(
                         action=action,
                         voteType=voteType,
                         reviewId=reviewId
@@ -43,7 +43,7 @@ class VoteTest(BaseTest):
 
         for action in actions:
             with self.subTest(action=action):
-                res = self.app.post('/api/vote/change', json=dict(
+                res = self.client.post('/api/vote/change', json=dict(
                                 action=action,
                                 voteType='agree',
                                 reviewId='12345'
