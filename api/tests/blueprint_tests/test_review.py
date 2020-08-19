@@ -155,10 +155,10 @@ class ReviewTest(BaseTest):
 
     @mock.patch("api.blueprints.review.prepare_professor_query_prefix")
     @mock.patch("api.blueprints.review.prepare_course_query_prefix")
-    @mock.patch("api.blueprints.review.get_reviews_db")
+    @mock.patch("api.blueprints.review.get_reviews_by_page_attr")
     def test_get_reviews_valid(
         self,
-        get_reviews_db_mock,
+        get_reviews_by_page_attr_mock,
         course_query_prefix_mock,
         professor_query_prefix_mock
     ):
@@ -224,7 +224,7 @@ class ReviewTest(BaseTest):
                         )
 
                         sort_criterion, sort_order = sorting_spec[sorting]
-                        get_reviews_db_mock.assert_called_with(
+                        get_reviews_by_page_attr_mock.assert_called_with(
                             case['fn_return'],
                             ip,
                             sort_criterion,
@@ -234,10 +234,10 @@ class ReviewTest(BaseTest):
 
     @mock.patch("api.blueprints.review.prepare_professor_query_prefix")
     @mock.patch("api.blueprints.review.prepare_course_query_prefix")
-    @mock.patch("api.blueprints.review.get_reviews_db")
+    @mock.patch("api.blueprints.review.get_reviews_by_page_attr")
     def test_get_reviews_invalid_type(
         self,
-        get_reviews_db_mock,
+        get_reviews_by_page_attr_mock,
         course_query_prefix_mock,
         professor_query_prefix_mock
     ):
@@ -259,6 +259,6 @@ class ReviewTest(BaseTest):
                 self.assertEqual(res.status_code, 400)
                 self.assertEqual(res.json, {"error": case['error_msg']})
 
-                get_reviews_db_mock.assert_not_called()
+                get_reviews_by_page_attr_mock.assert_not_called()
                 course_query_prefix_mock.assert_not_called()
                 professor_query_prefix_mock.assert_not_called()

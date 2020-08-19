@@ -1,7 +1,7 @@
 import flask
 from datetime import datetime, timedelta
 
-from api.data.dataloaders.reviews_loader import get_reviews_db, \
+from api.data.dataloaders.reviews_loader import get_reviews_by_page_attr, \
     prepare_course_query_prefix, prepare_professor_query_prefix
 from api.data.datawriters.reviews_writer import insert_review
 
@@ -108,7 +108,7 @@ def get_reviews(page_type, id):
         'most agreed': ['upvotes', 'DESC'],
         'most disagreed': ['downvotes', 'DESC']
     }
-    page_type_and_loaders = {
+    page_type_and_prefix_loaders = {
         'professor': prepare_professor_query_prefix,
         'course': prepare_course_query_prefix
     }
@@ -116,10 +116,11 @@ def get_reviews(page_type, id):
     ip = flask.request.remote_addr
     url_args = flask.request.args
     # getting basic information: page type
-    if page_type not in page_type_and_loaders:
+    if page_type not in page_type_and_prefix_loaders:
         return {
             "error": "invalid page type"
         }, 400
+    prefix_loader = page_type_and_prefix_loaders[page_type]
 
     # getting sorting and filtering settings
     # default: sort by date
@@ -140,8 +141,8 @@ def get_reviews(page_type, id):
         if filter_year_raw and filter_year_raw not in ['null', 'None']:
             filter_year = int(filter_year_raw)
 
-    reviews = get_reviews_db(
-        page_type_and_loaders[page_type](id, filter_list),
+    reviews = get_reviews_by_page_attr(
+        prefix_loader(id, filter_list),
         ip, sort_criterion,
         sort_order,
         filter_year,
