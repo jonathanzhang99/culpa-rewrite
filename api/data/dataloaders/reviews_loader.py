@@ -2,9 +2,7 @@ from pypika import functions as fn, \
     MySQLQuery as Query, \
     Case, \
     Criterion, \
-    CustomFunction, \
-    Order, \
-    JoinType
+    CustomFunction
 
 from api.data import db
 from api.data.common import review, vote, course_professor, course
@@ -46,8 +44,10 @@ def get_most_positive_reviews(course_id, ip):
     ).inner_join(vote).on(
         review.review_id == vote.review_id
     ).where(
-        (course.course_id=course_id) &
-        (review.rating=max_rating)
+        Criterion.all([
+            course.course_id == course_id,
+            review.rating == max_rating
+        ])
     ).groupby(
         review.course_professor_id,
         review.review_id,
@@ -91,8 +91,10 @@ def get_most_negative_reviews(course_id, ip):
     ).inner_join(vote).on(
         review.review_id == vote.review_id
     ).where(
-        (course.course_id=course_id) &
-        (review.rating=min_rating)
+        Criterion.all([
+            course.course_id == course_id,
+            review.rating == min_rating
+        ])
     ).groupby(
         review.course_professor_id,
         review.review_id,
