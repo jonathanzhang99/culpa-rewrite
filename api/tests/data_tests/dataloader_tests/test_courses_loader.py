@@ -1,7 +1,6 @@
 from api.data import db
 from api.data.dataloaders.courses_loader import get_course, \
-    get_department_professors, search_course, get_cp_id_by_course, \
-    get_course_list
+    get_department_professors, search_course
 from api.tests import LoadersWritersBaseTest
 from api.tests.data_tests.common import setup_department_professor_courses
 
@@ -15,86 +14,6 @@ MATHEMATICS_OF_ML_COURSE_ID = 6
 
 
 class CoursesLoaderTest(LoadersWritersBaseTest):
-    def test_get_cp_id_by_course(self):
-        test_cases = [
-            {
-                'course_id': 4,
-                'prof_ids': [],
-                'expected_res': [
-                    {
-                        'course_professor_id': 4,
-                        'professor_id': 1
-                    },
-                    {
-                        'course_professor_id': 5,
-                        'professor_id': 3
-                    },
-                ]
-            },
-            {
-                'course_id': 3,
-                'prof_ids': [3, 5],
-                'expected_res': [
-                    {
-                        'course_professor_id': 6,
-                        'professor_id': 3
-                    },
-                ]
-            },
-            {
-                'course_id': 1,
-                'prof_ids': [9],
-                'expected_res': ()
-            },
-            {
-                'course_id': 12345,
-                'prof_ids': [],
-                'expected_res': ()
-            },
-        ]
-        setup_department_professor_courses(self.cur)
-        for test_case in test_cases:
-            with self.subTest(test_case):
-                res = get_cp_id_by_course(
-                    test_case['course_id'],
-                    test_case['prof_ids']
-                )
-                self.assertEqual(res, test_case['expected_res'])
-
-    def test_get_course_list(self):
-        setup_department_professor_courses(self.cur)
-        test_cases = [
-            {
-                'id': [1, 4],
-                'expected_res': [{
-                    'course_id': 1,
-                    'name': 'Machine Learning',
-                    'call_number': 'COMS 4771'
-                }, {
-                    'course_id': 4,
-                    'name': 'Advanced Programming',
-                    'call_number': 'COMS 3157'
-                }]
-            },
-            {
-                'id': [4],
-                'expected_res': [{
-                    'course_id': 4,
-                    'name': 'Advanced Programming',
-                    'call_number': 'COMS 3157'
-                }]
-            },
-            {
-                'id': [12345],
-                'expected_res': ()
-            }
-        ]
-
-        for test_case in test_cases:
-            with self.subTest(test_case):
-                res = get_course_list(test_case['id'])
-                self.assertEqual(res, test_case['expected_res'])
-
     def test_get_course(self):
         setup_department_professor_courses(self.cur)
         expected_res = [{'course_id': MACHINE_LEARNING_COURSE_ID,
