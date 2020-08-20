@@ -78,7 +78,12 @@ CREATE TABLE `user` (
 CREATE TABLE `flag` (
   `review_id` INT NOT NULL,
   `user_id` INT NOT NULL,
-  `flag_type` VARCHAR(45) NULL,
+  `type` ENUM(
+    'approved',
+    'pending',
+    'libel',
+    'insufficient'
+  ) NULL,
   `created_at` DATETIME NOT NULL,
   `modified_at` DATETIME NOT NULL,
   CONSTRAINT `fk_flag__review` FOREIGN KEY (`review_id`)
