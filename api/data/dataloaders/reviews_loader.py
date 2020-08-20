@@ -27,6 +27,26 @@ def vote_clicked(vote_type, ip):
     ).else_(0)).as_(f'{vote_type}_clicked')
 
 
+def get_review_ids(course_id):
+    '''
+    Get review_ids corresponding to course_id
+    '''
+    cur = db.get_cursor()
+
+    q = Query.from_(review).select(
+        review.review_id
+    ).inner_join(course_professor).on(
+        review.course_professor_id == course_professor.course_professor_id
+    ).inner_join(course).on(
+        course_professor.course_id == course.course_id
+    ).where(
+        course.course_id == course_id
+    )
+
+    cur.execute(q.get_sql())
+    return cur.fetchall()
+
+
 def get_most_positive_reviews(course_id, ip):
     '''
     Get reviews with the highest rating along with vote counts
@@ -35,9 +55,24 @@ def get_most_positive_reviews(course_id, ip):
 
     max_rating = Query.from_(review).select(
         fn.Max(review.rating)
+    ).where(
+        review.review_id.isin((7, 8, 9))
     )
 
-    q = Query.from_(review).inner_join(course_professor).on(
+    q = Query.from_(review).select(
+        review.course_professor_id,
+        review.review_id,
+        review.content,
+        review.workload,
+        review.rating,
+        review.submission_date,
+        vote_count('agree'),  # agrees
+        vote_count('disagree'),  # disagrees
+        vote_count('funny'),  # funnys
+        vote_clicked('agree', ip),  # agree_clicked
+        vote_clicked('disagree', ip),  # disagree_clicked
+        vote_clicked('funny', ip)  # funny_clicked
+    ).inner_join(course_professor).on(
         review.course_professor_id == course_professor.course_professor_id
     ).inner_join(course).on(
         course_professor.course_id == course.course_id
@@ -55,19 +90,6 @@ def get_most_positive_reviews(course_id, ip):
         review.workload,
         review.rating,
         review.submission_date
-    ).select(
-        review.course_professor_id,
-        review.review_id,
-        review.content,
-        review.workload,
-        review.rating,
-        review.submission_date,
-        vote_count('agree'),  # agrees
-        vote_count('disagree'),  # disagrees
-        vote_count('funny'),  # funnys
-        vote_clicked('agree', ip),  # agree_clicked
-        vote_clicked('disagree', ip),  # disagree_clicked
-        vote_clicked('funny', ip)  # funny_clicked
     )
 
     cur.execute(q.get_sql())
