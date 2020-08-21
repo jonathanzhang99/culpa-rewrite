@@ -2,13 +2,13 @@ from datetime import datetime, timedelta
 from decimal import Decimal
 
 from api.tests import LoadersWritersBaseTest
-from api.tests.data_tests.common import setup_votes, setup_reviews
-from api.data.dataloaders.reviews_loader import get_reviews_by_page_attr, \
+from api.tests.data_tests.common import setup_votes, setup_reviews_and_flags
+from api.data.dataloaders.reviews_loader import get_reviews_with_query_prefix,\
     prepare_course_query_prefix, prepare_professor_query_prefix
 
 
 class ReviewsLoaderTest(LoadersWritersBaseTest):
-    def test_get_reviews_by_page_attr_get_only(self):
+    def test_get_reviews_with_query_prefix_get_only(self):
         test_cases = [{
             'type': 'course',
             'id': 4,
@@ -65,36 +65,6 @@ class ReviewsLoaderTest(LoadersWritersBaseTest):
             'type': 'professor',
             'id': 1,
             'expected_res': [{
-                'course_id': 2,
-                'call_number': 'COMS 4774',
-                'name': 'Advanced Machine Learning',
-                'review_id': 1,
-                'content': 'demo content 1',
-                'workload': 'demo workload 1',
-                'rating': 3,
-                'submission_date': datetime.strptime('2020-02-10', '%Y-%m-%d'),
-                'agrees': Decimal(1),
-                'disagrees': Decimal(1),
-                'funnys': Decimal(0),
-                'agree_clicked': Decimal(1),
-                'disagree_clicked': Decimal(0),
-                'funny_clicked': Decimal(0)
-            }, {
-                'course_id': 2,
-                'call_number': 'COMS 4774',
-                'name': 'Advanced Machine Learning',
-                'review_id': 2,
-                'content': 'demo content 2',
-                'workload': 'demo workload 2',
-                'rating': 3,
-                'submission_date': datetime.strptime('2017-02-10', '%Y-%m-%d'),
-                'agrees': Decimal(0),
-                'disagrees': Decimal(0),
-                'funnys': Decimal(1),
-                'agree_clicked': Decimal(0),
-                'disagree_clicked': Decimal(0),
-                'funny_clicked': Decimal(1)
-            }, {
                 'course_id': 6,
                 'call_number': 'MATH FAKE',
                 'name': 'Mathematics of Machine Learning',
@@ -122,50 +92,43 @@ class ReviewsLoaderTest(LoadersWritersBaseTest):
 
         ip = '123.456.78.910'
         setup_votes(self.cur)
-        page_type_and_prefix_loaders = {
+        page_type_and_query_prefixes = {
             'course': prepare_course_query_prefix,
             'professor': prepare_professor_query_prefix
         }
 
         for test_case in test_cases:
             with self.subTest(test_case):
-                pf = page_type_and_prefix_loaders[test_case['type']](
+                pf = page_type_and_query_prefixes[test_case['type']](
                     test_case['id']
                 )
-                res = get_reviews_by_page_attr(pf, ip)
+                res = get_reviews_with_query_prefix(pf, ip)
                 self.assertEqual(res, test_case['expected_res'])
 
     def test_get_review_db_with_sort(self):
         def is_sorted(res, key, order):
-            key_to_field_map = {
-                'rating': 'rating',
-                'submission_date': 'submission_date',
-                'upvotes': 'agrees',
-                'downvotes': 'disagrees'
-            }
-            field = key_to_field_map[key]
             for i in range(len(res) - 1):
                 if order == 'DESC':
-                    if res[i][field] < res[i + 1][field]:
+                    if res[i][key] < res[i + 1][key]:
                         return False
                 else:
-                    if res[i][field] > res[i + 1][field]:
+                    if res[i][key] > res[i + 1][key]:
                         return False
             return True
 
-        setup_reviews(self.cur)
+        setup_reviews_and_flags(self.cur)
         for sort_criterion in [
             'rating',
             'submission_date',
-            'upvotes',
-            'downvotes'
+            'agrees',
+            'disagrees'
         ]:
             for sort_order in ['DESC', 'ASC']:
                 with self.subTest(
                     sort_criterion=sort_criterion,
                     sort_order=sort_order
                 ):
-                    res = get_reviews_by_page_attr(
+                    res = get_reviews_with_query_prefix(
                         prepare_professor_query_prefix(3),
                         "123.456.78.910",
                         sort_criterion=sort_criterion,
@@ -185,10 +148,10 @@ class ReviewsLoaderTest(LoadersWritersBaseTest):
                     return False
             return True
 
-        setup_reviews(self.cur)
+        setup_reviews_and_flags(self.cur)
         for year in range(1, 6):
             with self.subTest(year):
-                res = get_reviews_by_page_attr(
+                res = get_reviews_with_query_prefix(
                     prepare_professor_query_prefix(3),
                     "123.456.78.910",
                     filter_year=year
@@ -213,7 +176,7 @@ class ReviewsLoaderTest(LoadersWritersBaseTest):
             'type': 'course',
             'id': 2,
             'filter_list': [1],
-            'expected_review_ids': [1, 2]
+            'expected_review_ids': []
         }, {
             'type': 'course',
             'id': 4,
@@ -221,16 +184,16 @@ class ReviewsLoaderTest(LoadersWritersBaseTest):
             'expected_review_ids': []
         }]
 
-        setup_reviews(self.cur)
-        page_type_and_prefix_loaders = {
+        setup_votes(self.cur)
+        page_type_and_query_prefixes = {
             'course': prepare_course_query_prefix,
             'professor': prepare_professor_query_prefix
         }
 
         for test_case in test_cases:
             with self.subTest(test_case):
-                res = get_reviews_by_page_attr(
-                    page_type_and_prefix_loaders[test_case['type']](
+                res = get_reviews_with_query_prefix(
+                    page_type_and_query_prefixes[test_case['type']](
                         test_case['id'],
                         filter_list=test_case['filter_list']
                     ),

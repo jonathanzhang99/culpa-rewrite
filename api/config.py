@@ -17,6 +17,7 @@ class BaseConfig():
 
     # Miscellaneous
     REVIEW_DEPRECATED_THRESHOLD_DAYS = 5 * 365
+    DEFAULT_SORT = 'newest'
 
 
 class ProductionConfig(BaseConfig):

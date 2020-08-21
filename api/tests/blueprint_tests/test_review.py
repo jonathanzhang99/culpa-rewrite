@@ -74,7 +74,7 @@ class ReviewTest(BaseTest):
 
     def test_parse_review(self):
         types = [{
-            'r_type': 'course',
+            'review_type': 'course',
             'header_data': {
                 'professor_id': 12345,
                 'uni': '12345',
@@ -88,7 +88,7 @@ class ReviewTest(BaseTest):
                 'uni': '12345'
             }
         }, {
-            'r_type': 'professor',
+            'review_type': 'professor',
             'header_data': {
                 'course_id': 12345,
                 'name': 'testtest',
@@ -132,11 +132,11 @@ class ReviewTest(BaseTest):
                     with self.app.app_context():
                         res = parse_review(
                             review,
-                            type_['r_type'],
+                            type_['review_type'],
                         )
 
                     self.assertEqual(res, {
-                        'reviewType': type_['r_type'],
+                        'reviewType': type_['review_type'],
                         'reviewHeader': type_['expected_review_header'],
                         'votes': {
                             'initUpvoteCount': review['agrees'],
@@ -155,21 +155,21 @@ class ReviewTest(BaseTest):
 
     @mock.patch("api.blueprints.review.prepare_professor_query_prefix")
     @mock.patch("api.blueprints.review.prepare_course_query_prefix")
-    @mock.patch("api.blueprints.review.get_reviews_by_page_attr")
+    @mock.patch("api.blueprints.review.get_reviews_with_query_prefix")
     def test_get_reviews_valid(
         self,
-        get_reviews_by_page_attr_mock,
+        get_reviews_with_query_prefix_mock,
         course_query_prefix_mock,
         professor_query_prefix_mock
     ):
-        sorting_spec = {
+        db_sort_specs = {
             '': ['submission_date', 'DESC'],
             'best': ['rating', 'DESC'],
             'worst': ['rating', 'ASC'],
             'newest': ['submission_date', 'DESC'],
             'oldest': ['submission_date', 'ASC'],
-            'most agreed': ['upvotes', 'DESC'],
-            'most disagreed': ['downvotes', 'DESC']
+            'most agreed': ['agrees', 'DESC'],
+            'most disagreed': ['disagrees', 'DESC']
         }
         filters = [{
             'filter_list': '1,2,3,4',
@@ -202,7 +202,7 @@ class ReviewTest(BaseTest):
         ip = 3, "123.456.78.910"
 
         for case in cases:
-            for sorting in sorting_spec:
+            for sorting in db_sort_specs:
                 for filter_val in filters:
                     with self.subTest(
                         case=case,
@@ -213,8 +213,8 @@ class ReviewTest(BaseTest):
                         self.client.get(
                             f'/api/review/get/{case["type"]}/{case["id"]}'
                             f'?sorting={sorting}'
-                            f'&filter_year={filter_val["filter_year"]}'
-                            f'&filter_list={filter_val["filter_list"]}',
+                            f'&filterYear={filter_val["filter_year"]}'
+                            f'&filterList={filter_val["filter_list"]}',
                             environ_base={'REMOTE_ADDR': ip}
                         )
 
@@ -223,8 +223,8 @@ class ReviewTest(BaseTest):
                             filter_val['filter_list_array']
                         )
 
-                        sort_criterion, sort_order = sorting_spec[sorting]
-                        get_reviews_by_page_attr_mock.assert_called_with(
+                        sort_criterion, sort_order = db_sort_specs[sorting]
+                        get_reviews_with_query_prefix_mock.assert_called_with(
                             case['fn_return'],
                             ip,
                             sort_criterion,
@@ -234,31 +234,21 @@ class ReviewTest(BaseTest):
 
     @mock.patch("api.blueprints.review.prepare_professor_query_prefix")
     @mock.patch("api.blueprints.review.prepare_course_query_prefix")
-    @mock.patch("api.blueprints.review.get_reviews_by_page_attr")
+    @mock.patch("api.blueprints.review.get_reviews_with_query_prefix")
     def test_get_reviews_invalid_type(
         self,
-        get_reviews_by_page_attr_mock,
+        get_reviews_with_query_prefix_mock,
         course_query_prefix_mock,
         professor_query_prefix_mock
     ):
-        cases = [{
-            'type': 'course',
-            'sort': 'invalid',
-            'error_msg': 'invalid sorting setting'
-        }, {
-            'type': 'invalid',
-            'sort': '',
-            'error_msg': 'invalid page type'
-        }]
+        page_type = 'invalid'
+        res = self.client.get(
+            f"/api/review/get/{page_type}/1"
+        )
 
-        for case in cases:
-            with self.subTest(case):
-                res = self.client.get(
-                    f"/api/review/get/{case['type']}/1?sorting={case['sort']}"
-                )
-                self.assertEqual(res.status_code, 400)
-                self.assertEqual(res.json, {"error": case['error_msg']})
+        self.assertEqual(res.status_code, 400)
+        self.assertEqual(res.json, {"error": 'invalid page type'})
 
-                get_reviews_by_page_attr_mock.assert_not_called()
-                course_query_prefix_mock.assert_not_called()
-                professor_query_prefix_mock.assert_not_called()
+        get_reviews_with_query_prefix_mock.assert_not_called()
+        course_query_prefix_mock.assert_not_called()
+        professor_query_prefix_mock.assert_not_called()

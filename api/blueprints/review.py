@@ -1,7 +1,7 @@
 import flask
 from datetime import datetime, timedelta
 
-from api.data.dataloaders.reviews_loader import get_reviews_by_page_attr, \
+from api.data.dataloaders.reviews_loader import get_reviews_with_query_prefix,\
     prepare_course_query_prefix, prepare_professor_query_prefix
 from api.data.datawriters.reviews_writer import insert_review
 
@@ -100,15 +100,15 @@ def get_reviews(page_type, id):
     # key: sorting parameter strings from frontend
     # value: sorting parameters for the database
     # (corresponds to the sort_criterion and sort_order)
-    sorting_spec = {
+    db_sort_specs = {
         'best': ['rating', 'DESC'],
         'worst': ['rating', 'ASC'],
         'newest': ['submission_date', 'DESC'],
         'oldest': ['submission_date', 'ASC'],
-        'most agreed': ['upvotes', 'DESC'],
-        'most disagreed': ['downvotes', 'DESC']
+        'most agreed': ['agrees', 'DESC'],
+        'most disagreed': ['disagrees', 'DESC']
     }
-    page_type_and_prefix_loaders = {
+    page_type_and_query_prefixes = {
         'professor': prepare_professor_query_prefix,
         'course': prepare_course_query_prefix
     }
@@ -116,33 +116,32 @@ def get_reviews(page_type, id):
     ip = flask.request.remote_addr
     url_args = flask.request.args
     # getting basic information: page type
-    if page_type not in page_type_and_prefix_loaders:
+    if page_type not in page_type_and_query_prefixes:
         return {
             "error": "invalid page type"
         }, 400
-    prefix_loader = page_type_and_prefix_loaders[page_type]
+    query_prefix = page_type_and_query_prefixes[page_type]
 
     # getting sorting and filtering settings
-    # default: sort by date
-    sort_criterion, sort_order = sorting_spec['newest']
     filter_list, filter_year = None, None
-    if url_args:
-        sorting = url_args.get('sorting').lower()
-        filter_list_raw = url_args.get('filter_list')
-        filter_year_raw = url_args.get('filter_year')
-        if sorting:
-            if sorting not in sorting_spec:
-                return {
-                    "error": "invalid sorting setting"
-                }, 400
-            sort_criterion, sort_order = sorting_spec[sorting]
-        if filter_list_raw:
-            filter_list = [int(x) for x in filter_list_raw.split(',')]
-        if filter_year_raw and filter_year_raw not in ['null', 'None']:
-            filter_year = int(filter_year_raw)
+    DEFAULT_SORT = flask.current_app.config.get('DEFAULT_SORT', 'newest')
 
-    reviews = get_reviews_by_page_attr(
-        prefix_loader(id, filter_list),
+    sorting = url_args.get('sorting', DEFAULT_SORT).lower()
+    filter_list_raw = url_args.get('filterList', '')
+    filter_year_raw = url_args.get('filterYear', '')
+
+    sort_criterion, sort_order = db_sort_specs.get(
+        sorting,
+        db_sort_specs[DEFAULT_SORT]
+    )
+
+    if filter_list_raw:
+        filter_list = [int(x) for x in filter_list_raw.split(',')]
+    if filter_year_raw and filter_year_raw not in ['null', 'None']:
+        filter_year = int(filter_year_raw)
+
+    reviews = get_reviews_with_query_prefix(
+        query_prefix(id, filter_list),
         ip, sort_criterion,
         sort_order,
         filter_year,
