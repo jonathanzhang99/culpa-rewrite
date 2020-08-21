@@ -1,14 +1,14 @@
 from api.data import db
 from api.data.datawriters.votes_writer import add_vote, revoke_vote
 from api.tests import LoadersWritersBaseTest
-from api.tests.data_tests.common import setup_reviews
+from api.tests.data_tests.common import setup_reviews_and_flags
 
 
 class VotesWriterTest(LoadersWritersBaseTest):
     def test_add_vote(self):
         voteTypes = ['agree', 'disagree', 'funny']
         reviewId, ip, time = 1, '123456789101112', '2020-02-02'
-        setup_reviews(self.cur)
+        setup_reviews_and_flags(self.cur)
         db.commit()
 
         for voteType in voteTypes:
@@ -35,7 +35,7 @@ class VotesWriterTest(LoadersWritersBaseTest):
     def test_revoke_vote(self):
         voteTypes = ['agree', 'disagree', 'funny']
         reviewId, ip = 1, '123456789101112'
-        setup_reviews(self.cur)
+        setup_reviews_and_flags(self.cur)
         db.commit()
 
         for voteType in voteTypes:

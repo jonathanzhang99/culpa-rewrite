@@ -1,6 +1,6 @@
 def setup_department_professor_courses(cur):
     '''
-    This is a utility function that will poopulate the
+    This is a utility function that will populate the
     departments, professor, courses, and course_professor
     tables with a minimum set of data for testing.
     '''
@@ -70,16 +70,36 @@ def setup_department_professor_courses(cur):
     )
 
 
-# NOTE: this function calls setup_department_professor_courses
-def setup_reviews(cur):
+def setup_users(cur):
     '''
-    This is a utility function that will poopulate the
-    departments, professor, courses, course_professor and
-    review tables with a minimum set of data for testing.
+    This is a utility function that will populate the
+    user table with a minimum set of data for testing.
+    '''
+    users = [
+        (1, 'ab123@columbia.edu', 'userab', '###########', ''),
+        (2, 'cd456@columbia.edu', 'usercd', '@@@@@@@@@@@', ''),
+        (3, 'ef789@columbia.edu', 'useref', '???????????', '')
+    ]
+
+    cur.executemany(
+        'INSERT INTO user (user_id, email, username, password, privileges)'
+        'VALUES (%s, %s, %s, %s, %s)',
+        users
+    )
+
+
+# NOTE: this function calls setup_department_professor_courses and
+# setup_users
+def setup_reviews_and_flags(cur):
+    '''
+    This is a utility function that will populate the
+    departments, professor, courses, course_professor, review
+    and flag tables with a minimum set of data for testing.
     '''
 
     # preliminary setup
     setup_department_professor_courses(cur)
+    setup_users(cur)
 
     reviews = [
         (2, 'demo content 1', '123.0.0.1', 'demo workload 1', 3, '2020-02-10'),
@@ -97,16 +117,39 @@ def setup_reviews(cur):
         reviews
     )
 
+    flags = [
+        (1, 2, 'libel', '2020-08-20'),
+        (2, 2, 'libel', '2020-08-20'),
+        (2, 1, 'approved', '2020-08-19'),
+        (3, 1, 'approved', '2020-08-18'),
+        (4, 1, 'approved', '2020-08-17'),
+        (5, 1, 'approved', '2020-08-16'),
+        (6, 1, 'approved', '2020-08-15'),
+        (1, 1, 'pending', '2020-08-14'),
+        (2, 1, 'pending', '2020-08-13'),
+        (3, 1, 'pending', '2020-08-12'),
+        (4, 1, 'pending', '2020-08-11'),
+        (5, 1, 'pending', '2020-08-10'),
+        (6, 1, 'pending', '2020-08-09'),
+    ]
+
+    cur.executemany(
+        'INSERT INTO flag'
+        '(review_id, user_id, type, created_at)'
+        'VALUES (%s, %s, %s, %s)',
+        flags
+    )
+
 
 # NOTE: this function calls setup_reviews
 def setup_votes(cur):
     '''
-    This is a utility function that will poopulate the
+    This is a utility function that will populate the
     departments, professor, courses, course_professor,
-    review and vote tables with a minimum set of data
+    review, flag, and vote tables with a minimum set of data
     for testing.
     '''
-    setup_reviews(cur)
+    setup_reviews_and_flags(cur)
 
     votes = [
         (1, "123.456.78.910", "2020-08-11", "agree"),
@@ -118,7 +161,7 @@ def setup_votes(cur):
         (5, "123.456.78.910", "2018-10-23", "disagree"),
         (5, "123.456.78.912", "2018-12-11", "disagree"),
         (5, "123.456.78.913", "2019-03-12", "agree"),
-        (5, "123.456.78.914", "2019-08-17", "funny"),
+        (5, "123.456.78.910", "2019-08-17", "funny"),
     ]
 
     cur.executemany(

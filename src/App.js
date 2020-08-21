@@ -9,7 +9,6 @@ import DepartmentsPage from "components/DepartmentsPage";
 import LoginPage from "components/LoginPage";
 import NavigationBar from "components/NavigationBar";
 import ProfessorInfoPage from "components/ProfessorInfoPage";
-import Reviews from "components/ReviewsPage";
 
 function App() {
   return (
@@ -24,9 +23,6 @@ function App() {
               <h1>Admin only page!!</h1>
             </ProtectedRoute>
             {/* temporary page for debugging review card */}
-            <Route path="/reviews">
-              <Reviews />
-            </Route>
             <Route path="/review">
               <CreateReviewPage />
             </Route>
