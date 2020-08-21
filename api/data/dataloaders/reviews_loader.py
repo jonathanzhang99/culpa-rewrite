@@ -19,7 +19,8 @@ class RowNumber(AnalyticFunction):
         super(RowNumber, self).__init__('ROW_NUMBER', **kwargs)
 
 
-# valid vote types: agree, disagree, funny
+# params: vote_type -- corresponds to the ENUM field `type` in the
+#         vote table, valid values are ['agree', 'disagree', 'funny']
 def vote_count(vote_type):
     return fn.Sum(Case().when(
                 vote.type == vote_type, 1
@@ -76,6 +77,47 @@ def prepare_course_query_prefix(course_id, filter_list=None):
               ]
 
 
+def get_flags_by_type(flag_type):
+    '''
+    Generates the pypika subquery that fetches the review_id,
+    user_id, and created_at of flags with a certain type. The
+    resultant subquery can be joined with the review table on
+    review_id to filter for reviews with one type of flag only.
+
+    usage example (fetching approved reviews only):
+            approved_flags = get_flags_by_type('approved')
+            q = Query.from_(review).join(approved_flags).on(
+                approved_flags.review_id == review.review_id
+            ).select(...).get_sql()
+
+    params: flag_type -- corresponds to the ENUM field `type` in
+            the flag table, valid values are ['approved',
+            'pending', 'libel', 'insufficient'].
+    '''
+    ordered_flags = Query.from_(flag).select(
+        flag.review_id,
+        flag.user_id,
+        flag.type,
+        flag.created_at,
+        RowNumber().over(flag.review_id).orderby(
+            flag.created_at, order=Order.desc
+        ).as_('row_num')
+    )
+
+    final_flags = Query.from_(ordered_flags).select(
+        ordered_flags.review_id,
+        ordered_flags.user_id,
+        ordered_flags.created_at,
+    ).where(
+        Criterion.all([
+            ordered_flags.row_num == 1,
+            ordered_flags.type == flag_type
+        ])
+    )
+
+    return final_flags
+
+
 def get_reviews_with_query_prefix(
     query_prefix,
     ip,
@@ -95,30 +137,13 @@ def get_reviews_with_query_prefix(
     review header data.
     '''
     cur = db.get_cursor()
-
-    ordered_flags = Query.from_(flag).select(
-        flag.review_id,
-        flag.user_id,
-        flag.type,
-        RowNumber().over(flag.review_id).orderby(
-            flag.created_at, order=Order.desc
-        ).as_('row_num')
-    )
-    final_flags = Query.from_(ordered_flags).select(
-        ordered_flags.review_id,
-        ordered_flags.user_id,
-    ).where(
-        Criterion.all([
-            ordered_flags.row_num == 1,
-            ordered_flags.type == 'approved'
-        ])
-    )
+    approved_flags = get_flags_by_type('approved')
 
     q, header_fields = query_prefix
     q = q.join(review).on(
         course_professor.course_professor_id == review.course_professor_id
-    ).join(final_flags).on(
-        final_flags.review_id == review.review_id,
+    ).join(approved_flags).on(
+        approved_flags.review_id == review.review_id,
     ).join(vote, JoinType.left).on(
         review.review_id == vote.review_id
     ).groupby(
