@@ -85,7 +85,6 @@ CREATE TABLE `flag` (
     'insufficient'
   ) NULL,
   `created_at` DATETIME NOT NULL,
-  `modified_at` DATETIME NOT NULL,
   CONSTRAINT `fk_flag__review` FOREIGN KEY (`review_id`)
     REFERENCES `review` (`review_id`),
   CONSTRAINT `fk_flag__user` FOREIGN KEY (`user_id`)
