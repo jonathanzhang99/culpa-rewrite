@@ -76,6 +76,7 @@ CREATE TABLE `user` (
 );
 
 CREATE TABLE `flag` (
+  `flag_id` INT NOT NULL AUTO_INCREMENT,
   `review_id` INT NOT NULL,
   `user_id` INT NOT NULL,
   `type` ENUM(
@@ -85,6 +86,7 @@ CREATE TABLE `flag` (
     'insufficient'
   ) NULL,
   `created_at` DATETIME NOT NULL,
+  PRIMARY KEY(`flag_id`),
   CONSTRAINT `fk_flag__review` FOREIGN KEY (`review_id`)
     REFERENCES `review` (`review_id`),
   CONSTRAINT `fk_flag__user` FOREIGN KEY (`user_id`)
