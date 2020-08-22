@@ -46,7 +46,34 @@ def course_summary(course_id):
     # Fetch review summary info
     ip = flask.request.remote_addr
     review_summary = get_course_review_summary(course_id, ip)
-    print(review_summary)
+
+    if len(review_summary) == 0:
+        review_summary_json = {}
+    elif len(review_summary) == 1:
+        review = review_summary[0]
+        review_summary_json = {
+            'mostAgreedReview': {
+                'reviewType': 'course',
+                'reviewHeader': {
+                    'courseId': course_id,
+                    'courseName': course['name'],
+                    'courseCode': course['call_number'],
+                },
+                'votes': {
+                    'initUpvoteCount': int(review['agrees']),
+                    'initDownvoteCount': int(review['disagrees']),
+                    'initFunnyCount': int(review['funnys']),
+                    'upvoteClicked': bool(review['agree_clicked']),
+                    'downvoteClicked': bool(review['disagree_clicked']),
+                    'funnyClicked': bool(review['funny_clicked']),
+                },
+                'workload': review['workload'],
+                'submissionDate': "2020-01-15",
+                'reviewId': 1,
+                'deprecated': False,
+                'content': "This is a review.",
+            }
+        }
 
     review_summary_json = {
         'positiveReview': {

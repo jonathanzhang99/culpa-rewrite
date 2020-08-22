@@ -34,10 +34,12 @@ def get_course_review_summary(course_id, ip):
         1. the highest rated review with the most agreed votes (most positive)
         2. the lowest rated review with the most agreed votes (most negative)
 
-    NOTE: Only selects reviews with at least one vote
-    NOTE: Uses subquery of subquery instead of joining because
+    NOTE:
+        - Only selects reviews with at least one vote
+        - Uses subquery of subquery instead of joining because
           the global max/min rating of review table can differ
           from the max/min of the reviews we are fetching.
+        - UNION only returns distinct rows, so may return only one review
     '''
     cur = db.get_cursor()
 
@@ -62,7 +64,7 @@ def get_course_review_summary(course_id, ip):
         review.review_id.isin(review_ids)
     )
 
-    q = Query.from_(review).select(
+    positive_review_query = Query.from_(review).select(
         review.course_professor_id,
         review.review_id,
         review.content,
@@ -78,9 +80,10 @@ def get_course_review_summary(course_id, ip):
     ).inner_join(vote).on(
         review.review_id == vote.review_id
     ).where(
-        (review.review_id.isin(review_ids)) &
-        (review.rating == max_rating) |
-        (review.rating == min_rating)
+        Criterion.all([
+            review.review_id.isin(review_ids),
+            review.rating == max_rating
+        ])
     ).groupby(
         review.course_professor_id,
         review.review_id,
@@ -88,7 +91,45 @@ def get_course_review_summary(course_id, ip):
         review.workload,
         review.rating,
         review.submission_date
-    ).orderby('agrees', order=Order.desc).limit(2).get_sql()
+    ).orderby('agrees', order=Order.desc).limit(1)
+
+    negative_review_query = Query.from_(review).select(
+        review.course_professor_id,
+        review.review_id,
+        review.content,
+        review.workload,
+        review.rating,
+        review.submission_date,
+        vote_count('agree'),  # agrees
+        vote_count('disagree'),  # disagrees
+        vote_count('funny'),  # funnys
+        vote_clicked('agree', ip),  # agree_clicked
+        vote_clicked('disagree', ip),  # disagree_clicked
+        vote_clicked('funny', ip)  # funny_clicked
+    ).inner_join(vote).on(
+        review.review_id == vote.review_id
+    ).where(
+        Criterion.all([
+            review.review_id.isin(review_ids),
+            review.rating == min_rating
+        ])
+    ).groupby(
+        review.course_professor_id,
+        review.review_id,
+        review.content,
+        review.workload,
+        review.rating,
+        review.submission_date
+    ).orderby('agrees', order=Order.desc).limit(1)
+
+    # Pypika does not support UNION between SELECT's that include ORDER BY
+    q = f'''
+    ({positive_review_query.get_sql()})
+    UNION
+    ({negative_review_query.get_sql()})
+    '''
+
+    # Pypika appends table names when it shouldn't so remove it
     q = q.replace('`review`.`agrees`', '`agrees`')
 
     cur.execute(q)

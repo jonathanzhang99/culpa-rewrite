@@ -4,7 +4,7 @@ from api.data.dataloaders.reviews_loader import get_course_review_summary
 
 
 class ReviewsLoaderTest(LoadersWritersBaseTest):
-    def test_get_course_review_summary_all_positives(self):
+    def test_get_course_review_summary(self):
         setup_votes(self.cur)
         course_id = 5
         ip = ''
