@@ -1,116 +1,87 @@
-from api.data.dataloaders.departments_loader import get_all_departments, \
-    get_department_courses, get_department_name, get_department_professors
+from api.data.dataloaders.departments_loader import load_all_departments, \
+    load_department_courses, load_department_name, load_department_professors
 from api.tests import LoadersWritersBaseTest
+from api.tests.data_tests.common import setup_department_professor_courses
+
+
+CS_DEPARTMENT_ID = 1
+BAD_DEPARTMENT_ID = -1
 
 
 class DepartmentsLoaderTest(LoadersWritersBaseTest):
+    # We set up tests in this file so that the mock databases are in a usable
+    # state. For edge cases (e.g. empty tables, empty relationships), see
+    # tests in data_tests/common.py
+    def setUp(self):
+        super().setUp()
+        setup_department_professor_courses(self.cur)
+
     def test_load_departments(self):
-        self.cur.execute(
-            'INSERT INTO department (name)'
-            'VALUES ("test1")'
-        )
-        expected_res = [{'department_id': 1,
-                         'name': 'test1'
-                         }]
+        expected_departments = [{
+            'department_id': 1,
+            'name': 'Computer Science'
+        }, {
+            'department_id': 2,
+            'name': 'Law'
+        }, {
+            'department_id': 3,
+            'name': 'Mathematics'
+        }]
 
-        res = get_all_departments()
-
-        self.assertEqual(expected_res, res)
+        departments = load_all_departments()
+        self.assertEqual(expected_departments, departments)
 
     def test_load_name(self):
-        TEST_DEPARTMENT_ID = 1
+        expected_name = [{
+            'name': 'Computer Science'
+        }]
 
-        self.cur.execute(
-            'INSERT INTO department (name)'
-            'VALUES ("test1")'
-        )
-        expected_res = [{'name': 'test1'}]
+        name = load_department_name(CS_DEPARTMENT_ID)
+        self.assertEqual(expected_name, name)
 
-        res = get_department_name(TEST_DEPARTMENT_ID)
-
-        self.assertEqual(expected_res, res)
+    def test_load_name_empty(self):
+        name = load_department_name(BAD_DEPARTMENT_ID)
+        self.assertEqual((), name)
 
     def test_load_courses(self):
-        TEST_DEPARTMENT_ID = 1
+        expected_courses = [{
+            'course_id': 1,
+            'name': 'Machine Learning'
+        }, {
+            'course_id': 2,
+            'name': 'Advanced Machine Learning'
+        }, {
+            'course_id': 3,
+            'name': 'Operating Systems'
+        }, {
+            'course_id': 4,
+            'name': 'Advanced Programming'
+        }]
 
-        self.cur.execute(
-            'INSERT INTO department (name)'
-            'VALUES ("test1")'
-        )
-        self.cur.execute(
-            'INSERT INTO course (name, department_id)'
-            f'VALUES ("test1", {TEST_DEPARTMENT_ID})'
-        )
-        expected_res = [{'course_id': 1,
-                         'name': 'test1'
-                         }]
-
-        res = get_department_courses(TEST_DEPARTMENT_ID)
-
-        self.assertEqual(expected_res, res)
+        courses = load_department_courses(CS_DEPARTMENT_ID)
+        self.assertEqual(expected_courses, courses)
 
     def test_load_courses_empty(self):
-        TEST_DEPARTMENT_ID = 1
-
-        self.cur.execute(
-            'INSERT INTO department (name)'
-            'VALUES ("test1")'
-        )
-
-        res = get_department_courses(TEST_DEPARTMENT_ID)
-
-        self.assertFalse(res)
+        courses = load_department_courses(BAD_DEPARTMENT_ID)
+        self.assertEqual((), courses)
 
     def test_load_professors(self):
-        TEST_DEPARTMENT_ID = 1
-
-        self.cur.execute(
-            'INSERT INTO department (name)'
-            'VALUES ("test1")'
-        )
-        professors = [
-            ('test1first', 'test1last'),
-            ('test2first', 'test2last'),
-            ('test3first', 'test3last')
-        ]
-        self.cur.executemany(
-            'INSERT INTO professor (first_name, last_name)'
-            'VALUES (%s, %s)',
-            professors
-        )
-        self.cur.execute(
-            'INSERT INTO department_professor (professor_id, department_id)'
-            f'VALUES (1, {TEST_DEPARTMENT_ID})'
-        )
-        self.cur.execute(
-            'INSERT INTO department_professor (professor_id, department_id)'
-            f'VALUES (2, {TEST_DEPARTMENT_ID})'
-        )
-        expected_res = [
+        expected_professors = [
             {
                 'professor_id': 1,
-                'first_name': 'test1first',
-                'last_name': 'test1last'
+                'first_name': 'Nakul',
+                'last_name': 'Verma'
             },
             {
-                'professor_id': 2,
-                'first_name': 'test2first',
-                'last_name': 'test2last'
+                'professor_id': 3,
+                'first_name': 'Jae W',
+                'last_name': 'Lee'
             }
         ]
 
-        res = get_department_professors(TEST_DEPARTMENT_ID)
-
-        self.assertEqual(expected_res, res)
+        professors = load_department_professors(CS_DEPARTMENT_ID)
+        self.assertEqual(expected_professors, professors)
 
     def test_load_professors_empty(self):
-        TEST_DEPARTMENT_ID = 1
-
-        self.cur.execute(
-            'INSERT INTO department (name)'
-            'VALUES ("test1")'
-        )
-
-        res = get_department_professors(TEST_DEPARTMENT_ID)
-
-        self.assertFalse(res)
+        professors = load_department_professors(BAD_DEPARTMENT_ID)
+        self.assertEqual((), professors)
