@@ -11,6 +11,8 @@ class CoursesTest(BaseTest):
     @mock.patch('api.blueprints.course.get_course')
     def test_course_summary(self, mock_get_course,
                             mock_get_department_professors):
+        self.maxDiff = None
+
         course_id = 1
 
         mock_get_course.return_value = [{
@@ -78,6 +80,7 @@ class CoursesTest(BaseTest):
     @mock.patch('api.blueprints.course.get_course')
     def test_course_summary_no_professors(self, mock_get_course,
                                           mock_get_department_professors):
+        self.maxDiff = None
         course_id = 1
 
         mock_get_course.return_value = [{
