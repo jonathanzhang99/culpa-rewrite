@@ -12,13 +12,13 @@ describe("ProfessorInfoPage Component", () => {
   const TEST_PROFESSOR_ID_PARAM = 1;
   const testCases = [
     {
-      name: "renders no info",
+      testName: "renders no info",
       firstName: "",
       lastName: "",
       courses: [{}],
     },
     {
-      name: "renders professor info",
+      testName: "renders professor info",
       firstName: "Nakul",
       lastName: "Verma",
       courses: [
@@ -35,8 +35,8 @@ describe("ProfessorInfoPage Component", () => {
       ],
     },
   ];
-  testCases.forEach(({ name, firstName, lastName, courses }) => {
-    test(name, () => {
+  testCases.forEach(({ testName, firstName, lastName, courses }) => {
+    test(testName, () => {
       const snapshot = render(
         <MemoryRouter initialEntries={[TEST_PROFESSOR_ID_PARAM]}>
           <Route path=":professorId">

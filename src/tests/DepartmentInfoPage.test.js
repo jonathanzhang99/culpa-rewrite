@@ -11,13 +11,13 @@ describe("DepartmentInfoPage Component", () => {
   });
   const testCases = [
     {
-      name: "renders no info",
+      testName: "renders no info",
       departmentName: "",
       departmentCourses: [{}],
       departmentProfessors: [{}],
     },
     {
-      name: "renders department info",
+      testName: "renders department info",
       departmentName: "Computer Science",
       departmentCourses: [
         {
@@ -44,8 +44,8 @@ describe("DepartmentInfoPage Component", () => {
     },
   ];
   testCases.forEach(
-    ({ name, departmentName, departmentCourses, departmentProfessors }) => {
-      test(name, () => {
+    ({ testName, departmentName, departmentCourses, departmentProfessors }) => {
+      test(testName, () => {
         const snapshot = render(
           <MemoryRouter>
             <AuthContext.Provider value={{ login: loginSuccess }}>
