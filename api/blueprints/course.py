@@ -1,44 +1,42 @@
 import flask
 
-from api.data.dataloaders.courses_loader import get_course, \
-    get_department_professors
+from api.data.dataloaders.courses_loader import load_course_basic_info, \
+    load_course_professors
 
 course_blueprint = flask.Blueprint('course_blueprint', __name__)
 
 
 @course_blueprint.route('/<course_id>', methods=['GET'])
 def course_summary(course_id):
-    # Fetch course info and all related professors
-    course = get_course(course_id)
-    department_professors = get_department_professors(course_id)
+    basic_info = load_course_basic_info(course_id)
+    if not basic_info:
+        return {'error': 'Missing course basic info'}, 404
 
-    # Access the only element here to prevent IndexError being handled
-    # as DB error
-    if not course:
-        return {'error': 'course not found'}, 404
-
-    course = course[0]
-    associated_professors = {}
-    for dp_row in department_professors:
-        professor_id = dp_row['professor_id']
-        if not associated_professors.get(professor_id):
-            associated_professors[professor_id] = {
-                'firstName': dp_row['first_name'],
-                'lastName': dp_row['last_name'],
-                'profDepartments': [],
+    # The load_course_professors loader returns a list of professors who teach
+    # the course, and departments they teach in. Duplicate entries exist for
+    # professors who appear in multiple departments.
+    # Here we reformat into the JSON course_professors, so that each professor
+    # is uniquely identified by id and has professorDepartments as a subfield.
+    professors = load_course_professors(course_id)
+    course_professors = {}
+    for professor in professors:
+        professor_id = professor['professor_id']
+        if professor_id not in course_professors:
+            course_professors[professor_id] = {
+                'firstName': professor['first_name'],
+                'lastName': professor['last_name'],
                 'professorId': professor_id,
+                'professorDepartments': []
             }
-
-        associated_professors[professor_id]['profDepartments'].append({
-            'profDepartmentId': dp_row['department_id'],
-            'profDepartmentName': dp_row['name'],
+        course_professors[professor_id]['professorDepartments'].append({
+            'professorDepartmentId': professor['department_id'],
+            'professorDepartmentName': professor['name']
         })
 
-    course_summary_json = {
-        'courseName': course['name'],
-        'courseCallNumber': course['call_number'],
-        'departmentId': course['department_id'],
-        'departmentName': course['department_name'],
-        'associatedProfessors': list(associated_professors.values()),
+    return {
+        'courseName': basic_info[0]['name'],
+        'courseCallNumber': basic_info[0]['call_number'],
+        'departmentId': basic_info[0]['department_id'],
+        'departmentName': basic_info[0]['department_name'],
+        'courseProfessors': list(course_professors.values())
     }
-    return {'courseSummary': course_summary_json}

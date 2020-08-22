@@ -2,9 +2,12 @@ from unittest import mock
 from api.tests import BaseTest
 
 
+CS_DEPARTMENT_ID = 1
+
+
 class DepartmentsTest(BaseTest):
-    @mock.patch('api.blueprints.department.get_all_departments')
-    def test_retrieve_all_departments(self, mock_departments):
+    @mock.patch('api.blueprints.department.load_all_departments')
+    def test_get_all_departments(self, mock_departments):
         mock_departments.return_value = [{
             'department_id': 1,
             'name': 'Computer Science'
@@ -27,8 +30,8 @@ class DepartmentsTest(BaseTest):
         res = self.client.get('/api/department/all')
         self.assertEqual(expected_res, res.json)
 
-    @mock.patch('api.blueprints.department.get_all_departments')
-    def test_retrieve_all_departments_empty(self, mock_departments):
+    @mock.patch('api.blueprints.department.load_all_departments')
+    def test_get_all_departments_empty(self, mock_departments):
         mock_departments.return_value = []
         expected_res = {
             'departments': []
@@ -37,13 +40,11 @@ class DepartmentsTest(BaseTest):
         res = self.client.get('/api/department/all')
         self.assertEqual(expected_res, res.json)
 
-    @mock.patch('api.blueprints.department.get_department_professors')
-    @mock.patch('api.blueprints.department.get_department_courses')
-    @mock.patch('api.blueprints.department.get_department_name')
-    def test_retrieve_department_info(
+    @mock.patch('api.blueprints.department.load_department_professors')
+    @mock.patch('api.blueprints.department.load_department_courses')
+    @mock.patch('api.blueprints.department.load_department_name')
+    def test_get_department_info(
             self, mock_name, mock_courses, mock_professors):
-        TEST_DEPARTMENT_ID = 1
-
         mock_name.return_value = [{
             'name': 'Computer Science'
         }]
@@ -88,22 +89,20 @@ class DepartmentsTest(BaseTest):
         }
 
         res = self.client.get(
-            f'/api/department/{TEST_DEPARTMENT_ID}')
+            f'/api/department/{CS_DEPARTMENT_ID}')
         self.assertEqual(expected_res, res.json)
 
-    @mock.patch('api.blueprints.department.get_department_professors')
-    @mock.patch('api.blueprints.department.get_department_courses')
-    @mock.patch('api.blueprints.department.get_department_name')
-    def test_retrieve_department_info_empty(
+    @mock.patch('api.blueprints.department.load_department_professors')
+    @mock.patch('api.blueprints.department.load_department_courses')
+    @mock.patch('api.blueprints.department.load_department_name')
+    def test_get_department_info_empty(
             self, mock_name, mock_courses, mock_professors):
-        TEST_DEPARTMENT_ID = 1
-
         mock_name.return_value = []
         mock_courses.return_value = []
         mock_professors.return_value = []
         expected_error = {'error': 'Missing department name'}
 
         res = self.client.get(
-            f'/api/department/{TEST_DEPARTMENT_ID}')
+            f'/api/department/{CS_DEPARTMENT_ID}')
         self.assertEqual(res.status_code, 400)
         self.assertEqual(expected_error, res.json)
