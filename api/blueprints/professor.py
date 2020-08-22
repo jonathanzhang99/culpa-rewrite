@@ -1,23 +1,20 @@
 import flask
 
-from api.data.dataloaders.professors_loader import get_professor_courses, \
-     get_professor_name
+from api.data.dataloaders.professors_loader import load_professor_courses, \
+     load_professor_name
 
 professor_blueprint = flask.Blueprint('professor_blueprint', __name__)
 
 
 @professor_blueprint.route('/<professor_id>', methods=['GET'])
 def professor_summary(professor_id):
-    '''
-    Fetch professor name and courses taught to display on professor info page
-    '''
     # TODO: Fetch professor nugget status
 
-    name = get_professor_name(professor_id)
+    name = load_professor_name(professor_id)
     if not name:
         return {'error': 'Missing professor name'}, 400
 
-    courses = get_professor_courses(professor_id)
+    courses = load_professor_courses(professor_id)
     courses_json = [{
         'courseProfessorId': course['course_professor_id'],
         'courseName': course['name'],
@@ -37,7 +34,7 @@ def professor_courses(professor_id):
     This route is used when choosing among a professor's courses to review in
     the 'Write A Review' flow rather than to display on the professor info page
     '''
-    courses = get_professor_courses(professor_id)
+    courses = load_professor_courses(professor_id)
 
     # TODO: (Sungbin, JZ) change json to conform to frontend props spec
     courses_json = [{

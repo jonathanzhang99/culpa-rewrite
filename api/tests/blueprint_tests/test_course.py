@@ -1,8 +1,10 @@
 from unittest import mock
 from datetime import datetime
 from pymysql.err import IntegrityError
-
 from api.tests import BaseTest
+
+ML_COURSE_ID = 1
+BAD_COURSE_ID = -1
 
 positive_review = {
     'professor_id': 3,
@@ -89,55 +91,53 @@ negative_review_json = {
 
 class CoursesTest(BaseTest):
     @mock.patch('api.blueprints.course.get_course_review_summary')
-    @mock.patch('api.blueprints.course.get_department_professors')
-    @mock.patch('api.blueprints.course.get_course')
-    def test_course_summary(self, mock_get_course,
-                            mock_get_department_professors,
-                            mock_get_course_review_summary):
-        course_id = 1
-
-        mock_get_course.return_value = [{
-            'course_id': course_id,
+    @mock.patch('api.blueprints.course.load_course_professors')
+    @mock.patch('api.blueprints.course.load_course_basic_info')
+    def test_get_course_info(
+            self, mock_load_course_basic_info, mock_load_course_professors,
+            mock_get_course_review_summary):
+        mock_load_course_basic_info.return_value = [{
+            'course_id': ML_COURSE_ID,
             'name': 'Machine Learning',
             'department_id': 1,
             'call_number': 'COMS 4771',
             'department_name': 'Computer Science',
         }]
-
-        mock_get_department_professors.return_value = [{
-            'professor_id': 2,
+        mock_load_course_professors.return_value = [{
+            'professor_id': 1,
             'first_name': 'Nakul',
             'last_name': 'Verma',
             'name': 'Computer Science',
             'department_id': 1,
-        },
-            {
-            'professor_id': 2,
+        }, {
+            'professor_id': 1,
             'first_name': 'Nakul',
             'last_name': 'Verma',
-            'name': 'Law',
-            'department_id': 2,
+            'name': 'Mathematics',
+            'department_id': 3,
         }]
-
         mock_get_course_review_summary.return_value = [
             positive_review,
             negative_review,
         ]
-
         expected_res = {
             'courseSummary': {
-                'associatedProfessors': [
-                    {'firstName': 'Nakul',
-                     'lastName': 'Verma',
-                     'profDepartments': [
-                         {'profDepartmentId': 1,
-                          'profDepartmentName': 'Computer Science'},
-                         {'profDepartmentId': 2, 'profDepartmentName': 'Law'}
-                     ], 'professorId': 2}],
-                'courseCallNumber': 'COMS 4771',
                 'courseName': 'Machine Learning',
+                'courseCallNumber': 'COMS 4771',
                 'departmentId': 1,
-                'departmentName': 'Computer Science'
+                'departmentName': 'Computer Science',
+                'courseProfessors': [{
+                    'firstName': 'Nakul',
+                    'lastName': 'Verma',
+                    'professorId': 1,
+                    'professorDepartments': [{
+                        'professorDepartmentId': 1,
+                        'professorDepartmentName': 'Computer Science'
+                    }, {
+                        'professorDepartmentId': 3,
+                        'professorDepartmentName': 'Mathematics'
+                    }]
+                }]
             },
             'reviewSummary': {
                 'negativeReview': negative_review_json,
@@ -145,73 +145,66 @@ class CoursesTest(BaseTest):
             }
         }
 
-        res = self.client.get(f'/api/course/{course_id}')
-
-        self.assertDictEqual(expected_res, res.json)
-
-    @mock.patch('api.blueprints.course.get_course_review_summary')
-    @mock.patch('api.blueprints.course.get_department_professors')
-    @mock.patch('api.blueprints.course.get_course')
-    def test_course_summary_no_course(self, mock_get_course,
-                                      mock_get_department_professors,
-                                      mock_get_course_review_summary):
-        course_id = 20
-
-        mock_get_course.return_value = []
-
-        mock_get_department_professors.return_value = []
-
-        mock_get_course_review_summary.return_value = []
-
-        expected_res = {'error': 'course not found'}
-        res = self.client.get(f'/api/course/{course_id}')
-
-        self.assertDictEqual(expected_res, res.json)
+        res = self.client.get(f'/api/course/{ML_COURSE_ID}')
+        self.assertEqual(expected_res, res.json)
 
     @mock.patch('api.blueprints.course.get_course_review_summary')
-    @mock.patch('api.blueprints.course.get_department_professors')
-    @mock.patch('api.blueprints.course.get_course')
-    def test_course_summary_no_professors(self, mock_get_course,
-                                          mock_get_department_professors,
-                                          mock_get_course_review_summary):
-        course_id = 1
-
-        mock_get_course.return_value = [{
-            'course_id': course_id,
+    @mock.patch('api.blueprints.course.load_course_professors')
+    @mock.patch('api.blueprints.course.load_course_basic_info')
+    def test_get_course_info_no_professors(
+            self, mock_load_course_basic_info, mock_load_course_professors,
+            mock_get_course_review_summary):
+        mock_load_course_basic_info.return_value = [{
+            'course_id': ML_COURSE_ID,
             'name': 'Machine Learning',
             'department_id': 1,
             'call_number': 'COMS 4771',
             'department_name': 'Computer Science',
         }]
-
-        mock_get_department_professors.return_value = []
-
-        mock_get_course_review_summary.return_value = []
-        expected_res = {'courseSummary': {
-            'courseName': 'Machine Learning',
-            'courseCallNumber': 'COMS 4771',
-            'departmentId': 1,
-            'departmentName': 'Computer Science',
-            'associatedProfessors': []
-        },
-            'reviewSummary': {}
+        mock_load_course_professors.return_value = []
+        mock_get_course_review_summary.return_value = [
+            positive_review,
+            negative_review,
+        ]
+        expected_res = {
+            'courseSummary': {
+                'courseName': 'Machine Learning',
+                'courseCallNumber': 'COMS 4771',
+                'departmentId': 1,
+                'departmentName': 'Computer Science',
+                'courseProfessors': []
+            },
+            'reviewSummary': {
+                'negativeReview': negative_review_json,
+                'positiveReview': positive_review_json
+            }
         }
 
-        res = self.client.get(f'/api/course/{course_id}')
+        res = self.client.get(f'/api/course/{ML_COURSE_ID}')
+        self.assertEqual(expected_res, res.json)
 
-        self.assertDictEqual(expected_res, res.json)
+    @mock.patch('api.blueprints.course.get_course_review_summary')
+    @mock.patch('api.blueprints.course.load_course_professors')
+    @mock.patch('api.blueprints.course.load_course_basic_info')
+    def test_get_course_info_empty(
+            self, mock_load_course_basic_info, mock_load_course_professors,
+            mock_get_course_review_summary):
+        mock_load_course_basic_info.return_value = []
+        mock_load_course_professors.return_value = []
+        mock_get_course_review_summary.return_value = []
+        expected_res = {'error': 'Missing course basic info'}
 
-    @mock.patch('api.blueprints.course.get_department_professors')
-    @mock.patch('api.blueprints.course.get_course')
-    def test_course_summary_db_failure(self, mock_get_course,
-                                       mock_get_department_professors):
-        course_id = 1
+        res = self.client.get(f'/api/course/{BAD_COURSE_ID}')
+        self.assertEqual(expected_res, res.json)
 
-        mock_get_course.side_effect = IntegrityError()
-
+    @mock.patch('api.blueprints.course.load_course_professors')
+    @mock.patch('api.blueprints.course.load_course_basic_info')
+    def test_get_course_summary_db_failure(
+            self, mock_load_course_basic_info, mock_load_course_professors):
+        mock_load_course_basic_info.side_effect = IntegrityError()
         expected_res = {'error': 'Invalid data'}
-        res = self.client.get(f'/api/course/{course_id}')
 
+        res = self.client.get(f'/api/course/{ML_COURSE_ID}')
         self.assertEqual(expected_res, res.json)
 
     @mock.patch('api.blueprints.course.get_course_review_summary')

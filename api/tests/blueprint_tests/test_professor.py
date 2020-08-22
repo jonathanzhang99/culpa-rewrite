@@ -2,13 +2,13 @@ from unittest import mock
 from api.tests import BaseTest
 
 
-TEST_PROFESSOR_ID = 1
+VERMA_PROFESSOR_ID = 1
 
 
 class ProfessorsTest(BaseTest):
-    @mock.patch('api.blueprints.professor.get_professor_courses')
-    @mock.patch('api.blueprints.professor.get_professor_name')
-    def test_retrieve_professor_summary(
+    @mock.patch('api.blueprints.professor.load_professor_courses')
+    @mock.patch('api.blueprints.professor.load_professor_name')
+    def test_get_professor_summary(
             self, mock_professor_name, mock_professor_courses):
         mock_professor_name.return_value = [{
             'first_name': 'Nakul',
@@ -39,12 +39,12 @@ class ProfessorsTest(BaseTest):
             ]
         }
 
-        res = self.client.get(f'/api/professor/{TEST_PROFESSOR_ID}')
+        res = self.client.get(f'/api/professor/{VERMA_PROFESSOR_ID}')
         self.assertEqual(expected_res, res.json)
 
-    @mock.patch('api.blueprints.professor.get_professor_courses')
-    @mock.patch('api.blueprints.professor.get_professor_name')
-    def test_retrieve_professor_summary_no_courses(
+    @mock.patch('api.blueprints.professor.load_professor_courses')
+    @mock.patch('api.blueprints.professor.load_professor_name')
+    def test_get_professor_summary_no_courses(
             self, mock_professor_name, mock_professor_courses):
         mock_professor_name.return_value = [{
             'first_name': 'Nakul',
@@ -57,23 +57,23 @@ class ProfessorsTest(BaseTest):
             'courses': []
         }
 
-        res = self.client.get(f'/api/professor/{TEST_PROFESSOR_ID}')
+        res = self.client.get(f'/api/professor/{VERMA_PROFESSOR_ID}')
         self.assertEqual(expected_res, res.json)
 
-    @mock.patch('api.blueprints.professor.get_professor_courses')
-    @mock.patch('api.blueprints.professor.get_professor_name')
-    def test_retrieve_professor_summary_empty(
+    @mock.patch('api.blueprints.professor.load_professor_courses')
+    @mock.patch('api.blueprints.professor.load_professor_name')
+    def test_get_professor_summary_empty(
             self, mock_professor_name, mock_professor_courses):
         mock_professor_name.return_value = []
         mock_professor_courses.return_value = []
         expected_error = {'error': 'Missing professor name'}
 
-        res = self.client.get(f'/api/professor/{TEST_PROFESSOR_ID}')
+        res = self.client.get(f'/api/professor/{VERMA_PROFESSOR_ID}')
         self.assertEqual(res.status_code, 400)
         self.assertEqual(expected_error, res.json)
 
-    @mock.patch('api.blueprints.professor.get_professor_courses')
-    def test_retrieve_professor_courses(self, mock_professor_courses):
+    @mock.patch('api.blueprints.professor.load_professor_courses')
+    def test_get_professor_courses(self, mock_professor_courses):
         mock_professor_courses.return_value = [{
             'course_professor_id': 1,
             'name': 'Machine Learning',
@@ -97,15 +97,15 @@ class ProfessorsTest(BaseTest):
             ]
         }
 
-        res = self.client.get(f'/api/professor/{TEST_PROFESSOR_ID}/courses')
+        res = self.client.get(f'/api/professor/{VERMA_PROFESSOR_ID}/courses')
         self.assertEqual(expected_res, res.json)
 
-    @mock.patch('api.blueprints.professor.get_professor_courses')
-    def test_retrieve_professor_courses_empty(self, mock_professor_courses):
+    @mock.patch('api.blueprints.professor.load_professor_courses')
+    def test_get_professor_courses_empty(self, mock_professor_courses):
         mock_professor_courses.return_value = []
         expected_res = {
             'courses': []
         }
 
-        res = self.client.get(f'/api/professor/{TEST_PROFESSOR_ID}/courses')
+        res = self.client.get(f'/api/professor/{VERMA_PROFESSOR_ID}/courses')
         self.assertEqual(expected_res, res.json)
