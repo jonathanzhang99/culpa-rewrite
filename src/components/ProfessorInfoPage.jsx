@@ -40,7 +40,7 @@ export function ProfessorSummary({
       </div>
       <div>
         <List horizontal>
-          <List.Item>Courses: </List.Item>
+          <List.Item key="course_list_title">Courses: </List.Item>
           {courses.map(
             ({ courseProfessorId, courseName, courseCallNumber }) => {
               return (
