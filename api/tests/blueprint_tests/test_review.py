@@ -157,14 +157,14 @@ class ReviewTest(BaseTest):
 
     @mock.patch("api.blueprints.review.prepare_professor_query_prefix")
     @mock.patch("api.blueprints.review.prepare_course_query_prefix")
-    @mock.patch("api.blueprints.review.get_reviews_by_page_attr")
+    @mock.patch("api.blueprints.review.get_reviews_with_query_prefix")
     def test_get_reviews_valid(
         self,
-        get_reviews_by_page_attr_mock,
+        get_reviews_with_query_prefix_mock,
         course_query_prefix_mock,
         professor_query_prefix_mock
     ):
-        sorting_spec = {
+        db_sort_specs = {
             '': ['submission_date', 'DESC'],
             'most positive': ['rating', 'DESC'],
             'most negative': ['rating', 'ASC'],
