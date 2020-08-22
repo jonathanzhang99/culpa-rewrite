@@ -1,6 +1,6 @@
 import PropTypes, { oneOfType } from "prop-types";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import { Button, Container, Grid, Icon, Menu } from "semantic-ui-react";
 
 import CreateReviewButton from "components/common/CreateReviewButton";
@@ -30,6 +30,20 @@ export default function NavigationBar({ children }) {
     setSidebarVisible(false);
   };
 
+  const history = useHistory();
+
+  const onSearchSubmit = (data) => {
+    const searchValue = data.NavbarSearchbar;
+    history.push(`/search?entity=all&query=${searchValue}`);
+    return {};
+  };
+
+  const onResultSelect = (data) => {
+    data.type === "professor"
+      ? history.push(`/professor/${data.professorid}`)
+      : history.push(`/course/${data.courseid}`);
+  };
+
   return (
     <>
       <Grid as={Menu} fixed="top" textAlign="center" verticalAlign="middle">
@@ -44,8 +58,12 @@ export default function NavigationBar({ children }) {
           </Link>
         </Grid.Column>
         <Grid.Column width={9}>
-          <Form onSubmit={() => {}} onSuccess={() => {}}>
-            <SearchInput fluid name="searchbar-in-navbar" searchEntity="all" />
+          <Form onSubmit={onSearchSubmit} onSuccess={() => {}}>
+            <SearchInput
+              name="NavbarSearchbar"
+              searchEntity="all"
+              onResultSelect={onResultSelect}
+            />
           </Form>
         </Grid.Column>
         <Grid.Column width={3}>

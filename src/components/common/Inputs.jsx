@@ -22,6 +22,7 @@ import React, { useReducer, useState } from "react";
 import {
   Form as SemanticForm,
   Button,
+  Grid,
   Input,
   TextArea,
   Search,
@@ -30,7 +31,10 @@ import {
   Modal,
 } from "semantic-ui-react";
 
+import { CourseDisplayName } from "components/common/CourseDisplay";
+import { DepartmentDisplayName } from "components/common/DepartmentDisplay";
 import { FormGroup } from "components/common/Form";
+import { ProfessorDisplayName } from "components/common/ProfessorDisplay";
 
 function getId(id, name) {
   return id || `form-input-${name}`;
@@ -243,7 +247,7 @@ function searchReducer(state, action) {
     case "SEARCH_RESET": {
       return {
         isLoading: false,
-        results: [],
+        results: {},
       };
     }
     case "SEARCH_ERROR": {
@@ -255,6 +259,91 @@ function searchReducer(state, action) {
     default:
       throw new Error();
   }
+}
+
+const propTypesProfessorResult = {
+  professor: PropTypes.shape({
+    badge: PropTypes.string.isRequired,
+    departments: PropTypes.arrayOf(
+      PropTypes.shape({
+        departmentid: PropTypes.number.isRequired,
+        departmentname: PropTypes.string.isRequired,
+      })
+    ).isRequired,
+    firstname: PropTypes.string.isRequired,
+    lastname: PropTypes.string.isRequired,
+    professorid: PropTypes.number.isRequired,
+  }).isRequired,
+};
+
+function ProfessorResult({ professor }) {
+  const { badge, departments, firstname, lastname, professorid } = professor;
+  return (
+    <Grid columns={2}>
+      <Grid.Row key={`professor-${professorid}`}>
+        <Grid.Column>
+          <ProfessorDisplayName
+            firstName={firstname}
+            lastName={lastname}
+            professorId={professorid}
+          />
+          [{badge}]
+        </Grid.Column>
+        <Grid.Column>
+          {departments.map(({ departmentid, departmentname }) => (
+            <DepartmentDisplayName
+              departmentName={departmentname}
+              key={`department-${departmentid}`}
+            />
+          ))}
+        </Grid.Column>
+      </Grid.Row>
+    </Grid>
+  );
+}
+
+const propTypesCourseResult = {
+  course: PropTypes.shape({
+    courseid: PropTypes.number.isRequired,
+    coursename: PropTypes.string.isRequired,
+    departmentid: PropTypes.number.isRequired,
+    departmentname: PropTypes.string.isRequired,
+  }).isRequired,
+};
+
+function CourseResult({ course }) {
+  const { courseid, coursename, departmentid, departmentname } = course;
+  return (
+    <Grid columns={2}>
+      <Grid.Row key={`course-${courseid}`}>
+        <Grid.Column>
+          <CourseDisplayName courseId={courseid} courseName={coursename} />
+        </Grid.Column>
+        <Grid.Column>
+          <DepartmentDisplayName
+            departmentId={departmentid}
+            departmentName={departmentname}
+          />
+        </Grid.Column>
+      </Grid.Row>
+    </Grid>
+  );
+}
+
+const propTypesSearchResultRenderer = {
+  result: PropTypes.shape({
+    type: PropTypes.oneOf(["professor", "course"]).isRequired,
+  }).isRequired,
+};
+
+function searchResultRenderer(result) {
+  return result.type === "professor" ? (
+    <div className={result.islast === "true" ? "divider" : ""}>
+      <ProfessorResult professor={result} />
+    </div>
+  ) : (
+    <CourseResult course={result} />
+  );
 }
 
 const propTypesSearchInput = {
@@ -309,6 +398,7 @@ export function SearchInput({
     isLoading: false,
     results: [],
   };
+
   const [{ isLoading, results }, dispatch] = useReducer(
     searchReducer,
     initialState
@@ -319,7 +409,7 @@ export function SearchInput({
   } found`;
 
   const handleResultSelect = (e, { result }) => {
-    onChange(result);
+    onChange(result.title);
     onResultSelect(result);
   };
 
@@ -333,7 +423,7 @@ export function SearchInput({
 
     dispatch({ type: "SEARCH_START" });
     const response = await fetch(
-      `/api/search?searchEntity=${searchEntity}&query=${searchValue}`,
+      `/api/search?entity=${searchEntity}&query=${searchValue}`,
       {
         method: "GET",
         headers: { "Content-Type": "Application/json" },
@@ -344,7 +434,10 @@ export function SearchInput({
       const result = await response.json();
 
       if (response.ok) {
-        dispatch({ type: "SEARCH_SUCCESS", payload: result.searchResults });
+        dispatch({
+          type: "SEARCH_SUCCESS",
+          payload: [...result.professorResults, ...result.courseResults],
+        });
       }
     } catch (err) {
       dispatch({ type: "SEARCH_ERROR" });
@@ -354,6 +447,7 @@ export function SearchInput({
 
   return (
     <SemanticForm.Field
+      fluid
       control={Search}
       error={error}
       id={getId(id, name)}
@@ -361,8 +455,9 @@ export function SearchInput({
       loading={isLoading}
       name={name}
       noResultsMessage={noResultsMessage}
+      resultRenderer={searchResultRenderer}
       results={results}
-      value={value?.title || value}
+      value={value}
       width={width}
       onBlur={onBlur}
       onResultSelect={handleResultSelect}
@@ -439,6 +534,11 @@ DropdownInput.defaultProps = defaultPropsDropdown;
 
 RadioInputGroup.propTypes = propTypesRadioInputGroup;
 RadioInputGroup.defaultProps = defaultPropsRadioInputGroup;
+
+ProfessorResult.propTypes = propTypesProfessorResult;
+CourseResult.propTypes = propTypesCourseResult;
+
+searchResultRenderer.propTypes = propTypesSearchResultRenderer;
 
 SearchInput.propTypes = propTypesSearchInput;
 SearchInput.defaultProps = defaultPropsSearchInput;
