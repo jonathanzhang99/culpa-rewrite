@@ -4,6 +4,51 @@ from pymysql.err import IntegrityError
 
 from api.tests import BaseTest
 
+review_summary = {
+    'positiveReview': {
+        'reviewType': "course",
+        'reviewHeader': {
+            'courseId': 1,
+            'courseName': "Machine Learning",
+            'courseCode': "COMS 4771",
+        },
+        'votes': {
+            'initUpvoteCount': 10,
+            'initDownvoteCount': 2,
+            'initFunnyCount': 27,
+            'upvoteClicked': False,
+            'downvoteClicked': False,
+            'funnyClicked': False,
+        },
+        'workload': "",
+        'submissionDate': "2020-01-15",
+        'reviewId': 1,
+        'deprecated': False,
+        'content': "This is a review.",
+    },
+    'negativeReview': {
+        'reviewType': "course",
+        'reviewHeader': {
+            'courseId': 1,
+            'courseName': "Machine Learning",
+            'courseCode': "COMS 4771",
+        },
+        'votes': {
+            'initUpvoteCount': 10,
+            'initDownvoteCount': 2,
+            'initFunnyCount': 27,
+            'upvoteClicked': False,
+            'downvoteClicked': False,
+            'funnyClicked': False,
+        },
+        'workload': "",
+        'submissionDate': "2020-01-15",
+        'reviewId': 1,
+        'deprecated': False,
+        'content': "This is a review.",
+    }
+}
+
 
 class CoursesTest(BaseTest):
 
@@ -56,7 +101,9 @@ class CoursesTest(BaseTest):
                     'profDepartmentName': 'Law',
                 }]
             }]
-        }}
+        },
+            'reviewSummary': review_summary
+        }
 
         res = self.client.get(f'/api/course/{course_id}')
         self.assertDictEqual(expected_res, res.json)
@@ -98,7 +145,8 @@ class CoursesTest(BaseTest):
             'courseCallNumber': 'COMS4771',
             'departmentId': 1,
             'departmentName': 'Computer Science',
-            'associatedProfessors': []}
+            'associatedProfessors': []},
+            'reviewSummary': review_summary
         }
 
         res = self.client.get(f'/api/course/{course_id}')

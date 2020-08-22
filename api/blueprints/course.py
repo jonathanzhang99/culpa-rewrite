@@ -45,56 +45,52 @@ def course_summary(course_id):
     # Fetch review summary info
     # ip = flask.request.remote_addr
 
-    # review_summary_json = {
-    #     'positiveReview': {
-    #         'reviewType': "course",
-    #         'reviewHeader': {
-    #             'courseId': 1,
-    #             'courseName': "Machine Learning",
-    #             'courseCode': "COMS 4771",
-    #         },
-    #         'votes': {
-    #             'initUpvoteCount': 10,
-    #             'initDownvoteCount': 2,
-    #             'initFunnyCount': 27,
-    #             'upvoteClicked': False,
-    #             'downvoteClicked': False,
-    #             'funnyClicked': False,
-    #         },
-    #         'workload': "",
-    #         'submissionDate': "2020-01-15",
-    #         'reviewId': 1,
-    #         'deprecated': False,
-    #         'content': "This is a review.",
-    #     },
-    #     'negativeReview': {
-    #         'reviewType': "course",
-    #         'reviewHeader': {
-    #             'courseId': 1,
-    #             'courseName': "Machine Learning",
-    #             'courseCode': "COMS 4771",
-    #         },
-    #         'votes': {
-    #             'initUpvoteCount': 10,
-    #             'initDownvoteCount': 2,
-    #             'initFunnyCount': 27,
-    #             'upvoteClicked': False,
-    #             'downvoteClicked': False,
-    #             'funnyClicked': False,
-    #         },
-    #         'workload': "",
-    #         'submissionDate': "2020-01-15",
-    #         'reviewId': 1,
-    #         'deprecated': False,
-    #         'content': "This is a review.",
-    #     }
-    # }
-
-    # return {
-    #     'courseSummary': course_summary_json,
-    #     'reviewSummary': review_summary_json
-    # }
+    review_summary_json = {
+        'positiveReview': {
+            'reviewType': "course",
+            'reviewHeader': {
+                'courseId': 1,
+                'courseName': "Machine Learning",
+                'courseCode': "COMS 4771",
+            },
+            'votes': {
+                'initUpvoteCount': 10,
+                'initDownvoteCount': 2,
+                'initFunnyCount': 27,
+                'upvoteClicked': False,
+                'downvoteClicked': False,
+                'funnyClicked': False,
+            },
+            'workload': "",
+            'submissionDate': "2020-01-15",
+            'reviewId': 1,
+            'deprecated': False,
+            'content': "This is a review.",
+        },
+        'negativeReview': {
+            'reviewType': "course",
+            'reviewHeader': {
+                'courseId': 1,
+                'courseName': "Machine Learning",
+                'courseCode': "COMS 4771",
+            },
+            'votes': {
+                'initUpvoteCount': 10,
+                'initDownvoteCount': 2,
+                'initFunnyCount': 27,
+                'upvoteClicked': False,
+                'downvoteClicked': False,
+                'funnyClicked': False,
+            },
+            'workload': "",
+            'submissionDate': "2020-01-15",
+            'reviewId': 1,
+            'deprecated': False,
+            'content': "This is a review.",
+        }
+    }
 
     return {
-        'courseSummary': course_summary_json
+        'courseSummary': course_summary_json,
+        'reviewSummary': review_summary_json
     }

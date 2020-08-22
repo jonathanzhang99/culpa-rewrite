@@ -5,7 +5,9 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <div>
+      <div
+        class="ui container"
+      >
         <h1>
           <p
             class="ui header"
@@ -51,7 +53,9 @@ Object {
     </div>
   </body>,
   "container": <div>
-    <div>
+    <div
+      class="ui container"
+    >
       <h1>
         <p
           class="ui header"
@@ -154,7 +158,9 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <div>
+      <div
+        class="ui container"
+      >
         <h1>
           <p
             class="ui header"
@@ -416,7 +422,9 @@ Object {
     </div>
   </body>,
   "container": <div>
-    <div>
+    <div
+      class="ui container"
+    >
       <h1>
         <p
           class="ui header"
@@ -735,7 +743,9 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <div>
+      <div
+        class="ui container"
+      >
         <h1>
           <p
             class="ui header"
@@ -781,7 +791,9 @@ Object {
     </div>
   </body>,
   "container": <div>
-    <div>
+    <div
+      class="ui container"
+    >
       <h1>
         <p
           class="ui header"
@@ -884,7 +896,9 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <div>
+      <div
+        class="ui container"
+      >
         <h1>
           <p
             class="ui header"
@@ -930,7 +944,9 @@ Object {
     </div>
   </body>,
   "container": <div>
-    <div>
+    <div
+      class="ui container"
+    >
       <h1>
         <p
           class="ui header"

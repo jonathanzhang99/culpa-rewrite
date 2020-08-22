@@ -10,7 +10,7 @@ describe("CourseSummary Components", () => {
   const courseHeaderTestCases = [
     {
       testName: "empty props CourseSummary",
-      courseId: 0,
+      courseId: "0",
       courseSummary: {
         courseName: "",
         courseCallNumber: "",
@@ -32,7 +32,7 @@ describe("CourseSummary Components", () => {
     },
     {
       testName: "empty professors CourseSummary",
-      courseId: 0,
+      courseId: "0",
       courseSummary: {
         courseName: "Machine Learning",
         courseCallNumber: "COMS4771",
@@ -54,7 +54,7 @@ describe("CourseSummary Components", () => {
     },
     {
       testName: "Shows one professor in a list",
-      courseId: 1,
+      courseId: "1",
       courseSummary: {
         courseName: "Machine Learning",
         courseCallNumber: "COMS4771",
@@ -80,7 +80,7 @@ describe("CourseSummary Components", () => {
     },
     {
       testName: "Shows six professors in a list",
-      courseId: 1,
+      courseId: "1",
       courseSummary: {
         courseName: "Machine Learning",
         courseCallNumber: "COMS4771",
@@ -196,7 +196,7 @@ describe("CourseSummary Components", () => {
   /* semantic-ui react does not change html for folding/unfolding so 
    checking for button string change instead */
   test("Shows six professors in an accordion", () => {
-    const courseId = 1;
+    const courseId = "1";
     const courseSummary = {
       courseName: "Machine Learning",
       courseCallNumber: "COMS4771",
