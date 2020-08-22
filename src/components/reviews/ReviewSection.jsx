@@ -86,8 +86,8 @@ export default function ReviewSection({initReviews, pageType, id, assocList}){
         const res = await fetch(
             `/api/review/get/${state.pageType}/${state.id}`
             + `?sorting=${state.sorting}`
-            + `&filter_list=${filterList}`
-            + `&filter_year=${state.filters.year}`, 
+            + `&filterList=${filterList}`
+            + `&filterYear=${state.filters.year}`, 
             {
                 method: "GET",
                 headers: {
