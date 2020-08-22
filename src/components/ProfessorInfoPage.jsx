@@ -32,7 +32,7 @@ export function ProfessorSummary({
   return (
     <div>
       <div>
-        <ProfessorDisplayName firstName={firstName} lastName={lastName} />
+        <ProfessorDisplayName firstName={firstName} lastName={lastName} type="header" />
       </div>
       <div>
         <List horizontal>
@@ -42,7 +42,7 @@ export function ProfessorSummary({
               return (
                 <List.Item key={courseProfessorId}>
                   <CourseDisplayLink
-                    code={courseCallNumber}
+                    courseCallNumber={courseCallNumber}
                     courseId={courseProfessorId}
                     name={courseName}
                   />

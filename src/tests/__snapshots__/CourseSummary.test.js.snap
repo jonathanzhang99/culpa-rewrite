@@ -6,29 +6,26 @@ Object {
   "baseElement": <body>
     <div>
       <div>
-        <h1>
-          <p
-            class="ui header"
-          >
-            COMS4771
-             
-            Machine Learning
-          </p>
-        </h1>
-        <h3>
-          Department: 
+        <div
+          class="ui header"
+        >
+          COMS4771
+           
+          Machine Learning
+        </div>
+        <div>
+           Department: 
           Computer Science
-        </h3>
-        <h3>
+           
+        </div>
+        <div>
           Professors:
            
           <span>
             <a
               href="/professor/1"
             >
-              <span
-                class="ui header"
-              >
+              <span>
                 Nakul
                  
                 Verma
@@ -36,7 +33,7 @@ Object {
             </a>
             
           </span>
-        </h3>
+        </div>
         <a
           href="/review"
         >
@@ -52,29 +49,26 @@ Object {
   </body>,
   "container": <div>
     <div>
-      <h1>
-        <p
-          class="ui header"
-        >
-          COMS4771
-           
-          Machine Learning
-        </p>
-      </h1>
-      <h3>
-        Department: 
+      <div
+        class="ui header"
+      >
+        COMS4771
+         
+        Machine Learning
+      </div>
+      <div>
+         Department: 
         Computer Science
-      </h3>
-      <h3>
+         
+      </div>
+      <div>
         Professors:
          
         <span>
           <a
             href="/professor/1"
           >
-            <span
-              class="ui header"
-            >
+            <span>
               Nakul
                
               Verma
@@ -82,7 +76,7 @@ Object {
           </a>
           
         </span>
-      </h3>
+      </div>
       <a
         href="/review"
       >
@@ -155,19 +149,18 @@ Object {
   "baseElement": <body>
     <div>
       <div>
-        <h1>
-          <p
-            class="ui header"
-          >
-            COMS4771
-             
-            Machine Learning
-          </p>
-        </h1>
-        <h3>
-          Department: 
+        <div
+          class="ui header"
+        >
+          COMS4771
+           
+          Machine Learning
+        </div>
+        <div>
+           Department: 
           Computer Science
-        </h3>
+           
+        </div>
         <div
           class="accordion ui"
         >
@@ -197,13 +190,11 @@ Object {
                     <a
                       href="/professor/1"
                     >
-                      <h5
-                        class="ui header"
-                      >
+                      <span>
                         Professor
                          
                         One
-                      </h5>
+                      </span>
                     </a>
                   </td>
                   <td
@@ -232,13 +223,11 @@ Object {
                     <a
                       href="/professor/2"
                     >
-                      <h5
-                        class="ui header"
-                      >
+                      <span>
                         Professor
                          
                         Two
-                      </h5>
+                      </span>
                     </a>
                   </td>
                   <td
@@ -267,13 +256,11 @@ Object {
                     <a
                       href="/professor/3"
                     >
-                      <h5
-                        class="ui header"
-                      >
+                      <span>
                         Professor
                          
                         Three
-                      </h5>
+                      </span>
                     </a>
                   </td>
                   <td
@@ -302,13 +289,11 @@ Object {
                     <a
                       href="/professor/4"
                     >
-                      <h5
-                        class="ui header"
-                      >
+                      <span>
                         Professor
                          
                         Four
-                      </h5>
+                      </span>
                     </a>
                   </td>
                   <td
@@ -337,13 +322,11 @@ Object {
                     <a
                       href="/professor/5"
                     >
-                      <h5
-                        class="ui header"
-                      >
+                      <span>
                         Professor
                          
                         Five
-                      </h5>
+                      </span>
                     </a>
                   </td>
                   <td
@@ -372,13 +355,11 @@ Object {
                     <a
                       href="/professor/6"
                     >
-                      <h5
-                        class="ui header"
-                      >
+                      <span>
                         Professor
                          
                         Six
-                      </h5>
+                      </span>
                     </a>
                   </td>
                   <td
@@ -417,19 +398,18 @@ Object {
   </body>,
   "container": <div>
     <div>
-      <h1>
-        <p
-          class="ui header"
-        >
-          COMS4771
-           
-          Machine Learning
-        </p>
-      </h1>
-      <h3>
-        Department: 
+      <div
+        class="ui header"
+      >
+        COMS4771
+         
+        Machine Learning
+      </div>
+      <div>
+         Department: 
         Computer Science
-      </h3>
+         
+      </div>
       <div
         class="accordion ui"
       >
@@ -459,13 +439,11 @@ Object {
                   <a
                     href="/professor/1"
                   >
-                    <h5
-                      class="ui header"
-                    >
+                    <span>
                       Professor
                        
                       One
-                    </h5>
+                    </span>
                   </a>
                 </td>
                 <td
@@ -494,13 +472,11 @@ Object {
                   <a
                     href="/professor/2"
                   >
-                    <h5
-                      class="ui header"
-                    >
+                    <span>
                       Professor
                        
                       Two
-                    </h5>
+                    </span>
                   </a>
                 </td>
                 <td
@@ -529,13 +505,11 @@ Object {
                   <a
                     href="/professor/3"
                   >
-                    <h5
-                      class="ui header"
-                    >
+                    <span>
                       Professor
                        
                       Three
-                    </h5>
+                    </span>
                   </a>
                 </td>
                 <td
@@ -564,13 +538,11 @@ Object {
                   <a
                     href="/professor/4"
                   >
-                    <h5
-                      class="ui header"
-                    >
+                    <span>
                       Professor
                        
                       Four
-                    </h5>
+                    </span>
                   </a>
                 </td>
                 <td
@@ -599,13 +571,11 @@ Object {
                   <a
                     href="/professor/5"
                   >
-                    <h5
-                      class="ui header"
-                    >
+                    <span>
                       Professor
                        
                       Five
-                    </h5>
+                    </span>
                   </a>
                 </td>
                 <td
@@ -634,13 +604,11 @@ Object {
                   <a
                     href="/professor/6"
                   >
-                    <h5
-                      class="ui header"
-                    >
+                    <span>
                       Professor
                        
                       Six
-                    </h5>
+                    </span>
                   </a>
                 </td>
                 <td
@@ -736,29 +704,26 @@ Object {
   "baseElement": <body>
     <div>
       <div>
-        <h1>
-          <p
-            class="ui header"
-          >
-            COMS4771
-             
-            Machine Learning
-          </p>
-        </h1>
-        <h3>
-          Department: 
+        <div
+          class="ui header"
+        >
+          COMS4771
+           
+          Machine Learning
+        </div>
+        <div>
+           Department: 
           Computer Science
-        </h3>
-        <h3>
+           
+        </div>
+        <div>
           Professors:
            
           <span>
             <a
               href="/professor/0"
             >
-              <span
-                class="ui header"
-              >
+              <span>
                 
                  
                 
@@ -766,7 +731,7 @@ Object {
             </a>
             
           </span>
-        </h3>
+        </div>
         <a
           href="/review"
         >
@@ -782,29 +747,26 @@ Object {
   </body>,
   "container": <div>
     <div>
-      <h1>
-        <p
-          class="ui header"
-        >
-          COMS4771
-           
-          Machine Learning
-        </p>
-      </h1>
-      <h3>
-        Department: 
+      <div
+        class="ui header"
+      >
+        COMS4771
+         
+        Machine Learning
+      </div>
+      <div>
+         Department: 
         Computer Science
-      </h3>
-      <h3>
+         
+      </div>
+      <div>
         Professors:
          
         <span>
           <a
             href="/professor/0"
           >
-            <span
-              class="ui header"
-            >
+            <span>
               
                
               
@@ -812,7 +774,7 @@ Object {
           </a>
           
         </span>
-      </h3>
+      </div>
       <a
         href="/review"
       >
@@ -885,29 +847,26 @@ Object {
   "baseElement": <body>
     <div>
       <div>
-        <h1>
-          <p
-            class="ui header"
-          >
-            
-             
-            
-          </p>
-        </h1>
-        <h3>
-          Department: 
+        <div
+          class="ui header"
+        >
           
-        </h3>
-        <h3>
+           
+          
+        </div>
+        <div>
+           Department: 
+          
+           
+        </div>
+        <div>
           Professors:
            
           <span>
             <a
               href="/professor/0"
             >
-              <span
-                class="ui header"
-              >
+              <span>
                 
                  
                 
@@ -915,7 +874,7 @@ Object {
             </a>
             
           </span>
-        </h3>
+        </div>
         <a
           href="/review"
         >
@@ -931,29 +890,26 @@ Object {
   </body>,
   "container": <div>
     <div>
-      <h1>
-        <p
-          class="ui header"
-        >
-          
-           
-          
-        </p>
-      </h1>
-      <h3>
-        Department: 
+      <div
+        class="ui header"
+      >
         
-      </h3>
-      <h3>
+         
+        
+      </div>
+      <div>
+         Department: 
+        
+         
+      </div>
+      <div>
         Professors:
          
         <span>
           <a
             href="/professor/0"
           >
-            <span
-              class="ui header"
-            >
+            <span>
               
                
               
@@ -961,7 +917,7 @@ Object {
           </a>
           
         </span>
-      </h3>
+      </div>
       <a
         href="/review"
       >

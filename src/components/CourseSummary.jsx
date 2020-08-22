@@ -92,7 +92,7 @@ export function CourseHeader({ courseId, courseSummary }) {
   );
 
   const ProfessorList = (
-    <h3>
+    <div>
       Professors:{" "}
       {associatedProfessors.map((professor, index) => {
         const { firstName, lastName, professorId } = professor;
@@ -108,15 +108,14 @@ export function CourseHeader({ courseId, courseSummary }) {
           </span>
         );
       })}
-    </h3>
+    </div>
   );
 
+  // TO DO: integrate DepartmentDisplay
   return (
     <div>
-      <h1>
-        <CourseDisplayName code={courseCallNumber} name={courseName} />
-      </h1>
-      <h3>Department: {departmentName}</h3>
+      <CourseDisplayName courseCallNumber={courseCallNumber} courseName={courseName} type="header"/>
+      <div> Department: {departmentName} </div>
 
       {displayAccordion ? ProfessorAccordion : ProfessorList}
 
