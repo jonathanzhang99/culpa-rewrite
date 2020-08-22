@@ -1,23 +1,17 @@
 from api.tests import LoadersWritersBaseTest
 from api.tests.data_tests.common import setup_votes
-from api.data.dataloaders.reviews_loader import get_review_ids, \
-    get_most_negative_reviews, get_most_positive_reviews
+from api.data.dataloaders.reviews_loader import get_course_review_summary
 
 
 class ReviewsLoaderTest(LoadersWritersBaseTest):
-    def test_get_review_ids(self):
-        setup_votes(self.cur)
-        course_id = 5
-        print(get_review_ids(course_id))
-
-    def test_get_most_positive_reviews(self):
+    def test_get_course_review_summary_all_positives(self):
         setup_votes(self.cur)
         course_id = 5
         ip = ''
-        print(get_most_positive_reviews(course_id, ip))
+        print(get_course_review_summary(course_id, ip))
 
-    def test_get_most_negative_reviews(self):
+    def test_get_course_review_summary_all_neutrals(self):
         setup_votes(self.cur)
-        course_id = 5
+        course_id = 2
         ip = ''
-        print(get_most_negative_reviews(course_id, ip))
+        print(get_course_review_summary(course_id, ip))

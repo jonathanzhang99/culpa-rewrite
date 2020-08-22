@@ -2,7 +2,8 @@ from pypika import functions as fn, \
     MySQLQuery as Query, \
     Case, \
     Criterion, \
-    CustomFunction
+    CustomFunction, \
+    Order
 
 from api.data import db
 from api.data.common import review, vote, course_professor, course
@@ -27,36 +28,38 @@ def vote_clicked(vote_type, ip):
     ).else_(0)).as_(f'{vote_type}_clicked')
 
 
-def get_review_ids(course_id):
+def get_course_review_summary(course_id, ip):
     '''
-    Get review_ids corresponding to course_id
+    Get two reviews:
+        1. the highest rated review with the most agreed votes (most positive)
+        2. the lowest rated review with the most agreed votes (most negative)
+
+    NOTE: Only selects reviews with at least one vote
+    NOTE: Uses subquery of subquery instead of joining because
+          the global max/min rating of review table can differ
+          from the max/min of the reviews we are fetching.
     '''
     cur = db.get_cursor()
 
-    q = Query.from_(review).select(
+    # Subqueries
+    review_ids = Query.from_(review).select(
         review.review_id
-    ).inner_join(course_professor).on(
+    ).join(course_professor).on(
         review.course_professor_id == course_professor.course_professor_id
-    ).inner_join(course).on(
+    ).join(course).on(
         course_professor.course_id == course.course_id
     ).where(
         course.course_id == course_id
     )
-
-    cur.execute(q.get_sql())
-    return cur.fetchall()
-
-
-def get_most_positive_reviews(course_id, ip):
-    '''
-    Get reviews with the highest rating along with vote counts
-    '''
-    cur = db.get_cursor()
-
     max_rating = Query.from_(review).select(
         fn.Max(review.rating)
     ).where(
-        review.review_id.isin((7, 8, 9))
+        review.review_id.isin(review_ids)
+    )
+    min_rating = Query.from_(review).select(
+        fn.Min(review.rating)
+    ).where(
+        review.review_id.isin(review_ids)
     )
 
     q = Query.from_(review).select(
@@ -72,17 +75,12 @@ def get_most_positive_reviews(course_id, ip):
         vote_clicked('agree', ip),  # agree_clicked
         vote_clicked('disagree', ip),  # disagree_clicked
         vote_clicked('funny', ip)  # funny_clicked
-    ).inner_join(course_professor).on(
-        review.course_professor_id == course_professor.course_professor_id
-    ).inner_join(course).on(
-        course_professor.course_id == course.course_id
     ).inner_join(vote).on(
         review.review_id == vote.review_id
     ).where(
-        Criterion.all([
-            course.course_id == course_id,
-            review.rating == max_rating
-        ])
+        (review.review_id.isin(review_ids)) &
+        (review.rating == max_rating) |
+        (review.rating == min_rating)
     ).groupby(
         review.course_professor_id,
         review.review_id,
@@ -90,54 +88,8 @@ def get_most_positive_reviews(course_id, ip):
         review.workload,
         review.rating,
         review.submission_date
-    )
+    ).orderby('agrees', order=Order.desc).limit(2).get_sql()
+    q = q.replace('`review`.`agrees`', '`agrees`')
 
-    cur.execute(q.get_sql())
-    return cur.fetchall()
-
-
-def get_most_negative_reviews(course_id, ip):
-    '''
-    Get reviews with the lowest rating along with vote counts
-    '''
-    cur = db.get_cursor()
-
-    min_rating = Query.from_(review).select(
-        fn.Min(review.rating)
-    )
-
-    q = Query.from_(review).inner_join(course_professor).on(
-        review.course_professor_id == course_professor.course_professor_id
-    ).inner_join(course).on(
-        course_professor.course_id == course.course_id
-    ).inner_join(vote).on(
-        review.review_id == vote.review_id
-    ).where(
-        Criterion.all([
-            course.course_id == course_id,
-            review.rating == min_rating
-        ])
-    ).groupby(
-        review.course_professor_id,
-        review.review_id,
-        review.content,
-        review.workload,
-        review.rating,
-        review.submission_date
-    ).select(
-        review.course_professor_id,
-        review.review_id,
-        review.content,
-        review.workload,
-        review.rating,
-        review.submission_date,
-        vote_count('agree'),  # agrees
-        vote_count('disagree'),  # disagrees
-        vote_count('funny'),  # funnys
-        vote_clicked('agree', ip),  # agree_clicked
-        vote_clicked('disagree', ip),  # disagree_clicked
-        vote_clicked('funny', ip)  # funny_clicked
-    )
-
-    cur.execute(q.get_sql())
+    cur.execute(q)
     return cur.fetchall()

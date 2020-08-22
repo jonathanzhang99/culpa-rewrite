@@ -2,6 +2,7 @@ import flask
 
 from api.data.dataloaders.courses_loader import get_course, \
     get_department_professors
+from api.data.dataloaders.reviews_loader import get_course_review_summary
 
 course_blueprint = flask.Blueprint('course_blueprint', __name__)
 
@@ -41,6 +42,11 @@ def course_summary(course_id):
         'departmentName': course['department_name'],
         'associatedProfessors': list(associated_professors.values()),
     }
+
+    # Fetch review summary info
+    ip = flask.request.remote_addr
+    review_summary = get_course_review_summary(course_id, ip)
+    print(review_summary)
 
     review_summary_json = {
         'positiveReview': {
