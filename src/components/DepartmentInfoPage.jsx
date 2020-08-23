@@ -35,7 +35,7 @@ export function DepartmentInfo({
   return (
     // TODO: Add styling into two columns with alphabetical sections
     <div>
-      <DepartmentDisplayName departmentName={departmentName} type="header" />
+      <DepartmentDisplayName as="header" departmentName={departmentName} />
       <List>
         {departmentCourses.map(({ courseId, courseName }) => {
           return (

@@ -8,13 +8,11 @@ Object {
       <a
         href="/course/3"
       >
-        <div
-          class="ui header"
-        >
-          COMS4771
+        <span>
+          COMS 4771
            
           Machine Learning
-        </div>
+        </span>
       </a>
     </div>
   </body>,
@@ -22,13 +20,11 @@ Object {
     <a
       href="/course/3"
     >
-      <div
-        class="ui header"
-      >
-        COMS4771
+      <span>
+        COMS 4771
          
         Machine Learning
-      </div>
+      </span>
     </a>
   </div>,
   "debug": [Function],
@@ -94,7 +90,7 @@ Object {
         href="/course/3"
       >
         <span>
-          COMS4771
+          COMS 4771
            
           Machine Learning
         </span>
@@ -106,7 +102,7 @@ Object {
       href="/course/3"
     >
       <span>
-        COMS4771
+        COMS 4771
          
         Machine Learning
       </span>
@@ -171,23 +167,19 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <div
-        class="ui header"
-      >
-        COMS4771
+      <span>
+        COMS 4771
          
         Machine Learning
-      </div>
+      </span>
     </div>
   </body>,
   "container": <div>
-    <div
-      class="ui header"
-    >
-      COMS4771
+    <span>
+      COMS 4771
        
       Machine Learning
-    </div>
+    </span>
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],
@@ -249,7 +241,7 @@ Object {
   "baseElement": <body>
     <div>
       <span>
-        COMS4771
+        COMS 4771
          
         Machine Learning
       </span>
@@ -257,7 +249,7 @@ Object {
   </body>,
   "container": <div>
     <span>
-      COMS4771
+      COMS 4771
        
       Machine Learning
     </span>

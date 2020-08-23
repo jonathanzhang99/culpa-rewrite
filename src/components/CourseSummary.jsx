@@ -7,7 +7,7 @@ import CreateReviewButton from "components/common/CreateReviewButton";
 import { ProfessorDisplayLink } from "components/common/ProfessorDisplay";
 
 const propTypes = {
-  courseId: PropTypes.number.isRequired,
+  courseId: PropTypes.string.isRequired,
   courseSummary: PropTypes.shape({
     courseName: PropTypes.string.isRequired,
     courseCallNumber: PropTypes.string.isRequired,
@@ -40,7 +40,6 @@ export function CourseHeader({ courseId, courseSummary }) {
     <Accordion>
       <Accordion.Title
         active={isAccordionActive}
-        as="h3"
         onClick={() => setAccordionActive(!isAccordionActive)}
       >
         <Icon name={!isAccordionActive ? "angle down" : "angle up"} />
@@ -62,7 +61,6 @@ export function CourseHeader({ courseId, courseSummary }) {
                 <Table.Row key={professorId}>
                   <Table.Cell key={professorId}>
                     <ProfessorDisplayLink
-                      as="h5"
                       firstName={firstName}
                       lastName={lastName}
                       professorId={professorId}
@@ -99,7 +97,6 @@ export function CourseHeader({ courseId, courseSummary }) {
         return (
           <span key={`${lastName}_${professorId}`}>
             <ProfessorDisplayLink
-              as="span"
               firstName={firstName}
               lastName={lastName}
               professorId={professorId}
@@ -111,10 +108,14 @@ export function CourseHeader({ courseId, courseSummary }) {
     </div>
   );
 
-  // TO DO: integrate DepartmentDisplay
+  // TO DO: Integrate DepartmentDisplay
   return (
     <div>
-      <CourseDisplayName courseCallNumber={courseCallNumber} courseName={courseName} type="header"/>
+      <CourseDisplayName
+        as="header"
+        courseCallNumber={courseCallNumber}
+        courseName={courseName}
+      />
       <div> Department: {departmentName} </div>
 
       {displayAccordion ? ProfessorAccordion : ProfessorList}

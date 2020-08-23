@@ -16,12 +16,12 @@ describe("CourseDisplay Components", () => {
     },
     {
       testName: "renders CourseDisplayName as span",
-      courseCallNumber: "COMS4771",
+      courseCallNumber: "COMS 4771",
       courseName: "Machine Learning",
     },
     {
       testName: "renders CourseDisplayName as Header",
-      courseCallNumber: "COMS4771",
+      courseCallNumber: "COMS 4771",
       courseName: "Machine Learning",
       type: "header",
     },
@@ -36,13 +36,13 @@ describe("CourseDisplay Components", () => {
     },
     {
       testName: "renders CourseDisplayLink as span",
-      courseCallNumber: "COMS4771",
+      courseCallNumber: "COMS 4771",
       courseId: 3,
       courseName: "Machine Learning",
     },
     {
       testName: "renders CourseDisplayLink as Header",
-      courseCallNumber: "COMS4771",
+      courseCallNumber: "COMS 4771",
       courseId: 3,
       courseName: "Machine Learning",
       type: "header",
@@ -52,25 +52,31 @@ describe("CourseDisplay Components", () => {
   nameTestCases.forEach(({ testName, courseCallNumber, courseName, type }) => {
     test(testName, () => {
       const snapshot = render(
-        <CourseDisplayName courseCallNumber={courseCallNumber} courseName={courseName} type={type} />
+        <CourseDisplayName
+          courseCallNumber={courseCallNumber}
+          courseName={courseName}
+          type={type}
+        />
       );
       expect(snapshot).toMatchSnapshot();
     });
   });
 
-  linkTestCases.forEach(({ testName, courseCallNumber, courseId, courseName, type }) => {
-    test(testName, () => {
-      const snapshot = render(
-        <MemoryRouter>
-          <CourseDisplayLink
-            courseCallNumber={courseCallNumber}
-            courseId={courseId}
-            courseName={courseName}
-            type={type}
-          />
-        </MemoryRouter>
-      );
-      expect(snapshot).toMatchSnapshot();
-    });
-  });
+  linkTestCases.forEach(
+    ({ testName, courseCallNumber, courseId, courseName, type }) => {
+      test(testName, () => {
+        const snapshot = render(
+          <MemoryRouter>
+            <CourseDisplayLink
+              courseCallNumber={courseCallNumber}
+              courseId={courseId}
+              courseName={courseName}
+              type={type}
+            />
+          </MemoryRouter>
+        );
+        expect(snapshot).toMatchSnapshot();
+      });
+    }
+  );
 });

@@ -4,36 +4,45 @@ import { Link } from "react-router-dom";
 import { Header } from "semantic-ui-react";
 
 const propTypesCourseDisplayName = {
+  as: PropTypes.oneOf(["header", "text"]),
   courseCallNumber: PropTypes.string,
   courseName: PropTypes.string.isRequired,
-  type: PropTypes.oneOf(["header", "text"]),
 };
 
 const propTypesCourseDisplayLink = {
+  as: PropTypes.oneOf(["header", "text"]),
   courseCallNumber: PropTypes.string,
   courseId: PropTypes.number.isRequired,
   courseName: PropTypes.string.isRequired,
-  type: PropTypes.oneOf(["header", "text"]),
 };
 
 const defaultProps = {
   courseCallNumber: "",
-  type: "text",
+  as: "text",
 };
 
-export function CourseDisplayName({ courseCallNumber, courseName, type }) {
-  const Display = type === "header" ? Header : "span";
+export function CourseDisplayName({ as, courseCallNumber, courseName }) {
+  const CourseName = as === "header" ? Header : "span";
   return (
-    <Display>
+    <CourseName>
       {courseCallNumber} {courseName}
-    </Display>
+    </CourseName>
   );
 }
 
-export function CourseDisplayLink({ courseCallNumber, courseId, courseName, type }) {
+export function CourseDisplayLink({
+  as,
+  courseCallNumber,
+  courseId,
+  courseName,
+}) {
   return (
     <Link to={`/course/${courseId}`}>
-      <CourseDisplayName courseCallNumber={courseCallNumber} courseName={courseName} type={type} />
+      <CourseDisplayName
+        as={as}
+        courseCallNumber={courseCallNumber}
+        courseName={courseName}
+      />
     </Link>
   );
 }

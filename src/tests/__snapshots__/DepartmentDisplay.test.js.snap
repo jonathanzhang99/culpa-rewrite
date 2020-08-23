@@ -8,11 +8,11 @@ Object {
       <a
         href="/department/29"
       >
-        <div
-          class="ui header"
-        >
+        <span>
+           
           Computer Science
-        </div>
+           
+        </span>
       </a>
     </div>
   </body>,
@@ -20,11 +20,11 @@ Object {
     <a
       href="/department/29"
     >
-      <div
-        class="ui header"
-      >
+      <span>
+         
         Computer Science
-      </div>
+         
+      </span>
     </a>
   </div>,
   "debug": [Function],
@@ -90,7 +90,9 @@ Object {
         href="/department/29"
       >
         <span>
+           
           Computer Science
+           
         </span>
       </a>
     </div>
@@ -100,7 +102,9 @@ Object {
       href="/department/29"
     >
       <span>
+         
         Computer Science
+         
       </span>
     </a>
   </div>,
@@ -163,19 +167,19 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <div
-        class="ui header"
-      >
+      <span>
+         
         Computer Science
-      </div>
+         
+      </span>
     </div>
   </body>,
   "container": <div>
-    <div
-      class="ui header"
-    >
+    <span>
+       
       Computer Science
-    </div>
+       
+    </span>
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],
@@ -237,13 +241,17 @@ Object {
   "baseElement": <body>
     <div>
       <span>
+         
         Computer Science
+         
       </span>
     </div>
   </body>,
   "container": <div>
     <span>
+       
       Computer Science
+       
     </span>
   </div>,
   "debug": [Function],
@@ -308,7 +316,11 @@ Object {
       <a
         href="/department/0"
       >
-        <span />
+        <span>
+           
+          
+           
+        </span>
       </a>
     </div>
   </body>,
@@ -316,7 +328,11 @@ Object {
     <a
       href="/department/0"
     >
-      <span />
+      <span>
+         
+        
+         
+      </span>
     </a>
   </div>,
   "debug": [Function],
@@ -378,11 +394,19 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <span />
+      <span>
+         
+        
+         
+      </span>
     </div>
   </body>,
   "container": <div>
-    <span />
+    <span>
+       
+      
+       
+    </span>
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],

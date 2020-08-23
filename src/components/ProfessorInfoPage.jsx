@@ -15,12 +15,12 @@ const propTypes = {
     PropTypes.shape({
       courseProfessorId: PropTypes.number.isRequired,
       courseName: PropTypes.string.isRequired,
-      courseCallNumber: PropTypes.number.isRequired,
+      courseCallNumber: PropTypes.string.isRequired,
     }).isRequired
   ).isRequired,
   firstName: PropTypes.string.isRequired,
   lastName: PropTypes.string.isRequired,
-  professorId: PropTypes.number.isRequired,
+  professorId: PropTypes.string.isRequired,
 };
 
 export function ProfessorSummary({
@@ -32,7 +32,11 @@ export function ProfessorSummary({
   return (
     <div>
       <div>
-        <ProfessorDisplayName firstName={firstName} lastName={lastName} type="header" />
+        <ProfessorDisplayName
+          as="header"
+          firstName={firstName}
+          lastName={lastName}
+        />
       </div>
       <div>
         <List horizontal>
@@ -44,7 +48,7 @@ export function ProfessorSummary({
                   <CourseDisplayLink
                     courseCallNumber={courseCallNumber}
                     courseId={courseProfessorId}
-                    name={courseName}
+                    courseName={courseName}
                   />
                 </List.Item>
               );
@@ -53,7 +57,7 @@ export function ProfessorSummary({
         </List>
       </div>
       <div>
-        <CreateReviewButton color="yellow" professorId={professorId.toString()}>
+        <CreateReviewButton color="yellow" professorId={professorId}>
           WRITE A REVIEW FOR {firstName} {lastName}
         </CreateReviewButton>
       </div>

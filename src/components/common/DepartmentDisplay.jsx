@@ -4,29 +4,29 @@ import { Link } from "react-router-dom";
 import { Header } from "semantic-ui-react";
 
 const propTypesDepartmentDisplayName = {
+  as: PropTypes.oneOf(["header", "text"]),
   departmentName: PropTypes.string.isRequired,
-  type: PropTypes.oneOf(["header", "text"]),
 };
 
 const propTypesDepartmentDisplayLink = {
+  as: PropTypes.oneOf(["header", "text"]),
   departmentId: PropTypes.number.isRequired,
   departmentName: PropTypes.string.isRequired,
-  type: PropTypes.oneOf(["header", "text"]),
 };
 
 const defaultProps = {
-  type: "text",
+  as: "text",
 };
 
-export function DepartmentDisplayName({ departmentName, type }) {
-  const Display = type === "header" ? Header : "span";
-  return <Display>{departmentName}</Display>;
+export function DepartmentDisplayName({ as, departmentName }) {
+  const DepartmentName = as === "header" ? Header : "span";
+  return <DepartmentName> {departmentName} </DepartmentName>;
 }
 
-export function DepartmentDisplayLink({ departmentId, departmentName, type }) {
+export function DepartmentDisplayLink({ as, departmentId, departmentName }) {
   return (
     <Link to={`/department/${departmentId}`}>
-      <DepartmentDisplayName departmentName={departmentName} type={type} />
+      <DepartmentDisplayName as={as} departmentName={departmentName} />
     </Link>
   );
 }

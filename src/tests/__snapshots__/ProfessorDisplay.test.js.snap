@@ -8,13 +8,11 @@ Object {
       <a
         href="/professor/2339"
       >
-        <div
-          class="ui header"
-        >
+        <span>
           Nakul
            
           Verma
-        </div>
+        </span>
       </a>
     </div>
   </body>,
@@ -22,13 +20,11 @@ Object {
     <a
       href="/professor/2339"
     >
-      <div
-        class="ui header"
-      >
+      <span>
         Nakul
          
         Verma
-      </div>
+      </span>
     </a>
   </div>,
   "debug": [Function],
@@ -171,23 +167,19 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <div
-        class="ui header"
-      >
+      <span>
         Nakul
          
         Verma
-      </div>
+      </span>
     </div>
   </body>,
   "container": <div>
-    <div
-      class="ui header"
-    >
+    <span>
       Nakul
        
       Verma
-    </div>
+    </span>
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],

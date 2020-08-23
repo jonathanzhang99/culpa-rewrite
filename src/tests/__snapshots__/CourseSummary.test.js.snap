@@ -9,7 +9,7 @@ Object {
         <div
           class="ui header"
         >
-          COMS4771
+          COMS 4771
            
           Machine Learning
         </div>
@@ -52,7 +52,7 @@ Object {
       <div
         class="ui header"
       >
-        COMS4771
+        COMS 4771
          
         Machine Learning
       </div>
@@ -152,7 +152,7 @@ Object {
         <div
           class="ui header"
         >
-          COMS4771
+          COMS 4771
            
           Machine Learning
         </div>
@@ -164,7 +164,7 @@ Object {
         <div
           class="accordion ui"
         >
-          <h3
+          <div
             class="title"
           >
             <i
@@ -173,7 +173,7 @@ Object {
             />
             Show
              all professors who teach this course
-          </h3>
+          </div>
           <div
             class="content"
           >
@@ -401,7 +401,7 @@ Object {
       <div
         class="ui header"
       >
-        COMS4771
+        COMS 4771
          
         Machine Learning
       </div>
@@ -413,7 +413,7 @@ Object {
       <div
         class="accordion ui"
       >
-        <h3
+        <div
           class="title"
         >
           <i
@@ -422,7 +422,7 @@ Object {
           />
           Show
            all professors who teach this course
-        </h3>
+        </div>
         <div
           class="content"
         >
@@ -707,7 +707,7 @@ Object {
         <div
           class="ui header"
         >
-          COMS4771
+          COMS 4771
            
           Machine Learning
         </div>
@@ -750,7 +750,7 @@ Object {
       <div
         class="ui header"
       >
-        COMS4771
+        COMS 4771
          
         Machine Learning
       </div>
