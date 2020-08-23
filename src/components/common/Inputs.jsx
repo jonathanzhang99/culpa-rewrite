@@ -247,7 +247,7 @@ function searchReducer(state, action) {
     case "SEARCH_RESET": {
       return {
         isLoading: false,
-        results: {},
+        results: [],
       };
     }
     case "SEARCH_ERROR": {
@@ -266,36 +266,33 @@ const propTypesProfessorResult = {
     badge: PropTypes.string.isRequired,
     departments: PropTypes.arrayOf(
       PropTypes.shape({
-        departmentid: PropTypes.number.isRequired,
-        departmentname: PropTypes.string.isRequired,
+        id: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
       })
     ).isRequired,
-    firstname: PropTypes.string.isRequired,
-    lastname: PropTypes.string.isRequired,
-    professorid: PropTypes.number.isRequired,
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
   }).isRequired,
 };
 
 function ProfessorResult({ professor }) {
-  const { badge, departments, firstname, lastname, professorid } = professor;
+  const { badge, departments, id, title } = professor;
   return (
     <Grid columns={2}>
-      <Grid.Row key={`professor-${professorid}`}>
+      <Grid.Row key={`professor-${id}`}>
         <Grid.Column>
-          <ProfessorDisplayName
-            firstName={firstname}
-            lastName={lastname}
-            professorId={professorid}
-          />
-          [{badge}]
+          <ProfessorDisplayName fullName={title} professorId={id} />[{badge}]
         </Grid.Column>
         <Grid.Column>
-          {departments.map(({ departmentid, departmentname }) => (
-            <DepartmentDisplayName
-              departmentName={departmentname}
-              key={`department-${departmentid}`}
-            />
-          ))}
+          {
+            // eslint-disable-next-line no-shadow
+            departments.map(({ id, name }) => (
+              <DepartmentDisplayName
+                departmentName={name}
+                key={`department-${id}`}
+              />
+            ))
+          }
         </Grid.Column>
       </Grid.Row>
     </Grid>
@@ -304,25 +301,27 @@ function ProfessorResult({ professor }) {
 
 const propTypesCourseResult = {
   course: PropTypes.shape({
-    courseid: PropTypes.number.isRequired,
-    coursename: PropTypes.string.isRequired,
-    departmentid: PropTypes.number.isRequired,
-    departmentname: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    department: PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+    }).isRequired,
   }).isRequired,
 };
 
 function CourseResult({ course }) {
-  const { courseid, coursename, departmentid, departmentname } = course;
+  const { id, name, department } = course;
   return (
     <Grid columns={2}>
-      <Grid.Row key={`course-${courseid}`}>
+      <Grid.Row key={`course-${id}`}>
         <Grid.Column>
-          <CourseDisplayName courseId={courseid} courseName={coursename} />
+          <CourseDisplayName courseId={id} courseName={name} />
         </Grid.Column>
         <Grid.Column>
           <DepartmentDisplayName
-            departmentId={departmentid}
-            departmentName={departmentname}
+            departmentId={department.id}
+            departmentName={department.name}
           />
         </Grid.Column>
       </Grid.Row>
@@ -338,7 +337,7 @@ const propTypesSearchResultRenderer = {
 
 function searchResultRenderer(result) {
   return result.type === "professor" ? (
-    <div className={result.islast === "true" ? "divider" : ""}>
+    <div className={result.last === "true" ? "divider" : ""}>
       <ProfessorResult professor={result} />
     </div>
   ) : (

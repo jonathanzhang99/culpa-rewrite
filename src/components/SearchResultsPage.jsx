@@ -14,16 +14,14 @@ import useDataFetch from "components/common/useDataFetch";
 const propTypesProfessorResults = {
   professors: PropTypes.arrayOf(
     PropTypes.shape({
-      title: PropTypes.string,
-      professorid: PropTypes.number,
-      firstname: PropTypes.string,
-      lastname: PropTypes.string,
+      title: PropTypes.string.isRequired,
+      id: PropTypes.number.isRequired,
       departments: PropTypes.arrayOf(
         PropTypes.shape({
-          departmentid: PropTypes.number,
-          departmentname: PropTypes.string,
+          id: PropTypes.number.isRequired,
+          name: PropTypes.string.isRequired,
         })
-      ),
+      ).isRequired,
     })
   ).isRequired,
 };
@@ -36,29 +34,26 @@ function ProfessorResults({ professors }) {
         <p> No professor found </p>
       ) : (
         <Grid>
-          {professors.map(
-            ({ professorid, firstname, lastname, badge, departments }) => (
-              <Grid.Row key={`professor-${professorid}`}>
-                <Grid.Column width={6}>
-                  <ProfessorDisplayLink
-                    firstName={firstname}
-                    lastName={lastname}
-                    professorId={professorid}
-                  />
-                  [{badge}]
-                </Grid.Column>
-                <Grid.Column width={10}>
-                  {departments.map(({ departmentid, departmentname }) => (
+          {professors.map(({ id, badge, departments, title }) => (
+            <Grid.Row key={`professor-${id}`}>
+              <Grid.Column width={6}>
+                <ProfessorDisplayLink fullName={title} professorId={id} />[
+                {badge}]
+              </Grid.Column>
+              <Grid.Column width={10}>
+                {
+                  // eslint-disable-next-line no-shadow
+                  departments.map(({ id, name }) => (
                     <DepartmentDisplayLink
-                      departmentId={departmentid}
-                      departmentName={departmentname}
-                      key={`department-${departmentid}`}
+                      departmentId={id}
+                      departmentName={name}
+                      key={`department-${id}`}
                     />
-                  ))}
-                </Grid.Column>
-              </Grid.Row>
-            )
-          )}
+                  ))
+                }
+              </Grid.Column>
+            </Grid.Row>
+          ))}
         </Grid>
       )}
     </>
@@ -68,10 +63,12 @@ function ProfessorResults({ professors }) {
 const propTypesCourseResults = {
   courses: PropTypes.arrayOf(
     PropTypes.shape({
-      courseid: PropTypes.number,
-      coursename: PropTypes.string,
-      departmentid: PropTypes.number,
-      departmentname: PropTypes.string,
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      department: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
+      }).isRequired,
     })
   ).isRequired,
 };
@@ -84,24 +81,19 @@ function CourseResults({ courses }) {
         <p> No course found </p>
       ) : (
         <Grid>
-          {courses.map(
-            ({ courseid, coursename, departmentid, departmentname }) => (
-              <Grid.Row key={`course-${courseid}`}>
-                <Grid.Column width={6}>
-                  <CourseDisplayLink
-                    courseId={courseid}
-                    courseName={coursename}
-                  />
-                </Grid.Column>
-                <Grid.Column width={10}>
-                  <DepartmentDisplayLink
-                    departmentId={departmentid}
-                    departmentName={departmentname}
-                  />
-                </Grid.Column>
-              </Grid.Row>
-            )
-          )}
+          {courses.map(({ id, name, department }) => (
+            <Grid.Row key={`course-${id}`}>
+              <Grid.Column width={6}>
+                <CourseDisplayLink courseId={id} courseName={name} />
+              </Grid.Column>
+              <Grid.Column width={10}>
+                <DepartmentDisplayLink
+                  departmentId={department.id}
+                  departmentName={department.name}
+                />
+              </Grid.Column>
+            </Grid.Row>
+          ))}
         </Grid>
       )}
     </>
@@ -124,12 +116,12 @@ export default function SearchResultsPage() {
     return isLoading ? <LoadingComponent /> : <ErrorComponent />;
   }
 
-  const queryParams = queryString.parse(search);
+  const { searchValue } = queryString.parse(search);
 
   return (
     <>
       <Header>
-        Showing search results for <em> {queryParams.query} </em>
+        Showing search results for <em> {searchValue} </em>
       </Header>
       <ProfessorResults professors={professorResults} />
       <CourseResults courses={courseResults} />

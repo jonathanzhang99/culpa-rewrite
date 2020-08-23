@@ -32,9 +32,7 @@ Object {
               href="/professor/2339"
             >
               <span>
-                Nakul
-                 
-                Verma
+                Nakul Verma
               </span>
             </a>
             [
@@ -48,7 +46,9 @@ Object {
               href="/department/29"
             >
               <span>
+                 
                 Computer Science
+                 
               </span>
             </a>
           </div>
@@ -85,7 +85,9 @@ Object {
               href="/department/6"
             >
               <span>
+                 
                 Computer Science
+                 
               </span>
             </a>
           </div>
@@ -121,9 +123,7 @@ Object {
             href="/professor/2339"
           >
             <span>
-              Nakul
-               
-              Verma
+              Nakul Verma
             </span>
           </a>
           [
@@ -137,7 +137,9 @@ Object {
             href="/department/29"
           >
             <span>
+               
               Computer Science
+               
             </span>
           </a>
         </div>
@@ -174,7 +176,9 @@ Object {
             href="/department/6"
           >
             <span>
+               
               Computer Science
+               
             </span>
           </a>
         </div>
@@ -401,7 +405,9 @@ Object {
               href="/department/6"
             >
               <span>
+                 
                 Computer Science
+                 
               </span>
             </a>
           </div>
@@ -458,7 +464,9 @@ Object {
             href="/department/6"
           >
             <span>
+               
               Computer Science
+               
             </span>
           </a>
         </div>
@@ -551,9 +559,7 @@ Object {
               href="/professor/2339"
             >
               <span>
-                Nakul
-                 
-                Verma
+                Nakul Verma
               </span>
             </a>
             [
@@ -567,7 +573,9 @@ Object {
               href="/department/29"
             >
               <span>
+                 
                 Computer Science
+                 
               </span>
             </a>
           </div>
@@ -611,9 +619,7 @@ Object {
             href="/professor/2339"
           >
             <span>
-              Nakul
-               
-              Verma
+              Nakul Verma
             </span>
           </a>
           [
@@ -627,7 +633,9 @@ Object {
             href="/department/29"
           >
             <span>
+               
               Computer Science
+               
             </span>
           </a>
         </div>

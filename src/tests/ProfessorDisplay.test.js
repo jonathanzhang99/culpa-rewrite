@@ -15,15 +15,28 @@ describe("ProfessorDisplay Components", () => {
       lastName: "",
     },
     {
+      testName: "renders no ProfessorDisplayName",
+      fullName: "",
+    },
+    {
       testName: "renders ProfessorDisplayName as span",
       firstName: "Nakul",
       lastName: "Verma",
     },
     {
+      testName: "renders ProfessorDisplayName as span",
+      fullName: "Nakul Verma",
+    },
+    {
       testName: "renders ProfessorDisplayName as Header",
+      as: "header",
       firstName: "Nakul",
       lastName: "Verma",
-      type: "header",
+    },
+    {
+      testName: "renders ProfessorDisplayName as Header",
+      as: "header",
+      fullName: "Nakul Verma",
     },
   ];
 
@@ -35,17 +48,33 @@ describe("ProfessorDisplay Components", () => {
       professorId: 0,
     },
     {
+      testName: "renders no ProfessorDisplayLink",
+      fullName: "",
+      professorId: 0,
+    },
+    {
       testName: "renders ProfessorDisplayLink as span",
       firstName: "Nakul",
       lastName: "Verma",
       professorId: 2339,
     },
     {
+      testName: "renders ProfessorDisplayLink as span",
+      fullName: "Nakul Verma",
+      professorId: 2339,
+    },
+    {
       testName: "renders ProfessorDisplayLink as Header",
+      as: "header",
       firstName: "Nakul",
       lastName: "Verma",
       professorId: 2339,
-      type: "header",
+    },
+    {
+      testName: "renders ProfessorDisplayLink as Header",
+      as: "header",
+      fullName: "Nakul Verma",
+      professorId: 2339,
     },
   ];
 

@@ -17,27 +17,29 @@ describe("SearchResultsPage Components", () => {
       name: "both professors and courses found",
       testProfessorResults: [
         {
-          badge: "Silver", // TO DO: Update to list of badge id
+          badge: "Silver", // TODO: Update to list of badge id
           departments: [
             {
-              departmentid: 29,
-              departmentname: "Computer Science",
+              id: 29,
+              name: "Computer Science",
             },
           ],
           firstname: "Nakul",
-          islast: "false",
+          last: "false",
           lastname: "Verma",
-          professorid: 2339,
+          id: 2339,
           title: "Nakul Verma",
           type: "professor",
         },
       ],
       testCourseResults: [
         {
-          courseid: 1,
-          coursename: "User Interface Design",
-          departmentid: 6,
-          departmentname: "Computer Science",
+          id: 1,
+          name: "User Interface Design",
+          department: {
+            id: 6,
+            name: "Computer Science",
+          },
           title: "User Interface Design",
         },
       ],
@@ -46,17 +48,17 @@ describe("SearchResultsPage Components", () => {
       name: "only professors found",
       testProfessorResults: [
         {
-          badge: "Silver", // TO DO: Update to list of badge id
+          badge: "Silver", // TODO: Update to list of badge id
           departments: [
             {
-              departmentid: 29,
-              departmentname: "Computer Science",
+              id: 29,
+              name: "Computer Science",
             },
           ],
           firstname: "Nakul",
-          islast: "false",
+          last: "false",
           lastname: "Verma",
-          professorid: 2339,
+          id: 2339,
           title: "Nakul Verma",
           type: "professor",
         },
@@ -68,10 +70,12 @@ describe("SearchResultsPage Components", () => {
       testProfessorResults: [],
       testCourseResults: [
         {
-          courseid: 1,
-          coursename: "User Interface Design",
-          departmentid: 6,
-          departmentname: "Computer Science",
+          id: 1,
+          name: "User Interface Design",
+          department: {
+            id: 6,
+            name: "Computer Science",
+          },
           title: "User Interface Design",
         },
       ],

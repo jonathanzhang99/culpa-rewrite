@@ -32,16 +32,14 @@ export default function NavigationBar({ children }) {
 
   const history = useHistory();
 
-  const onSearchSubmit = (data) => {
-    const searchValue = data.NavbarSearchbar;
+  const onSearchSubmit = ({ NavbarSearchbar }) => {
+    const searchValue = NavbarSearchbar;
     history.push(`/search?entity=all&query=${searchValue}`);
     return {};
   };
 
-  const onResultSelect = (data) => {
-    data.type === "professor"
-      ? history.push(`/professor/${data.professorid}`)
-      : history.push(`/course/${data.courseid}`);
+  const onResultSelect = ({ type, id }) => {
+    history.push(`/${type}/${id}`);
   };
 
   return (

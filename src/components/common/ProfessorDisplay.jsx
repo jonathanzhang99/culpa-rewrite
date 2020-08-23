@@ -5,26 +5,35 @@ import { Header } from "semantic-ui-react";
 
 const propTypesProfessorDisplayName = {
   as: PropTypes.oneOf(["header", "text"]),
-  firstName: PropTypes.string.isRequired,
-  lastName: PropTypes.string.isRequired,
+  firstName: PropTypes.string,
+  fullName: PropTypes.string,
+  lastName: PropTypes.string,
 };
 
 const propTypesProfessorDisplayLink = {
   as: PropTypes.oneOf(["header", "text"]),
-  firstName: PropTypes.string.isRequired,
-  lastName: PropTypes.string.isRequired,
+  firstName: PropTypes.string,
+  fullName: PropTypes.string,
+  lastName: PropTypes.string,
   professorId: PropTypes.number.isRequired,
 };
 
 const defaultProps = {
   as: "text",
+  firstName: "",
+  fullName: "",
+  lastName: "",
 };
 
-export function ProfessorDisplayName({ firstName, lastName, as }) {
+export function ProfessorDisplayName({ as, firstName, fullName, lastName }) {
   const ProfessorName = as === "header" ? Header : "span";
   return (
     <ProfessorName>
-      {firstName} {lastName}
+      {fullName || (
+        <>
+          {firstName} {lastName}
+        </>
+      )}
     </ProfessorName>
   );
 }
@@ -32,6 +41,7 @@ export function ProfessorDisplayName({ firstName, lastName, as }) {
 export function ProfessorDisplayLink({
   as,
   firstName,
+  fullName,
   lastName,
   professorId,
 }) {
@@ -40,6 +50,7 @@ export function ProfessorDisplayLink({
       <ProfessorDisplayName
         as={as}
         firstName={firstName}
+        fullName={fullName}
         lastName={lastName}
       />
     </Link>

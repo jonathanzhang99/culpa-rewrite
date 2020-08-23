@@ -30,32 +30,28 @@ def search():
     if search_entity != 'courses':
         professor_results = [
             {
-                'badge': 'Bronze',  # TO DO: Update to list of badge id
+                'badge': 'Bronze',  # TODO: Update to list of badge id
                 'departments': [
                     {
-                        'departmentid': 1,
-                        'departmentname': 'Accounting'
+                        'id': 1,
+                        'name': 'Accounting'
                     }
                 ],
-                'firstname': 'Amir',
-                'islast': 'false',
-                'lastname': 'Zir',
-                'professorid': 1,
+                'last': 'false',
+                'id': 1,
                 'title': 'Amir Ziv',
                 'type': 'professor',
             },
             {
-                'badge': 'None',  # TO DO: Update to list of badge id
+                'badge': 'None',  # TODO: Update to list of badge id
                 'departments': [
                     {
-                        'departmentid': 1,
-                        'departmentname': 'Accounting'
+                        'id': 1,
+                        'name': 'Accounting'
                     }
                 ],
-                'firstname': 'Robert',
-                'islast': 'true',
-                'lastname': 'Stoumbos',
-                'professorid': 4,
+                'last': 'true',
+                'id': 4,
                 'title': 'Robert Stoumbos',
                 'type': 'professor',
             }
@@ -67,10 +63,12 @@ def search():
             {
                 'title': 'User Interface Design',
                 'type': 'course',
-                'courseid': 38,
-                'coursename': 'User Interface Design',
-                'departmentid': 29,
-                'departmentname': 'Computer Science',
+                'id': 38,
+                'name': 'User Interface Design',
+                'department': {
+                    'id': 29,
+                    'name': 'Computer Science',
+                }
             },
         ]
 

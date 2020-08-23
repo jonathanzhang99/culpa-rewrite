@@ -108,7 +108,7 @@ export function CourseHeader({ courseId, courseSummary }) {
     </div>
   );
 
-  // TO DO: Integrate DepartmentDisplay
+  // TODO: Integrate DepartmentDisplay
   return (
     <div>
       <CourseDisplayName

@@ -9,27 +9,29 @@ describe("Navbar Component Tests", () => {
   const professorAndCourseResults = {
     professorResults: [
       {
-        badge: "Silver", // TO DO: Update to list of badge id
+        badge: "Silver", // TODO: Update to list of badge id
         departments: [
           {
-            departmentid: 29,
-            departmentname: "Computer Science",
+            id: 29,
+            name: "Computer Science",
           },
         ],
         firstname: "Nakul",
-        islast: "false",
+        last: "false",
         lastname: "Verma",
-        professorid: 2339,
+        id: 2339,
         title: "Nakul Verma",
         type: "professor",
       },
     ],
     courseResults: [
       {
-        courseid: 1,
-        coursename: "User Interface Design",
-        departmentid: 6,
-        departmentname: "Computer Science",
+        id: 1,
+        name: "User Interface Design",
+        department: {
+          id: 6,
+          name: "Computer Science",
+        },
         title: "User Interface Design",
       },
     ],
@@ -38,17 +40,17 @@ describe("Navbar Component Tests", () => {
   const onlyProfessorResults = {
     professorResults: [
       {
-        badge: "Silver", // TO DO: Update to list of badge id
+        badge: "Silver", // TODO: Update to list of badge id
         departments: [
           {
-            departmentid: 29,
-            departmentname: "Computer Science",
+            id: 29,
+            name: "Computer Science",
           },
         ],
         firstname: "Nakul",
-        islast: "false",
+        last: "false",
         lastname: "Verma",
-        professorid: 2339,
+        id: 2339,
         title: "Nakul Verma",
         type: "professor",
       },
@@ -60,10 +62,12 @@ describe("Navbar Component Tests", () => {
     professorResults: [],
     courseResults: [
       {
-        courseid: 1,
-        coursename: "User Interface Design",
-        departmentid: 6,
-        departmentname: "Computer Science",
+        id: 1,
+        name: "User Interface Design",
+        department: {
+          id: 6,
+          name: "Computer Science",
+        },
         title: "User Interface Design",
       },
     ],

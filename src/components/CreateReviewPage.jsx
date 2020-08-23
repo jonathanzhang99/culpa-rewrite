@@ -47,9 +47,9 @@ export default function CreateReviewPage() {
    * Dropdown methods              *
    * * * * * * * * * * * * * * * * */
 
-  const onResultSelect = async ({ professorid }) => {
+  const onResultSelect = async ({ id }) => {
     setProfessorSelected(true);
-    const response = await fetch(`/api/professor/${professorid}/courses`, {
+    const response = await fetch(`/api/professor/${id}/courses`, {
       method: "GET",
       headers: { "Content-Type": "Application/json" },
     });

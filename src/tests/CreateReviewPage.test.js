@@ -8,17 +8,17 @@ describe("Create Review Page tests", () => {
   const serverProfessorResponseJson = {
     professorResults: [
       {
-        badge: "Silver", // TO DO: Update to list of badge id
+        badge: "Silver", // TODO: Update to list of badge id
         departments: [
           {
-            departmentid: 29,
-            departmentname: "Computer Science",
+            id: 29,
+            name: "Computer Science",
           },
         ],
         firstname: "Nakul",
-        islast: "false",
+        last: "false",
         lastname: "Verma",
-        professorid: 2339,
+        id: 2339,
         title: "Nakul Verma",
         type: "professor",
       },
@@ -26,14 +26,14 @@ describe("Create Review Page tests", () => {
         badge: "Silver",
         departments: [
           {
-            departmentid: 76,
-            departmentname: "Political Science",
+            id: 76,
+            name: "Political Science",
           },
         ],
         firstname: "Lee",
-        islast: "true",
+        last: "true",
         lastname: "Bollinger",
-        professorid: 1612,
+        id: 1612,
         title: "Lee Bollinger",
         type: "professor",
       },
@@ -219,12 +219,13 @@ describe("Create Review Page tests", () => {
           await screen.getByText(/computational learning theory/i)
         ).toBeInTheDocument();
         expect(mockFetch).toHaveBeenCalledTimes(2);
-        // TODO: (Sungbin, JZ) the following line will not properly run without defining the
-        // backend data format for Search Results
-        // expect(mockFetch).toHaveBeenLastCalledWith("/api/professor/1/courses", {
-        //   method: "GET",
-        //   headers: { "Content-Type": "Application/json" },
-        // });
+        expect(mockFetch).toHaveBeenLastCalledWith(
+          "/api/professor/2339/courses",
+          {
+            method: "GET",
+            headers: { "Content-Type": "Application/json" },
+          }
+        );
       });
     });
 
@@ -309,7 +310,7 @@ describe("Create Review Page tests", () => {
         expect(mockFetch).toHaveBeenLastCalledWith("/api/review/submit", {
           method: "POST",
           body: JSON.stringify({
-            professor: "Nakul Verma", // TODO (Sungbin): Change to match backend
+            professor: "Nakul Verma",
             course: 888,
             content: "this class was great!!!",
             workload: "suffered so much!!!",
@@ -454,7 +455,6 @@ describe("Create Review Page tests", () => {
           fireEvent.click(screen.getAllByRole("button", { name: /submit/i })[1])
         );
         expect(mockFetch).toHaveBeenCalledTimes(5);
-        // TODO (Sungbin): Change to match backend
         expect(mockFetch).toHaveBeenLastCalledWith("/api/review/submit", {
           method: "POST",
           body: JSON.stringify({
