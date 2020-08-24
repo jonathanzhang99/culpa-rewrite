@@ -1,47 +1,189 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Form Component Tests empty form 1`] = `
+exports[`SearchResultsPage Components both professors and courses found 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <form
-        class="ui form"
-      >
-        <div
-          class="ui error message"
-        >
-          <div
-            class="content"
-          >
-            <div
-              class="header"
-            >
-              Login Error
-            </div>
-          </div>
-        </div>
-      </form>
-    </div>
-  </body>,
-  "container": <div>
-    <form
-      class="ui form"
-    >
       <div
-        class="ui error message"
+        class="ui header"
+      >
+        Showing search results for 
+        <em>
+           
+           
+        </em>
+      </div>
+      <div
+        class="ui header"
+      >
+         Courses 
+      </div>
+      <div
+        class="ui grid"
       >
         <div
-          class="content"
+          class="row"
         >
           <div
-            class="header"
+            class="six wide column"
           >
-            Login Error
+            <a
+              href="/professor/2339"
+            >
+              <span>
+                Nakul Verma
+              </span>
+            </a>
+            [
+            Silver
+            ]
+          </div>
+          <div
+            class="ten wide column"
+          >
+            <a
+              href="/department/29"
+            >
+              <span>
+                 
+                Computer Science
+                 
+              </span>
+            </a>
           </div>
         </div>
       </div>
-    </form>
+      <div
+        class="ui header"
+      >
+         Professors 
+      </div>
+      <div
+        class="ui grid"
+      >
+        <div
+          class="row"
+        >
+          <div
+            class="six wide column"
+          >
+            <a
+              href="/course/1"
+            >
+              <span>
+                
+                 
+                User Interface Design
+              </span>
+            </a>
+          </div>
+          <div
+            class="ten wide column"
+          >
+            <a
+              href="/department/6"
+            >
+              <span>
+                 
+                Computer Science
+                 
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="ui header"
+    >
+      Showing search results for 
+      <em>
+         
+         
+      </em>
+    </div>
+    <div
+      class="ui header"
+    >
+       Courses 
+    </div>
+    <div
+      class="ui grid"
+    >
+      <div
+        class="row"
+      >
+        <div
+          class="six wide column"
+        >
+          <a
+            href="/professor/2339"
+          >
+            <span>
+              Nakul Verma
+            </span>
+          </a>
+          [
+          Silver
+          ]
+        </div>
+        <div
+          class="ten wide column"
+        >
+          <a
+            href="/department/29"
+          >
+            <span>
+               
+              Computer Science
+               
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div
+      class="ui header"
+    >
+       Professors 
+    </div>
+    <div
+      class="ui grid"
+    >
+      <div
+        class="row"
+      >
+        <div
+          class="six wide column"
+        >
+          <a
+            href="/course/1"
+          >
+            <span>
+              
+               
+              User Interface Design
+            </span>
+          </a>
+        </div>
+        <div
+          class="ten wide column"
+        >
+          <a
+            href="/department/6"
+          >
+            <span>
+               
+              Computer Science
+               
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],
@@ -97,120 +239,64 @@ Object {
 }
 `;
 
-exports[`Form Component Tests form with multiple inputs 1`] = `
+exports[`SearchResultsPage Components no results found 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <form
-        class="ui form"
+      <div
+        class="ui header"
       >
-        <div
-          class="ui error message"
-        >
-          <div
-            class="content"
-          >
-            <div
-              class="header"
-            >
-              Login Error
-            </div>
-          </div>
-        </div>
-        <div
-          class="field"
-        >
-          <label
-            for="form-input-test1"
-          />
-          <div
-            class="ui input"
-          >
-            <input
-              aria-invalid="true"
-              aria-label=""
-              id="form-input-test1"
-              name="test1"
-              type="text"
-            />
-          </div>
-        </div>
-        <div
-          class="field"
-        >
-          <label
-            for="form-input-test2"
-          />
-          <div
-            class="ui input"
-          >
-            <input
-              aria-invalid="true"
-              aria-label=""
-              id="form-input-test2"
-              name="test2"
-              type="text"
-            />
-          </div>
-        </div>
-      </form>
+        Showing search results for 
+        <em>
+           
+           
+        </em>
+      </div>
+      <div
+        class="ui header"
+      >
+         Courses 
+      </div>
+      <p>
+         No professor found 
+      </p>
+      <div
+        class="ui header"
+      >
+         Professors 
+      </div>
+      <p>
+         No course found 
+      </p>
     </div>
   </body>,
   "container": <div>
-    <form
-      class="ui form"
+    <div
+      class="ui header"
     >
-      <div
-        class="ui error message"
-      >
-        <div
-          class="content"
-        >
-          <div
-            class="header"
-          >
-            Login Error
-          </div>
-        </div>
-      </div>
-      <div
-        class="field"
-      >
-        <label
-          for="form-input-test1"
-        />
-        <div
-          class="ui input"
-        >
-          <input
-            aria-invalid="true"
-            aria-label=""
-            id="form-input-test1"
-            name="test1"
-            type="text"
-          />
-        </div>
-      </div>
-      <div
-        class="field"
-      >
-        <label
-          for="form-input-test2"
-        />
-        <div
-          class="ui input"
-        >
-          <input
-            aria-invalid="true"
-            aria-label=""
-            id="form-input-test2"
-            name="test2"
-            type="text"
-          />
-        </div>
-      </div>
-    </form>
+      Showing search results for 
+      <em>
+         
+         
+      </em>
+    </div>
+    <div
+      class="ui header"
+    >
+       Courses 
+    </div>
+    <p>
+       No professor found 
+    </p>
+    <div
+      class="ui header"
+    >
+       Professors 
+    </div>
+    <p>
+       No course found 
+    </p>
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],
@@ -266,84 +352,126 @@ Object {
 }
 `;
 
-exports[`Form Component Tests form with single input 1`] = `
+exports[`SearchResultsPage Components only courses found 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <form
-        class="ui form"
+      <div
+        class="ui header"
+      >
+        Showing search results for 
+        <em>
+           
+           
+        </em>
+      </div>
+      <div
+        class="ui header"
+      >
+         Courses 
+      </div>
+      <p>
+         No professor found 
+      </p>
+      <div
+        class="ui header"
+      >
+         Professors 
+      </div>
+      <div
+        class="ui grid"
       >
         <div
-          class="ui error message"
+          class="row"
         >
           <div
-            class="content"
+            class="six wide column"
           >
-            <div
-              class="header"
+            <a
+              href="/course/1"
             >
-              Login Error
-            </div>
+              <span>
+                
+                 
+                User Interface Design
+              </span>
+            </a>
           </div>
-        </div>
-        <div
-          class="field"
-        >
-          <label
-            for="form-input-test1"
-          />
           <div
-            class="ui input"
+            class="ten wide column"
           >
-            <input
-              aria-invalid="true"
-              aria-label=""
-              id="form-input-test1"
-              name="test1"
-              type="text"
-            />
+            <a
+              href="/department/6"
+            >
+              <span>
+                 
+                Computer Science
+                 
+              </span>
+            </a>
           </div>
         </div>
-      </form>
+      </div>
     </div>
   </body>,
   "container": <div>
-    <form
-      class="ui form"
+    <div
+      class="ui header"
+    >
+      Showing search results for 
+      <em>
+         
+         
+      </em>
+    </div>
+    <div
+      class="ui header"
+    >
+       Courses 
+    </div>
+    <p>
+       No professor found 
+    </p>
+    <div
+      class="ui header"
+    >
+       Professors 
+    </div>
+    <div
+      class="ui grid"
     >
       <div
-        class="ui error message"
+        class="row"
       >
         <div
-          class="content"
+          class="six wide column"
         >
-          <div
-            class="header"
+          <a
+            href="/course/1"
           >
-            Login Error
-          </div>
+            <span>
+              
+               
+              User Interface Design
+            </span>
+          </a>
         </div>
-      </div>
-      <div
-        class="field"
-      >
-        <label
-          for="form-input-test1"
-        />
         <div
-          class="ui input"
+          class="ten wide column"
         >
-          <input
-            aria-invalid="true"
-            aria-label=""
-            id="form-input-test1"
-            name="test1"
-            type="text"
-          />
+          <a
+            href="/department/6"
+          >
+            <span>
+               
+              Computer Science
+               
+            </span>
+          </a>
         </div>
       </div>
-    </form>
+    </div>
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],
@@ -399,100 +527,128 @@ Object {
 }
 `;
 
-exports[`Form Component Tests form with submit button 1`] = `
+exports[`SearchResultsPage Components only professors found 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <form
-        class="ui form"
+      <div
+        class="ui header"
+      >
+        Showing search results for 
+        <em>
+           
+           
+        </em>
+      </div>
+      <div
+        class="ui header"
+      >
+         Courses 
+      </div>
+      <div
+        class="ui grid"
       >
         <div
-          class="ui error message"
+          class="row"
         >
           <div
-            class="content"
+            class="six wide column"
           >
-            <div
-              class="header"
+            <a
+              href="/professor/2339"
             >
-              Login Error
-            </div>
+              <span>
+                Nakul Verma
+              </span>
+            </a>
+            [
+            Silver
+            ]
           </div>
-        </div>
-        <div
-          class="field"
-        >
-          <label
-            for="form-input-test1"
-          />
           <div
-            class="ui input"
+            class="ten wide column"
           >
-            <input
-              aria-invalid="true"
-              aria-label=""
-              id="form-input-test1"
-              name="test1"
-              type="text"
-            />
+            <a
+              href="/department/29"
+            >
+              <span>
+                 
+                Computer Science
+                 
+              </span>
+            </a>
           </div>
         </div>
-        <button
-          class="ui button"
-          name="submit"
-          type="submit"
-          value="submit"
-        >
-          SUBMIT
-        </button>
-      </form>
+      </div>
+      <div
+        class="ui header"
+      >
+         Professors 
+      </div>
+      <p>
+         No course found 
+      </p>
     </div>
   </body>,
   "container": <div>
-    <form
-      class="ui form"
+    <div
+      class="ui header"
+    >
+      Showing search results for 
+      <em>
+         
+         
+      </em>
+    </div>
+    <div
+      class="ui header"
+    >
+       Courses 
+    </div>
+    <div
+      class="ui grid"
     >
       <div
-        class="ui error message"
+        class="row"
       >
         <div
-          class="content"
+          class="six wide column"
         >
-          <div
-            class="header"
+          <a
+            href="/professor/2339"
           >
-            Login Error
-          </div>
+            <span>
+              Nakul Verma
+            </span>
+          </a>
+          [
+          Silver
+          ]
         </div>
-      </div>
-      <div
-        class="field"
-      >
-        <label
-          for="form-input-test1"
-        />
         <div
-          class="ui input"
+          class="ten wide column"
         >
-          <input
-            aria-invalid="true"
-            aria-label=""
-            id="form-input-test1"
-            name="test1"
-            type="text"
-          />
+          <a
+            href="/department/29"
+          >
+            <span>
+               
+              Computer Science
+               
+            </span>
+          </a>
         </div>
       </div>
-      <button
-        class="ui button"
-        name="submit"
-        type="submit"
-        value="submit"
-      >
-        SUBMIT
-      </button>
-    </form>
+    </div>
+    <div
+      class="ui header"
+    >
+       Professors 
+    </div>
+    <p>
+       No course found 
+    </p>
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],

@@ -11,57 +11,72 @@ describe("CourseDisplay Components", () => {
   const nameTestCases = [
     {
       testName: "renders no CourseDisplayName",
-      as: "",
-      code: "",
-      name: "",
+      courseCallNumber: "",
+      courseName: "",
     },
     {
-      testName: "renders CourseDisplayName",
-      as: "h3",
-      code: "COMS4771",
-      name: "Machine Learning",
+      testName: "renders CourseDisplayName as span",
+      courseCallNumber: "COMS 4771",
+      courseName: "Machine Learning",
+    },
+    {
+      testName: "renders CourseDisplayName as Header",
+      as: "header",
+      courseCallNumber: "COMS 4771",
+      courseName: "Machine Learning",
     },
   ];
 
   const linkTestCases = [
     {
       testName: "renders no CourseDisplayLink",
-      as: "",
-      code: "",
+      courseCallNumber: "",
       courseId: 0,
-      name: "",
+      courseName: "",
     },
     {
-      testName: "renders CourseDisplayLink",
-      as: "h1",
-      code: "COMS4771",
+      testName: "renders CourseDisplayLink as span",
+      courseCallNumber: "COMS 4771",
       courseId: 3,
-      name: "Machine Learning",
+      courseName: "Machine Learning",
+    },
+    {
+      testName: "renders CourseDisplayLink as Header",
+      as: "header",
+      courseCallNumber: "COMS 4771",
+      courseId: 3,
+      courseName: "Machine Learning",
     },
   ];
 
-  nameTestCases.forEach(({ testName, as, code, name }) => {
+  nameTestCases.forEach(({ testName, courseCallNumber, courseName, type }) => {
     test(testName, () => {
       const snapshot = render(
-        <CourseDisplayName as={as} code={code} name={name} />
+        <CourseDisplayName
+          courseCallNumber={courseCallNumber}
+          courseName={courseName}
+          type={type}
+        />
       );
       expect(snapshot).toMatchSnapshot();
     });
   });
 
-  linkTestCases.forEach(({ testName, as, code, courseId, name }) => {
-    test(testName, () => {
-      const snapshot = render(
-        <MemoryRouter>
-          <CourseDisplayLink
-            as={as}
-            code={code}
-            courseId={courseId}
-            name={name}
-          />
-        </MemoryRouter>
-      );
-      expect(snapshot).toMatchSnapshot();
-    });
-  });
+  linkTestCases.forEach(
+    ({ testName, courseCallNumber, courseId, courseName, type }) => {
+      test(testName, () => {
+        const snapshot = render(
+          <MemoryRouter>
+            <CourseDisplayLink
+              courseCallNumber={courseCallNumber}
+              courseId={courseId}
+              courseName={courseName}
+              type={type}
+            />
+          </MemoryRouter>
+        );
+        expect(snapshot).toMatchSnapshot();
+      });
+    }
+  );
 });
