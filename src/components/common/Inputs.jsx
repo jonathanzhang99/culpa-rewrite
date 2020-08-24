@@ -337,7 +337,7 @@ const propTypesSearchResultRenderer = {
 
 function searchResultRenderer(result) {
   return result.type === "professor" ? (
-    <div className={result.last === "true" ? "divider" : ""}>
+    <div className={result.last ? "divider" : ""}>
       <ProfessorResult professor={result} />
     </div>
   ) : (

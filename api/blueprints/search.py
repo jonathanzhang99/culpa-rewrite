@@ -37,7 +37,6 @@ def search():
                         'name': 'Accounting'
                     }
                 ],
-                'last': 'false',
                 'id': 1,
                 'title': 'Amir Ziv',
                 'type': 'professor',
