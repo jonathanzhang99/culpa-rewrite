@@ -1,10 +1,11 @@
 import PropTypes from "prop-types";
 import React, { useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Icon, Accordion, Table } from "semantic-ui-react";
 
 import { CourseDisplayName } from "components/common/CourseDisplay";
 import CreateReviewButton from "components/common/CreateReviewButton";
+import { DepartmentDisplayLink } from "components/common/DepartmentDisplay";
 import ErrorComponent from "components/common/ErrorComponent";
 import LoadingComponent from "components/common/LoadingComponent";
 import { ProfessorDisplayLink } from "components/common/ProfessorDisplay";
@@ -43,10 +44,10 @@ export function CourseSummary({
       </div>
       <div>
         <span>Department: </span>
-        {/* TODO: Replace with DepartmentDisplayLink */}
-        <Link to={{ pathname: `/department/${departmentId}` }}>
-          {departmentName}
-        </Link>
+        <DepartmentDisplayLink
+          departmentId={departmentId}
+          departmentName={departmentName}
+        />
       </div>
       <div>
         <Accordion>
@@ -91,14 +92,10 @@ export function CourseSummary({
                             ) => {
                               return (
                                 <span>
-                                  {/* TODO: Replace with DepartmentDisplayLink */}
-                                  <Link
-                                    to={{
-                                      pathname: `/department/${professorDepartmentId}`,
-                                    }}
-                                  >
-                                    {professorDepartmentName}
-                                  </Link>
+                                  <DepartmentDisplayLink
+                                    departmentId={professorDepartmentId}
+                                    departmentName={professorDepartmentName}
+                                  />
                                   {professorDepartments.length - 1 !== index
                                     ? ", "
                                     : ""}
