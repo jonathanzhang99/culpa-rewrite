@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Navbar Component Tests navbar snapshot test 1`] = `
+exports[`Navbar Component Tests should render 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
@@ -54,7 +54,7 @@ Object {
               class="field"
             >
               <div
-                class="ui search"
+                class="ui fluid search"
               >
                 <div
                   class="ui icon input"
@@ -63,8 +63,8 @@ Object {
                     aria-invalid="true"
                     autocomplete="off"
                     class="prompt"
-                    id="form-input-searchbar-in-navbar"
-                    name="searchbar-in-navbar"
+                    id="form-input-NavbarSearchbar"
+                    name="NavbarSearchbar"
                     tabindex="0"
                     type="text"
                     value=""
@@ -211,7 +211,7 @@ Object {
             class="field"
           >
             <div
-              class="ui search"
+              class="ui fluid search"
             >
               <div
                 class="ui icon input"
@@ -220,8 +220,8 @@ Object {
                   aria-invalid="true"
                   autocomplete="off"
                   class="prompt"
-                  id="form-input-searchbar-in-navbar"
-                  name="searchbar-in-navbar"
+                  id="form-input-NavbarSearchbar"
+                  name="NavbarSearchbar"
                   tabindex="0"
                   type="text"
                   value=""

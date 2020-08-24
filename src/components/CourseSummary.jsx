@@ -7,7 +7,7 @@ import CreateReviewButton from "components/common/CreateReviewButton";
 import { ProfessorDisplayLink } from "components/common/ProfessorDisplay";
 
 const propTypes = {
-  courseId: PropTypes.number.isRequired,
+  courseId: PropTypes.string.isRequired,
   courseSummary: PropTypes.shape({
     courseName: PropTypes.string.isRequired,
     courseCallNumber: PropTypes.string.isRequired,
@@ -40,7 +40,6 @@ export function CourseHeader({ courseId, courseSummary }) {
     <Accordion>
       <Accordion.Title
         active={isAccordionActive}
-        as="h3"
         onClick={() => setAccordionActive(!isAccordionActive)}
       >
         <Icon name={!isAccordionActive ? "angle down" : "angle up"} />
@@ -62,7 +61,6 @@ export function CourseHeader({ courseId, courseSummary }) {
                 <Table.Row key={professorId}>
                   <Table.Cell key={professorId}>
                     <ProfessorDisplayLink
-                      as="h5"
                       firstName={firstName}
                       lastName={lastName}
                       professorId={professorId}
@@ -92,14 +90,13 @@ export function CourseHeader({ courseId, courseSummary }) {
   );
 
   const ProfessorList = (
-    <h3>
+    <div>
       Professors:{" "}
       {associatedProfessors.map((professor, index) => {
         const { firstName, lastName, professorId } = professor;
         return (
           <span key={`${lastName}_${professorId}`}>
             <ProfessorDisplayLink
-              as="span"
               firstName={firstName}
               lastName={lastName}
               professorId={professorId}
@@ -108,15 +105,18 @@ export function CourseHeader({ courseId, courseSummary }) {
           </span>
         );
       })}
-    </h3>
+    </div>
   );
 
+  // TODO: Integrate DepartmentDisplay
   return (
     <div>
-      <h1>
-        <CourseDisplayName code={courseCallNumber} name={courseName} />
-      </h1>
-      <h3>Department: {departmentName}</h3>
+      <CourseDisplayName
+        as="header"
+        courseCallNumber={courseCallNumber}
+        courseName={courseName}
+      />
+      <div> Department: {departmentName} </div>
 
       {displayAccordion ? ProfessorAccordion : ProfessorList}
 

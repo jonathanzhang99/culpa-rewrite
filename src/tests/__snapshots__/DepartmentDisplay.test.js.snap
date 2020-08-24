@@ -1,29 +1,29 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CourseDisplay Components renders CourseDisplayLink as Header 1`] = `
+exports[`DepartmentDisplay Components renders DepartmentDisplayLink as Header 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
       <a
-        href="/course/3"
+        href="/department/29"
       >
         <span>
-          COMS 4771
            
-          Machine Learning
+          Computer Science
+           
         </span>
       </a>
     </div>
   </body>,
   "container": <div>
     <a
-      href="/course/3"
+      href="/department/29"
     >
       <span>
-        COMS 4771
          
-        Machine Learning
+        Computer Science
+         
       </span>
     </a>
   </div>,
@@ -81,30 +81,30 @@ Object {
 }
 `;
 
-exports[`CourseDisplay Components renders CourseDisplayLink as span 1`] = `
+exports[`DepartmentDisplay Components renders DepartmentDisplayLink as span 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
       <a
-        href="/course/3"
+        href="/department/29"
       >
         <span>
-          COMS 4771
            
-          Machine Learning
+          Computer Science
+           
         </span>
       </a>
     </div>
   </body>,
   "container": <div>
     <a
-      href="/course/3"
+      href="/department/29"
     >
       <span>
-        COMS 4771
          
-        Machine Learning
+        Computer Science
+         
       </span>
     </a>
   </div>,
@@ -162,23 +162,23 @@ Object {
 }
 `;
 
-exports[`CourseDisplay Components renders CourseDisplayName as Header 1`] = `
+exports[`DepartmentDisplay Components renders DepartmentDisplayName as Header 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
       <span>
-        COMS 4771
          
-        Machine Learning
+        Computer Science
+         
       </span>
     </div>
   </body>,
   "container": <div>
     <span>
-      COMS 4771
        
-      Machine Learning
+      Computer Science
+       
     </span>
   </div>,
   "debug": [Function],
@@ -235,23 +235,23 @@ Object {
 }
 `;
 
-exports[`CourseDisplay Components renders CourseDisplayName as span 1`] = `
+exports[`DepartmentDisplay Components renders DepartmentDisplayName as span 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
       <span>
-        COMS 4771
          
-        Machine Learning
+        Computer Science
+         
       </span>
     </div>
   </body>,
   "container": <div>
     <span>
-      COMS 4771
        
-      Machine Learning
+      Computer Science
+       
     </span>
   </div>,
   "debug": [Function],
@@ -308,30 +308,30 @@ Object {
 }
 `;
 
-exports[`CourseDisplay Components renders no CourseDisplayLink 1`] = `
+exports[`DepartmentDisplay Components renders no DepartmentDisplayLink 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
       <a
-        href="/course/0"
+        href="/department/0"
       >
         <span>
-          
            
           
+           
         </span>
       </a>
     </div>
   </body>,
   "container": <div>
     <a
-      href="/course/0"
+      href="/department/0"
     >
       <span>
-        
          
         
+         
       </span>
     </a>
   </div>,
@@ -389,23 +389,23 @@ Object {
 }
 `;
 
-exports[`CourseDisplay Components renders no CourseDisplayName 1`] = `
+exports[`DepartmentDisplay Components renders no DepartmentDisplayName 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
       <span>
-        
          
         
+         
       </span>
     </div>
   </body>,
   "container": <div>
     <span>
-      
        
       
+       
     </span>
   </div>,
   "debug": [Function],
