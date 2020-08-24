@@ -108,11 +108,6 @@ def setup_reviews_and_flags(cur):
         (5, 'demo content 4', '123.0.0.1', 'demo workload 4', 3, '2019-10-13'),
         (5, 'demo content 5', '123.0.0.1', 'demo workload 5', 3, '2018-09-01'),
         (5, 'demo content 6', '123.0.0.1', 'demo workload 6', 3, '2016-05-20'),
-        (7, 'positive review', '123.0.0.1', 'workload', 5, '2010-05-20'),
-        (7, 'neutral review', '123.0.0.1', 'workload', 3, '2011-05-20'),
-        (7, 'negative review', '123.0.0.1', 'workload', 1, '2013-05-20'),
-        (7, 'positive review2', '123.0.0.1', 'workload', 5, '2010-05-21'),
-        (7, 'negative review2', '123.0.0.1', 'workload', 1, '2012-7-20'),
     ]
 
     cur.executemany(
@@ -167,6 +162,42 @@ def setup_votes(cur):
         (5, "123.456.78.912", "2018-12-11", "disagree"),
         (5, "123.456.78.913", "2019-03-12", "agree"),
         (5, "123.456.78.914", "2019-08-17", "funny"),
+    ]
+
+    cur.executemany(
+        'INSERT INTO vote (review_id, ip, created_at, type)'
+        'VALUES (%s, %s, %s, %s)',
+        votes
+    )
+
+
+def setup_for_course_test(cur):
+    '''
+    This function sets up review and vote tables to test
+    courses_loader (to prevent breaking other tests)
+    '''
+    setup_reviews_and_flags(cur)
+
+    # Insert reviews for courses_loader testing
+    reviews = [
+        (7, 'positive review', '123.0.0.1', 'workload', 5, '2010-05-20'),
+        (7, 'neutral review', '123.0.0.1', 'workload', 3, '2011-05-20'),
+        (7, 'negative review', '123.0.0.1', 'workload', 1, '2013-05-20'),
+        (7, 'positive review2', '123.0.0.1', 'workload', 5, '2010-05-21'),
+        (7, 'negative review2', '123.0.0.1', 'workload', 1, '2012-7-20'),
+    ]
+
+    cur.executemany(
+        'INSERT INTO review'
+        '(course_professor_id, content, ip, workload, rating, submission_date)'
+        'VALUES (%s, %s, %s, %s, %s, %s)',
+        reviews
+    )
+
+    setup_votes(cur)
+
+    # Insert votes for courses_loader testing
+    votes = [
         (7, "123.456.78.914", "2019-08-17", "agree"),
         (7, "123.456.78.914", "2019-08-17", "agree"),
         (7, "123.456.78.914", "2019-08-17", "agree"),

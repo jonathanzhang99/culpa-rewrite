@@ -207,10 +207,15 @@ export function CourseHeader({ courseId, courseSummary }) {
 CourseHeader.propTypes = propTypesCourseHeader;
 
 const propTypesReviewSummary = {
-  reviewSummary: PropTypes.shape({
-    positiveReview: reviewPropType,
-    negativeReview: reviewPropType,
-  }),
+  reviewSummary: PropTypes.oneOfType([
+    PropTypes.shape({
+      positiveReview: reviewPropType,
+      negativeReview: reviewPropType,
+    }),
+    PropTypes.shape({
+      mostAgreedReview: reviewPropType,
+    }),
+  ]),
 };
 
 const defaultPropsReviewSummary = {
@@ -221,9 +226,24 @@ const defaultPropsReviewSummary = {
 };
 
 function ReviewSummary({ reviewSummary }) {
-  const { positiveReview, negativeReview } = reviewSummary;
+  if ("mostAgreedReview" in reviewSummary) {
+    const { mostAgreedReview } = reviewSummary;
+    return (
+      <Container>
+        <Grid>
+          <Grid.Row>
+            <Grid.Column width={14}>
+              <h3>Most Agreed Review</h3>
+              <CourseReviewCard review={mostAgreedReview} />
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+      </Container>
+    );
+  }
 
-  if (positiveReview && negativeReview) {
+  if ("positiveReview" in reviewSummary && "negativeReview" in reviewSummary) {
+    const { positiveReview, negativeReview } = reviewSummary;
     return (
       <Container>
         <Grid>
@@ -234,36 +254,6 @@ function ReviewSummary({ reviewSummary }) {
             </Grid.Column>
             <Grid.Column width={1} />
             <Grid.Column width={7}>
-              <h3>Most Negative Review</h3>
-              <CourseReviewCard review={negativeReview} />
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
-      </Container>
-    );
-  }
-
-  if (positiveReview) {
-    return (
-      <Container>
-        <Grid>
-          <Grid.Row>
-            <Grid.Column width={14}>
-              <h3>Most Positive Review</h3>
-              <CourseReviewCard review={positiveReview} />
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
-      </Container>
-    );
-  }
-
-  if (negativeReview) {
-    return (
-      <Container>
-        <Grid>
-          <Grid.Row>
-            <Grid.Column width={14}>
               <h3>Most Negative Review</h3>
               <CourseReviewCard review={negativeReview} />
             </Grid.Column>

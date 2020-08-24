@@ -246,10 +246,20 @@ def get_course_review_summary(course_id, ip):
         ])
     ).groupby(
         review.course_professor_id,
+        review.review_id,
+        review.content,
+        review.workload,
+        review.rating,
+        review.submission_date
     ).orderby('agrees', order=Order.desc).limit(1)
 
     negative_review_query = Query.from_(review).select(
         review.course_professor_id,
+        review.review_id,
+        review.content,
+        review.workload,
+        review.rating,
+        review.submission_date,
         vote_count('agree'),  # agrees
         vote_count('disagree'),  # disagrees
         vote_count('funny'),  # funnys

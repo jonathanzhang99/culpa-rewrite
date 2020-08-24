@@ -2,6 +2,8 @@ import flask
 
 from api.data.dataloaders.courses_loader import get_course, \
     get_department_professors
+from api.data.dataloaders.reviews_loader import get_course_review_summary
+from api.blueprints.review import parse_review
 
 course_blueprint = flask.Blueprint('course_blueprint', __name__)
 
@@ -43,52 +45,26 @@ def course_summary(course_id):
     }
 
     # Fetch review summary info
-    # ip = flask.request.remote_addr
+    ip = flask.request.remote_addr
+    review_type = 'professor'
+    review_summary = get_course_review_summary(course_id, ip)
 
-    review_summary_json = {
-        'positiveReview': {
-            'reviewType': "course",
-            'reviewHeader': {
-                'courseId': 1,
-                'courseName': "Machine Learning",
-                'courseCode': "COMS 4771",
-            },
-            'votes': {
-                'initUpvoteCount': 10,
-                'initDownvoteCount': 2,
-                'initFunnyCount': 27,
-                'upvoteClicked': False,
-                'downvoteClicked': False,
-                'funnyClicked': False,
-            },
-            'workload': "",
-            'submissionDate': "2020-01-15",
-            'reviewId': 1,
-            'deprecated': False,
-            'content': "This is a review.",
-        },
-        'negativeReview': {
-            'reviewType': "course",
-            'reviewHeader': {
-                'courseId': 1,
-                'courseName': "Machine Learning",
-                'courseCode': "COMS 4771",
-            },
-            'votes': {
-                'initUpvoteCount': 10,
-                'initDownvoteCount': 2,
-                'initFunnyCount': 27,
-                'upvoteClicked': False,
-                'downvoteClicked': False,
-                'funnyClicked': False,
-            },
-            'workload': "",
-            'submissionDate': "2020-01-15",
-            'reviewId': 1,
-            'deprecated': False,
-            'content': "This is a review.",
+    for review in review_summary:
+        review['course_id'] = course_id
+        review['name'] = course['name']
+        review['call_number'] = course['call_number']
+
+    if len(review_summary) == 0:
+        review_summary_json = {}
+    elif len(review_summary) == 1:
+        review_summary_json = {
+            'mostAgreedReview': parse_review(review_summary[0], review_type)
         }
-    }
+    else:
+        review_summary_json = {
+            'positiveReview': parse_review(review_summary[0], review_type),
+            'negativeReview': parse_review(review_summary[1], review_type),
+        }
 
     return {
         'courseSummary': course_summary_json,
