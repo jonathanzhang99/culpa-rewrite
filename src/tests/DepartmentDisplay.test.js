@@ -19,8 +19,8 @@ describe("DepartmentDisplay Components", () => {
     },
     {
       testName: "renders DepartmentDisplayName as Header",
+      as: "header",
       departmentName: "Computer Science",
-      type: "header",
     },
   ];
 
@@ -37,9 +37,9 @@ describe("DepartmentDisplay Components", () => {
     },
     {
       testName: "renders DepartmentDisplayLink as Header",
+      as: "header",
       departmentName: "Computer Science",
       departmentId: 29,
-      type: "header",
     },
   ];
 

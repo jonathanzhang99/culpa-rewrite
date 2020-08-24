@@ -9,6 +9,7 @@ import DepartmentsPage from "components/DepartmentsPage";
 import LoginPage from "components/LoginPage";
 import NavigationBar from "components/NavigationBar";
 import ProfessorInfoPage from "components/ProfessorInfoPage";
+import SearchResultsPage from "components/SearchResultsPage";
 
 function App() {
   return (
@@ -36,6 +37,9 @@ function App() {
             </Route>
             <Route path="/department/:departmentId">
               <DepartmentInfoPage />
+            </Route>
+            <Route path="/search">
+              <SearchResultsPage />
             </Route>
             <Route path="/">
               <h1>Welcome to CULPA: Temporary header</h1>

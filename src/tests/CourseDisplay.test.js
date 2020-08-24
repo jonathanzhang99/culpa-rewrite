@@ -21,9 +21,9 @@ describe("CourseDisplay Components", () => {
     },
     {
       testName: "renders CourseDisplayName as Header",
+      as: "header",
       courseCallNumber: "COMS 4771",
       courseName: "Machine Learning",
-      type: "header",
     },
   ];
 
@@ -42,10 +42,10 @@ describe("CourseDisplay Components", () => {
     },
     {
       testName: "renders CourseDisplayLink as Header",
+      as: "header",
       courseCallNumber: "COMS 4771",
       courseId: 3,
       courseName: "Machine Learning",
-      type: "header",
     },
   ];
 

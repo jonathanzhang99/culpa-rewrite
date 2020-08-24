@@ -33,7 +33,7 @@ Object {
             Professor
           </label>
           <div
-            class="ui search"
+            class="ui fluid search"
           >
             <div
               class="ui icon input"
@@ -306,7 +306,7 @@ Object {
           Professor
         </label>
         <div
-          class="ui search"
+          class="ui fluid search"
         >
           <div
             class="ui icon input"
