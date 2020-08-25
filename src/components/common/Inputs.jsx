@@ -276,7 +276,7 @@ const defaultPropsSearchResult = {
 
 function SearchResult({ resultKey, name, departments, last }) {
   return (
-    <Grid className={last && "divider"} columns={2} key={resultKey}>
+    <Grid className={last && "last-divider"} columns={2} key={resultKey}>
       <Grid.Column>{name}</Grid.Column>
       <Grid.Column>{departments}</Grid.Column>
     </Grid>
@@ -305,9 +305,13 @@ const propTypesSearchResultRenderer = {
       name: PropTypes.string.isRequired,
     })
   ).isRequired,
+  last: PropTypes.string,
 };
 
-function searchResultRenderer({ id, title, departments, type }) {
+const defaultPropsResultRenderer = {
+  last: undefined,
+};
+function searchResultRenderer({ id, title, departments, type, last }) {
   if (type === "text") {
     return <TextResult title={title} />;
   }
@@ -335,6 +339,7 @@ function searchResultRenderer({ id, title, departments, type }) {
   return (
     <SearchResult
       departments={departmentsDisplay}
+      last={last}
       name={nameDisplay}
       resultKey={`${type}-${id}`}
     />
@@ -537,6 +542,7 @@ SearchResult.defaultProps = defaultPropsSearchResult;
 TextResult.propTypes = propTypesTextResult;
 
 searchResultRenderer.propTypes = propTypesSearchResultRenderer;
+searchResultRenderer.defaultProps = defaultPropsResultRenderer;
 
 SearchInput.propTypes = propTypesSearchInput;
 SearchInput.defaultProps = defaultPropsSearchInput;
