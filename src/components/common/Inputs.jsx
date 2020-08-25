@@ -36,6 +36,8 @@ import { DepartmentDisplayName } from "components/common/DepartmentDisplay";
 import { FormGroup } from "components/common/Form";
 import { ProfessorDisplayName } from "components/common/ProfessorDisplay";
 
+export const SERACH_INPUT_ADD_ENTITY_ID = -1;
+
 function getId(id, name) {
   return id || `form-input-${name}`;
 }
@@ -261,87 +263,81 @@ function searchReducer(state, action) {
   }
 }
 
-const propTypesProfessorResult = {
-  professor: PropTypes.shape({
-    badge: PropTypes.string.isRequired,
-    departments: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        name: PropTypes.string.isRequired,
-      })
-    ).isRequired,
-    id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-  }).isRequired,
+const propTypesSearchResult = {
+  resultKey: PropTypes.string.isRequired,
+  name: PropTypes.element.isRequired,
+  departments: PropTypes.arrayOf(PropTypes.element).isRequired,
+  last: PropTypes.string,
 };
 
-function ProfessorResult({ professor }) {
-  const { badge, departments, id, title } = professor;
+const defaultPropsSearchResult = {
+  last: undefined,
+};
+
+function SearchResult({ resultKey, name, departments, last }) {
   return (
-    <Grid columns={2}>
-      <Grid.Row key={`professor-${id}`}>
-        <Grid.Column>
-          <ProfessorDisplayName fullName={title} professorId={id} />[{badge}]
-        </Grid.Column>
-        <Grid.Column>
-          {
-            // eslint-disable-next-line no-shadow
-            departments.map(({ id, name }) => (
-              <DepartmentDisplayName
-                departmentName={name}
-                key={`department-${id}`}
-              />
-            ))
-          }
-        </Grid.Column>
-      </Grid.Row>
+    <Grid className={last && "divider"} columns={2} key={resultKey}>
+      <Grid.Column>{name}</Grid.Column>
+      <Grid.Column>{departments}</Grid.Column>
     </Grid>
   );
 }
 
-const propTypesCourseResult = {
-  course: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-    department: PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired,
-    }).isRequired,
-  }).isRequired,
+const propTypesTextResult = {
+  title: PropTypes.string.isRequired,
 };
 
-function CourseResult({ course }) {
-  const { id, name, department } = course;
+function TextResult({ title }) {
   return (
-    <Grid columns={2}>
-      <Grid.Row key={`course-${id}`}>
-        <Grid.Column>
-          <CourseDisplayName courseId={id} courseName={name} />
-        </Grid.Column>
-        <Grid.Column>
-          <DepartmentDisplayName
-            departmentId={department.id}
-            departmentName={department.name}
-          />
-        </Grid.Column>
-      </Grid.Row>
+    <Grid>
+      <Grid.Column>{title}</Grid.Column>
     </Grid>
   );
 }
 
 const propTypesSearchResultRenderer = {
-  result: PropTypes.shape({
-    type: PropTypes.oneOf(["professor", "course"]).isRequired,
-  }).isRequired,
+  id: PropTypes.number.isRequired,
+  type: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  departments: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+    })
+  ).isRequired,
 };
 
-function searchResultRenderer(result) {
-  return result.type === "professor" ? (
-    <div className={result.last ? "divider" : ""}>
-      <ProfessorResult professor={result} />
-    </div>
-  ) : (
-    <CourseResult course={result} />
+function searchResultRenderer({ id, title, departments, type }) {
+  if (type === "text") {
+    return <TextResult title={title} />;
+  }
+
+  const departmentsDisplay = departments.map(({ id: departmentId, name }) => (
+    <DepartmentDisplayName
+      departmentName={name}
+      key={`department-${departmentId}`}
+    />
+  ));
+
+  let nameDisplay;
+  switch (type) {
+    case "professor":
+      nameDisplay = <ProfessorDisplayName fullName={title} professorId={id} />;
+      break;
+    case "course":
+      nameDisplay = <CourseDisplayName courseId={id} courseName={title} />;
+      break;
+    default:
+      /* this line should never run */
+      throw Error("invalid type");
+  }
+
+  return (
+    <SearchResult
+      departments={departmentsDisplay}
+      name={nameDisplay}
+      resultKey={`${type}-${id}`}
+    />
   );
 }
 
@@ -352,7 +348,7 @@ const propTypesSearchInput = {
   id: PropTypes.string,
   label: PropTypes.string,
   name: PropTypes.string.isRequired,
-  searchEntity: PropTypes.oneOf(["all", "professors", "courses"]),
+  searchEntity: PropTypes.oneOf(["all", "professor", "course"]),
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   width: PropTypes.number,
   onChange: PropTypes.func,
@@ -404,8 +400,8 @@ export function SearchInput({
   );
 
   const noResultsMessage = `No ${
-    searchEntity === "all" ? "results" : searchEntity
-  } found`;
+    searchEntity === "all" ? "result" : searchEntity
+  }s found`;
 
   const handleResultSelect = (e, { result }) => {
     onChange(result.title);
@@ -430,12 +426,13 @@ export function SearchInput({
     );
 
     try {
-      const result = await response.json();
+      const { professorResults, courseResults } = await response.json();
+      const searchResults = [...professorResults, ...courseResults];
 
       if (response.ok) {
         dispatch({
           type: "SEARCH_SUCCESS",
-          payload: [...result.professorResults, ...result.courseResults],
+          payload: searchResults,
         });
       }
     } catch (err) {
@@ -534,8 +531,10 @@ DropdownInput.defaultProps = defaultPropsDropdown;
 RadioInputGroup.propTypes = propTypesRadioInputGroup;
 RadioInputGroup.defaultProps = defaultPropsRadioInputGroup;
 
-ProfessorResult.propTypes = propTypesProfessorResult;
-CourseResult.propTypes = propTypesCourseResult;
+SearchResult.propTypes = propTypesSearchResult;
+SearchResult.defaultProps = defaultPropsSearchResult;
+
+TextResult.propTypes = propTypesTextResult;
 
 searchResultRenderer.propTypes = propTypesSearchResultRenderer;
 

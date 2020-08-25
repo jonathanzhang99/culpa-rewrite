@@ -16,9 +16,7 @@ describe("Navbar Component Tests", () => {
             name: "Computer Science",
           },
         ],
-        firstname: "Nakul",
-        last: "false",
-        lastname: "Verma",
+        last: "true",
         id: 2339,
         title: "Nakul Verma",
         type: "professor",
@@ -27,12 +25,14 @@ describe("Navbar Component Tests", () => {
     courseResults: [
       {
         id: 1,
-        name: "User Interface Design",
-        department: {
-          id: 6,
-          name: "Computer Science",
-        },
+        departments: [
+          {
+            id: 6,
+            name: "Computer Science",
+          },
+        ],
         title: "User Interface Design",
+        type: "course",
       },
     ],
   };
@@ -47,9 +47,7 @@ describe("Navbar Component Tests", () => {
             name: "Computer Science",
           },
         ],
-        firstname: "Nakul",
-        last: "false",
-        lastname: "Verma",
+        last: "true",
         id: 2339,
         title: "Nakul Verma",
         type: "professor",
@@ -64,11 +62,14 @@ describe("Navbar Component Tests", () => {
       {
         id: 1,
         name: "User Interface Design",
-        department: {
-          id: 6,
-          name: "Computer Science",
-        },
+        departments: [
+          {
+            id: 6,
+            name: "Computer Science",
+          },
+        ],
         title: "User Interface Design",
+        type: "course",
       },
     ],
   };

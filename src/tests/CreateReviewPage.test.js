@@ -15,9 +15,6 @@ describe("Create Review Page tests", () => {
             name: "Computer Science",
           },
         ],
-        firstname: "Nakul",
-        last: "false",
-        lastname: "Verma",
         id: 2339,
         title: "Nakul Verma",
         type: "professor",
@@ -147,7 +144,7 @@ describe("Create Review Page tests", () => {
         expect(await screen.getByText(/lee bollinger/i)).toBeInTheDocument();
         expect(mockFetch).toHaveBeenCalledTimes(1);
         expect(mockFetch).toHaveBeenCalledWith(
-          "/api/search?entity=professors&query=testProfessorName",
+          "/api/search?entity=professor&query=testProfessorName",
           {
             method: "GET",
             headers: { "Content-Type": "Application/json" },
@@ -175,7 +172,7 @@ describe("Create Review Page tests", () => {
         ).toBeInTheDocument();
         expect(mockFetch).toHaveBeenCalledTimes(1);
         expect(mockFetch).toHaveBeenCalledWith(
-          "/api/search?entity=professors&query=testProfessorName",
+          "/api/search?entity=professor&query=testProfessorName",
           {
             method: "GET",
             headers: { "Content-Type": "Application/json" },

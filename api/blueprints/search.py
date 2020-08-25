@@ -64,10 +64,10 @@ def search():
                 'type': 'course',
                 'id': 38,
                 'name': 'User Interface Design',
-                'department': {
+                'departments': [{
                     'id': 29,
                     'name': 'Computer Science',
-                }
+                }]
             },
         ]
 
