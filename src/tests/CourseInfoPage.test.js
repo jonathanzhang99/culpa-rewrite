@@ -1,8 +1,7 @@
 import { render, fireEvent, screen } from "@testing-library/react";
 import React from "react";
-import { MemoryRouter, Route } from "react-router-dom";
+import { MemoryRouter } from "react-router-dom";
 
-import { AuthContext } from "components/common/Authentication";
 import { CourseSummary } from "components/CourseInfoPage";
 
 describe("CourseInfoPage Component", () => {
