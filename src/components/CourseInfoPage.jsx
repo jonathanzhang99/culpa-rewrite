@@ -19,9 +19,9 @@ const propTypes = {
   departmentName: PropTypes.string.isRequired,
   courseProfessors: PropTypes.arrayOf(
     PropTypes.shape({
-      professorDepartmentId: PropTypes.number.isRequired,
-      professorDepartmentName: PropTypes.string.isRequired,
-    }).isRequired
+      professorDepartmentId: PropTypes.number,
+      professorDepartmentName: PropTypes.string,
+    })
   ).isRequired,
 };
 
@@ -35,90 +35,78 @@ export function CourseSummary({
 }) {
   const [isAccordionActive, setAccordionActive] = useState(false);
   return (
-    <div>
-      <div>
-        <CourseDisplayName
-          courseCallNumber={courseCallNumber}
-          name={courseName}
-        />
-      </div>
-      <div>
-        <span>Department: </span>
-        <DepartmentDisplayLink
-          departmentId={departmentId}
-          departmentName={departmentName}
-        />
-      </div>
-      <div>
-        <Accordion>
-          <Accordion.Title
-            active={isAccordionActive}
-            onClick={() => setAccordionActive(!isAccordionActive)}
-          >
-            <Icon name={!isAccordionActive ? "angle down" : "angle up"} />
-            <span>
-              {!isAccordionActive ? "Show" : "Hide"} all professors who teach
-              this course
-            </span>
-          </Accordion.Title>
-          <Accordion.Content active={isAccordionActive}>
-            <Table>
-              <tbody>
-                {/* Having <tbody> prevents browser bugs from inserting into the Table. */}
-                {courseProfessors.map(
-                  ({
-                    firstName,
-                    lastName,
-                    professorId,
-                    professorDepartments,
-                  }) => {
-                    return (
-                      <Table.Row key={professorId}>
-                        <Table.Cell key={`${professorId}_link`}>
-                          <ProfessorDisplayLink
-                            firstName={firstName}
-                            lastName={lastName}
-                            professorId={professorId}
-                          />
-                        </Table.Cell>
-                        <Table.Cell key={`${professorId}_departments`}>
-                          {professorDepartments.map(
-                            (
-                              {
-                                professorDepartmentId,
-                                professorDepartmentName,
-                              },
-                              index
-                            ) => {
-                              return (
-                                <span>
-                                  <DepartmentDisplayLink
-                                    departmentId={professorDepartmentId}
-                                    departmentName={professorDepartmentName}
-                                  />
-                                  {professorDepartments.length - 1 !== index
-                                    ? ", "
-                                    : ""}
-                                </span>
-                              );
-                            }
-                          )}
-                        </Table.Cell>
-                      </Table.Row>
-                    );
-                  }
-                )}
-              </tbody>
-            </Table>
-          </Accordion.Content>
-        </Accordion>
-      </div>
-      <div>
-        <CreateReviewButton color="yellow" courseId={courseId.toString()}>
-          WRITE A REVIEW FOR {courseName}
-        </CreateReviewButton>
-      </div>
-    </div>
+    <>
+      <CourseDisplayName
+        as="header"
+        courseCallNumber={courseCallNumber}
+        courseName={courseName}
+      />
+      Department:
+      <DepartmentDisplayLink
+        departmentId={departmentId}
+        departmentName={departmentName}
+      />
+      <Accordion>
+        <Accordion.Title
+          active={isAccordionActive}
+          onClick={() => setAccordionActive(!isAccordionActive)}
+        >
+          <Icon name={!isAccordionActive ? "angle down" : "angle up"} />
+          {!isAccordionActive ? "Show" : "Hide"} all professors who teach this
+          course
+        </Accordion.Title>
+        <Accordion.Content active={isAccordionActive}>
+          <Table>
+            <tbody>
+              {/* Having <tbody> prevents browser bugs from inserting into the Table. */}
+              {courseProfessors.map(
+                ({
+                  firstName,
+                  lastName,
+                  professorId,
+                  professorDepartments,
+                }) => {
+                  return (
+                    <Table.Row key={professorId}>
+                      <Table.Cell key={`${professorId}_link`}>
+                        <ProfessorDisplayLink
+                          firstName={firstName}
+                          lastName={lastName}
+                          professorId={professorId}
+                        />
+                      </Table.Cell>
+                      <Table.Cell key={`${professorId}_departments`}>
+                        {professorDepartments.map(
+                          (
+                            { professorDepartmentId, professorDepartmentName },
+                            index
+                          ) => {
+                            return (
+                              <span key={professorDepartmentId}>
+                                <DepartmentDisplayLink
+                                  departmentId={professorDepartmentId}
+                                  departmentName={professorDepartmentName}
+                                />
+                                {professorDepartments.length - 1 !== index
+                                  ? ", "
+                                  : ""}
+                              </span>
+                            );
+                          }
+                        )}
+                      </Table.Cell>
+                    </Table.Row>
+                  );
+                }
+              )}
+            </tbody>
+          </Table>
+        </Accordion.Content>
+      </Accordion>
+      <CreateReviewButton color="yellow" courseId={courseId.toString()}>
+        WRITE A REVIEW FOR {courseName}
+      </CreateReviewButton>
+    </>
   );
 }
 

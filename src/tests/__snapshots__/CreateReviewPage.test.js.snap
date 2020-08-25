@@ -39,7 +39,6 @@ Object {
               class="ui icon input"
             >
               <input
-                aria-invalid="true"
                 autocomplete="off"
                 class="prompt"
                 id="form-input-professor"
@@ -79,7 +78,6 @@ Object {
           <div
             aria-disabled="true"
             aria-expanded="false"
-            aria-invalid="true"
             aria-label="Course"
             class="ui disabled search selection dropdown"
             id="form-input-course"
@@ -97,7 +95,7 @@ Object {
             <div
               aria-atomic="true"
               aria-live="polite"
-              class="divider default text"
+              class="default text"
               role="alert"
             >
               Please select a Professor first
@@ -130,7 +128,6 @@ Object {
             Content
           </label>
           <textarea
-            aria-invalid="true"
             aria-label="Content"
             id="form-input-content"
             name="content"
@@ -146,7 +143,6 @@ Object {
             Workload
           </label>
           <textarea
-            aria-invalid="true"
             aria-label="Workload"
             id="form-input-workload"
             name="workload"
@@ -312,7 +308,6 @@ Object {
             class="ui icon input"
           >
             <input
-              aria-invalid="true"
               autocomplete="off"
               class="prompt"
               id="form-input-professor"
@@ -352,7 +347,6 @@ Object {
         <div
           aria-disabled="true"
           aria-expanded="false"
-          aria-invalid="true"
           aria-label="Course"
           class="ui disabled search selection dropdown"
           id="form-input-course"
@@ -370,7 +364,7 @@ Object {
           <div
             aria-atomic="true"
             aria-live="polite"
-            class="divider default text"
+            class="default text"
             role="alert"
           >
             Please select a Professor first
@@ -403,7 +397,6 @@ Object {
           Content
         </label>
         <textarea
-          aria-invalid="true"
           aria-label="Content"
           id="form-input-content"
           name="content"
@@ -419,7 +412,6 @@ Object {
           Workload
         </label>
         <textarea
-          aria-invalid="true"
           aria-label="Workload"
           id="form-input-workload"
           name="workload"

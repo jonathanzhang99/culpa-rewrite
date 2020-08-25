@@ -128,7 +128,6 @@ Object {
             class="ui input"
           >
             <input
-              aria-invalid="true"
               aria-label=""
               id="form-input-test1"
               name="test1"
@@ -146,7 +145,6 @@ Object {
             class="ui input"
           >
             <input
-              aria-invalid="true"
               aria-label=""
               id="form-input-test2"
               name="test2"
@@ -184,7 +182,6 @@ Object {
           class="ui input"
         >
           <input
-            aria-invalid="true"
             aria-label=""
             id="form-input-test1"
             name="test1"
@@ -202,7 +199,6 @@ Object {
           class="ui input"
         >
           <input
-            aria-invalid="true"
             aria-label=""
             id="form-input-test2"
             name="test2"
@@ -297,7 +293,6 @@ Object {
             class="ui input"
           >
             <input
-              aria-invalid="true"
               aria-label=""
               id="form-input-test1"
               name="test1"
@@ -335,7 +330,6 @@ Object {
           class="ui input"
         >
           <input
-            aria-invalid="true"
             aria-label=""
             id="form-input-test1"
             name="test1"
@@ -430,7 +424,6 @@ Object {
             class="ui input"
           >
             <input
-              aria-invalid="true"
               aria-label=""
               id="form-input-test1"
               name="test1"
@@ -476,7 +469,6 @@ Object {
           class="ui input"
         >
           <input
-            aria-invalid="true"
             aria-label=""
             id="form-input-test1"
             name="test1"

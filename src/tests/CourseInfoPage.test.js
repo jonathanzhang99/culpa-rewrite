@@ -3,22 +3,10 @@ import React from "react";
 import { MemoryRouter, Route } from "react-router-dom";
 
 import { AuthContext } from "components/common/Authentication";
-import CourseInfoPage from "components/CourseInfoPage";
+import { CourseSummary } from "components/CourseInfoPage";
 
 describe("CourseInfoPage Component", () => {
-  const loginSuccess = jest.fn(() => {
-    Promise.resolve();
-  });
   const testCases = [
-    {
-      testName: "renders no info",
-      courseId: 0,
-      courseName: "",
-      courseCallNumber: "",
-      departmentId: 0,
-      departmentName: "",
-      courseProfessors: [{}],
-    },
     {
       testName: "renders course info with no professors",
       courseId: 0,
@@ -26,7 +14,7 @@ describe("CourseInfoPage Component", () => {
       courseCallNumber: "COMS 4771",
       departmentId: 1,
       departmentName: "Computer Science",
-      courseProfessors: [{}],
+      courseProfessors: [],
     },
     {
       testName: "renders course info with professor",
@@ -67,21 +55,19 @@ describe("CourseInfoPage Component", () => {
     }) => {
       test(testName, () => {
         const snapshot = render(
-          <MemoryRouter initialEntries={[courseId]}>
-            <Route path=":courseId">
-              <AuthContext.Provider value={{ login: loginSuccess }}>
-                <CourseInfoPage
-                  courseCallNumber={courseCallNumber}
-                  courseId={courseId}
-                  courseName={courseName}
-                  courseProfessors={courseProfessors}
-                  departmentId={departmentId}
-                  departmentName={departmentName}
-                />
-              </AuthContext.Provider>
-            </Route>
+          <MemoryRouter>
+            <CourseSummary
+              courseCallNumber={courseCallNumber}
+              courseId={courseId}
+              courseName={courseName}
+              courseProfessors={courseProfessors}
+              departmentId={departmentId}
+              departmentName={departmentName}
+            />
           </MemoryRouter>
         );
+        screen.debug();
+
         expect(snapshot).toMatchSnapshot();
       });
     }
@@ -114,28 +100,25 @@ describe("CourseInfoPage Component", () => {
     ];
 
     render(
-      <MemoryRouter initialEntries={[courseId]}>
-        <Route path=":courseId">
-          <AuthContext.Provider value={{ login: loginSuccess }}>
-            <CourseInfoPage
-              courseCallNumber={courseCallNumber}
-              courseId={courseId}
-              courseName={courseName}
-              courseProfessors={courseProfessors}
-              departmentId={departmentId}
-              departmentName={departmentName}
-            />
-          </AuthContext.Provider>
-        </Route>
+      <MemoryRouter>
+        <CourseSummary
+          courseCallNumber={courseCallNumber}
+          courseId={courseId}
+          courseName={courseName}
+          courseProfessors={courseProfessors}
+          departmentId={departmentId}
+          departmentName={departmentName}
+        />
       </MemoryRouter>
     );
 
-    expect(screen.queryByText("Show")).toBeInTheDocument();
+    screen.debug();
+    expect(screen.queryByText(/show all professors/i)).toBeInTheDocument();
 
-    fireEvent.click(screen.getByText("Show"));
-    expect(screen.queryByText("Hide")).toBeInTheDocument();
+    fireEvent.click(screen.getByText(/show all professors/i));
+    expect(screen.queryByText(/hide all professors/i)).toBeInTheDocument();
 
-    fireEvent.click(screen.getByText("Hide"));
-    expect(screen.queryByText("Show")).toBeInTheDocument();
+    fireEvent.click(screen.getByText(/hide all professors/i));
+    expect(screen.queryByText(/show all professors/i)).toBeInTheDocument();
   });
 });
