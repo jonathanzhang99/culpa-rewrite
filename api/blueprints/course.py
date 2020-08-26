@@ -48,10 +48,6 @@ def course_summary(course_id):
     review_type = 'professor'
     review_summary = get_course_review_summary(course_id, ip)
 
-    # Check for null review_summary
-    if not review_summary:
-        return {'error': 'reviews for course not found'}, 404
-
     for review in review_summary:
         review['course_id'] = course_id
         review['name'] = course['name']
