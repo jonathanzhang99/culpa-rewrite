@@ -38,7 +38,7 @@ review_summary = {
         "content": "This is a review",
         "deprecated": False,
         "reviewHeader": {
-            "courseCode": "COMS4771",
+            "courseCode": "COMS 4771",
             "courseId": "1",
             "courseName": "Machine Learning"
         },
@@ -59,7 +59,7 @@ review_summary = {
         "content": "This is a review",
         "deprecated": False,
         "reviewHeader": {
-            "courseCode": "COMS4771",
+            "courseCode": "COMS 4771",
             "courseId": "1",
             "courseName": "Machine Learning"
         },
@@ -126,7 +126,7 @@ class CoursesTest(BaseTest):
                     ],
                     "professorId": 2
                 }],
-                "courseCallNumber": "COMS4771",
+                "courseCallNumber": "COMS 4771",
                 "courseName": "Machine Learning",
                 "departmentId": 1,
                 "departmentName": "Computer Science"
@@ -215,7 +215,7 @@ class CoursesTest(BaseTest):
             'course_id': course_id,
             'name': 'Machine Learning',
             'department_id': 1,
-            'call_number': 'COMS4771',
+            'call_number': 'COMS 4771',
             'department_name': 'Computer Science',
         }]
 
@@ -236,10 +236,27 @@ class CoursesTest(BaseTest):
 
         mock_get_course_review_summary.return_value = []
 
-        expected_res = {'error': 'reviews for course not found'}
+        expected_res = {
+            'courseSummary': {
+                'associatedProfessors': [{
+                    'firstName': 'Nakul',
+                    'lastName': 'Verma',
+                    'profDepartments': [
+                        {'profDepartmentId': 1,
+                         'profDepartmentName': 'Computer Science'},
+                        {'profDepartmentId': 2,
+                         'profDepartmentName': 'Law'}
+                    ],
+                    'professorId': 2
+                }],
+                'courseCallNumber': 'COMS 4771',
+                'courseName': 'Machine Learning',
+                'departmentId': 1,
+                'departmentName': 'Computer Science'},
+            'reviewSummary': {}
+        }
 
         res = self.client.get(f'/api/course/{course_id}')
-
         self.assertDictEqual(expected_res, res.json)
 
     @mock.patch('api.blueprints.course.get_course_review_summary')
@@ -254,7 +271,7 @@ class CoursesTest(BaseTest):
             'course_id': course_id,
             'name': 'Machine Learning',
             'department_id': 1,
-            'call_number': 'COMS4771',
+            'call_number': 'COMS 4771',
             'department_name': 'Computer Science',
         }]
 
@@ -300,7 +317,7 @@ class CoursesTest(BaseTest):
                     ],
                     "professorId": 2
                 }],
-                "courseCallNumber": "COMS4771",
+                "courseCallNumber": "COMS 4771",
                 "courseName": "Machine Learning",
                 "departmentId": 1,
                 "departmentName": "Computer Science"
@@ -310,7 +327,7 @@ class CoursesTest(BaseTest):
                     "content": "This is a review",
                     "deprecated": False,
                     "reviewHeader": {
-                        "courseCode": "COMS4771",
+                        "courseCode": "COMS 4771",
                         "courseId": "1",
                         "courseName": "Machine Learning"
                     },
