@@ -87,8 +87,6 @@ class CoursesTest(BaseTest):
     def test_course_summary(self, mock_get_course,
                             mock_get_department_professors,
                             mock_get_course_review_summary):
-        self.maxDiff = None
-
         course_id = 1
 
         mock_get_course.return_value = [{
@@ -165,7 +163,6 @@ class CoursesTest(BaseTest):
     def test_course_summary_no_professors(self, mock_get_course,
                                           mock_get_department_professors,
                                           mock_get_course_review_summary):
-        self.maxDiff = None
         course_id = 1
 
         mock_get_course.return_value = [{
@@ -205,3 +202,134 @@ class CoursesTest(BaseTest):
         res = self.client.get(f'/api/course/{course_id}')
 
         self.assertEqual(expected_res, res.json)
+
+    @mock.patch('api.blueprints.course.get_course_review_summary')
+    @mock.patch('api.blueprints.course.get_department_professors')
+    @mock.patch('api.blueprints.course.get_course')
+    def test_course_summary_no_review_summary(self, mock_get_course,
+                                              mock_get_department_professors,
+                                              mock_get_course_review_summary):
+        course_id = 1
+
+        mock_get_course.return_value = [{
+            'course_id': course_id,
+            'name': 'Machine Learning',
+            'department_id': 1,
+            'call_number': 'COMS4771',
+            'department_name': 'Computer Science',
+        }]
+
+        mock_get_department_professors.return_value = [{
+            'professor_id': 2,
+            'first_name': 'Nakul',
+            'last_name': 'Verma',
+            'name': 'Computer Science',
+            'department_id': 1,
+        },
+            {
+            'professor_id': 2,
+            'first_name': 'Nakul',
+            'last_name': 'Verma',
+            'name': 'Law',
+            'department_id': 2,
+        }]
+
+        mock_get_course_review_summary.return_value = []
+
+        expected_res = {'error': 'reviews for course not found'}
+
+        res = self.client.get(f'/api/course/{course_id}')
+
+        self.assertDictEqual(expected_res, res.json)
+
+    @mock.patch('api.blueprints.course.get_course_review_summary')
+    @mock.patch('api.blueprints.course.get_department_professors')
+    @mock.patch('api.blueprints.course.get_course')
+    def test_course_summary_one_review_summary(self, mock_get_course,
+                                               mock_get_department_professors,
+                                               mock_get_course_review_summary):
+        course_id = 1
+
+        mock_get_course.return_value = [{
+            'course_id': course_id,
+            'name': 'Machine Learning',
+            'department_id': 1,
+            'call_number': 'COMS4771',
+            'department_name': 'Computer Science',
+        }]
+
+        mock_get_department_professors.return_value = [{
+            'professor_id': 2,
+            'first_name': 'Nakul',
+            'last_name': 'Verma',
+            'name': 'Computer Science',
+            'department_id': 1,
+        },
+            {
+            'professor_id': 2,
+            'first_name': 'Nakul',
+            'last_name': 'Verma',
+            'name': 'Law',
+            'department_id': 2,
+        }]
+
+        mock_get_course_review_summary.return_value = [{
+            'course_professor_id': 1,
+            'review_id': 1,
+            'content': 'This is a review',
+            'workload': '',
+            'rating': 5,
+            'submission_date': datetime(2020, 1, 15, 0, 0),
+            'agrees': 10,
+            'disagrees': 2,
+            'funnys': 27,
+            'agree_clicked': False,
+            'disagree_clicked': False,
+            'funny_clicked': False,
+        }]
+
+        expected_res = {
+            "courseSummary": {
+                "associatedProfessors": [{
+                    "firstName": "Nakul",
+                    "lastName": "Verma",
+                    "profDepartments": [
+                        {"profDepartmentId": 1,
+                         "profDepartmentName": "Computer Science"},
+                        {"profDepartmentId": 2, "profDepartmentName": "Law"}
+                    ],
+                    "professorId": 2
+                }],
+                "courseCallNumber": "COMS4771",
+                "courseName": "Machine Learning",
+                "departmentId": 1,
+                "departmentName": "Computer Science"
+            },
+            "reviewSummary": {
+                "mostAgreedReview": {
+                    "content": "This is a review",
+                    "deprecated": False,
+                    "reviewHeader": {
+                        "courseCode": "COMS4771",
+                        "courseId": "1",
+                        "courseName": "Machine Learning"
+                    },
+                    "reviewId": 1,
+                    "reviewType": "professor",
+                    "submissionDate": "Wed, 15 Jan 2020 00:00:00 GMT",
+                    "votes": {
+                        "downvoteClicked": False,
+                        "funnyClicked": False,
+                        "initDownvoteCount": 2,
+                        "initFunnyCount": 27,
+                        "initUpvoteCount": 10,
+                        "upvoteClicked": False
+                    },
+                    "workload": ""
+                }
+            }
+        }
+
+        res = self.client.get(f'/api/course/{course_id}')
+
+        self.assertDictEqual(expected_res, res.json)

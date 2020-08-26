@@ -14,8 +14,7 @@ def course_summary(course_id):
     course = get_course(course_id)
     department_professors = get_department_professors(course_id)
 
-    # Access the only element here to prevent IndexError being handled
-    # as DB error
+    # Check for null course
     if not course:
         return {'error': 'course not found'}, 404
 
@@ -48,6 +47,10 @@ def course_summary(course_id):
     ip = flask.request.remote_addr
     review_type = 'professor'
     review_summary = get_course_review_summary(course_id, ip)
+
+    # Check for null review_summary
+    if not review_summary:
+        return {'error': 'reviews for course not found'}, 404
 
     for review in review_summary:
         review['course_id'] = course_id
