@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
 import React from "react";
-import { Link } from "react-router-dom";
 import { Header, List } from "semantic-ui-react";
 
+import { DepartmentDisplayLink } from "components/common/DepartmentDisplay";
 import ErrorComponent from "components/common/ErrorComponent";
 import LoadingComponent from "components/common/LoadingComponent";
 import useDataFetch from "components/common/useDataFetch";
@@ -25,9 +25,10 @@ export function Departments({ departments }) {
         {departments.map(({ departmentId, departmentName }) => {
           return (
             <List.Item key={departmentId}>
-              <Link to={{ pathname: `/department/${departmentId}` }}>
-                {departmentName}
-              </Link>
+              <DepartmentDisplayLink
+                departmentId={departmentId}
+                departmentName={departmentName}
+              />
             </List.Item>
           );
         })}
