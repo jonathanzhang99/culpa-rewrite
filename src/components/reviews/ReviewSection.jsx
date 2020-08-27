@@ -248,7 +248,12 @@ export default function ReviewSection({initReviews, pageType, id, assocList}){
                     )})}
                 </Grid.Row>
                 <Grid.Row centered key={3} style={{marginBottom: '50px'}}>
-                    <Button fluid size='large' onClick={onClickPagButton}>
+                    <Button 
+                        fluid 
+                        name="showMoreButton" 
+                        size='large'
+                        onClick={onClickPagButton}
+                    >
                         Show more<Icon name="arrow down" style={{marginLeft: '5px'}}/>
                     </Button>
                 </Grid.Row>

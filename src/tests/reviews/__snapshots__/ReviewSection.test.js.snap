@@ -518,6 +518,7 @@ Object {
           >
             <button
               class="ui large fluid button"
+              name="showMoreButton"
             >
               Show more
               <i
@@ -1045,6 +1046,7 @@ Object {
         >
           <button
             class="ui large fluid button"
+            name="showMoreButton"
           >
             Show more
             <i
@@ -1629,6 +1631,7 @@ Object {
           >
             <button
               class="ui large fluid button"
+              name="showMoreButton"
             >
               Show more
               <i
@@ -2156,6 +2159,7 @@ Object {
         >
           <button
             class="ui large fluid button"
+            name="showMoreButton"
           >
             Show more
             <i

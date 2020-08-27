@@ -75,7 +75,8 @@ const headersByType = [[
             profFirstName: 'Lee',
             profLastName: 'Bollinger',
             uni: 'lcb50'    
-        },        votes: {
+        },        
+        votes: {
             initUpvoteCount: 3,
             initDownvoteCount: 2,
             initFunnyCount: 1,
@@ -89,6 +90,28 @@ const headersByType = [[
         deprecated: false
     }
 ]]
+
+const pagTestReviewTemplate = {
+    reviewType: 'course',
+    reviewHeader: {
+        profId: 1,
+        profFirstName: 'Nakul',
+        profLastName: 'Verma',
+        uni: 'nv2274'
+    },
+    votes: {
+        initUpvoteCount: 3,
+        initDownvoteCount: 2,
+        initFunnyCount: 1,
+        upvoteClicked: true,
+        downvoteClicked: false,
+        funnyClicked: true
+    },
+    content: "demo content",
+    workload: "demo workload",
+    submissionDate: "2020-01-01",
+    deprecated: true
+}
 
 const assocLists = {
     course: [{
@@ -224,5 +247,39 @@ describe("filtering and sorting tests", () => {
                 })
             })            
         })
+    })
+})
+
+describe("pagination tests", () => {
+    const reviews = Array(10).fill().map((_, index) => (
+        {reviewId: index, ...pagTestReviewTemplate}
+    ))
+    beforeEach(() => render(
+        <MemoryRouter>
+            <ReviewSection 
+                assocList={assocLists[pagTestReviewTemplate.reviewType]}
+                id={pageId}
+                initReviews={reviews}
+                pageType={pagTestReviewTemplate.reviewType}
+            />
+        </MemoryRouter>
+    ))
+
+    test("pagination click test", async () => {
+        const beforeClick = screen.getAllByText("Workload").length
+        
+        await act(async () => {
+            fireEvent.click(screen.getByRole('button', {name: "Show more"}))
+        })
+        const clickOnce = screen.getAllByText("Workload").length
+        
+        await act(async () => {
+            fireEvent.click(screen.getByRole('button', {name: "Show more"}))
+        })
+        const clickTwice = screen.getAllByText("Workload").length
+
+        expect(beforeClick).toBe(3)
+        expect(clickOnce).toBe(6)
+        expect(clickTwice).toBe(9)
     })
 })
