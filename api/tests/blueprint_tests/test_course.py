@@ -17,7 +17,7 @@ class CoursesTest(BaseTest):
             'course_id': course_id,
             'name': 'Machine Learning',
             'department_id': 1,
-            'call_number': 'COMS4771',
+            'call_number': 'COMS 4771',
             'department_name': 'Computer Science',
         }]
 
@@ -38,7 +38,7 @@ class CoursesTest(BaseTest):
 
         expected_res = {'courseSummary': {
             'courseName': 'Machine Learning',
-            'courseCallNumber': 'COMS4771',
+            'courseCallNumber': 'COMS 4771',
             'departmentId': 1,
             'departmentName': 'Computer Science',
             'associatedProfessors': [{
@@ -84,7 +84,7 @@ class CoursesTest(BaseTest):
             'course_id': course_id,
             'name': 'Machine Learning',
             'department_id': 1,
-            'call_number': 'COMS4771',
+            'call_number': 'COMS 4771',
             'department_name': 'Computer Science',
         }]
 
@@ -92,7 +92,7 @@ class CoursesTest(BaseTest):
 
         expected_res = {'courseSummary': {
             'courseName': 'Machine Learning',
-            'courseCallNumber': 'COMS4771',
+            'courseCallNumber': 'COMS 4771',
             'departmentId': 1,
             'departmentName': 'Computer Science',
             'associatedProfessors': []}

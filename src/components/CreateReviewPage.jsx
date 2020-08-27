@@ -47,7 +47,7 @@ export default function CreateReviewPage() {
    * Dropdown methods              *
    * * * * * * * * * * * * * * * * */
 
-  const onResultSelect = async ({ professorId }) => {
+  const onResultSelect = async ({ id: professorId }) => {
     setProfessorSelected(true);
     const response = await fetch(`/api/professor/${professorId}/courses`, {
       method: "GET",
@@ -102,7 +102,7 @@ export default function CreateReviewPage() {
           label="Professor"
           name="professor"
           rules={{ required: "Please select a professor" }}
-          searchEntity="professors"
+          searchEntity="professor"
           width={6}
           onResultSelect={onResultSelect}
           onSearchChange={onSearchChange}

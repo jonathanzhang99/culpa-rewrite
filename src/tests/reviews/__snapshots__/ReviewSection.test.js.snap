@@ -300,13 +300,11 @@ Object {
                     <div
                       style="position: relative;"
                     >
-                      <h3
-                        class="ui header"
-                      >
+                      <span>
                         Nakul
                          
                         Verma
-                      </h3>
+                      </span>
                       <h5
                         class="ui header"
                       >
@@ -416,13 +414,11 @@ Object {
                     <div
                       style="position: relative;"
                     >
-                      <h3
-                        class="ui header"
-                      >
+                      <span>
                         Lee
                          
                         Bollinger
-                      </h3>
+                      </span>
                       <h5
                         class="ui header"
                       >
@@ -816,13 +812,11 @@ Object {
                   <div
                     style="position: relative;"
                   >
-                    <h3
-                      class="ui header"
-                    >
+                    <span>
                       Nakul
                        
                       Verma
-                    </h3>
+                    </span>
                     <h5
                       class="ui header"
                     >
@@ -932,13 +926,11 @@ Object {
                   <div
                     style="position: relative;"
                   >
-                    <h3
-                      class="ui header"
-                    >
+                    <span>
                       Lee
                        
                       Bollinger
-                    </h3>
+                    </span>
                     <h5
                       class="ui header"
                     >
@@ -1389,13 +1381,11 @@ Object {
                     <div
                       style="position: relative;"
                     >
-                      <h3
-                        class="ui header"
-                      >
+                      <span>
                         COMS 4771
                          
                         Machine Learning
-                      </h3>
+                      </span>
                       <h5
                         class="ui header"
                       >
@@ -1505,13 +1495,11 @@ Object {
                     <div
                       style="position: relative;"
                     >
-                      <h3
-                        class="ui header"
-                      >
+                      <span>
                         POLS 3285
                          
                         Freedom of Speech and Press
-                      </h3>
+                      </span>
                       <h5
                         class="ui header"
                       >
@@ -1905,13 +1893,11 @@ Object {
                   <div
                     style="position: relative;"
                   >
-                    <h3
-                      class="ui header"
-                    >
+                    <span>
                       COMS 4771
                        
                       Machine Learning
-                    </h3>
+                    </span>
                     <h5
                       class="ui header"
                     >
@@ -2021,13 +2007,11 @@ Object {
                   <div
                     style="position: relative;"
                   >
-                    <h3
-                      class="ui header"
-                    >
+                    <span>
                       POLS 3285
                        
                       Freedom of Speech and Press
-                    </h3>
+                    </span>
                     <h5
                       class="ui header"
                     >

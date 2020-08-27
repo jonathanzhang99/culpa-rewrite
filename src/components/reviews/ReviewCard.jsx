@@ -29,10 +29,7 @@ const propTypesVotesContainer = {
   }).isRequired,
 };
 
-export function VotesContainer({
-  reviewId,
-  votes
-}) {
+export function VotesContainer({ reviewId, votes }) {
   // function for adding / revoking a vote for a review
   const changeVoteCount = async (voteType, action) => {
     const req = await fetch("/api/vote/change", {
@@ -122,13 +119,17 @@ export function VotesContainer({
 
   // ensure that up/downvotes are mutually exclusive
   const handleUpDownvote = (type) => {
-    if (type === 'upvote' && state.downvoteClicked && !state.upvoteClicked){
-      dispatch({type: 'TOGGLE_DOWNVOTE'})
-    } else if (type === 'downvote' && state.upvoteClicked && !state.downvoteClicked){
-      dispatch({type: 'TOGGLE_UPVOTE'})
+    if (type === "upvote" && state.downvoteClicked && !state.upvoteClicked) {
+      dispatch({ type: "TOGGLE_DOWNVOTE" });
+    } else if (
+      type === "downvote" &&
+      state.upvoteClicked &&
+      !state.downvoteClicked
+    ) {
+      dispatch({ type: "TOGGLE_UPVOTE" });
     }
-    dispatch({ type: `TOGGLE_${type.toUpperCase()}`})
-  }
+    dispatch({ type: `TOGGLE_${type.toUpperCase()}` });
+  };
 
   return (
     <Container>
@@ -168,7 +169,7 @@ export function VotesContainer({
 VotesContainer.propTypes = propTypesVotesContainer;
 
 const propTypesReviewCard = {
-  reviewType: PropTypes.oneOf(['professor', 'course']).isRequired,
+  reviewType: PropTypes.oneOf(["professor", "course"]).isRequired,
   reviewHeader: PropTypes.oneOfType([
     PropTypes.shape({
       courseId: PropTypes.number.isRequired,
@@ -179,7 +180,7 @@ const propTypesReviewCard = {
       profId: PropTypes.number.isRequired,
       profFirstName: PropTypes.string.isRequired,
       profLastName: PropTypes.string.isRequired,
-      uni: PropTypes.string.isRequired
+      uni: PropTypes.string.isRequired,
     }),
   ]).isRequired,
   votes: PropTypes.shape({
@@ -198,10 +199,10 @@ const propTypesReviewCard = {
 };
 
 const defaultPropsReviewCard = {
-    workload: "",
-    deprecated: false,
-    content: ""
-}
+  workload: "",
+  deprecated: false,
+  content: "",
+};
 
 export default function ReviewCard({
   reviewType,
@@ -211,9 +212,8 @@ export default function ReviewCard({
   submissionDate,
   reviewId,
   deprecated,
-  content
+  content,
 }) {
-
   return (
     <Container style={{margin:"25px 0px"}}>
       <Grid>
@@ -232,15 +232,13 @@ export default function ReviewCard({
             <div style={{ position: "relative" }}>
               {reviewType === 'course' ? (
                 <ProfessorDisplayName
-                  as="h3"
                   firstName={reviewHeader.profFirstName}
                   lastName={reviewHeader.profLastName}
                 />
               ) : (
                 <CourseDisplayName
-                  as="h3"
-                  code={reviewHeader.courseCode}
-                  name={reviewHeader.courseName}
+                  courseCallNumber={reviewHeader.courseCode}
+                  courseName={reviewHeader.courseName}
                 />
               )}
               <Header as="h5">{submissionDate}</Header>
@@ -256,7 +254,7 @@ export default function ReviewCard({
               </div>
             </div>
             <p>{content}</p>
-            <Header as='h5'>Workload</Header>
+            <Header as="h5">Workload</Header>
             <p>{workload}</p>
           </Container>
         </Grid.Column>
@@ -265,10 +263,7 @@ export default function ReviewCard({
           style={{ backgroundColor: "#004E8D", paddingLeft: 0 }}
           width={2}
         >
-          <VotesContainer
-            reviewId={reviewId}
-            votes={votes}
-          />
+          <VotesContainer reviewId={reviewId} votes={votes} />
         </Grid.Column>
       </Grid>
     </Container>

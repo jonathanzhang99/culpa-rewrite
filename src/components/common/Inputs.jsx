@@ -22,6 +22,7 @@ import React, { useReducer, useState } from "react";
 import {
   Form as SemanticForm,
   Button,
+  Grid,
   Input,
   TextArea,
   Search,
@@ -30,7 +31,12 @@ import {
   Modal,
 } from "semantic-ui-react";
 
+import { CourseDisplayName } from "components/common/CourseDisplay";
+import { DepartmentDisplayName } from "components/common/DepartmentDisplay";
 import { FormGroup } from "components/common/Form";
+import { ProfessorDisplayName } from "components/common/ProfessorDisplay";
+
+export const SERACH_INPUT_ADD_ENTITY_ID = -1;
 
 function getId(id, name) {
   return id || `form-input-${name}`;
@@ -257,6 +263,89 @@ function searchReducer(state, action) {
   }
 }
 
+const propTypesSearchResult = {
+  resultKey: PropTypes.string.isRequired,
+  name: PropTypes.element.isRequired,
+  departments: PropTypes.arrayOf(PropTypes.element).isRequired,
+  last: PropTypes.string,
+};
+
+const defaultPropsSearchResult = {
+  last: undefined,
+};
+
+function SearchResult({ resultKey, name, departments, last }) {
+  return (
+    <Grid className={last && "last-divider"} columns={2} key={resultKey}>
+      <Grid.Column>{name}</Grid.Column>
+      <Grid.Column>{departments}</Grid.Column>
+    </Grid>
+  );
+}
+
+const propTypesTextResult = {
+  title: PropTypes.string.isRequired,
+};
+
+function TextResult({ title }) {
+  return (
+    <Grid>
+      <Grid.Column>{title}</Grid.Column>
+    </Grid>
+  );
+}
+
+const propTypesSearchResultRenderer = {
+  id: PropTypes.number.isRequired,
+  type: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  departments: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  last: PropTypes.string,
+};
+
+const defaultPropsResultRenderer = {
+  last: undefined,
+};
+function searchResultRenderer({ id, title, departments, type, last }) {
+  if (type === "text") {
+    return <TextResult title={title} />;
+  }
+
+  const departmentsDisplay = departments.map(({ id: departmentId, name }) => (
+    <DepartmentDisplayName
+      departmentName={name}
+      key={`department-${departmentId}`}
+    />
+  ));
+
+  let nameDisplay;
+  switch (type) {
+    case "professor":
+      nameDisplay = <ProfessorDisplayName fullName={title} professorId={id} />;
+      break;
+    case "course":
+      nameDisplay = <CourseDisplayName courseId={id} courseName={title} />;
+      break;
+    default:
+      /* this line should never run */
+      throw Error("invalid type");
+  }
+
+  return (
+    <SearchResult
+      departments={departmentsDisplay}
+      last={last}
+      name={nameDisplay}
+      resultKey={`${type}-${id}`}
+    />
+  );
+}
+
 const propTypesSearchInput = {
   error: PropTypes.shape({
     message: PropTypes.string,
@@ -264,7 +353,7 @@ const propTypesSearchInput = {
   id: PropTypes.string,
   label: PropTypes.string,
   name: PropTypes.string.isRequired,
-  searchEntity: PropTypes.oneOf(["all", "professors", "courses"]),
+  searchEntity: PropTypes.oneOf(["all", "professor", "course"]),
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   width: PropTypes.number,
   onChange: PropTypes.func,
@@ -309,17 +398,18 @@ export function SearchInput({
     isLoading: false,
     results: [],
   };
+
   const [{ isLoading, results }, dispatch] = useReducer(
     searchReducer,
     initialState
   );
 
   const noResultsMessage = `No ${
-    searchEntity === "all" ? "results" : searchEntity
-  } found`;
+    searchEntity === "all" ? "result" : searchEntity
+  }s found`;
 
   const handleResultSelect = (e, { result }) => {
-    onChange(result);
+    onChange(result.title);
     onResultSelect(result);
   };
 
@@ -333,7 +423,7 @@ export function SearchInput({
 
     dispatch({ type: "SEARCH_START" });
     const response = await fetch(
-      `/api/search?searchEntity=${searchEntity}&query=${searchValue}`,
+      `/api/search?entity=${searchEntity}&query=${searchValue}`,
       {
         method: "GET",
         headers: { "Content-Type": "Application/json" },
@@ -341,10 +431,14 @@ export function SearchInput({
     );
 
     try {
-      const result = await response.json();
+      const { professorResults, courseResults } = await response.json();
+      const searchResults = [...professorResults, ...courseResults];
 
       if (response.ok) {
-        dispatch({ type: "SEARCH_SUCCESS", payload: result.searchResults });
+        dispatch({
+          type: "SEARCH_SUCCESS",
+          payload: searchResults,
+        });
       }
     } catch (err) {
       dispatch({ type: "SEARCH_ERROR" });
@@ -354,6 +448,7 @@ export function SearchInput({
 
   return (
     <SemanticForm.Field
+      fluid
       control={Search}
       error={error}
       id={getId(id, name)}
@@ -361,8 +456,9 @@ export function SearchInput({
       loading={isLoading}
       name={name}
       noResultsMessage={noResultsMessage}
+      resultRenderer={searchResultRenderer}
       results={results}
-      value={value?.title || value}
+      value={value}
       width={width}
       onBlur={onBlur}
       onResultSelect={handleResultSelect}
@@ -439,6 +535,14 @@ DropdownInput.defaultProps = defaultPropsDropdown;
 
 RadioInputGroup.propTypes = propTypesRadioInputGroup;
 RadioInputGroup.defaultProps = defaultPropsRadioInputGroup;
+
+SearchResult.propTypes = propTypesSearchResult;
+SearchResult.defaultProps = defaultPropsSearchResult;
+
+TextResult.propTypes = propTypesTextResult;
+
+searchResultRenderer.propTypes = propTypesSearchResultRenderer;
+searchResultRenderer.defaultProps = defaultPropsResultRenderer;
 
 SearchInput.propTypes = propTypesSearchInput;
 SearchInput.defaultProps = defaultPropsSearchInput;

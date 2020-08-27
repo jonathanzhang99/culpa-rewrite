@@ -1,9 +1,7 @@
 import flask
 
 # TEMPORARY DO NOT ITERATE ON TOP OF THIS
-from api.data.dataloaders.professors_loader import get_all_professors
-
-search_blueprint = flask.Blueprint('searc_blueprint', __name__)
+search_blueprint = flask.Blueprint('search_blueprint', __name__)
 
 
 @search_blueprint.route('/', methods=['GET'], strict_slashes=False)
@@ -28,16 +26,52 @@ def search():
     # TODO: Everything below this line is strictly for testing the
     # `SearchInput` on the frontend and will be removed.
     # Do not iterate on top of this.
-    professors = get_all_professors()
-    search_results = [{
-        'title': f'{professor["first_name"]} {professor["last_name"]}',
-        'description': 'TEMPORARY',
-        'content': 'TEMPORARY',
-        'professorId': professor["professor_id"]
-    } for professor in professors]
+    professor_results = []
+    if search_entity != 'courses':
+        professor_results = [
+            {
+                'badge': 'Bronze',  # TODO: Update to list of badge id
+                'departments': [
+                    {
+                        'id': 1,
+                        'name': 'Accounting'
+                    }
+                ],
+                'id': 1,
+                'title': 'Amir Ziv',
+                'type': 'professor',
+            },
+            {
+                'badge': 'None',  # TODO: Update to list of badge id
+                'departments': [
+                    {
+                        'id': 1,
+                        'name': 'Accounting'
+                    }
+                ],
+                'last': 'true',
+                'id': 4,
+                'title': 'Robert Stoumbos',
+                'type': 'professor',
+            }
+        ]
+
+    course_results = []
+    if search_entity != 'professors':
+        course_results = [
+            {
+                'title': 'User Interface Design',
+                'type': 'course',
+                'id': 38,
+                'name': 'User Interface Design',
+                'departments': [{
+                    'id': 29,
+                    'name': 'Computer Science',
+                }]
+            },
+        ]
 
     return {
-        'searchResults': search_results,
-        'entity': search_entity,
-        'query': query,
+        'professorResults': professor_results,
+        'courseResults': course_results
     }
