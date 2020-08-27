@@ -513,12 +513,18 @@ Object {
             </div>
           </div>
           <div
-            class="row"
+            class="centered row"
+            style="margin-bottom: 50px;"
           >
             <button
-              class="ui button"
+              class="ui large fluid button"
             >
-              See more
+              Show more
+              <i
+                aria-hidden="true"
+                class="arrow down icon"
+                style="margin-left: 5px;"
+              />
             </button>
           </div>
         </div>
@@ -1034,12 +1040,18 @@ Object {
           </div>
         </div>
         <div
-          class="row"
+          class="centered row"
+          style="margin-bottom: 50px;"
         >
           <button
-            class="ui button"
+            class="ui large fluid button"
           >
-            See more
+            Show more
+            <i
+              aria-hidden="true"
+              class="arrow down icon"
+              style="margin-left: 5px;"
+            />
           </button>
         </div>
       </div>
@@ -1612,12 +1624,18 @@ Object {
             </div>
           </div>
           <div
-            class="row"
+            class="centered row"
+            style="margin-bottom: 50px;"
           >
             <button
-              class="ui button"
+              class="ui large fluid button"
             >
-              See more
+              Show more
+              <i
+                aria-hidden="true"
+                class="arrow down icon"
+                style="margin-left: 5px;"
+              />
             </button>
           </div>
         </div>
@@ -2133,12 +2151,18 @@ Object {
           </div>
         </div>
         <div
-          class="row"
+          class="centered row"
+          style="margin-bottom: 50px;"
         >
           <button
-            class="ui button"
+            class="ui large fluid button"
           >
-            See more
+            Show more
+            <i
+              aria-hidden="true"
+              class="arrow down icon"
+              style="margin-left: 5px;"
+            />
           </button>
         </div>
       </div>

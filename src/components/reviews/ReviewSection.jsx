@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import React, { useEffect, useReducer } from "react"
-import { Container, Dropdown, Grid, Button } from "semantic-ui-react"
+import { Container, Dropdown, Grid, Button, Icon } from "semantic-ui-react"
 
 import ErrorComponent from "components/common/ErrorComponent";
 import LoadingComponent from "components/common/LoadingComponent";
@@ -247,8 +247,10 @@ export default function ReviewSection({initReviews, pageType, id, assocList}){
                         />
                     )})}
                 </Grid.Row>
-                <Grid.Row key={3}>
-                    <Button onClick={onClickPagButton}>See more</Button>
+                <Grid.Row centered key={3} style={{marginBottom: '50px'}}>
+                    <Button fluid size='large' onClick={onClickPagButton}>
+                        Show more<Icon name="arrow down" style={{marginLeft: '5px'}}/>
+                    </Button>
                 </Grid.Row>
             </Grid>
             
