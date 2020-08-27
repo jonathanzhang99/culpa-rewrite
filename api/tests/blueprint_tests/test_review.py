@@ -170,8 +170,8 @@ class ReviewTest(BaseTest):
             'most negative': ['rating', 'ASC'],
             'newest': ['submission_date', 'DESC'],
             'oldest': ['submission_date', 'ASC'],
-            'most agreed': ['upvotes', 'DESC'],
-            'most disagreed': ['downvotes', 'DESC']
+            'most agreed': ['agrees', 'DESC'],
+            'most disagreed': ['disagrees', 'DESC']
         }
         filters = [{
             'filter_list': '1,2,3,4',

@@ -1,4 +1,4 @@
-import { act, render, screen, fireEvent, getByTestId } from "@testing-library/react";
+import { act, render, screen, fireEvent } from "@testing-library/react";
 import React from "react";
 import { MemoryRouter } from "react-router-dom";
 
@@ -160,7 +160,7 @@ describe("review section snapshot tests", () => {
 
 describe("filtering and sorting tests", () => {
     headersByType.forEach((reviews) => {
-        let pageType = reviews[0].reviewType
+        const pageType = reviews[0].reviewType
         describe(`${pageType} page test`, () => {
             beforeEach(() => {
                 render(
@@ -180,9 +180,9 @@ describe("filtering and sorting tests", () => {
                     test(`choosing ${option.text} for ${name}`, async () => {
                         await act(async () => {fireEvent.click(screen.getByText(option.text))})
 
-                        let sortingArg = name === 'sortingDropdown' ? option.value : ''
-                        let filterSingleArg = name ==='filteringSingleSelectDropdown' ? option.value : null
-                        let expectedUrl = `/api/review/get/${pageType}/${pageId}` +
+                        const sortingArg = name === 'sortingDropdown' ? option.value : ''
+                        const filterSingleArg = name ==='filteringSingleSelectDropdown' ? option.value : null
+                        const expectedUrl = `/api/review/get/${pageType}/${pageId}` +
                                             `?sorting=${sortingArg}` +
                                             `&filterList=` +
                                             `&filterYear=${filterSingleArg}`
@@ -201,16 +201,16 @@ describe("filtering and sorting tests", () => {
             })
 
             assocLists[pageType].forEach((option) => {
-                let text = pageType === 'professor' ? 
+                const text = pageType === 'professor' ? 
                     `[${option.courseCode}] ${option.courseName}` :
                     `${option.firstName} ${option.lastName}`
-                let optionId = pageType === 'professor' ? option.courseId : option.professorId
+                const optionId = pageType === 'professor' ? option.courseId : option.professorId
                 
                 test(`testing single option '${text}' with multi selection`, async () => {
-                    const option = screen.getAllByRole('option').filter((item) => {
+                    const elem = screen.getAllByRole('option').filter((item) => {
                         return item.textContent === text
                     })[0]
-                    await act(async () => {fireEvent.click(option)})
+                    await act(async () => {fireEvent.click(elem)})
                     expect(fetch).toHaveBeenCalledWith(
                         `/api/review/get/${pageType}/${pageId}` +
                         `?sorting=&filterList=${optionId}&filterYear=null`,
