@@ -27,7 +27,7 @@ Object {
                 <div
                   aria-atomic="true"
                   aria-live="polite"
-                  class="default text"
+                  class="divider default text"
                   role="alert"
                 >
                   Sort by
@@ -146,7 +146,7 @@ Object {
                 <div
                   aria-atomic="true"
                   aria-live="polite"
-                  class="default text"
+                  class="divider default text"
                   role="alert"
                 >
                   Filter by
@@ -226,7 +226,7 @@ Object {
                 <div
                   aria-atomic="true"
                   aria-live="polite"
-                  class="default text"
+                  class="divider default text"
                   role="alert"
                 >
                   Search for a specific professor
@@ -539,7 +539,7 @@ Object {
               <div
                 aria-atomic="true"
                 aria-live="polite"
-                class="default text"
+                class="divider default text"
                 role="alert"
               >
                 Sort by
@@ -658,7 +658,7 @@ Object {
               <div
                 aria-atomic="true"
                 aria-live="polite"
-                class="default text"
+                class="divider default text"
                 role="alert"
               >
                 Filter by
@@ -738,7 +738,7 @@ Object {
               <div
                 aria-atomic="true"
                 aria-live="polite"
-                class="default text"
+                class="divider default text"
                 role="alert"
               >
                 Search for a specific professor
@@ -1108,7 +1108,7 @@ Object {
                 <div
                   aria-atomic="true"
                   aria-live="polite"
-                  class="default text"
+                  class="divider default text"
                   role="alert"
                 >
                   Sort by
@@ -1227,7 +1227,7 @@ Object {
                 <div
                   aria-atomic="true"
                   aria-live="polite"
-                  class="default text"
+                  class="divider default text"
                   role="alert"
                 >
                   Filter by
@@ -1307,7 +1307,7 @@ Object {
                 <div
                   aria-atomic="true"
                   aria-live="polite"
-                  class="default text"
+                  class="divider default text"
                   role="alert"
                 >
                   Search for a specific course
@@ -1620,7 +1620,7 @@ Object {
               <div
                 aria-atomic="true"
                 aria-live="polite"
-                class="default text"
+                class="divider default text"
                 role="alert"
               >
                 Sort by
@@ -1739,7 +1739,7 @@ Object {
               <div
                 aria-atomic="true"
                 aria-live="polite"
-                class="default text"
+                class="divider default text"
                 role="alert"
               >
                 Filter by
@@ -1819,7 +1819,7 @@ Object {
               <div
                 aria-atomic="true"
                 aria-live="polite"
-                class="default text"
+                class="divider default text"
                 role="alert"
               >
                 Search for a specific course

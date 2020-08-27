@@ -60,6 +60,7 @@ Object {
                   class="ui icon input"
                 >
                   <input
+                    aria-invalid="true"
                     autocomplete="off"
                     class="prompt"
                     id="form-input-NavbarSearchbar"
@@ -216,6 +217,7 @@ Object {
                 class="ui icon input"
               >
                 <input
+                  aria-invalid="true"
                   autocomplete="off"
                   class="prompt"
                   id="form-input-NavbarSearchbar"
