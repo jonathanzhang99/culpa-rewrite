@@ -1,12 +1,13 @@
 import PropTypes from "prop-types";
 import React, { useEffect, useReducer } from "react"
-import { Container, Dropdown, Grid } from "semantic-ui-react"
+import { Container, Dropdown, Grid, Button } from "semantic-ui-react"
 
 import ErrorComponent from "components/common/ErrorComponent";
 import LoadingComponent from "components/common/LoadingComponent";
 import ReviewCard from "components/reviews/ReviewCard"
 
 export default function ReviewSection({initReviews, pageType, id, assocList}){
+    const NUM_REVIEWS_PER_PAGE = 3
     const reducer = (state, action) => {
         switch(action.type){
             case "RELOAD_START":
@@ -41,11 +42,13 @@ export default function ReviewSection({initReviews, pageType, id, assocList}){
             case "CHANGE_SORTING":
                 return {
                     ...state,
+                    pag_num: 1,
                     sorting: action.payload.sorting
                 };
             case "CHANGE_FILTER_YEAR":
                 return {
                     ...state,
+                    pag_num: 1,
                     filters: {
                         assocListLimit: state.filters.assocListLimit,
                         year: action.payload.filterYear,
@@ -55,10 +58,16 @@ export default function ReviewSection({initReviews, pageType, id, assocList}){
             case "CHANGE_FILTER_ASSOC_LIST":
                 return {
                     ...state,
+                    pag_num: 1,
                     filters: {
                         ...state.filters,
                         assocListLimit: action.payload.assocListLimit
                     }
+                }
+            case "INCREMENT_PAG_NUM":
+                return {
+                    ...state,
+                    pag_num: state.pag_num + 1
                 }
             default:
                 throw new Error()
@@ -68,6 +77,7 @@ export default function ReviewSection({initReviews, pageType, id, assocList}){
         reload: false,
         isLoading: false,
         isError: false,
+        pag_num: 1,
         reviews: initReviews,
         assocList,
         pageType,
@@ -169,6 +179,11 @@ export default function ReviewSection({initReviews, pageType, id, assocList}){
             }
         })
     }
+
+    const onClickPagButton = () => {
+        dispatch({type: "INCREMENT_PAG_NUM"})
+    }
+
     return (
         <Container fluid>
             <Grid>
@@ -216,7 +231,9 @@ export default function ReviewSection({initReviews, pageType, id, assocList}){
                     </Grid.Column>
                 </Grid.Row>
                 <Grid.Row key={2}>
-                    {state.reviews.map((review) => {return (
+                    {state.reviews.slice(
+                        0, state.pag_num * NUM_REVIEWS_PER_PAGE
+                    ).map((review) => {return (
                         <ReviewCard 
                             content={review.content}
                             deprecated={review.deprecated}
@@ -229,6 +246,9 @@ export default function ReviewSection({initReviews, pageType, id, assocList}){
                             workload={review.workload}
                         />
                     )})}
+                </Grid.Row>
+                <Grid.Row key={3}>
+                    <Button onClick={onClickPagButton}>See more</Button>
                 </Grid.Row>
             </Grid>
             
