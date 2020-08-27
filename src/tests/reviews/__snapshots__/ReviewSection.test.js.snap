@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`review section snapshot test snapshot test 1`] = `
+exports[`review section snapshot tests course page test 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
@@ -20,6 +20,8 @@ Object {
               <div
                 aria-expanded="false"
                 class="ui fluid selection dropdown"
+                data-testid="sortingDropdown"
+                name="sortingDropdown"
                 role="listbox"
                 tabindex="0"
               >
@@ -138,6 +140,7 @@ Object {
               <div
                 aria-expanded="false"
                 class="ui fluid selection dropdown"
+                name="filteringSingleSelectDropdown"
                 role="listbox"
                 tabindex="0"
               >
@@ -207,6 +210,7 @@ Object {
               <div
                 aria-expanded="false"
                 class="ui fluid multiple search selection dropdown"
+                name="filteringMultiSelectDropdown"
                 role="combobox"
               >
                 <input
@@ -226,7 +230,7 @@ Object {
                   class="default text"
                   role="alert"
                 >
-                  Search for a specific course
+                  Search for a specific professor
                 </div>
                 <i
                   aria-hidden="true"
@@ -247,7 +251,7 @@ Object {
                     <span
                       class="text"
                     >
-                      [COMS 4771] Machine Learning
+                      Nakul Verma
                     </span>
                   </div>
                   <div
@@ -260,7 +264,7 @@ Object {
                     <span
                       class="text"
                     >
-                      [POLS 3285] Freedom of Speech and Press
+                      Lee Bollinger
                     </span>
                   </div>
                 </div>
@@ -300,9 +304,9 @@ Object {
                       <h3
                         class="ui header"
                       >
-                        COMS 4771
+                        Nakul
                          
-                        Machine Learning
+                        Verma
                       </h3>
                       <h5
                         class="ui header"
@@ -313,7 +317,7 @@ Object {
                         style="position: absolute; top: 0px; right: 0px; font-size: 16px;"
                       >
                         ID: 
-                        0
+                        1
                       </div>
                     </div>
                     <p>
@@ -411,24 +415,14 @@ Object {
                     class="ui fluid container"
                   >
                     <div
-                      class="ui message"
-                      style="background-color: rgb(255, 241, 241);"
-                    >
-                      <i
-                        aria-hidden="true"
-                        class="red warning circle icon"
-                      />
-                      Please keep in mind that this review is more than 5 years old.
-                    </div>
-                    <div
                       style="position: relative;"
                     >
                       <h3
                         class="ui header"
                       >
-                        POLS 3285
+                        Lee
                          
-                        Freedom of Speech and Press
+                        Bollinger
                       </h3>
                       <h5
                         class="ui header"
@@ -439,7 +433,7 @@ Object {
                         style="position: absolute; top: 0px; right: 0px; font-size: 16px;"
                       >
                         ID: 
-                        1
+                        2
                       </div>
                     </div>
                     <p>
@@ -543,6 +537,8 @@ Object {
             <div
               aria-expanded="false"
               class="ui fluid selection dropdown"
+              data-testid="sortingDropdown"
+              name="sortingDropdown"
               role="listbox"
               tabindex="0"
             >
@@ -661,6 +657,7 @@ Object {
             <div
               aria-expanded="false"
               class="ui fluid selection dropdown"
+              name="filteringSingleSelectDropdown"
               role="listbox"
               tabindex="0"
             >
@@ -730,6 +727,7 @@ Object {
             <div
               aria-expanded="false"
               class="ui fluid multiple search selection dropdown"
+              name="filteringMultiSelectDropdown"
               role="combobox"
             >
               <input
@@ -749,7 +747,7 @@ Object {
                 class="default text"
                 role="alert"
               >
-                Search for a specific course
+                Search for a specific professor
               </div>
               <i
                 aria-hidden="true"
@@ -770,7 +768,7 @@ Object {
                   <span
                     class="text"
                   >
-                    [COMS 4771] Machine Learning
+                    Nakul Verma
                   </span>
                 </div>
                 <div
@@ -783,7 +781,7 @@ Object {
                   <span
                     class="text"
                   >
-                    [POLS 3285] Freedom of Speech and Press
+                    Lee Bollinger
                   </span>
                 </div>
               </div>
@@ -823,9 +821,9 @@ Object {
                     <h3
                       class="ui header"
                     >
-                      COMS 4771
+                      Nakul
                        
-                      Machine Learning
+                      Verma
                     </h3>
                     <h5
                       class="ui header"
@@ -836,7 +834,7 @@ Object {
                       style="position: absolute; top: 0px; right: 0px; font-size: 16px;"
                     >
                       ID: 
-                      0
+                      1
                     </div>
                   </div>
                   <p>
@@ -934,24 +932,14 @@ Object {
                   class="ui fluid container"
                 >
                   <div
-                    class="ui message"
-                    style="background-color: rgb(255, 241, 241);"
-                  >
-                    <i
-                      aria-hidden="true"
-                      class="red warning circle icon"
-                    />
-                    Please keep in mind that this review is more than 5 years old.
-                  </div>
-                  <div
                     style="position: relative;"
                   >
                     <h3
                       class="ui header"
                     >
-                      POLS 3285
+                      Lee
                        
-                      Freedom of Speech and Press
+                      Bollinger
                     </h3>
                     <h5
                       class="ui header"
@@ -962,7 +950,7 @@ Object {
                       style="position: absolute; top: 0px; right: 0px; font-size: 16px;"
                     >
                       ID: 
-                      1
+                      2
                     </div>
                   </div>
                   <p>
@@ -1103,7 +1091,7 @@ Object {
 }
 `;
 
-exports[`review section snapshot test snapshot test 2`] = `
+exports[`review section snapshot tests professor page test 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
@@ -1123,6 +1111,8 @@ Object {
               <div
                 aria-expanded="false"
                 class="ui fluid selection dropdown"
+                data-testid="sortingDropdown"
+                name="sortingDropdown"
                 role="listbox"
                 tabindex="0"
               >
@@ -1241,6 +1231,7 @@ Object {
               <div
                 aria-expanded="false"
                 class="ui fluid selection dropdown"
+                name="filteringSingleSelectDropdown"
                 role="listbox"
                 tabindex="0"
               >
@@ -1310,6 +1301,7 @@ Object {
               <div
                 aria-expanded="false"
                 class="ui fluid multiple search selection dropdown"
+                name="filteringMultiSelectDropdown"
                 role="combobox"
               >
                 <input
@@ -1329,7 +1321,7 @@ Object {
                   class="default text"
                   role="alert"
                 >
-                  Search for a specific professor
+                  Search for a specific course
                 </div>
                 <i
                   aria-hidden="true"
@@ -1350,7 +1342,7 @@ Object {
                     <span
                       class="text"
                     >
-                      Nakul Verma
+                      [COMS 4771] Machine Learning
                     </span>
                   </div>
                   <div
@@ -1363,7 +1355,7 @@ Object {
                     <span
                       class="text"
                     >
-                      Lee Bollinger
+                      [POLS 3285] Freedom of Speech and Press
                     </span>
                   </div>
                 </div>
@@ -1403,9 +1395,9 @@ Object {
                       <h3
                         class="ui header"
                       >
-                        Nakul
+                        COMS 4771
                          
-                        Verma
+                        Machine Learning
                       </h3>
                       <h5
                         class="ui header"
@@ -1416,7 +1408,7 @@ Object {
                         style="position: absolute; top: 0px; right: 0px; font-size: 16px;"
                       >
                         ID: 
-                        0
+                        1
                       </div>
                     </div>
                     <p>
@@ -1514,24 +1506,14 @@ Object {
                     class="ui fluid container"
                   >
                     <div
-                      class="ui message"
-                      style="background-color: rgb(255, 241, 241);"
-                    >
-                      <i
-                        aria-hidden="true"
-                        class="red warning circle icon"
-                      />
-                      Please keep in mind that this review is more than 5 years old.
-                    </div>
-                    <div
                       style="position: relative;"
                     >
                       <h3
                         class="ui header"
                       >
-                        Lee
+                        POLS 3285
                          
-                        Bollinger
+                        Freedom of Speech and Press
                       </h3>
                       <h5
                         class="ui header"
@@ -1542,7 +1524,7 @@ Object {
                         style="position: absolute; top: 0px; right: 0px; font-size: 16px;"
                       >
                         ID: 
-                        1
+                        2
                       </div>
                     </div>
                     <p>
@@ -1646,6 +1628,8 @@ Object {
             <div
               aria-expanded="false"
               class="ui fluid selection dropdown"
+              data-testid="sortingDropdown"
+              name="sortingDropdown"
               role="listbox"
               tabindex="0"
             >
@@ -1764,6 +1748,7 @@ Object {
             <div
               aria-expanded="false"
               class="ui fluid selection dropdown"
+              name="filteringSingleSelectDropdown"
               role="listbox"
               tabindex="0"
             >
@@ -1833,6 +1818,7 @@ Object {
             <div
               aria-expanded="false"
               class="ui fluid multiple search selection dropdown"
+              name="filteringMultiSelectDropdown"
               role="combobox"
             >
               <input
@@ -1852,7 +1838,7 @@ Object {
                 class="default text"
                 role="alert"
               >
-                Search for a specific professor
+                Search for a specific course
               </div>
               <i
                 aria-hidden="true"
@@ -1873,7 +1859,7 @@ Object {
                   <span
                     class="text"
                   >
-                    Nakul Verma
+                    [COMS 4771] Machine Learning
                   </span>
                 </div>
                 <div
@@ -1886,7 +1872,7 @@ Object {
                   <span
                     class="text"
                   >
-                    Lee Bollinger
+                    [POLS 3285] Freedom of Speech and Press
                   </span>
                 </div>
               </div>
@@ -1926,9 +1912,9 @@ Object {
                     <h3
                       class="ui header"
                     >
-                      Nakul
+                      COMS 4771
                        
-                      Verma
+                      Machine Learning
                     </h3>
                     <h5
                       class="ui header"
@@ -1939,7 +1925,7 @@ Object {
                       style="position: absolute; top: 0px; right: 0px; font-size: 16px;"
                     >
                       ID: 
-                      0
+                      1
                     </div>
                   </div>
                   <p>
@@ -2037,24 +2023,14 @@ Object {
                   class="ui fluid container"
                 >
                   <div
-                    class="ui message"
-                    style="background-color: rgb(255, 241, 241);"
-                  >
-                    <i
-                      aria-hidden="true"
-                      class="red warning circle icon"
-                    />
-                    Please keep in mind that this review is more than 5 years old.
-                  </div>
-                  <div
                     style="position: relative;"
                   >
                     <h3
                       class="ui header"
                     >
-                      Lee
+                      POLS 3285
                        
-                      Bollinger
+                      Freedom of Speech and Press
                     </h3>
                     <h5
                       class="ui header"
@@ -2065,7 +2041,7 @@ Object {
                       style="position: absolute; top: 0px; right: 0px; font-size: 16px;"
                     >
                       ID: 
-                      1
+                      2
                     </div>
                   </div>
                   <p>

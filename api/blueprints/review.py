@@ -106,8 +106,8 @@ def get_reviews(page_type, id):
         'most negative': ['rating', 'ASC'],
         'newest': ['submission_date', 'DESC'],
         'oldest': ['submission_date', 'ASC'],
-        'most agreed': ['upvotes', 'DESC'],
-        'most disagreed': ['downvotes', 'DESC']
+        'most agreed': ['agrees', 'DESC'],
+        'most disagreed': ['disagrees', 'DESC']
     }
     page_type_and_query_prefixes = {
         'professor': prepare_professor_query_prefix,

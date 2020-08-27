@@ -175,6 +175,7 @@ export default function ReviewSection({initReviews, pageType, id, assocList}){
                 <Grid.Row key={1}>
                     <Grid.Column key={1} width={4}>
                         <Dropdown 
+                            name="sortingDropdown"
                             fluid
                             selection
                             options={sortingOptions}
@@ -186,6 +187,7 @@ export default function ReviewSection({initReviews, pageType, id, assocList}){
                     </Grid.Column>
                     <Grid.Column key={2} width={4}>
                         <Dropdown 
+                                name="filteringSingleSelectDropdown"
                                 fluid
                                 selection
                                 options={filterYearOptions}
@@ -198,6 +200,7 @@ export default function ReviewSection({initReviews, pageType, id, assocList}){
                     <Grid.Column key={3} width={1} />
                     <Grid.Column key={4} width={7}>
                         <Dropdown
+                            name="filteringMultiSelectDropdown"
                             fluid
                             multiple
                             search
