@@ -172,8 +172,8 @@ describe("review section snapshot tests", () => {
     });
     afterEach(() => jest.resetAllMocks());
 
-    test(`${reviews[0].reviewType} page test`, async () => {
-      const snapshot = await act(async () => {render(
+    test(`${reviews[0].reviewType} page test`, () => {
+      const snapshot = render(
         <MemoryRouter>
           <ReviewSection 
             associatedEntities={associatedEntities[pageType]}
@@ -182,7 +182,7 @@ describe("review section snapshot tests", () => {
             pageType={pageType}
           />
         </MemoryRouter>
-      )})
+      )
       expect(snapshot).toMatchSnapshot()
     })
   })
@@ -204,8 +204,8 @@ describe("filtering and sorting tests", () => {
     afterEach(() => jest.resetAllMocks());
 
     describe(`${pageType} page test`, () => {
-      beforeEach(async () => {
-        await act(async () => {render(
+      beforeEach(() => {
+        render(
           <MemoryRouter>
             <ReviewSection 
               associatedEntities={associatedEntities[pageType]}
@@ -214,7 +214,7 @@ describe("filtering and sorting tests", () => {
               pageType={pageType}
             />
           </MemoryRouter>
-        )})
+        )
       })
   
       singleDropdowns.forEach(({name, options}) => {
@@ -280,7 +280,7 @@ describe("pagination tests", () => {
   });
   afterEach(() => jest.resetAllMocks());
 
-  beforeEach(async () => {await act(async () => {render(
+  beforeEach(() => render(
     <MemoryRouter>
       <ReviewSection 
         associatedEntities={associatedEntities[pagTestReviewTemplate.reviewType]}
@@ -289,7 +289,7 @@ describe("pagination tests", () => {
         pageType={pagTestReviewTemplate.reviewType}
       />
     </MemoryRouter>
-  )})})
+  ))
 
   test("pagination click test", async () => {
     const beforeClick = screen.getAllByText("Workload").length

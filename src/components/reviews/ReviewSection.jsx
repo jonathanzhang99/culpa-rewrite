@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import React, { useEffect, useReducer } from "react"
+import React, { useEffect, useReducer, useRef } from "react"
 import { Container, Dropdown, Grid, Button, Icon } from "semantic-ui-react"
 
 import ErrorComponent from "components/common/ErrorComponent";
@@ -129,7 +129,12 @@ export default function ReviewSection({initReviews, pageType, id, associatedEnti
     }
   })
 
+  const firstRender = useRef(true)
   useEffect(() => {
+    if (firstRender.current){
+      firstRender.current = false
+      return
+    }
     const fetchReviews = async () => {
       dispatch({type: 'FETCH_START'})
       const filterList = state.filters.associatedEntitiesFilter.join(',')
