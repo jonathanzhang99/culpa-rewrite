@@ -10,6 +10,7 @@ import LoginPage from "components/LoginPage";
 import NavigationBar from "components/NavigationBar";
 import ProfessorInfoPage from "components/ProfessorInfoPage";
 import SearchResultsPage from "components/SearchResultsPage";
+import SingleReviewPage from "components/SingleReviewPage"
 
 function App() {
   return (
@@ -23,8 +24,11 @@ function App() {
             <ProtectedRoute exact path="/admin">
               <h1>Admin only page!!</h1>
             </ProtectedRoute>
-            <Route path="/review">
+            <Route exact path="/review/submit">
               <CreateReviewPage />
+            </Route>
+            <Route path="/review/:reviewId">
+              <SingleReviewPage />
             </Route>
             <Route path="/professor/:professorId">
               <ProfessorInfoPage />

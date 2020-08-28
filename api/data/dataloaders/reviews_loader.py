@@ -186,3 +186,62 @@ def get_reviews_with_query_prefix(
 
     cur.execute(q.get_sql())
     return cur.fetchall()
+
+
+def get_single_review(review_id, ip):
+    q = Query.from_(review).join(course_professor).on(
+        review.course_professor_id == course_professor.course_professor_id
+    ).join(course).on(
+        course.course_id == course_professor.course_id
+    ).join(professor).on(
+        professor.professor_id == course_professor.professor_id
+    ).join(flag).on(
+        Criterion.all([
+            review.review_id == review_id,
+            review.review_id == flag.review_id
+        ])
+    ).join(vote, JoinType.left).on(
+        review.review_id == vote.review_id
+    ).groupby(
+        course.course_id,
+        course.call_number,
+        course.name,
+        professor.professor_id,
+        professor.first_name,
+        professor.last_name,
+        professor.uni,
+        flag.type,
+        flag.created_at,
+        review.review_id,
+        review.content,
+        review.workload,
+        review.rating,
+        review.submission_date
+    ).select(
+        course.course_id,
+        course.call_number.as_('course_call_number'),
+        course.name.as_('course_name'),
+        professor.professor_id.as_('prof_id'),
+        professor.first_name.as_('prof_first_name'),
+        professor.last_name.as_('prof_last_name'),
+        professor.uni.as_('prof_uni'),
+        flag.type.as_('flag_type'),
+        review.review_id,
+        review.content,
+        review.workload,
+        review.rating,
+        review.submission_date,
+        vote_count('agree'),
+        vote_count('disagree'),
+        vote_count('funny'),
+        vote_clicked('agree', ip),
+        vote_clicked('disagree', ip),
+        vote_clicked('funny', ip)
+    ).orderby(
+        flag.created_at, order=Order.desc
+    ).limit(1).get_sql()
+
+    cur = db.get_cursor()
+    cur.execute(q)
+
+    return cur.fetchone()

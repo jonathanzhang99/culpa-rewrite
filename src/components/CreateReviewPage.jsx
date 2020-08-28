@@ -85,9 +85,8 @@ export default function CreateReviewPage() {
     }
   };
 
-  const onSubmitReviewSuccess = () => {
-    // TODO: redirect to the Review page
-    history.push(`/`);
+  const onSubmitReviewSuccess = (res) => {
+    history.push(`/review/${res.reviewId}`);
   };
 
   return (

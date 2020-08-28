@@ -169,7 +169,7 @@ export function VotesContainer({ reviewId, votes }) {
 VotesContainer.propTypes = propTypesVotesContainer;
 
 const propTypesReviewCard = {
-  reviewType: PropTypes.oneOf(["professor", "course"]).isRequired,
+  reviewType: PropTypes.oneOf(["professor", "course", "full"]).isRequired,
   reviewHeader: PropTypes.oneOfType([
     PropTypes.shape({
       courseId: PropTypes.number.isRequired,
@@ -182,6 +182,19 @@ const propTypesReviewCard = {
       profLastName: PropTypes.string.isRequired,
       uni: PropTypes.string.isRequired,
     }),
+    PropTypes.shape({
+      course: PropTypes.shape({
+        courseId: PropTypes.number.isRequired,
+        courseName: PropTypes.string.isRequired,
+        courseCode: PropTypes.string.isRequired,
+      }),
+      professor: PropTypes.shape({
+        profId: PropTypes.number.isRequired,
+        profFirstName: PropTypes.string.isRequired,
+        profLastName: PropTypes.string.isRequired,
+        uni: PropTypes.string.isRequired,
+      })
+    })
   ]).isRequired,
   votes: PropTypes.shape({
     initUpvoteCount: PropTypes.number.isRequired,
@@ -230,16 +243,32 @@ export default function ReviewCard({
               </Message>
             )}
             <div style={{ position: "relative" }}>
-              {reviewType === "professor" ? (
+              {reviewType === "professor" && (
+                <CourseDisplayName
+                  as="header"
+                  courseCallNumber={reviewHeader.courseCode}
+                  courseName={reviewHeader.courseName}
+              />)}
+              {reviewType === "course" && (
                 <ProfessorDisplayName
+                  as="header"
                   firstName={reviewHeader.profFirstName}
                   lastName={reviewHeader.profLastName}
                 />
-              ) : (
-                <CourseDisplayName
-                  courseCallNumber={reviewHeader.courseCode}
-                  courseName={reviewHeader.courseName}
-                />
+              )}
+              {reviewType === "full" && (
+                <div>
+                  <ProfessorDisplayName
+                    as="header"
+                    firstName={reviewHeader.professor.profFirstName}
+                    lastName={reviewHeader.professor.profLastName}
+                  />
+                  <CourseDisplayName
+                    as="header"
+                    courseCallNumber={reviewHeader.course.courseCode}
+                    courseName={reviewHeader.course.courseName}
+                  />
+                </div>
               )}
               <Header as="h5">{submissionDate}</Header>
               <div

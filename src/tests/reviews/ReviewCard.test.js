@@ -10,18 +10,18 @@ describe("ReviewCard tests setup", () => {
     {
       reviewType: "course",
       reviewHeader: {
-        courseId: 12345,
-        courseName: "intro to programming",
-        courseCode: "COMS1004",
+        profFirstName: "Adam",
+        profLastName: "Canon",
+        profId: 12345,
+        uni: "12345",
       },
     },
     {
       reviewType: "professor",
       reviewHeader: {
-        profFirstName: "Adam",
-        profLastName: "Canon",
-        profId: 12345,
-        uni: "12345",
+        courseId: 12345,
+        courseName: "intro to programming",
+        courseCode: "COMS1004",
       },
     },
   ];

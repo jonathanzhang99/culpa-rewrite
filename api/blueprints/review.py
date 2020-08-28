@@ -2,7 +2,8 @@ import flask
 from datetime import datetime, timedelta
 
 from api.data.dataloaders.reviews_loader import get_reviews_with_query_prefix,\
-    prepare_course_query_prefix, prepare_professor_query_prefix
+    prepare_course_query_prefix, prepare_professor_query_prefix, \
+    get_single_review
 from api.data.datawriters.reviews_writer import insert_review
 
 review_blueprint = flask.Blueprint('review_blueprint', __name__)
@@ -19,22 +20,36 @@ def parse_review(review, review_type):
     )
 
     if review_type == 'course':
-        reviewHeader = {
+        review_header = {
             'profId': review['professor_id'],
             'profFirstName': review['first_name'],
             'profLastName': review['last_name'],
             'uni': review['uni']
         }
-    else:
-        reviewHeader = {
+    elif review_type == 'professor':
+        review_header = {
             'courseId': review['course_id'],
             'courseName': review['name'],
             'courseCode': review['call_number']
         }
+    else:
+        review_header = {
+            'professor': {
+                'profId': review['prof_id'],
+                'profFirstName': review['prof_first_name'],
+                'profLastName': review['prof_last_name'],
+                'uni': review['prof_uni']
+            },
+            'course': {
+                'courseId': review['course_id'],
+                'courseName': review['course_name'],
+                'courseCode': review['course_call_number']
+            }
+        }
 
     return {
             'reviewType': review_type,
-            'reviewHeader': reviewHeader,
+            'reviewHeader': review_header,
             'votes': {
                 'initUpvoteCount': int(review['agrees']),
                 'initDownvoteCount': int(review['disagrees']),
@@ -153,3 +168,14 @@ def get_reviews(page_type, id):
     ) for review in reviews]
 
     return {'reviews': json}
+
+
+@review_blueprint.route('/get/<int:review_id>', methods=['GET'])
+def get_single_review_card_data(review_id):
+    ip = flask.request.remote_addr
+    review = get_single_review(review_id, ip)
+
+    return {
+        'flag': review['flag_type'],
+        'review': parse_review(review, 'full')
+    }
