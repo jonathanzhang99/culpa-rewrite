@@ -6,14 +6,15 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="ui fluid container"
+        class="ui container"
+        style="margin: 25px 0px;"
       >
         <div
           class="ui grid"
         >
           <div
             class="fourteen wide column"
-            style="background-color: rgb(242, 242, 242); padding: 30px;"
+            style="background-color: rgb(242, 242, 242); padding: 20px 30px;"
           >
             <div
               class="ui fluid container"
@@ -32,9 +33,9 @@ Object {
                 style="position: relative;"
               >
                 <span>
-                  COMS1004
+                  Adam
                    
-                  intro to programming
+                  Canon
                 </span>
                 <h5
                   class="ui header"
@@ -132,14 +133,15 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="ui fluid container"
+      class="ui container"
+      style="margin: 25px 0px;"
     >
       <div
         class="ui grid"
       >
         <div
           class="fourteen wide column"
-          style="background-color: rgb(242, 242, 242); padding: 30px;"
+          style="background-color: rgb(242, 242, 242); padding: 20px 30px;"
         >
           <div
             class="ui fluid container"
@@ -158,9 +160,9 @@ Object {
               style="position: relative;"
             >
               <span>
-                COMS1004
+                Adam
                  
-                intro to programming
+                Canon
               </span>
               <h5
                 class="ui header"
@@ -315,14 +317,15 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="ui fluid container"
+        class="ui container"
+        style="margin: 25px 0px;"
       >
         <div
           class="ui grid"
         >
           <div
             class="fourteen wide column"
-            style="background-color: rgb(242, 242, 242); padding: 30px;"
+            style="background-color: rgb(242, 242, 242); padding: 20px 30px;"
           >
             <div
               class="ui fluid container"
@@ -341,9 +344,9 @@ Object {
                 style="position: relative;"
               >
                 <span>
-                  COMS1004
+                  Adam
                    
-                  intro to programming
+                  Canon
                 </span>
                 <h5
                   class="ui header"
@@ -441,14 +444,15 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="ui fluid container"
+      class="ui container"
+      style="margin: 25px 0px;"
     >
       <div
         class="ui grid"
       >
         <div
           class="fourteen wide column"
-          style="background-color: rgb(242, 242, 242); padding: 30px;"
+          style="background-color: rgb(242, 242, 242); padding: 20px 30px;"
         >
           <div
             class="ui fluid container"
@@ -467,9 +471,9 @@ Object {
               style="position: relative;"
             >
               <span>
-                COMS1004
+                Adam
                  
-                intro to programming
+                Canon
               </span>
               <h5
                 class="ui header"
@@ -624,14 +628,15 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="ui fluid container"
+        class="ui container"
+        style="margin: 25px 0px;"
       >
         <div
           class="ui grid"
         >
           <div
             class="fourteen wide column"
-            style="background-color: rgb(242, 242, 242); padding: 30px;"
+            style="background-color: rgb(242, 242, 242); padding: 20px 30px;"
           >
             <div
               class="ui fluid container"
@@ -650,9 +655,9 @@ Object {
                 style="position: relative;"
               >
                 <span>
-                  COMS1004
+                  Adam
                    
-                  intro to programming
+                  Canon
                 </span>
                 <h5
                   class="ui header"
@@ -750,14 +755,15 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="ui fluid container"
+      class="ui container"
+      style="margin: 25px 0px;"
     >
       <div
         class="ui grid"
       >
         <div
           class="fourteen wide column"
-          style="background-color: rgb(242, 242, 242); padding: 30px;"
+          style="background-color: rgb(242, 242, 242); padding: 20px 30px;"
         >
           <div
             class="ui fluid container"
@@ -776,9 +782,9 @@ Object {
               style="position: relative;"
             >
               <span>
-                COMS1004
+                Adam
                  
-                intro to programming
+                Canon
               </span>
               <h5
                 class="ui header"
@@ -933,14 +939,15 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="ui fluid container"
+        class="ui container"
+        style="margin: 25px 0px;"
       >
         <div
           class="ui grid"
         >
           <div
             class="fourteen wide column"
-            style="background-color: rgb(242, 242, 242); padding: 30px;"
+            style="background-color: rgb(242, 242, 242); padding: 20px 30px;"
           >
             <div
               class="ui fluid container"
@@ -959,9 +966,9 @@ Object {
                 style="position: relative;"
               >
                 <span>
-                  Adam
+                  COMS1004
                    
-                  Canon
+                  intro to programming
                 </span>
                 <h5
                   class="ui header"
@@ -1059,14 +1066,15 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="ui fluid container"
+      class="ui container"
+      style="margin: 25px 0px;"
     >
       <div
         class="ui grid"
       >
         <div
           class="fourteen wide column"
-          style="background-color: rgb(242, 242, 242); padding: 30px;"
+          style="background-color: rgb(242, 242, 242); padding: 20px 30px;"
         >
           <div
             class="ui fluid container"
@@ -1085,9 +1093,9 @@ Object {
               style="position: relative;"
             >
               <span>
-                Adam
+                COMS1004
                  
-                Canon
+                intro to programming
               </span>
               <h5
                 class="ui header"
@@ -1242,14 +1250,15 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="ui fluid container"
+        class="ui container"
+        style="margin: 25px 0px;"
       >
         <div
           class="ui grid"
         >
           <div
             class="fourteen wide column"
-            style="background-color: rgb(242, 242, 242); padding: 30px;"
+            style="background-color: rgb(242, 242, 242); padding: 20px 30px;"
           >
             <div
               class="ui fluid container"
@@ -1268,9 +1277,9 @@ Object {
                 style="position: relative;"
               >
                 <span>
-                  Adam
+                  COMS1004
                    
-                  Canon
+                  intro to programming
                 </span>
                 <h5
                   class="ui header"
@@ -1368,14 +1377,15 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="ui fluid container"
+      class="ui container"
+      style="margin: 25px 0px;"
     >
       <div
         class="ui grid"
       >
         <div
           class="fourteen wide column"
-          style="background-color: rgb(242, 242, 242); padding: 30px;"
+          style="background-color: rgb(242, 242, 242); padding: 20px 30px;"
         >
           <div
             class="ui fluid container"
@@ -1394,9 +1404,9 @@ Object {
               style="position: relative;"
             >
               <span>
-                Adam
+                COMS1004
                  
-                Canon
+                intro to programming
               </span>
               <h5
                 class="ui header"
@@ -1551,14 +1561,15 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="ui fluid container"
+        class="ui container"
+        style="margin: 25px 0px;"
       >
         <div
           class="ui grid"
         >
           <div
             class="fourteen wide column"
-            style="background-color: rgb(242, 242, 242); padding: 30px;"
+            style="background-color: rgb(242, 242, 242); padding: 20px 30px;"
           >
             <div
               class="ui fluid container"
@@ -1577,9 +1588,9 @@ Object {
                 style="position: relative;"
               >
                 <span>
-                  Adam
+                  COMS1004
                    
-                  Canon
+                  intro to programming
                 </span>
                 <h5
                   class="ui header"
@@ -1677,14 +1688,15 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="ui fluid container"
+      class="ui container"
+      style="margin: 25px 0px;"
     >
       <div
         class="ui grid"
       >
         <div
           class="fourteen wide column"
-          style="background-color: rgb(242, 242, 242); padding: 30px;"
+          style="background-color: rgb(242, 242, 242); padding: 20px 30px;"
         >
           <div
             class="ui fluid container"
@@ -1703,9 +1715,9 @@ Object {
               style="position: relative;"
             >
               <span>
-                Adam
+                COMS1004
                  
-                Canon
+                intro to programming
               </span>
               <h5
                 class="ui header"
