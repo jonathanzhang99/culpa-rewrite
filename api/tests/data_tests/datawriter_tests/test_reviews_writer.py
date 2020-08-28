@@ -10,7 +10,7 @@ from api.tests.data_tests.common import setup_department_professor_courses
 NOW = datetime.datetime.utcnow().replace(microsecond=0)
 
 
-class ReviewsLoaderTest(LoadersWritersBaseTest):
+class ReviewsWriterTest(LoadersWritersBaseTest):
     @mock.patch('api.data.datawriters.reviews_writer.datetime')
     def test_insert_valid_review(self, mock_datetime):
         mock_datetime.datetime.utcnow.return_value = NOW
