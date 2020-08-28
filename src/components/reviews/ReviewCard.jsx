@@ -228,11 +228,11 @@ export default function ReviewCard({
   content,
 }) {
   return (
-    <Container fluid>
+    <Container style={{margin:"25px 0px"}}>
       <Grid>
         <Grid.Column
           key={1}
-          style={{ backgroundColor: "#F2F2F2", padding: "30px" }}
+          style={{ backgroundColor: "#F2F2F2", padding: "20px 30px" }}
           width={14}
         >
           <Container fluid>
@@ -243,7 +243,13 @@ export default function ReviewCard({
               </Message>
             )}
             <div style={{ position: "relative" }}>
-              {reviewType === "professor" && (
+              {reviewType === 'course' ? (
+                <ProfessorDisplayName
+                  as="header"
+                  firstName={reviewHeader.profFirstName}
+                  lastName={reviewHeader.profLastName}
+                />
+              ) : (
                 <CourseDisplayName
                   as="header"
                   courseCallNumber={reviewHeader.courseCode}

@@ -127,10 +127,12 @@ class ReviewTest(BaseTest):
         dates = [
             {
                 'submission_date': datetime.strptime('2014-01-01', '%Y-%m-%d'),
+                'formatted_date': 'Jan 01, 2014',
                 'deprecated': True
             },
             {
                 'submission_date': datetime.strptime('2019-01-01', '%Y-%m-%d'),
+                'formatted_date': 'Jan 01, 2019',
                 'deprecated': False
             },
         ]
@@ -170,7 +172,7 @@ class ReviewTest(BaseTest):
                             'downvoteClicked': review['disagree_clicked'],
                             'funnyClicked': review['funny_clicked']
                         },
-                        'submissionDate': review['submission_date'],
+                        'submissionDate': date['formatted_date'],
                         'workload': review['workload'],
                         'content': review['content'],
                         'reviewId': review['review_id'],
@@ -188,29 +190,33 @@ class ReviewTest(BaseTest):
     ):
         db_sort_specs = {
             '': ['submission_date', 'DESC'],
-            'best': ['rating', 'DESC'],
-            'worst': ['rating', 'ASC'],
+            'most_positive': ['rating', 'DESC'],
+            'most_negative': ['rating', 'ASC'],
             'newest': ['submission_date', 'DESC'],
             'oldest': ['submission_date', 'ASC'],
-            'most agreed': ['agrees', 'DESC'],
-            'most disagreed': ['disagrees', 'DESC']
+            'most_agreed': ['agrees', 'DESC'],
+            'most_disagreed': ['disagrees', 'DESC']
         }
         filters = [{
             'filter_list': '1,2,3,4',
             'filter_list_array': [1, 2, 3, 4],
-            'filter_year': 10
+            'filter_year': 10,
+            'filter_year_arg': 10,
         }, {
             'filter_list': '5,6,7',
             'filter_list_array': [5, 6, 7],
-            'filter_year': None
+            'filter_year': '',
+            'filter_year_arg': None
         }, {
             'filter_list': '',
             'filter_list_array': None,
-            'filter_year': 2
+            'filter_year': 2,
+            'filter_year_arg': 2
         }, {
             'filter_list': '',
             'filter_list_array': None,
-            'filter_year': None
+            'filter_year': '',
+            'filter_year_arg': None
         }]
         cases = [{
             'type': 'professor',
@@ -253,7 +259,7 @@ class ReviewTest(BaseTest):
                             ip,
                             sort_criterion,
                             sort_order,
-                            filter_val['filter_year']
+                            filter_val['filter_year_arg']
                         )
 
     @mock.patch("api.blueprints.review.prepare_professor_query_prefix")

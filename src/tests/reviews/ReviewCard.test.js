@@ -6,25 +6,22 @@ import { AuthProvider } from "components/common/Authentication";
 import ReviewCard from "components/reviews/ReviewCard";
 
 describe("ReviewCard tests setup", () => {
-  const diffTypes = [
-    {
-      reviewType: "course",
-      reviewHeader: {
-        profFirstName: "Adam",
-        profLastName: "Canon",
-        profId: 12345,
-        uni: "12345",
-      },
-    },
-    {
-      reviewType: "professor",
-      reviewHeader: {
-        courseId: 12345,
-        courseName: "intro to programming",
-        courseCode: "COMS1004",
-      },
-    },
-  ];
+  const diffTypes = [{
+    reviewType: 'course',
+    reviewHeader: {
+      profFirstName: "Adam",
+      profLastName: "Canon",
+      profId: 12345,
+      uni: "12345"
+    }
+  }, {
+    reviewType: 'professor',
+    reviewHeader: {
+      courseId: 12345,
+      courseName: "intro to programming",
+      courseCode: "COMS1004"
+    }
+  }]
 
   const diffVotes = [
     {

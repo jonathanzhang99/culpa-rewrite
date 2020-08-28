@@ -13,6 +13,7 @@ def parse_review(review, review_type):
     '''
     static method for parsing a review into a json object
     '''
+    formatted_date = review['submission_date'].strftime("%b %d, %Y")
     deprecated = (
         datetime.utcnow() - review['submission_date']
     ) / timedelta(days=1) >= flask.current_app.config.get(
@@ -61,7 +62,7 @@ def parse_review(review, review_type):
             'reviewId': review['review_id'],
             'content': review['content'],
             'workload': review['workload'],
-            'submissionDate': review['submission_date'],
+            'submissionDate': formatted_date,
             'deprecated': deprecated,
         }
 
@@ -116,12 +117,12 @@ def get_reviews(page_type, id):
     # value: sorting parameters for the database
     # (corresponds to the sort_criterion and sort_order)
     db_sort_specs = {
-        'best': ['rating', 'DESC'],
-        'worst': ['rating', 'ASC'],
+        'most_positive': ['rating', 'DESC'],
+        'most_negative': ['rating', 'ASC'],
         'newest': ['submission_date', 'DESC'],
         'oldest': ['submission_date', 'ASC'],
-        'most agreed': ['agrees', 'DESC'],
-        'most disagreed': ['disagrees', 'DESC']
+        'most_agreed': ['agrees', 'DESC'],
+        'most_disagreed': ['disagrees', 'DESC']
     }
     page_type_and_query_prefixes = {
         'professor': prepare_professor_query_prefix,
@@ -152,7 +153,7 @@ def get_reviews(page_type, id):
 
     if filter_list_raw:
         filter_list = [int(x) for x in filter_list_raw.split(',')]
-    if filter_year_raw and filter_year_raw not in ['null', 'None']:
+    if filter_year_raw:
         filter_year = int(filter_year_raw)
 
     reviews = get_reviews_with_query_prefix(
