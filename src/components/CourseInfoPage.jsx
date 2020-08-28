@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import { Icon, Accordion, Table } from "semantic-ui-react";
+import { Icon, Accordion, Grid, Container } from "semantic-ui-react";
 
 import { CourseDisplayName } from "components/common/CourseDisplay";
 import CreateReviewButton from "components/common/CreateReviewButton";
@@ -11,16 +11,225 @@ import LoadingComponent from "components/common/LoadingComponent";
 import { ProfessorDisplayLink } from "components/common/ProfessorDisplay";
 import useDataFetch from "components/common/useDataFetch";
 
-const propTypes = {
-  courseId: PropTypes.number.isRequired,
+const MAX_NUM_PROFESSORS_IN_LIST = 5;
+
+const propTypesProfessorsList = {
+  courseProfessors: PropTypes.arrayOf(
+    PropTypes.shape({
+      firstName: PropTypes.string.isRequired,
+      lastName: PropTypes.string.isRequired,
+      professorId: PropTypes.number.isRequired,
+      professorDepartments: PropTypes.arrayOf(
+        PropTypes.shape({
+          professorDepartmentId: PropTypes.number.isRequired,
+          professorDepartmentName: PropTypes.string.isRequired,
+        }).isRequired
+      ).isRequired,
+    }).isRequired
+  ).isRequired,
+};
+
+export function ProfessorsList({ courseProfessors }) {
+  return (
+    <>
+      <>Professors: </>
+      {courseProfessors.map(({ firstName, lastName, professorId }, index) => {
+        return (
+          <React.Fragment key={professorId}>
+            <ProfessorDisplayLink
+              firstName={firstName}
+              lastName={lastName}
+              professorId={professorId}
+            />
+            {index !== courseProfessors.length - 1 ? ", " : ""}
+          </React.Fragment>
+        );
+      })}
+    </>
+  );
+}
+
+const propTypesProfessorsAccordion = {
+  isAccordionActive: PropTypes.bool.isRequired,
+  setAccordionActive: PropTypes.func.isRequired,
+  courseProfessors: PropTypes.arrayOf(
+    PropTypes.shape({
+      firstName: PropTypes.string.isRequired,
+      lastName: PropTypes.string.isRequired,
+      professorId: PropTypes.number.isRequired,
+      professorDepartments: PropTypes.arrayOf(
+        PropTypes.shape({
+          professorDepartmentId: PropTypes.number.isRequired,
+          professorDepartmentName: PropTypes.string.isRequired,
+        }).isRequired
+      ).isRequired,
+    }).isRequired
+  ).isRequired,
+};
+
+export function ProfessorsAccordion({
+  isAccordionActive,
+  setAccordionActive,
+  courseProfessors,
+}) {
+  return (
+    <Accordion>
+      <Accordion.Title
+        active={isAccordionActive}
+        onClick={() => setAccordionActive(!isAccordionActive)}
+      >
+        <Icon name={!isAccordionActive ? "angle down" : "angle up"} />
+        <>
+          {!isAccordionActive ? "Show" : "Hide"} all professors who teach this
+          course
+        </>
+      </Accordion.Title>
+      <Accordion.Content active={isAccordionActive}>
+        <CourseProfessorsGrid courseProfessors={courseProfessors} />
+      </Accordion.Content>
+    </Accordion>
+  );
+}
+
+const propTypesProfessorsComponent = {
+  isAccordionActive: PropTypes.bool.isRequired,
+  setAccordionActive: PropTypes.func.isRequired,
+  courseProfessors: PropTypes.arrayOf(
+    PropTypes.shape({
+      firstName: PropTypes.string.isRequired,
+      lastName: PropTypes.string.isRequired,
+      professorId: PropTypes.number.isRequired,
+      professorDepartments: PropTypes.arrayOf(
+        PropTypes.shape({
+          professorDepartmentId: PropTypes.number.isRequired,
+          professorDepartmentName: PropTypes.string.isRequired,
+        }).isRequired
+      ).isRequired,
+    }).isRequired
+  ).isRequired,
+};
+
+export function ProfessorsComponent({
+  isAccordionActive,
+  setAccordionActive,
+  courseProfessors,
+}) {
+  return courseProfessors.length > MAX_NUM_PROFESSORS_IN_LIST ? (
+    <ProfessorsAccordion
+      courseProfessors={courseProfessors}
+      isAccordionActive={isAccordionActive}
+      setAccordionActive={setAccordionActive}
+    />
+  ) : (
+    <ProfessorsList courseProfessors={courseProfessors} />
+  );
+}
+
+const propTypesProfessorDepartmentColumn = {
+  professorId: PropTypes.number.isRequired,
+  professorDepartments: PropTypes.arrayOf(
+    PropTypes.shape({
+      professorDepartmentId: PropTypes.number.isRequired,
+      professorDepartmentName: PropTypes.string.isRequired,
+    }).isRequired
+  ).isRequired,
+};
+
+export function ProfessorDepartmentColumn({
+  professorId,
+  professorDepartments,
+}) {
+  return (
+    <Grid.Column key={`${professorId}_departments`}>
+      {professorDepartments.map(
+        ({ professorDepartmentId, professorDepartmentName }, index) => {
+          return (
+            <React.Fragment key={professorDepartmentName}>
+              <DepartmentDisplayLink
+                departmentId={professorDepartmentId}
+                departmentName={professorDepartmentName}
+              />
+              {professorDepartments.length - 1 !== index ? ", " : ""}
+            </React.Fragment>
+          );
+        }
+      )}
+    </Grid.Column>
+  );
+}
+
+const propTypesCourseProfessorsGrid = {
+  courseProfessors: PropTypes.arrayOf(
+    PropTypes.shape({
+      firstName: PropTypes.string.isRequired,
+      lastName: PropTypes.string.isRequired,
+      professorId: PropTypes.number.isRequired,
+      professorDepartments: PropTypes.arrayOf(
+        PropTypes.shape({
+          professorDepartmentId: PropTypes.number.isRequired,
+          professorDepartmentName: PropTypes.string.isRequired,
+        }).isRequired
+      ).isRequired,
+    }).isRequired
+  ).isRequired,
+};
+
+export function CourseProfessorsGrid({ courseProfessors }) {
+  return (
+    <Grid columns={2}>
+      {courseProfessors.map(
+        ({ firstName, lastName, professorId, professorDepartments }) => {
+          return (
+            <Grid.Row key={`${professorId}_row`}>
+              <Grid.Column key={`${professorId}_link`}>
+                <ProfessorDisplayLink
+                  firstName={firstName}
+                  lastName={lastName}
+                  professorId={professorId}
+                />
+              </Grid.Column>
+              <ProfessorDepartmentColumn
+                professorDepartments={professorDepartments}
+                professorId={professorId}
+              />
+            </Grid.Row>
+          );
+        }
+      )}
+    </Grid>
+  );
+}
+
+const propTypesReviewCourseButton = {
+  courseId: PropTypes.string.isRequired,
+  courseName: PropTypes.string.isRequired,
+};
+
+export function ReviewCourseButton({ courseId, courseName }) {
+  return (
+    <CreateReviewButton color="yellow" courseId={courseId}>
+      WRITE A REVIEW FOR {courseName}
+    </CreateReviewButton>
+  );
+}
+
+const propTypesCourseSummary = {
+  courseId: PropTypes.string.isRequired,
   courseName: PropTypes.string.isRequired,
   courseCallNumber: PropTypes.string.isRequired,
   departmentId: PropTypes.number.isRequired,
   departmentName: PropTypes.string.isRequired,
   courseProfessors: PropTypes.arrayOf(
     PropTypes.shape({
-      professorDepartmentId: PropTypes.number.isRequired,
-      professorDepartmentName: PropTypes.string.isRequired,
+      firstName: PropTypes.string.isRequired,
+      lastName: PropTypes.string.isRequired,
+      professorId: PropTypes.number.isRequired,
+      professorDepartments: PropTypes.arrayOf(
+        PropTypes.shape({
+          professorDepartmentId: PropTypes.number.isRequired,
+          professorDepartmentName: PropTypes.string.isRequired,
+        }).isRequired
+      ).isRequired,
     }).isRequired
   ).isRequired,
 };
@@ -35,90 +244,28 @@ export function CourseSummary({
 }) {
   const [isAccordionActive, setAccordionActive] = useState(false);
   return (
-    <div>
-      <div>
-        <CourseDisplayName
-          courseCallNumber={courseCallNumber}
-          name={courseName}
+    <>
+      <CourseDisplayName
+        as="header"
+        courseCallNumber={courseCallNumber}
+        courseName={courseName}
+      />
+      <Container>
+        <Container>
+          <>Department: </>
+          <DepartmentDisplayLink
+            departmentId={departmentId}
+            departmentName={departmentName}
+          />
+        </Container>
+        <ProfessorsComponent
+          courseProfessors={courseProfessors}
+          isAccordionActive={isAccordionActive}
+          setAccordionActive={setAccordionActive}
         />
-      </div>
-      <div>
-        <span>Department: </span>
-        <DepartmentDisplayLink
-          departmentId={departmentId}
-          departmentName={departmentName}
-        />
-      </div>
-      <div>
-        <Accordion>
-          <Accordion.Title
-            active={isAccordionActive}
-            onClick={() => setAccordionActive(!isAccordionActive)}
-          >
-            <Icon name={!isAccordionActive ? "angle down" : "angle up"} />
-            <span>
-              {!isAccordionActive ? "Show" : "Hide"} all professors who teach
-              this course
-            </span>
-          </Accordion.Title>
-          <Accordion.Content active={isAccordionActive}>
-            <Table>
-              <tbody>
-                {/* Having <tbody> prevents browser bugs from inserting into the Table. */}
-                {courseProfessors.map(
-                  ({
-                    firstName,
-                    lastName,
-                    professorId,
-                    professorDepartments,
-                  }) => {
-                    return (
-                      <Table.Row key={professorId}>
-                        <Table.Cell key={`${professorId}_link`}>
-                          <ProfessorDisplayLink
-                            firstName={firstName}
-                            lastName={lastName}
-                            professorId={professorId}
-                          />
-                        </Table.Cell>
-                        <Table.Cell key={`${professorId}_departments`}>
-                          {professorDepartments.map(
-                            (
-                              {
-                                professorDepartmentId,
-                                professorDepartmentName,
-                              },
-                              index
-                            ) => {
-                              return (
-                                <span>
-                                  <DepartmentDisplayLink
-                                    departmentId={professorDepartmentId}
-                                    departmentName={professorDepartmentName}
-                                  />
-                                  {professorDepartments.length - 1 !== index
-                                    ? ", "
-                                    : ""}
-                                </span>
-                              );
-                            }
-                          )}
-                        </Table.Cell>
-                      </Table.Row>
-                    );
-                  }
-                )}
-              </tbody>
-            </Table>
-          </Accordion.Content>
-        </Accordion>
-      </div>
-      <div>
-        <CreateReviewButton color="yellow" courseId={courseId.toString()}>
-          WRITE A REVIEW FOR {courseName}
-        </CreateReviewButton>
-      </div>
-    </div>
+      </Container>
+      <ReviewCourseButton courseId={courseId} courseName={courseName} />
+    </>
   );
 }
 
@@ -158,5 +305,10 @@ export default function CourseInfoPage() {
     />
   );
 }
-
-CourseSummary.propTypes = propTypes;
+ProfessorsList.propTypes = propTypesProfessorsList;
+ProfessorsAccordion.propTypes = propTypesProfessorsAccordion;
+ProfessorsComponent.propTypes = propTypesProfessorsComponent;
+CourseProfessorsGrid.propTypes = propTypesCourseProfessorsGrid;
+ProfessorDepartmentColumn.propTypes = propTypesProfessorDepartmentColumn;
+ReviewCourseButton.propTypes = propTypesReviewCourseButton;
+CourseSummary.propTypes = propTypesCourseSummary;
