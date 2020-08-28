@@ -44,7 +44,7 @@ review_summary = {
         },
         "reviewId": 1,
         "reviewType": "professor",
-        "submissionDate": "Wed, 15 Jan 2020 00:00:00 GMT",
+        "submissionDate": datetime(2020, 1, 15, 0, 0).strftime("%b %d, %Y"),
         "votes": {
             "downvoteClicked": False,
             "funnyClicked": False,
@@ -65,7 +65,7 @@ review_summary = {
         },
         "reviewId": 1,
         "reviewType": "professor",
-        "submissionDate": "Wed, 15 Jan 2020 00:00:00 GMT",
+        "submissionDate": datetime(2020, 1, 15, 0, 0).strftime("%b %d, %Y"),
         "votes": {
             "downvoteClicked": False,
             "funnyClicked": False,
@@ -87,6 +87,7 @@ class CoursesTest(BaseTest):
     def test_course_summary(self, mock_get_course,
                             mock_get_department_professors,
                             mock_get_course_review_summary):
+        self.maxDiff = None
         course_id = 1
 
         mock_get_course.return_value = [{
@@ -163,6 +164,8 @@ class CoursesTest(BaseTest):
     def test_course_summary_no_professors(self, mock_get_course,
                                           mock_get_department_professors,
                                           mock_get_course_review_summary):
+        self.maxDiff = None
+
         course_id = 1
 
         mock_get_course.return_value = [{
@@ -265,6 +268,8 @@ class CoursesTest(BaseTest):
     def test_course_summary_one_review_summary(self, mock_get_course,
                                                mock_get_department_professors,
                                                mock_get_course_review_summary):
+        self.maxDiff = None
+
         course_id = 1
 
         mock_get_course.return_value = [{
@@ -333,7 +338,8 @@ class CoursesTest(BaseTest):
                     },
                     "reviewId": 1,
                     "reviewType": "professor",
-                    "submissionDate": "Wed, 15 Jan 2020 00:00:00 GMT",
+                    "submissionDate":
+                        datetime(2020, 1, 15, 0, 0).strftime("%b %d, %Y"),
                     "votes": {
                         "downvoteClicked": False,
                         "funnyClicked": False,
