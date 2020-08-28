@@ -130,6 +130,32 @@ const singleDropdowns = [{
   ]
 }]
 
+const pagTestReviewTemplate = {
+    reviewType: 'course',
+    reviewHeader: {
+        profId: 1,
+        profFirstName: 'Nakul',
+        profLastName: 'Verma',
+        uni: 'nv2274'
+    },
+    votes: {
+        initUpvoteCount: 3,
+        initDownvoteCount: 2,
+        initFunnyCount: 1,
+        upvoteClicked: true,
+        downvoteClicked: false,
+        funnyClicked: true
+    },
+    content: "demo content",
+    workload: "demo workload",
+    submissionDate: "2020-01-01",
+    deprecated: true
+}
+
+const NUM_REVIEWS_PER_PAGE = 5
+const paginationTestReviews = Array(NUM_REVIEWS_PER_PAGE * 3).fill().map((_, index) => (
+    {reviewId: index, ...pagTestReviewTemplate}
+))
 const pageId = 12345
 
 describe("review section snapshot tests", () => {
@@ -217,8 +243,8 @@ describe("filtering and sorting tests", () => {
 
       associatedEntities[pageType].forEach((option) => {
         const text = pageType === 'professor' ? 
-            `[${option.courseCode}] ${option.courseName}` :
-            `${option.firstName} ${option.lastName}`
+          `[${option.courseCode}] ${option.courseName}` :
+          `${option.firstName} ${option.lastName}`
         const optionId = pageType === 'professor' ? option.courseId : option.professorId
         
         test(`testing single option '${text}' with associatedEntityFilter`, async () => {
@@ -239,5 +265,47 @@ describe("filtering and sorting tests", () => {
         })
       })            
     })
+  })
+})
+
+describe("pagination tests", () => {
+
+  let mockFetch;
+  beforeEach(() => {
+    mockFetch = jest.spyOn(global, "fetch");
+    mockFetch.mockImplementation(() => Promise.resolve({
+      ok: true,
+      json: () => ({reviews: paginationTestReviews})
+    }));
+  });
+  afterEach(() => jest.resetAllMocks());
+
+  beforeEach(() => render(
+    <MemoryRouter>
+      <ReviewSection 
+        associatedEntities={associatedEntities[pagTestReviewTemplate.reviewType]}
+        id={pageId}
+        initReviews={paginationTestReviews}
+        pageType={pagTestReviewTemplate.reviewType}
+      />
+    </MemoryRouter>
+  ))
+
+  test("pagination click test", async () => {
+    const beforeClick = screen.getAllByText("Workload").length
+    
+    await act(async () => {
+      fireEvent.click(screen.getByRole('button', {name: "Show more"}))
+    })
+    const clickOnce = screen.getAllByText("Workload").length
+    
+    await act(async () => {
+      fireEvent.click(screen.getByRole('button', {name: "Show more"}))
+    })
+    const clickTwice = screen.getAllByText("Workload").length
+
+    expect(beforeClick).toBe(NUM_REVIEWS_PER_PAGE)
+    expect(clickOnce).toBe(NUM_REVIEWS_PER_PAGE * 2)
+    expect(clickTwice).toBe(NUM_REVIEWS_PER_PAGE * 3)
   })
 })

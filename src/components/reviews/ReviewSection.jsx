@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import React, { useEffect, useReducer, useRef } from "react"
-import { Container, Dropdown, Grid } from "semantic-ui-react"
+import { Container, Dropdown, Grid, Button, Icon } from "semantic-ui-react"
 
 import ErrorComponent from "components/common/ErrorComponent";
 import LoadingComponent from "components/common/LoadingComponent";
@@ -57,6 +57,7 @@ const propTypesReviewSection = {
 }
 
 export default function ReviewSection({initReviews, pageType, id, associatedEntities}){
+  const NUM_REVIEWS_PER_PAGE = 5
   const reducer = (state, action) => {
     switch(action.type){
       case "FETCH_START":
@@ -81,11 +82,13 @@ export default function ReviewSection({initReviews, pageType, id, associatedEnti
       case "CHANGE_SORTING":
         return {
           ...state,
+          pageNumber: 1,
           sorting: action.payload.sorting
         };
       case "CHANGE_FILTER_YEAR":
         return {
           ...state,
+          pageNumber: 1,
           filters: {
             associatedEntitiesFilter: state.filters.associatedEntitiesFilter,
             year: action.payload.filterYear,
@@ -95,10 +98,16 @@ export default function ReviewSection({initReviews, pageType, id, associatedEnti
       case "CHANGE_FILTER_ASSOC_LIST":
         return {
           ...state,
+          pageNumber: 1,
           filters: {
             ...state.filters,
             associatedEntitiesFilter: action.payload.associatedEntitiesFilter
           }
+        }
+      case "INCREMENT_PAGE_NUMBER":
+        return {
+          ...state,
+          pageNumber: state.pageNumber + 1
         }
       default:
         throw new Error()
@@ -109,6 +118,7 @@ export default function ReviewSection({initReviews, pageType, id, associatedEnti
     isError: false,
     reviews: initReviews,
     associatedEntities,
+    pageNumber: 1,
     pageType,
     id,
     sorting: '',
@@ -202,6 +212,10 @@ export default function ReviewSection({initReviews, pageType, id, associatedEnti
     })
   }
 
+  const onClickPagButton = () => {
+    dispatch({type: "INCREMENT_PAGE_NUMBER"})
+  }
+
   if (state.isLoading || state.isError) {
     return state.isLoading ? <LoadingComponent /> : <ErrorComponent />;
   }
@@ -253,7 +267,9 @@ export default function ReviewSection({initReviews, pageType, id, associatedEnti
           </Grid.Column>
         </Grid.Row>
         <Grid.Row>
-          {state.reviews.map((review) => {return (
+          {state.reviews.slice(
+            0, state.pageNumber * NUM_REVIEWS_PER_PAGE
+          ).map((review) => {return (
             <ReviewCard 
               content={review.content}
               deprecated={review.deprecated}
@@ -266,6 +282,16 @@ export default function ReviewSection({initReviews, pageType, id, associatedEnti
               workload={review.workload}
             />
           )})}
+        </Grid.Row>
+        <Grid.Row centered key={3} style={{marginBottom: '50px'}}>
+          <Button 
+            fluid 
+            name="showMoreButton" 
+            size="large"
+            onClick={onClickPagButton}
+          >
+            Show more<Icon name="arrow down" style={{marginLeft: '5px'}}/>
+          </Button>
         </Grid.Row>
       </Grid>
     </Container>
