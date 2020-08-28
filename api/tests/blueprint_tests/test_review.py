@@ -176,19 +176,23 @@ class ReviewTest(BaseTest):
         filters = [{
             'filter_list': '1,2,3,4',
             'filter_list_array': [1, 2, 3, 4],
-            'filter_year': 10
+            'filter_year': 10,
+            'filter_year_arg': 10,
         }, {
             'filter_list': '5,6,7',
             'filter_list_array': [5, 6, 7],
-            'filter_year': None
+            'filter_year': '',
+            'filter_year_arg': None
         }, {
             'filter_list': '',
             'filter_list_array': None,
-            'filter_year': 2
+            'filter_year': 2,
+            'filter_year_arg': 2
         }, {
             'filter_list': '',
             'filter_list_array': None,
-            'filter_year': None
+            'filter_year': '',
+            'filter_year_arg': None
         }]
         cases = [{
             'type': 'professor',
@@ -231,7 +235,7 @@ class ReviewTest(BaseTest):
                             ip,
                             sort_criterion,
                             sort_order,
-                            filter_val['filter_year']
+                            filter_val['filter_year_arg']
                         )
 
     @mock.patch("api.blueprints.review.prepare_professor_query_prefix")

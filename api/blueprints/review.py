@@ -138,7 +138,7 @@ def get_reviews(page_type, id):
 
     if filter_list_raw:
         filter_list = [int(x) for x in filter_list_raw.split(',')]
-    if filter_year_raw and filter_year_raw not in ['null', 'None']:
+    if filter_year_raw:
         filter_year = int(filter_year_raw)
 
     reviews = get_reviews_with_query_prefix(
