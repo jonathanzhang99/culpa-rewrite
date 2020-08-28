@@ -9,6 +9,9 @@ VERMA_PROFESSOR_ID = 1
 BOLLINGER_PROFESSOR_ID = 2
 JWL_PROFESSOR_ID = 3
 BAD_PROFESSOR_ID = -1
+COMPUTER_DEPARTMENT_ID = 1
+LAW_DEPARTMENT_ID = 2
+MATH_DEPARTMENT_ID = 3
 
 
 class ProfessorsLoaderTest(LoadersWritersBaseTest):
@@ -65,16 +68,21 @@ class ProfessorsLoaderTest(LoadersWritersBaseTest):
         name = load_professor_name(BAD_PROFESSOR_ID)
         self.assertEqual((), name)
 
-    def test_search_professor_by_name(self):
-        results = search_professor('nakul verma')
+    def test_search_professor_with_one_department_by_name(self):
+        setup_department_professor_courses(self.cur)
+        db.commit()
+
+        results = search_professor('bollinger')
         self.assertEqual(len(results), 1)
 
         # assert the data formatting is correct
         self.assertEqual(
             set(results[0].keys()),
             set([
+                'department_id',
                 'first_name',
                 'last_name',
+                'name',
                 'professor_id',
                 'score',
                 'uni'
@@ -83,12 +91,48 @@ class ProfessorsLoaderTest(LoadersWritersBaseTest):
 
         # The mysql relevancy ranking algorithm (TF-IDF, BM25 varaiant) should
         # all be > 0 but individual values will differ across OS.
-        self.assertGreater(results[0].get('score'), 0.4)
+        self.assertGreater(results[0].get('score'), 0.2)
 
         # We only compare `professor_id` and not the entire object because
         # score suffers from floating point precision errors which may easily
         # differ between OS/updates.
-        self.assertEqual(results[0].get('professor_id'), VERMA_PROFESSOR_ID)
+        self.assertEqual(
+            results[0].get('professor_id'), BOLLINGER_PROFESSOR_ID
+        )
+
+        self.assertEqual(results[0].get('department_id'), LAW_DEPARTMENT_ID)
+
+    def test_search_professor_with_multiple_departments_by_name(self):
+        setup_department_professor_courses(self.cur)
+        db.commit()
+
+        results = search_professor('nakul verma')
+        self.assertEqual(len(results), 2)  # verma is in 2 departments
+
+        # assert the data formatting is correct
+        self.assertEqual(
+            set(results[0].keys()),
+            set([
+                'department_id',
+                'first_name',
+                'last_name',
+                'name',
+                'professor_id',
+                'score',
+                'uni'
+            ])
+        )
+
+        for result in results:
+            self.assertGreater(result.get('score'), 0.4)
+            self.assertEqual(result.get('professor_id'), VERMA_PROFESSOR_ID)
+
+        self.assertEqual(
+            results[0].get('department_id'), COMPUTER_DEPARTMENT_ID
+        )
+        self.assertEqual(
+            results[1].get('department_id'), MATH_DEPARTMENT_ID
+        )
 
     def test_search_multiple_professors_by_name(self):
         results = search_professor('lee')
@@ -99,6 +143,11 @@ class ProfessorsLoaderTest(LoadersWritersBaseTest):
             self.assertGreater(prof.get('score'), 0)
             self.assertEqual(prof.get('professor_id'), expected_prof_id)
 
+        self.assertEqual(results[0].get('department_id'), LAW_DEPARTMENT_ID)
+        self.assertEqual(
+            results[1].get('department_id'), COMPUTER_DEPARTMENT_ID
+        )
+
     def test_search_professor_by_uni(self):
         results = search_professor('lcb50')
         self.assertEqual(len(results), 1)
@@ -106,6 +155,7 @@ class ProfessorsLoaderTest(LoadersWritersBaseTest):
         self.assertEqual(
             results[0].get('professor_id'), BOLLINGER_PROFESSOR_ID
         )
+        self.assertEqual(results[0].get('department_id'), LAW_DEPARTMENT_ID)
 
     def test_search_professor_with_limit(self):
         results = search_professor('lee', limit=1)
@@ -114,6 +164,7 @@ class ProfessorsLoaderTest(LoadersWritersBaseTest):
         self.assertEqual(
             results[0].get('professor_id'), BOLLINGER_PROFESSOR_ID
         )
+        self.assertEqual(results[0].get('department_id'), LAW_DEPARTMENT_ID)
 
     def test_search_professor_no_results(self):
         results = search_professor('bad professor name', limit=1)

@@ -8,7 +8,7 @@ describe("Create Review Page tests", () => {
   const serverProfessorResponseJson = {
     professorResults: [
       {
-        badge: "Silver", // TODO: Update to list of badge id
+        childKey: "professor-2339",
         departments: [
           {
             id: 29,
@@ -20,16 +20,14 @@ describe("Create Review Page tests", () => {
         type: "professor",
       },
       {
-        badge: "Silver",
+        childKey: "professor-1612",
         departments: [
           {
             id: 76,
             name: "Political Science",
           },
         ],
-        firstname: "Lee",
         last: "true",
-        lastname: "Bollinger",
         id: 1612,
         title: "Lee Bollinger",
         type: "professor",
@@ -144,7 +142,7 @@ describe("Create Review Page tests", () => {
         expect(await screen.getByText(/lee bollinger/i)).toBeInTheDocument();
         expect(mockFetch).toHaveBeenCalledTimes(1);
         expect(mockFetch).toHaveBeenCalledWith(
-          "/api/search?entity=professor&query=testProfessorName",
+          "/api/search?entity=professor&query=testProfessorName&limit=5",
           {
             method: "GET",
             headers: { "Content-Type": "Application/json" },
@@ -172,7 +170,7 @@ describe("Create Review Page tests", () => {
         ).toBeInTheDocument();
         expect(mockFetch).toHaveBeenCalledTimes(1);
         expect(mockFetch).toHaveBeenCalledWith(
-          "/api/search?entity=professor&query=testProfessorName",
+          "/api/search?entity=professor&query=testProfessorName&limit=5",
           {
             method: "GET",
             headers: { "Content-Type": "Application/json" },

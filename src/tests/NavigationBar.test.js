@@ -9,7 +9,7 @@ describe("Navbar Component Tests", () => {
   const professorAndCourseResults = {
     professorResults: [
       {
-        badge: "Silver", // TODO: Update to list of badge id
+        childKey: "professor-2339",
         departments: [
           {
             id: 29,
@@ -24,13 +24,14 @@ describe("Navbar Component Tests", () => {
     ],
     courseResults: [
       {
-        id: 1,
+        childKey: "course-1",
         departments: [
           {
             id: 6,
             name: "Computer Science",
           },
         ],
+        id: 1,
         title: "User Interface Design",
         type: "course",
       },
@@ -40,7 +41,7 @@ describe("Navbar Component Tests", () => {
   const onlyProfessorResults = {
     professorResults: [
       {
-        badge: "Silver", // TODO: Update to list of badge id
+        childKey: "professor-2339",
         departments: [
           {
             id: 29,
@@ -60,14 +61,14 @@ describe("Navbar Component Tests", () => {
     professorResults: [],
     courseResults: [
       {
-        id: 1,
-        name: "User Interface Design",
+        childKey: "course-1",
         departments: [
           {
             id: 6,
             name: "Computer Science",
           },
         ],
+        id: 1,
         title: "User Interface Design",
         type: "course",
       },
@@ -144,7 +145,7 @@ describe("Navbar Component Tests", () => {
         await screen.getByText(/user interface design/i)
       ).toBeInTheDocument();
       expect(mockFetch).toHaveBeenCalledWith(
-        "/api/search?entity=all&query=testSearchValue",
+        "/api/search?entity=all&query=testSearchValue&limit=5",
         {
           method: "GET",
           headers: { "Content-Type": "Application/json" },
@@ -166,7 +167,7 @@ describe("Navbar Component Tests", () => {
         await screen.queryByText(/user interface design/i)
       ).not.toBeInTheDocument();
       expect(mockFetch).toHaveBeenCalledWith(
-        "/api/search?entity=all&query=testSearchValue",
+        "/api/search?entity=all&query=testSearchValue&limit=5",
         {
           method: "GET",
           headers: { "Content-Type": "Application/json" },
@@ -188,7 +189,7 @@ describe("Navbar Component Tests", () => {
         await screen.getByText(/user interface design/i)
       ).toBeInTheDocument();
       expect(mockFetch).toHaveBeenCalledWith(
-        "/api/search?entity=all&query=testSearchValue",
+        "/api/search?entity=all&query=testSearchValue&limit=5",
         {
           method: "GET",
           headers: { "Content-Type": "Application/json" },
@@ -210,7 +211,7 @@ describe("Navbar Component Tests", () => {
         await screen.queryByText(/user interface design/i)
       ).not.toBeInTheDocument();
       expect(mockFetch).toHaveBeenCalledWith(
-        "/api/search?entity=all&query=testSearchValue",
+        "/api/search?entity=all&query=testSearchValue&limit=5",
         {
           method: "GET",
           headers: { "Content-Type": "Application/json" },

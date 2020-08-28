@@ -264,85 +264,68 @@ function searchReducer(state, action) {
 }
 
 const propTypesSearchResult = {
-  resultKey: PropTypes.string.isRequired,
-  name: PropTypes.element.isRequired,
-  departments: PropTypes.arrayOf(PropTypes.element).isRequired,
-  last: PropTypes.string,
+  result: PropTypes.shape({
+    departments: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
+      })
+    ).isRequired,
+    id: PropTypes.number.isRequired,
+    last: PropTypes.string,
+    title: PropTypes.string.isRequired,
+    type: PropTypes.oneOf(["professor", "course"]).isRequired,
+  }).isRequired,
 };
 
-const defaultPropsSearchResult = {
-  last: undefined,
-};
-
-function SearchResult({ resultKey, name, departments, last }) {
+function SearchResult({ result }) {
+  const { departments, last, title, type } = result;
   return (
-    <Grid className={last && "last-divider"} columns={2} key={resultKey}>
-      <Grid.Column>{name}</Grid.Column>
-      <Grid.Column>{departments}</Grid.Column>
+    <Grid className={last && "last-divider"} columns={2}>
+      <Grid.Column>
+        {type === "professor" ? (
+          <ProfessorDisplayName fullName={title} />
+        ) : (
+          <CourseDisplayName courseName={title} />
+        )}
+      </Grid.Column>
+      <Grid.Column>
+        {departments.map(({ id: departmentId, name }, index) => (
+          <span key={`department-${departmentId}`}>
+            <DepartmentDisplayName departmentName={name} />
+            {index !== departments.length - 1 ? "," : ""}
+          </span>
+        ))}
+      </Grid.Column>
     </Grid>
   );
 }
 
 const propTypesTextResult = {
-  title: PropTypes.string.isRequired,
+  result: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
-function TextResult({ title }) {
+function TextResult({ result }) {
   return (
     <Grid>
-      <Grid.Column>{title}</Grid.Column>
+      <Grid.Column>{result.title}</Grid.Column>
     </Grid>
   );
 }
 
 const propTypesSearchResultRenderer = {
-  id: PropTypes.number.isRequired,
-  type: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  departments: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired,
-    })
-  ).isRequired,
-  last: PropTypes.string,
+  result: PropTypes.shape({
+    type: PropTypes.oneOf(["professor", "course", "text"]).isRequired,
+  }).isRequired,
 };
 
-const defaultPropsResultRenderer = {
-  last: undefined,
-};
-function searchResultRenderer({ id, title, departments, type, last }) {
-  if (type === "text") {
-    return <TextResult title={title} />;
-  }
-
-  const departmentsDisplay = departments.map(({ id: departmentId, name }) => (
-    <DepartmentDisplayName
-      departmentName={name}
-      key={`department-${departmentId}`}
-    />
-  ));
-
-  let nameDisplay;
-  switch (type) {
-    case "professor":
-      nameDisplay = <ProfessorDisplayName fullName={title} professorId={id} />;
-      break;
-    case "course":
-      nameDisplay = <CourseDisplayName courseId={id} courseName={title} />;
-      break;
-    default:
-      /* this line should never run */
-      throw Error("invalid type");
-  }
-
-  return (
-    <SearchResult
-      departments={departmentsDisplay}
-      last={last}
-      name={nameDisplay}
-      resultKey={`${type}-${id}`}
-    />
+function searchResultRenderer(result) {
+  return result.type === "text" ? (
+    <TextResult result={result} />
+  ) : (
+    <SearchResult result={result} />
   );
 }
 
@@ -354,6 +337,7 @@ const propTypesSearchInput = {
   label: PropTypes.string,
   name: PropTypes.string.isRequired,
   searchEntity: PropTypes.oneOf(["all", "professor", "course"]),
+  searchLimit: PropTypes.number,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   width: PropTypes.number,
   onChange: PropTypes.func,
@@ -367,6 +351,7 @@ const defaultPropsSearchInput = {
   id: undefined,
   label: undefined,
   searchEntity: "all",
+  searchLimit: undefined,
   onChange: () => {},
   onBlur: () => {},
   onResultSelect: () => {},
@@ -387,6 +372,7 @@ export function SearchInput({
   label,
   name,
   searchEntity,
+  searchLimit,
   value,
   width,
   onChange,
@@ -423,7 +409,7 @@ export function SearchInput({
 
     dispatch({ type: "SEARCH_START" });
     const response = await fetch(
-      `/api/search?entity=${searchEntity}&query=${searchValue}`,
+      `/api/search?entity=${searchEntity}&query=${searchValue}&limit=${searchLimit}`,
       {
         method: "GET",
         headers: { "Content-Type": "Application/json" },
@@ -537,12 +523,10 @@ RadioInputGroup.propTypes = propTypesRadioInputGroup;
 RadioInputGroup.defaultProps = defaultPropsRadioInputGroup;
 
 SearchResult.propTypes = propTypesSearchResult;
-SearchResult.defaultProps = defaultPropsSearchResult;
 
 TextResult.propTypes = propTypesTextResult;
 
 searchResultRenderer.propTypes = propTypesSearchResultRenderer;
-searchResultRenderer.defaultProps = defaultPropsResultRenderer;
 
 SearchInput.propTypes = propTypesSearchInput;
 SearchInput.defaultProps = defaultPropsSearchInput;

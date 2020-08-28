@@ -1,7 +1,8 @@
 from pypika import MySQLQuery as Query, Order
 
 from api.data import db
-from api.data.common import course, course_professor, professor, Match
+from api.data.common import course, course_professor, department, \
+  department_professor, professor, Match
 
 
 # TODO: This method is temporary to test search functionality
@@ -69,16 +70,21 @@ def search_professor(search_query, limit=None):
 
     query = Query \
         .from_(professor) \
+        .join(department_professor) \
+        .on(department_professor.professor_id == professor.professor_id) \
+        .join(department) \
+        .on(department.department_id == department_professor.department_id) \
         .select(
             professor.professor_id,
             professor.first_name,
             professor.last_name,
             professor.uni,
-            match) \
-        .where(
-            match > 0) \
-        .orderby(
-            'score', order=Order.desc) \
+            department.department_id,
+            department.name,
+            match
+        ) \
+        .where(match > 0) \
+        .orderby(match, order=Order.desc) \
         .limit(limit) \
         .get_sql()
     cur.execute(query)

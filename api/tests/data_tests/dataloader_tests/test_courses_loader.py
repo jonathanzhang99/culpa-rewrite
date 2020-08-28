@@ -12,6 +12,9 @@ ADVANCED_PROGRAMMING_COURSE_ID = 4
 FREEDOM_OF_SPEECH_COURSE_ID = 5
 MATHEMATICS_OF_ML_COURSE_ID = 6
 BAD_COURSE_ID = -1
+COMPUTER_DEPARTMENT_ID = 1
+LAW_DEPARTMENT_ID = 2
+MATH_DEPARTMENT_ID = 3
 
 
 class CoursesLoaderTest(LoadersWritersBaseTest):
@@ -69,7 +72,10 @@ class CoursesLoaderTest(LoadersWritersBaseTest):
         self.assertEqual(
             set(results[0].keys()),
             set([
+                'call_number',
                 'course_id',
+                'department_id',
+                'department.name',
                 'name',
                 'call_number',
                 'score'
@@ -87,6 +93,10 @@ class CoursesLoaderTest(LoadersWritersBaseTest):
             results[0].get('course_id'), FREEDOM_OF_SPEECH_COURSE_ID
         )
 
+        self.assertEqual(
+            results[0].get('department_id'), LAW_DEPARTMENT_ID
+        )
+
     def test_search_multiple_courses_by_name(self):
         results = search_course('Machine Learning')
         self.assertEqual(len(results), 3)
@@ -100,12 +110,25 @@ class CoursesLoaderTest(LoadersWritersBaseTest):
             self.assertGreater(course.get('score'), 0)
             self.assertEqual(course.get('course_id'), expected_course_id)
 
+        self.assertEqual(
+            results[0].get('department_id'), COMPUTER_DEPARTMENT_ID
+        )
+        self.assertEqual(
+            results[1].get('department_id'), COMPUTER_DEPARTMENT_ID
+        )
+        self.assertEqual(
+            results[2].get('department_id'), MATH_DEPARTMENT_ID
+        )
+
     def test_search_course_by_call_number(self):
         results = search_course('4118')
         self.assertEqual(len(results), 1)
         self.assertGreater(results[0].get('score'), 0.2)
         self.assertEqual(
             results[0].get('course_id'), OPERATING_SYSTEMS_COURSE_ID
+        )
+        self.assertEqual(
+            results[0].get('department_id'), COMPUTER_DEPARTMENT_ID
         )
 
     def test_search_course_with_limit(self):
@@ -114,6 +137,9 @@ class CoursesLoaderTest(LoadersWritersBaseTest):
         self.assertGreater(results[0].get('score'), 0)
         self.assertEqual(
             results[0].get('course_id'), MACHINE_LEARNING_COURSE_ID
+        )
+        self.assertEqual(
+            results[0].get('department_id'), COMPUTER_DEPARTMENT_ID
         )
 
     def test_search_course_no_results(self):
