@@ -141,7 +141,7 @@ describe("review section snapshot tests", () => {
       mockFetch = jest.spyOn(global, "fetch");
       mockFetch.mockImplementation(() => Promise.resolve({
         ok: true,
-        json: () => ({reviews: reviews})
+        json: () => ({reviews})
       }));
     });
     afterEach(() => jest.resetAllMocks());
@@ -172,7 +172,7 @@ describe("filtering and sorting tests", () => {
       mockFetch = jest.spyOn(global, "fetch");
       mockFetch.mockImplementation(() => Promise.resolve({
         ok: true,
-        json: () => ({reviews: reviews})
+        json: () => ({reviews})
       }));
     });
     afterEach(() => jest.resetAllMocks());
