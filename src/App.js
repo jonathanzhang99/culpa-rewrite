@@ -9,7 +9,6 @@ import DepartmentsPage from "components/DepartmentsPage";
 import LoginPage from "components/LoginPage";
 import NavigationBar from "components/NavigationBar";
 import ProfessorInfoPage from "components/ProfessorInfoPage";
-import ReviewsPage from "components/ReviewsPage";
 import SearchResultsPage from "components/SearchResultsPage";
 
 function App() {
@@ -26,9 +25,6 @@ function App() {
             </ProtectedRoute>
             <Route path="/review">
               <CreateReviewPage />
-            </Route>
-            <Route path="/reviews">
-              <ReviewsPage/>
             </Route>
             <Route path="/professor/:professorId">
               <ProfessorInfoPage />

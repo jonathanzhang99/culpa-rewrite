@@ -90,7 +90,7 @@ const headersByType = [[
     }
 ]]
 
-const assocLists = {
+const associatedEntities = {
     course: [{
         professorId: 1,
         firstName: 'Nakul',
@@ -112,17 +112,17 @@ const assocLists = {
 }
 
 const singleDropdowns = [{
-    name: "sortingDropdown",
+    name: "sorting",
     options: [
-        {text: "Most Positive", value: "Most Positive"},
-        {text: 'Most Negative', value: 'Most Negative'},
-        {text: 'Newest', value: 'Newest'},
-        {text: 'Oldest', value: 'Oldest'},
-        {text: 'Most Agreed', value: 'Most Agreed'},
-        {text: 'Most Disagreed', value: 'Most Disagreed'}
+        {text: "Most Positive", value: "most_positive"},
+        {text: 'Most Negative', value: 'most_negative'},
+        {text: 'Newest', value: 'newest'},
+        {text: 'Oldest', value: 'oldest'},
+        {text: 'Most Agreed', value: 'most_agreed'},
+        {text: 'Most Disagreed', value: 'most_disagreed'}
     ]
 }, {
-    name: "filteringSingleSelectDropdown",
+    name: "yearFilter",
     options: [
         {text: 'Written within 2 years', value: 2},
         {text: 'Written within 5 years', value: 5}
@@ -131,6 +131,7 @@ const singleDropdowns = [{
 
 global.fetch = jest.fn(() =>
   Promise.resolve({
+    ok: true,
     json: () => Promise.resolve({ reviews: headersByType[0]}),
   })
 );
@@ -141,17 +142,17 @@ describe("review section snapshot tests", () => {
     headersByType.forEach((reviews) => {
         const pageType = reviews[0].reviewType
 
-        test(`${reviews[0].reviewType} page test`, () => {
-            const snapshot = render(
+        test(`${reviews[0].reviewType} page test`, async () => {
+            const snapshot = await act(async () => {render(
                 <MemoryRouter>
                     <ReviewSection 
-                        assocList={assocLists[pageType]}
+                        associatedEntities={associatedEntities[pageType]}
                         id={pageId}
                         initReviews={reviews}
                         pageType={pageType}
                     />
                 </MemoryRouter>
-            )
+            )})
             expect(snapshot).toMatchSnapshot()
         })
     })
@@ -162,17 +163,17 @@ describe("filtering and sorting tests", () => {
     headersByType.forEach((reviews) => {
         const pageType = reviews[0].reviewType
         describe(`${pageType} page test`, () => {
-            beforeEach(() => {
-                render(
+            beforeEach(async () => {
+                await act(async () => {render(
                     <MemoryRouter>
                         <ReviewSection 
-                            assocList={assocLists[pageType]}
+                            associatedEntities={associatedEntities[pageType]}
                             id={pageId}
                             initReviews={reviews}
                             pageType={pageType}
                         />
                     </MemoryRouter>
-                )
+                )})
             })
         
             singleDropdowns.forEach(({name, options}) => {
@@ -180,8 +181,8 @@ describe("filtering and sorting tests", () => {
                     test(`choosing ${option.text} for ${name}`, async () => {
                         await act(async () => {fireEvent.click(screen.getByText(option.text))})
 
-                        const sortingArg = name === 'sortingDropdown' ? option.value : ''
-                        const filterSingleArg = name ==='filteringSingleSelectDropdown' ? option.value : null
+                        const sortingArg = name === 'sorting' ? option.value : ''
+                        const filterSingleArg = name ==='yearFilter' ? option.value : null
                         const expectedUrl = `/api/review/get/${pageType}/${pageId}` +
                                             `?sorting=${sortingArg}` +
                                             `&filterList=` +
@@ -196,17 +197,16 @@ describe("filtering and sorting tests", () => {
                             }
                         )
                     })
-                })
-                
+                })  
             })
 
-            assocLists[pageType].forEach((option) => {
+            associatedEntities[pageType].forEach((option) => {
                 const text = pageType === 'professor' ? 
                     `[${option.courseCode}] ${option.courseName}` :
                     `${option.firstName} ${option.lastName}`
                 const optionId = pageType === 'professor' ? option.courseId : option.professorId
                 
-                test(`testing single option '${text}' with multi selection`, async () => {
+                test(`testing single option '${text}' with associatedEntityFilter`, async () => {
                     const elem = screen.getAllByRole('option').filter((item) => {
                         return item.textContent === text
                     })[0]
