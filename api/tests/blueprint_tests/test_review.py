@@ -99,6 +99,30 @@ class ReviewTest(BaseTest):
                 'courseName': 'testtest',
                 'courseCode': '12345'
             }
+        }, {
+            'review_type': 'full',
+            'header_data': {
+                'course_id': 1234,
+                'course_name': 'test course',
+                'course_call_number': 'test call number',
+                'prof_id': 5678,
+                'prof_first_name': 'John',
+                'prof_last_name': 'Doe',
+                'prof_uni': 'jd2910'
+            },
+            'expected_review_header': {
+                'course': {
+                    'courseId': 1234,
+                    'courseName': 'test course',
+                    'courseCode': 'test call number'
+                },
+                'professor': {
+                    'profId': 5678,
+                    'profFirstName': 'John',
+                    'profLastName': 'Doe',
+                    'uni': 'jd2910'
+                }
+            }
         }]
         dates = [
             {
@@ -252,3 +276,26 @@ class ReviewTest(BaseTest):
         get_reviews_with_query_prefix_mock.assert_not_called()
         course_query_prefix_mock.assert_not_called()
         professor_query_prefix_mock.assert_not_called()
+
+    @mock.patch("api.blueprints.review.get_single_review")
+    @mock.patch("api.blueprints.review.parse_review")
+    def test_get_single_review_card_data(
+        self,
+        parse_review_mock,
+        get_single_review_mock
+    ):
+        test_review = {
+            'flag_type': 'test flag',
+            'other_fields': 'test test test'
+        }
+        get_single_review_mock.return_value = test_review
+        parse_review_mock.return_value = 'test return value'
+        review_id = 1
+
+        res = self.client.get(f"/api/review/get/{review_id}")
+
+        parse_review_mock.assert_called_with(test_review, 'full')
+        self.assertEqual(res.json, {
+            'flag': test_review['flag_type'],
+            'review': 'test return value'
+        })

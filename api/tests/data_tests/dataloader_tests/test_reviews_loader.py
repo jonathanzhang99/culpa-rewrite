@@ -4,7 +4,8 @@ from decimal import Decimal
 from api.tests import LoadersWritersBaseTest
 from api.tests.data_tests.common import setup_votes, setup_reviews_and_flags
 from api.data.dataloaders.reviews_loader import get_reviews_with_query_prefix,\
-    prepare_course_query_prefix, prepare_professor_query_prefix
+    prepare_course_query_prefix, prepare_professor_query_prefix,\
+    get_single_review
 
 
 class ReviewsLoaderTest(LoadersWritersBaseTest):
@@ -203,3 +204,58 @@ class ReviewsLoaderTest(LoadersWritersBaseTest):
                     [x['review_id'] for x in res],
                     test_case['expected_review_ids']
                 )
+
+    def test_get_single_review(self):
+        cases = [{
+            'review_id': 2,
+            'content': 'demo content 2',
+            'workload': 'demo workload 2',
+            'rating': 3,
+            'submission_date': datetime.strptime('2017-02-10', '%Y-%m-%d'),
+            'course_id': 2,
+            'course_name': 'Advanced Machine Learning',
+            'course_call_number': 'COMS 4774',
+            'prof_id': 1,
+            'prof_first_name': 'Nakul',
+            'prof_last_name': 'Verma',
+            'prof_uni': 'nv2274',
+            'flag_type': 'libel',
+            'agrees': Decimal(0),
+            'disagrees': Decimal(0),
+            'funnys': Decimal(1),
+            'agree_clicked': Decimal(0),
+            'disagree_clicked': Decimal(0),
+            'funny_clicked': Decimal(1)
+        }, {
+            'review_id': 5,
+            'content': 'demo content 5',
+            'workload': 'demo workload 5',
+            'rating': 3,
+            'submission_date': datetime.strptime('2018-09-01', '%Y-%m-%d'),
+            'course_id': 4,
+            'course_name': 'Advanced Programming',
+            'course_call_number': 'COMS 3157',
+            'prof_id': 3,
+            'prof_first_name': 'Jae W',
+            'prof_last_name': 'Lee',
+            'prof_uni': 'jwl3',
+            'flag_type': 'approved',
+            'agrees': Decimal(1),
+            'disagrees': Decimal(2),
+            'funnys': Decimal(1),
+            'agree_clicked': Decimal(0),
+            'disagree_clicked': Decimal(1),
+            'funny_clicked': Decimal(1)
+        }]
+        ip = '123.456.78.910'
+        setup_votes(self.cur)
+
+        for case in cases:
+            with self.subTest(case):
+                res = get_single_review(case['review_id'], ip)
+                self.assertEqual(res, case)
+
+    def test_get_single_review_invalid_id(self):
+        self.assertEqual(None, get_single_review(
+            12345, '123.456.78.910'
+        ))
