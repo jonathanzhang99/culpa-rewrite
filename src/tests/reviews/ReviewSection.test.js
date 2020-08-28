@@ -251,7 +251,8 @@ describe("filtering and sorting tests", () => {
 })
 
 describe("pagination tests", () => {
-    const reviews = Array(10).fill().map((_, index) => (
+    const NUM_REVIEWS_PER_PAGE = 5
+    const reviews = Array(NUM_REVIEWS_PER_PAGE * 3).fill().map((_, index) => (
         {reviewId: index, ...pagTestReviewTemplate}
     ))
     beforeEach(() => render(
@@ -278,8 +279,8 @@ describe("pagination tests", () => {
         })
         const clickTwice = screen.getAllByText("Workload").length
 
-        expect(beforeClick).toBe(3)
-        expect(clickOnce).toBe(6)
-        expect(clickTwice).toBe(9)
+        expect(beforeClick).toBe(NUM_REVIEWS_PER_PAGE)
+        expect(clickOnce).toBe(NUM_REVIEWS_PER_PAGE * 2)
+        expect(clickTwice).toBe(NUM_REVIEWS_PER_PAGE * 3)
     })
 })

@@ -7,7 +7,7 @@ import LoadingComponent from "components/common/LoadingComponent";
 import ReviewCard from "components/reviews/ReviewCard"
 
 export default function ReviewSection({initReviews, pageType, id, assocList}){
-    const NUM_REVIEWS_PER_PAGE = 3
+    const NUM_REVIEWS_PER_PAGE = 5
     const reducer = (state, action) => {
         switch(action.type){
             case "RELOAD_START":
@@ -42,13 +42,13 @@ export default function ReviewSection({initReviews, pageType, id, assocList}){
             case "CHANGE_SORTING":
                 return {
                     ...state,
-                    pag_num: 1,
+                    page_number: 1,
                     sorting: action.payload.sorting
                 };
             case "CHANGE_FILTER_YEAR":
                 return {
                     ...state,
-                    pag_num: 1,
+                    page_number: 1,
                     filters: {
                         assocListLimit: state.filters.assocListLimit,
                         year: action.payload.filterYear,
@@ -58,16 +58,16 @@ export default function ReviewSection({initReviews, pageType, id, assocList}){
             case "CHANGE_FILTER_ASSOC_LIST":
                 return {
                     ...state,
-                    pag_num: 1,
+                    page_number: 1,
                     filters: {
                         ...state.filters,
                         assocListLimit: action.payload.assocListLimit
                     }
                 }
-            case "INCREMENT_PAG_NUM":
+            case "INCREMENT_PAGE_NUMBER":
                 return {
                     ...state,
-                    pag_num: state.pag_num + 1
+                    page_number: state.page_number + 1
                 }
             default:
                 throw new Error()
@@ -77,7 +77,7 @@ export default function ReviewSection({initReviews, pageType, id, assocList}){
         reload: false,
         isLoading: false,
         isError: false,
-        pag_num: 1,
+        page_number: 1,
         reviews: initReviews,
         assocList,
         pageType,
@@ -181,7 +181,7 @@ export default function ReviewSection({initReviews, pageType, id, assocList}){
     }
 
     const onClickPagButton = () => {
-        dispatch({type: "INCREMENT_PAG_NUM"})
+        dispatch({type: "INCREMENT_PAGE_NUMBER"})
     }
 
     return (
@@ -232,7 +232,7 @@ export default function ReviewSection({initReviews, pageType, id, assocList}){
                 </Grid.Row>
                 <Grid.Row key={2}>
                     {state.reviews.slice(
-                        0, state.pag_num * NUM_REVIEWS_PER_PAGE
+                        0, state.page_number * NUM_REVIEWS_PER_PAGE
                     ).map((review) => {return (
                         <ReviewCard 
                             content={review.content}
@@ -251,7 +251,7 @@ export default function ReviewSection({initReviews, pageType, id, assocList}){
                     <Button 
                         fluid 
                         name="showMoreButton" 
-                        size='large'
+                        size="large"
                         onClick={onClickPagButton}
                     >
                         Show more<Icon name="arrow down" style={{marginLeft: '5px'}}/>
