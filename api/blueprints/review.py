@@ -102,12 +102,12 @@ def get_reviews(page_type, id):
     # value: sorting parameters for the database
     # (corresponds to the sort_criterion and sort_order)
     db_sort_specs = {
-        'most positive': ['rating', 'DESC'],
-        'most negative': ['rating', 'ASC'],
+        'most_positive': ['rating', 'DESC'],
+        'most_negative': ['rating', 'ASC'],
         'newest': ['submission_date', 'DESC'],
         'oldest': ['submission_date', 'ASC'],
-        'most agreed': ['agrees', 'DESC'],
-        'most disagreed': ['disagrees', 'DESC']
+        'most_agreed': ['agrees', 'DESC'],
+        'most_disagreed': ['disagrees', 'DESC']
     }
     page_type_and_query_prefixes = {
         'professor': prepare_professor_query_prefix,

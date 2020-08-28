@@ -12,17 +12,6 @@ from api.data.common import course, course_professor, flag, \
     professor, review, vote
 
 DateDiff = CustomFunction('DATEDIFF', ['start_date', 'end_date'])
-professor_header_fields = [
-    professor.professor_id,
-    professor.first_name,
-    professor.last_name,
-    professor.uni
-]
-course_header_fields = [
-    course.course_id,
-    course.call_number,
-    course.name
-]
 
 
 class RowNumber(AnalyticFunction):

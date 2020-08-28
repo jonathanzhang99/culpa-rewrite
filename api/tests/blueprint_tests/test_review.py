@@ -166,12 +166,12 @@ class ReviewTest(BaseTest):
     ):
         db_sort_specs = {
             '': ['submission_date', 'DESC'],
-            'most positive': ['rating', 'DESC'],
-            'most negative': ['rating', 'ASC'],
+            'most_positive': ['rating', 'DESC'],
+            'most_negative': ['rating', 'ASC'],
             'newest': ['submission_date', 'DESC'],
             'oldest': ['submission_date', 'ASC'],
-            'most agreed': ['agrees', 'DESC'],
-            'most disagreed': ['disagrees', 'DESC']
+            'most_agreed': ['agrees', 'DESC'],
+            'most_disagreed': ['disagrees', 'DESC']
         }
         filters = [{
             'filter_list': '1,2,3,4',
