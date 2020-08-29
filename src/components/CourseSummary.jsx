@@ -10,9 +10,9 @@ import ReviewCard from "components/reviews/ReviewCard";
 const reviewPropType = PropTypes.shape({
   reviewType: PropTypes.string.isRequired,
   reviewHeader: PropTypes.shape({
-    courseId: PropTypes.number.isRequired,
-    courseName: PropTypes.string.isRequired,
-    courseCode: PropTypes.string.isRequired,
+    profId: PropTypes.number.isRequired,
+    profFirstName: PropTypes.string.isRequired,
+    profLastName: PropTypes.string.isRequired,
   }).isRequired,
   votes: PropTypes.shape({
     initUpvoteCount: PropTypes.number.isRequired,
@@ -32,9 +32,9 @@ const reviewPropType = PropTypes.shape({
 const defaultReview = {
   reviewType: "course",
   reviewHeader: {
-    courseId: 0,
-    courseName: "Course Name",
-    courseCode: "Course Code",
+    profId: 0,
+    profFirstName: "First",
+    profLastName: "Last",
   },
   votes: {
     initUpvoteCount: 0,
