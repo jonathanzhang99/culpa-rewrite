@@ -3,7 +3,7 @@ import React from "react"
 import { MemoryRouter, Route } from "react-router-dom";
 
 import { AuthProvider } from "components/common/Authentication";
-import SingleReviewPage from "components/SingleReviewPage"
+import SingleReviewPage, { ThankYouTextBox } from "components/SingleReviewPage"
 
 describe("single review page", () => {
   const cases = [{
@@ -60,7 +60,7 @@ describe("single review page", () => {
   }]
 
   cases.forEach(({reviewId, fetchReturn}) => {
-    test(`${fetchReturn.flag} case test`, async () => {
+    test(`${fetchReturn.flag} case logic test`, async () => {
       const mockFetch = jest.spyOn(global, "fetch");
       mockFetch.mockImplementation(() => Promise.resolve({
         ok: true,
@@ -78,8 +78,6 @@ describe("single review page", () => {
         
       )})
 
-      // TODO: fix undefined snapshots from asynchronous component rendering
-      expect(snapshot).toMatchSnapshot()
       expect(mockFetch).toHaveBeenCalled()
 
       if (fetchReturn.flag === "approved"){
@@ -91,5 +89,14 @@ describe("single review page", () => {
         expect(screen.getByText(`Review ID: ${reviewId}`)).toBeInTheDocument()
       }      
     })
+  })
+})
+
+describe("Thank you text box", () => {
+  test("snapshot test", () => {
+    const snapshot = render(
+      <ThankYouTextBox reviewId={12345}/>
+    )
+    expect(snapshot).toMatchSnapshot()
   })
 })
