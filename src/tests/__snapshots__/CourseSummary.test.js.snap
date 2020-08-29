@@ -16,9 +16,16 @@ Object {
           Machine Learning
         </div>
         <div>
-           Department: 
-          Computer Science
-           
+          Department:
+          <a
+            href="/department/1"
+          >
+            <span>
+               
+              Computer Science
+               
+            </span>
+          </a>
         </div>
         <div>
           Professors:
@@ -61,9 +68,16 @@ Object {
         Machine Learning
       </div>
       <div>
-         Department: 
-        Computer Science
-         
+        Department:
+        <a
+          href="/department/1"
+        >
+          <span>
+             
+            Computer Science
+             
+          </span>
+        </a>
       </div>
       <div>
         Professors:
@@ -163,9 +177,16 @@ Object {
           Machine Learning
         </div>
         <div>
-           Department: 
-          Computer Science
-           
+          Department:
+          <a
+            href="/department/1"
+          >
+            <span>
+               
+              Computer Science
+               
+            </span>
+          </a>
         </div>
         <div
           class="accordion ui"
@@ -207,15 +228,27 @@ Object {
                     class=""
                   >
                     <span>
-                      1
-                      : 
-                      Computer Science
+                      <a
+                        href="/department/1"
+                      >
+                        <span>
+                           
+                          Computer Science
+                           
+                        </span>
+                      </a>
                       , 
                     </span>
                     <span>
-                      2
-                      : 
-                      Law
+                      <a
+                        href="/department/2"
+                      >
+                        <span>
+                           
+                          Law
+                           
+                        </span>
+                      </a>
                       
                     </span>
                   </td>
@@ -240,15 +273,27 @@ Object {
                     class=""
                   >
                     <span>
-                      1
-                      : 
-                      Computer Science
+                      <a
+                        href="/department/1"
+                      >
+                        <span>
+                           
+                          Computer Science
+                           
+                        </span>
+                      </a>
                       , 
                     </span>
                     <span>
-                      2
-                      : 
-                      Law
+                      <a
+                        href="/department/2"
+                      >
+                        <span>
+                           
+                          Law
+                           
+                        </span>
+                      </a>
                       
                     </span>
                   </td>
@@ -273,15 +318,27 @@ Object {
                     class=""
                   >
                     <span>
-                      1
-                      : 
-                      Computer Science
+                      <a
+                        href="/department/1"
+                      >
+                        <span>
+                           
+                          Computer Science
+                           
+                        </span>
+                      </a>
                       , 
                     </span>
                     <span>
-                      2
-                      : 
-                      Law
+                      <a
+                        href="/department/2"
+                      >
+                        <span>
+                           
+                          Law
+                           
+                        </span>
+                      </a>
                       
                     </span>
                   </td>
@@ -306,15 +363,27 @@ Object {
                     class=""
                   >
                     <span>
-                      1
-                      : 
-                      Computer Science
+                      <a
+                        href="/department/1"
+                      >
+                        <span>
+                           
+                          Computer Science
+                           
+                        </span>
+                      </a>
                       , 
                     </span>
                     <span>
-                      2
-                      : 
-                      Law
+                      <a
+                        href="/department/2"
+                      >
+                        <span>
+                           
+                          Law
+                           
+                        </span>
+                      </a>
                       
                     </span>
                   </td>
@@ -339,15 +408,27 @@ Object {
                     class=""
                   >
                     <span>
-                      1
-                      : 
-                      Computer Science
+                      <a
+                        href="/department/1"
+                      >
+                        <span>
+                           
+                          Computer Science
+                           
+                        </span>
+                      </a>
                       , 
                     </span>
                     <span>
-                      2
-                      : 
-                      Law
+                      <a
+                        href="/department/2"
+                      >
+                        <span>
+                           
+                          Law
+                           
+                        </span>
+                      </a>
                       
                     </span>
                   </td>
@@ -372,15 +453,27 @@ Object {
                     class=""
                   >
                     <span>
-                      1
-                      : 
-                      Computer Science
+                      <a
+                        href="/department/1"
+                      >
+                        <span>
+                           
+                          Computer Science
+                           
+                        </span>
+                      </a>
                       , 
                     </span>
                     <span>
-                      2
-                      : 
-                      Law
+                      <a
+                        href="/department/2"
+                      >
+                        <span>
+                           
+                          Law
+                           
+                        </span>
+                      </a>
                       
                     </span>
                   </td>
@@ -414,9 +507,16 @@ Object {
         Machine Learning
       </div>
       <div>
-         Department: 
-        Computer Science
-         
+        Department:
+        <a
+          href="/department/1"
+        >
+          <span>
+             
+            Computer Science
+             
+          </span>
+        </a>
       </div>
       <div
         class="accordion ui"
@@ -458,15 +558,27 @@ Object {
                   class=""
                 >
                   <span>
-                    1
-                    : 
-                    Computer Science
+                    <a
+                      href="/department/1"
+                    >
+                      <span>
+                         
+                        Computer Science
+                         
+                      </span>
+                    </a>
                     , 
                   </span>
                   <span>
-                    2
-                    : 
-                    Law
+                    <a
+                      href="/department/2"
+                    >
+                      <span>
+                         
+                        Law
+                         
+                      </span>
+                    </a>
                     
                   </span>
                 </td>
@@ -491,15 +603,27 @@ Object {
                   class=""
                 >
                   <span>
-                    1
-                    : 
-                    Computer Science
+                    <a
+                      href="/department/1"
+                    >
+                      <span>
+                         
+                        Computer Science
+                         
+                      </span>
+                    </a>
                     , 
                   </span>
                   <span>
-                    2
-                    : 
-                    Law
+                    <a
+                      href="/department/2"
+                    >
+                      <span>
+                         
+                        Law
+                         
+                      </span>
+                    </a>
                     
                   </span>
                 </td>
@@ -524,15 +648,27 @@ Object {
                   class=""
                 >
                   <span>
-                    1
-                    : 
-                    Computer Science
+                    <a
+                      href="/department/1"
+                    >
+                      <span>
+                         
+                        Computer Science
+                         
+                      </span>
+                    </a>
                     , 
                   </span>
                   <span>
-                    2
-                    : 
-                    Law
+                    <a
+                      href="/department/2"
+                    >
+                      <span>
+                         
+                        Law
+                         
+                      </span>
+                    </a>
                     
                   </span>
                 </td>
@@ -557,15 +693,27 @@ Object {
                   class=""
                 >
                   <span>
-                    1
-                    : 
-                    Computer Science
+                    <a
+                      href="/department/1"
+                    >
+                      <span>
+                         
+                        Computer Science
+                         
+                      </span>
+                    </a>
                     , 
                   </span>
                   <span>
-                    2
-                    : 
-                    Law
+                    <a
+                      href="/department/2"
+                    >
+                      <span>
+                         
+                        Law
+                         
+                      </span>
+                    </a>
                     
                   </span>
                 </td>
@@ -590,15 +738,27 @@ Object {
                   class=""
                 >
                   <span>
-                    1
-                    : 
-                    Computer Science
+                    <a
+                      href="/department/1"
+                    >
+                      <span>
+                         
+                        Computer Science
+                         
+                      </span>
+                    </a>
                     , 
                   </span>
                   <span>
-                    2
-                    : 
-                    Law
+                    <a
+                      href="/department/2"
+                    >
+                      <span>
+                         
+                        Law
+                         
+                      </span>
+                    </a>
                     
                   </span>
                 </td>
@@ -623,15 +783,27 @@ Object {
                   class=""
                 >
                   <span>
-                    1
-                    : 
-                    Computer Science
+                    <a
+                      href="/department/1"
+                    >
+                      <span>
+                         
+                        Computer Science
+                         
+                      </span>
+                    </a>
                     , 
                   </span>
                   <span>
-                    2
-                    : 
-                    Law
+                    <a
+                      href="/department/2"
+                    >
+                      <span>
+                         
+                        Law
+                         
+                      </span>
+                    </a>
                     
                   </span>
                 </td>
@@ -722,9 +894,16 @@ Object {
           Machine Learning
         </div>
         <div>
-           Department: 
-          Computer Science
-           
+          Department:
+          <a
+            href="/department/1"
+          >
+            <span>
+               
+              Computer Science
+               
+            </span>
+          </a>
         </div>
         <div>
           Professors:
@@ -767,9 +946,16 @@ Object {
         Machine Learning
       </div>
       <div>
-         Department: 
-        Computer Science
-         
+        Department:
+        <a
+          href="/department/1"
+        >
+          <span>
+             
+            Computer Science
+             
+          </span>
+        </a>
       </div>
       <div>
         Professors:
@@ -869,9 +1055,16 @@ Object {
           
         </div>
         <div>
-           Department: 
-          
-           
+          Department:
+          <a
+            href="/department/0"
+          >
+            <span>
+               
+              
+               
+            </span>
+          </a>
         </div>
         <div>
           Professors:
@@ -914,9 +1107,16 @@ Object {
         
       </div>
       <div>
-         Department: 
-        
-         
+        Department:
+        <a
+          href="/department/0"
+        >
+          <span>
+             
+            
+             
+          </span>
+        </a>
       </div>
       <div>
         Professors:

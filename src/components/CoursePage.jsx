@@ -12,9 +12,9 @@ export default function CoursePage() {
   const defaultReview = {
     reviewType: "course",
     reviewHeader: {
-      courseId: 0,
-      courseName: "Course Name",
-      courseCode: "Course Code",
+      profId: 0,
+      profFirstName: "First",
+      profLastName: "Last",
     },
     votes: {
       initUpvoteCount: 0,
@@ -39,6 +39,7 @@ export default function CoursePage() {
     courseSummary: {
       courseName: "",
       courseCallNumber: "",
+      departmentId: 0,
       departmentName: "",
       associatedProfessors: [],
     },

@@ -4,6 +4,7 @@ import { Icon, Accordion, Table, Grid, Container } from "semantic-ui-react";
 
 import { CourseDisplayName } from "components/common/CourseDisplay";
 import CreateReviewButton from "components/common/CreateReviewButton";
+import { DepartmentDisplayLink } from "components/common/DepartmentDisplay";
 import { ProfessorDisplayLink } from "components/common/ProfessorDisplay";
 import ReviewCard from "components/reviews/ReviewCard";
 
@@ -97,6 +98,7 @@ const propTypesCourseHeader = {
   courseSummary: PropTypes.shape({
     courseName: PropTypes.string.isRequired,
     courseCallNumber: PropTypes.string.isRequired,
+    departmentId: PropTypes.number.isRequired,
     departmentName: PropTypes.string.isRequired,
     associatedProfessors: PropTypes.array.isRequired,
   }).isRequired,
@@ -107,6 +109,7 @@ export function CourseHeader({ courseId, courseSummary }) {
   const {
     courseName,
     courseCallNumber,
+    departmentId,
     departmentName,
     associatedProfessors,
   } = courseSummary;
@@ -151,7 +154,10 @@ export function CourseHeader({ courseId, courseSummary }) {
                       } = department;
                       return (
                         <span key={profDepartmentId}>
-                          {profDepartmentId}: {profDepartmentName}
+                          <DepartmentDisplayLink
+                            departmentId={profDepartmentId}
+                            departmentName={profDepartmentName}
+                          />
                           {profDepartments.length - 1 !== index ? ", " : ""}
                         </span>
                       );
@@ -185,7 +191,6 @@ export function CourseHeader({ courseId, courseSummary }) {
     </div>
   );
 
-  // TODO: Integrate DepartmentDisplay
   return (
     <Container>
       <CourseDisplayName
@@ -193,7 +198,13 @@ export function CourseHeader({ courseId, courseSummary }) {
         courseCallNumber={courseCallNumber}
         courseName={courseName}
       />
-      <div> Department: {departmentName} </div>
+      <div>
+        Department:
+        <DepartmentDisplayLink
+          departmentId={departmentId}
+          departmentName={departmentName}
+        />
+      </div>
 
       {displayAccordion ? ProfessorAccordion : ProfessorList}
 
