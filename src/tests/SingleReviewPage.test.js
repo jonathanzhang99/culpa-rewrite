@@ -67,7 +67,7 @@ describe("single review page", () => {
         json: () => fetchReturn
       }))
 
-      const snapshot = await act(async () => {render(
+      await act(async () => {render(
         <MemoryRouter initialEntries={[`/review/${reviewId}`]}>
           <Route path="/review/:reviewId">
             <AuthProvider>
