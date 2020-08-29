@@ -243,13 +243,7 @@ export default function ReviewCard({
               </Message>
             )}
             <div style={{ position: "relative" }}>
-              {reviewType === 'course' ? (
-                <ProfessorDisplayName
-                  as="header"
-                  firstName={reviewHeader.profFirstName}
-                  lastName={reviewHeader.profLastName}
-                />
-              ) : (
+              {reviewType === 'professor' && (
                 <CourseDisplayName
                   as="header"
                   courseCallNumber={reviewHeader.courseCode}

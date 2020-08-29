@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`single review page approved case test 1`] = `undefined`;
+
+exports[`single review page libel case test 1`] = `undefined`;
+
+exports[`single review page pending case test 1`] = `undefined`;
