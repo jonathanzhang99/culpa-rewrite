@@ -2,11 +2,9 @@ from datetime import datetime, timedelta
 from decimal import Decimal
 
 from api.tests import LoadersWritersBaseTest
-from api.tests.data_tests.common import setup_votes, setup_reviews_and_flags,\
-    setup_for_course_test
+from api.tests.data_tests.common import setup_votes, setup_reviews_and_flags
 from api.data.dataloaders.reviews_loader import get_reviews_with_query_prefix,\
-    prepare_course_query_prefix, prepare_professor_query_prefix, \
-    get_course_review_summary
+    prepare_course_query_prefix, prepare_professor_query_prefix
 
 
 class ReviewsLoaderTest(LoadersWritersBaseTest):
@@ -205,76 +203,3 @@ class ReviewsLoaderTest(LoadersWritersBaseTest):
                     [x['review_id'] for x in res],
                     test_case['expected_review_ids']
                 )
-
-    def test_get_course_review_summary(self):
-        '''
-        Test cases:
-            1. Most common -> most positive/negative review
-                - There are multiple reviews for the course_id
-                - There are positive and negative reviews with agree votes
-            2. All neutral reviews -> one review with most agree votes
-                - There are only reviews with rating of 3
-                - These have agree votes
-            3. No reviews have any votes -> nothing
-            4. No reviews -> nothing
-        '''
-        test_cases = [{
-            'course_id': 5,
-            'expected_res': [
-                {
-                    'course_professor_id': 7,
-                    'review_id': 7,
-                    'content': 'positive review',
-                    'workload': 'workload',
-                    'rating': 5,
-                    'submission_date': datetime(2010, 5, 20, 0, 0),
-                    'agrees': Decimal('3'),
-                    'disagrees': Decimal('0'),
-                    'funnys': Decimal('0'),
-                    'agree_clicked': Decimal('0'),
-                    'disagree_clicked': Decimal('0'),
-                    'funny_clicked': Decimal('0')
-                }, {
-                    'course_professor_id': 7,
-                    'review_id': 9,
-                    'content': 'negative review',
-                    'workload': 'workload',
-                    'rating': 1,
-                    'submission_date': datetime(2013, 5, 20, 0, 0),
-                    'agrees': Decimal('1'),
-                    'disagrees': Decimal('0'),
-                    'funnys': Decimal('0'),
-                    'agree_clicked': Decimal('0'),
-                    'disagree_clicked': Decimal('0'),
-                    'funny_clicked': Decimal('0')
-                }],
-        }, {
-            'course_id': 2,
-            'expected_res': [
-                {
-                    'course_professor_id': 2,
-                    'review_id': 2,
-                    'content': 'demo content 2',
-                    'workload': 'demo workload 2',
-                    'rating': 3,
-                    'submission_date': datetime(2017, 2, 10, 0, 0),
-                    'agrees': Decimal('2'),
-                    'disagrees': Decimal('0'),
-                    'funnys': Decimal('1'),
-                    'agree_clicked': Decimal('0'),
-                    'disagree_clicked': Decimal('0'),
-                    'funny_clicked': Decimal('0')
-                }],
-        }, {
-            'course_id': 7,
-            'expected_res': (),
-        },  {
-            'course_id': 8,
-            'expected_res': (),
-        }]
-        setup_for_course_test(self.cur)
-        ip = ''
-        for test_case in test_cases:
-            with self.subTest(test_case):
-                res = get_course_review_summary(test_case['course_id'], ip)
-                self.assertEqual(res, test_case['expected_res'])
