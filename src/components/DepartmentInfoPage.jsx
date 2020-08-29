@@ -10,13 +10,17 @@ import LoadingComponent from "components/common/LoadingComponent";
 import { ProfessorDisplayLink } from "components/common/ProfessorDisplay";
 import useDataFetch from "components/common/useDataFetch";
 
-const propTypesDepartmentCourseColumn = {
+const defaultPropsDepartmentCourses = {
+  departmentCourses: [],
+}
+
+const propTypesDepartmentCourses = {
   departmentCourses: PropTypes.arrayOf(
     PropTypes.shape({
       courseId: PropTypes.number.isRequired,
       courseName: PropTypes.string.isRequired,
     }).isRequired
-  ).isRequired,
+  ),
 };
 
 export function DepartmentCourseColumn({ departmentCourses }) {
@@ -36,14 +40,18 @@ export function DepartmentCourseColumn({ departmentCourses }) {
   );
 }
 
-const propTypesDepartmentProfessorColumn = {
+const defaultPropsDepartmentProfessors = {
+  departmentProfessors: [],
+}
+
+const propTypesDepartmentProfessors = {
   departmentProfessors: PropTypes.arrayOf(
     PropTypes.shape({
       professorId: PropTypes.number.isRequired,
       firstName: PropTypes.string.isRequired,
       lastName: PropTypes.string.isRequired,
     }).isRequired
-  ).isRequired,
+  ),
 };
 
 export function DepartmentProfessorColumn({ departmentProfessors }) {
@@ -67,6 +75,11 @@ export function DepartmentProfessorColumn({ departmentProfessors }) {
   );
 }
 
+const defaultPropsDepartmentInfo = {
+  departmentCourses: [],
+  departmentProfessors: [],
+}
+
 const propTypesDepartmentInfo = {
   departmentName: PropTypes.string.isRequired,
   departmentCourses: PropTypes.arrayOf(
@@ -74,14 +87,14 @@ const propTypesDepartmentInfo = {
       courseId: PropTypes.number.isRequired,
       courseName: PropTypes.string.isRequired,
     }).isRequired
-  ).isRequired,
+  ),
   departmentProfessors: PropTypes.arrayOf(
     PropTypes.shape({
       professorId: PropTypes.number.isRequired,
       firstName: PropTypes.string.isRequired,
       lastName: PropTypes.string.isRequired,
     }).isRequired
-  ).isRequired,
+  ),
 };
 
 export function DepartmentInfo({
@@ -127,6 +140,9 @@ export default function DepartmentInfoPage() {
   );
 }
 
-DepartmentCourseColumn.propTypes = propTypesDepartmentCourseColumn;
-DepartmentProfessorColumn.propTypes = propTypesDepartmentProfessorColumn;
+DepartmentCourseColumn.propTypes = propTypesDepartmentCourses;
+DepartmentCourseColumn.defaultProps = defaultPropsDepartmentCourses;
+DepartmentProfessorColumn.propTypes = propTypesDepartmentProfessors;
+DepartmentProfessorColumn.defaultProps = defaultPropsDepartmentProfessors;
 DepartmentInfo.propTypes = propTypesDepartmentInfo;
+DepartmentInfo.defaultProps = defaultPropsDepartmentInfo;

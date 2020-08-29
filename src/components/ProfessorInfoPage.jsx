@@ -10,14 +10,18 @@ import LoadingComponent from "components/common/LoadingComponent";
 import { ProfessorDisplayName } from "components/common/ProfessorDisplay";
 import useDataFetch from "components/common/useDataFetch";
 
-const propTypesProfessorCourseList = {
+const defaultProps = {
+  courses: [],
+};
+
+const propTypesProfessorCourses = {
   courses: PropTypes.arrayOf(
     PropTypes.shape({
       courseProfessorId: PropTypes.number.isRequired,
       courseName: PropTypes.string.isRequired,
       courseCallNumber: PropTypes.string.isRequired,
     }).isRequired
-  ).isRequired,
+  ),
 };
 
 export function ProfessorCourseList({ courses }) {
@@ -63,7 +67,7 @@ const propTypesProfessorSummary = {
       courseName: PropTypes.string.isRequired,
       courseCallNumber: PropTypes.string.isRequired,
     }).isRequired
-  ).isRequired,
+  ),
   firstName: PropTypes.string.isRequired,
   lastName: PropTypes.string.isRequired,
   professorId: PropTypes.string.isRequired,
@@ -121,6 +125,8 @@ export default function ProfessorInfoPage() {
   );
 }
 
-ProfessorCourseList.propTypes = propTypesProfessorCourseList;
+ProfessorCourseList.propTypes = propTypesProfessorCourses;
+ProfessorCourseList.defaultProps = defaultProps;
 ReviewProfessorButton.propTypes = propTypesReviewProfessorButton;
 ProfessorSummary.propTypes = propTypesProfessorSummary;
+ProfessorSummary.defaultProps = defaultProps;

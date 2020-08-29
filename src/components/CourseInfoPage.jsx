@@ -13,7 +13,11 @@ import useDataFetch from "components/common/useDataFetch";
 
 const MAX_NUM_PROFESSORS_IN_LIST = 5;
 
-const propTypesProfessorsList = {
+const defaultProps = {
+  courseProfessors: [],
+};
+
+const propTypesCourseProfessors = {
   courseProfessors: PropTypes.arrayOf(
     PropTypes.shape({
       firstName: PropTypes.string.isRequired,
@@ -26,7 +30,7 @@ const propTypesProfessorsList = {
         }).isRequired
       ).isRequired,
     }).isRequired
-  ).isRequired,
+  ),
 };
 
 export function ProfessorsList({ courseProfessors }) {
@@ -64,7 +68,7 @@ const propTypesProfessorsAccordion = {
         }).isRequired
       ).isRequired,
     }).isRequired
-  ).isRequired,
+  ),
 };
 
 export function ProfessorsAccordion({
@@ -90,24 +94,6 @@ export function ProfessorsAccordion({
     </Accordion>
   );
 }
-
-const propTypesProfessorsComponent = {
-  isAccordionActive: PropTypes.bool.isRequired,
-  setAccordionActive: PropTypes.func.isRequired,
-  courseProfessors: PropTypes.arrayOf(
-    PropTypes.shape({
-      firstName: PropTypes.string.isRequired,
-      lastName: PropTypes.string.isRequired,
-      professorId: PropTypes.number.isRequired,
-      professorDepartments: PropTypes.arrayOf(
-        PropTypes.shape({
-          professorDepartmentId: PropTypes.number.isRequired,
-          professorDepartmentName: PropTypes.string.isRequired,
-        }).isRequired
-      ).isRequired,
-    }).isRequired
-  ).isRequired,
-};
 
 export function ProfessorsComponent({
   isAccordionActive,
@@ -157,22 +143,6 @@ export function ProfessorDepartmentColumn({
     </Grid.Column>
   );
 }
-
-const propTypesCourseProfessorsGrid = {
-  courseProfessors: PropTypes.arrayOf(
-    PropTypes.shape({
-      firstName: PropTypes.string.isRequired,
-      lastName: PropTypes.string.isRequired,
-      professorId: PropTypes.number.isRequired,
-      professorDepartments: PropTypes.arrayOf(
-        PropTypes.shape({
-          professorDepartmentId: PropTypes.number.isRequired,
-          professorDepartmentName: PropTypes.string.isRequired,
-        }).isRequired
-      ).isRequired,
-    }).isRequired
-  ).isRequired,
-};
 
 export function CourseProfessorsGrid({ courseProfessors }) {
   return (
@@ -231,7 +201,7 @@ const propTypesCourseSummary = {
         }).isRequired
       ).isRequired,
     }).isRequired
-  ).isRequired,
+  ),
 };
 
 export function CourseSummary({
@@ -305,10 +275,15 @@ export default function CourseInfoPage() {
     />
   );
 }
-ProfessorsList.propTypes = propTypesProfessorsList;
+ProfessorsList.propTypes = propTypesCourseProfessors;
+ProfessorsList.defaultProps = defaultProps;
 ProfessorsAccordion.propTypes = propTypesProfessorsAccordion;
-ProfessorsComponent.propTypes = propTypesProfessorsComponent;
-CourseProfessorsGrid.propTypes = propTypesCourseProfessorsGrid;
+ProfessorsAccordion.defaultProps = defaultProps;
+ProfessorsComponent.propTypes = propTypesProfessorsAccordion;
+ProfessorsComponent.defaultProps = defaultProps;
+CourseProfessorsGrid.propTypes = propTypesCourseProfessors;
+CourseProfessorsGrid.defaultProps = defaultProps;
 ProfessorDepartmentColumn.propTypes = propTypesProfessorDepartmentColumn;
 ReviewCourseButton.propTypes = propTypesReviewCourseButton;
 CourseSummary.propTypes = propTypesCourseSummary;
+CourseSummary.defaultProps = defaultProps;
