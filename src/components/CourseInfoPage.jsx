@@ -36,17 +36,17 @@ const propTypesCourseProfessors = {
 export function ProfessorsList({ courseProfessors }) {
   return (
     <>
-      <>Professors: </>
+      <p>Professors: </p>
       {courseProfessors.map(({ firstName, lastName, professorId }, index) => {
         return (
-          <React.Fragment key={professorId}>
+          <div key={professorId}>
             <ProfessorDisplayLink
               firstName={firstName}
               lastName={lastName}
               professorId={professorId}
             />
             {index !== courseProfessors.length - 1 ? ", " : ""}
-          </React.Fragment>
+          </div>
         );
       })}
     </>
@@ -130,13 +130,13 @@ export function ProfessorDepartmentColumn({
       {professorDepartments.map(
         ({ professorDepartmentId, professorDepartmentName }, index) => {
           return (
-            <React.Fragment key={professorDepartmentName}>
+            <div key={professorDepartmentName}>
               <DepartmentDisplayLink
                 departmentId={professorDepartmentId}
                 departmentName={professorDepartmentName}
               />
               {professorDepartments.length - 1 !== index ? ", " : ""}
-            </React.Fragment>
+            </div>
           );
         }
       )}
@@ -171,20 +171,20 @@ export function CourseProfessorsGrid({ courseProfessors }) {
 }
 
 const propTypesReviewCourseButton = {
-  courseId: PropTypes.string.isRequired,
+  courseId: PropTypes.number.isRequired,
   courseName: PropTypes.string.isRequired,
 };
 
 export function ReviewCourseButton({ courseId, courseName }) {
   return (
-    <CreateReviewButton color="yellow" courseId={courseId}>
+    <CreateReviewButton color="yellow" courseId={courseId.toString()}>
       WRITE A REVIEW FOR {courseName}
     </CreateReviewButton>
   );
 }
 
 const propTypesCourseSummary = {
-  courseId: PropTypes.string.isRequired,
+  courseId: PropTypes.number.isRequired,
   courseName: PropTypes.string.isRequired,
   courseCallNumber: PropTypes.string.isRequired,
   departmentId: PropTypes.number.isRequired,
@@ -222,7 +222,7 @@ export function CourseSummary({
       />
       <Container>
         <Container>
-          <>Department: </>
+          <p>Department: </p>
           <DepartmentDisplayLink
             departmentId={departmentId}
             departmentName={departmentName}
@@ -267,7 +267,7 @@ export default function CourseInfoPage() {
   return (
     <CourseSummary
       courseCallNumber={courseCallNumber}
-      courseId={courseId}
+      courseId={Number(courseId)}
       courseName={courseName}
       courseProfessors={courseProfessors}
       departmentId={departmentId}
@@ -277,13 +277,19 @@ export default function CourseInfoPage() {
 }
 ProfessorsList.propTypes = propTypesCourseProfessors;
 ProfessorsList.defaultProps = defaultProps;
+
 ProfessorsAccordion.propTypes = propTypesProfessorsAccordion;
 ProfessorsAccordion.defaultProps = defaultProps;
+
 ProfessorsComponent.propTypes = propTypesProfessorsAccordion;
 ProfessorsComponent.defaultProps = defaultProps;
+
 CourseProfessorsGrid.propTypes = propTypesCourseProfessors;
 CourseProfessorsGrid.defaultProps = defaultProps;
+
 ProfessorDepartmentColumn.propTypes = propTypesProfessorDepartmentColumn;
+
 ReviewCourseButton.propTypes = propTypesReviewCourseButton;
+
 CourseSummary.propTypes = propTypesCourseSummary;
 CourseSummary.defaultProps = defaultProps;

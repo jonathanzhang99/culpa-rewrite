@@ -7,19 +7,23 @@ import ErrorComponent from "components/common/ErrorComponent";
 import LoadingComponent from "components/common/LoadingComponent";
 import useDataFetch from "components/common/useDataFetch";
 
+const defaultProps = {
+  departments: [],
+};
+
 const propTypes = {
   departments: PropTypes.arrayOf(
     PropTypes.shape({
       departmentId: PropTypes.number.isRequired,
       departmentName: PropTypes.string.isRequired,
     }).isRequired
-  ).isRequired,
+  ),
 };
 
 export function Departments({ departments }) {
   return (
     // TODO: Add styling into two columns with alphabetical sections
-    <div>
+    <>
       <Header>List of Departments</Header>
       <List>
         {departments.map(({ departmentId, departmentName }) => {
@@ -33,7 +37,7 @@ export function Departments({ departments }) {
           );
         })}
       </List>
-    </div>
+    </>
   );
 }
 
@@ -54,3 +58,4 @@ export default function DepartmentsPage() {
 }
 
 Departments.propTypes = propTypes;
+Departments.defaultProps = defaultProps;

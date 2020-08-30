@@ -27,18 +27,18 @@ const propTypesProfessorCourses = {
 export function ProfessorCourseList({ courses }) {
   return (
     <>
-      <>Courses: </>
+      <p>Courses: </p>
       {courses.map(
         ({ courseProfessorId, courseName, courseCallNumber }, index) => {
           return (
-            <React.Fragment key={courseProfessorId}>
+            <div key={courseProfessorId}>
               <CourseDisplayLink
                 courseCallNumber={courseCallNumber}
                 courseId={courseProfessorId}
                 courseName={courseName}
               />
               {index !== courses.length - 1 ? ", " : ""}
-            </React.Fragment>
+            </div>
           );
         }
       )}
@@ -47,14 +47,14 @@ export function ProfessorCourseList({ courses }) {
 }
 
 const propTypesReviewProfessorButton = {
-  professorId: PropTypes.string.isRequired,
+  professorId: PropTypes.number.isRequired,
   firstName: PropTypes.string.isRequired,
   lastName: PropTypes.string.isRequired,
 };
 
 export function ReviewProfessorButton({ professorId, firstName, lastName }) {
   return (
-    <CreateReviewButton color="yellow" professorId={professorId}>
+    <CreateReviewButton color="yellow" professorId={professorId.toString()}>
       WRITE A REVIEW FOR {firstName} {lastName}
     </CreateReviewButton>
   );
@@ -70,7 +70,7 @@ const propTypesProfessorSummary = {
   ),
   firstName: PropTypes.string.isRequired,
   lastName: PropTypes.string.isRequired,
-  professorId: PropTypes.string.isRequired,
+  professorId: PropTypes.number.isRequired,
 };
 
 export function ProfessorSummary({
@@ -120,13 +120,15 @@ export default function ProfessorInfoPage() {
       courses={courses}
       firstName={firstName}
       lastName={lastName}
-      professorId={professorId}
+      professorId={Number(professorId)}
     />
   );
 }
 
 ProfessorCourseList.propTypes = propTypesProfessorCourses;
 ProfessorCourseList.defaultProps = defaultProps;
+
 ReviewProfessorButton.propTypes = propTypesReviewProfessorButton;
+
 ProfessorSummary.propTypes = propTypesProfessorSummary;
 ProfessorSummary.defaultProps = defaultProps;

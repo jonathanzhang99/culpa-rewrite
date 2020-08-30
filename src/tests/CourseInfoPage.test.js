@@ -1,35 +1,24 @@
 import { render, fireEvent, screen } from "@testing-library/react";
 import React from "react";
-import { MemoryRouter, Route } from "react-router-dom";
+import { MemoryRouter } from "react-router-dom";
 
-import { AuthContext } from "components/common/Authentication";
-import CourseInfoPage from "components/CourseInfoPage";
+import { CourseSummary } from "components/CourseInfoPage";
 
-describe("CourseInfoPage Component", () => {
-  const loginSuccess = jest.fn(() => {
-    Promise.resolve();
-  });
+describe("CourseSummary Component", () => {
+  const MAX_NUM_PROFESSORS_IN_LIST = 5;
+
   const testCases = [
     {
-      testName: "renders no info",
-      courseId: 0,
-      courseName: "",
-      courseCallNumber: "",
-      departmentId: 0,
-      departmentName: "",
-      courseProfessors: [{}],
-    },
-    {
       testName: "renders course info with no professors",
-      courseId: 0,
+      courseId: 1,
       courseName: "Machine Learning",
       courseCallNumber: "COMS 4771",
       departmentId: 1,
       departmentName: "Computer Science",
-      courseProfessors: [{}],
+      courseProfessors: [],
     },
     {
-      testName: "renders course info with professor",
+      testName: "renders course info with one professor",
       courseId: 1,
       courseName: "Machine Learning",
       courseCallNumber: "COMS 4771",
@@ -53,6 +42,133 @@ describe("CourseInfoPage Component", () => {
         },
       ],
     },
+    {
+      testName: "renders course info with professor list",
+      courseId: 1,
+      courseName: "Machine Learning",
+      courseCallNumber: "COMS 4771",
+      departmentId: 1,
+      departmentName: "Computer Science",
+      courseProfessors: [
+        {
+          firstName: "Nakul",
+          lastName: "Verma",
+          professorId: 1,
+          professorDepartments: [
+            {
+              professorDepartmentId: 1,
+              professorDepartmentName: "Computer Science",
+            },
+            {
+              professorDepartmentId: 3,
+              professorDepartmentName: "Mathematics",
+            },
+          ],
+        },
+        {
+          firstName: "Daniel",
+          lastName: "Hsu",
+          professorId: 2,
+          professorDepartments: [
+            {
+              professorDepartmentId: 1,
+              professorDepartmentName: "Computer Science",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      testName: "renders course info with professor accordion",
+      courseId: 1,
+      courseName: "Machine Learning",
+      courseCallNumber: "COMS 4771",
+      departmentId: 1,
+      departmentName: "Computer Science",
+      courseProfessors: [
+        {
+          firstName: "Nakul",
+          lastName: "Verma",
+          professorId: 1,
+          professorDepartments: [
+            {
+              professorDepartmentId: 1,
+              professorDepartmentName: "Computer Science",
+            },
+            {
+              professorDepartmentId: 3,
+              professorDepartmentName: "Mathematics",
+            },
+          ],
+        },
+        {
+          firstName: "Daniel",
+          lastName: "Hsu",
+          professorId: 2,
+          professorDepartments: [
+            {
+              professorDepartmentId: 1,
+              professorDepartmentName: "Computer Science",
+            },
+          ],
+        },
+        {
+          firstName: "Dorrie",
+          lastName: "Tang",
+          professorId: 3,
+          professorDepartments: [
+            {
+              professorDepartmentId: 1,
+              professorDepartmentName: "Computer Science",
+            },
+          ],
+        },
+        {
+          firstName: "Elaine",
+          lastName: "Wang",
+          professorId: 4,
+          professorDepartments: [
+            {
+              professorDepartmentId: 1,
+              professorDepartmentName: "Computer Science",
+            },
+          ],
+        },
+        {
+          firstName: "Jonathan",
+          lastName: "Zhang",
+          professorId: 5,
+          professorDepartments: [
+            {
+              professorDepartmentId: 1,
+              professorDepartmentName: "Computer Science",
+            },
+          ],
+        },
+        {
+          firstName: "Jin Woo",
+          lastName: "Hsu",
+          professorId: 6,
+          professorDepartments: [
+            {
+              professorDepartmentId: 1,
+              professorDepartmentName: "Computer Science",
+            },
+          ],
+        },
+        {
+          firstName: "Sungbin",
+          lastName: "Kim",
+          professorId: 7,
+          professorDepartments: [
+            {
+              professorDepartmentId: 1,
+              professorDepartmentName: "Computer Science",
+            },
+          ],
+        },
+      ],
+    },
   ];
 
   testCases.forEach(
@@ -67,57 +183,8 @@ describe("CourseInfoPage Component", () => {
     }) => {
       test(testName, () => {
         const snapshot = render(
-          <MemoryRouter initialEntries={[courseId]}>
-            <Route path=":courseId">
-              <AuthContext.Provider value={{ login: loginSuccess }}>
-                <CourseInfoPage
-                  courseCallNumber={courseCallNumber}
-                  courseId={courseId}
-                  courseName={courseName}
-                  courseProfessors={courseProfessors}
-                  departmentId={departmentId}
-                  departmentName={departmentName}
-                />
-              </AuthContext.Provider>
-            </Route>
-          </MemoryRouter>
-        );
-        expect(snapshot).toMatchSnapshot();
-      });
-    }
-  );
-
-  /* Semantic-UI React does not change HTML for accordion folding/unfolding so 
-   we test accordion functionality by checking for change in button string. */
-  test("renders course info with working professor accordion", () => {
-    const courseId = 1;
-    const courseName = "Machine Learning";
-    const courseCallNumber = "COMS 4771";
-    const departmentId = 1;
-    const departmentName = "Computer Science";
-    const courseProfessors = [
-      {
-        firstName: "Nakul",
-        lastName: "Verma",
-        professorId: 1,
-        professorDepartments: [
-          {
-            professorDepartmentId: 1,
-            professorDepartmentName: "Computer Science",
-          },
-          {
-            professorDepartmentId: 3,
-            professorDepartmentName: "Mathematics",
-          },
-        ],
-      },
-    ];
-
-    render(
-      <MemoryRouter initialEntries={[courseId]}>
-        <Route path=":courseId">
-          <AuthContext.Provider value={{ login: loginSuccess }}>
-            <CourseInfoPage
+          <MemoryRouter>
+            <CourseSummary
               courseCallNumber={courseCallNumber}
               courseId={courseId}
               courseName={courseName}
@@ -125,17 +192,27 @@ describe("CourseInfoPage Component", () => {
               departmentId={departmentId}
               departmentName={departmentName}
             />
-          </AuthContext.Provider>
-        </Route>
-      </MemoryRouter>
-    );
+          </MemoryRouter>
+        );
 
-    expect(screen.queryByText("Show")).toBeInTheDocument();
+        expect(snapshot).toMatchSnapshot();
 
-    fireEvent.click(screen.getByText("Show"));
-    expect(screen.queryByText("Hide")).toBeInTheDocument();
+        if (courseProfessors.length > MAX_NUM_PROFESSORS_IN_LIST) {
+          expect(
+            screen.queryByText(/show all professors/i)
+          ).toBeInTheDocument();
 
-    fireEvent.click(screen.getByText("Hide"));
-    expect(screen.queryByText("Show")).toBeInTheDocument();
-  });
+          fireEvent.click(screen.getByText(/show all professors/i));
+          expect(
+            screen.queryByText(/hide all professors/i)
+          ).toBeInTheDocument();
+
+          fireEvent.click(screen.getByText(/hide all professors/i));
+          expect(
+            screen.queryByText(/show all professors/i)
+          ).toBeInTheDocument();
+        }
+      });
+    }
+  );
 });

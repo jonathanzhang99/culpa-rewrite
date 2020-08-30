@@ -1,18 +1,190 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`DepartmentInfoPage Component renders department info 1`] = `
+exports[`DepartmentInfo Component renders department info 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <div>
-        page is loading
+      <div
+        class="ui header"
+      >
+         
+        Computer Science
+         
+      </div>
+      <div
+        class="ui two column grid"
+      >
+        <div
+          class="column"
+        >
+          <div
+            class="row"
+          >
+            <div
+              class="ui header"
+            >
+              Courses
+            </div>
+          </div>
+          <div
+            class="row"
+          >
+            <a
+              href="/course/1"
+            >
+              <span>
+                
+                 
+                User Interface Design
+              </span>
+            </a>
+          </div>
+          <div
+            class="row"
+          >
+            <a
+              href="/course/2"
+            >
+              <span>
+                
+                 
+                Machine Learning
+              </span>
+            </a>
+          </div>
+        </div>
+        <div
+          class="column"
+        >
+          <div
+            class="row"
+          >
+            <div
+              class="ui header"
+            >
+              Professors
+            </div>
+          </div>
+          <div
+            class="row"
+          >
+            <a
+              href="/professor/1"
+            >
+              <span>
+                Lydia
+                 
+                Chilton
+              </span>
+            </a>
+          </div>
+          <div
+            class="row"
+          >
+            <a
+              href="/professor/2"
+            >
+              <span>
+                Nakul
+                 
+                Verma
+              </span>
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </body>,
   "container": <div>
-    <div>
-      page is loading
+    <div
+      class="ui header"
+    >
+       
+      Computer Science
+       
+    </div>
+    <div
+      class="ui two column grid"
+    >
+      <div
+        class="column"
+      >
+        <div
+          class="row"
+        >
+          <div
+            class="ui header"
+          >
+            Courses
+          </div>
+        </div>
+        <div
+          class="row"
+        >
+          <a
+            href="/course/1"
+          >
+            <span>
+              
+               
+              User Interface Design
+            </span>
+          </a>
+        </div>
+        <div
+          class="row"
+        >
+          <a
+            href="/course/2"
+          >
+            <span>
+              
+               
+              Machine Learning
+            </span>
+          </a>
+        </div>
+      </div>
+      <div
+        class="column"
+      >
+        <div
+          class="row"
+        >
+          <div
+            class="ui header"
+          >
+            Professors
+          </div>
+        </div>
+        <div
+          class="row"
+        >
+          <a
+            href="/professor/1"
+          >
+            <span>
+              Lydia
+               
+              Chilton
+            </span>
+          </a>
+        </div>
+        <div
+          class="row"
+        >
+          <a
+            href="/professor/2"
+          >
+            <span>
+              Nakul
+               
+              Verma
+            </span>
+          </a>
+        </div>
+      </div>
     </div>
   </div>,
   "debug": [Function],
@@ -69,19 +241,87 @@ Object {
 }
 `;
 
-exports[`DepartmentInfoPage Component renders no info 1`] = `
+exports[`DepartmentInfo Component renders department with no courses or professors 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <div>
-        page is loading
+      <div
+        class="ui header"
+      >
+         
+        Computer Science
+         
+      </div>
+      <div
+        class="ui two column grid"
+      >
+        <div
+          class="column"
+        >
+          <div
+            class="row"
+          >
+            <div
+              class="ui header"
+            >
+              Courses
+            </div>
+          </div>
+        </div>
+        <div
+          class="column"
+        >
+          <div
+            class="row"
+          >
+            <div
+              class="ui header"
+            >
+              Professors
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </body>,
   "container": <div>
-    <div>
-      page is loading
+    <div
+      class="ui header"
+    >
+       
+      Computer Science
+       
+    </div>
+    <div
+      class="ui two column grid"
+    >
+      <div
+        class="column"
+      >
+        <div
+          class="row"
+        >
+          <div
+            class="ui header"
+          >
+            Courses
+          </div>
+        </div>
+      </div>
+      <div
+        class="column"
+      >
+        <div
+          class="row"
+        >
+          <div
+            class="ui header"
+          >
+            Professors
+          </div>
+        </div>
+      </div>
     </div>
   </div>,
   "debug": [Function],

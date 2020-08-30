@@ -2,19 +2,15 @@ import { render } from "@testing-library/react";
 import React from "react";
 import { MemoryRouter } from "react-router-dom";
 
-import { AuthContext } from "components/common/Authentication";
-import DepartmentInfoPage from "components/DepartmentInfoPage";
+import { DepartmentInfo } from "components/DepartmentInfoPage";
 
-describe("DepartmentInfoPage Component", () => {
-  const loginSuccess = jest.fn(() => {
-    Promise.resolve();
-  });
+describe("DepartmentInfo Component", () => {
   const testCases = [
     {
-      testName: "renders no info",
-      departmentName: "",
-      departmentCourses: [{}],
-      departmentProfessors: [{}],
+      testName: "renders department with no courses or professors",
+      departmentName: "Computer Science",
+      departmentCourses: [],
+      departmentProfessors: [],
     },
     {
       testName: "renders department info",
@@ -48,13 +44,11 @@ describe("DepartmentInfoPage Component", () => {
       test(testName, () => {
         const snapshot = render(
           <MemoryRouter>
-            <AuthContext.Provider value={{ login: loginSuccess }}>
-              <DepartmentInfoPage
-                departmentCourses={departmentCourses}
-                departmentName={departmentName}
-                departmentProfessors={departmentProfessors}
-              />
-            </AuthContext.Provider>
+            <DepartmentInfo
+              departmentCourses={departmentCourses}
+              departmentName={departmentName}
+              departmentProfessors={departmentProfessors}
+            />
           </MemoryRouter>
         );
         expect(snapshot).toMatchSnapshot();

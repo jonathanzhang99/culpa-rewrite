@@ -12,7 +12,7 @@ import useDataFetch from "components/common/useDataFetch";
 
 const defaultPropsDepartmentCourses = {
   departmentCourses: [],
-}
+};
 
 const propTypesDepartmentCourses = {
   departmentCourses: PropTypes.arrayOf(
@@ -42,7 +42,7 @@ export function DepartmentCourseColumn({ departmentCourses }) {
 
 const defaultPropsDepartmentProfessors = {
   departmentProfessors: [],
-}
+};
 
 const propTypesDepartmentProfessors = {
   departmentProfessors: PropTypes.arrayOf(
@@ -78,7 +78,7 @@ export function DepartmentProfessorColumn({ departmentProfessors }) {
 const defaultPropsDepartmentInfo = {
   departmentCourses: [],
   departmentProfessors: [],
-}
+};
 
 const propTypesDepartmentInfo = {
   departmentName: PropTypes.string.isRequired,
@@ -142,7 +142,9 @@ export default function DepartmentInfoPage() {
 
 DepartmentCourseColumn.propTypes = propTypesDepartmentCourses;
 DepartmentCourseColumn.defaultProps = defaultPropsDepartmentCourses;
+
 DepartmentProfessorColumn.propTypes = propTypesDepartmentProfessors;
 DepartmentProfessorColumn.defaultProps = defaultPropsDepartmentProfessors;
+
 DepartmentInfo.propTypes = propTypesDepartmentInfo;
 DepartmentInfo.defaultProps = defaultPropsDepartmentInfo;
