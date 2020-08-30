@@ -77,6 +77,23 @@ def prepare_course_query_prefix(course_id, filter_list=None):
     ]
 
 
+def prepare_full_query_prefix():
+    q = Query.from_(course_professor).join(course).on(
+        course.course_id == course_professor.course_id
+    ).join(professor).on(
+        professor.professor_id == course_professor.professor_id
+    )
+    return q, [
+        course.course_id,
+        course.call_number.as_('course_call_number'),
+        course.name.as_('course_name'),
+        professor.professor_id.as_('prof_id'),
+        professor.first_name.as_('prof_first_name'),
+        professor.last_name.as_('prof_last_name'),
+        professor.uni.as_('prof_uni')
+    ]
+
+
 def get_flags_by_type(flag_type):
     '''
     Generates the pypika subquery that fetches the review_id,
@@ -124,6 +141,7 @@ def get_reviews_with_query_prefix(
     sort_criterion=None,
     sort_order=None,
     filter_year=None,
+    flag_type="approved"
 ):
     '''
     Loads all reviews and votes associated with a page, using
@@ -137,13 +155,13 @@ def get_reviews_with_query_prefix(
     review header data.
     '''
     cur = db.get_cursor()
-    approved_flags = get_flags_by_type('approved')
+    target_flags = get_flags_by_type(flag_type)
 
     q, header_fields = query_prefix
     q = q.join(review).on(
         course_professor.course_professor_id == review.course_professor_id
-    ).join(approved_flags).on(
-        approved_flags.review_id == review.review_id,
+    ).join(target_flags).on(
+        target_flags.review_id == review.review_id,
     ).join(vote, JoinType.left).on(
         review.review_id == vote.review_id
     ).groupby(
@@ -189,12 +207,10 @@ def get_reviews_with_query_prefix(
 
 
 def get_single_review(review_id, ip):
-    q = Query.from_(review).join(course_professor).on(
+    q, header_fields = prepare_full_query_prefix()
+
+    q = q.join(review).on(
         review.course_professor_id == course_professor.course_professor_id
-    ).join(course).on(
-        course.course_id == course_professor.course_id
-    ).join(professor).on(
-        professor.professor_id == course_professor.professor_id
     ).join(flag).on(
         Criterion.all([
             review.review_id == review_id,
@@ -203,13 +219,7 @@ def get_single_review(review_id, ip):
     ).join(vote, JoinType.left).on(
         review.review_id == vote.review_id
     ).groupby(
-        course.course_id,
-        course.call_number,
-        course.name,
-        professor.professor_id,
-        professor.first_name,
-        professor.last_name,
-        professor.uni,
+        *header_fields,
         flag.type,
         flag.created_at,
         review.review_id,
@@ -218,13 +228,7 @@ def get_single_review(review_id, ip):
         review.rating,
         review.submission_date
     ).select(
-        course.course_id,
-        course.call_number.as_('course_call_number'),
-        course.name.as_('course_name'),
-        professor.professor_id.as_('prof_id'),
-        professor.first_name.as_('prof_first_name'),
-        professor.last_name.as_('prof_last_name'),
-        professor.uni.as_('prof_uni'),
+        *header_fields,
         flag.type.as_('flag_type'),
         review.review_id,
         review.content,
