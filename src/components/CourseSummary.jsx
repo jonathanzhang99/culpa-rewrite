@@ -53,7 +53,7 @@ const defaultReview = {
 };
 
 const propTypesCourseSummary = {
-  courseId: PropTypes.string.isRequired,
+  courseId: PropTypes.number.isRequired,
   courseSummary: PropTypes.shape({
     courseName: PropTypes.string.isRequired,
     courseCallNumber: PropTypes.string.isRequired,
@@ -94,7 +94,7 @@ CourseSummary.propTypes = propTypesCourseSummary;
 CourseSummary.defaultProps = defaultPropsCourseSummary;
 
 const propTypesCourseHeader = {
-  courseId: PropTypes.string.isRequired,
+  courseId: PropTypes.number.isRequired,
   courseSummary: PropTypes.shape({
     courseName: PropTypes.string.isRequired,
     courseCallNumber: PropTypes.string.isRequired,
@@ -257,14 +257,13 @@ function ReviewSummary({ reviewSummary }) {
     const { positiveReview, negativeReview } = reviewSummary;
     return (
       <Container>
-        <Grid>
+        <Grid relaxed>
           <Grid.Row>
-            <Grid.Column width={7}>
+            <Grid.Column width={8}>
               <h3>Most Positive Review</h3>
               <CourseReviewCard review={positiveReview} />
             </Grid.Column>
-            <Grid.Column width={1} />
-            <Grid.Column width={7}>
+            <Grid.Column width={8}>
               <h3>Most Negative Review</h3>
               <CourseReviewCard review={negativeReview} />
             </Grid.Column>

@@ -52,7 +52,7 @@ export default function CoursePage() {
   const isCourseError = courseDataFetched.isError;
 
   const reviewDataFetched = useDataFetch(`/api/review/get/course/${courseId}`, {
-    reviews: []
+    reviews: [],
   });
 
   const { reviews } = reviewDataFetched.data;
@@ -70,7 +70,7 @@ export default function CoursePage() {
   return (
     <>
       <CourseSummary
-        courseId={courseId}
+        courseId={Number(courseId)}
         courseSummary={courseSummary}
         reviewSummary={reviewSummary}
       />
