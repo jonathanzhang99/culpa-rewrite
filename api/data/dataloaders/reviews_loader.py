@@ -23,17 +23,17 @@ class RowNumber(AnalyticFunction):
 #         vote table, valid values are ['agree', 'disagree', 'funny']
 def vote_count(vote_type):
     return fn.Sum(Case().when(
-                vote.type == vote_type, 1
-            ).else_(0)).as_(f'{vote_type}s')
+        vote.type == vote_type, 1
+    ).else_(0)).as_(f'{vote_type}s')
 
 
 def vote_clicked(vote_type, ip):
     return fn.Sum(Case().when(
-                Criterion.all([
-                    vote.type == vote_type,
-                    vote.ip == ip
-                ]), 1
-            ).else_(0)).as_(f'{vote_type}_clicked')
+        Criterion.all([
+            vote.type == vote_type,
+            vote.ip == ip
+        ]), 1
+    ).else_(0)).as_(f'{vote_type}_clicked')
 
 
 # The prepare_*_query_prefix functions are called from the flask
@@ -52,10 +52,10 @@ def prepare_professor_query_prefix(prof_id, filter_list=None):
     if filter_list:
         q = q.where(course.course_id.isin(filter_list))
     return q, [
-                course.course_id,
-                course.call_number,
-                course.name
-              ]
+        course.course_id,
+        course.call_number,
+        course.name
+    ]
 
 
 def prepare_course_query_prefix(course_id, filter_list=None):
@@ -70,11 +70,11 @@ def prepare_course_query_prefix(course_id, filter_list=None):
     if filter_list:
         q = q.where(professor.professor_id.isin(filter_list))
     return q, [
-                professor.professor_id,
-                professor.first_name,
-                professor.last_name,
-                professor.uni
-              ]
+        professor.professor_id,
+        professor.first_name,
+        professor.last_name,
+        professor.uni
+    ]
 
 
 def get_flags_by_type(flag_type):
@@ -245,3 +245,72 @@ def get_single_review(review_id, ip):
     cur.execute(q)
 
     return cur.fetchone()
+
+
+def get_course_review_summary(
+    query_prefix,
+    ip
+):
+    '''
+    Get most positive/negative reviews
+    - most positive review: approved review with highest rating
+        and most agreed votes
+    - most negative review: approved review with lowest rating
+        and most agreed votes
+
+    In case the two review are the same, only return one review
+    (most agreed review)
+    '''
+    cur = db.get_cursor()
+    approved_flags = get_flags_by_type('approved')
+
+    q, header_fields = query_prefix
+    q = q.join(review).on(
+        course_professor.course_professor_id == review.course_professor_id
+    ).join(approved_flags).on(
+        approved_flags.review_id == review.review_id,
+    ).join(vote, JoinType.left).on(
+        review.review_id == vote.review_id
+    ).groupby(
+        *header_fields,
+        review.review_id,
+        review.content,
+        review.workload,
+        review.rating,
+        review.submission_date
+    ).select(
+        *header_fields,
+        review.review_id,
+        review.content,
+        review.workload,
+        review.rating,
+        review.submission_date,
+        vote_count('agree'),
+        vote_count('disagree'),
+        vote_count('funny'),
+        vote_clicked('agree', ip),
+        vote_clicked('disagree', ip),
+        vote_clicked('funny', ip)
+    )
+
+    positive_review_query = q.orderby(
+        review.rating, order=Order.desc
+    ).orderby(
+        vote_count('agree'), order=Order.desc
+    ).limit(1)
+
+    negative_review_query = q.orderby(
+        review.rating, order=Order.asc
+    ).orderby(
+        vote_count('agree'), order=Order.desc
+    ).limit(1)
+
+    # Pypika does not support UNION between SELECT's that include ORDER BY
+    query_final = f'''
+    ({positive_review_query.get_sql()})
+    UNION
+    ({negative_review_query.get_sql()})
+    '''
+
+    cur.execute(query_final)
+    return cur.fetchall()
