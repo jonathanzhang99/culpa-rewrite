@@ -14,6 +14,7 @@ describe("CourseSummary Components", () => {
       courseSummary: {
         courseName: "",
         courseCallNumber: "",
+        departmentId: 0,
         departmentName: "",
         associatedProfessors: [
           {
@@ -36,6 +37,7 @@ describe("CourseSummary Components", () => {
       courseSummary: {
         courseName: "Machine Learning",
         courseCallNumber: "COMS 4771",
+        departmentId: 1,
         departmentName: "Computer Science",
         associatedProfessors: [
           {
@@ -58,6 +60,7 @@ describe("CourseSummary Components", () => {
       courseSummary: {
         courseName: "Machine Learning",
         courseCallNumber: "COMS 4771",
+        departmentId: 1,
         departmentName: "Computer Science",
         associatedProfessors: [
           {
@@ -84,6 +87,7 @@ describe("CourseSummary Components", () => {
       courseSummary: {
         courseName: "Machine Learning",
         courseCallNumber: "COMS 4771",
+        departmentId: 1,
         departmentName: "Computer Science",
         associatedProfessors: [
           {
@@ -199,6 +203,7 @@ describe("CourseSummary Components", () => {
     const courseSummary = {
       courseName: "Machine Learning",
       courseCallNumber: "COMS 4771",
+      departmentId: 1,
       departmentName: "Computer Science",
       associatedProfessors: [
         {
