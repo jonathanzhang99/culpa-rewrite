@@ -2,8 +2,8 @@ import flask
 
 from api.data.dataloaders.courses_loader import get_course, \
     get_department_professors
-from api.data.dataloaders.reviews_loader import get_reviews_with_query_prefix,\
-    prepare_course_query_prefix
+from api.data.dataloaders.reviews_loader import prepare_course_query_prefix,\
+    get_course_review_summary
 from api.blueprints.review import parse_review
 
 course_blueprint = flask.Blueprint('course_blueprint', __name__)
@@ -48,9 +48,9 @@ def course_summary(course_id):
      Fetch review summary info
         NOTE:
             - Most positive review is the review with the highest rating
-                with most agreed votes (at least 0 votes)
+                with most agreed votes (at least 1 vote)
             - Most negative review is the review with the lowest rating
-                with most agreed votes (at least 0 votes)
+                with most agreed votes (at least 1 vote)
             - When the two reviews are the Most Agreed Review is shown
             - When there is only one review, the Most Agreed Review is shown
             - When there are no reviews, then no review is shown
@@ -58,60 +58,19 @@ def course_summary(course_id):
     ip = flask.request.remote_addr
     review_type = 'course'
     query_prefix = prepare_course_query_prefix(course_id)
+    review_summary = get_course_review_summary(query_prefix, ip)
 
-    positive_reviews = get_reviews_with_query_prefix(
-        query_prefix,
-        ip,
-        sort_criterion='rating',
-        sort_order='DESC'
-    )
-    negative_reviews = get_reviews_with_query_prefix(
-        query_prefix,
-        ip,
-        sort_criterion='rating',
-        sort_order='ASC'
-    )
-
-    if positive_reviews:
-        highest_rating = positive_reviews[0]['rating']
-        most_positive_reviews = [
-            r for r in positive_reviews if r['rating'] == highest_rating
-        ]
-        most_positive_review = sorted(
-            most_positive_reviews, key=lambda k: k['agrees'], reverse=True)[0]
-        parsed_most_positive_review = parse_review(
-            most_positive_review, review_type)
-    if negative_reviews:
-        lowest_rating = negative_reviews[0]['rating']
-        most_negative_reviews = [
-            r for r in negative_reviews if r['rating'] == lowest_rating
-        ]
-        most_negative_review = sorted(
-            most_negative_reviews, key=lambda k: k['agrees'], reverse=True)[0]
-        parsed_most_negative_review = parse_review(
-            most_negative_review, review_type)
-
-    if positive_reviews and negative_reviews:
-        if most_positive_review['review_id'] == \
-                most_negative_review['review_id']:
-            review_summary_json = {
-                'mostAgreedReview': parsed_most_positive_review
-            }
-        else:
-            review_summary_json = {
-                'positiveReview': parsed_most_positive_review,
-                'negativeReview': parsed_most_negative_review,
-            }
-    elif positive_reviews:
+    if len(review_summary) == 0:
+        review_summary_json = {}
+    elif len(review_summary) == 1:
         review_summary_json = {
-            'mostAgreedReview': parsed_most_positive_review,
-        }
-    elif negative_reviews:
-        review_summary_json = {
-            'mostAgreedReview': parsed_most_negative_review,
+            'mostAgreedReview': parse_review(review_summary[0], review_type)
         }
     else:
-        review_summary_json = {}
+        review_summary_json = {
+            'positiveReview': parse_review(review_summary[0], review_type),
+            'negativeReview': parse_review(review_summary[1], review_type),
+        }
 
     return {
         'courseSummary': course_summary_json,

@@ -191,7 +191,7 @@ def setup_for_course_test(cur):
         (7, 'negative review', '123.0.0.1', 'workload', 1, '2013-05-20'),
         (7, 'positive review2', '123.0.0.1', 'workload', 5, '2010-05-21'),
         (7, 'negative review2', '123.0.0.1', 'workload', 1, '2012-7-20'),
-    ]
+    ]   # review_ids 7-11
 
     cur.executemany(
         'INSERT INTO review'
@@ -221,7 +221,7 @@ def setup_for_course_test(cur):
         votes
     )
 
-    # Insert course without any reviews
+    # Insert course with only neutral reviews
     cur.execute(
         'INSERT INTO course (name, department_id, call_number)'
         'VALUES (%s, %s, %s)',   # course_id: 7
@@ -232,17 +232,45 @@ def setup_for_course_test(cur):
         'VALUES (%s, %s)',  # course_professor_id: 8
         (1, 7)
     )
+    cur.execute(
+        'INSERT INTO review'
+        '(course_professor_id, content, ip, workload, rating, submission_date)'
+        'VALUES'
+        '(%s, %s, %s, %s, %s, %s)',
+        (8, 'neutral review', '123.456,78.914',
+            'workload', 3, '2019-08-17')    # review_id: 12
+    )
+    cur.execute(
+        'INSERT INTO review'
+        '(course_professor_id, content, ip, workload, rating, submission_date)'
+        'VALUES'
+        '(%s, %s, %s, %s, %s, %s)',
+        (8, 'neutral review2', '123.456,78.914',
+            'workload', 3, '2019-08-17')    # review_id: 13
+    )
+
+    # Insert course without any reviews
+    cur.execute(
+        'INSERT INTO course (name, department_id, call_number)'
+        'VALUES (%s, %s, %s)',   # course_id: 8
+        ('course_without_review', 1, 'CWOR')
+    )
+    cur.execute(
+        'INSERT INTO course_professor (professor_id, course_id)'
+        'VALUES (%s, %s)',  # course_professor_id: 9
+        (1, 7)
+    )
 
     # Insert course with reviews without any votes
     cur.execute(
         'INSERT INTO course (name, department_id, call_number)'
-        # course_id: 8
+        # course_id: 9
         'VALUES (%s, %s, %s)',
         ('course_with_reviews_without_votes', 1, 'CWRWV')
     )
     cur.execute(
         'INSERT INTO course_professor (professor_id, course_id)'
-        'VALUES (%s, %s)',  # course_professor_id: 9
+        'VALUES (%s, %s)',  # course_professor_id: 10
         (1, 8)
     )
     cur.execute(
@@ -251,5 +279,23 @@ def setup_for_course_test(cur):
         'VALUES'
         '(%s, %s, %s, %s, %s, %s)',
         (9, 'review_without_votes', '123.456,78.914',
-            'workload', 3, '2019-08-17')
+            'workload', 3, '2019-08-17')    # review_id: 13
+    )
+
+    # make the reviews valid by marking them as approved
+    flags = [
+        (7, 1, 'approved', '2020-08-19'),
+        (8, 1, 'approved', '2020-08-18'),
+        (9, 1, 'approved', '2020-08-17'),
+        (10, 1, 'approved', '2020-08-16'),
+        (11, 1, 'approved', '2020-08-15'),
+        (12, 1, 'approved', '2020-08-15'),
+        (13, 1, 'approved', '2020-08-15'),
+    ]
+
+    cur.executemany(
+        'INSERT INTO flag'
+        '(review_id, user_id, type, created_at)'
+        'VALUES (%s, %s, %s, %s)',
+        flags
     )

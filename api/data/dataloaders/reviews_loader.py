@@ -186,3 +186,72 @@ def get_reviews_with_query_prefix(
 
     cur.execute(q.get_sql())
     return cur.fetchall()
+
+
+def get_course_review_summary(
+    query_prefix,
+    ip
+):
+    '''
+    Get most positive/negative reviews
+    - most positive review: approved review with highest rating
+        and most agreed votes
+    - most negative review: approved review with lowest rating
+        and most agreed votes
+
+    In case the two review are the same, only return one review
+    (most agreed review)
+    '''
+    cur = db.get_cursor()
+    approved_flags = get_flags_by_type('approved')
+
+    q, header_fields = query_prefix
+    q = q.join(review).on(
+        course_professor.course_professor_id == review.course_professor_id
+    ).join(approved_flags).on(
+        approved_flags.review_id == review.review_id,
+    ).join(vote, JoinType.left).on(
+        review.review_id == vote.review_id
+    ).groupby(
+        *header_fields,
+        review.review_id,
+        review.content,
+        review.workload,
+        review.rating,
+        review.submission_date
+    ).select(
+        *header_fields,
+        review.review_id,
+        review.content,
+        review.workload,
+        review.rating,
+        review.submission_date,
+        vote_count('agree'),
+        vote_count('disagree'),
+        vote_count('funny'),
+        vote_clicked('agree', ip),
+        vote_clicked('disagree', ip),
+        vote_clicked('funny', ip)
+    )
+
+    positive_review_query = q.orderby(
+        review.rating, order=Order.desc
+    ).orderby(
+        vote_count('agree'), order=Order.desc
+    ).limit(1)
+
+    negative_review_query = q.orderby(
+        review.rating, order=Order.asc
+    ).orderby(
+        vote_count('agree'), order=Order.desc
+    ).limit(1)
+
+    # Pypika does not support UNION between SELECT's that include ORDER BY
+    query_final = f'''
+    ({positive_review_query.get_sql()})
+    UNION
+    ({negative_review_query.get_sql()})
+    '''
+
+    cur.execute(query_final)
+    return cur.fetchall()
