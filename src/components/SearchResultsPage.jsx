@@ -29,9 +29,8 @@ const propTypesSearchResults = {
 };
 
 function SearchResults({ results }) {
-  return results.length === 0 ? (
-    <p> No result found </p>
-  ) : (
+  if (!results.length) return <p> No result found </p>;
+  return (
     <Grid>
       {results.map(({ childKey, departments, id, title, type }) => (
         <Grid.Row key={childKey}>
@@ -43,17 +42,15 @@ function SearchResults({ results }) {
             )}
           </Grid.Column>
           <Grid.Column width={10}>
-            {departments.map(({ id: departmentId, name }, index) => {
-              return (
-                <span key={`department-${departmentId}`}>
-                  <DepartmentDisplayLink
-                    departmentId={departmentId}
-                    departmentName={name}
-                  />
-                  {index !== departments.length - 1 ? "," : ""}
-                </span>
-              );
-            })}
+            {departments.map(({ id: departmentId, name }, index) => (
+              <span key={`department-${departmentId}`}>
+                <DepartmentDisplayLink
+                  departmentId={departmentId}
+                  departmentName={name}
+                />
+                {index !== departments.length - 1 ? "," : ""}
+              </span>
+            ))}
           </Grid.Column>
         </Grid.Row>
       ))}

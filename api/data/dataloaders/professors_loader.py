@@ -68,24 +68,36 @@ def search_professor(search_query, limit=None):
         .against(search_params) \
         .as_('score')
 
-    query = Query \
+    unique_professor = Query \
         .from_(professor) \
-        .join(department_professor) \
-        .on(department_professor.professor_id == professor.professor_id) \
-        .join(department) \
-        .on(department.department_id == department_professor.department_id) \
         .select(
             professor.professor_id,
             professor.first_name,
             professor.last_name,
             professor.uni,
-            department.department_id,
-            department.name,
             match
         ) \
         .where(match > 0) \
-        .orderby(match, order=Order.desc) \
+        .orderby('score', order=Order.desc) \
         .limit(limit) \
+        .as_('unique_professor')
+
+    query = Query \
+        .from_(unique_professor) \
+        .join(department_professor) \
+        .on(department_professor.professor_id ==
+            unique_professor.professor_id) \
+        .join(department) \
+        .on(department.department_id == department_professor.department_id) \
+        .select(
+            unique_professor.professor_id,
+            unique_professor.first_name,
+            unique_professor.last_name,
+            unique_professor.uni,
+            unique_professor.score,
+            department.department_id,
+            department.name,
+        ) \
         .get_sql()
     cur.execute(query)
     return cur.fetchall()

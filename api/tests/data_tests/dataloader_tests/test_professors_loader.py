@@ -91,7 +91,7 @@ class ProfessorsLoaderTest(LoadersWritersBaseTest):
 
         # The mysql relevancy ranking algorithm (TF-IDF, BM25 varaiant) should
         # all be > 0 but individual values will differ across OS.
-        self.assertGreater(results[0].get('score'), 0.2)
+        self.assertGreater(results[0].get('score'), 0)
 
         # We only compare `professor_id` and not the entire object because
         # score suffers from floating point precision errors which may easily
@@ -106,7 +106,7 @@ class ProfessorsLoaderTest(LoadersWritersBaseTest):
         setup_department_professor_courses(self.cur)
         db.commit()
 
-        results = search_professor('nakul verma')
+        results = search_professor('verma')
         self.assertEqual(len(results), 2)  # verma is in 2 departments
 
         # assert the data formatting is correct
@@ -124,7 +124,7 @@ class ProfessorsLoaderTest(LoadersWritersBaseTest):
         )
 
         for result in results:
-            self.assertGreater(result.get('score'), 0.4)
+            self.assertGreater(result.get('score'), 0)
             self.assertEqual(result.get('professor_id'), VERMA_PROFESSOR_ID)
 
         self.assertEqual(
@@ -151,13 +151,16 @@ class ProfessorsLoaderTest(LoadersWritersBaseTest):
     def test_search_professor_by_uni(self):
         results = search_professor('lcb50')
         self.assertEqual(len(results), 1)
-        self.assertGreater(results[0].get('score'), 0.2)
+        self.assertGreater(results[0].get('score'), 0)
         self.assertEqual(
             results[0].get('professor_id'), BOLLINGER_PROFESSOR_ID
         )
         self.assertEqual(results[0].get('department_id'), LAW_DEPARTMENT_ID)
 
-    def test_search_professor_with_limit(self):
+    def test_search_one_professor_with_limit(self):
+        setup_department_professor_courses(self.cur)
+        db.commit()
+
         results = search_professor('lee', limit=1)
         self.assertEqual(len(results), 1)
         self.assertGreater(results[0].get('score'), 0)
@@ -165,6 +168,30 @@ class ProfessorsLoaderTest(LoadersWritersBaseTest):
             results[0].get('professor_id'), BOLLINGER_PROFESSOR_ID
         )
         self.assertEqual(results[0].get('department_id'), LAW_DEPARTMENT_ID)
+
+    def test_search_multiple_professors_with_limit(self):
+        setup_department_professor_courses(self.cur)
+        db.commit()
+
+        results = search_professor('nakul', limit=2)
+
+        expected_results = [
+          (1, 1),  # nakul verma, computer science
+          (4, 1),  # nakul burma, computer science
+          (1, 3),  # nakul verma, mathematics
+          (4, 3),  # nakul burma, mathematics
+        ]
+
+        # 4 departments expected
+        self.assertEqual(len(results), 4)
+
+        for i, result in enumerate(results):
+            self.assertGreater(result.get('score'), 0)
+            self.assertEqual(
+                result.get('professor_id'), expected_results[i][0]
+            )
+            self.assertEqual(result.get('department_id'),
+                             expected_results[i][1])
 
     def test_search_professor_no_results(self):
         results = search_professor('bad professor name', limit=1)

@@ -2,6 +2,7 @@ from unittest import mock
 
 from api.tests import BaseTest
 
+
 PROFESSOR_RESULTS = [
     {
         'professor_id': 1,
@@ -37,6 +38,14 @@ COURSE_RESULT = [
         'course_id': 1,
         'name': 'Machine Learning',
         'call_number': 'COMS 4771',
+        'department_id': 1,
+        'department.name': 'Computer Science',
+        'score': 0.5,
+    },
+    {
+        'course_id': 2,
+        'name': 'Advanced Machine Learning',
+        'call_number': 'COMS 4778',
         'department_id': 1,
         'department.name': 'Computer Science',
         'score': 0.5,
@@ -88,7 +97,17 @@ class SearchTest(BaseTest):
                     }],
                     'id': 1,
                     'title': 'Machine Learning',
-                    'type': 'course'
+                    'type': 'course',
+                },
+                {
+                    'childKey': 'course-2',
+                    'departments': [{
+                        'id': 1,
+                        'name': 'Computer Science',
+                    }],
+                    'id': 2,
+                    'title': 'Advanced Machine Learning',
+                    'type': 'course',
                 }
             ]
         }
@@ -135,6 +154,7 @@ class SearchTest(BaseTest):
 
         search_results = self.client.get(
           '/api/search?entity=professor&query=testSearchValue')
+
         self.assertEqual(expected_results, search_results.json)
 
     def test_search_only_course(self,
@@ -152,6 +172,16 @@ class SearchTest(BaseTest):
                     'id': 1,
                     'title': 'Machine Learning',
                     'type': 'course'
+                },
+                {
+                    'childKey': 'course-2',
+                    'departments': [{
+                        'id': 1,
+                        'name': 'Computer Science',
+                    }],
+                    'id': 2,
+                    'title': 'Advanced Machine Learning',
+                    'type': 'course',
                 }
             ]
         }

@@ -27,31 +27,30 @@ def search():
         return {'error': 'Query is too insubstantial'}, 400
 
     professor_results = []
-    if search_entity != 'course':
-        order = []  # preserves order of search results
+    if search_entity in ['professor', 'all']:
+        professor_id_order = []  # preserves order of search results
         professors = {}
         search_results = search_professor(search_query, search_limit)
         for professor in search_results:
             professor_id = professor['professor_id']
-            if professor_id in professors:  # multiple departments
-                professors[professor_id]['departments'].append({
-                    'id': professor['department_id'],
-                    'name': professor['name'],
-                })
-            else:
+
+            if professor_id not in professors:
                 professors[professor_id] = {
                     'childKey': f'professor-{professor_id}',
-                    'departments': [{
-                        'id': professor['department_id'],
-                        'name': professor['name'],
-                    }],
+                    'departments': [],
                     'id': professor['professor_id'],
                     'title': professor["first_name"] + ' ' +
                     professor["last_name"],
                     'type': 'professor'
                 }
-                order.append(professor_id)
-        for professor_id in order:
+                professor_id_order.append(professor_id)
+
+            professors[professor_id]['departments'].append({
+                'id': professor['department_id'],
+                'name': professor['name'],
+            })
+
+        for professor_id in professor_id_order:
             professor_results.append(professors[professor_id])
 
     # divides professors and courses
@@ -59,7 +58,7 @@ def search():
         professor_results[-1]['last'] = 'true'
 
     course_results = []
-    if search_entity != 'professor':
+    if search_entity in ['course', 'all']:
         courses = search_course(search_query, search_limit)
         course_results = [{
             'childKey': f'course-{course["course_id"]}',

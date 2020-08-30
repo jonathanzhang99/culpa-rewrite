@@ -28,7 +28,8 @@ def setup_department_professor_courses(cur):
     professors = [
         ('Nakul', 'Verma', 'nv2274'),   # professor_id: 1
         ('Lee', 'Bollinger', 'lcb50'),  # professor_id: 2
-        ('Jae W', 'Lee', 'jwl3')        # professor_id: 3
+        ('Jae W', 'Lee', 'jwl3'),       # professor_id: 3
+        ('Nakul', 'Burma', 'nv2275'),   # professor_id: 4
     ]
     cur.executemany(
         'INSERT INTO professor (first_name, last_name, uni)'
@@ -61,6 +62,8 @@ def setup_department_professor_courses(cur):
         (1, 3),  # Verma, Mathematics
         (2, 2),  # Bollinger, Law
         (3, 1),  # JWL, Computer Science
+        (4, 1),  # Burma, Computer Science
+        (4, 3),  # Burma, Mathematics
     ]
 
     cur.executemany(

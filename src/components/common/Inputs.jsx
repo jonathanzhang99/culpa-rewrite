@@ -18,7 +18,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import debounce from "lodash.debounce";
 import PropTypes from "prop-types";
-import React, { useReducer, useState } from "react";
+import React, { useCallback, useReducer, useState } from "react";
 import {
   Form as SemanticForm,
   Button,
@@ -263,23 +263,35 @@ function searchReducer(state, action) {
   }
 }
 
-const propTypesSearchResult = {
-  result: PropTypes.shape({
-    departments: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        name: PropTypes.string.isRequired,
-      })
-    ).isRequired,
-    id: PropTypes.number.isRequired,
-    last: PropTypes.string,
-    title: PropTypes.string.isRequired,
-    type: PropTypes.oneOf(["professor", "course"]).isRequired,
-  }).isRequired,
+const propTypesTextResult = {
+  title: PropTypes.string.isRequired,
 };
 
-function SearchResult({ result }) {
-  const { departments, last, title, type } = result;
+function TextResult({ title }) {
+  return (
+    <Grid>
+      <Grid.Column>{title}</Grid.Column>
+    </Grid>
+  );
+}
+
+const propTypesResult = {
+  departments: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  last: PropTypes.string,
+  title: PropTypes.string.isRequired,
+  type: PropTypes.oneOf(["professor", "course"]).isRequired,
+};
+
+const defaultPropsResult = {
+  last: undefined,
+};
+
+function SearchResult({ departments, last, title, type }) {
   return (
     <Grid className={last && "last-divider"} columns={2}>
       <Grid.Column>
@@ -301,31 +313,15 @@ function SearchResult({ result }) {
   );
 }
 
-const propTypesTextResult = {
-  result: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-  }).isRequired,
-};
-
-function TextResult({ result }) {
+function searchResultRenderer({ departments, last, title, type }) {
+  if (type === "text") return <TextResult title={title} />;
   return (
-    <Grid>
-      <Grid.Column>{result.title}</Grid.Column>
-    </Grid>
-  );
-}
-
-const propTypesSearchResultRenderer = {
-  result: PropTypes.shape({
-    type: PropTypes.oneOf(["professor", "course", "text"]).isRequired,
-  }).isRequired,
-};
-
-function searchResultRenderer(result) {
-  return result.type === "text" ? (
-    <TextResult result={result} />
-  ) : (
-    <SearchResult result={result} />
+    <SearchResult
+      departments={departments}
+      last={last}
+      title={title}
+      type={type}
+    />
   );
 }
 
@@ -399,7 +395,38 @@ export function SearchInput({
     onResultSelect(result);
   };
 
-  const handleSearchChange = async (e, { value: searchValue }) => {
+  /**
+   * useCallback memoizes a callback.
+   * It ensures that only one debouncer is created for each SearchInput.
+   */
+  const debouncedFetch = useCallback(
+    debounce(async (searchValue) => {
+      dispatch({ type: "SEARCH_START" });
+      const response = await fetch(
+        `/api/search?entity=${searchEntity}&query=${searchValue}&limit=${searchLimit}`,
+        {
+          method: "GET",
+          headers: { "Content-Type": "Application/json" },
+        }
+      );
+      try {
+        const { professorResults, courseResults } = await response.json();
+        const searchResults = [...professorResults, ...courseResults];
+
+        if (response.ok) {
+          dispatch({
+            type: "SEARCH_SUCCESS",
+            payload: searchResults,
+          });
+        }
+      } catch (err) {
+        dispatch({ type: "SEARCH_ERROR" });
+      }
+    }, 300),
+    [] // no condition to reset this debouncer
+  );
+
+  const handleSearchChange = (e, { value: searchValue }) => {
     onChange(e);
     onSearchChange(searchValue);
 
@@ -407,28 +434,8 @@ export function SearchInput({
       return dispatch({ type: "SEARCH_RESET" });
     }
 
-    dispatch({ type: "SEARCH_START" });
-    const response = await fetch(
-      `/api/search?entity=${searchEntity}&query=${searchValue}&limit=${searchLimit}`,
-      {
-        method: "GET",
-        headers: { "Content-Type": "Application/json" },
-      }
-    );
+    debouncedFetch(searchValue);
 
-    try {
-      const { professorResults, courseResults } = await response.json();
-      const searchResults = [...professorResults, ...courseResults];
-
-      if (response.ok) {
-        dispatch({
-          type: "SEARCH_SUCCESS",
-          payload: searchResults,
-        });
-      }
-    } catch (err) {
-      dispatch({ type: "SEARCH_ERROR" });
-    }
     return null;
   };
 
@@ -448,7 +455,7 @@ export function SearchInput({
       width={width}
       onBlur={onBlur}
       onResultSelect={handleResultSelect}
-      onSearchChange={debounce(handleSearchChange, 300, { leading: true })}
+      onSearchChange={handleSearchChange}
     />
   );
 }
@@ -522,11 +529,13 @@ DropdownInput.defaultProps = defaultPropsDropdown;
 RadioInputGroup.propTypes = propTypesRadioInputGroup;
 RadioInputGroup.defaultProps = defaultPropsRadioInputGroup;
 
-SearchResult.propTypes = propTypesSearchResult;
+SearchResult.propTypes = propTypesResult;
+SearchResult.defaultProps = defaultPropsResult;
 
 TextResult.propTypes = propTypesTextResult;
 
-searchResultRenderer.propTypes = propTypesSearchResultRenderer;
+searchResultRenderer.propTypes = propTypesResult;
+searchResultRenderer.defaultProps = defaultPropsResult;
 
 SearchInput.propTypes = propTypesSearchInput;
 SearchInput.defaultProps = defaultPropsSearchInput;
