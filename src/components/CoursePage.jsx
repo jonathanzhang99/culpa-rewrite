@@ -5,8 +5,10 @@ import ErrorComponent from "components/common/ErrorComponent";
 import LoadingComponent from "components/common/LoadingComponent";
 import useDataFetch from "components/common/useDataFetch";
 import CourseSummary from "components/CourseSummary";
+import ReviewSection from "components/reviews/ReviewSection";
 
 export default function CoursePage() {
+  const pageType = "course";
   const { courseId } = useParams();
 
   const defaultReview = {
@@ -33,8 +35,8 @@ export default function CoursePage() {
 
   const {
     data: { courseSummary, reviewSummary },
-    isLoading,
-    isError,
+    isCourseLoading,
+    isCourseError,
   } = useDataFetch(`/api/course/${courseId}`, {
     courseSummary: {
       courseName: "",
@@ -49,15 +51,78 @@ export default function CoursePage() {
     },
   });
 
-  if (isLoading || isError) {
-    return isLoading ? <LoadingComponent /> : <ErrorComponent />;
+  const {
+    data: { initReviews },
+    isReviewLoading,
+    isReviewError,
+  } = useDataFetch(`/api/review/get/course/${courseId}`, [
+    {
+      reviewId: 0,
+      reviewType: "course",
+      reviewHeader: {
+        profId: 0,
+        profFirstName: "",
+        profLastName: "",
+        uni: "",
+      },
+      votes: {
+        initUpvoteCount: 0,
+        initDownvoteCount: 0,
+        initFunnyCount: 0,
+        upvoteClicked: false,
+        downvoteClicked: false,
+        funnyClicked: false,
+      },
+      content: "",
+      workload: "",
+      submissionDate: "",
+      deprecated: false,
+    },
+    {
+      reviewId: 0,
+      reviewType: "course",
+      reviewHeader: {
+        profId: 0,
+        profFirstName: "",
+        profLastName: "",
+        uni: "",
+      },
+      votes: {
+        initUpvoteCount: 0,
+        initDownvoteCount: 0,
+        initFunnyCount: 0,
+        upvoteClicked: false,
+        downvoteClicked: false,
+        funnyClicked: false,
+      },
+      content: "",
+      workload: "",
+      submissionDate: "",
+      deprecated: false,
+    },
+  ]);
+
+  if (isCourseLoading || isCourseError) {
+    return isCourseLoading ? <LoadingComponent /> : <ErrorComponent />;
+  }
+
+  if (isReviewLoading || isReviewError) {
+    return isReviewLoading ? <LoadingComponent /> : <ErrorComponent />;
   }
 
   return (
-    <CourseSummary
-      courseId={courseId}
-      courseSummary={courseSummary}
-      reviewSummary={reviewSummary}
-    />
+    <>
+      <CourseSummary
+        courseId={courseId}
+        courseSummary={courseSummary}
+        reviewSummary={reviewSummary}
+      />
+      <ReviewSection
+        associatedEntities={courseSummary.associatedProfessors}
+        id={courseId}
+        initReviews={initReviews}
+        pageType={pageType}
+      />
+    </>
   );
 }
