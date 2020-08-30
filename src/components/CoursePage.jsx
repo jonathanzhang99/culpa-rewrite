@@ -51,54 +51,11 @@ export default function CoursePage() {
   const isCourseLoading = courseDataFetched.isLoading;
   const isCourseError = courseDataFetched.isError;
 
-  const reviewDataFetched = useDataFetch(`/api/review/get/course/${courseId}`, [
-    {
-      reviewId: 0,
-      reviewType: "course",
-      reviewHeader: {
-        profId: 0,
-        profFirstName: "",
-        profLastName: "",
-        uni: "",
-      },
-      votes: {
-        initUpvoteCount: 0,
-        initDownvoteCount: 0,
-        initFunnyCount: 0,
-        upvoteClicked: false,
-        downvoteClicked: false,
-        funnyClicked: false,
-      },
-      content: "",
-      workload: "",
-      submissionDate: "",
-      deprecated: false,
-    },
-    {
-      reviewId: 0,
-      reviewType: "course",
-      reviewHeader: {
-        profId: 0,
-        profFirstName: "",
-        profLastName: "",
-        uni: "",
-      },
-      votes: {
-        initUpvoteCount: 0,
-        initDownvoteCount: 0,
-        initFunnyCount: 0,
-        upvoteClicked: false,
-        downvoteClicked: false,
-        funnyClicked: false,
-      },
-      content: "",
-      workload: "",
-      submissionDate: "",
-      deprecated: false,
-    },
-  ]);
+  const reviewDataFetched = useDataFetch(`/api/review/get/course/${courseId}`, {
+    reviews: []
+  });
 
-  const { initReviews } = reviewDataFetched.data;
+  const { reviews } = reviewDataFetched.data;
   const isReviewLoading = reviewDataFetched.isLoading;
   const isReviewError = reviewDataFetched.isError;
 
@@ -110,10 +67,6 @@ export default function CoursePage() {
     return isReviewLoading ? <LoadingComponent /> : <ErrorComponent />;
   }
 
-  if (!initReviews) {
-    return <ErrorComponent />;
-  }
-
   return (
     <>
       <CourseSummary
@@ -123,8 +76,8 @@ export default function CoursePage() {
       />
       <ReviewSection
         associatedEntities={courseSummary.associatedProfessors}
-        id={courseId}
-        initReviews={initReviews}
+        id={Number(courseId)}
+        initReviews={reviews}
         pageType={pageType}
       />
     </>
