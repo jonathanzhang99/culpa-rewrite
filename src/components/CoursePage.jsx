@@ -33,11 +33,7 @@ export default function CoursePage() {
     content: "This is a review.",
   };
 
-  const {
-    data: { courseSummary, reviewSummary },
-    isCourseLoading,
-    isCourseError,
-  } = useDataFetch(`/api/course/${courseId}`, {
+  const courseDataFetched = useDataFetch(`/api/course/${courseId}`, {
     courseSummary: {
       courseName: "",
       courseCallNumber: "",
@@ -51,11 +47,11 @@ export default function CoursePage() {
     },
   });
 
-  const {
-    data: { initReviews },
-    isReviewLoading,
-    isReviewError,
-  } = useDataFetch(`/api/review/get/course/${courseId}`, [
+  const { courseSummary, reviewSummary } = courseDataFetched.data;
+  const isCourseLoading = courseDataFetched.isLoading;
+  const isCourseError = courseDataFetched.isError;
+
+  const reviewDataFetched = useDataFetch(`/api/review/get/course/${courseId}`, [
     {
       reviewId: 0,
       reviewType: "course",
@@ -102,12 +98,20 @@ export default function CoursePage() {
     },
   ]);
 
+  const { initReviews } = reviewDataFetched.data;
+  const isReviewLoading = reviewDataFetched.isLoading;
+  const isReviewError = reviewDataFetched.isError;
+
   if (isCourseLoading || isCourseError) {
     return isCourseLoading ? <LoadingComponent /> : <ErrorComponent />;
   }
 
   if (isReviewLoading || isReviewError) {
     return isReviewLoading ? <LoadingComponent /> : <ErrorComponent />;
+  }
+
+  if (!initReviews) {
+    return <ErrorComponent />;
   }
 
   return (
