@@ -1,4 +1,4 @@
-import { render, fireEvent, act, screen } from "@testing-library/react";
+import { render, fireEvent, act, screen, wait } from "@testing-library/react";
 import React from "react";
 import { MemoryRouter } from "react-router-dom";
 
@@ -140,17 +140,18 @@ describe("Navbar Component Tests", () => {
         });
       });
 
-      expect(await screen.getByText(/nakul verma/i)).toBeInTheDocument();
-      expect(
-        await screen.getByText(/user interface design/i)
-      ).toBeInTheDocument();
-      expect(mockFetch).toHaveBeenCalledWith(
-        "/api/search?entity=all&query=testSearchValue&limit=5",
-        {
-          method: "GET",
-          headers: { "Content-Type": "Application/json" },
-        }
-      );
+      // waits until debouncer fetches search results
+      await wait(() => {
+        expect(screen.getByText(/nakul verma/i)).toBeInTheDocument();
+        expect(screen.getByText(/user interface design/i)).toBeInTheDocument();
+        expect(mockFetch).toHaveBeenCalledWith(
+          "/api/search?entity=all&query=testSearchValue&limit=5",
+          {
+            method: "GET",
+            headers: { "Content-Type": "Application/json" },
+          }
+        );
+      });
     });
 
     test("only professor results found", async () => {
@@ -162,17 +163,19 @@ describe("Navbar Component Tests", () => {
         });
       });
 
-      expect(await screen.getByText(/nakul verma/i)).toBeInTheDocument();
-      expect(
-        await screen.queryByText(/user interface design/i)
-      ).not.toBeInTheDocument();
-      expect(mockFetch).toHaveBeenCalledWith(
-        "/api/search?entity=all&query=testSearchValue&limit=5",
-        {
-          method: "GET",
-          headers: { "Content-Type": "Application/json" },
-        }
-      );
+      await wait(() => {
+        expect(screen.getByText(/nakul verma/i)).toBeInTheDocument();
+        expect(
+          screen.queryByText(/user interface design/i)
+        ).not.toBeInTheDocument();
+        expect(mockFetch).toHaveBeenCalledWith(
+          "/api/search?entity=all&query=testSearchValue&limit=5",
+          {
+            method: "GET",
+            headers: { "Content-Type": "Application/json" },
+          }
+        );
+      });
     });
 
     test("only course results found", async () => {
@@ -184,17 +187,17 @@ describe("Navbar Component Tests", () => {
         });
       });
 
-      expect(await screen.queryByText(/nakul verma/i)).not.toBeInTheDocument();
-      expect(
-        await screen.getByText(/user interface design/i)
-      ).toBeInTheDocument();
-      expect(mockFetch).toHaveBeenCalledWith(
-        "/api/search?entity=all&query=testSearchValue&limit=5",
-        {
-          method: "GET",
-          headers: { "Content-Type": "Application/json" },
-        }
-      );
+      await wait(() => {
+        expect(screen.queryByText(/nakul verma/i)).not.toBeInTheDocument();
+        expect(screen.getByText(/user interface design/i)).toBeInTheDocument();
+        expect(mockFetch).toHaveBeenCalledWith(
+          "/api/search?entity=all&query=testSearchValue&limit=5",
+          {
+            method: "GET",
+            headers: { "Content-Type": "Application/json" },
+          }
+        );
+      });
     });
 
     test("no results found", async () => {
@@ -206,17 +209,19 @@ describe("Navbar Component Tests", () => {
         });
       });
 
-      expect(await screen.queryByText(/nakul verma/i)).not.toBeInTheDocument();
-      expect(
-        await screen.queryByText(/user interface design/i)
-      ).not.toBeInTheDocument();
-      expect(mockFetch).toHaveBeenCalledWith(
-        "/api/search?entity=all&query=testSearchValue&limit=5",
-        {
-          method: "GET",
-          headers: { "Content-Type": "Application/json" },
-        }
-      );
+      await wait(() => {
+        expect(screen.queryByText(/nakul verma/i)).not.toBeInTheDocument();
+        expect(
+          screen.queryByText(/user interface design/i)
+        ).not.toBeInTheDocument();
+        expect(mockFetch).toHaveBeenCalledWith(
+          "/api/search?entity=all&query=testSearchValue&limit=5",
+          {
+            method: "GET",
+            headers: { "Content-Type": "Application/json" },
+          }
+        );
+      });
     });
   });
 });

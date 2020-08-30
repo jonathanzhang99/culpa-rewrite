@@ -1,4 +1,4 @@
-import { render, fireEvent, act, screen } from "@testing-library/react";
+import { render, fireEvent, act, screen, wait } from "@testing-library/react";
 import React from "react";
 import { MemoryRouter } from "react-router-dom";
 
@@ -138,16 +138,19 @@ describe("Create Review Page tests", () => {
           });
         });
 
-        expect(await screen.getByText(/nakul verma/i)).toBeInTheDocument();
-        expect(await screen.getByText(/lee bollinger/i)).toBeInTheDocument();
-        expect(mockFetch).toHaveBeenCalledTimes(1);
-        expect(mockFetch).toHaveBeenCalledWith(
-          "/api/search?entity=professor&query=testProfessorName&limit=5",
-          {
-            method: "GET",
-            headers: { "Content-Type": "Application/json" },
-          }
-        );
+        // waits for debouncer to fetch search results
+        await wait(async () => {
+          expect(await screen.getByText(/nakul verma/i)).toBeInTheDocument();
+          expect(await screen.getByText(/lee bollinger/i)).toBeInTheDocument();
+          expect(mockFetch).toHaveBeenCalledTimes(1);
+          expect(mockFetch).toHaveBeenCalledWith(
+            "/api/search?entity=professor&query=testProfessorName&limit=5",
+            {
+              method: "GET",
+              headers: { "Content-Type": "Application/json" },
+            }
+          );
+        });
       });
 
       test("no professors when query returns no data", async () => {
@@ -165,17 +168,20 @@ describe("Create Review Page tests", () => {
             target: { value: "testProfessorName" },
           });
         });
-        expect(
-          await screen.getByText(/no professors found/i)
-        ).toBeInTheDocument();
-        expect(mockFetch).toHaveBeenCalledTimes(1);
-        expect(mockFetch).toHaveBeenCalledWith(
-          "/api/search?entity=professor&query=testProfessorName&limit=5",
-          {
-            method: "GET",
-            headers: { "Content-Type": "Application/json" },
-          }
-        );
+
+        await wait(async () => {
+          expect(
+            await screen.getByText(/no professors found/i)
+          ).toBeInTheDocument();
+          expect(mockFetch).toHaveBeenCalledTimes(1);
+          expect(mockFetch).toHaveBeenCalledWith(
+            "/api/search?entity=professor&query=testProfessorName&limit=5",
+            {
+              method: "GET",
+              headers: { "Content-Type": "Application/json" },
+            }
+          );
+        });
       });
     });
 
@@ -205,22 +211,26 @@ describe("Create Review Page tests", () => {
           })
         );
 
-        await act(async () =>
-          fireEvent.click(screen.getByText(/nakul verma/i))
-        );
+        await wait(async () => {
+          await act(async () =>
+            fireEvent.click(screen.getByText(/nakul verma/i))
+          );
 
-        expect(await screen.getByText(/machine learning/i)).toBeInTheDocument();
-        expect(
-          await screen.getByText(/computational learning theory/i)
-        ).toBeInTheDocument();
-        expect(mockFetch).toHaveBeenCalledTimes(2);
-        expect(mockFetch).toHaveBeenLastCalledWith(
-          "/api/professor/2339/courses",
-          {
-            method: "GET",
-            headers: { "Content-Type": "Application/json" },
-          }
-        );
+          expect(
+            await screen.getByText(/machine learning/i)
+          ).toBeInTheDocument();
+          expect(
+            await screen.getByText(/computational learning theory/i)
+          ).toBeInTheDocument();
+          expect(mockFetch).toHaveBeenCalledTimes(2);
+          expect(mockFetch).toHaveBeenLastCalledWith(
+            "/api/professor/2339/courses",
+            {
+              method: "GET",
+              headers: { "Content-Type": "Application/json" },
+            }
+          );
+        });
       });
     });
 
@@ -250,23 +260,28 @@ describe("Create Review Page tests", () => {
           })
         );
 
-        await act(async () =>
-          fireEvent.click(screen.getByText(/nakul verma/i))
-        );
-
-        await act(async () => {
-          fireEvent.click(screen.getByText(/machine learning/i));
-          fireEvent.input(screen.getByRole("textbox", { name: /content/i }), {
-            target: { value: "this class was great!!!" },
-          });
-          fireEvent.input(screen.getByRole("textbox", { name: /workload/i }), {
-            target: { value: "suffered so much!!!" },
-          });
-          fireEvent.click(
-            screen.getByLabelText(
-              /Both negatives and positives much like life itself/i
-            )
+        await wait(async () => {
+          await act(async () =>
+            fireEvent.click(screen.getByText(/nakul verma/i))
           );
+
+          await act(async () => {
+            fireEvent.click(screen.getByText(/machine learning/i));
+            fireEvent.input(screen.getByRole("textbox", { name: /content/i }), {
+              target: { value: "this class was great!!!" },
+            });
+            fireEvent.input(
+              screen.getByRole("textbox", { name: /workload/i }),
+              {
+                target: { value: "suffered so much!!!" },
+              }
+            );
+            fireEvent.click(
+              screen.getByLabelText(
+                /Both negatives and positives much like life itself/i
+              )
+            );
+          });
         });
       });
 
@@ -384,23 +399,28 @@ describe("Create Review Page tests", () => {
           })
         );
 
-        await act(async () =>
-          fireEvent.click(screen.getByText(/nakul verma/i))
-        );
-
-        await act(async () => {
-          fireEvent.click(screen.getByText(/machine learning/i));
-          fireEvent.input(screen.getByRole("textbox", { name: /content/i }), {
-            target: { value: "this class was great!!!" },
-          });
-          fireEvent.input(screen.getByRole("textbox", { name: /workload/i }), {
-            target: { value: "suffered so much!!!" },
-          });
-          fireEvent.click(
-            screen.getByLabelText(
-              /Both negatives and positives much like life itself/i
-            )
+        await wait(async () => {
+          await act(async () =>
+            fireEvent.click(screen.getByText(/nakul verma/i))
           );
+
+          await act(async () => {
+            fireEvent.click(screen.getByText(/machine learning/i));
+            fireEvent.input(screen.getByRole("textbox", { name: /content/i }), {
+              target: { value: "this class was great!!!" },
+            });
+            fireEvent.input(
+              screen.getByRole("textbox", { name: /workload/i }),
+              {
+                target: { value: "suffered so much!!!" },
+              }
+            );
+            fireEvent.click(
+              screen.getByLabelText(
+                /Both negatives and positives much like life itself/i
+              )
+            );
+          });
         });
       });
 
@@ -418,49 +438,58 @@ describe("Create Review Page tests", () => {
           });
         });
 
-        await act(async () =>
-          fireEvent.click(screen.getByText(/lee bollinger/i))
-        );
+        await setTimeout(async () => {
+          await act(async () =>
+            fireEvent.click(screen.getByText(/lee bollinger/i))
+          );
 
-        await act(async () => {
-          fireEvent.click(screen.getByText(/computational learning theory/i));
-          fireEvent.input(screen.getByRole("textbox", { name: /content/i }), {
-            target: { value: "why tf is bollinger teaching clt" },
+          await act(async () => {
+            fireEvent.click(screen.getByText(/computational learning theory/i));
+            fireEvent.input(screen.getByRole("textbox", { name: /content/i }), {
+              target: { value: "why tf is bollinger teaching clt" },
+            });
+            fireEvent.input(
+              screen.getByRole("textbox", { name: /workload/i }),
+              {
+                target: {
+                  value: "too many case studies not enough chernoff-hoeffding",
+                },
+              }
+            );
+            fireEvent.click(
+              screen.getByLabelText(
+                "One of the worst experiences at Columbia. Avoid at all costs"
+              )
+            );
           });
-          fireEvent.input(screen.getByRole("textbox", { name: /workload/i }), {
-            target: {
-              value: "too many case studies not enough chernoff-hoeffding",
-            },
+          await act(async () => fireEvent.click(screen.getByRole("button")));
+
+          // no errors should be present
+          fieldErrorLabels.forEach(async (errorLabel) => {
+            expect(
+              await screen.queryByText(errorLabel)
+            ).not.toBeInTheDocument();
           });
-          fireEvent.click(
-            screen.getByLabelText(
-              "One of the worst experiences at Columbia. Avoid at all costs"
+
+          // submit the modal confirmation
+          await act(async () =>
+            fireEvent.click(
+              screen.getAllByRole("button", { name: /submit/i })[1]
             )
           );
-        });
-        await act(async () => fireEvent.click(screen.getByRole("button")));
-
-        // no errors should be present
-        fieldErrorLabels.forEach(async (errorLabel) => {
-          expect(await screen.queryByText(errorLabel)).not.toBeInTheDocument();
-        });
-
-        // submit the modal confirmation
-        await act(async () =>
-          fireEvent.click(screen.getAllByRole("button", { name: /submit/i })[1])
-        );
-        expect(mockFetch).toHaveBeenCalledTimes(5);
-        expect(mockFetch).toHaveBeenLastCalledWith("/api/review/submit", {
-          method: "POST",
-          body: JSON.stringify({
-            professor: "Lee Bollinger",
-            course: 889,
-            content: "why tf is bollinger teaching clt",
-            workload: "too many case studies not enough chernoff-hoeffding",
-            evaluation: 1,
-          }),
-          headers: { "Content-Type": "application/json" },
-        });
+          expect(mockFetch).toHaveBeenCalledTimes(5);
+          expect(mockFetch).toHaveBeenLastCalledWith("/api/review/submit", {
+            method: "POST",
+            body: JSON.stringify({
+              professor: "Lee Bollinger",
+              course: 889,
+              content: "why tf is bollinger teaching clt",
+              workload: "too many case studies not enough chernoff-hoeffding",
+              evaluation: 1,
+            }),
+            headers: { "Content-Type": "application/json" },
+          });
+        }, 300);
       });
     });
   });
