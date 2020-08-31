@@ -15,10 +15,10 @@ Object {
       <div
         class="ui container"
       >
-        <p>
+        <span>
           Courses: 
-        </p>
-        <div>
+        </span>
+        <span>
           <a
             href="/course/1"
           >
@@ -29,8 +29,8 @@ Object {
             </span>
           </a>
           , 
-        </div>
-        <div>
+        </span>
+        <span>
           <a
             href="/course/2"
           >
@@ -41,7 +41,7 @@ Object {
             </span>
           </a>
           
-        </div>
+        </span>
       </div>
       <a
         href="/review"
@@ -68,10 +68,10 @@ Object {
     <div
       class="ui container"
     >
-      <p>
+      <span>
         Courses: 
-      </p>
-      <div>
+      </span>
+      <span>
         <a
           href="/course/1"
         >
@@ -82,8 +82,8 @@ Object {
           </span>
         </a>
         , 
-      </div>
-      <div>
+      </span>
+      <span>
         <a
           href="/course/2"
         >
@@ -94,7 +94,7 @@ Object {
           </span>
         </a>
         
-      </div>
+      </span>
     </div>
     <a
       href="/review"
@@ -178,9 +178,9 @@ Object {
       <div
         class="ui container"
       >
-        <p>
+        <span>
           Courses: 
-        </p>
+        </span>
       </div>
       <a
         href="/review"
@@ -207,9 +207,9 @@ Object {
     <div
       class="ui container"
     >
-      <p>
+      <span>
         Courses: 
-      </p>
+      </span>
     </div>
     <a
       href="/review"

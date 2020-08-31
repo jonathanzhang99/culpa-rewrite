@@ -27,18 +27,18 @@ const propTypesProfessorCourses = {
 export function ProfessorCourseList({ courses }) {
   return (
     <>
-      <p>Courses: </p>
+      <span>Courses: </span>
       {courses.map(
         ({ courseProfessorId, courseName, courseCallNumber }, index) => {
           return (
-            <div key={courseProfessorId}>
+            <span key={courseProfessorId}>
               <CourseDisplayLink
                 courseCallNumber={courseCallNumber}
                 courseId={courseProfessorId}
                 courseName={courseName}
               />
               {index !== courses.length - 1 ? ", " : ""}
-            </div>
+            </span>
           );
         }
       )}
