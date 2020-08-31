@@ -18,9 +18,9 @@ Object {
         <div
           class="ui container"
         >
-          <p>
+          <span>
             Department: 
-          </p>
+          </span>
           <a
             href="/department/1"
           >
@@ -31,9 +31,9 @@ Object {
             </span>
           </a>
         </div>
-        <p>
+        <span>
           Professors: 
-        </p>
+        </span>
       </div>
       <a
         href="/review"
@@ -61,9 +61,9 @@ Object {
       <div
         class="ui container"
       >
-        <p>
+        <span>
           Department: 
-        </p>
+        </span>
         <a
           href="/department/1"
         >
@@ -74,9 +74,9 @@ Object {
           </span>
         </a>
       </div>
-      <p>
+      <span>
         Professors: 
-      </p>
+      </span>
     </div>
     <a
       href="/review"
@@ -161,9 +161,9 @@ Object {
         <div
           class="ui container"
         >
-          <p>
+          <span>
             Department: 
-          </p>
+          </span>
           <a
             href="/department/1"
           >
@@ -174,10 +174,10 @@ Object {
             </span>
           </a>
         </div>
-        <p>
+        <span>
           Professors: 
-        </p>
-        <div>
+        </span>
+        <span>
           <a
             href="/professor/1"
           >
@@ -188,7 +188,7 @@ Object {
             </span>
           </a>
           
-        </div>
+        </span>
       </div>
       <a
         href="/review"
@@ -216,9 +216,9 @@ Object {
       <div
         class="ui container"
       >
-        <p>
+        <span>
           Department: 
-        </p>
+        </span>
         <a
           href="/department/1"
         >
@@ -229,10 +229,10 @@ Object {
           </span>
         </a>
       </div>
-      <p>
+      <span>
         Professors: 
-      </p>
-      <div>
+      </span>
+      <span>
         <a
           href="/professor/1"
         >
@@ -243,7 +243,7 @@ Object {
           </span>
         </a>
         
-      </div>
+      </span>
     </div>
     <a
       href="/review"
@@ -328,9 +328,9 @@ Object {
         <div
           class="ui container"
         >
-          <p>
+          <span>
             Department: 
-          </p>
+          </span>
           <a
             href="/department/1"
           >
@@ -633,9 +633,9 @@ Object {
       <div
         class="ui container"
       >
-        <p>
+        <span>
           Department: 
-        </p>
+        </span>
         <a
           href="/department/1"
         >
@@ -995,9 +995,9 @@ Object {
         <div
           class="ui container"
         >
-          <p>
+          <span>
             Department: 
-          </p>
+          </span>
           <a
             href="/department/1"
           >
@@ -1008,10 +1008,10 @@ Object {
             </span>
           </a>
         </div>
-        <p>
+        <span>
           Professors: 
-        </p>
-        <div>
+        </span>
+        <span>
           <a
             href="/professor/1"
           >
@@ -1022,8 +1022,8 @@ Object {
             </span>
           </a>
           , 
-        </div>
-        <div>
+        </span>
+        <span>
           <a
             href="/professor/2"
           >
@@ -1034,7 +1034,7 @@ Object {
             </span>
           </a>
           
-        </div>
+        </span>
       </div>
       <a
         href="/review"
@@ -1062,9 +1062,9 @@ Object {
       <div
         class="ui container"
       >
-        <p>
+        <span>
           Department: 
-        </p>
+        </span>
         <a
           href="/department/1"
         >
@@ -1075,10 +1075,10 @@ Object {
           </span>
         </a>
       </div>
-      <p>
+      <span>
         Professors: 
-      </p>
-      <div>
+      </span>
+      <span>
         <a
           href="/professor/1"
         >
@@ -1089,8 +1089,8 @@ Object {
           </span>
         </a>
         , 
-      </div>
-      <div>
+      </span>
+      <span>
         <a
           href="/professor/2"
         >
@@ -1101,7 +1101,7 @@ Object {
           </span>
         </a>
         
-      </div>
+      </span>
     </div>
     <a
       href="/review"

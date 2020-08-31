@@ -44,35 +44,33 @@ def course_info(course_id):
         'courseProfessors': list(course_professors.values())
     }
 
-    '''
-     Fetch review summary info
-        NOTE:
-            - Most positive review is the review with the highest rating
-                with most agreed votes (at least 1 vote)
-            - Most negative review is the review with the lowest rating
-                with most agreed votes (at least 1 vote)
-            - When the two reviews are the Most Agreed Review is shown
-            - When there is only one review, the Most Agreed Review is shown
-            - When there are no reviews, then no review is shown
-    '''
+    #  Fetch review highlight info
+    #     NOTE:
+    #         - Most positive review is the review with the highest rating
+    #             with most agreed votes (at least 1 vote)
+    #         - Most negative review is the review with the lowest rating
+    #             with most agreed votes (at least 1 vote)
+    #         - When the two reviews are the Most Agreed Review is shown
+    #         - When there is only one review, the Most Agreed Review is shown
+    #         - When there are no reviews, then no review is shown
     ip = flask.request.remote_addr
     review_type = 'course'
     query_prefix = prepare_course_query_prefix(course_id)
-    review_summary = get_course_review_summary(query_prefix, ip)
+    review_highlight = get_course_review_summary(query_prefix, ip)
 
-    if len(review_summary) == 0:
-        review_summary_json = {}
-    elif len(review_summary) == 1:
-        review_summary_json = {
-            'mostAgreedReview': parse_review(review_summary[0], review_type)
+    if len(review_highlight) == 0:
+        review_highlight_json = {}
+    elif len(review_highlight) == 1:
+        review_highlight_json = {
+            'mostAgreedReview': parse_review(review_highlight[0], review_type)
         }
     else:
-        review_summary_json = {
-            'positiveReview': parse_review(review_summary[0], review_type),
-            'negativeReview': parse_review(review_summary[1], review_type),
+        review_highlight_json = {
+            'positiveReview': parse_review(review_highlight[0], review_type),
+            'negativeReview': parse_review(review_highlight[1], review_type),
         }
 
     return {
         'courseSummary': course_summary_json,
-        'reviewSummary': review_summary_json
+        'reviewHighlight': review_highlight_json
     }

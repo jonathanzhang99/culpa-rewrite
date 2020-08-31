@@ -10,6 +10,7 @@ import ErrorComponent from "components/common/ErrorComponent";
 import LoadingComponent from "components/common/LoadingComponent";
 import { ProfessorDisplayLink } from "components/common/ProfessorDisplay";
 import useDataFetch from "components/common/useDataFetch";
+import ReviewCard from "components/reviews/ReviewCard";
 
 const MAX_NUM_PROFESSORS_IN_LIST = 5;
 
@@ -36,17 +37,17 @@ const propTypesCourseProfessors = {
 export function ProfessorsList({ courseProfessors }) {
   return (
     <>
-      <p>Professors: </p>
+      <span>Professors: </span>
       {courseProfessors.map(({ firstName, lastName, professorId }, index) => {
         return (
-          <div key={professorId}>
+          <span key={professorId}>
             <ProfessorDisplayLink
               firstName={firstName}
               lastName={lastName}
               professorId={professorId}
             />
             {index !== courseProfessors.length - 1 ? ", " : ""}
-          </div>
+          </span>
         );
       })}
     </>
@@ -222,7 +223,7 @@ export function CourseSummary({
       />
       <Container>
         <Container>
-          <p>Department: </p>
+          <span>Department: </span>
           <DepartmentDisplayLink
             departmentId={departmentId}
             departmentName={departmentName}
@@ -239,24 +240,136 @@ export function CourseSummary({
   );
 }
 
+const reviewPropType = PropTypes.shape({
+  reviewType: PropTypes.string.isRequired,
+  reviewHeader: PropTypes.shape({
+    profId: PropTypes.number.isRequired,
+    profFirstName: PropTypes.string.isRequired,
+    profLastName: PropTypes.string.isRequired,
+  }).isRequired,
+  votes: PropTypes.shape({
+    initUpvoteCount: PropTypes.number.isRequired,
+    initDownvoteCount: PropTypes.number.isRequired,
+    initFunnyCount: PropTypes.number.isRequired,
+    upvoteClicked: PropTypes.bool.isRequired,
+    downvoteClicked: PropTypes.bool.isRequired,
+    funnyClicked: PropTypes.bool.isRequired,
+  }).isRequired,
+  workload: PropTypes.string,
+  submissionDate: PropTypes.string.isRequired,
+  reviewId: PropTypes.number.isRequired,
+  deprecated: PropTypes.bool,
+  content: PropTypes.string,
+});
+
+const propTypesCourseReviewCard = {
+  review: reviewPropType.isRequired,
+};
+
+function CourseReviewCard({ review }) {
+  const {
+    reviewType,
+    reviewHeader,
+    votes,
+    workload,
+    submissionDate,
+    reviewId,
+    deprecated,
+    content,
+  } = review;
+
+  return (
+    <ReviewCard
+      content={content}
+      deprecated={deprecated}
+      reviewHeader={reviewHeader}
+      reviewId={reviewId}
+      reviewType={reviewType}
+      submissionDate={submissionDate}
+      votes={votes}
+      workload={workload}
+    />
+  );
+}
+
+const propTypesReviewHighlight = {
+  reviewHighlight: PropTypes.oneOfType([
+    PropTypes.shape({
+      positiveReview: reviewPropType,
+      negativeReview: reviewPropType,
+    }),
+    PropTypes.shape({
+      mostAgreedReview: reviewPropType,
+    }),
+  ]),
+};
+
+const defaultPropsReviewHighlight = {
+  reviewHighlight: {
+    positiveReview: {},
+    negativeReview: {},
+  },
+};
+
+function ReviewHighlight({ reviewHighlight }) {
+  if ("mostAgreedReview" in reviewHighlight) {
+    const { mostAgreedReview } = reviewHighlight;
+    return (
+      <Container>
+        <Grid>
+          <Grid.Row>
+            <Grid.Column width={14}>
+              <h3>Most Agreed Review</h3>
+              <CourseReviewCard review={mostAgreedReview} />
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+      </Container>
+    );
+  }
+
+  if (
+    "positiveReview" in reviewHighlight &&
+    "negativeReview" in reviewHighlight
+  ) {
+    const { positiveReview, negativeReview } = reviewHighlight;
+    return (
+      <Container>
+        <Grid>
+          <Grid.Row>
+            <Grid.Column width={7}>
+              <h3>Most Positive Review</h3>
+              <CourseReviewCard review={positiveReview} />
+            </Grid.Column>
+            <Grid.Column width={1} />
+            <Grid.Column width={7}>
+              <h3>Most Negative Review</h3>
+              <CourseReviewCard review={negativeReview} />
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+      </Container>
+    );
+  }
+
+  return null;
+}
+
 export default function CourseInfoPage() {
   const { courseId } = useParams();
   const {
-    data: {
-      courseName,
-      courseCallNumber,
-      departmentId,
-      departmentName,
-      courseProfessors,
-    },
+    data: { courseSummary, reviewHighlight },
     isLoading,
     isError,
   } = useDataFetch(`/api/course/${courseId}`, {
-    courseName: "",
-    courseCallNumber: "",
-    departmentId: 0,
-    departmentName: "",
-    courseProfessors: [],
+    courseSummary: {
+      courseName: "",
+      courseCallNumber: "",
+      departmentId: 0,
+      departmentName: "",
+      courseProfessors: [],
+    },
+    reviewHighlight: {},
   });
   // TODO: load and return Review Summary data here
 
@@ -265,14 +378,17 @@ export default function CourseInfoPage() {
   }
 
   return (
-    <CourseSummary
-      courseCallNumber={courseCallNumber}
-      courseId={Number(courseId)}
-      courseName={courseName}
-      courseProfessors={courseProfessors}
-      departmentId={departmentId}
-      departmentName={departmentName}
-    />
+    <>
+      <CourseSummary
+        courseCallNumber={courseSummary.courseCallNumber}
+        courseId={Number(courseId)}
+        courseName={courseSummary.courseName}
+        courseProfessors={courseSummary.courseProfessors}
+        departmentId={courseSummary.departmentId}
+        departmentName={courseSummary.departmentName}
+      />
+      <ReviewHighlight reviewHighlight={reviewHighlight} />
+    </>
   );
 }
 ProfessorsList.propTypes = propTypesCourseProfessors;
@@ -293,3 +409,8 @@ ReviewCourseButton.propTypes = propTypesReviewCourseButton;
 
 CourseSummary.propTypes = propTypesCourseSummary;
 CourseSummary.defaultProps = defaultProps;
+
+CourseReviewCard.propTypes = propTypesCourseReviewCard;
+
+ReviewHighlight.propTypes = propTypesReviewHighlight;
+ReviewHighlight.defaultProps = defaultPropsReviewHighlight;
