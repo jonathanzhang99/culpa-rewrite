@@ -2,10 +2,9 @@ from unittest import mock
 from api.tests import BaseTest
 
 
-VERMA_PROFESSOR_ID = 1
-
-
 class ProfessorsTest(BaseTest):
+    VERMA_PROFESSOR_ID = 1
+
     @mock.patch('api.blueprints.professor.load_professor_courses')
     @mock.patch('api.blueprints.professor.load_professor_name')
     def test_get_professor_summary(
@@ -39,7 +38,7 @@ class ProfessorsTest(BaseTest):
             ]
         }
 
-        res = self.client.get(f'/api/professor/{VERMA_PROFESSOR_ID}')
+        res = self.client.get(f'/api/professor/{self.VERMA_PROFESSOR_ID}')
         self.assertEqual(expected_res, res.json)
 
     @mock.patch('api.blueprints.professor.load_professor_courses')
@@ -57,18 +56,15 @@ class ProfessorsTest(BaseTest):
             'courses': []
         }
 
-        res = self.client.get(f'/api/professor/{VERMA_PROFESSOR_ID}')
+        res = self.client.get(f'/api/professor/{self.VERMA_PROFESSOR_ID}')
         self.assertEqual(expected_res, res.json)
 
-    @mock.patch('api.blueprints.professor.load_professor_courses')
     @mock.patch('api.blueprints.professor.load_professor_name')
-    def test_get_professor_summary_empty(
-            self, mock_professor_name, mock_professor_courses):
+    def test_get_professor_summary_empty(self, mock_professor_name):
         mock_professor_name.return_value = []
-        mock_professor_courses.return_value = []
         expected_error = {'error': 'Missing professor name'}
 
-        res = self.client.get(f'/api/professor/{VERMA_PROFESSOR_ID}')
+        res = self.client.get(f'/api/professor/{self.VERMA_PROFESSOR_ID}')
         self.assertEqual(res.status_code, 400)
         self.assertEqual(expected_error, res.json)
 
@@ -97,7 +93,8 @@ class ProfessorsTest(BaseTest):
             ]
         }
 
-        res = self.client.get(f'/api/professor/{VERMA_PROFESSOR_ID}/courses')
+        res = self.client.get(
+            f'/api/professor/{self.VERMA_PROFESSOR_ID}/courses')
         self.assertEqual(expected_res, res.json)
 
     @mock.patch('api.blueprints.professor.load_professor_courses')
@@ -107,5 +104,6 @@ class ProfessorsTest(BaseTest):
             'courses': []
         }
 
-        res = self.client.get(f'/api/professor/{VERMA_PROFESSOR_ID}/courses')
+        res = self.client.get(
+            f'/api/professor/{self.VERMA_PROFESSOR_ID}/courses')
         self.assertEqual(expected_res, res.json)
