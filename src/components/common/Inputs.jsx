@@ -18,7 +18,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import debounce from "lodash.debounce";
 import PropTypes from "prop-types";
-import React, { useReducer, useState } from "react";
+import React, { useCallback, useReducer, useState } from "react";
 import {
   Form as SemanticForm,
   Button,
@@ -263,26 +263,6 @@ function searchReducer(state, action) {
   }
 }
 
-const propTypesSearchResult = {
-  resultKey: PropTypes.string.isRequired,
-  name: PropTypes.element.isRequired,
-  departments: PropTypes.arrayOf(PropTypes.element).isRequired,
-  last: PropTypes.string,
-};
-
-const defaultPropsSearchResult = {
-  last: undefined,
-};
-
-function SearchResult({ resultKey, name, departments, last }) {
-  return (
-    <Grid className={last && "last-divider"} columns={2} key={resultKey}>
-      <Grid.Column>{name}</Grid.Column>
-      <Grid.Column>{departments}</Grid.Column>
-    </Grid>
-  );
-}
-
 const propTypesTextResult = {
   title: PropTypes.string.isRequired,
 };
@@ -295,10 +275,7 @@ function TextResult({ title }) {
   );
 }
 
-const propTypesSearchResultRenderer = {
-  id: PropTypes.number.isRequired,
-  type: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
+const propTypesResult = {
   departments: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
@@ -306,42 +283,44 @@ const propTypesSearchResultRenderer = {
     })
   ).isRequired,
   last: PropTypes.string,
+  title: PropTypes.string.isRequired,
+  type: PropTypes.oneOf(["professor", "course"]).isRequired,
 };
 
-const defaultPropsResultRenderer = {
+const defaultPropsResult = {
   last: undefined,
 };
-function searchResultRenderer({ id, title, departments, type, last }) {
-  if (type === "text") {
-    return <TextResult title={title} />;
-  }
 
-  const departmentsDisplay = departments.map(({ id: departmentId, name }) => (
-    <DepartmentDisplayName
-      departmentName={name}
-      key={`department-${departmentId}`}
-    />
-  ));
+function SearchResult({ departments, last, title, type }) {
+  return (
+    <Grid className={last && "last-divider"} columns={2}>
+      <Grid.Column>
+        {type === "professor" ? (
+          <ProfessorDisplayName fullName={title} />
+        ) : (
+          <CourseDisplayName courseName={title} />
+        )}
+      </Grid.Column>
+      <Grid.Column>
+        {departments.map(({ id: departmentId, name }, index) => (
+          <span key={`department-${departmentId}`}>
+            <DepartmentDisplayName departmentName={name} />
+            {index !== departments.length - 1 ? "," : ""}
+          </span>
+        ))}
+      </Grid.Column>
+    </Grid>
+  );
+}
 
-  let nameDisplay;
-  switch (type) {
-    case "professor":
-      nameDisplay = <ProfessorDisplayName fullName={title} professorId={id} />;
-      break;
-    case "course":
-      nameDisplay = <CourseDisplayName courseId={id} courseName={title} />;
-      break;
-    default:
-      /* this line should never run */
-      throw Error("invalid type");
-  }
-
+function searchResultRenderer({ departments, last, title, type }) {
+  if (type === "text") return <TextResult title={title} />;
   return (
     <SearchResult
-      departments={departmentsDisplay}
+      departments={departments}
       last={last}
-      name={nameDisplay}
-      resultKey={`${type}-${id}`}
+      title={title}
+      type={type}
     />
   );
 }
@@ -354,6 +333,7 @@ const propTypesSearchInput = {
   label: PropTypes.string,
   name: PropTypes.string.isRequired,
   searchEntity: PropTypes.oneOf(["all", "professor", "course"]),
+  searchLimit: PropTypes.number,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   width: PropTypes.number,
   onChange: PropTypes.func,
@@ -367,6 +347,7 @@ const defaultPropsSearchInput = {
   id: undefined,
   label: undefined,
   searchEntity: "all",
+  searchLimit: undefined,
   onChange: () => {},
   onBlur: () => {},
   onResultSelect: () => {},
@@ -387,6 +368,7 @@ export function SearchInput({
   label,
   name,
   searchEntity,
+  searchLimit,
   value,
   width,
   onChange,
@@ -413,7 +395,38 @@ export function SearchInput({
     onResultSelect(result);
   };
 
-  const handleSearchChange = async (e, { value: searchValue }) => {
+  /**
+   * useCallback memoizes a callback.
+   * It ensures that only one debouncer is created for each SearchInput.
+   */
+  const debouncedFetch = useCallback(
+    debounce(async (searchValue) => {
+      dispatch({ type: "SEARCH_START" });
+      const response = await fetch(
+        `/api/search?entity=${searchEntity}&query=${searchValue}&limit=${searchLimit}`,
+        {
+          method: "GET",
+          headers: { "Content-Type": "Application/json" },
+        }
+      );
+      try {
+        const { professorResults, courseResults } = await response.json();
+        const searchResults = [...professorResults, ...courseResults];
+
+        if (response.ok) {
+          dispatch({
+            type: "SEARCH_SUCCESS",
+            payload: searchResults,
+          });
+        }
+      } catch (err) {
+        dispatch({ type: "SEARCH_ERROR" });
+      }
+    }, 200),
+    [] // no condition to reset this debouncer
+  );
+
+  const handleSearchChange = (e, { value: searchValue }) => {
     onChange(e);
     onSearchChange(searchValue);
 
@@ -421,28 +434,8 @@ export function SearchInput({
       return dispatch({ type: "SEARCH_RESET" });
     }
 
-    dispatch({ type: "SEARCH_START" });
-    const response = await fetch(
-      `/api/search?entity=${searchEntity}&query=${searchValue}`,
-      {
-        method: "GET",
-        headers: { "Content-Type": "Application/json" },
-      }
-    );
+    debouncedFetch(searchValue);
 
-    try {
-      const { professorResults, courseResults } = await response.json();
-      const searchResults = [...professorResults, ...courseResults];
-
-      if (response.ok) {
-        dispatch({
-          type: "SEARCH_SUCCESS",
-          payload: searchResults,
-        });
-      }
-    } catch (err) {
-      dispatch({ type: "SEARCH_ERROR" });
-    }
     return null;
   };
 
@@ -462,7 +455,7 @@ export function SearchInput({
       width={width}
       onBlur={onBlur}
       onResultSelect={handleResultSelect}
-      onSearchChange={debounce(handleSearchChange, 300, { leading: true })}
+      onSearchChange={handleSearchChange}
     />
   );
 }
@@ -536,13 +529,13 @@ DropdownInput.defaultProps = defaultPropsDropdown;
 RadioInputGroup.propTypes = propTypesRadioInputGroup;
 RadioInputGroup.defaultProps = defaultPropsRadioInputGroup;
 
-SearchResult.propTypes = propTypesSearchResult;
-SearchResult.defaultProps = defaultPropsSearchResult;
+SearchResult.propTypes = propTypesResult;
+SearchResult.defaultProps = defaultPropsResult;
 
 TextResult.propTypes = propTypesTextResult;
 
-searchResultRenderer.propTypes = propTypesSearchResultRenderer;
-searchResultRenderer.defaultProps = defaultPropsResultRenderer;
+searchResultRenderer.propTypes = propTypesResult;
+searchResultRenderer.defaultProps = defaultPropsResult;
 
 SearchInput.propTypes = propTypesSearchInput;
 SearchInput.defaultProps = defaultPropsSearchInput;

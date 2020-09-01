@@ -1,6 +1,8 @@
 import flask
 
-# TEMPORARY DO NOT ITERATE ON TOP OF THIS
+from api.data.dataloaders.courses_loader import search_course
+from api.data.dataloaders.professors_loader import search_professor
+
 search_blueprint = flask.Blueprint('search_blueprint', __name__)
 
 
@@ -8,7 +10,7 @@ search_blueprint = flask.Blueprint('search_blueprint', __name__)
 def search():
     '''
     GET request should contain two url parameters:
-        - entity: One of `['professors', 'courses', 'all']` to
+        - entity: One of `['professor', 'course', 'all']` to
           specify the data source for our results.
         - query: the query string.
 
@@ -18,58 +20,56 @@ def search():
     url_params = flask.request.args
 
     search_entity = url_params.get('entity', 'all')
-    query = url_params.get('query', '')
+    search_query = url_params.get('query', '')
+    search_limit = url_params.get('limit', None)
 
-    if len(query) < 2:
+    if len(search_query) < 2:
         return {'error': 'Query is too insubstantial'}, 400
 
-    # TODO: Everything below this line is strictly for testing the
-    # `SearchInput` on the frontend and will be removed.
-    # Do not iterate on top of this.
     professor_results = []
-    if search_entity != 'courses':
-        professor_results = [
-            {
-                'badge': 'Bronze',  # TODO: Update to list of badge id
-                'departments': [
-                    {
-                        'id': 1,
-                        'name': 'Accounting'
-                    }
-                ],
-                'id': 1,
-                'title': 'Amir Ziv',
-                'type': 'professor',
-            },
-            {
-                'badge': 'None',  # TODO: Update to list of badge id
-                'departments': [
-                    {
-                        'id': 1,
-                        'name': 'Accounting'
-                    }
-                ],
-                'last': 'true',
-                'id': 4,
-                'title': 'Robert Stoumbos',
-                'type': 'professor',
-            }
-        ]
+    if search_entity in ['professor', 'all']:
+        professor_id_order = []  # preserves order of search results
+        professors = {}
+        search_results = search_professor(search_query, search_limit)
+        for professor in search_results:
+            professor_id = professor['professor_id']
+
+            if professor_id not in professors:
+                professors[professor_id] = {
+                    'childKey': f'professor-{professor_id}',
+                    'departments': [],
+                    'id': professor['professor_id'],
+                    'title': professor["first_name"] + ' ' +
+                    professor["last_name"],
+                    'type': 'professor'
+                }
+                professor_id_order.append(professor_id)
+
+            professors[professor_id]['departments'].append({
+                'id': professor['department_id'],
+                'name': professor['name'],
+            })
+
+        for professor_id in professor_id_order:
+            professor_results.append(professors[professor_id])
+
+    # divides professors and courses
+    if professor_results:
+        professor_results[-1]['last'] = 'true'
 
     course_results = []
-    if search_entity != 'professors':
-        course_results = [
-            {
-                'title': 'User Interface Design',
-                'type': 'course',
-                'id': 38,
-                'name': 'User Interface Design',
-                'departments': [{
-                    'id': 29,
-                    'name': 'Computer Science',
-                }]
-            },
-        ]
+    if search_entity in ['course', 'all']:
+        courses = search_course(search_query, search_limit)
+        course_results = [{
+            'childKey': f'course-{course["course_id"]}',
+            'departments': [{
+                'id': course['department_id'],
+                'name': course['department.name']
+            }],
+            'id': course['course_id'],
+            'title': course['name'],
+            'type': 'course'
+        } for course in courses]
 
     return {
         'professorResults': professor_results,
