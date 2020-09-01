@@ -63,15 +63,17 @@ def search_course(search_query, limit=None):
 
     query = Query \
         .from_(course) \
+        .join(department) \
+        .on(department.department_id == course.department_id) \
         .select(
             course.course_id,
             course.name,
             course.call_number,
-            match) \
-        .where(
-            match > 0) \
-        .orderby(
-            'score', order=Order.desc) \
+            department.department_id,
+            department.name,
+            match
+        ).where(match > 0) \
+        .orderby(match, order=Order.desc) \
         .limit(limit) \
         .get_sql()
 
