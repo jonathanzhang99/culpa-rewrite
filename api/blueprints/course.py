@@ -58,20 +58,9 @@ def course_info(course_id):
     query_prefix = prepare_course_query_prefix(course_id)
     course_review_highlight = get_course_review_summary(query_prefix, ip)
 
-    if len(course_review_highlight) == 0:
-        course_review_highlight_json = {}
-    elif len(course_review_highlight) == 1:
-        course_review_highlight_json = {
-            'mostAgreedReview': parse_review(
-                course_review_highlight[0], review_type)
-        }
-    else:
-        course_review_highlight_json = {
-            'positiveReview': parse_review(
-                course_review_highlight[0], review_type),
-            'negativeReview': parse_review(
-                course_review_highlight[1], review_type),
-        }
+    course_review_highlight_json = []
+    for review in course_review_highlight:
+        course_review_highlight_json.append(parse_review(review, review_type))
 
     return {
         'courseInfo': course_info_json,

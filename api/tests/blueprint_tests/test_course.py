@@ -139,10 +139,10 @@ class CoursesTest(BaseTest):
                     }]
                 }]
             },
-            'courseReviewHighlight': {
-                'negativeReview': self.NEGATIVE_REVIEW_JSON,
-                'positiveReview': self.POSITIVE_REVIEW_JSON
-            }
+            'courseReviewHighlight': [
+                self.POSITIVE_REVIEW_JSON,
+                self.NEGATIVE_REVIEW_JSON
+            ]
         }
 
         res = self.client.get(f'/api/course/{self.ML_COURSE_ID}')
@@ -196,9 +196,9 @@ class CoursesTest(BaseTest):
                     }]
                 }]
             },
-            'courseReviewHighlight': {
-                'mostAgreedReview': self.POSITIVE_REVIEW_JSON
-            }
+            'courseReviewHighlight': [
+                self.POSITIVE_REVIEW_JSON
+            ]
         }
 
         res = self.client.get(f'/api/course/{self.ML_COURSE_ID}')
@@ -251,15 +251,15 @@ class CoursesTest(BaseTest):
                     }]
                 }]
             },
-            'courseReviewHighlight': {}
+            'courseReviewHighlight': []
         }
 
         res = self.client.get(f'/api/course/{self.ML_COURSE_ID}')
         self.assertDictEqual(expected_res, res.json)
 
-    @mock.patch('api.blueprints.course.get_course_review_summary')
-    @mock.patch('api.blueprints.course.load_course_professors')
-    @mock.patch('api.blueprints.course.load_course_basic_info')
+    @ mock.patch('api.blueprints.course.get_course_review_summary')
+    @ mock.patch('api.blueprints.course.load_course_professors')
+    @ mock.patch('api.blueprints.course.load_course_basic_info')
     def test_get_course_info_no_professors(
             self, mock_load_course_basic_info, mock_load_course_professors,
             mock_get_course_review_summary):
@@ -283,16 +283,16 @@ class CoursesTest(BaseTest):
                 'departmentName': 'Computer Science',
                 'courseProfessors': []
             },
-            'courseReviewHighlight': {
-                'negativeReview': self.NEGATIVE_REVIEW_JSON,
-                'positiveReview': self.POSITIVE_REVIEW_JSON
-            }
+            'courseReviewHighlight': [
+                self.POSITIVE_REVIEW_JSON,
+                self.NEGATIVE_REVIEW_JSON
+            ]
         }
 
         res = self.client.get(f'/api/course/{self.ML_COURSE_ID}')
         self.assertEqual(expected_res, res.json)
 
-    @mock.patch('api.blueprints.course.load_course_basic_info')
+    @ mock.patch('api.blueprints.course.load_course_basic_info')
     def test_get_course_info_empty(self, mock_load_course_basic_info):
         mock_load_course_basic_info.return_value = []
         expected_res = {'error': 'Missing course basic info'}
@@ -301,7 +301,7 @@ class CoursesTest(BaseTest):
         self.assertEqual(res.status_code, 404)
         self.assertEqual(expected_res, res.json)
 
-    @mock.patch('api.blueprints.course.load_course_basic_info')
+    @ mock.patch('api.blueprints.course.load_course_basic_info')
     def test_get_course_info_db_failure(self, mock_load_course_basic_info):
         mock_load_course_basic_info.side_effect = IntegrityError()
         expected_res = {'error': 'Invalid data'}

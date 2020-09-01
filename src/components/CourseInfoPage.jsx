@@ -291,46 +291,28 @@ function CourseReviewCard({ review }) {
 }
 
 const propTypesCourseReviewHighlight = {
-  courseReviewHighlight: PropTypes.oneOfType([
-    PropTypes.shape({
-      positiveReview: reviewPropType,
-      negativeReview: reviewPropType,
-    }),
-    PropTypes.shape({
-      mostAgreedReview: reviewPropType,
-    }),
-  ]),
+  courseReviewHighlight: PropTypes.arrayOf(reviewPropType),
 };
 
 const defaultPropsCourseReviewHighlight = {
-  courseReviewHighlight: {
-    positiveReview: {},
-    negativeReview: {},
-  },
+  courseReviewHighlight: [],
 };
 
 function CourseReviewHighlight({ courseReviewHighlight }) {
-  if ("mostAgreedReview" in courseReviewHighlight) {
-    const { mostAgreedReview } = courseReviewHighlight;
-    return (
-      <Container>
-        <Grid>
-          <Grid.Row>
-            <Grid.Column width={14}>
-              <h3>Most Agreed Review</h3>
-              <CourseReviewCard review={mostAgreedReview} />
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
-      </Container>
-    );
-  }
+  /* 
+      NOTE: courseReviewHighlight[0] is the most positive and
+            [1] the most negative (when the length is 2)
 
-  if (
-    "positiveReview" in courseReviewHighlight &&
-    "negativeReview" in courseReviewHighlight
-  ) {
-    const { positiveReview, negativeReview } = courseReviewHighlight;
+      courseReviewHighlight can have lengths 0-2:
+        2: There are most positive and negative reviews
+        1: Either most positive and negative reviews are the same review
+           or there is only one review for the course
+        0: There are no reviews for the course
+  */
+
+  if (courseReviewHighlight.length === 2) {
+    const positiveReview = courseReviewHighlight[0];
+    const negativeReview = courseReviewHighlight[1];
     return (
       <Container>
         <Grid>
@@ -343,6 +325,21 @@ function CourseReviewHighlight({ courseReviewHighlight }) {
             <Grid.Column width={7}>
               <h3>Most Negative Review</h3>
               <CourseReviewCard review={negativeReview} />
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+      </Container>
+    );
+  }
+  if (courseReviewHighlight.length === 1) {
+    const mostAgreedReview = courseReviewHighlight[0];
+    return (
+      <Container>
+        <Grid>
+          <Grid.Row>
+            <Grid.Column width={14}>
+              <h3>Most Agreed Review</h3>
+              <CourseReviewCard review={mostAgreedReview} />
             </Grid.Column>
           </Grid.Row>
         </Grid>
@@ -367,7 +364,7 @@ export default function CourseInfoPage() {
       departmentName: "",
       courseProfessors: [],
     },
-    courseReviewHighlight: {},
+    courseReviewHighlight: [],
   });
   // TODO: load and return Review Summary data here
 
