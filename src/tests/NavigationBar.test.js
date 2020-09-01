@@ -145,7 +145,7 @@ describe("Navbar Component Tests", () => {
         expect(screen.getByText(/nakul verma/i)).toBeInTheDocument();
         expect(screen.getByText(/user interface design/i)).toBeInTheDocument();
         expect(mockFetch).toHaveBeenCalledWith(
-          "/api/search?entity=all&query=testSearchValue&limit=5",
+          "/api/search?entity=all&query=testSearchValue&limit=7",
           {
             method: "GET",
             headers: { "Content-Type": "Application/json" },
@@ -169,7 +169,7 @@ describe("Navbar Component Tests", () => {
           screen.queryByText(/user interface design/i)
         ).not.toBeInTheDocument();
         expect(mockFetch).toHaveBeenCalledWith(
-          "/api/search?entity=all&query=testSearchValue&limit=5",
+          "/api/search?entity=all&query=testSearchValue&limit=7",
           {
             method: "GET",
             headers: { "Content-Type": "Application/json" },
@@ -191,7 +191,7 @@ describe("Navbar Component Tests", () => {
         expect(screen.queryByText(/nakul verma/i)).not.toBeInTheDocument();
         expect(screen.getByText(/user interface design/i)).toBeInTheDocument();
         expect(mockFetch).toHaveBeenCalledWith(
-          "/api/search?entity=all&query=testSearchValue&limit=5",
+          "/api/search?entity=all&query=testSearchValue&limit=7",
           {
             method: "GET",
             headers: { "Content-Type": "Application/json" },
@@ -215,7 +215,7 @@ describe("Navbar Component Tests", () => {
           screen.queryByText(/user interface design/i)
         ).not.toBeInTheDocument();
         expect(mockFetch).toHaveBeenCalledWith(
-          "/api/search?entity=all&query=testSearchValue&limit=5",
+          "/api/search?entity=all&query=testSearchValue&limit=7",
           {
             method: "GET",
             headers: { "Content-Type": "Application/json" },

@@ -69,9 +69,6 @@ class ProfessorsLoaderTest(LoadersWritersBaseTest):
         self.assertEqual((), name)
 
     def test_search_professor_with_one_department_by_name(self):
-        setup_department_professor_courses(self.cur)
-        db.commit()
-
         results = search_professor('bollinger')
         self.assertEqual(len(results), 1)
 
@@ -103,9 +100,6 @@ class ProfessorsLoaderTest(LoadersWritersBaseTest):
         self.assertEqual(results[0].get('department_id'), LAW_DEPARTMENT_ID)
 
     def test_search_professor_with_multiple_departments_by_name(self):
-        setup_department_professor_courses(self.cur)
-        db.commit()
-
         results = search_professor('verma')
         self.assertEqual(len(results), 2)  # verma is in 2 departments
 
@@ -158,9 +152,6 @@ class ProfessorsLoaderTest(LoadersWritersBaseTest):
         self.assertEqual(results[0].get('department_id'), LAW_DEPARTMENT_ID)
 
     def test_search_one_professor_with_limit(self):
-        setup_department_professor_courses(self.cur)
-        db.commit()
-
         results = search_professor('lee', limit=1)
         self.assertEqual(len(results), 1)
         self.assertGreater(results[0].get('score'), 0)
@@ -170,9 +161,6 @@ class ProfessorsLoaderTest(LoadersWritersBaseTest):
         self.assertEqual(results[0].get('department_id'), LAW_DEPARTMENT_ID)
 
     def test_search_multiple_professors_with_limit(self):
-        setup_department_professor_courses(self.cur)
-        db.commit()
-
         results = search_professor('nakul', limit=2)
 
         expected_results = [

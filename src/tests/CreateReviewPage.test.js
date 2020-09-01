@@ -144,7 +144,7 @@ describe("Create Review Page tests", () => {
           expect(await screen.getByText(/lee bollinger/i)).toBeInTheDocument();
           expect(mockFetch).toHaveBeenCalledTimes(1);
           expect(mockFetch).toHaveBeenCalledWith(
-            "/api/search?entity=professor&query=testProfessorName&limit=5",
+            "/api/search?entity=professor&query=testProfessorName&limit=7",
             {
               method: "GET",
               headers: { "Content-Type": "Application/json" },
@@ -175,7 +175,7 @@ describe("Create Review Page tests", () => {
           ).toBeInTheDocument();
           expect(mockFetch).toHaveBeenCalledTimes(1);
           expect(mockFetch).toHaveBeenCalledWith(
-            "/api/search?entity=professor&query=testProfessorName&limit=5",
+            "/api/search?entity=professor&query=testProfessorName&limit=7",
             {
               method: "GET",
               headers: { "Content-Type": "Application/json" },
@@ -477,7 +477,7 @@ describe("Create Review Page tests", () => {
               screen.getAllByRole("button", { name: /submit/i })[1]
             )
           );
-          expect(mockFetch).toHaveBeenCalledTimes(5);
+          expect(mockFetch).toHaveBeenCalledTimes(7);
           expect(mockFetch).toHaveBeenLastCalledWith("/api/review/submit", {
             method: "POST",
             body: JSON.stringify({

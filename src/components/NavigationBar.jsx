@@ -60,7 +60,7 @@ export default function NavigationBar({ children }) {
             <SearchInput
               name="NavbarSearchbar"
               searchEntity="all"
-              searchLimit={5}
+              searchLimit={7}
               onResultSelect={onResultSelect}
             />
           </Form>

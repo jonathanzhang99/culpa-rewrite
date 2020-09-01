@@ -189,3 +189,30 @@ class SearchTest(BaseTest):
         search_results = self.client.get(
           '/api/search?entity=course&query=testSearchValue')
         self.assertEqual(expected_results, search_results.json)
+
+    def test_search_no_result(self, mock_search_professor, mock_search_course):
+        mock_search_professor.return_value = []
+        mock_search_course.return_value = []
+        expected_results = {
+            'professorResults': [],
+            'courseResults': [],
+        }
+
+        search_results = self.client.get(
+          '/api/search?entity=all&query=testSearchValue')
+        self.assertEqual(expected_results, search_results.json)
+
+    def test_search_error(self, mock_search_professor, mock_search_course):
+        expected_results = {
+            'error': 'Query is too insubstantial',
+        }
+
+        SHORT_SEARCH_VALUE = 'a'
+        search_results = self.client.get(
+          f'/api/search?entity=all&query={SHORT_SEARCH_VALUE}')
+        self.assertEqual(expected_results, search_results.json)
+
+        NO_SEARCH_VALUE = ''
+        search_results = self.client.get(
+          f'/api/search?entity=all&query={NO_SEARCH_VALUE}')
+        self.assertEqual(expected_results, search_results.json)

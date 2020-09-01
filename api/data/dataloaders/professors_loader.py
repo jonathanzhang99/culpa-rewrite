@@ -68,33 +68,35 @@ def search_professor(search_query, limit=None):
         .against(search_params) \
         .as_('score')
 
-    unique_professor = Query \
+    # this subquery guarantees limit == number of distinct professors
+    # otherwise, limit == number of rows != number of distinct professors
+    distinct_professor = Query \
         .from_(professor) \
         .select(
-            professor.professor_id,
-            professor.first_name,
-            professor.last_name,
-            professor.uni,
+            'professor_id',
+            'first_name',
+            'last_name',
+            'uni',
             match
         ) \
         .where(match > 0) \
         .orderby('score', order=Order.desc) \
         .limit(limit) \
-        .as_('unique_professor')
+        .as_('distinct_professor')
 
     query = Query \
-        .from_(unique_professor) \
+        .from_(distinct_professor) \
         .join(department_professor) \
         .on(department_professor.professor_id ==
-            unique_professor.professor_id) \
+            distinct_professor.professor_id) \
         .join(department) \
         .on(department.department_id == department_professor.department_id) \
         .select(
-            unique_professor.professor_id,
-            unique_professor.first_name,
-            unique_professor.last_name,
-            unique_professor.uni,
-            unique_professor.score,
+            distinct_professor.professor_id,
+            distinct_professor.first_name,
+            distinct_professor.last_name,
+            distinct_professor.uni,
+            distinct_professor.score,
             department.department_id,
             department.name,
         ) \

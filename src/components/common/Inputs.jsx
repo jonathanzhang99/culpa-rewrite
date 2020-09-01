@@ -422,7 +422,7 @@ export function SearchInput({
       } catch (err) {
         dispatch({ type: "SEARCH_ERROR" });
       }
-    }, 300),
+    }, 200),
     [] // no condition to reset this debouncer
   );
 
