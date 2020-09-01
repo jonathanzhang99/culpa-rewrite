@@ -1,3 +1,11 @@
 /*******************************
          Site Overrides
 *******************************/
+
+.ui.container.review-card-container {
+    margin: 25px 0px;
+}
+
+.ui.container.review-card-left-column-container {
+    position: relative;
+}

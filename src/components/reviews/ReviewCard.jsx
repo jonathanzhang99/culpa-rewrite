@@ -8,6 +8,7 @@ import {
   Message,
   Icon,
 } from "semantic-ui-react";
+import styled from "styled-components"
 
 import { CourseDisplayName } from "components/common/CourseDisplay";
 import { ProfessorDisplayName } from "components/common/ProfessorDisplay";
@@ -17,6 +18,12 @@ import downvoteIcon from "icons/downvote.png";
 import funnyIcon from "icons/funny.png";
 import upvoteIcon from "icons/upvote.png";
 
+const ReviewIdContainer = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 16px;
+`
 const propTypesVotesContainer = {
   reviewId: PropTypes.number.isRequired,
   votes: PropTypes.shape({
@@ -133,32 +140,32 @@ export function VotesContainer({ reviewId, votes }) {
 
   return (
     <Container>
-      <Grid centered style={{ padding: "30px 10px", height: "100%" }}>
-        <Grid.Row style={{ paddingBottom: 0, overflow: "show" }}>
+      <Grid centered className="votes-container-grid">
+        <Grid.Row className="votes-container-icon-row">
           <Image
             src={state.upvoteClicked ? upvoteClickedIcon : upvoteIcon}
             onClick={() => handleUpDownvote("upvote")}
           />
         </Grid.Row>
-        <Grid.Row style={{ padding: 0, color: "white" }}>
+        <Grid.Row className="votes-container-number-row">
           <strong>{state.upvoteCount}</strong>
         </Grid.Row>
-        <Grid.Row style={{ paddingBottom: 0 }}>
+        <Grid.Row className="votes-container-icon-row">
           <Image
             src={state.downvoteClicked ? downvoteClickedIcon : downvoteIcon}
             onClick={() => handleUpDownvote("downvote")}
           />
         </Grid.Row>
-        <Grid.Row style={{ padding: 0, color: "white" }}>
+        <Grid.Row className="votes-container-number-row">
           <strong>{state.downvoteCount}</strong>
         </Grid.Row>
-        <Grid.Row style={{ paddingBottom: 0 }}>
+        <Grid.Row className="votes-container-icon-row">
           <Image
             src={funnyIcon}
             onClick={() => dispatch({ type: "TOGGLE_FUNNY" })}
           />
         </Grid.Row>
-        <Grid.Row style={{ padding: 0, color: "white" }}>
+        <Grid.Row className="votes-container-number-row">
           <strong>{state.funnyCount}</strong>
         </Grid.Row>
       </Grid>
@@ -215,12 +222,12 @@ export default function ReviewCard({
   content,
 }) {
   return (
-    <Container style={{margin:"25px 0px"}}>
+    <Container className="review-card-container">
       <Grid>
         <Grid.Column
           key={1}
-          style={{ backgroundColor: "#F2F2F2", padding: "20px 30px" }}
           width={14}
+          className="review-card-left-grid-column"
         >
           <Container fluid>
             {deprecated && (
@@ -229,7 +236,7 @@ export default function ReviewCard({
                 Please keep in mind that this review is more than 5 years old.
               </Message>
             )}
-            <div style={{ position: "relative" }}>
+            <Container className="review-card-left-column-container">
               {reviewType === 'course' ? (
                 <ProfessorDisplayName
                   firstName={reviewHeader.profFirstName}
@@ -242,17 +249,8 @@ export default function ReviewCard({
                 />
               )}
               <Header as="h5">{submissionDate}</Header>
-              <div
-                style={{
-                  position: "absolute",
-                  top: 0,
-                  right: 0,
-                  fontSize: "16px",
-                }}
-              >
-                ID: {reviewId}
-              </div>
-            </div>
+              <ReviewIdContainer>ID: {reviewId}</ReviewIdContainer>
+            </Container>
             <p>{content}</p>
             <Header as="h5">Workload</Header>
             <p>{workload}</p>
@@ -260,8 +258,8 @@ export default function ReviewCard({
         </Grid.Column>
         <Grid.Column
           key={2}
-          style={{ backgroundColor: "#004E8D", paddingLeft: 0 }}
           width={2}
+          className="review-card-right-grid-column"
         >
           <VotesContainer reviewId={reviewId} votes={votes} />
         </Grid.Column>

@@ -274,15 +274,13 @@ Object {
             class="row"
           >
             <div
-              class="ui container"
-              style="margin: 25px 0px;"
+              class="ui container review-card-container"
             >
               <div
                 class="ui grid"
               >
                 <div
-                  class="fourteen wide column"
-                  style="background-color: rgb(242, 242, 242); padding: 20px 30px;"
+                  class="fourteen wide column review-card-left-grid-column"
                 >
                   <div
                     class="ui fluid container"
@@ -298,7 +296,7 @@ Object {
                       Please keep in mind that this review is more than 5 years old.
                     </div>
                     <div
-                      style="position: relative;"
+                      class="ui container review-card-left-column-container"
                     >
                       <span>
                         Nakul
@@ -311,7 +309,7 @@ Object {
                         2020-01-01
                       </h5>
                       <div
-                        style="position: absolute; top: 0px; right: 0px; font-size: 16px;"
+                        class="sc-AxjAm jApEhG"
                       >
                         ID: 
                         1
@@ -331,19 +329,16 @@ Object {
                   </div>
                 </div>
                 <div
-                  class="two wide column"
-                  style="background-color: rgb(0, 78, 141); padding-left: 0px;"
+                  class="two wide column review-card-right-grid-column"
                 >
                   <div
                     class="ui container"
                   >
                     <div
-                      class="ui centered grid"
-                      style="padding: 30px 10px; height: 100%;"
+                      class="ui centered grid votes-container-grid"
                     >
                       <div
-                        class="row"
-                        style="padding-bottom: 0px; overflow: show;"
+                        class="row votes-container-icon-row"
                       >
                         <img
                           class="ui image"
@@ -351,16 +346,14 @@ Object {
                         />
                       </div>
                       <div
-                        class="row"
-                        style="padding: 0px; color: white;"
+                        class="row votes-container-number-row"
                       >
                         <strong>
                           3
                         </strong>
                       </div>
                       <div
-                        class="row"
-                        style="padding-bottom: 0px;"
+                        class="row votes-container-icon-row"
                       >
                         <img
                           class="ui image"
@@ -368,16 +361,14 @@ Object {
                         />
                       </div>
                       <div
-                        class="row"
-                        style="padding: 0px; color: white;"
+                        class="row votes-container-number-row"
                       >
                         <strong>
                           2
                         </strong>
                       </div>
                       <div
-                        class="row"
-                        style="padding-bottom: 0px;"
+                        class="row votes-container-icon-row"
                       >
                         <img
                           class="ui image"
@@ -385,8 +376,7 @@ Object {
                         />
                       </div>
                       <div
-                        class="row"
-                        style="padding: 0px; color: white;"
+                        class="row votes-container-number-row"
                       >
                         <strong>
                           1
@@ -398,21 +388,19 @@ Object {
               </div>
             </div>
             <div
-              class="ui container"
-              style="margin: 25px 0px;"
+              class="ui container review-card-container"
             >
               <div
                 class="ui grid"
               >
                 <div
-                  class="fourteen wide column"
-                  style="background-color: rgb(242, 242, 242); padding: 20px 30px;"
+                  class="fourteen wide column review-card-left-grid-column"
                 >
                   <div
                     class="ui fluid container"
                   >
                     <div
-                      style="position: relative;"
+                      class="ui container review-card-left-column-container"
                     >
                       <span>
                         Lee
@@ -425,7 +413,7 @@ Object {
                         2020-01-01
                       </h5>
                       <div
-                        style="position: absolute; top: 0px; right: 0px; font-size: 16px;"
+                        class="sc-AxjAm jApEhG"
                       >
                         ID: 
                         2
@@ -445,19 +433,16 @@ Object {
                   </div>
                 </div>
                 <div
-                  class="two wide column"
-                  style="background-color: rgb(0, 78, 141); padding-left: 0px;"
+                  class="two wide column review-card-right-grid-column"
                 >
                   <div
                     class="ui container"
                   >
                     <div
-                      class="ui centered grid"
-                      style="padding: 30px 10px; height: 100%;"
+                      class="ui centered grid votes-container-grid"
                     >
                       <div
-                        class="row"
-                        style="padding-bottom: 0px; overflow: show;"
+                        class="row votes-container-icon-row"
                       >
                         <img
                           class="ui image"
@@ -465,16 +450,14 @@ Object {
                         />
                       </div>
                       <div
-                        class="row"
-                        style="padding: 0px; color: white;"
+                        class="row votes-container-number-row"
                       >
                         <strong>
                           3
                         </strong>
                       </div>
                       <div
-                        class="row"
-                        style="padding-bottom: 0px;"
+                        class="row votes-container-icon-row"
                       >
                         <img
                           class="ui image"
@@ -482,16 +465,14 @@ Object {
                         />
                       </div>
                       <div
-                        class="row"
-                        style="padding: 0px; color: white;"
+                        class="row votes-container-number-row"
                       >
                         <strong>
                           2
                         </strong>
                       </div>
                       <div
-                        class="row"
-                        style="padding-bottom: 0px;"
+                        class="row votes-container-icon-row"
                       >
                         <img
                           class="ui image"
@@ -499,8 +480,7 @@ Object {
                         />
                       </div>
                       <div
-                        class="row"
-                        style="padding: 0px; color: white;"
+                        class="row votes-container-number-row"
                       >
                         <strong>
                           1
@@ -514,7 +494,6 @@ Object {
           </div>
           <div
             class="centered row"
-            style="margin-bottom: 50px;"
           >
             <button
               class="ui large fluid button"
@@ -523,8 +502,7 @@ Object {
               Show more
               <i
                 aria-hidden="true"
-                class="arrow down icon"
-                style="margin-left: 5px;"
+                class="arrow down icon review-section-show-more-icon"
               />
             </button>
           </div>
@@ -802,15 +780,13 @@ Object {
           class="row"
         >
           <div
-            class="ui container"
-            style="margin: 25px 0px;"
+            class="ui container review-card-container"
           >
             <div
               class="ui grid"
             >
               <div
-                class="fourteen wide column"
-                style="background-color: rgb(242, 242, 242); padding: 20px 30px;"
+                class="fourteen wide column review-card-left-grid-column"
               >
                 <div
                   class="ui fluid container"
@@ -826,7 +802,7 @@ Object {
                     Please keep in mind that this review is more than 5 years old.
                   </div>
                   <div
-                    style="position: relative;"
+                    class="ui container review-card-left-column-container"
                   >
                     <span>
                       Nakul
@@ -839,7 +815,7 @@ Object {
                       2020-01-01
                     </h5>
                     <div
-                      style="position: absolute; top: 0px; right: 0px; font-size: 16px;"
+                      class="sc-AxjAm jApEhG"
                     >
                       ID: 
                       1
@@ -859,19 +835,16 @@ Object {
                 </div>
               </div>
               <div
-                class="two wide column"
-                style="background-color: rgb(0, 78, 141); padding-left: 0px;"
+                class="two wide column review-card-right-grid-column"
               >
                 <div
                   class="ui container"
                 >
                   <div
-                    class="ui centered grid"
-                    style="padding: 30px 10px; height: 100%;"
+                    class="ui centered grid votes-container-grid"
                   >
                     <div
-                      class="row"
-                      style="padding-bottom: 0px; overflow: show;"
+                      class="row votes-container-icon-row"
                     >
                       <img
                         class="ui image"
@@ -879,16 +852,14 @@ Object {
                       />
                     </div>
                     <div
-                      class="row"
-                      style="padding: 0px; color: white;"
+                      class="row votes-container-number-row"
                     >
                       <strong>
                         3
                       </strong>
                     </div>
                     <div
-                      class="row"
-                      style="padding-bottom: 0px;"
+                      class="row votes-container-icon-row"
                     >
                       <img
                         class="ui image"
@@ -896,16 +867,14 @@ Object {
                       />
                     </div>
                     <div
-                      class="row"
-                      style="padding: 0px; color: white;"
+                      class="row votes-container-number-row"
                     >
                       <strong>
                         2
                       </strong>
                     </div>
                     <div
-                      class="row"
-                      style="padding-bottom: 0px;"
+                      class="row votes-container-icon-row"
                     >
                       <img
                         class="ui image"
@@ -913,8 +882,7 @@ Object {
                       />
                     </div>
                     <div
-                      class="row"
-                      style="padding: 0px; color: white;"
+                      class="row votes-container-number-row"
                     >
                       <strong>
                         1
@@ -926,21 +894,19 @@ Object {
             </div>
           </div>
           <div
-            class="ui container"
-            style="margin: 25px 0px;"
+            class="ui container review-card-container"
           >
             <div
               class="ui grid"
             >
               <div
-                class="fourteen wide column"
-                style="background-color: rgb(242, 242, 242); padding: 20px 30px;"
+                class="fourteen wide column review-card-left-grid-column"
               >
                 <div
                   class="ui fluid container"
                 >
                   <div
-                    style="position: relative;"
+                    class="ui container review-card-left-column-container"
                   >
                     <span>
                       Lee
@@ -953,7 +919,7 @@ Object {
                       2020-01-01
                     </h5>
                     <div
-                      style="position: absolute; top: 0px; right: 0px; font-size: 16px;"
+                      class="sc-AxjAm jApEhG"
                     >
                       ID: 
                       2
@@ -973,19 +939,16 @@ Object {
                 </div>
               </div>
               <div
-                class="two wide column"
-                style="background-color: rgb(0, 78, 141); padding-left: 0px;"
+                class="two wide column review-card-right-grid-column"
               >
                 <div
                   class="ui container"
                 >
                   <div
-                    class="ui centered grid"
-                    style="padding: 30px 10px; height: 100%;"
+                    class="ui centered grid votes-container-grid"
                   >
                     <div
-                      class="row"
-                      style="padding-bottom: 0px; overflow: show;"
+                      class="row votes-container-icon-row"
                     >
                       <img
                         class="ui image"
@@ -993,16 +956,14 @@ Object {
                       />
                     </div>
                     <div
-                      class="row"
-                      style="padding: 0px; color: white;"
+                      class="row votes-container-number-row"
                     >
                       <strong>
                         3
                       </strong>
                     </div>
                     <div
-                      class="row"
-                      style="padding-bottom: 0px;"
+                      class="row votes-container-icon-row"
                     >
                       <img
                         class="ui image"
@@ -1010,16 +971,14 @@ Object {
                       />
                     </div>
                     <div
-                      class="row"
-                      style="padding: 0px; color: white;"
+                      class="row votes-container-number-row"
                     >
                       <strong>
                         2
                       </strong>
                     </div>
                     <div
-                      class="row"
-                      style="padding-bottom: 0px;"
+                      class="row votes-container-icon-row"
                     >
                       <img
                         class="ui image"
@@ -1027,8 +986,7 @@ Object {
                       />
                     </div>
                     <div
-                      class="row"
-                      style="padding: 0px; color: white;"
+                      class="row votes-container-number-row"
                     >
                       <strong>
                         1
@@ -1042,7 +1000,6 @@ Object {
         </div>
         <div
           class="centered row"
-          style="margin-bottom: 50px;"
         >
           <button
             class="ui large fluid button"
@@ -1051,8 +1008,7 @@ Object {
             Show more
             <i
               aria-hidden="true"
-              class="arrow down icon"
-              style="margin-left: 5px;"
+              class="arrow down icon review-section-show-more-icon"
             />
           </button>
         </div>
@@ -1387,15 +1343,13 @@ Object {
             class="row"
           >
             <div
-              class="ui container"
-              style="margin: 25px 0px;"
+              class="ui container review-card-container"
             >
               <div
                 class="ui grid"
               >
                 <div
-                  class="fourteen wide column"
-                  style="background-color: rgb(242, 242, 242); padding: 20px 30px;"
+                  class="fourteen wide column review-card-left-grid-column"
                 >
                   <div
                     class="ui fluid container"
@@ -1411,7 +1365,7 @@ Object {
                       Please keep in mind that this review is more than 5 years old.
                     </div>
                     <div
-                      style="position: relative;"
+                      class="ui container review-card-left-column-container"
                     >
                       <span>
                         COMS 4771
@@ -1424,7 +1378,7 @@ Object {
                         2020-01-01
                       </h5>
                       <div
-                        style="position: absolute; top: 0px; right: 0px; font-size: 16px;"
+                        class="sc-AxjAm jApEhG"
                       >
                         ID: 
                         1
@@ -1444,19 +1398,16 @@ Object {
                   </div>
                 </div>
                 <div
-                  class="two wide column"
-                  style="background-color: rgb(0, 78, 141); padding-left: 0px;"
+                  class="two wide column review-card-right-grid-column"
                 >
                   <div
                     class="ui container"
                   >
                     <div
-                      class="ui centered grid"
-                      style="padding: 30px 10px; height: 100%;"
+                      class="ui centered grid votes-container-grid"
                     >
                       <div
-                        class="row"
-                        style="padding-bottom: 0px; overflow: show;"
+                        class="row votes-container-icon-row"
                       >
                         <img
                           class="ui image"
@@ -1464,16 +1415,14 @@ Object {
                         />
                       </div>
                       <div
-                        class="row"
-                        style="padding: 0px; color: white;"
+                        class="row votes-container-number-row"
                       >
                         <strong>
                           3
                         </strong>
                       </div>
                       <div
-                        class="row"
-                        style="padding-bottom: 0px;"
+                        class="row votes-container-icon-row"
                       >
                         <img
                           class="ui image"
@@ -1481,16 +1430,14 @@ Object {
                         />
                       </div>
                       <div
-                        class="row"
-                        style="padding: 0px; color: white;"
+                        class="row votes-container-number-row"
                       >
                         <strong>
                           2
                         </strong>
                       </div>
                       <div
-                        class="row"
-                        style="padding-bottom: 0px;"
+                        class="row votes-container-icon-row"
                       >
                         <img
                           class="ui image"
@@ -1498,8 +1445,7 @@ Object {
                         />
                       </div>
                       <div
-                        class="row"
-                        style="padding: 0px; color: white;"
+                        class="row votes-container-number-row"
                       >
                         <strong>
                           1
@@ -1511,21 +1457,19 @@ Object {
               </div>
             </div>
             <div
-              class="ui container"
-              style="margin: 25px 0px;"
+              class="ui container review-card-container"
             >
               <div
                 class="ui grid"
               >
                 <div
-                  class="fourteen wide column"
-                  style="background-color: rgb(242, 242, 242); padding: 20px 30px;"
+                  class="fourteen wide column review-card-left-grid-column"
                 >
                   <div
                     class="ui fluid container"
                   >
                     <div
-                      style="position: relative;"
+                      class="ui container review-card-left-column-container"
                     >
                       <span>
                         POLS 3285
@@ -1538,7 +1482,7 @@ Object {
                         2020-01-01
                       </h5>
                       <div
-                        style="position: absolute; top: 0px; right: 0px; font-size: 16px;"
+                        class="sc-AxjAm jApEhG"
                       >
                         ID: 
                         2
@@ -1558,19 +1502,16 @@ Object {
                   </div>
                 </div>
                 <div
-                  class="two wide column"
-                  style="background-color: rgb(0, 78, 141); padding-left: 0px;"
+                  class="two wide column review-card-right-grid-column"
                 >
                   <div
                     class="ui container"
                   >
                     <div
-                      class="ui centered grid"
-                      style="padding: 30px 10px; height: 100%;"
+                      class="ui centered grid votes-container-grid"
                     >
                       <div
-                        class="row"
-                        style="padding-bottom: 0px; overflow: show;"
+                        class="row votes-container-icon-row"
                       >
                         <img
                           class="ui image"
@@ -1578,16 +1519,14 @@ Object {
                         />
                       </div>
                       <div
-                        class="row"
-                        style="padding: 0px; color: white;"
+                        class="row votes-container-number-row"
                       >
                         <strong>
                           3
                         </strong>
                       </div>
                       <div
-                        class="row"
-                        style="padding-bottom: 0px;"
+                        class="row votes-container-icon-row"
                       >
                         <img
                           class="ui image"
@@ -1595,16 +1534,14 @@ Object {
                         />
                       </div>
                       <div
-                        class="row"
-                        style="padding: 0px; color: white;"
+                        class="row votes-container-number-row"
                       >
                         <strong>
                           2
                         </strong>
                       </div>
                       <div
-                        class="row"
-                        style="padding-bottom: 0px;"
+                        class="row votes-container-icon-row"
                       >
                         <img
                           class="ui image"
@@ -1612,8 +1549,7 @@ Object {
                         />
                       </div>
                       <div
-                        class="row"
-                        style="padding: 0px; color: white;"
+                        class="row votes-container-number-row"
                       >
                         <strong>
                           1
@@ -1627,7 +1563,6 @@ Object {
           </div>
           <div
             class="centered row"
-            style="margin-bottom: 50px;"
           >
             <button
               class="ui large fluid button"
@@ -1636,8 +1571,7 @@ Object {
               Show more
               <i
                 aria-hidden="true"
-                class="arrow down icon"
-                style="margin-left: 5px;"
+                class="arrow down icon review-section-show-more-icon"
               />
             </button>
           </div>
@@ -1915,15 +1849,13 @@ Object {
           class="row"
         >
           <div
-            class="ui container"
-            style="margin: 25px 0px;"
+            class="ui container review-card-container"
           >
             <div
               class="ui grid"
             >
               <div
-                class="fourteen wide column"
-                style="background-color: rgb(242, 242, 242); padding: 20px 30px;"
+                class="fourteen wide column review-card-left-grid-column"
               >
                 <div
                   class="ui fluid container"
@@ -1939,7 +1871,7 @@ Object {
                     Please keep in mind that this review is more than 5 years old.
                   </div>
                   <div
-                    style="position: relative;"
+                    class="ui container review-card-left-column-container"
                   >
                     <span>
                       COMS 4771
@@ -1952,7 +1884,7 @@ Object {
                       2020-01-01
                     </h5>
                     <div
-                      style="position: absolute; top: 0px; right: 0px; font-size: 16px;"
+                      class="sc-AxjAm jApEhG"
                     >
                       ID: 
                       1
@@ -1972,19 +1904,16 @@ Object {
                 </div>
               </div>
               <div
-                class="two wide column"
-                style="background-color: rgb(0, 78, 141); padding-left: 0px;"
+                class="two wide column review-card-right-grid-column"
               >
                 <div
                   class="ui container"
                 >
                   <div
-                    class="ui centered grid"
-                    style="padding: 30px 10px; height: 100%;"
+                    class="ui centered grid votes-container-grid"
                   >
                     <div
-                      class="row"
-                      style="padding-bottom: 0px; overflow: show;"
+                      class="row votes-container-icon-row"
                     >
                       <img
                         class="ui image"
@@ -1992,16 +1921,14 @@ Object {
                       />
                     </div>
                     <div
-                      class="row"
-                      style="padding: 0px; color: white;"
+                      class="row votes-container-number-row"
                     >
                       <strong>
                         3
                       </strong>
                     </div>
                     <div
-                      class="row"
-                      style="padding-bottom: 0px;"
+                      class="row votes-container-icon-row"
                     >
                       <img
                         class="ui image"
@@ -2009,16 +1936,14 @@ Object {
                       />
                     </div>
                     <div
-                      class="row"
-                      style="padding: 0px; color: white;"
+                      class="row votes-container-number-row"
                     >
                       <strong>
                         2
                       </strong>
                     </div>
                     <div
-                      class="row"
-                      style="padding-bottom: 0px;"
+                      class="row votes-container-icon-row"
                     >
                       <img
                         class="ui image"
@@ -2026,8 +1951,7 @@ Object {
                       />
                     </div>
                     <div
-                      class="row"
-                      style="padding: 0px; color: white;"
+                      class="row votes-container-number-row"
                     >
                       <strong>
                         1
@@ -2039,21 +1963,19 @@ Object {
             </div>
           </div>
           <div
-            class="ui container"
-            style="margin: 25px 0px;"
+            class="ui container review-card-container"
           >
             <div
               class="ui grid"
             >
               <div
-                class="fourteen wide column"
-                style="background-color: rgb(242, 242, 242); padding: 20px 30px;"
+                class="fourteen wide column review-card-left-grid-column"
               >
                 <div
                   class="ui fluid container"
                 >
                   <div
-                    style="position: relative;"
+                    class="ui container review-card-left-column-container"
                   >
                     <span>
                       POLS 3285
@@ -2066,7 +1988,7 @@ Object {
                       2020-01-01
                     </h5>
                     <div
-                      style="position: absolute; top: 0px; right: 0px; font-size: 16px;"
+                      class="sc-AxjAm jApEhG"
                     >
                       ID: 
                       2
@@ -2086,19 +2008,16 @@ Object {
                 </div>
               </div>
               <div
-                class="two wide column"
-                style="background-color: rgb(0, 78, 141); padding-left: 0px;"
+                class="two wide column review-card-right-grid-column"
               >
                 <div
                   class="ui container"
                 >
                   <div
-                    class="ui centered grid"
-                    style="padding: 30px 10px; height: 100%;"
+                    class="ui centered grid votes-container-grid"
                   >
                     <div
-                      class="row"
-                      style="padding-bottom: 0px; overflow: show;"
+                      class="row votes-container-icon-row"
                     >
                       <img
                         class="ui image"
@@ -2106,16 +2025,14 @@ Object {
                       />
                     </div>
                     <div
-                      class="row"
-                      style="padding: 0px; color: white;"
+                      class="row votes-container-number-row"
                     >
                       <strong>
                         3
                       </strong>
                     </div>
                     <div
-                      class="row"
-                      style="padding-bottom: 0px;"
+                      class="row votes-container-icon-row"
                     >
                       <img
                         class="ui image"
@@ -2123,16 +2040,14 @@ Object {
                       />
                     </div>
                     <div
-                      class="row"
-                      style="padding: 0px; color: white;"
+                      class="row votes-container-number-row"
                     >
                       <strong>
                         2
                       </strong>
                     </div>
                     <div
-                      class="row"
-                      style="padding-bottom: 0px;"
+                      class="row votes-container-icon-row"
                     >
                       <img
                         class="ui image"
@@ -2140,8 +2055,7 @@ Object {
                       />
                     </div>
                     <div
-                      class="row"
-                      style="padding: 0px; color: white;"
+                      class="row votes-container-number-row"
                     >
                       <strong>
                         1
@@ -2155,7 +2069,6 @@ Object {
         </div>
         <div
           class="centered row"
-          style="margin-bottom: 50px;"
         >
           <button
             class="ui large fluid button"
@@ -2164,8 +2077,7 @@ Object {
             Show more
             <i
               aria-hidden="true"
-              class="arrow down icon"
-              style="margin-left: 5px;"
+              class="arrow down icon review-section-show-more-icon"
             />
           </button>
         </div>
