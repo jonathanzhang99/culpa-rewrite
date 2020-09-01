@@ -28,7 +28,7 @@ describe("Departments Component", () => {
     test(name, () => {
       const snapshot = render(
         <MemoryRouter>
-          \ <Departments departments={departments} />
+          <Departments departments={departments} />
         </MemoryRouter>
       );
       expect(snapshot).toMatchSnapshot();

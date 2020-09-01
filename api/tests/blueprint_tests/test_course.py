@@ -16,15 +16,14 @@ class CoursesTest(BaseTest):
         'review_id': 1,
         'content': 'demo content 1',
         'workload': 'demo workload 1',
-                    'rating': 5,
-                    'submission_date':
-                        datetime.strptime('2019-10-13', '%Y-%m-%d'),
-                    'agrees': 1,
-                    'disagrees': 2,
-                    'funnys': 1,
-                    'agree_clicked': 0,
-                    'disagree_clicked': 1,
-                    'funny_clicked': 1
+        'rating': 5,
+        'submission_date': datetime.strptime('2019-10-13', '%Y-%m-%d'),
+        'agrees': 1,
+        'disagrees': 2,
+        'funnys': 1,
+        'agree_clicked': 0,
+        'disagree_clicked': 1,
+        'funny_clicked': 1
     }
 
     NEGATIVE_REVIEW = {
@@ -35,15 +34,14 @@ class CoursesTest(BaseTest):
         'review_id': 4,
         'content': 'demo content 4',
         'workload': 'demo workload 4',
-                    'rating': 1,
-                    'submission_date':
-                        datetime.strptime('2019-10-13', '%Y-%m-%d'),
-                    'agrees': 0,
-                    'disagrees': 0,
-                    'funnys': 0,
-                    'agree_clicked': 0,
-                    'disagree_clicked': 0,
-                    'funny_clicked': 0
+        'rating': 1,
+        'submission_date': datetime.strptime('2019-10-13', '%Y-%m-%d'),
+        'agrees': 0,
+        'disagrees': 0,
+        'funnys': 0,
+        'agree_clicked': 0,
+        'disagree_clicked': 0,
+        'funny_clicked': 0
     }
 
     POSITIVE_REVIEW_JSON = {
@@ -141,7 +139,7 @@ class CoursesTest(BaseTest):
                     }]
                 }]
             },
-            'reviewHighlight': {
+            'courseReviewHighlight': {
                 'negativeReview': self.NEGATIVE_REVIEW_JSON,
                 'positiveReview': self.POSITIVE_REVIEW_JSON
             }
@@ -198,7 +196,7 @@ class CoursesTest(BaseTest):
                     }]
                 }]
             },
-            'reviewHighlight': {
+            'courseReviewHighlight': {
                 'mostAgreedReview': self.POSITIVE_REVIEW_JSON
             }
         }
@@ -253,7 +251,7 @@ class CoursesTest(BaseTest):
                     }]
                 }]
             },
-            'reviewHighlight': {}
+            'courseReviewHighlight': {}
         }
 
         res = self.client.get(f'/api/course/{self.ML_COURSE_ID}')
@@ -285,7 +283,7 @@ class CoursesTest(BaseTest):
                 'departmentName': 'Computer Science',
                 'courseProfessors': []
             },
-            'reviewHighlight': {
+            'courseReviewHighlight': {
                 'negativeReview': self.NEGATIVE_REVIEW_JSON,
                 'positiveReview': self.POSITIVE_REVIEW_JSON
             }

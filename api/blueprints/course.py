@@ -56,21 +56,24 @@ def course_info(course_id):
     ip = flask.request.remote_addr
     review_type = 'course'
     query_prefix = prepare_course_query_prefix(course_id)
-    review_highlight = get_course_review_summary(query_prefix, ip)
+    course_review_highlight = get_course_review_summary(query_prefix, ip)
 
-    if len(review_highlight) == 0:
-        review_highlight_json = {}
-    elif len(review_highlight) == 1:
-        review_highlight_json = {
-            'mostAgreedReview': parse_review(review_highlight[0], review_type)
+    if len(course_review_highlight) == 0:
+        course_review_highlight_json = {}
+    elif len(course_review_highlight) == 1:
+        course_review_highlight_json = {
+            'mostAgreedReview': parse_review(
+                course_review_highlight[0], review_type)
         }
     else:
-        review_highlight_json = {
-            'positiveReview': parse_review(review_highlight[0], review_type),
-            'negativeReview': parse_review(review_highlight[1], review_type),
+        course_review_highlight_json = {
+            'positiveReview': parse_review(
+                course_review_highlight[0], review_type),
+            'negativeReview': parse_review(
+                course_review_highlight[1], review_type),
         }
 
     return {
         'courseInfo': course_info_json,
-        'reviewHighlight': review_highlight_json
+        'courseReviewHighlight': course_review_highlight_json
     }

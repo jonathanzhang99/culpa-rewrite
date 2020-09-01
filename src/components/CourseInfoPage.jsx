@@ -84,10 +84,8 @@ export function ProfessorsAccordion({
         onClick={() => setAccordionActive(!isAccordionActive)}
       >
         <Icon name={!isAccordionActive ? "angle down" : "angle up"} />
-        <>
-          {!isAccordionActive ? "Show" : "Hide"} all professors who teach this
-          course
-        </>
+        {!isAccordionActive ? "Show" : "Hide"} all professors who teach this
+        course
       </Accordion.Title>
       <Accordion.Content active={isAccordionActive}>
         <CourseProfessorsGrid courseProfessors={courseProfessors} />
@@ -292,8 +290,8 @@ function CourseReviewCard({ review }) {
   );
 }
 
-const propTypesReviewHighlight = {
-  reviewHighlight: PropTypes.oneOfType([
+const propTypesCourseReviewHighlight = {
+  courseReviewHighlight: PropTypes.oneOfType([
     PropTypes.shape({
       positiveReview: reviewPropType,
       negativeReview: reviewPropType,
@@ -304,16 +302,16 @@ const propTypesReviewHighlight = {
   ]),
 };
 
-const defaultPropsReviewHighlight = {
-  reviewHighlight: {
+const defaultPropsCourseReviewHighlight = {
+  courseReviewHighlight: {
     positiveReview: {},
     negativeReview: {},
   },
 };
 
-function ReviewHighlight({ reviewHighlight }) {
-  if ("mostAgreedReview" in reviewHighlight) {
-    const { mostAgreedReview } = reviewHighlight;
+function CourseReviewHighlight({ courseReviewHighlight }) {
+  if ("mostAgreedReview" in courseReviewHighlight) {
+    const { mostAgreedReview } = courseReviewHighlight;
     return (
       <Container>
         <Grid>
@@ -329,10 +327,10 @@ function ReviewHighlight({ reviewHighlight }) {
   }
 
   if (
-    "positiveReview" in reviewHighlight &&
-    "negativeReview" in reviewHighlight
+    "positiveReview" in courseReviewHighlight &&
+    "negativeReview" in courseReviewHighlight
   ) {
-    const { positiveReview, negativeReview } = reviewHighlight;
+    const { positiveReview, negativeReview } = courseReviewHighlight;
     return (
       <Container>
         <Grid>
@@ -358,7 +356,7 @@ function ReviewHighlight({ reviewHighlight }) {
 export default function CourseInfoPage() {
   const { courseId } = useParams();
   const {
-    data: { courseInfo, reviewHighlight },
+    data: { courseInfo, courseReviewHighlight },
     isLoading,
     isError,
   } = useDataFetch(`/api/course/${courseId}`, {
@@ -369,7 +367,7 @@ export default function CourseInfoPage() {
       departmentName: "",
       courseProfessors: [],
     },
-    reviewHighlight: {},
+    courseReviewHighlight: {},
   });
   // TODO: load and return Review Summary data here
 
@@ -387,7 +385,7 @@ export default function CourseInfoPage() {
         departmentId={courseInfo.departmentId}
         departmentName={courseInfo.departmentName}
       />
-      <ReviewHighlight reviewHighlight={reviewHighlight} />
+      <CourseReviewHighlight courseReviewHighlight={courseReviewHighlight} />
     </>
   );
 }
@@ -412,5 +410,5 @@ CourseInfo.defaultProps = defaultProps;
 
 CourseReviewCard.propTypes = propTypesCourseReviewCard;
 
-ReviewHighlight.propTypes = propTypesReviewHighlight;
-ReviewHighlight.defaultProps = defaultPropsReviewHighlight;
+CourseReviewHighlight.propTypes = propTypesCourseReviewHighlight;
+CourseReviewHighlight.defaultProps = defaultPropsCourseReviewHighlight;
