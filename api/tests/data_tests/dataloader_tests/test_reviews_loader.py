@@ -146,7 +146,7 @@ class ReviewsLoaderTest(LoadersWritersBaseTest):
             for item in res:
                 if (
                     datetime.utcnow() - item['submission_date']
-                ) / timedelta(days=1) > year * 365:
+                ) / timedelta(days=1) >= year * 365:
                     return False
             return True
 
