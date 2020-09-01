@@ -36,7 +36,7 @@ def course_info(course_id):
             'professorDepartmentName': professor['name']
         })
 
-    course_summary_json = {
+    course_info_json = {
         'courseName': basic_info[0]['name'],
         'courseCallNumber': basic_info[0]['call_number'],
         'departmentId': basic_info[0]['department_id'],
@@ -71,6 +71,6 @@ def course_info(course_id):
         }
 
     return {
-        'courseSummary': course_summary_json,
+        'courseInfo': course_info_json,
         'reviewHighlight': review_highlight_json
     }

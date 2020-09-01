@@ -2,9 +2,9 @@ import { render, fireEvent, screen } from "@testing-library/react";
 import React from "react";
 import { MemoryRouter } from "react-router-dom";
 
-import { CourseSummary } from "components/CourseInfoPage";
+import { CourseInfo } from "components/CourseInfoPage";
 
-describe("CourseSummary Component", () => {
+describe("CourseInfo Component", () => {
   const MAX_NUM_PROFESSORS_IN_LIST = 5;
 
   const testCases = [
@@ -184,7 +184,7 @@ describe("CourseSummary Component", () => {
       test(testName, () => {
         const snapshot = render(
           <MemoryRouter>
-            <CourseSummary
+            <CourseInfo
               courseCallNumber={courseCallNumber}
               courseId={courseId}
               courseName={courseName}

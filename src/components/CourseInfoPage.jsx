@@ -184,7 +184,7 @@ export function ReviewCourseButton({ courseId, courseName }) {
   );
 }
 
-const propTypesCourseSummary = {
+const propTypesCourseInfo = {
   courseId: PropTypes.number.isRequired,
   courseName: PropTypes.string.isRequired,
   courseCallNumber: PropTypes.string.isRequired,
@@ -205,7 +205,7 @@ const propTypesCourseSummary = {
   ),
 };
 
-export function CourseSummary({
+export function CourseInfo({
   courseId,
   courseName,
   courseCallNumber,
@@ -358,11 +358,11 @@ function ReviewHighlight({ reviewHighlight }) {
 export default function CourseInfoPage() {
   const { courseId } = useParams();
   const {
-    data: { courseSummary, reviewHighlight },
+    data: { courseInfo, reviewHighlight },
     isLoading,
     isError,
   } = useDataFetch(`/api/course/${courseId}`, {
-    courseSummary: {
+    courseInfo: {
       courseName: "",
       courseCallNumber: "",
       departmentId: 0,
@@ -379,13 +379,13 @@ export default function CourseInfoPage() {
 
   return (
     <>
-      <CourseSummary
-        courseCallNumber={courseSummary.courseCallNumber}
+      <CourseInfo
+        courseCallNumber={courseInfo.courseCallNumber}
         courseId={Number(courseId)}
-        courseName={courseSummary.courseName}
-        courseProfessors={courseSummary.courseProfessors}
-        departmentId={courseSummary.departmentId}
-        departmentName={courseSummary.departmentName}
+        courseName={courseInfo.courseName}
+        courseProfessors={courseInfo.courseProfessors}
+        departmentId={courseInfo.departmentId}
+        departmentName={courseInfo.departmentName}
       />
       <ReviewHighlight reviewHighlight={reviewHighlight} />
     </>
@@ -407,8 +407,8 @@ ProfessorDepartmentColumn.propTypes = propTypesProfessorDepartmentColumn;
 
 ReviewCourseButton.propTypes = propTypesReviewCourseButton;
 
-CourseSummary.propTypes = propTypesCourseSummary;
-CourseSummary.defaultProps = defaultProps;
+CourseInfo.propTypes = propTypesCourseInfo;
+CourseInfo.defaultProps = defaultProps;
 
 CourseReviewCard.propTypes = propTypesCourseReviewCard;
 

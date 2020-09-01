@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CourseSummary Component renders course info with no professors 1`] = `
+exports[`CourseInfo Component renders course info with no professors 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
@@ -143,7 +143,7 @@ Object {
 }
 `;
 
-exports[`CourseSummary Component renders course info with one professor 1`] = `
+exports[`CourseInfo Component renders course info with one professor 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
@@ -310,7 +310,7 @@ Object {
 }
 `;
 
-exports[`CourseSummary Component renders course info with professor accordion 1`] = `
+exports[`CourseInfo Component renders course info with professor accordion 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
@@ -977,7 +977,7 @@ Object {
 }
 `;
 
-exports[`CourseSummary Component renders course info with professor list 1`] = `
+exports[`CourseInfo Component renders course info with professor list 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>

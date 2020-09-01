@@ -123,7 +123,7 @@ class CoursesTest(BaseTest):
             self.NEGATIVE_REVIEW,
         ]
         expected_res = {
-            'courseSummary': {
+            'courseInfo': {
                 'courseName': 'Machine Learning',
                 'courseCallNumber': 'COMS 4771',
                 'departmentId': 1,
@@ -180,7 +180,7 @@ class CoursesTest(BaseTest):
             self.POSITIVE_REVIEW,
         ]
         expected_res = {
-            'courseSummary': {
+            'courseInfo': {
                 'courseName': 'Machine Learning',
                 'courseCallNumber': 'COMS 4771',
                 'departmentId': 1,
@@ -235,7 +235,7 @@ class CoursesTest(BaseTest):
         }]
         mock_get_course_review_summary.return_value = []
         expected_res = {
-            'courseSummary': {
+            'courseInfo': {
                 'courseName': 'Machine Learning',
                 'courseCallNumber': 'COMS 4771',
                 'departmentId': 1,
@@ -278,7 +278,7 @@ class CoursesTest(BaseTest):
             self.NEGATIVE_REVIEW,
         ]
         expected_res = {
-            'courseSummary': {
+            'courseInfo': {
                 'courseName': 'Machine Learning',
                 'courseCallNumber': 'COMS 4771',
                 'departmentId': 1,
