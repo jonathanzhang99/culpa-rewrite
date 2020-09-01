@@ -2,13 +2,48 @@
     User Variable Overrides
 *******************************/
 
-/*
-        Colors
-*/
+/*-------------------
+       Element
+--------------------*/
 
+/* Button */
 @backgroundColor: @primaryColor;
+
+/* Text */
+@textColor: @secondaryColor;
+@fontFamily: "Source Code Pro", @fontName, "Helvetica Neue";
+
+/*-------------------
+        States
+--------------------*/
+
+/* Hovered */
 @hoverBackgroundColor: @primaryColorHover;
-@activeBackgroundColor: @primaryColorActive;
+
+/* Pressed Down */
 @downBackgroundColor: @primaryColorDown;
 
-@fontFamily: "Source Code Pro", @fontName, "Helvetica Neue";
+/* Active */
+@activeBackgroundColor: @primaryColorActive;
+
+/*-------------------
+        Types
+--------------------*/
+
+/* Basic */
+@basicBoxShadow: none;
+
+/* Basic Hover */
+@basicHoverBackground: transparent;
+@basicHoverBoxShadow: none;
+
+/* Basic Down */
+@basicDownBackground: transparent;
+@basicDownBoxShadow: none;
+
+/*-------------------
+      Variations
+--------------------*/
+
+/* Colored */
+@orangeTextColor: @textColor;

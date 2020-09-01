@@ -50,7 +50,7 @@ const propTypesReviewProfessorButton = {
 
 function ReviewProfessorButton({ professorId, firstName, lastName }) {
   return (
-    <CreateReviewButton color="yellow" professorId={professorId}>
+    <CreateReviewButton color="orange" professorId={professorId}>
       WRITE A REVIEW FOR {firstName} {lastName}
     </CreateReviewButton>
   );
