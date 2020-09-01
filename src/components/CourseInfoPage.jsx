@@ -176,7 +176,7 @@ const propTypesReviewCourseButton = {
 
 export function ReviewCourseButton({ courseId, courseName }) {
   return (
-    <CreateReviewButton color="yellow" courseId={courseId.toString()}>
+    <CreateReviewButton color="orange" courseId={courseId.toString()}>
       WRITE A REVIEW FOR {courseName}
     </CreateReviewButton>
   );
