@@ -11,8 +11,10 @@ import LoadingComponent from "components/common/LoadingComponent";
 import { ProfessorDisplayLink } from "components/common/ProfessorDisplay";
 import useDataFetch from "components/common/useDataFetch";
 import ReviewCard from "components/reviews/ReviewCard";
+import ReviewSection from "components/reviews/ReviewSection";
 
 const MAX_NUM_PROFESSORS_IN_LIST = 5;
+const PAGE_TYPE = "course";
 
 const defaultProps = {
   courseProfessors: [],
@@ -352,11 +354,8 @@ function CourseReviewHighlight({ courseReviewHighlight }) {
 
 export default function CourseInfoPage() {
   const { courseId } = useParams();
-  const {
-    data: { courseInfo, courseReviewHighlight },
-    isLoading,
-    isError,
-  } = useDataFetch(`/api/course/${courseId}`, {
+
+  const courseDataFetched = useDataFetch(`/api/course/${courseId}`, {
     courseInfo: {
       courseName: "",
       courseCallNumber: "",
@@ -366,10 +365,25 @@ export default function CourseInfoPage() {
     },
     courseReviewHighlight: [],
   });
-  // TODO: load and return Review Summary data here
 
-  if (isLoading || isError) {
-    return isLoading ? <LoadingComponent /> : <ErrorComponent />;
+  const { courseInfo, courseReviewHighlight } = courseDataFetched.data;
+  const isCourseLoading = courseDataFetched.isLoading;
+  const isCourseError = courseDataFetched.isError;
+
+  const reviewDataFetched = useDataFetch(`/api/review/get/course/${courseId}`, {
+    reviews: [],
+  });
+
+  const { reviews } = reviewDataFetched.data;
+  const isReviewLoading = reviewDataFetched.isLoading;
+  const isReviewError = reviewDataFetched.isError;
+
+  if (isCourseLoading || isCourseError) {
+    return isCourseLoading ? <LoadingComponent /> : <ErrorComponent />;
+  }
+
+  if (isReviewLoading || isReviewError) {
+    return isReviewLoading ? <LoadingComponent /> : <ErrorComponent />;
   }
 
   return (
@@ -383,6 +397,12 @@ export default function CourseInfoPage() {
         departmentName={courseInfo.departmentName}
       />
       <CourseReviewHighlight courseReviewHighlight={courseReviewHighlight} />
+      <ReviewSection
+        associatedEntities={courseInfo.courseProfessors}
+        id={Number(courseId)}
+        initReviews={reviews}
+        pageType={PAGE_TYPE}
+      />
     </>
   );
 }
