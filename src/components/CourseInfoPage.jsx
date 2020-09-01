@@ -14,7 +14,6 @@ import ReviewCard from "components/reviews/ReviewCard";
 import ReviewSection from "components/reviews/ReviewSection";
 
 const MAX_NUM_PROFESSORS_IN_LIST = 5;
-const PAGE_TYPE = "course";
 
 const defaultProps = {
   courseProfessors: [],
@@ -313,34 +312,29 @@ function CourseReviewHighlight({ courseReviewHighlight }) {
   */
 
   if (courseReviewHighlight.length === 2) {
-    const positiveReview = courseReviewHighlight[0];
-    const negativeReview = courseReviewHighlight[1];
     return (
       <Container>
         <Grid relaxed>
-          <Grid.Row>
-            <Grid.Column width={8}>
-              <h3>Most Positive Review</h3>
-              <CourseReviewCard review={positiveReview} />
-            </Grid.Column>
-            <Grid.Column width={8}>
-              <h3>Most Negative Review</h3>
-              <CourseReviewCard review={negativeReview} />
-            </Grid.Column>
-          </Grid.Row>
+          <Grid.Column width={8}>
+            <h3>Most Positive Review</h3>
+            <CourseReviewCard review={courseReviewHighlight[0]} />
+          </Grid.Column>
+          <Grid.Column width={8}>
+            <h3>Most Negative Review</h3>
+            <CourseReviewCard review={courseReviewHighlight[1]} />
+          </Grid.Column>
         </Grid>
       </Container>
     );
   }
   if (courseReviewHighlight.length === 1) {
-    const mostAgreedReview = courseReviewHighlight[0];
     return (
       <Container>
         <Grid>
           <Grid.Row>
             <Grid.Column width={16}>
               <h3>Most Agreed Review</h3>
-              <CourseReviewCard review={mostAgreedReview} />
+              <CourseReviewCard review={courseReviewHighlight[0]} />
             </Grid.Column>
           </Grid.Row>
         </Grid>
@@ -355,7 +349,7 @@ export default function CourseInfoPage() {
   const { courseId } = useParams();
 
   const courseDataFetched = useDataFetch(`/api/course/${courseId}`, {
-    courseInfo: {
+    courseSummary: {
       courseName: "",
       courseCallNumber: "",
       departmentId: 0,
@@ -365,7 +359,7 @@ export default function CourseInfoPage() {
     courseReviewHighlight: [],
   });
 
-  const { courseInfo, courseReviewHighlight } = courseDataFetched.data;
+  const { courseSummary, courseReviewHighlight } = courseDataFetched.data;
   const isCourseLoading = courseDataFetched.isLoading;
   const isCourseError = courseDataFetched.isError;
 
@@ -388,19 +382,19 @@ export default function CourseInfoPage() {
   return (
     <>
       <CourseInfo
-        courseCallNumber={courseInfo.courseCallNumber}
+        courseCallNumber={courseSummary.courseCallNumber}
         courseId={Number(courseId)}
-        courseName={courseInfo.courseName}
-        courseProfessors={courseInfo.courseProfessors}
-        departmentId={courseInfo.departmentId}
-        departmentName={courseInfo.departmentName}
+        courseName={courseSummary.courseName}
+        courseProfessors={courseSummary.courseProfessors}
+        departmentId={courseSummary.departmentId}
+        departmentName={courseSummary.departmentName}
       />
       <CourseReviewHighlight courseReviewHighlight={courseReviewHighlight} />
       <ReviewSection
-        associatedEntities={courseInfo.courseProfessors}
+        associatedEntities={courseSummary.courseProfessors}
         id={Number(courseId)}
         initReviews={reviews}
-        pageType={PAGE_TYPE}
+        pageType="course"
       />
     </>
   );

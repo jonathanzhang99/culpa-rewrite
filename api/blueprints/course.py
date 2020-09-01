@@ -3,7 +3,7 @@ import flask
 from api.data.dataloaders.courses_loader import load_course_basic_info, \
     load_course_professors
 from api.data.dataloaders.reviews_loader import prepare_course_query_prefix,\
-    get_course_review_highlight
+    load_review_highlight
 from api.blueprints.review import parse_review
 
 course_blueprint = flask.Blueprint('course_blueprint', __name__)
@@ -36,7 +36,7 @@ def course_info(course_id):
             'professorDepartmentName': professor['name']
         })
 
-    course_info_json = {
+    course_summary_json = {
         'courseName': basic_info[0]['name'],
         'courseCallNumber': basic_info[0]['call_number'],
         'departmentId': basic_info[0]['department_id'],
@@ -45,15 +45,13 @@ def course_info(course_id):
     }
 
     ip = flask.request.remote_addr
-    review_type = 'course'
     query_prefix = prepare_course_query_prefix(course_id)
-    course_review_highlight = get_course_review_highlight(query_prefix, ip)
+    course_review_highlight = load_review_highlight(query_prefix, ip)
 
-    course_review_highlight_json = []
-    for review in course_review_highlight:
-        course_review_highlight_json.append(parse_review(review, review_type))
+    course_review_highlight_json = [parse_review(review, 'course')
+                                    for review in course_review_highlight]
 
     return {
-        'courseInfo': course_info_json,
+        'courseSummary': course_summary_json,
         'courseReviewHighlight': course_review_highlight_json
     }

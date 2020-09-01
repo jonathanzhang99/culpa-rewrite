@@ -188,7 +188,7 @@ def get_reviews_with_query_prefix(
     return cur.fetchall()
 
 
-def get_course_review_highlight(
+def load_review_highlight(
     query_prefix,
     ip
 ):
