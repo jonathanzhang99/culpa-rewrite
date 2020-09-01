@@ -317,14 +317,13 @@ function CourseReviewHighlight({ courseReviewHighlight }) {
     const negativeReview = courseReviewHighlight[1];
     return (
       <Container>
-        <Grid>
+        <Grid relaxed>
           <Grid.Row>
-            <Grid.Column width={7}>
+            <Grid.Column width={8}>
               <h3>Most Positive Review</h3>
               <CourseReviewCard review={positiveReview} />
             </Grid.Column>
-            <Grid.Column width={1} />
-            <Grid.Column width={7}>
+            <Grid.Column width={8}>
               <h3>Most Negative Review</h3>
               <CourseReviewCard review={negativeReview} />
             </Grid.Column>
@@ -339,7 +338,7 @@ function CourseReviewHighlight({ courseReviewHighlight }) {
       <Container>
         <Grid>
           <Grid.Row>
-            <Grid.Column width={14}>
+            <Grid.Column width={16}>
               <h3>Most Agreed Review</h3>
               <CourseReviewCard review={mostAgreedReview} />
             </Grid.Column>
