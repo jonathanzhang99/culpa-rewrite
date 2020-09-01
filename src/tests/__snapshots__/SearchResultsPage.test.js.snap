@@ -15,9 +15,12 @@ Object {
         </em>
       </div>
       <div
+        class="ui divider"
+      />
+      <div
         class="ui header"
       >
-         Courses 
+         Professors 
       </div>
       <div
         class="ui grid"
@@ -35,29 +38,29 @@ Object {
                 Nakul Verma
               </span>
             </a>
-            [
-            Silver
-            ]
           </div>
           <div
             class="ten wide column"
           >
-            <a
-              href="/department/29"
-            >
-              <span>
-                 
-                Computer Science
-                 
-              </span>
-            </a>
+            <span>
+              <a
+                href="/department/29"
+              >
+                <span>
+                   
+                  Computer Science
+                   
+                </span>
+              </a>
+              
+            </span>
           </div>
         </div>
       </div>
       <div
         class="ui header"
       >
-         Professors 
+         Courses 
       </div>
       <div
         class="ui grid"
@@ -81,15 +84,18 @@ Object {
           <div
             class="ten wide column"
           >
-            <a
-              href="/department/6"
-            >
-              <span>
-                 
-                Computer Science
-                 
-              </span>
-            </a>
+            <span>
+              <a
+                href="/department/6"
+              >
+                <span>
+                   
+                  Computer Science
+                   
+                </span>
+              </a>
+              
+            </span>
           </div>
         </div>
       </div>
@@ -106,9 +112,12 @@ Object {
       </em>
     </div>
     <div
+      class="ui divider"
+    />
+    <div
       class="ui header"
     >
-       Courses 
+       Professors 
     </div>
     <div
       class="ui grid"
@@ -126,29 +135,29 @@ Object {
               Nakul Verma
             </span>
           </a>
-          [
-          Silver
-          ]
         </div>
         <div
           class="ten wide column"
         >
-          <a
-            href="/department/29"
-          >
-            <span>
-               
-              Computer Science
-               
-            </span>
-          </a>
+          <span>
+            <a
+              href="/department/29"
+            >
+              <span>
+                 
+                Computer Science
+                 
+              </span>
+            </a>
+            
+          </span>
         </div>
       </div>
     </div>
     <div
       class="ui header"
     >
-       Professors 
+       Courses 
     </div>
     <div
       class="ui grid"
@@ -172,15 +181,18 @@ Object {
         <div
           class="ten wide column"
         >
-          <a
-            href="/department/6"
-          >
-            <span>
-               
-              Computer Science
-               
-            </span>
-          </a>
+          <span>
+            <a
+              href="/department/6"
+            >
+              <span>
+                 
+                Computer Science
+                 
+              </span>
+            </a>
+            
+          </span>
         </div>
       </div>
     </div>
@@ -254,20 +266,23 @@ Object {
         </em>
       </div>
       <div
-        class="ui header"
-      >
-         Courses 
-      </div>
-      <p>
-         No professor found 
-      </p>
+        class="ui divider"
+      />
       <div
         class="ui header"
       >
          Professors 
       </div>
       <p>
-         No course found 
+         No result found 
+      </p>
+      <div
+        class="ui header"
+      >
+         Courses 
+      </div>
+      <p>
+         No result found 
       </p>
     </div>
   </body>,
@@ -282,20 +297,23 @@ Object {
       </em>
     </div>
     <div
-      class="ui header"
-    >
-       Courses 
-    </div>
-    <p>
-       No professor found 
-    </p>
+      class="ui divider"
+    />
     <div
       class="ui header"
     >
        Professors 
     </div>
     <p>
-       No course found 
+       No result found 
+    </p>
+    <div
+      class="ui header"
+    >
+       Courses 
+    </div>
+    <p>
+       No result found 
     </p>
   </div>,
   "debug": [Function],
@@ -367,17 +385,20 @@ Object {
         </em>
       </div>
       <div
-        class="ui header"
-      >
-         Courses 
-      </div>
-      <p>
-         No professor found 
-      </p>
+        class="ui divider"
+      />
       <div
         class="ui header"
       >
          Professors 
+      </div>
+      <p>
+         No result found 
+      </p>
+      <div
+        class="ui header"
+      >
+         Courses 
       </div>
       <div
         class="ui grid"
@@ -401,15 +422,18 @@ Object {
           <div
             class="ten wide column"
           >
-            <a
-              href="/department/6"
-            >
-              <span>
-                 
-                Computer Science
-                 
-              </span>
-            </a>
+            <span>
+              <a
+                href="/department/6"
+              >
+                <span>
+                   
+                  Computer Science
+                   
+                </span>
+              </a>
+              
+            </span>
           </div>
         </div>
       </div>
@@ -426,17 +450,20 @@ Object {
       </em>
     </div>
     <div
-      class="ui header"
-    >
-       Courses 
-    </div>
-    <p>
-       No professor found 
-    </p>
+      class="ui divider"
+    />
     <div
       class="ui header"
     >
        Professors 
+    </div>
+    <p>
+       No result found 
+    </p>
+    <div
+      class="ui header"
+    >
+       Courses 
     </div>
     <div
       class="ui grid"
@@ -460,15 +487,18 @@ Object {
         <div
           class="ten wide column"
         >
-          <a
-            href="/department/6"
-          >
-            <span>
-               
-              Computer Science
-               
-            </span>
-          </a>
+          <span>
+            <a
+              href="/department/6"
+            >
+              <span>
+                 
+                Computer Science
+                 
+              </span>
+            </a>
+            
+          </span>
         </div>
       </div>
     </div>
@@ -542,9 +572,12 @@ Object {
         </em>
       </div>
       <div
+        class="ui divider"
+      />
+      <div
         class="ui header"
       >
-         Courses 
+         Professors 
       </div>
       <div
         class="ui grid"
@@ -562,32 +595,32 @@ Object {
                 Nakul Verma
               </span>
             </a>
-            [
-            Silver
-            ]
           </div>
           <div
             class="ten wide column"
           >
-            <a
-              href="/department/29"
-            >
-              <span>
-                 
-                Computer Science
-                 
-              </span>
-            </a>
+            <span>
+              <a
+                href="/department/29"
+              >
+                <span>
+                   
+                  Computer Science
+                   
+                </span>
+              </a>
+              
+            </span>
           </div>
         </div>
       </div>
       <div
         class="ui header"
       >
-         Professors 
+         Courses 
       </div>
       <p>
-         No course found 
+         No result found 
       </p>
     </div>
   </body>,
@@ -602,9 +635,12 @@ Object {
       </em>
     </div>
     <div
+      class="ui divider"
+    />
+    <div
       class="ui header"
     >
-       Courses 
+       Professors 
     </div>
     <div
       class="ui grid"
@@ -622,32 +658,32 @@ Object {
               Nakul Verma
             </span>
           </a>
-          [
-          Silver
-          ]
         </div>
         <div
           class="ten wide column"
         >
-          <a
-            href="/department/29"
-          >
-            <span>
-               
-              Computer Science
-               
-            </span>
-          </a>
+          <span>
+            <a
+              href="/department/29"
+            >
+              <span>
+                 
+                Computer Science
+                 
+              </span>
+            </a>
+            
+          </span>
         </div>
       </div>
     </div>
     <div
       class="ui header"
     >
-       Professors 
+       Courses 
     </div>
     <p>
-       No course found 
+       No result found 
     </p>
   </div>,
   "debug": [Function],

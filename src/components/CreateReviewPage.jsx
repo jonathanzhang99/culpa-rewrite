@@ -102,6 +102,7 @@ export default function CreateReviewPage() {
           name="professor"
           rules={{ required: "Please select a professor" }}
           searchEntity="professor"
+          searchLimit={7}
           width={6}
           onResultSelect={onResultSelect}
           onSearchChange={onSearchChange}

@@ -1,0 +1,1169 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CourseInfo Component renders course info with no professors 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="ui header"
+      >
+        COMS 4771
+         
+        Machine Learning
+      </div>
+      <div
+        class="ui container"
+      >
+        <div
+          class="ui container"
+        >
+          <span>
+            Department: 
+          </span>
+          <a
+            href="/department/1"
+          >
+            <span>
+               
+              Computer Science
+               
+            </span>
+          </a>
+        </div>
+        <span>
+          Professors: 
+        </span>
+      </div>
+      <a
+        href="/review"
+      >
+        <button
+          class="ui yellow button"
+        >
+          WRITE A REVIEW FOR 
+          Machine Learning
+        </button>
+      </a>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="ui header"
+    >
+      COMS 4771
+       
+      Machine Learning
+    </div>
+    <div
+      class="ui container"
+    >
+      <div
+        class="ui container"
+      >
+        <span>
+          Department: 
+        </span>
+        <a
+          href="/department/1"
+        >
+          <span>
+             
+            Computer Science
+             
+          </span>
+        </a>
+      </div>
+      <span>
+        Professors: 
+      </span>
+    </div>
+    <a
+      href="/review"
+    >
+      <button
+        class="ui yellow button"
+      >
+        WRITE A REVIEW FOR 
+        Machine Learning
+      </button>
+    </a>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
+exports[`CourseInfo Component renders course info with one professor 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="ui header"
+      >
+        COMS 4771
+         
+        Machine Learning
+      </div>
+      <div
+        class="ui container"
+      >
+        <div
+          class="ui container"
+        >
+          <span>
+            Department: 
+          </span>
+          <a
+            href="/department/1"
+          >
+            <span>
+               
+              Computer Science
+               
+            </span>
+          </a>
+        </div>
+        <span>
+          Professors: 
+        </span>
+        <span>
+          <a
+            href="/professor/1"
+          >
+            <span>
+              Nakul
+               
+              Verma
+            </span>
+          </a>
+          
+        </span>
+      </div>
+      <a
+        href="/review"
+      >
+        <button
+          class="ui yellow button"
+        >
+          WRITE A REVIEW FOR 
+          Machine Learning
+        </button>
+      </a>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="ui header"
+    >
+      COMS 4771
+       
+      Machine Learning
+    </div>
+    <div
+      class="ui container"
+    >
+      <div
+        class="ui container"
+      >
+        <span>
+          Department: 
+        </span>
+        <a
+          href="/department/1"
+        >
+          <span>
+             
+            Computer Science
+             
+          </span>
+        </a>
+      </div>
+      <span>
+        Professors: 
+      </span>
+      <span>
+        <a
+          href="/professor/1"
+        >
+          <span>
+            Nakul
+             
+            Verma
+          </span>
+        </a>
+        
+      </span>
+    </div>
+    <a
+      href="/review"
+    >
+      <button
+        class="ui yellow button"
+      >
+        WRITE A REVIEW FOR 
+        Machine Learning
+      </button>
+    </a>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
+exports[`CourseInfo Component renders course info with professor accordion 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="ui header"
+      >
+        COMS 4771
+         
+        Machine Learning
+      </div>
+      <div
+        class="ui container"
+      >
+        <div
+          class="ui container"
+        >
+          <span>
+            Department: 
+          </span>
+          <a
+            href="/department/1"
+          >
+            <span>
+               
+              Computer Science
+               
+            </span>
+          </a>
+        </div>
+        <div
+          class="accordion ui"
+        >
+          <div
+            class="title"
+          >
+            <i
+              aria-hidden="true"
+              class="angle down icon"
+            />
+            Show
+             all professors who teach this course
+          </div>
+          <div
+            class="content"
+          >
+            <div
+              class="ui two column grid"
+            >
+              <div
+                class="row"
+              >
+                <div
+                  class="column"
+                >
+                  <a
+                    href="/professor/1"
+                  >
+                    <span>
+                      Nakul
+                       
+                      Verma
+                    </span>
+                  </a>
+                </div>
+                <div
+                  class="column"
+                >
+                  <div>
+                    <a
+                      href="/department/1"
+                    >
+                      <span>
+                         
+                        Computer Science
+                         
+                      </span>
+                    </a>
+                    , 
+                  </div>
+                  <div>
+                    <a
+                      href="/department/3"
+                    >
+                      <span>
+                         
+                        Mathematics
+                         
+                      </span>
+                    </a>
+                    
+                  </div>
+                </div>
+              </div>
+              <div
+                class="row"
+              >
+                <div
+                  class="column"
+                >
+                  <a
+                    href="/professor/2"
+                  >
+                    <span>
+                      Daniel
+                       
+                      Hsu
+                    </span>
+                  </a>
+                </div>
+                <div
+                  class="column"
+                >
+                  <div>
+                    <a
+                      href="/department/1"
+                    >
+                      <span>
+                         
+                        Computer Science
+                         
+                      </span>
+                    </a>
+                    
+                  </div>
+                </div>
+              </div>
+              <div
+                class="row"
+              >
+                <div
+                  class="column"
+                >
+                  <a
+                    href="/professor/3"
+                  >
+                    <span>
+                      Dorrie
+                       
+                      Tang
+                    </span>
+                  </a>
+                </div>
+                <div
+                  class="column"
+                >
+                  <div>
+                    <a
+                      href="/department/1"
+                    >
+                      <span>
+                         
+                        Computer Science
+                         
+                      </span>
+                    </a>
+                    
+                  </div>
+                </div>
+              </div>
+              <div
+                class="row"
+              >
+                <div
+                  class="column"
+                >
+                  <a
+                    href="/professor/4"
+                  >
+                    <span>
+                      Elaine
+                       
+                      Wang
+                    </span>
+                  </a>
+                </div>
+                <div
+                  class="column"
+                >
+                  <div>
+                    <a
+                      href="/department/1"
+                    >
+                      <span>
+                         
+                        Computer Science
+                         
+                      </span>
+                    </a>
+                    
+                  </div>
+                </div>
+              </div>
+              <div
+                class="row"
+              >
+                <div
+                  class="column"
+                >
+                  <a
+                    href="/professor/5"
+                  >
+                    <span>
+                      Jonathan
+                       
+                      Zhang
+                    </span>
+                  </a>
+                </div>
+                <div
+                  class="column"
+                >
+                  <div>
+                    <a
+                      href="/department/1"
+                    >
+                      <span>
+                         
+                        Computer Science
+                         
+                      </span>
+                    </a>
+                    
+                  </div>
+                </div>
+              </div>
+              <div
+                class="row"
+              >
+                <div
+                  class="column"
+                >
+                  <a
+                    href="/professor/6"
+                  >
+                    <span>
+                      Jin Woo
+                       
+                      Hsu
+                    </span>
+                  </a>
+                </div>
+                <div
+                  class="column"
+                >
+                  <div>
+                    <a
+                      href="/department/1"
+                    >
+                      <span>
+                         
+                        Computer Science
+                         
+                      </span>
+                    </a>
+                    
+                  </div>
+                </div>
+              </div>
+              <div
+                class="row"
+              >
+                <div
+                  class="column"
+                >
+                  <a
+                    href="/professor/7"
+                  >
+                    <span>
+                      Sungbin
+                       
+                      Kim
+                    </span>
+                  </a>
+                </div>
+                <div
+                  class="column"
+                >
+                  <div>
+                    <a
+                      href="/department/1"
+                    >
+                      <span>
+                         
+                        Computer Science
+                         
+                      </span>
+                    </a>
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a
+        href="/review"
+      >
+        <button
+          class="ui yellow button"
+        >
+          WRITE A REVIEW FOR 
+          Machine Learning
+        </button>
+      </a>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="ui header"
+    >
+      COMS 4771
+       
+      Machine Learning
+    </div>
+    <div
+      class="ui container"
+    >
+      <div
+        class="ui container"
+      >
+        <span>
+          Department: 
+        </span>
+        <a
+          href="/department/1"
+        >
+          <span>
+             
+            Computer Science
+             
+          </span>
+        </a>
+      </div>
+      <div
+        class="accordion ui"
+      >
+        <div
+          class="title"
+        >
+          <i
+            aria-hidden="true"
+            class="angle down icon"
+          />
+          Show
+           all professors who teach this course
+        </div>
+        <div
+          class="content"
+        >
+          <div
+            class="ui two column grid"
+          >
+            <div
+              class="row"
+            >
+              <div
+                class="column"
+              >
+                <a
+                  href="/professor/1"
+                >
+                  <span>
+                    Nakul
+                     
+                    Verma
+                  </span>
+                </a>
+              </div>
+              <div
+                class="column"
+              >
+                <div>
+                  <a
+                    href="/department/1"
+                  >
+                    <span>
+                       
+                      Computer Science
+                       
+                    </span>
+                  </a>
+                  , 
+                </div>
+                <div>
+                  <a
+                    href="/department/3"
+                  >
+                    <span>
+                       
+                      Mathematics
+                       
+                    </span>
+                  </a>
+                  
+                </div>
+              </div>
+            </div>
+            <div
+              class="row"
+            >
+              <div
+                class="column"
+              >
+                <a
+                  href="/professor/2"
+                >
+                  <span>
+                    Daniel
+                     
+                    Hsu
+                  </span>
+                </a>
+              </div>
+              <div
+                class="column"
+              >
+                <div>
+                  <a
+                    href="/department/1"
+                  >
+                    <span>
+                       
+                      Computer Science
+                       
+                    </span>
+                  </a>
+                  
+                </div>
+              </div>
+            </div>
+            <div
+              class="row"
+            >
+              <div
+                class="column"
+              >
+                <a
+                  href="/professor/3"
+                >
+                  <span>
+                    Dorrie
+                     
+                    Tang
+                  </span>
+                </a>
+              </div>
+              <div
+                class="column"
+              >
+                <div>
+                  <a
+                    href="/department/1"
+                  >
+                    <span>
+                       
+                      Computer Science
+                       
+                    </span>
+                  </a>
+                  
+                </div>
+              </div>
+            </div>
+            <div
+              class="row"
+            >
+              <div
+                class="column"
+              >
+                <a
+                  href="/professor/4"
+                >
+                  <span>
+                    Elaine
+                     
+                    Wang
+                  </span>
+                </a>
+              </div>
+              <div
+                class="column"
+              >
+                <div>
+                  <a
+                    href="/department/1"
+                  >
+                    <span>
+                       
+                      Computer Science
+                       
+                    </span>
+                  </a>
+                  
+                </div>
+              </div>
+            </div>
+            <div
+              class="row"
+            >
+              <div
+                class="column"
+              >
+                <a
+                  href="/professor/5"
+                >
+                  <span>
+                    Jonathan
+                     
+                    Zhang
+                  </span>
+                </a>
+              </div>
+              <div
+                class="column"
+              >
+                <div>
+                  <a
+                    href="/department/1"
+                  >
+                    <span>
+                       
+                      Computer Science
+                       
+                    </span>
+                  </a>
+                  
+                </div>
+              </div>
+            </div>
+            <div
+              class="row"
+            >
+              <div
+                class="column"
+              >
+                <a
+                  href="/professor/6"
+                >
+                  <span>
+                    Jin Woo
+                     
+                    Hsu
+                  </span>
+                </a>
+              </div>
+              <div
+                class="column"
+              >
+                <div>
+                  <a
+                    href="/department/1"
+                  >
+                    <span>
+                       
+                      Computer Science
+                       
+                    </span>
+                  </a>
+                  
+                </div>
+              </div>
+            </div>
+            <div
+              class="row"
+            >
+              <div
+                class="column"
+              >
+                <a
+                  href="/professor/7"
+                >
+                  <span>
+                    Sungbin
+                     
+                    Kim
+                  </span>
+                </a>
+              </div>
+              <div
+                class="column"
+              >
+                <div>
+                  <a
+                    href="/department/1"
+                  >
+                    <span>
+                       
+                      Computer Science
+                       
+                    </span>
+                  </a>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <a
+      href="/review"
+    >
+      <button
+        class="ui yellow button"
+      >
+        WRITE A REVIEW FOR 
+        Machine Learning
+      </button>
+    </a>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
+exports[`CourseInfo Component renders course info with professor list 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="ui header"
+      >
+        COMS 4771
+         
+        Machine Learning
+      </div>
+      <div
+        class="ui container"
+      >
+        <div
+          class="ui container"
+        >
+          <span>
+            Department: 
+          </span>
+          <a
+            href="/department/1"
+          >
+            <span>
+               
+              Computer Science
+               
+            </span>
+          </a>
+        </div>
+        <span>
+          Professors: 
+        </span>
+        <span>
+          <a
+            href="/professor/1"
+          >
+            <span>
+              Nakul
+               
+              Verma
+            </span>
+          </a>
+          , 
+        </span>
+        <span>
+          <a
+            href="/professor/2"
+          >
+            <span>
+              Daniel
+               
+              Hsu
+            </span>
+          </a>
+          
+        </span>
+      </div>
+      <a
+        href="/review"
+      >
+        <button
+          class="ui yellow button"
+        >
+          WRITE A REVIEW FOR 
+          Machine Learning
+        </button>
+      </a>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="ui header"
+    >
+      COMS 4771
+       
+      Machine Learning
+    </div>
+    <div
+      class="ui container"
+    >
+      <div
+        class="ui container"
+      >
+        <span>
+          Department: 
+        </span>
+        <a
+          href="/department/1"
+        >
+          <span>
+             
+            Computer Science
+             
+          </span>
+        </a>
+      </div>
+      <span>
+        Professors: 
+      </span>
+      <span>
+        <a
+          href="/professor/1"
+        >
+          <span>
+            Nakul
+             
+            Verma
+          </span>
+        </a>
+        , 
+      </span>
+      <span>
+        <a
+          href="/professor/2"
+        >
+          <span>
+            Daniel
+             
+            Hsu
+          </span>
+        </a>
+        
+      </span>
+    </div>
+    <a
+      href="/review"
+    >
+      <button
+        class="ui yellow button"
+      >
+        WRITE A REVIEW FOR 
+        Machine Learning
+      </button>
+    </a>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;

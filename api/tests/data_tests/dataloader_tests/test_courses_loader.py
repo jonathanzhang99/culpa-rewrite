@@ -1,6 +1,6 @@
 from api.data import db
-from api.data.dataloaders.courses_loader import get_course, \
-    get_department_professors, search_course
+from api.data.dataloaders.courses_loader import load_course_basic_info, \
+    load_course_professors, search_course
 from api.tests import LoadersWritersBaseTest
 from api.tests.data_tests.common import setup_department_professor_courses
 
@@ -11,76 +11,74 @@ OPERATING_SYSTEMS_COURSE_ID = 3
 ADVANCED_PROGRAMMING_COURSE_ID = 4
 FREEDOM_OF_SPEECH_COURSE_ID = 5
 MATHEMATICS_OF_ML_COURSE_ID = 6
+BAD_COURSE_ID = -1
+COMPUTER_DEPARTMENT_ID = 1
+LAW_DEPARTMENT_ID = 2
+MATH_DEPARTMENT_ID = 3
 
 
 class CoursesLoaderTest(LoadersWritersBaseTest):
-    def test_get_course(self):
-        setup_department_professor_courses(self.cur)
-        expected_res = [{'course_id': MACHINE_LEARNING_COURSE_ID,
-                         'name': 'Machine Learning',
-                         'department_id': 1,
-                         'call_number': 'COMS 4771',
-                         'department_name': 'Computer Science',
-                         }]
-
-        res = get_course(MACHINE_LEARNING_COURSE_ID)
-
-        self.assertEqual(expected_res, res)
-
-    def test_get_course_fail(self):
-        '''
-        Test when get_course couldn't find a matching course in the db
-        '''
-        setup_department_professor_courses(self.cur)
-        course_id = 20
-
-        res = get_course(course_id)
-
-        self.assertEqual((), res)
-
-    def test_get_department_professors(self):
-        setup_department_professor_courses(self.cur)
-        expected_res = [{'professor_id': 1,
-                         'first_name': 'Nakul',
-                         'last_name': 'Verma',
-                         'department_id': 1,
-                         'name': 'Computer Science'},
-                        {'professor_id': 1,
-                         'first_name': 'Nakul',
-                         'last_name': 'Verma',
-                         'department_id': 3,
-                         'name': 'Mathematics'}]
-        res = get_department_professors(MACHINE_LEARNING_COURSE_ID)
-
-        for i in range(len(res)):
-            self.assertDictEqual(expected_res[i], res[i])
-
-    def test_get_department_professors_fail(self):
-        '''
-        Test when no matching course is found
-        '''
-        setup_department_professor_courses(self.cur)
-        course_id = 20
-
-        res = get_department_professors(course_id)
-
-        self.assertEqual((), res)
-
-    def test_search_course_by_name(self):
+    # We set up tests in this file so that the mock databases are in a usable
+    # state. For edge cases (e.g. empty tables, empty relationships), see
+    # tests in data_tests/common.py
+    def setUp(self):
+        super().setUp()
         setup_department_professor_courses(self.cur)
         db.commit()
 
+    def test_load_course_basic_info(self):
+        expected_basic_info = [{
+            'course_id': MACHINE_LEARNING_COURSE_ID,
+            'name': 'Machine Learning',
+            'department_id': 1,
+            'call_number': 'COMS 4771',
+            'department_name': 'Computer Science'
+        }]
+
+        basic_info = load_course_basic_info(MACHINE_LEARNING_COURSE_ID)
+        self.assertEqual(expected_basic_info, basic_info)
+
+    def test_load_course_basic_info_empty(self):
+        basic_info = load_course_basic_info(BAD_COURSE_ID)
+        self.assertEqual((), basic_info)
+
+    def test_load_course_professors(self):
+        expected_courses = [{
+            'professor_id': 1,
+            'first_name': 'Nakul',
+            'last_name': 'Verma',
+            'department_id': 1,
+            'name': 'Computer Science'
+        }, {
+            'professor_id': 1,
+            'first_name': 'Nakul',
+            'last_name': 'Verma',
+            'department_id': 3,
+            'name': 'Mathematics'
+        }]
+
+        courses = load_course_professors(MACHINE_LEARNING_COURSE_ID)
+        self.assertEqual(expected_courses, courses)
+
+    def test_load_course_professors_empty(self):
+        professors = load_course_professors(BAD_COURSE_ID)
+        self.assertEqual((), professors)
+
+    def test_search_course_by_name(self):
         results = search_course('Freedom of Speech and Press')
         self.assertEqual(len(results), 1)
 
-        # assert the data formatting is correct
+        # Assert the data formatting is correct
         self.assertEqual(
             set(results[0].keys()),
             set([
+                'call_number',
                 'course_id',
+                'department_id',
+                'department.name',
                 'name',
                 'call_number',
-                'score',
+                'score'
             ])
         )
 
@@ -95,10 +93,11 @@ class CoursesLoaderTest(LoadersWritersBaseTest):
             results[0].get('course_id'), FREEDOM_OF_SPEECH_COURSE_ID
         )
 
-    def test_search_multiple_courses_by_name(self):
-        setup_department_professor_courses(self.cur)
-        db.commit()
+        self.assertEqual(
+            results[0].get('department_id'), LAW_DEPARTMENT_ID
+        )
 
+    def test_search_multiple_courses_by_name(self):
         results = search_course('Machine Learning')
         self.assertEqual(len(results), 3)
 
@@ -107,39 +106,42 @@ class CoursesLoaderTest(LoadersWritersBaseTest):
             ADV_MACHINE_LEARNING_COURSE_ID,
             MATHEMATICS_OF_ML_COURSE_ID
         ]
-
         for course, expected_course_id in zip(results, expected_course_ids):
             self.assertGreater(course.get('score'), 0)
             self.assertEqual(course.get('course_id'), expected_course_id)
 
+        self.assertEqual(
+            results[0].get('department_id'), COMPUTER_DEPARTMENT_ID
+        )
+        self.assertEqual(
+            results[1].get('department_id'), COMPUTER_DEPARTMENT_ID
+        )
+        self.assertEqual(
+            results[2].get('department_id'), MATH_DEPARTMENT_ID
+        )
+
     def test_search_course_by_call_number(self):
-        setup_department_professor_courses(self.cur)
-        db.commit()
-
         results = search_course('4118')
-
         self.assertEqual(len(results), 1)
         self.assertGreater(results[0].get('score'), 0.2)
         self.assertEqual(
             results[0].get('course_id'), OPERATING_SYSTEMS_COURSE_ID
         )
+        self.assertEqual(
+            results[0].get('department_id'), COMPUTER_DEPARTMENT_ID
+        )
 
     def test_search_course_with_limit(self):
-        setup_department_professor_courses(self.cur)
-        db.commit()
-
         results = search_course('Machine Learning', limit=1)
-
         self.assertEqual(len(results), 1)
         self.assertGreater(results[0].get('score'), 0)
         self.assertEqual(
             results[0].get('course_id'), MACHINE_LEARNING_COURSE_ID
         )
+        self.assertEqual(
+            results[0].get('department_id'), COMPUTER_DEPARTMENT_ID
+        )
 
     def test_search_course_no_results(self):
-        setup_department_professor_courses(self.cur)
-        db.commit()
-
-        results = search_course('intro to photo', limit=1)
-
+        results = search_course('bad course name', limit=1)
         self.assertEqual(len(results), 0)
