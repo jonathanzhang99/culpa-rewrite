@@ -90,12 +90,12 @@ class CoursesTest(BaseTest):
         'workload': 'demo workload 4'
     }
 
-    @mock.patch('api.blueprints.course.get_course_review_summary')
+    @mock.patch('api.blueprints.course.get_course_review_highlight')
     @mock.patch('api.blueprints.course.load_course_professors')
     @mock.patch('api.blueprints.course.load_course_basic_info')
     def test_get_course_info_two_review_highlights(
             self, mock_load_course_basic_info, mock_load_course_professors,
-            mock_get_course_review_summary):
+            mock_get_course_review_highlight):
         mock_load_course_basic_info.return_value = [{
             'course_id': self.ML_COURSE_ID,
             'name': 'Machine Learning',
@@ -116,7 +116,7 @@ class CoursesTest(BaseTest):
             'name': 'Mathematics',
             'department_id': 3,
         }]
-        mock_get_course_review_summary.return_value = [
+        mock_get_course_review_highlight.return_value = [
             self.POSITIVE_REVIEW,
             self.NEGATIVE_REVIEW,
         ]
@@ -148,12 +148,12 @@ class CoursesTest(BaseTest):
         res = self.client.get(f'/api/course/{self.ML_COURSE_ID}')
         self.assertEqual(expected_res, res.json)
 
-    @mock.patch('api.blueprints.course.get_course_review_summary')
+    @mock.patch('api.blueprints.course.get_course_review_highlight')
     @mock.patch('api.blueprints.course.load_course_professors')
     @mock.patch('api.blueprints.course.load_course_basic_info')
     def test_get_course_info_one_review_highlight(
             self, mock_load_course_basic_info, mock_load_course_professors,
-            mock_get_course_review_summary):
+            mock_get_course_review_highlight):
         mock_load_course_basic_info.return_value = [{
             'course_id': self.ML_COURSE_ID,
             'name': 'Machine Learning',
@@ -174,7 +174,7 @@ class CoursesTest(BaseTest):
             'name': 'Mathematics',
             'department_id': 3,
         }]
-        mock_get_course_review_summary.return_value = [
+        mock_get_course_review_highlight.return_value = [
             self.POSITIVE_REVIEW,
         ]
         expected_res = {
@@ -204,12 +204,12 @@ class CoursesTest(BaseTest):
         res = self.client.get(f'/api/course/{self.ML_COURSE_ID}')
         self.assertEqual(expected_res, res.json)
 
-    @mock.patch('api.blueprints.course.get_course_review_summary')
+    @mock.patch('api.blueprints.course.get_course_review_highlight')
     @mock.patch('api.blueprints.course.load_course_professors')
     @mock.patch('api.blueprints.course.load_course_basic_info')
     def test_course_info_no_review_highlight(
             self, mock_load_course_basic_info, mock_load_course_professors,
-            mock_get_course_review_summary):
+            mock_get_course_review_highlight):
         mock_load_course_basic_info.return_value = [{
             'course_id': self.ML_COURSE_ID,
             'name': 'Machine Learning',
@@ -231,7 +231,7 @@ class CoursesTest(BaseTest):
             'name': 'Mathematics',
             'department_id': 3,
         }]
-        mock_get_course_review_summary.return_value = []
+        mock_get_course_review_highlight.return_value = []
         expected_res = {
             'courseInfo': {
                 'courseName': 'Machine Learning',
@@ -257,12 +257,12 @@ class CoursesTest(BaseTest):
         res = self.client.get(f'/api/course/{self.ML_COURSE_ID}')
         self.assertDictEqual(expected_res, res.json)
 
-    @ mock.patch('api.blueprints.course.get_course_review_summary')
+    @ mock.patch('api.blueprints.course.get_course_review_highlight')
     @ mock.patch('api.blueprints.course.load_course_professors')
     @ mock.patch('api.blueprints.course.load_course_basic_info')
     def test_get_course_info_no_professors(
             self, mock_load_course_basic_info, mock_load_course_professors,
-            mock_get_course_review_summary):
+            mock_get_course_review_highlight):
         mock_load_course_basic_info.return_value = [{
             'course_id': self.ML_COURSE_ID,
             'name': 'Machine Learning',
@@ -271,7 +271,7 @@ class CoursesTest(BaseTest):
             'department_name': 'Computer Science',
         }]
         mock_load_course_professors.return_value = []
-        mock_get_course_review_summary.return_value = [
+        mock_get_course_review_highlight.return_value = [
             self.POSITIVE_REVIEW,
             self.NEGATIVE_REVIEW,
         ]

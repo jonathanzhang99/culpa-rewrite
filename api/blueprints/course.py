@@ -3,7 +3,7 @@ import flask
 from api.data.dataloaders.courses_loader import load_course_basic_info, \
     load_course_professors
 from api.data.dataloaders.reviews_loader import prepare_course_query_prefix,\
-    get_course_review_summary
+    get_course_review_highlight
 from api.blueprints.review import parse_review
 
 course_blueprint = flask.Blueprint('course_blueprint', __name__)
@@ -44,19 +44,10 @@ def course_info(course_id):
         'courseProfessors': list(course_professors.values())
     }
 
-    #  Fetch review highlight info
-    #     NOTE:
-    #         - Most positive review is the review with the highest rating
-    #             with most agreed votes (at least 1 vote)
-    #         - Most negative review is the review with the lowest rating
-    #             with most agreed votes (at least 1 vote)
-    #         - When the two reviews are the Most Agreed Review is shown
-    #         - When there is only one review, the Most Agreed Review is shown
-    #         - When there are no reviews, then no review is shown
     ip = flask.request.remote_addr
     review_type = 'course'
     query_prefix = prepare_course_query_prefix(course_id)
-    course_review_highlight = get_course_review_summary(query_prefix, ip)
+    course_review_highlight = get_course_review_highlight(query_prefix, ip)
 
     course_review_highlight_json = []
     for review in course_review_highlight:
