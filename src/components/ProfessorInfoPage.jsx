@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import React from "react";
 import { useParams } from "react-router-dom";
-import { List } from "semantic-ui-react";
+import { Container } from "semantic-ui-react";
 
 import { CourseDisplayLink } from "components/common/CourseDisplay";
 import CreateReviewButton from "components/common/CreateReviewButton";
@@ -10,17 +10,67 @@ import LoadingComponent from "components/common/LoadingComponent";
 import { ProfessorDisplayName } from "components/common/ProfessorDisplay";
 import useDataFetch from "components/common/useDataFetch";
 
-const propTypes = {
+const defaultProps = {
+  courses: [],
+};
+
+const propTypesProfessorCourses = {
   courses: PropTypes.arrayOf(
     PropTypes.shape({
       courseProfessorId: PropTypes.number.isRequired,
       courseName: PropTypes.string.isRequired,
       courseCallNumber: PropTypes.string.isRequired,
     }).isRequired
-  ).isRequired,
+  ),
+};
+
+export function ProfessorCourseList({ courses }) {
+  return (
+    <>
+      <span>Courses: </span>
+      {courses.map(
+        ({ courseProfessorId, courseName, courseCallNumber }, index) => {
+          return (
+            <span key={courseProfessorId}>
+              <CourseDisplayLink
+                courseCallNumber={courseCallNumber}
+                courseId={courseProfessorId}
+                courseName={courseName}
+              />
+              {index !== courses.length - 1 ? ", " : ""}
+            </span>
+          );
+        }
+      )}
+    </>
+  );
+}
+
+const propTypesReviewProfessorButton = {
+  professorId: PropTypes.number.isRequired,
   firstName: PropTypes.string.isRequired,
   lastName: PropTypes.string.isRequired,
-  professorId: PropTypes.string.isRequired,
+};
+
+export function ReviewProfessorButton({ professorId, firstName, lastName }) {
+  return (
+    <CreateReviewButton color="yellow" professorId={professorId.toString()}>
+      WRITE A REVIEW FOR {firstName} {lastName}
+    </CreateReviewButton>
+  );
+}
+
+const propTypesProfessorSummary = {
+  courses: PropTypes.arrayOf(
+    PropTypes.shape({
+      courseProfessorId: PropTypes.number.isRequired,
+      courseName: PropTypes.string.isRequired,
+      courseCallNumber: PropTypes.string.isRequired,
+    }).isRequired
+  ),
+  firstName: PropTypes.string.isRequired,
+  lastName: PropTypes.string.isRequired,
+  professorId: PropTypes.number.isRequired,
 };
 
 export function ProfessorSummary({
@@ -30,38 +80,21 @@ export function ProfessorSummary({
   professorId,
 }) {
   return (
-    <div>
-      <div>
-        <ProfessorDisplayName
-          as="header"
-          firstName={firstName}
-          lastName={lastName}
-        />
-      </div>
-      <div>
-        <List horizontal>
-          <List.Item>Courses: </List.Item>
-          {courses.map(
-            ({ courseProfessorId, courseName, courseCallNumber }) => {
-              return (
-                <List.Item key={courseProfessorId}>
-                  <CourseDisplayLink
-                    courseCallNumber={courseCallNumber}
-                    courseId={courseProfessorId}
-                    courseName={courseName}
-                  />
-                </List.Item>
-              );
-            }
-          )}
-        </List>
-      </div>
-      <div>
-        <CreateReviewButton color="yellow" professorId={professorId}>
-          WRITE A REVIEW FOR {firstName} {lastName}
-        </CreateReviewButton>
-      </div>
-    </div>
+    <>
+      <ProfessorDisplayName
+        as="header"
+        firstName={firstName}
+        lastName={lastName}
+      />
+      <Container>
+        <ProfessorCourseList courses={courses} />
+      </Container>
+      <ReviewProfessorButton
+        firstName={firstName}
+        lastName={lastName}
+        professorId={professorId}
+      />
+    </>
   );
 }
 
@@ -87,9 +120,15 @@ export default function ProfessorInfoPage() {
       courses={courses}
       firstName={firstName}
       lastName={lastName}
-      professorId={professorId}
+      professorId={Number(professorId)}
     />
   );
 }
 
-ProfessorSummary.propTypes = propTypes;
+ProfessorCourseList.propTypes = propTypesProfessorCourses;
+ProfessorCourseList.defaultProps = defaultProps;
+
+ReviewProfessorButton.propTypes = propTypesReviewProfessorButton;
+
+ProfessorSummary.propTypes = propTypesProfessorSummary;
+ProfessorSummary.defaultProps = defaultProps;

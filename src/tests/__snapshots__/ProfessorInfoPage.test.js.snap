@@ -1,12 +1,114 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ProfessorInfoPage Component renders no info 1`] = `
+exports[`ProfessorSummary Component renders professor info 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
-    <div />
+    <div>
+      <div
+        class="ui header"
+      >
+        Nakul
+         
+        Verma
+      </div>
+      <div
+        class="ui container"
+      >
+        <span>
+          Courses: 
+        </span>
+        <span>
+          <a
+            href="/course/1"
+          >
+            <span>
+              COMS 4771
+               
+              Machine Learning
+            </span>
+          </a>
+          , 
+        </span>
+        <span>
+          <a
+            href="/course/2"
+          >
+            <span>
+              COMS 4774
+               
+              Advanced Machine Learning
+            </span>
+          </a>
+          
+        </span>
+      </div>
+      <a
+        href="/review"
+      >
+        <button
+          class="ui yellow button"
+        >
+          WRITE A REVIEW FOR 
+          Nakul
+           
+          Verma
+        </button>
+      </a>
+    </div>
   </body>,
-  "container": <div />,
+  "container": <div>
+    <div
+      class="ui header"
+    >
+      Nakul
+       
+      Verma
+    </div>
+    <div
+      class="ui container"
+    >
+      <span>
+        Courses: 
+      </span>
+      <span>
+        <a
+          href="/course/1"
+        >
+          <span>
+            COMS 4771
+             
+            Machine Learning
+          </span>
+        </a>
+        , 
+      </span>
+      <span>
+        <a
+          href="/course/2"
+        >
+          <span>
+            COMS 4774
+             
+            Advanced Machine Learning
+          </span>
+        </a>
+        
+      </span>
+    </div>
+    <a
+      href="/review"
+    >
+      <button
+        class="ui yellow button"
+      >
+        WRITE A REVIEW FOR 
+        Nakul
+         
+        Verma
+      </button>
+    </a>
+  </div>,
   "debug": [Function],
   "findAllByAltText": [Function],
   "findAllByDisplayValue": [Function],
@@ -61,13 +163,67 @@ Object {
 }
 `;
 
-exports[`ProfessorInfoPage Component renders professor info 1`] = `
+exports[`ProfessorSummary Component renders professor no courses 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
-    <div />
+    <div>
+      <div
+        class="ui header"
+      >
+        Nakul
+         
+        Verma
+      </div>
+      <div
+        class="ui container"
+      >
+        <span>
+          Courses: 
+        </span>
+      </div>
+      <a
+        href="/review"
+      >
+        <button
+          class="ui yellow button"
+        >
+          WRITE A REVIEW FOR 
+          Nakul
+           
+          Verma
+        </button>
+      </a>
+    </div>
   </body>,
-  "container": <div />,
+  "container": <div>
+    <div
+      class="ui header"
+    >
+      Nakul
+       
+      Verma
+    </div>
+    <div
+      class="ui container"
+    >
+      <span>
+        Courses: 
+      </span>
+    </div>
+    <a
+      href="/review"
+    >
+      <button
+        class="ui yellow button"
+      >
+        WRITE A REVIEW FOR 
+        Nakul
+         
+        Verma
+      </button>
+    </a>
+  </div>,
   "debug": [Function],
   "findAllByAltText": [Function],
   "findAllByDisplayValue": [Function],

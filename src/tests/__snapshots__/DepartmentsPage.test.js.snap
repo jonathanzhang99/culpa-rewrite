@@ -1,18 +1,88 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`DepartmentsPage Component renders multiple departments 1`] = `
+exports[`Departments Component renders multiple departments 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <div>
-        page is loading
+      <div
+        class="ui header"
+      >
+        List of Departments
+      </div>
+      <div
+        class="ui list"
+        role="list"
+      >
+        <div
+          class="item"
+          role="listitem"
+        >
+          <a
+            href="/department/1"
+          >
+            <span>
+               
+              Computer Science
+               
+            </span>
+          </a>
+        </div>
+        <div
+          class="item"
+          role="listitem"
+        >
+          <a
+            href="/department/2"
+          >
+            <span>
+               
+              English
+               
+            </span>
+          </a>
+        </div>
       </div>
     </div>
   </body>,
   "container": <div>
-    <div>
-      page is loading
+    <div
+      class="ui header"
+    >
+      List of Departments
+    </div>
+    <div
+      class="ui list"
+      role="list"
+    >
+      <div
+        class="item"
+        role="listitem"
+      >
+        <a
+          href="/department/1"
+        >
+          <span>
+             
+            Computer Science
+             
+          </span>
+        </a>
+      </div>
+      <div
+        class="item"
+        role="listitem"
+      >
+        <a
+          href="/department/2"
+        >
+          <span>
+             
+            English
+             
+          </span>
+        </a>
+      </div>
     </div>
   </div>,
   "debug": [Function],
@@ -69,20 +139,32 @@ Object {
 }
 `;
 
-exports[`DepartmentsPage Component renders no departments 1`] = `
+exports[`Departments Component renders no departments 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <div>
-        page is loading
+      <div
+        class="ui header"
+      >
+        List of Departments
       </div>
+      <div
+        class="ui list"
+        role="list"
+      />
     </div>
   </body>,
   "container": <div>
-    <div>
-      page is loading
+    <div
+      class="ui header"
+    >
+      List of Departments
     </div>
+    <div
+      class="ui list"
+      role="list"
+    />
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],

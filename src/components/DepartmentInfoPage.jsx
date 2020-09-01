@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import React from "react";
 import { useParams } from "react-router-dom";
-import { List } from "semantic-ui-react";
+import { Grid, Header } from "semantic-ui-react";
 
 import { CourseDisplayLink } from "components/common/CourseDisplay";
 import { DepartmentDisplayName } from "components/common/DepartmentDisplay";
@@ -10,21 +10,91 @@ import LoadingComponent from "components/common/LoadingComponent";
 import { ProfessorDisplayLink } from "components/common/ProfessorDisplay";
 import useDataFetch from "components/common/useDataFetch";
 
-const propTypes = {
-  departmentName: PropTypes.string.isRequired,
+const defaultPropsDepartmentCourses = {
+  departmentCourses: [],
+};
+
+const propTypesDepartmentCourses = {
   departmentCourses: PropTypes.arrayOf(
     PropTypes.shape({
       courseId: PropTypes.number.isRequired,
       courseName: PropTypes.string.isRequired,
     }).isRequired
-  ).isRequired,
+  ),
+};
+
+export function DepartmentCourseColumn({ departmentCourses }) {
+  return (
+    <Grid.Column>
+      <Grid.Row key="courses">
+        <Header>Courses</Header>
+      </Grid.Row>
+      {departmentCourses.map(({ courseId, courseName }) => {
+        return (
+          <Grid.Row key={`course_${courseId}`}>
+            <CourseDisplayLink courseId={courseId} courseName={courseName} />
+          </Grid.Row>
+        );
+      })}
+    </Grid.Column>
+  );
+}
+
+const defaultPropsDepartmentProfessors = {
+  departmentProfessors: [],
+};
+
+const propTypesDepartmentProfessors = {
   departmentProfessors: PropTypes.arrayOf(
     PropTypes.shape({
       professorId: PropTypes.number.isRequired,
       firstName: PropTypes.string.isRequired,
       lastName: PropTypes.string.isRequired,
     }).isRequired
-  ).isRequired,
+  ),
+};
+
+export function DepartmentProfessorColumn({ departmentProfessors }) {
+  return (
+    <Grid.Column>
+      <Grid.Row key="professors">
+        <Header>Professors</Header>
+      </Grid.Row>
+      {departmentProfessors.map(({ professorId, firstName, lastName }) => {
+        return (
+          <Grid.Row key={`professor_${professorId}`}>
+            <ProfessorDisplayLink
+              firstName={firstName}
+              lastName={lastName}
+              professorId={professorId}
+            />
+          </Grid.Row>
+        );
+      })}
+    </Grid.Column>
+  );
+}
+
+const defaultPropsDepartmentInfo = {
+  departmentCourses: [],
+  departmentProfessors: [],
+};
+
+const propTypesDepartmentInfo = {
+  departmentName: PropTypes.string.isRequired,
+  departmentCourses: PropTypes.arrayOf(
+    PropTypes.shape({
+      courseId: PropTypes.number.isRequired,
+      courseName: PropTypes.string.isRequired,
+    }).isRequired
+  ),
+  departmentProfessors: PropTypes.arrayOf(
+    PropTypes.shape({
+      professorId: PropTypes.number.isRequired,
+      firstName: PropTypes.string.isRequired,
+      lastName: PropTypes.string.isRequired,
+    }).isRequired
+  ),
 };
 
 export function DepartmentInfo({
@@ -33,32 +103,15 @@ export function DepartmentInfo({
   departmentProfessors,
 }) {
   return (
-    // TODO: Add styling into two columns with alphabetical sections
-    <div>
+    <>
       <DepartmentDisplayName as="header" departmentName={departmentName} />
-      <List>
-        {departmentCourses.map(({ courseId, courseName }) => {
-          return (
-            <List.Item key={courseId}>
-              <CourseDisplayLink courseId={courseId} courseName={courseName} />
-            </List.Item>
-          );
-        })}
-      </List>
-      <List>
-        {departmentProfessors.map(({ professorId, firstName, lastName }) => {
-          return (
-            <List.Item key={professorId}>
-              <ProfessorDisplayLink
-                firstName={firstName}
-                lastName={lastName}
-                professorId={professorId}
-              />
-            </List.Item>
-          );
-        })}
-      </List>
-    </div>
+      <Grid columns={2}>
+        <DepartmentCourseColumn departmentCourses={departmentCourses} />
+        <DepartmentProfessorColumn
+          departmentProfessors={departmentProfessors}
+        />
+      </Grid>
+    </>
   );
 }
 
@@ -87,4 +140,11 @@ export default function DepartmentInfoPage() {
   );
 }
 
-DepartmentInfo.propTypes = propTypes;
+DepartmentCourseColumn.propTypes = propTypesDepartmentCourses;
+DepartmentCourseColumn.defaultProps = defaultPropsDepartmentCourses;
+
+DepartmentProfessorColumn.propTypes = propTypesDepartmentProfessors;
+DepartmentProfessorColumn.defaultProps = defaultPropsDepartmentProfessors;
+
+DepartmentInfo.propTypes = propTypesDepartmentInfo;
+DepartmentInfo.defaultProps = defaultPropsDepartmentInfo;
