@@ -293,7 +293,7 @@ const defaultPropsResult = {
 
 function SearchResult({ departments, last, title, type }) {
   return (
-    <Grid className={last && "last-divider"} columns={2}>
+    <Grid className={last && "last-professor-divider"} columns={2}>
       <Grid.Column>
         {type === "professor" ? (
           <ProfessorDisplayName fullName={title} />
@@ -332,6 +332,7 @@ const propTypesSearchInput = {
   id: PropTypes.string,
   label: PropTypes.string,
   name: PropTypes.string.isRequired,
+  placeholder: PropTypes.string,
   searchEntity: PropTypes.oneOf(["all", "professor", "course"]),
   searchLimit: PropTypes.number,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
@@ -346,6 +347,7 @@ const defaultPropsSearchInput = {
   error: undefined,
   id: undefined,
   label: undefined,
+  placeholder: "",
   searchEntity: "all",
   searchLimit: undefined,
   onChange: () => {},
@@ -367,12 +369,13 @@ export function SearchInput({
   id,
   label,
   name,
+  placeholder,
   searchEntity,
   searchLimit,
   value,
   width,
-  onChange,
   onBlur,
+  onChange,
   onResultSelect,
   onSearchChange,
 }) {
@@ -449,6 +452,7 @@ export function SearchInput({
       loading={isLoading}
       name={name}
       noResultsMessage={noResultsMessage}
+      placeholder={placeholder}
       resultRenderer={searchResultRenderer}
       results={results}
       value={value}

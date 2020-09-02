@@ -39,7 +39,7 @@ Object {
         href="/review"
       >
         <button
-          class="ui yellow button"
+          class="ui orange button"
         >
           WRITE A REVIEW FOR 
           Machine Learning
@@ -82,7 +82,7 @@ Object {
       href="/review"
     >
       <button
-        class="ui yellow button"
+        class="ui orange button"
       >
         WRITE A REVIEW FOR 
         Machine Learning
@@ -194,7 +194,7 @@ Object {
         href="/review"
       >
         <button
-          class="ui yellow button"
+          class="ui orange button"
         >
           WRITE A REVIEW FOR 
           Machine Learning
@@ -249,7 +249,7 @@ Object {
       href="/review"
     >
       <button
-        class="ui yellow button"
+        class="ui orange button"
       >
         WRITE A REVIEW FOR 
         Machine Learning
@@ -611,7 +611,7 @@ Object {
         href="/review"
       >
         <button
-          class="ui yellow button"
+          class="ui orange button"
         >
           WRITE A REVIEW FOR 
           Machine Learning
@@ -916,7 +916,7 @@ Object {
       href="/review"
     >
       <button
-        class="ui yellow button"
+        class="ui orange button"
       >
         WRITE A REVIEW FOR 
         Machine Learning
@@ -1040,7 +1040,7 @@ Object {
         href="/review"
       >
         <button
-          class="ui yellow button"
+          class="ui orange button"
         >
           WRITE A REVIEW FOR 
           Machine Learning
@@ -1107,7 +1107,7 @@ Object {
       href="/review"
     >
       <button
-        class="ui yellow button"
+        class="ui orange button"
       >
         WRITE A REVIEW FOR 
         Machine Learning

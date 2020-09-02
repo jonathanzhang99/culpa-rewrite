@@ -28,6 +28,7 @@
 
 /*-------------------
         Types
+    used in navbar
 --------------------*/
 
 /* Basic */
@@ -47,3 +48,4 @@
 
 /* Colored */
 @orangeTextColor: @textColor;
+@pinkTextColor: @textColor;

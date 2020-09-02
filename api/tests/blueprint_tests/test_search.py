@@ -144,7 +144,6 @@ class SearchTest(BaseTest):
                         'name': 'Law',
                     }],
                     'id': 2,
-                    'last': 'true',
                     'title': 'Lee Bollinger',
                     'type': 'professor',
                 }

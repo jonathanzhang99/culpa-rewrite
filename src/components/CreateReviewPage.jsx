@@ -101,6 +101,7 @@ export default function CreateReviewPage() {
         <SearchInput
           label="Professor"
           name="professor"
+          placeholder="Search for professors"
           rules={{ required: "Please select a professor" }}
           searchEntity="professor"
           searchLimit={7}
