@@ -7,7 +7,7 @@ class ProfessorsTest(BaseTest):
 
     @mock.patch('api.blueprints.professor.load_professor_courses')
     @mock.patch('api.blueprints.professor.load_professor_basic_info_by_id')
-    def test_retrieve_professor_summary(
+    def test_get_professor_info(
             self,
             mock_load_professor_basic_info_by_id,
             mock_professor_courses):
@@ -44,12 +44,19 @@ class ProfessorsTest(BaseTest):
         self.assertEqual(expected_res, res.json)
 
     @mock.patch('api.blueprints.professor.load_professor_courses')
+<<<<<<< HEAD
     @mock.patch('api.blueprints.professor.load_professor_basic_info_by_id')
     def test_get_professor_summary_no_courses(
             self,
             mock_load_professor_basic_info_by_id,
             mock_professor_courses):
         mock_load_professor_basic_info_by_id.return_value = [{
+=======
+    @mock.patch('api.blueprints.professor.load_professor_name')
+    def test_get_professor_info_no_courses(
+            self, mock_professor_name, mock_professor_courses):
+        mock_professor_name.return_value = [{
+>>>>>>> add reviews to professor page
             'first_name': 'Nakul',
             'last_name': 'Verma',
         }]
@@ -63,11 +70,17 @@ class ProfessorsTest(BaseTest):
         res = self.client.get(f'/api/professor/{self.VERMA_PROFESSOR_ID}')
         self.assertEqual(expected_res, res.json)
 
+<<<<<<< HEAD
     @mock.patch('api.blueprints.professor.load_professor_basic_info_by_id')
     def test_get_professor_summary_empty(
             self,
             mock_load_professor_basic_info_by_id):
         mock_load_professor_basic_info_by_id.return_value = []
+=======
+    @mock.patch('api.blueprints.professor.load_professor_name')
+    def test_get_professor_info_empty(self, mock_professor_name):
+        mock_professor_name.return_value = []
+>>>>>>> add reviews to professor page
         expected_error = {'error': 'Missing professor name'}
 
         res = self.client.get(f'/api/professor/{self.VERMA_PROFESSOR_ID}')

@@ -2,12 +2,15 @@ import flask
 
 from api.data.dataloaders.professors_loader import load_professor_courses, \
      load_professor_basic_info_by_id
+from api.data.dataloaders.reviews_loader import \
+    prepare_professor_query_prefix, load_review_highlight
+from api.blueprints.review import parse_review
 
 professor_blueprint = flask.Blueprint('professor_blueprint', __name__)
 
 
-@professor_blueprint.route('/<professor_id>', methods=['GET'])
-def professor_summary(professor_id):
+@professor_blueprint.route('/<int:professor_id>', methods=['GET'])
+def professor_info(professor_id):
     # TODO: Fetch professor nugget status
     name = load_professor_basic_info_by_id(professor_id)
     if not name:
@@ -20,10 +23,25 @@ def professor_summary(professor_id):
         'courseCallNumber': course['call_number']
     } for course in courses]
 
-    return {
+    professor_summary_json = {
         'firstName': name[0]['first_name'],
         'lastName': name[0]['last_name'],
         'courses': courses_json
+    }
+
+    ip = flask.request.remote_addr
+    professor_query_prefix = prepare_professor_query_prefix(professor_id)
+
+    professor_review_highlight = load_review_highlight(
+        professor_query_prefix, ip)
+    professor_review_highlight_json = [
+        parse_review(review, 'professor')
+        for review in professor_review_highlight
+    ]
+
+    return {
+        'professorSummary': professor_summary_json,
+        'professorReviewHighlight': professor_review_highlight_json
     }
 
 
