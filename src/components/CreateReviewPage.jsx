@@ -308,6 +308,7 @@ export default function CreateReviewPage() {
         name="newProfessor.course"
         rules={{ required: "Missing course for new professor" }}
         searchEntity="course"
+        searchLimit={7}
         width={12}
         onResultSelect={onCourseResultSelect}
         onSearchChange={onCourseSearchChange}
