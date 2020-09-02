@@ -69,7 +69,7 @@ class ProfessorsTest(BaseTest):
         self.assertEqual(expected_error, res.json)
 
     @mock.patch('api.blueprints.professor.load_professor_courses')
-    def loadt_get_professor_courses(self, mock_professor_courses):
+    def test_get_professor_courses(self, mock_professor_courses):
         mock_professor_courses.return_value = [{
             'course_professor_id': 1,
             'name': 'Machine Learning',
@@ -98,7 +98,7 @@ class ProfessorsTest(BaseTest):
         self.assertEqual(expected_res, res.json)
 
     @mock.patch('api.blueprints.professor.load_professor_courses')
-    def loadt_get_professor_courses_empty(self, mock_professor_courses):
+    def test_get_professor_courses_empty(self, mock_professor_courses):
         mock_professor_courses.return_value = []
         expected_res = {
             'courses': []
