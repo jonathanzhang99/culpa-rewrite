@@ -2,10 +2,14 @@
          Site Overrides
 *******************************/
 
+.ui.container {
+    font-family: @fontName, sans-serif;
+}
+
 .ui.container.review-card-container {
     margin: 25px 0px;
 }
 
-.ui.container.review-card-left-column-container {
+.ui.container.review-card-left-column-header-container {
     position: relative;
 }

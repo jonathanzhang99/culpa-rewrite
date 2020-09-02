@@ -7,7 +7,26 @@
 
 @negativeBorderColor: #fd6464;
 
-@fontName: "Noto Sans";
+/*-------------------
+       Fonts
+--------------------*/
+@fontName: 'Noto Sans';
+@importGoogleFonts: true;
 
+@googleFontSizes: 'ital,wght@0,400;0,700;1,400;1,700';
+@googleFontRequest: '@{googleFontName}:@{googleFontSizes}';
+
+@headerFont: @fontName, sans-serif;
+@pageFont: @fontName, sans-serif;
+
+/*---------------------------------------------------------
+TODO: find a way to use multiple fonts *properly*
+Potential solutions:
+     1. host both fonts locally in a font folder,
+        change the 1) fontPath and 2) importGoogleFonts
+        variables here.
+     2. find a way to directly modify the request to
+        google fonts api that gets called upon .loadFonts()
+---------------------------------------------------------*/
 @import (css)
   url("http://fonts.googleapis.com/css?family=Source+Code+Pro:400,600,600italic,700,700italic,900,900italic,400italic");

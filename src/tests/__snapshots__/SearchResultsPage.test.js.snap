@@ -34,7 +34,9 @@ Object {
             <a
               href="/professor/2339"
             >
-              <span>
+              <span
+                class="display-header"
+              >
                 Nakul Verma
               </span>
             </a>
@@ -74,8 +76,12 @@ Object {
             <a
               href="/course/1"
             >
-              <span>
-                
+              <span
+                class="display-header"
+              >
+                <span
+                  class="sc-AxjAm ekCnfx"
+                />
                  
                 User Interface Design
               </span>
@@ -131,7 +137,9 @@ Object {
           <a
             href="/professor/2339"
           >
-            <span>
+            <span
+              class="display-header"
+            >
               Nakul Verma
             </span>
           </a>
@@ -171,8 +179,12 @@ Object {
           <a
             href="/course/1"
           >
-            <span>
-              
+            <span
+              class="display-header"
+            >
+              <span
+                class="sc-AxjAm ekCnfx"
+              />
                
               User Interface Design
             </span>
@@ -412,8 +424,12 @@ Object {
             <a
               href="/course/1"
             >
-              <span>
-                
+              <span
+                class="display-header"
+              >
+                <span
+                  class="sc-AxjAm ekCnfx"
+                />
                  
                 User Interface Design
               </span>
@@ -477,8 +493,12 @@ Object {
           <a
             href="/course/1"
           >
-            <span>
-              
+            <span
+              class="display-header"
+            >
+              <span
+                class="sc-AxjAm ekCnfx"
+              />
                
               User Interface Design
             </span>
@@ -591,7 +611,9 @@ Object {
             <a
               href="/professor/2339"
             >
-              <span>
+              <span
+                class="display-header"
+              >
                 Nakul Verma
               </span>
             </a>
@@ -654,7 +676,9 @@ Object {
           <a
             href="/professor/2339"
           >
-            <span>
+            <span
+              class="display-header"
+            >
               Nakul Verma
             </span>
           </a>

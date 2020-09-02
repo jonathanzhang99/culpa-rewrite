@@ -28,20 +28,22 @@ Object {
                 Please keep in mind that this review is more than 5 years old.
               </div>
               <div
-                class="ui container review-card-left-column-container"
+                class="ui container review-card-left-column-header-container"
               >
-                <span>
+                <div
+                  class="ui header display-header"
+                >
                   Adam
                    
                   Canon
-                </span>
+                </div>
                 <h5
                   class="ui header"
                 >
                   2014-07-31
                 </h5>
                 <div
-                  class="sc-AxjAm jApEhG"
+                  class="sc-AxirZ JnqYJ"
                 >
                   ID: 
                   1
@@ -50,11 +52,11 @@ Object {
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               </p>
-              <h5
+              <h3
                 class="ui header"
               >
                 Workload
-              </h5>
+              </h3>
               <p>
                 Excepteur sint occaecat cupidatat non proident.
               </p>
@@ -145,20 +147,22 @@ Object {
               Please keep in mind that this review is more than 5 years old.
             </div>
             <div
-              class="ui container review-card-left-column-container"
+              class="ui container review-card-left-column-header-container"
             >
-              <span>
+              <div
+                class="ui header display-header"
+              >
                 Adam
                  
                 Canon
-              </span>
+              </div>
               <h5
                 class="ui header"
               >
                 2014-07-31
               </h5>
               <div
-                class="sc-AxjAm jApEhG"
+                class="sc-AxirZ JnqYJ"
               >
                 ID: 
                 1
@@ -167,11 +171,11 @@ Object {
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
             </p>
-            <h5
+            <h3
               class="ui header"
             >
               Workload
-            </h5>
+            </h3>
             <p>
               Excepteur sint occaecat cupidatat non proident.
             </p>
@@ -319,20 +323,22 @@ Object {
                 Please keep in mind that this review is more than 5 years old.
               </div>
               <div
-                class="ui container review-card-left-column-container"
+                class="ui container review-card-left-column-header-container"
               >
-                <span>
+                <div
+                  class="ui header display-header"
+                >
                   Adam
                    
                   Canon
-                </span>
+                </div>
                 <h5
                   class="ui header"
                 >
                   2014-07-31
                 </h5>
                 <div
-                  class="sc-AxjAm jApEhG"
+                  class="sc-AxirZ JnqYJ"
                 >
                   ID: 
                   1
@@ -341,11 +347,11 @@ Object {
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               </p>
-              <h5
+              <h3
                 class="ui header"
               >
                 Workload
-              </h5>
+              </h3>
               <p>
                 Excepteur sint occaecat cupidatat non proident.
               </p>
@@ -436,20 +442,22 @@ Object {
               Please keep in mind that this review is more than 5 years old.
             </div>
             <div
-              class="ui container review-card-left-column-container"
+              class="ui container review-card-left-column-header-container"
             >
-              <span>
+              <div
+                class="ui header display-header"
+              >
                 Adam
                  
                 Canon
-              </span>
+              </div>
               <h5
                 class="ui header"
               >
                 2014-07-31
               </h5>
               <div
-                class="sc-AxjAm jApEhG"
+                class="sc-AxirZ JnqYJ"
               >
                 ID: 
                 1
@@ -458,11 +466,11 @@ Object {
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
             </p>
-            <h5
+            <h3
               class="ui header"
             >
               Workload
-            </h5>
+            </h3>
             <p>
               Excepteur sint occaecat cupidatat non proident.
             </p>
@@ -610,20 +618,22 @@ Object {
                 Please keep in mind that this review is more than 5 years old.
               </div>
               <div
-                class="ui container review-card-left-column-container"
+                class="ui container review-card-left-column-header-container"
               >
-                <span>
+                <div
+                  class="ui header display-header"
+                >
                   Adam
                    
                   Canon
-                </span>
+                </div>
                 <h5
                   class="ui header"
                 >
                   2014-07-31
                 </h5>
                 <div
-                  class="sc-AxjAm jApEhG"
+                  class="sc-AxirZ JnqYJ"
                 >
                   ID: 
                   1
@@ -632,11 +642,11 @@ Object {
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               </p>
-              <h5
+              <h3
                 class="ui header"
               >
                 Workload
-              </h5>
+              </h3>
               <p>
                 Excepteur sint occaecat cupidatat non proident.
               </p>
@@ -727,20 +737,22 @@ Object {
               Please keep in mind that this review is more than 5 years old.
             </div>
             <div
-              class="ui container review-card-left-column-container"
+              class="ui container review-card-left-column-header-container"
             >
-              <span>
+              <div
+                class="ui header display-header"
+              >
                 Adam
                  
                 Canon
-              </span>
+              </div>
               <h5
                 class="ui header"
               >
                 2014-07-31
               </h5>
               <div
-                class="sc-AxjAm jApEhG"
+                class="sc-AxirZ JnqYJ"
               >
                 ID: 
                 1
@@ -749,11 +761,11 @@ Object {
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
             </p>
-            <h5
+            <h3
               class="ui header"
             >
               Workload
-            </h5>
+            </h3>
             <p>
               Excepteur sint occaecat cupidatat non proident.
             </p>
@@ -901,20 +913,26 @@ Object {
                 Please keep in mind that this review is more than 5 years old.
               </div>
               <div
-                class="ui container review-card-left-column-container"
+                class="ui container review-card-left-column-header-container"
               >
-                <span>
-                  COMS1004
+                <div
+                  class="ui header display-header"
+                >
+                  <span
+                    class="sc-AxjAm ekCnfx"
+                  >
+                    COMS1004
+                  </span>
                    
                   intro to programming
-                </span>
+                </div>
                 <h5
                   class="ui header"
                 >
                   2014-07-31
                 </h5>
                 <div
-                  class="sc-AxjAm jApEhG"
+                  class="sc-AxirZ JnqYJ"
                 >
                   ID: 
                   1
@@ -923,11 +941,11 @@ Object {
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               </p>
-              <h5
+              <h3
                 class="ui header"
               >
                 Workload
-              </h5>
+              </h3>
               <p>
                 Excepteur sint occaecat cupidatat non proident.
               </p>
@@ -1018,20 +1036,26 @@ Object {
               Please keep in mind that this review is more than 5 years old.
             </div>
             <div
-              class="ui container review-card-left-column-container"
+              class="ui container review-card-left-column-header-container"
             >
-              <span>
-                COMS1004
+              <div
+                class="ui header display-header"
+              >
+                <span
+                  class="sc-AxjAm ekCnfx"
+                >
+                  COMS1004
+                </span>
                  
                 intro to programming
-              </span>
+              </div>
               <h5
                 class="ui header"
               >
                 2014-07-31
               </h5>
               <div
-                class="sc-AxjAm jApEhG"
+                class="sc-AxirZ JnqYJ"
               >
                 ID: 
                 1
@@ -1040,11 +1064,11 @@ Object {
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
             </p>
-            <h5
+            <h3
               class="ui header"
             >
               Workload
-            </h5>
+            </h3>
             <p>
               Excepteur sint occaecat cupidatat non proident.
             </p>
@@ -1192,20 +1216,26 @@ Object {
                 Please keep in mind that this review is more than 5 years old.
               </div>
               <div
-                class="ui container review-card-left-column-container"
+                class="ui container review-card-left-column-header-container"
               >
-                <span>
-                  COMS1004
+                <div
+                  class="ui header display-header"
+                >
+                  <span
+                    class="sc-AxjAm ekCnfx"
+                  >
+                    COMS1004
+                  </span>
                    
                   intro to programming
-                </span>
+                </div>
                 <h5
                   class="ui header"
                 >
                   2014-07-31
                 </h5>
                 <div
-                  class="sc-AxjAm jApEhG"
+                  class="sc-AxirZ JnqYJ"
                 >
                   ID: 
                   1
@@ -1214,11 +1244,11 @@ Object {
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               </p>
-              <h5
+              <h3
                 class="ui header"
               >
                 Workload
-              </h5>
+              </h3>
               <p>
                 Excepteur sint occaecat cupidatat non proident.
               </p>
@@ -1309,20 +1339,26 @@ Object {
               Please keep in mind that this review is more than 5 years old.
             </div>
             <div
-              class="ui container review-card-left-column-container"
+              class="ui container review-card-left-column-header-container"
             >
-              <span>
-                COMS1004
+              <div
+                class="ui header display-header"
+              >
+                <span
+                  class="sc-AxjAm ekCnfx"
+                >
+                  COMS1004
+                </span>
                  
                 intro to programming
-              </span>
+              </div>
               <h5
                 class="ui header"
               >
                 2014-07-31
               </h5>
               <div
-                class="sc-AxjAm jApEhG"
+                class="sc-AxirZ JnqYJ"
               >
                 ID: 
                 1
@@ -1331,11 +1367,11 @@ Object {
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
             </p>
-            <h5
+            <h3
               class="ui header"
             >
               Workload
-            </h5>
+            </h3>
             <p>
               Excepteur sint occaecat cupidatat non proident.
             </p>
@@ -1483,20 +1519,26 @@ Object {
                 Please keep in mind that this review is more than 5 years old.
               </div>
               <div
-                class="ui container review-card-left-column-container"
+                class="ui container review-card-left-column-header-container"
               >
-                <span>
-                  COMS1004
+                <div
+                  class="ui header display-header"
+                >
+                  <span
+                    class="sc-AxjAm ekCnfx"
+                  >
+                    COMS1004
+                  </span>
                    
                   intro to programming
-                </span>
+                </div>
                 <h5
                   class="ui header"
                 >
                   2014-07-31
                 </h5>
                 <div
-                  class="sc-AxjAm jApEhG"
+                  class="sc-AxirZ JnqYJ"
                 >
                   ID: 
                   1
@@ -1505,11 +1547,11 @@ Object {
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               </p>
-              <h5
+              <h3
                 class="ui header"
               >
                 Workload
-              </h5>
+              </h3>
               <p>
                 Excepteur sint occaecat cupidatat non proident.
               </p>
@@ -1600,20 +1642,26 @@ Object {
               Please keep in mind that this review is more than 5 years old.
             </div>
             <div
-              class="ui container review-card-left-column-container"
+              class="ui container review-card-left-column-header-container"
             >
-              <span>
-                COMS1004
+              <div
+                class="ui header display-header"
+              >
+                <span
+                  class="sc-AxjAm ekCnfx"
+                >
+                  COMS1004
+                </span>
                  
                 intro to programming
-              </span>
+              </div>
               <h5
                 class="ui header"
               >
                 2014-07-31
               </h5>
               <div
-                class="sc-AxjAm jApEhG"
+                class="sc-AxirZ JnqYJ"
               >
                 ID: 
                 1
@@ -1622,11 +1670,11 @@ Object {
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
             </p>
-            <h5
+            <h3
               class="ui header"
             >
               Workload
-            </h5>
+            </h3>
             <p>
               Excepteur sint occaecat cupidatat non proident.
             </p>

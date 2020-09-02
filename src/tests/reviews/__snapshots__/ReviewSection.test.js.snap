@@ -296,20 +296,22 @@ Object {
                       Please keep in mind that this review is more than 5 years old.
                     </div>
                     <div
-                      class="ui container review-card-left-column-container"
+                      class="ui container review-card-left-column-header-container"
                     >
-                      <span>
+                      <div
+                        class="ui header display-header"
+                      >
                         Nakul
                          
                         Verma
-                      </span>
+                      </div>
                       <h5
                         class="ui header"
                       >
                         2020-01-01
                       </h5>
                       <div
-                        class="sc-AxjAm jApEhG"
+                        class="sc-AxirZ JnqYJ"
                       >
                         ID: 
                         1
@@ -318,11 +320,11 @@ Object {
                     <p>
                       demo content
                     </p>
-                    <h5
+                    <h3
                       class="ui header"
                     >
                       Workload
-                    </h5>
+                    </h3>
                     <p>
                       demo workload
                     </p>
@@ -400,20 +402,22 @@ Object {
                     class="ui fluid container"
                   >
                     <div
-                      class="ui container review-card-left-column-container"
+                      class="ui container review-card-left-column-header-container"
                     >
-                      <span>
+                      <div
+                        class="ui header display-header"
+                      >
                         Lee
                          
                         Bollinger
-                      </span>
+                      </div>
                       <h5
                         class="ui header"
                       >
                         2020-01-01
                       </h5>
                       <div
-                        class="sc-AxjAm jApEhG"
+                        class="sc-AxirZ JnqYJ"
                       >
                         ID: 
                         2
@@ -422,11 +426,11 @@ Object {
                     <p>
                       demo content
                     </p>
-                    <h5
+                    <h3
                       class="ui header"
                     >
                       Workload
-                    </h5>
+                    </h3>
                     <p>
                       demo workload
                     </p>
@@ -493,7 +497,7 @@ Object {
             </div>
           </div>
           <div
-            class="centered row"
+            class="centered row review-section-show-more-grid-row"
           >
             <button
               class="ui large fluid button"
@@ -802,20 +806,22 @@ Object {
                     Please keep in mind that this review is more than 5 years old.
                   </div>
                   <div
-                    class="ui container review-card-left-column-container"
+                    class="ui container review-card-left-column-header-container"
                   >
-                    <span>
+                    <div
+                      class="ui header display-header"
+                    >
                       Nakul
                        
                       Verma
-                    </span>
+                    </div>
                     <h5
                       class="ui header"
                     >
                       2020-01-01
                     </h5>
                     <div
-                      class="sc-AxjAm jApEhG"
+                      class="sc-AxirZ JnqYJ"
                     >
                       ID: 
                       1
@@ -824,11 +830,11 @@ Object {
                   <p>
                     demo content
                   </p>
-                  <h5
+                  <h3
                     class="ui header"
                   >
                     Workload
-                  </h5>
+                  </h3>
                   <p>
                     demo workload
                   </p>
@@ -906,20 +912,22 @@ Object {
                   class="ui fluid container"
                 >
                   <div
-                    class="ui container review-card-left-column-container"
+                    class="ui container review-card-left-column-header-container"
                   >
-                    <span>
+                    <div
+                      class="ui header display-header"
+                    >
                       Lee
                        
                       Bollinger
-                    </span>
+                    </div>
                     <h5
                       class="ui header"
                     >
                       2020-01-01
                     </h5>
                     <div
-                      class="sc-AxjAm jApEhG"
+                      class="sc-AxirZ JnqYJ"
                     >
                       ID: 
                       2
@@ -928,11 +936,11 @@ Object {
                   <p>
                     demo content
                   </p>
-                  <h5
+                  <h3
                     class="ui header"
                   >
                     Workload
-                  </h5>
+                  </h3>
                   <p>
                     demo workload
                   </p>
@@ -999,7 +1007,7 @@ Object {
           </div>
         </div>
         <div
-          class="centered row"
+          class="centered row review-section-show-more-grid-row"
         >
           <button
             class="ui large fluid button"
@@ -1365,20 +1373,26 @@ Object {
                       Please keep in mind that this review is more than 5 years old.
                     </div>
                     <div
-                      class="ui container review-card-left-column-container"
+                      class="ui container review-card-left-column-header-container"
                     >
-                      <span>
-                        COMS 4771
+                      <div
+                        class="ui header display-header"
+                      >
+                        <span
+                          class="sc-AxjAm ekCnfx"
+                        >
+                          COMS 4771
+                        </span>
                          
                         Machine Learning
-                      </span>
+                      </div>
                       <h5
                         class="ui header"
                       >
                         2020-01-01
                       </h5>
                       <div
-                        class="sc-AxjAm jApEhG"
+                        class="sc-AxirZ JnqYJ"
                       >
                         ID: 
                         1
@@ -1387,11 +1401,11 @@ Object {
                     <p>
                       demo content
                     </p>
-                    <h5
+                    <h3
                       class="ui header"
                     >
                       Workload
-                    </h5>
+                    </h3>
                     <p>
                       demo workload
                     </p>
@@ -1469,20 +1483,26 @@ Object {
                     class="ui fluid container"
                   >
                     <div
-                      class="ui container review-card-left-column-container"
+                      class="ui container review-card-left-column-header-container"
                     >
-                      <span>
-                        POLS 3285
+                      <div
+                        class="ui header display-header"
+                      >
+                        <span
+                          class="sc-AxjAm ekCnfx"
+                        >
+                          POLS 3285
+                        </span>
                          
                         Freedom of Speech and Press
-                      </span>
+                      </div>
                       <h5
                         class="ui header"
                       >
                         2020-01-01
                       </h5>
                       <div
-                        class="sc-AxjAm jApEhG"
+                        class="sc-AxirZ JnqYJ"
                       >
                         ID: 
                         2
@@ -1491,11 +1511,11 @@ Object {
                     <p>
                       demo content
                     </p>
-                    <h5
+                    <h3
                       class="ui header"
                     >
                       Workload
-                    </h5>
+                    </h3>
                     <p>
                       demo workload
                     </p>
@@ -1562,7 +1582,7 @@ Object {
             </div>
           </div>
           <div
-            class="centered row"
+            class="centered row review-section-show-more-grid-row"
           >
             <button
               class="ui large fluid button"
@@ -1871,20 +1891,26 @@ Object {
                     Please keep in mind that this review is more than 5 years old.
                   </div>
                   <div
-                    class="ui container review-card-left-column-container"
+                    class="ui container review-card-left-column-header-container"
                   >
-                    <span>
-                      COMS 4771
+                    <div
+                      class="ui header display-header"
+                    >
+                      <span
+                        class="sc-AxjAm ekCnfx"
+                      >
+                        COMS 4771
+                      </span>
                        
                       Machine Learning
-                    </span>
+                    </div>
                     <h5
                       class="ui header"
                     >
                       2020-01-01
                     </h5>
                     <div
-                      class="sc-AxjAm jApEhG"
+                      class="sc-AxirZ JnqYJ"
                     >
                       ID: 
                       1
@@ -1893,11 +1919,11 @@ Object {
                   <p>
                     demo content
                   </p>
-                  <h5
+                  <h3
                     class="ui header"
                   >
                     Workload
-                  </h5>
+                  </h3>
                   <p>
                     demo workload
                   </p>
@@ -1975,20 +2001,26 @@ Object {
                   class="ui fluid container"
                 >
                   <div
-                    class="ui container review-card-left-column-container"
+                    class="ui container review-card-left-column-header-container"
                   >
-                    <span>
-                      POLS 3285
+                    <div
+                      class="ui header display-header"
+                    >
+                      <span
+                        class="sc-AxjAm ekCnfx"
+                      >
+                        POLS 3285
+                      </span>
                        
                       Freedom of Speech and Press
-                    </span>
+                    </div>
                     <h5
                       class="ui header"
                     >
                       2020-01-01
                     </h5>
                     <div
-                      class="sc-AxjAm jApEhG"
+                      class="sc-AxirZ JnqYJ"
                     >
                       ID: 
                       2
@@ -1997,11 +2029,11 @@ Object {
                   <p>
                     demo content
                   </p>
-                  <h5
+                  <h3
                     class="ui header"
                   >
                     Workload
-                  </h5>
+                  </h3>
                   <p>
                     demo workload
                   </p>
@@ -2068,7 +2100,7 @@ Object {
           </div>
         </div>
         <div
-          class="centered row"
+          class="centered row review-section-show-more-grid-row"
         >
           <button
             class="ui large fluid button"

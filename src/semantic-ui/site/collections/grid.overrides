@@ -2,6 +2,9 @@
          Site Overrides
 *******************************/
 
+/*-----------------------------
+        VotesContainer
+-----------------------------*/
 .ui.grid.votes-container-grid {
     padding: 30px 10px;
     height: 100%;
@@ -16,10 +19,9 @@
     color: white;
 }
 
-.ui.grid > .row.review-section-show-more-grid-row {
-    margin-bottom: 50px;
-}
-
+/*-----------------------------
+          ReviewCard
+-----------------------------*/
 .ui.grid > .column.review-card-left-grid-column {
     background-color: #F2F2F2;
     padding: 20px 30px;
@@ -27,4 +29,11 @@
 
 .ui.grid > .column.review-card-right-grid-column {
     background-color: #004E8D;
+}
+
+/*-----------------------------
+         ReviewSection
+-----------------------------*/
+.ui.grid > .row.review-section-show-more-grid-row {
+    margin-bottom: 50px;
 }

@@ -33,8 +33,12 @@ Object {
             <a
               href="/course/1"
             >
-              <span>
-                
+              <span
+                class="display-header"
+              >
+                <span
+                  class="sc-AxjAm ekCnfx"
+                />
                  
                 User Interface Design
               </span>
@@ -46,8 +50,12 @@ Object {
             <a
               href="/course/2"
             >
-              <span>
-                
+              <span
+                class="display-header"
+              >
+                <span
+                  class="sc-AxjAm ekCnfx"
+                />
                  
                 Machine Learning
               </span>
@@ -72,7 +80,9 @@ Object {
             <a
               href="/professor/1"
             >
-              <span>
+              <span
+                class="display-header"
+              >
                 Lydia
                  
                 Chilton
@@ -85,7 +95,9 @@ Object {
             <a
               href="/professor/2"
             >
-              <span>
+              <span
+                class="display-header"
+              >
                 Nakul
                  
                 Verma
@@ -125,8 +137,12 @@ Object {
           <a
             href="/course/1"
           >
-            <span>
-              
+            <span
+              class="display-header"
+            >
+              <span
+                class="sc-AxjAm ekCnfx"
+              />
                
               User Interface Design
             </span>
@@ -138,8 +154,12 @@ Object {
           <a
             href="/course/2"
           >
-            <span>
-              
+            <span
+              class="display-header"
+            >
+              <span
+                class="sc-AxjAm ekCnfx"
+              />
                
               Machine Learning
             </span>
@@ -164,7 +184,9 @@ Object {
           <a
             href="/professor/1"
           >
-            <span>
+            <span
+              class="display-header"
+            >
               Lydia
                
               Chilton
@@ -177,7 +199,9 @@ Object {
           <a
             href="/professor/2"
           >
-            <span>
+            <span
+              class="display-header"
+            >
               Nakul
                
               Verma

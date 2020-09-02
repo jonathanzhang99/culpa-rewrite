@@ -8,8 +8,14 @@ Object {
       <a
         href="/course/3"
       >
-        <span>
-          COMS 4771
+        <span
+          class="display-header"
+        >
+          <span
+            class="sc-AxjAm ekCnfx"
+          >
+            COMS 4771
+          </span>
            
           Machine Learning
         </span>
@@ -20,8 +26,14 @@ Object {
     <a
       href="/course/3"
     >
-      <span>
-        COMS 4771
+      <span
+        class="display-header"
+      >
+        <span
+          class="sc-AxjAm ekCnfx"
+        >
+          COMS 4771
+        </span>
          
         Machine Learning
       </span>
@@ -89,8 +101,14 @@ Object {
       <a
         href="/course/3"
       >
-        <span>
-          COMS 4771
+        <span
+          class="display-header"
+        >
+          <span
+            class="sc-AxjAm ekCnfx"
+          >
+            COMS 4771
+          </span>
            
           Machine Learning
         </span>
@@ -101,8 +119,14 @@ Object {
     <a
       href="/course/3"
     >
-      <span>
-        COMS 4771
+      <span
+        class="display-header"
+      >
+        <span
+          class="sc-AxjAm ekCnfx"
+        >
+          COMS 4771
+        </span>
          
         Machine Learning
       </span>
@@ -167,16 +191,28 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <span>
-        COMS 4771
+      <span
+        class="display-header"
+      >
+        <span
+          class="sc-AxjAm ekCnfx"
+        >
+          COMS 4771
+        </span>
          
         Machine Learning
       </span>
     </div>
   </body>,
   "container": <div>
-    <span>
-      COMS 4771
+    <span
+      class="display-header"
+    >
+      <span
+        class="sc-AxjAm ekCnfx"
+      >
+        COMS 4771
+      </span>
        
       Machine Learning
     </span>
@@ -240,16 +276,28 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <span>
-        COMS 4771
+      <span
+        class="display-header"
+      >
+        <span
+          class="sc-AxjAm ekCnfx"
+        >
+          COMS 4771
+        </span>
          
         Machine Learning
       </span>
     </div>
   </body>,
   "container": <div>
-    <span>
-      COMS 4771
+    <span
+      class="display-header"
+    >
+      <span
+        class="sc-AxjAm ekCnfx"
+      >
+        COMS 4771
+      </span>
        
       Machine Learning
     </span>
@@ -316,8 +364,12 @@ Object {
       <a
         href="/course/0"
       >
-        <span>
-          
+        <span
+          class="display-header"
+        >
+          <span
+            class="sc-AxjAm ekCnfx"
+          />
            
           
         </span>
@@ -328,8 +380,12 @@ Object {
     <a
       href="/course/0"
     >
-      <span>
-        
+      <span
+        class="display-header"
+      >
+        <span
+          class="sc-AxjAm ekCnfx"
+        />
          
         
       </span>
@@ -394,16 +450,24 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <span>
-        
+      <span
+        class="display-header"
+      >
+        <span
+          class="sc-AxjAm ekCnfx"
+        />
          
         
       </span>
     </div>
   </body>,
   "container": <div>
-    <span>
-      
+    <span
+      class="display-header"
+    >
+      <span
+        class="sc-AxjAm ekCnfx"
+      />
        
       
     </span>

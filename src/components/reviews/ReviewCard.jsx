@@ -225,9 +225,9 @@ export default function ReviewCard({
     <Container className="review-card-container">
       <Grid>
         <Grid.Column
+          className="review-card-left-grid-column"
           key={1}
           width={14}
-          className="review-card-left-grid-column"
         >
           <Container fluid>
             {deprecated && (
@@ -236,14 +236,16 @@ export default function ReviewCard({
                 Please keep in mind that this review is more than 5 years old.
               </Message>
             )}
-            <Container className="review-card-left-column-container">
+            <Container className="review-card-left-column-header-container">
               {reviewType === 'course' ? (
                 <ProfessorDisplayName
+                  as="header"
                   firstName={reviewHeader.profFirstName}
                   lastName={reviewHeader.profLastName}
                 />
               ) : (
                 <CourseDisplayName
+                  as="header"
                   courseCallNumber={reviewHeader.courseCode}
                   courseName={reviewHeader.courseName}
                 />
@@ -252,14 +254,14 @@ export default function ReviewCard({
               <ReviewIdContainer>ID: {reviewId}</ReviewIdContainer>
             </Container>
             <p>{content}</p>
-            <Header as="h5">Workload</Header>
+            <Header as="h3">Workload</Header>
             <p>{workload}</p>
           </Container>
         </Grid.Column>
         <Grid.Column
+          className="review-card-right-grid-column"
           key={2}
           width={2}
-          className="review-card-right-grid-column"
         >
           <VotesContainer reviewId={reviewId} votes={votes} />
         </Grid.Column>

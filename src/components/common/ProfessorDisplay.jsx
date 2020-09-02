@@ -28,7 +28,7 @@ const defaultProps = {
 export function ProfessorDisplayName({ as, firstName, fullName, lastName }) {
   const ProfessorName = as === "header" ? Header : "span";
   return (
-    <ProfessorName>
+    <ProfessorName className="display-header">
       {fullName || (
         <>
           {firstName} {lastName}

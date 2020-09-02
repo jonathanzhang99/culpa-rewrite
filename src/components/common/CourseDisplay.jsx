@@ -2,6 +2,12 @@ import PropTypes from "prop-types";
 import React from "react";
 import { Link } from "react-router-dom";
 import { Header } from "semantic-ui-react";
+import styled from "styled-components"
+
+const CourseCodeDisplay = styled.span`
+  font-family: 'Source Code Pro', monospace;
+  margin-right: 3px;
+`
 
 const propTypesCourseDisplayName = {
   as: PropTypes.oneOf(["header", "text"]),
@@ -24,8 +30,10 @@ const defaultProps = {
 export function CourseDisplayName({ as, courseCallNumber, courseName }) {
   const CourseName = as === "header" ? Header : "span";
   return (
-    <CourseName>
-      {courseCallNumber} {courseName}
+    <CourseName className="display-header">
+      <CourseCodeDisplay>
+        {courseCallNumber}
+      </CourseCodeDisplay> {courseName}
     </CourseName>
   );
 }
