@@ -76,6 +76,11 @@ class DepartmentsLoaderTest(LoadersWritersBaseTest):
                 'professor_id': 3,
                 'first_name': 'Jae W',
                 'last_name': 'Lee'
+            },
+            {
+                'professor_id': 4,
+                'first_name': 'Nakul',
+                'last_name': 'Burma',
             }
         ]
 
