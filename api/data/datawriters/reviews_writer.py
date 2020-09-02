@@ -49,7 +49,8 @@ def add_course_professor(professor_input, course_input):
     course_id = course_input if type(course_input) is int else None
 
     if type(professor_input) is dict:
-        new_professor_query = Query.into(professor) \
+        new_professor_query = Query \
+            .into(professor) \
             .columns(
                 professor.first_name,
                 professor.last_name,
@@ -65,7 +66,8 @@ def add_course_professor(professor_input, course_input):
         cursor.execute(new_professor_query)
         professor_id = cursor.lastrowid
 
-        new_professor_department_query = Query.into(department_professor) \
+        new_professor_department_query = Query \
+            .into(department_professor) \
             .columns(
                 department_professor.professor_id,
                 department_professor.department_id
@@ -79,7 +81,8 @@ def add_course_professor(professor_input, course_input):
         cursor.execute(new_professor_department_query)
 
     if type(course_input) is dict:
-        new_course_query = Query.into(course) \
+        new_course_query = Query \
+            .into(course) \
             .columns(
                 course.name,
                 course.department_id,
@@ -95,7 +98,8 @@ def add_course_professor(professor_input, course_input):
         cursor.execute(new_course_query)
         course_id = cursor.lastrowid
 
-    new_course_professor_query = Query.into(course_professor) \
+    new_course_professor_query = Query \
+        .into(course_professor) \
         .columns(
             course_professor.professor_id,
             course_professor.course_id

@@ -42,6 +42,7 @@ class DepartmentsTest(BaseTest):
     @mock.patch('api.blueprints.department.load_all_departments')
     def test_retrieve_all_departments_in_option_format(self, mock_departments):
         mock_departments.return_value = [{
+            'key': 1,
             'department_id': 1,
             'name': 'Computer Science'
         }, {
