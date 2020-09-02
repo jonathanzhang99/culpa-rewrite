@@ -296,15 +296,15 @@ const defaultPropsTwoReviewHighlight = {
   courseReviewHighlight: [],
 };
 
-function TwoReviewHighlight({ courseReviewHighlight }) {
+function DoubleCourseReviewHighlight({ courseReviewHighlight }) {
   return (
     <Container>
-      <Grid relaxed>
-        <Grid.Column width={8}>
+      <Grid relaxed columns={2}>
+        <Grid.Column>
           <h3>Most Positive Review</h3>
           <CourseReviewCard review={courseReviewHighlight[0]} />
         </Grid.Column>
-        <Grid.Column width={8}>
+        <Grid.Column>
           <h3>Most Negative Review</h3>
           <CourseReviewCard review={courseReviewHighlight[1]} />
         </Grid.Column>
@@ -321,12 +321,12 @@ const defaultPropsOneReviewHighlight = {
   courseReviewHighlight: [],
 };
 
-function OneReviewHighlight({ courseReviewHighlight }) {
+function SingleCourseReviewHighlight({ courseReviewHighlight }) {
   return (
     <Container>
-      <Grid>
+      <Grid relaxed columns={2}>
         <Grid.Row>
-          <Grid.Column width={16}>
+          <Grid.Column>
             <h3>Most Agreed Review</h3>
             <CourseReviewCard review={courseReviewHighlight[0]} />
           </Grid.Column>
@@ -357,10 +357,18 @@ function CourseReviewHighlight({ courseReviewHighlight }) {
   */
 
   if (courseReviewHighlight.length === 2) {
-    return <TwoReviewHighlight courseReviewHighlight={courseReviewHighlight} />;
+    return (
+      <DoubleCourseReviewHighlight
+        courseReviewHighlight={courseReviewHighlight}
+      />
+    );
   }
   if (courseReviewHighlight.length === 1) {
-    return <OneReviewHighlight courseReviewHighlight={courseReviewHighlight} />;
+    return (
+      <SingleCourseReviewHighlight
+        courseReviewHighlight={courseReviewHighlight}
+      />
+    );
   }
 
   return null;
@@ -441,11 +449,11 @@ CourseInfo.defaultProps = defaultProps;
 
 CourseReviewCard.propTypes = propTypesCourseReviewCard;
 
-TwoReviewHighlight.propTypes = propTypesTwoReviewHighlight;
-TwoReviewHighlight.defaultProps = defaultPropsTwoReviewHighlight;
+DoubleCourseReviewHighlight.propTypes = propTypesTwoReviewHighlight;
+DoubleCourseReviewHighlight.defaultProps = defaultPropsTwoReviewHighlight;
 
-OneReviewHighlight.propTypes = propTypesOneReviewHighlight;
-OneReviewHighlight.defaultProps = defaultPropsOneReviewHighlight;
+SingleCourseReviewHighlight.propTypes = propTypesOneReviewHighlight;
+SingleCourseReviewHighlight.defaultProps = defaultPropsOneReviewHighlight;
 
 CourseReviewHighlight.propTypes = propTypesCourseReviewHighlight;
 CourseReviewHighlight.defaultProps = defaultPropsCourseReviewHighlight;
