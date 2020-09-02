@@ -36,7 +36,8 @@ def load_professor_by_id(professor_id):
 
 def load_professor_by_uni(professor_uni):
     cur = db.get_cursor()
-    query = Query.from_(professor) \
+    query = Query \
+        .from_(professor) \
         .select(
             professor.professor_id,
             professor.first_name,
