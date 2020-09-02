@@ -39,6 +39,34 @@ class DepartmentsTest(BaseTest):
         res = self.client.get('/api/department/all')
         self.assertEqual(expected_res, res.json)
 
+    @mock.patch('api.blueprints.department.load_all_departments')
+    def test_retrieve_all_departments_in_option_format(self, mock_departments):
+        mock_departments.return_value = [{
+            'department_id': 1,
+            'name': 'Computer Science'
+        }, {
+            'key': 2,
+            'department_id': 2,
+            'name': 'English'
+        }]
+
+        expected_res = {
+            'departments': [
+                {
+                    'key': 1,
+                    'value': 1,
+                    'text': 'Computer Science'
+                }, {
+                    'key': 2,
+                    'value': 2,
+                    'text': 'English'
+                }
+            ]
+        }
+
+        res = self.client.get('/api/department/all?option=1')
+        self.assertEqual(expected_res, res.json)
+
     @mock.patch('api.blueprints.department.load_department_professors')
     @mock.patch('api.blueprints.department.load_department_courses')
     @mock.patch('api.blueprints.department.load_department_name')

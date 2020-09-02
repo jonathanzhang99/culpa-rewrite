@@ -20,7 +20,7 @@ def get_all_professors():
     return cur.fetchall()
 
 
-def load_professor_name(professor_id):
+def load_professor_by_id(professor_id):
     cur = db.get_cursor()
     query = Query \
         .from_(professor) \
@@ -30,6 +30,21 @@ def load_professor_name(professor_id):
         .where(
             professor.professor_id == professor_id) \
         .get_sql()
+    cur.execute(query)
+    return cur.fetchall()
+
+
+def load_professor_by_uni(professor_uni):
+    cur = db.get_cursor()
+    query = Query.from_(professor) \
+        .select(
+            professor.professor_id,
+            professor.first_name,
+            professor.last_name,
+            professor.uni,
+        ).where(
+            professor.uni == professor_uni
+        ).get_sql()
     cur.execute(query)
     return cur.fetchall()
 
