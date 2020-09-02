@@ -35,7 +35,7 @@ const propTypesCourseProfessors = {
   ),
 };
 
-export function ProfessorsList({ courseProfessors }) {
+function ProfessorsList({ courseProfessors }) {
   return (
     <>
       <span>Professors: </span>
@@ -73,7 +73,7 @@ const propTypesProfessorsAccordion = {
   ),
 };
 
-export function ProfessorsAccordion({
+function ProfessorsAccordion({
   isAccordionActive,
   setAccordionActive,
   courseProfessors,
@@ -95,7 +95,7 @@ export function ProfessorsAccordion({
   );
 }
 
-export function ProfessorsComponent({
+function ProfessorsComponent({
   isAccordionActive,
   setAccordionActive,
   courseProfessors,
@@ -121,10 +121,7 @@ const propTypesProfessorDepartmentColumn = {
   ).isRequired,
 };
 
-export function ProfessorDepartmentColumn({
-  professorId,
-  professorDepartments,
-}) {
+function ProfessorDepartmentColumn({ professorId, professorDepartments }) {
   return (
     <Grid.Column key={`${professorId}_departments`}>
       {professorDepartments.map(
@@ -144,7 +141,7 @@ export function ProfessorDepartmentColumn({
   );
 }
 
-export function CourseProfessorsGrid({ courseProfessors }) {
+function CourseProfessorsGrid({ courseProfessors }) {
   return (
     <Grid columns={2}>
       {courseProfessors.map(
@@ -175,7 +172,7 @@ const propTypesReviewCourseButton = {
   courseName: PropTypes.string.isRequired,
 };
 
-export function ReviewCourseButton({ courseId, courseName }) {
+function ReviewCourseButton({ courseId, courseName }) {
   return (
     <CreateReviewButton color="yellow" courseId={courseId.toString()}>
       WRITE A REVIEW FOR {courseName}
@@ -291,6 +288,54 @@ function CourseReviewCard({ review }) {
   );
 }
 
+const propTypesTwoReviewHighlight = {
+  courseReviewHighlight: PropTypes.arrayOf(reviewPropType),
+};
+
+const defaultPropsTwoReviewHighlight = {
+  courseReviewHighlight: [],
+};
+
+function TwoReviewHighlight({ courseReviewHighlight }) {
+  return (
+    <Container>
+      <Grid relaxed>
+        <Grid.Column width={8}>
+          <h3>Most Positive Review</h3>
+          <CourseReviewCard review={courseReviewHighlight[0]} />
+        </Grid.Column>
+        <Grid.Column width={8}>
+          <h3>Most Negative Review</h3>
+          <CourseReviewCard review={courseReviewHighlight[1]} />
+        </Grid.Column>
+      </Grid>
+    </Container>
+  );
+}
+
+const propTypesOneReviewHighlight = {
+  courseReviewHighlight: PropTypes.arrayOf(reviewPropType),
+};
+
+const defaultPropsOneReviewHighlight = {
+  courseReviewHighlight: [],
+};
+
+function OneReviewHighlight({ courseReviewHighlight }) {
+  return (
+    <Container>
+      <Grid>
+        <Grid.Row>
+          <Grid.Column width={16}>
+            <h3>Most Agreed Review</h3>
+            <CourseReviewCard review={courseReviewHighlight[0]} />
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
+    </Container>
+  );
+}
+
 const propTypesCourseReviewHighlight = {
   courseReviewHighlight: PropTypes.arrayOf(reviewPropType),
 };
@@ -312,34 +357,10 @@ function CourseReviewHighlight({ courseReviewHighlight }) {
   */
 
   if (courseReviewHighlight.length === 2) {
-    return (
-      <Container>
-        <Grid relaxed>
-          <Grid.Column width={8}>
-            <h3>Most Positive Review</h3>
-            <CourseReviewCard review={courseReviewHighlight[0]} />
-          </Grid.Column>
-          <Grid.Column width={8}>
-            <h3>Most Negative Review</h3>
-            <CourseReviewCard review={courseReviewHighlight[1]} />
-          </Grid.Column>
-        </Grid>
-      </Container>
-    );
+    return <TwoReviewHighlight courseReviewHighlight={courseReviewHighlight} />;
   }
   if (courseReviewHighlight.length === 1) {
-    return (
-      <Container>
-        <Grid>
-          <Grid.Row>
-            <Grid.Column width={16}>
-              <h3>Most Agreed Review</h3>
-              <CourseReviewCard review={courseReviewHighlight[0]} />
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
-      </Container>
-    );
+    return <OneReviewHighlight courseReviewHighlight={courseReviewHighlight} />;
   }
 
   return null;
@@ -419,6 +440,12 @@ CourseInfo.propTypes = propTypesCourseInfo;
 CourseInfo.defaultProps = defaultProps;
 
 CourseReviewCard.propTypes = propTypesCourseReviewCard;
+
+TwoReviewHighlight.propTypes = propTypesTwoReviewHighlight;
+TwoReviewHighlight.defaultProps = defaultPropsTwoReviewHighlight;
+
+OneReviewHighlight.propTypes = propTypesOneReviewHighlight;
+OneReviewHighlight.defaultProps = defaultPropsOneReviewHighlight;
 
 CourseReviewHighlight.propTypes = propTypesCourseReviewHighlight;
 CourseReviewHighlight.defaultProps = defaultPropsCourseReviewHighlight;
