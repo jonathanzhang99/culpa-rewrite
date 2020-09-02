@@ -14,15 +14,16 @@ NOW = datetime.datetime.utcnow().replace(microsecond=0)
 
 @mock.patch('api.data.datawriters.reviews_writer.datetime')
 class ReviewsWriterTest(LoadersWritersBaseTest):
+    VERMA_PROFESSOR_ID = 1
+    VERMA_MACHINE_LEARNING_ID = 1
     MACHINE_LEARNING_COURSE_ID = 1
+    FREEDOM_OF_SPEECH_COURSE_ID = 5
 
     COMPUTER_SCIENCE_DEPARTMENT_ID = 1
     LAW_DEPARTMENT_ID = 2
 
-    NEW_PROFESSOR_ID = 4
-    MEW_COURSE_ID = 7
-
-    VERMA_MACHINE_LEARNING_ID = 1
+    NEW_PROFESSOR_ID = 5
+    NEW_COURSE_ID = 7
 
     def setUp(self):
         super().setUp()
@@ -31,9 +32,6 @@ class ReviewsWriterTest(LoadersWritersBaseTest):
 
     def test_insert_valid_review(self, mock_datetime):
         mock_datetime.datetime.utcnow.return_value = NOW
-
-        self.VERMA_MACHINE_LEARNING_ID = 1
-
         insert_review(
             self.VERMA_MACHINE_LEARNING_ID,
             'gr8 class verma',
@@ -69,12 +67,6 @@ class ReviewsWriterTest(LoadersWritersBaseTest):
 
     def test_insert_new_professor_new_course(self, mock_datetime):
         mock_datetime.datetime.utcnow.return_value = NOW
-        self.COMPUTER_SCIENCE_DEPARTMENT_ID = 1
-        self.LAW_DEPARTMENT_ID = 2
-
-        self.NEW_PROFESSOR_ID = 4
-        self.NEW_COURSE_ID = 7
-
         new_professor_input = {
             'first_name': 'test_first_name',
             'last_name': 'test_last_name',
@@ -146,10 +138,6 @@ class ReviewsWriterTest(LoadersWritersBaseTest):
 
     def test_insert_new_professor_existing_course(self, mock_datetime):
         mock_datetime.datetime.utcnow.return_value = NOW
-        self.MACHINE_LEARNING_COURSE_ID = 1
-        self.COMPUTER_SCIENCE_DEPARTMENT_ID = 1
-        self.NEW_PROFESSOR_ID = 4
-
         new_professor_input = {
             'first_name': 'test_first_name',
             'last_name': 'test_last_name',
@@ -203,9 +191,6 @@ class ReviewsWriterTest(LoadersWritersBaseTest):
 
     def test_insert_existing_professor_existing_course(self, mock_datetime):
         mock_datetime.datetime.utcnow.return_value = NOW
-        self.VERMA_PROFESSOR_ID = 1
-        self.FREEDOM_OF_SPEECH_COURSE_ID = 5
-
         add_course_professor(self.VERMA_PROFESSOR_ID,
                              self.FREEDOM_OF_SPEECH_COURSE_ID)
         db.commit()
@@ -221,10 +206,6 @@ class ReviewsWriterTest(LoadersWritersBaseTest):
 
     def test_insert_existing_professor_new_course(self, mock_datetime):
         mock_datetime.datetime.utcnow.return_value = NOW
-        self.VERMA_PROFESSOR_ID = 1
-
-        self.NEW_COURSE_ID = 7
-        self.LAW_DEPARTMENT_ID = 2
 
         new_course_input = {
             'name': 'test_new_course_name',
