@@ -26,9 +26,10 @@ Object {
           <a
             href="/"
           >
-            <h1>
-               CULPA 
-            </h1>
+            <img
+              class="ui image"
+              src="culpa.svg"
+            />
           </a>
         </div>
         <div
@@ -65,6 +66,7 @@ Object {
                     class="prompt"
                     id="form-input-NavbarSearchbar"
                     name="NavbarSearchbar"
+                    placeholder="Search for professors or courses"
                     tabindex="0"
                     type="text"
                     value=""
@@ -98,7 +100,7 @@ Object {
             href="/review/submit"
           >
             <button
-              class="ui yellow fluid button"
+              class="ui orange fluid button"
             >
               WRITE A REVIEW
             </button>
@@ -183,9 +185,10 @@ Object {
         <a
           href="/"
         >
-          <h1>
-             CULPA 
-          </h1>
+          <img
+            class="ui image"
+            src="culpa.svg"
+          />
         </a>
       </div>
       <div
@@ -222,6 +225,7 @@ Object {
                   class="prompt"
                   id="form-input-NavbarSearchbar"
                   name="NavbarSearchbar"
+                  placeholder="Search for professors or courses"
                   tabindex="0"
                   type="text"
                   value=""
@@ -255,7 +259,7 @@ Object {
           href="/review/submit"
         >
           <button
-            class="ui yellow fluid button"
+            class="ui orange fluid button"
           >
             WRITE A REVIEW
           </button>

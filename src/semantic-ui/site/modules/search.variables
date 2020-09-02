@@ -1,3 +1,30 @@
 /*******************************
          Site Overrides
 *******************************/
+
+/*******************************
+            Search
+*******************************/
+
+/* Result Box */
+@resultsBackground: #F2F2F2;
+
+/* Result */
+@resultDivider: none;
+@resultTextColor: #0072CE;
+.last-professor-divider {
+  border-bottom: 3px solid @secondaryColor;
+}
+
+/* Result Image */
+@resultImageBackground: @blue;
+
+/*******************************
+            States
+*******************************/
+
+/* Hover */
+@resultHoverBackground: rgba(196, 196, 196, 0.3);
+
+/* Active Result */
+@resultActiveBackground: rgba(196, 196, 196, 0.3);

@@ -55,7 +55,7 @@ Object {
         href="/review/submit"
       >
         <button
-          class="ui yellow button"
+          class="ui orange button"
         >
           WRITE A REVIEW FOR 
           Nakul
@@ -116,7 +116,7 @@ Object {
       href="/review/submit"
     >
       <button
-        class="ui yellow button"
+        class="ui orange button"
       >
         WRITE A REVIEW FOR 
         Nakul
@@ -210,7 +210,7 @@ Object {
         href="/review/submit"
       >
         <button
-          class="ui yellow button"
+          class="ui orange button"
         >
           WRITE A REVIEW FOR 
           Nakul
@@ -247,7 +247,7 @@ Object {
       href="/review/submit"
     >
       <button
-        class="ui yellow button"
+        class="ui orange button"
       >
         WRITE A REVIEW FOR 
         Nakul

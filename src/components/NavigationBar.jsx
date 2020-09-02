@@ -62,6 +62,7 @@ export default function NavigationBar({ children }) {
           <Form onSubmit={onSearchSubmit} onSuccess={() => {}}>
             <SearchInput
               name="NavbarSearchbar"
+              placeholder="Search for professors or courses"
               searchEntity="all"
               searchLimit={6}
               onResultSelect={onResultSelect}
