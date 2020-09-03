@@ -2,15 +2,15 @@ import datetime
 from pypika import MySQLQuery as Query
 
 from api.data import db
-from api.data.common import course, course_professor, department_professor, \
-    professor, review
+from api.data.common import course, course_professor, flag, \
+    department_professor, professor, review, PENDING
 
 
 def insert_review(course_professor_id, content, workload, evaluation, ip):
     cursor = db.get_cursor()
     now = datetime.datetime.utcnow()
 
-    query = Query \
+    review_query = Query \
         .into(review) \
         .columns(
             review.course_professor_id,
@@ -30,9 +30,27 @@ def insert_review(course_professor_id, content, workload, evaluation, ip):
         ) \
         .get_sql()
 
-    # TODO(jz): Add pending flag
-    cursor.execute(query)
-    return cursor.lastrowid
+    cursor.execute(review_query)
+    review_id = cursor.lastrowid
+
+    flag_query = Query \
+        .into(flag) \
+        .columns(
+            flag.review_id,
+            flag.user_id,
+            flag.type,
+            flag.created_at
+        ) \
+        .insert(
+            review_id,
+            db.get_server_user_id(),
+            PENDING,
+            now
+        ) \
+        .get_sql()
+
+    cursor.execute(flag_query)
+    return review_id
 
 
 def add_course_professor(professor_input, course_input):
@@ -54,12 +72,14 @@ def add_course_professor(professor_input, course_input):
             .columns(
                 professor.first_name,
                 professor.last_name,
-                professor.uni
+                professor.uni,
+                professor.status
             ) \
             .insert(
                 professor_input.get('first_name'),
                 professor_input.get('last_name'),
-                professor_input.get('uni')
+                professor_input.get('uni'),
+                PENDING
             ) \
             .get_sql()
 
@@ -86,12 +106,14 @@ def add_course_professor(professor_input, course_input):
             .columns(
                 course.name,
                 course.department_id,
-                course.call_number
+                course.call_number,
+                course.status
             ) \
             .insert(
                 course_input.get('name'),
                 course_input.get('department'),
-                course_input.get('code')
+                course_input.get('code'),
+                PENDING
             ) \
             .get_sql()
 
@@ -102,15 +124,16 @@ def add_course_professor(professor_input, course_input):
         .into(course_professor) \
         .columns(
             course_professor.professor_id,
-            course_professor.course_id
+            course_professor.course_id,
+            course_professor.status
         ) \
         .insert(
             professor_id,
-            course_id
+            course_id,
+            PENDING
         ) \
         .get_sql()
 
-    # TODO(jz): Add flags
     cursor.execute(new_course_professor_query)
     course_professor_id = cursor.lastrowid
 

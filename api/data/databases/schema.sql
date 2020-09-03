@@ -8,7 +8,8 @@ CREATE TABLE `course` (
   `course_id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(255) NOT NULL,
   `department_id` INT NOT NULL,
-  `call_number` VARCHAR(15) NULL,
+  `call_number` VARCHAR(45) NULL,
+  `status` ENUM('pending', 'approved', 'rejected') NULL,
   FULLTEXT KEY course_search_index (name, call_number),
   PRIMARY KEY (`course_id`),
   CONSTRAINT `fk_course__department` FOREIGN KEY (`department_id`)
@@ -18,8 +19,9 @@ CREATE TABLE `course` (
 CREATE TABLE `professor` (
   `professor_id` INT NOT NULL AUTO_INCREMENT,
   `first_name` VARCHAR(45) NULL,
-  `last_name` VARCHAR(45) NULL,
-  `uni` VARCHAR(15) NULL,
+  `last_name` VARCHAR(45) NOT NULL,
+  `uni` VARCHAR(15) NOT NULL UNIQUE,
+  `status` ENUM('pending', 'approved', 'rejected') NULL,
   FULLTEXT KEY professor_search_index (first_name, last_name, uni),
   PRIMARY KEY (`professor_id`)
 ) ENGINE=InnoDB;
@@ -37,6 +39,7 @@ CREATE TABLE `course_professor` (
   `course_professor_id` INT NOT NULL AUTO_INCREMENT,
   `professor_id` INT NULL,
   `course_id` INT NULL,
+  `status` ENUM('pending', 'approved', 'rejected') NULL,
   PRIMARY KEY (`course_professor_id`),
   CONSTRAINT `fk_course_professor__professor` FOREIGN KEY(`professor_id`)
     REFERENCES `professor` (`professor_id`),
@@ -61,7 +64,7 @@ CREATE TABLE `vote` (
   `review_id` INT NOT NULL,
   `ip` VARCHAR(15) DEFAULT NULL,
   `created_at` DATETIME DEFAULT NULL,
-  `type` ENUM('agree', 'disagree', 'funny'),
+  `type` ENUM('agree', 'disagree', 'funny') NOT NULL,
   CONSTRAINT `fk_vote__review` FOREIGN KEY (`review_id`)
     REFERENCES `review`(`review_id`)
 );
@@ -84,7 +87,7 @@ CREATE TABLE `flag` (
     'pending',
     'libel',
     'insufficient'
-  ) NULL,
+  ) NOT NULL,
   `created_at` DATETIME NOT NULL,
   PRIMARY KEY(`flag_id`),
   CONSTRAINT `fk_flag__review` FOREIGN KEY (`review_id`)
