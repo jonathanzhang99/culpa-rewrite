@@ -288,11 +288,11 @@ function CourseReviewCard({ review }) {
   );
 }
 
-const propTypesTwoReviewHighlight = {
+const propTypesDoubleCourseReviewHighlight = {
   courseReviewHighlight: PropTypes.arrayOf(reviewPropType),
 };
 
-const defaultPropsTwoReviewHighlight = {
+const defaultPropsDoubleCourseReviewHighlight = {
   courseReviewHighlight: [],
 };
 
@@ -313,11 +313,11 @@ function DoubleCourseReviewHighlight({ courseReviewHighlight }) {
   );
 }
 
-const propTypesOneReviewHighlight = {
+const propTypesSingleCourseReviewHighlight = {
   courseReviewHighlight: PropTypes.arrayOf(reviewPropType),
 };
 
-const defaultPropsOneReviewHighlight = {
+const defaultPropsSingleCourseReviewHighlight = {
   courseReviewHighlight: [],
 };
 
@@ -449,11 +449,11 @@ CourseInfo.defaultProps = defaultProps;
 
 CourseReviewCard.propTypes = propTypesCourseReviewCard;
 
-DoubleCourseReviewHighlight.propTypes = propTypesTwoReviewHighlight;
-DoubleCourseReviewHighlight.defaultProps = defaultPropsTwoReviewHighlight;
+DoubleCourseReviewHighlight.propTypes = propTypesDoubleCourseReviewHighlight;
+DoubleCourseReviewHighlight.defaultProps = defaultPropsDoubleCourseReviewHighlight;
 
-SingleCourseReviewHighlight.propTypes = propTypesOneReviewHighlight;
-SingleCourseReviewHighlight.defaultProps = defaultPropsOneReviewHighlight;
+SingleCourseReviewHighlight.propTypes = propTypesSingleCourseReviewHighlight;
+SingleCourseReviewHighlight.defaultProps = defaultPropsSingleCourseReviewHighlight;
 
 CourseReviewHighlight.propTypes = propTypesCourseReviewHighlight;
 CourseReviewHighlight.defaultProps = defaultPropsCourseReviewHighlight;
