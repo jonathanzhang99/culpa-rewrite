@@ -81,7 +81,7 @@ def setup_users(cur):
     user table with a minimum set of data for testing.
     '''
     users = [
-        (1, 'ab123@columbia.edu', 'userab', '###########', ''),
+        (1, 'admin@culpa.info', 'SERVER', '###########', ''),
         (2, 'cd456@columbia.edu', 'usercd', '@@@@@@@@@@@', ''),
         (3, 'ef789@columbia.edu', 'useref', '???????????', '')
     ]

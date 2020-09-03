@@ -2,6 +2,7 @@ from pypika import Table
 from pypika.terms import Function
 
 
+# table name utility for use in PyPika queries
 department = Table('department')
 announcement = Table('announcement')
 course = Table('course')
@@ -12,6 +13,12 @@ review = Table('review')
 vote = Table('vote')
 user = Table('user')
 flag = Table('flag')
+
+
+# enum values for status (professor, course, course_professor)
+PENDING = 'pending'
+APPROVED = 'approved'
+REJECTED = 'rejected'
 
 
 class Match(Function):
