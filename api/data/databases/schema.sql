@@ -41,6 +41,7 @@ CREATE TABLE `course_professor` (
   `course_id` INT NULL,
   `status` ENUM('pending', 'approved', 'rejected') NULL,
   PRIMARY KEY (`course_professor_id`),
+  CONSTRAINT unique_professor_id__course_id UNIQUE (professor_id, course_id),
   CONSTRAINT `fk_course_professor__professor` FOREIGN KEY(`professor_id`)
     REFERENCES `professor` (`professor_id`),
   CONSTRAINT `fk_course_professor__course` FOREIGN KEY (`course_id`)
