@@ -26,7 +26,7 @@ def setup_department_professor_courses(cur):
     )
 
     # Certain tests depend on the number of professors. If you
-    # ned to add additional entries, be sure to update tests.
+    # need to add additional entries, be sure to update tests.
     professors = [
         ('Nakul', 'Verma', 'nv2274'),   # professor_id: 1
         ('Lee', 'Bollinger', 'lcb50'),  # professor_id: 2

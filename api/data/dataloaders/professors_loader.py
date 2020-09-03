@@ -20,7 +20,7 @@ def get_all_professors():
     return cur.fetchall()
 
 
-def load_professor_by_id(professor_id):
+def load_professor_basic_info_by_id(professor_id):
     cur = db.get_cursor()
     query = Query \
         .from_(professor) \
@@ -34,7 +34,7 @@ def load_professor_by_id(professor_id):
     return cur.fetchall()
 
 
-def load_professor_by_uni(professor_uni):
+def load_professor_basic_info_by_uni(professor_uni):
     cur = db.get_cursor()
     query = Query \
         .from_(professor) \
@@ -84,7 +84,7 @@ def search_professor(search_query, limit=None):
         .against(search_params) \
         .as_('score')
 
-    # this subquery guarantees limit == number of distinct professors
+    # This subquery guarantees limit == number of distinct professors
     # otherwise, limit == number of rows != number of distinct professors
     distinct_professor = Query \
         .from_(professor) \

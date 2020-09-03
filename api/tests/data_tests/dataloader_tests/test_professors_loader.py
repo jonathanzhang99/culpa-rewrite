@@ -1,6 +1,7 @@
 from api.data import db
 from api.data.dataloaders.professors_loader import load_professor_courses, \
-    load_professor_by_id, load_professor_by_uni, search_professor
+    load_professor_basic_info_by_id, load_professor_basic_info_by_uni, \
+    search_professor
 from api.tests import LoadersWritersBaseTest
 from api.tests.data_tests.common import setup_department_professor_courses
 
@@ -57,21 +58,21 @@ class ProfessorsLoaderTest(LoadersWritersBaseTest):
         courses = load_professor_courses(VERMA_PROFESSOR_ID)
         self.assertEqual(expected_courses, courses)
 
-    def test_load_professor_by_id(self):
+    def test_load_professor_basic_info_by_id(self):
         expected_name = [{
             'first_name': 'Nakul',
             'last_name': 'Verma'
         }]
 
-        name = load_professor_by_id(VERMA_PROFESSOR_ID)
+        name = load_professor_basic_info_by_id(VERMA_PROFESSOR_ID)
         self.assertEqual(expected_name, name)
 
-    def test_load_professor_by_id_empty(self):
-        res = load_professor_by_id(BAD_PROFESSOR_ID)
+    def test_load_professor_basic_info_by_id_empty(self):
+        res = load_professor_basic_info_by_id(BAD_PROFESSOR_ID)
         self.assertFalse(res)
 
-    def test_load_professor_by_uni(self):
-        res = load_professor_by_uni(VERMA_PROFESSOR_UNI)
+    def test_load_professor_basic_info_by_uni(self):
+        res = load_professor_basic_info_by_uni(VERMA_PROFESSOR_UNI)
         expected_professor = [{
             'professor_id': VERMA_PROFESSOR_ID,
             'first_name': 'Nakul',
@@ -82,7 +83,7 @@ class ProfessorsLoaderTest(LoadersWritersBaseTest):
         self.assertEqual(expected_professor, res)
 
     def test_load_professor_by_bad_uni(self):
-        res = load_professor_by_uni('uni123')
+        res = load_professor_basic_info_by_uni('uni123')
         self.assertFalse(res)
 
     def test_search_professor_with_one_department_by_name(self):

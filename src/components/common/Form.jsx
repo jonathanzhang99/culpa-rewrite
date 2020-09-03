@@ -11,7 +11,7 @@ import {
 
 import * as Inputs from "components/common/Inputs";
 
-const FORMERRORS = "form";
+const FORM_ERRORS = "form";
 
 export function Submit(props) {
   return (
@@ -52,7 +52,7 @@ export function SubmitConfirm({
   // clicking the open modal button should clear all errors otherwise formHasError
   // prevents the modal from ever opening.
   const openConfirm = async () => {
-    clearErrors(FORMERRORS);
+    clearErrors(FORM_ERRORS);
     if (!confirmOpen) {
       const validated = await trigger();
       if (validated) setConfirmOpen(true);
@@ -127,14 +127,14 @@ export default function Form({
   const onSubmitWithHandlers = async (data) => {
     const result = await onSubmit(data);
     if (result.error) {
-      setError(FORMERRORS, { type: "server", message: result.error });
+      setError(FORM_ERRORS, { type: "server", message: result.error });
     } else {
       onSuccess(result, data);
     }
   };
 
   const handleSubmitWithErrors = async () => {
-    clearErrors(FORMERRORS);
+    clearErrors(FORM_ERRORS);
     await handleSubmit(onSubmitWithHandlers)();
   };
 
@@ -171,7 +171,7 @@ export default function Form({
       if (child.type === SubmitConfirm) {
         return React.cloneElement(child, {
           trigger,
-          formHasError: !!getErrors(FORMERRORS),
+          formHasError: !!getErrors(FORM_ERRORS),
           clearErrors,
           handleSubmit: handleSubmitWithErrors,
         });

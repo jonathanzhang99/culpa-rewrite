@@ -6,10 +6,12 @@ class ProfessorsTest(BaseTest):
     VERMA_PROFESSOR_ID = 1
 
     @mock.patch('api.blueprints.professor.load_professor_courses')
-    @mock.patch('api.blueprints.professor.load_professor_by_id')
-    def test_retrieve_professor_summary(self, mock_load_professor_by_id,
-                                        mock_professor_courses):
-        mock_load_professor_by_id.return_value = [{
+    @mock.patch('api.blueprints.professor.load_professor_basic_info_by_id')
+    def test_retrieve_professor_summary(
+            self,
+            mock_load_professor_basic_info_by_id,
+            mock_professor_courses):
+        mock_load_professor_basic_info_by_id.return_value = [{
             'first_name': 'Nakul',
             'last_name': 'Verma',
         }]
@@ -42,10 +44,12 @@ class ProfessorsTest(BaseTest):
         self.assertEqual(expected_res, res.json)
 
     @mock.patch('api.blueprints.professor.load_professor_courses')
-    @mock.patch('api.blueprints.professor.load_professor_by_id')
-    def test_get_professor_summary_no_courses(self, mock_load_professor_by_id,
-                                              mock_professor_courses):
-        mock_load_professor_by_id.return_value = [{
+    @mock.patch('api.blueprints.professor.load_professor_basic_info_by_id')
+    def test_get_professor_summary_no_courses(
+            self,
+            mock_load_professor_basic_info_by_id,
+            mock_professor_courses):
+        mock_load_professor_basic_info_by_id.return_value = [{
             'first_name': 'Nakul',
             'last_name': 'Verma',
         }]
@@ -59,9 +63,11 @@ class ProfessorsTest(BaseTest):
         res = self.client.get(f'/api/professor/{self.VERMA_PROFESSOR_ID}')
         self.assertEqual(expected_res, res.json)
 
-    @mock.patch('api.blueprints.professor.load_professor_by_id')
-    def test_get_professor_summary_empty(self, mock_load_professor_by_id):
-        mock_load_professor_by_id.return_value = []
+    @mock.patch('api.blueprints.professor.load_professor_basic_info_by_id')
+    def test_get_professor_summary_empty(
+            self,
+            mock_load_professor_basic_info_by_id):
+        mock_load_professor_basic_info_by_id.return_value = []
         expected_error = {'error': 'Missing professor name'}
 
         res = self.client.get(f'/api/professor/{self.VERMA_PROFESSOR_ID}')

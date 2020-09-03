@@ -86,18 +86,18 @@ class ReviewTest(BaseTest):
         self.assertEqual(res.status_code, 400)
         self.assertEqual(expected_error, res.json)
 
-    @mock.patch('api.blueprints.review.load_professor_by_uni')
+    @mock.patch('api.blueprints.review.load_professor_basic_info_by_uni')
     @mock.patch('api.blueprints.review.add_course_professor')
     @mock.patch('api.blueprints.review.insert_review')
     def test_insert_new_professor(self,
                                   mock_insert_review,
                                   mock_add_course_professor,
-                                  mock_load_professor_by_uni):
+                                  mock_load_professor_basic_info_by_uni):
         mock_insert_review.return_value = 0
         mock_add_course_professor.return_value = self.COURSE_PROFESSOR_ID
 
         # note that the actual function returns a list of dictionaries
-        mock_load_professor_by_uni.return_value = False
+        mock_load_professor_basic_info_by_uni.return_value = False
 
         new_professor_data = {
             'first_name': 'Nakul',
@@ -113,7 +113,7 @@ class ReviewTest(BaseTest):
                                json=review_data,
                                environ_base={'REMOTE_ADDR': self.IP_ADDRESS})
 
-        mock_load_professor_by_uni.assert_called_with('nv2274')
+        mock_load_professor_basic_info_by_uni.assert_called_with('nv2274')
         mock_add_course_professor.assert_called_with(new_professor_data,
                                                      self.COURSE_ID)
         mock_insert_review.assert_called_with(self.COURSE_PROFESSOR_ID,
@@ -124,18 +124,19 @@ class ReviewTest(BaseTest):
         expected_res = {'reviewId': 0}
         self.assertEqual(expected_res, res.json)
 
-    @mock.patch('api.blueprints.review.load_professor_by_uni')
+    @mock.patch('api.blueprints.review.load_professor_basic_info_by_uni')
     @mock.patch('api.blueprints.review.add_course_professor')
     @mock.patch('api.blueprints.review.insert_review')
-    def test_insert_new_professor_and_new_course(self,
-                                                 mock_insert_review,
-                                                 mock_add_course_professor,
-                                                 mock_load_professor_by_uni):
+    def test_insert_new_professor_and_new_course(
+            self,
+            mock_insert_review,
+            mock_add_course_professor,
+            mock_load_professor_basic_info_by_uni):
         mock_insert_review.return_value = 0
         mock_add_course_professor.return_value = self.COURSE_PROFESSOR_ID
 
         # note that the actual function returns a list of dictionaries
-        mock_load_professor_by_uni.return_value = False
+        mock_load_professor_basic_info_by_uni.return_value = False
 
         new_course_data = {
             'name': 'Machine Learning',
@@ -158,7 +159,7 @@ class ReviewTest(BaseTest):
                                json=review_data,
                                environ_base={'REMOTE_ADDR': self.IP_ADDRESS})
 
-        mock_load_professor_by_uni.assert_called_with('nv2274')
+        mock_load_professor_basic_info_by_uni.assert_called_with('nv2274')
         mock_add_course_professor.assert_called_with(new_professor_data,
                                                      new_course_data)
         mock_insert_review.assert_called_with(self.COURSE_PROFESSOR_ID,
@@ -237,10 +238,11 @@ class ReviewTest(BaseTest):
         expected_res = {'reviewId': 0}
         self.assertEqual(expected_res, res.json)
 
-    @mock.patch('api.blueprints.review.load_professor_by_uni')
-    def test_add_existing_professor_throws_error(self,
-                                                 mock_load_professor_by_uni):
-        mock_load_professor_by_uni.return_value = True
+    @mock.patch('api.blueprints.review.load_professor_basic_info_by_uni')
+    def test_add_existing_professor_throws_error(
+            self,
+            mock_load_professor_basic_info_by_uni):
+        mock_load_professor_basic_info_by_uni.return_value = True
 
         new_professor_data = {
             'first_name': 'Nakul',

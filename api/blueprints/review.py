@@ -1,7 +1,8 @@
 import flask
 from datetime import datetime, timedelta
 
-from api.data.dataloaders.professors_loader import load_professor_by_uni
+from api.data.dataloaders.professors_loader import \
+    load_professor_basic_info_by_uni
 from api.data.dataloaders.reviews_loader import get_reviews_with_query_prefix,\
     prepare_course_query_prefix, prepare_professor_query_prefix
 from api.data.datawriters.reviews_writer import add_course_professor, \
@@ -74,12 +75,12 @@ def submit_review():
 
     new_course_professor_id = None
 
-    # if a new professor is submitted, then either 1) an EXISTING course is
+    # If a new professor is submitted, then either 1) an EXISTING course is
     # selected via course id in `new_professor['course']['id']` or 2) a NEW
     # course is also submitted.
     if new_professor:
         uni = request_json['newProfessor']['uni']
-        if load_professor_by_uni(uni):
+        if load_professor_basic_info_by_uni(uni):
             return \
                 {'error': 'Professor already exists. Try searching by UNI.'}, \
                 400
@@ -90,7 +91,7 @@ def submit_review():
             course
         )
 
-    # if no new professor is submitted but a new course is submitted, then
+    # If no new professor is submitted but a new course is submitted, then
     # the professor id must be defined.
     elif new_course:
         professor_id = request_json['professor']['id']

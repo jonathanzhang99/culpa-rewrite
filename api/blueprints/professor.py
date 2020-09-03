@@ -1,7 +1,7 @@
 import flask
 
 from api.data.dataloaders.professors_loader import load_professor_courses, \
-     load_professor_by_id
+     load_professor_basic_info_by_id
 
 professor_blueprint = flask.Blueprint('professor_blueprint', __name__)
 
@@ -9,7 +9,7 @@ professor_blueprint = flask.Blueprint('professor_blueprint', __name__)
 @professor_blueprint.route('/<professor_id>', methods=['GET'])
 def professor_summary(professor_id):
     # TODO: Fetch professor nugget status
-    name = load_professor_by_id(professor_id)
+    name = load_professor_basic_info_by_id(professor_id)
     if not name:
         return {'error': 'Missing professor name'}, 400
 
