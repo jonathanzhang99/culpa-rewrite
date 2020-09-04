@@ -218,7 +218,6 @@ class ReviewsLoaderTest(LoadersWritersBaseTest):
             4. No reviews -> nothing
             5. No review has any votes -> nothing
         '''
-        self.maxDiff = None
         test_cases = [{
             'course_id': 5,
             'expected_res': [
