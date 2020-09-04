@@ -218,6 +218,7 @@ class ReviewsLoaderTest(LoadersWritersBaseTest):
             4. No reviews -> nothing
             5. No review has any votes -> nothing
         '''
+        self.maxDiff = None
         test_cases = [{
             'course_id': 5,
             'expected_res': [
@@ -258,7 +259,7 @@ class ReviewsLoaderTest(LoadersWritersBaseTest):
             ]
         },
             {
-            'course_id': 7,
+            'course_id': 9,
             'expected_res': [
                 {
                     'professor_id': 1,
@@ -284,11 +285,11 @@ class ReviewsLoaderTest(LoadersWritersBaseTest):
             'expected_res': ()
         },
             {
-            'course_id': 8,
+            'course_id': 10,
             'expected_res': ()
         },
             {
-            'course_id': 9,
+            'course_id': 11,
             'expected_res': ()
         }]
         setup_for_course_test(self.cur)
