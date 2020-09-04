@@ -53,6 +53,10 @@ class ProfessorsLoaderTest(LoadersWritersBaseTest):
             'course_id': 4,
             'name': 'Advanced Programming',
             'call_number': 'COMS 3157'
+        }, {
+            'course_professor_id': 3,
+            'name': 'Mathematics of Machine Learning',
+            'call_number': 'MATH FAKE'
         }]
 
         courses = load_professor_courses(VERMA_PROFESSOR_ID)

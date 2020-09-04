@@ -5,8 +5,9 @@ from api.data.dataloaders.professors_loader import \
     load_professor_basic_info_by_uni
 from api.data.dataloaders.reviews_loader import get_reviews_with_query_prefix,\
     prepare_course_query_prefix, prepare_professor_query_prefix
-from api.data.datawriters.reviews_writer import add_course_professor, \
-    insert_review
+from api.data.datawriters.course_professors_writer import \
+    add_course_professor
+from api.data.datawriters.reviews_writer import insert_review
 
 review_blueprint = flask.Blueprint('review_blueprint', __name__)
 
