@@ -181,6 +181,7 @@ const propTypesReviewCard = {
       profFirstName: PropTypes.string.isRequired,
       profLastName: PropTypes.string.isRequired,
       uni: PropTypes.string.isRequired,
+      badges: PropTypes.arrayOf(PropTypes.number).isRequired,
     }),
     PropTypes.shape({
       course: PropTypes.shape({
@@ -193,8 +194,8 @@ const propTypesReviewCard = {
         profFirstName: PropTypes.string.isRequired,
         profLastName: PropTypes.string.isRequired,
         uni: PropTypes.string.isRequired,
-      })
-    })
+      }),
+    }),
   ]).isRequired,
   votes: PropTypes.shape({
     initUpvoteCount: PropTypes.number.isRequired,
@@ -253,6 +254,7 @@ export default function ReviewCard({
               {reviewType === "course" && (
                 <ProfessorDisplayName
                   as="header"
+                  badges={reviewHeader.badges}
                   firstName={reviewHeader.profFirstName}
                   lastName={reviewHeader.profLastName}
                 />

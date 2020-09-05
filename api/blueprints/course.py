@@ -4,7 +4,7 @@ from api.data.dataloaders.courses_loader import load_course_basic_info, \
     load_course_professors
 from api.data.dataloaders.reviews_loader import prepare_course_query_prefix,\
     load_review_highlight
-from api.blueprints.review import parse_review
+from api.blueprints.review import parse_reviews
 
 course_blueprint = flask.Blueprint('course_blueprint', __name__)
 
@@ -59,9 +59,15 @@ def course_info(course_id):
     ip = flask.request.remote_addr
     query_prefix = prepare_course_query_prefix(course_id)
     course_review_highlight = load_review_highlight(query_prefix, ip)
-
-    course_review_highlight_json = [parse_review(review, 'course')
-                                    for review in course_review_highlight]
+    course_review_highlight_json = parse_reviews(course_review_highlight,
+                                                 'course')
+    # Sorts in the ascending order of rating
+    course_review_highlight_json.sort(key=lambda x: x['rating'])
+    # In case the two review are the same, only return one review
+    # Otherwise, return the most positive and the most negative
+    if len(course_review_highlight_json) > 1:
+        course_review_highlight_json = [course_review_highlight_json[-1],
+                                        course_review_highlight_json[0]]
 
     return {
         'courseSummary': course_summary_json,

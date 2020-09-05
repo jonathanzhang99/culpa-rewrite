@@ -38,7 +38,11 @@ Object {
                   Adam
                    
                   Canon
-                </div>
+                </span>
+                <img
+                  class="ui avatar left spaced image"
+                  src="gold-nugget.svg"
+                />
                 <h5
                   class="ui header"
                 >
@@ -167,7 +171,11 @@ Object {
                 Adam
                  
                 Canon
-              </div>
+              </span>
+              <img
+                class="ui avatar left spaced image"
+                src="gold-nugget.svg"
+              />
               <h5
                 class="ui header"
               >
@@ -353,7 +361,11 @@ Object {
                   Adam
                    
                   Canon
-                </div>
+                </span>
+                <img
+                  class="ui avatar left spaced image"
+                  src="gold-nugget.svg"
+                />
                 <h5
                   class="ui header"
                 >
@@ -482,7 +494,11 @@ Object {
                 Adam
                  
                 Canon
-              </div>
+              </span>
+              <img
+                class="ui avatar left spaced image"
+                src="gold-nugget.svg"
+              />
               <h5
                 class="ui header"
               >
@@ -668,7 +684,11 @@ Object {
                   Adam
                    
                   Canon
-                </div>
+                </span>
+                <img
+                  class="ui avatar left spaced image"
+                  src="gold-nugget.svg"
+                />
                 <h5
                   class="ui header"
                 >
@@ -797,7 +817,11 @@ Object {
                 Adam
                  
                 Canon
-              </div>
+              </span>
+              <img
+                class="ui avatar left spaced image"
+                src="gold-nugget.svg"
+              />
               <h5
                 class="ui header"
               >

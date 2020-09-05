@@ -205,12 +205,9 @@ def get_reviews(page_type, id):
         filter_year,
     )
 
-    json = [parse_review(
-        review,
-        page_type,
-    ) for review in reviews]
+    reviews_json = parse_reviews(reviews, page_type)
 
-    return {'reviews': json}
+    return {'reviews': reviews_json}
 
 
 @review_blueprint.route('/<int:review_id>', methods=['GET'])

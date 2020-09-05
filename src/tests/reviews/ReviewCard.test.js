@@ -14,6 +14,7 @@ describe("ReviewCard tests setup", () => {
         profLastName: "Canon",
         profId: 12345,
         uni: "12345",
+        badges: [1],
       },
     },
     {

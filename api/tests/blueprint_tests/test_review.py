@@ -3,7 +3,7 @@ from datetime import datetime
 
 from pymysql.err import IntegrityError
 
-from api.blueprints.review import parse_review
+from api.blueprints.review import parse_reviews
 from api.tests import BaseTest
 
 
@@ -265,20 +265,22 @@ class ReviewTest(BaseTest):
         self.assertEqual(res.status_code, 400)
         self.assertEqual(expected_res, res.json)
 
-    def test_parse_review(self):
+    def test_parse_reviews(self):
         types = [{
             'review_type': 'course',
             'header_data': {
                 'professor_id': 12345,
                 'uni': '12345',
                 'first_name': 'John',
-                'last_name': 'Doe'
+                'last_name': 'Doe',
+                'badge_id': 1,
             },
             'expected_review_header': {
                 'profId': 12345,
                 'profFirstName': 'John',
                 'profLastName': 'Doe',
-                'uni': '12345'
+                'uni': '12345',
+                'badges': [1],
             }
         }, {
             'review_type': 'professor',
@@ -330,7 +332,7 @@ class ReviewTest(BaseTest):
             },
         ]
 
-        review = {
+        reviews = [{
             'agrees': -1,
             'disagrees': -2,
             'funnys': -3,
@@ -340,37 +342,36 @@ class ReviewTest(BaseTest):
             'review_id': 12333,
             'content': 'test content',
             'workload': 'test workload',
-        }
+            'rating': 4,
+        }]
 
         for type_ in types:
             for date in dates:
                 with self.subTest(type_=type_, date=date):
-                    review.update(type_['header_data'])
-                    review['submission_date'] = date['submission_date']
+                    reviews[0].update(type_['header_data'])
+                    reviews[0]['submission_date'] = date['submission_date']
 
                     with self.app.app_context():
-                        res = parse_review(
-                            review,
-                            type_['review_type'],
-                        )
+                        res = parse_reviews(reviews, type_['review_type'])
 
-                    self.assertEqual(res, {
+                    self.assertEqual(res, [{
+                        'rating': reviews[0]['rating'],
                         'reviewType': type_['review_type'],
                         'reviewHeader': type_['expected_review_header'],
                         'votes': {
-                            'initUpvoteCount': review['agrees'],
-                            'initDownvoteCount': review['disagrees'],
-                            'initFunnyCount': review['funnys'],
-                            'upvoteClicked': review['agree_clicked'],
-                            'downvoteClicked': review['disagree_clicked'],
-                            'funnyClicked': review['funny_clicked']
+                            'initUpvoteCount': reviews[0]['agrees'],
+                            'initDownvoteCount': reviews[0]['disagrees'],
+                            'initFunnyCount': reviews[0]['funnys'],
+                            'upvoteClicked': reviews[0]['agree_clicked'],
+                            'downvoteClicked': reviews[0]['disagree_clicked'],
+                            'funnyClicked': reviews[0]['funny_clicked']
                         },
                         'submissionDate': date['formatted_date'],
-                        'workload': review['workload'],
-                        'content': review['content'],
-                        'reviewId': review['review_id'],
+                        'workload': reviews[0]['workload'],
+                        'content': reviews[0]['content'],
+                        'reviewId': reviews[0]['review_id'],
                         'deprecated': date['deprecated']
-                    })
+                    }])
 
     @mock.patch("api.blueprints.review.prepare_professor_query_prefix")
     @mock.patch("api.blueprints.review.prepare_course_query_prefix")

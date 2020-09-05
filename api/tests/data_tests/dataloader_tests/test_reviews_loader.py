@@ -11,6 +11,8 @@ from api.data.dataloaders.reviews_loader import get_reviews_with_query_prefix,\
 
 class ReviewsLoaderTest(LoadersWritersBaseTest):
     def test_get_reviews_with_query_prefix_get_only(self):
+        setup_votes(self.cur)
+
         test_cases = [{
             'type': 'course',
             'id': 4,
@@ -19,6 +21,7 @@ class ReviewsLoaderTest(LoadersWritersBaseTest):
                 'first_name': 'Jae W',
                 'last_name': 'Lee',
                 'uni': 'jwl3',
+                'badge_id': None,
                 'review_id': 4,
                 'content': 'demo content 4',
                 'workload': 'demo workload 4',
@@ -35,6 +38,7 @@ class ReviewsLoaderTest(LoadersWritersBaseTest):
                 'first_name': 'Jae W',
                 'last_name': 'Lee',
                 'uni': 'jwl3',
+                'badge_id': None,
                 'review_id': 5,
                 'content': 'demo content 5',
                 'workload': 'demo workload 5',
@@ -51,6 +55,7 @@ class ReviewsLoaderTest(LoadersWritersBaseTest):
                 'first_name': 'Jae W',
                 'last_name': 'Lee',
                 'uni': 'jwl3',
+                'badge_id': None,
                 'review_id': 6,
                 'content': 'demo content 6',
                 'workload': 'demo workload 6',
@@ -92,13 +97,12 @@ class ReviewsLoaderTest(LoadersWritersBaseTest):
             'expected_res': ()
         }]
 
-        ip = '123.456.78.910'
-        setup_votes(self.cur)
         page_type_and_query_prefixes = {
             'course': prepare_course_query_prefix,
             'professor': prepare_professor_query_prefix
         }
 
+        ip = '123.456.78.910'
         for test_case in test_cases:
             with self.subTest(test_case):
                 pf = page_type_and_query_prefixes[test_case['type']](
@@ -281,6 +285,7 @@ class ReviewsLoaderTest(LoadersWritersBaseTest):
                     'first_name': 'Lee',
                     'last_name': 'Bollinger',
                     'uni': 'lcb50',
+                    'badge_id': 3,
                     'review_id': 7,
                     'content': 'positive review',
                     'workload': 'workload',
@@ -298,6 +303,43 @@ class ReviewsLoaderTest(LoadersWritersBaseTest):
                     'first_name': 'Lee',
                     'last_name': 'Bollinger',
                     'uni': 'lcb50',
+                    'badge_id': 3,
+                    'review_id': 10,
+                    'content': 'positive review2',
+                    'workload': 'workload',
+                    'rating': 5,
+                    'submission_date': datetime(2010, 5, 21, 0, 0),
+                    'agrees': Decimal('3'),
+                    'disagrees': Decimal('0'),
+                    'funnys': Decimal('0'),
+                    'agree_clicked': Decimal('0'),
+                    'disagree_clicked': Decimal('0'),
+                    'funny_clicked': Decimal('0')
+                },
+                {
+                    'professor_id': 2,
+                    'first_name': 'Lee',
+                    'last_name': 'Bollinger',
+                    'uni': 'lcb50',
+                    'badge_id': 3,
+                    'review_id': 11,
+                    'content': 'negative review2',
+                    'workload': 'workload',
+                    'rating': 1,
+                    'submission_date': datetime(2012, 7, 20, 0, 0),
+                    'agrees': Decimal('1'),
+                    'disagrees': Decimal('0'),
+                    'funnys': Decimal('0'),
+                    'agree_clicked': Decimal('0'),
+                    'disagree_clicked': Decimal('0'),
+                    'funny_clicked': Decimal('0')
+                },
+                {
+                    'professor_id': 2,
+                    'first_name': 'Lee',
+                    'last_name': 'Bollinger',
+                    'uni': 'lcb50',
+                    'badge_id': 3,
                     'review_id': 9,
                     'content': 'negative review',
                     'workload': 'workload',
@@ -320,6 +362,25 @@ class ReviewsLoaderTest(LoadersWritersBaseTest):
                     'first_name': 'Nakul',
                     'last_name': 'Verma',
                     'uni': 'nv2274',
+                    'badge_id': 1,
+                    'review_id': 12,
+                    'content': 'neutral review',
+                    'workload': 'workload',
+                    'rating': 3,
+                    'submission_date': datetime(2019, 8, 17, 0, 0),
+                    'agrees': Decimal('0'),
+                    'disagrees': Decimal('0'),
+                    'funnys': Decimal('0'),
+                    'agree_clicked': Decimal('0'),
+                    'disagree_clicked': Decimal('0'),
+                    'funny_clicked': Decimal('0')
+                },
+                {
+                    'professor_id': 1,
+                    'first_name': 'Nakul',
+                    'last_name': 'Verma',
+                    'uni': 'nv2274',
+                    'badge_id': 2,
                     'review_id': 12,
                     'content': 'neutral review',
                     'workload': 'workload',

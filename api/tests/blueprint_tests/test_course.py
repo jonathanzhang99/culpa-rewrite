@@ -13,6 +13,7 @@ class CoursesTest(BaseTest):
         'first_name': 'Jae W',
         'last_name': 'Lee',
         'uni': 'jwl3',
+        'badge_id': None,
         'review_id': 1,
         'content': 'demo content 1',
         'workload': 'demo workload 1',
@@ -31,6 +32,7 @@ class CoursesTest(BaseTest):
         'first_name': 'Jae W',
         'last_name': 'Lee',
         'uni': 'jwl3',
+        'badge_id': None,
         'review_id': 4,
         'content': 'demo content 4',
         'workload': 'demo workload 4',
@@ -51,8 +53,10 @@ class CoursesTest(BaseTest):
             'profFirstName': 'Jae W',
             'profId': 3,
             'profLastName': 'Lee',
-                            'uni': 'jwl3'
+            'uni': 'jwl3',
+            'badges': [],
         },
+        'rating': 5,
         'reviewId': 1,
         'reviewType': 'course',
         'submissionDate': 'Oct 13, 2019',
@@ -74,8 +78,10 @@ class CoursesTest(BaseTest):
             'profFirstName': 'Jae W',
             'profId': 3,
             'profLastName': 'Lee',
-                            'uni': 'jwl3'
+            'uni': 'jwl3',
+            'badges': [],
         },
+        'rating': 1,
         'reviewId': 4,
         'reviewType': 'course',
         'submissionDate': 'Oct 13, 2019',
@@ -326,19 +332,18 @@ class CoursesTest(BaseTest):
             self.NEGATIVE_REVIEW,
         ]
         expected_res = {
+            'courseReviewHighlight': [
+                self.POSITIVE_REVIEW_JSON,
+                self.NEGATIVE_REVIEW_JSON
+            ],
             'courseSummary': {
                 'courseName': 'Machine Learning',
                 'courseCallNumber': 'COMS 4771',
                 'departmentId': 1,
                 'departmentName': 'Computer Science',
                 'courseProfessors': []
-            },
-            'courseReviewHighlight': [
-                self.POSITIVE_REVIEW_JSON,
-                self.NEGATIVE_REVIEW_JSON
-            ]
+            }
         }
-
         res = self.client.get(f'/api/course/{self.ML_COURSE_ID}')
         self.assertEqual(expected_res, res.json)
 

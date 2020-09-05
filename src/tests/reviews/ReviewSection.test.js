@@ -58,6 +58,7 @@ const headersByType = [
         profFirstName: "Nakul",
         profLastName: "Verma",
         uni: "nv2274",
+        badges: [1],
       },
       votes: {
         initUpvoteCount: 3,
@@ -103,11 +104,13 @@ const associatedEntities = {
       professorId: 1,
       firstName: "Nakul",
       lastName: "Verma",
+      badges: [1],
     },
     {
       professorId: 2,
       firstName: "Lee",
       lastName: "Bollinger",
+      badges: [],
     },
   ],
   professor: [
@@ -152,6 +155,7 @@ const pagTestReviewTemplate = {
     profFirstName: "Nakul",
     profLastName: "Verma",
     uni: "nv2274",
+    badges: [1],
   },
   votes: {
     initUpvoteCount: 3,
