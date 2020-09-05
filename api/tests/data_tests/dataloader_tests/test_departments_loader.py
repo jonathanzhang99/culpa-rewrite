@@ -70,17 +70,26 @@ class DepartmentsLoaderTest(LoadersWritersBaseTest):
             {
                 'professor_id': 1,
                 'first_name': 'Nakul',
-                'last_name': 'Verma'
+                'last_name': 'Verma',
+                'badge_id': 1,
+            },
+            {
+                'professor_id': 1,
+                'first_name': 'Nakul',
+                'last_name': 'Verma',
+                'badge_id': 2,
             },
             {
                 'professor_id': 3,
                 'first_name': 'Jae W',
-                'last_name': 'Lee'
+                'last_name': 'Lee',
+                'badge_id': None,
             },
             {
                 'professor_id': 4,
                 'first_name': 'Nakul',
                 'last_name': 'Burma',
+                'badge_id': 3,
             }
         ]
 

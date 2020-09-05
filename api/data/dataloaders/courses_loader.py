@@ -1,8 +1,9 @@
 from pypika import Criterion, MySQLQuery as Query, Order
 
 from api.data import db
-from api.data.common import course, course_professor, professor, \
-    department, department_professor, Match, APPROVED
+from api.data.common import badge, badge_professor, course, \
+    course_professor, professor, department, department_professor, \
+    Match, APPROVED
 
 
 def load_course_basic_info(course_id):
@@ -32,12 +33,6 @@ def load_course_professors(course_id):
     cur = db.get_cursor()
     query = Query \
         .from_(course_professor) \
-        .select(
-            professor.professor_id,
-            professor.first_name,
-            professor.last_name,
-            department.department_id,
-            department.name) \
         .inner_join(professor) \
         .on(
             course_professor.professor_id == professor.professor_id) \
@@ -47,10 +42,23 @@ def load_course_professors(course_id):
         .inner_join(department) \
         .on(
             department_professor.department_id == department.department_id) \
+        .left_join(badge_professor) \
+        .on(
+            professor.professor_id == badge_professor.professor_id) \
+        .left_join(badge) \
+        .on(
+            badge_professor.badge_id == badge.badge_id) \
         .where(Criterion.all([
             course_professor.course_id == course_id,
             course_professor.status == APPROVED,
         ])) \
+        .select(
+            professor.professor_id,
+            professor.first_name,
+            professor.last_name,
+            department.department_id,
+            department.name,
+            badge.badge_id) \
         .get_sql()
     cur.execute(query)
     return cur.fetchall()

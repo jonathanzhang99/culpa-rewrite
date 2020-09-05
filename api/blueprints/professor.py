@@ -11,10 +11,10 @@ professor_blueprint = flask.Blueprint('professor_blueprint', __name__)
 
 @professor_blueprint.route('/<int:professor_id>', methods=['GET'])
 def professor_info(professor_id):
-    # TODO: Fetch professor nugget status
     name = load_professor_basic_info_by_id(professor_id)
     if not name:
         return {'error': 'Missing professor name'}, 400
+    badges = [badge['badge_id'] for badge in professor if badge['badge_id']]
 
     courses = load_professor_courses(professor_id)
     courses_json = [{
@@ -26,7 +26,8 @@ def professor_info(professor_id):
     professor_summary_json = {
         'firstName': name[0]['first_name'],
         'lastName': name[0]['last_name'],
-        'courses': courses_json
+        'badges': badges,
+        'courses': courses_json,
     }
 
     ip = flask.request.remote_addr

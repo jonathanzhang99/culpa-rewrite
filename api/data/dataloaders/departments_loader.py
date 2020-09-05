@@ -1,8 +1,8 @@
 from pypika import Criterion, MySQLQuery as Query
 
 from api.data import db
-from api.data.common import course, department, department_professor, \
-    professor, APPROVED
+from api.data.common import badge, badge_professor, course, department, \
+    department_professor, professor, APPROVED
 
 
 def load_all_departments():
@@ -57,10 +57,15 @@ def load_department_professors(department_id):
         .join(department_professor) \
         .on(
             professor.professor_id == department_professor.professor_id) \
+        .left_join(badge_professor) \
+        .on(professor.professor_id == badge_professor.professor_id) \
+        .left_join(badge) \
+        .on(badge_professor.badge_id == badge.badge_id) \
         .select(
             professor.professor_id,
             professor.first_name,
-            professor.last_name) \
+            professor.last_name,
+            badge.badge_id) \
         .where(Criterion.all([
             department_professor.department_id == department_id,
             professor.status == APPROVED

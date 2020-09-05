@@ -56,6 +56,17 @@ def setup_department_professor_courses(cur):
         professors
     )
 
+    badges = [
+        ('Gold', 'Gold Nugget'),
+        ('Silver', 'Silver Nugget'),
+        ('Bronze', 'Bronze Nugget'),
+    ]
+    cur.executemany(
+        'INSERT INTO badge (name, description)'
+        'VALUES (%s, %s)',
+        badges
+    )
+
     # Verma - teaching multiple courses across departments
     # JWL – teaching multiple courses in a department
     # Bollinger – teaching single course
@@ -71,7 +82,6 @@ def setup_department_professor_courses(cur):
         (8, 1, 5, PENDING),   # Verma, Freedom of Speech
         (9, 1, 7, REJECTED),  # Verma, Intermediate Machine Learning
     ]
-
     cur.executemany(
         'INSERT INTO course_professor'
         '(course_professor_id, professor_id, course_id, status)'
@@ -87,11 +97,22 @@ def setup_department_professor_courses(cur):
         (4, 1),  # Burma, Computer Science
         (4, 3),  # Burma, Mathematics
     ]
-
     cur.executemany(
         'INSERT INTO department_professor (professor_id, department_id)'
         'VALUES (%s, %s)',
         department_professor
+    )
+
+    badge_professor = [
+        (1, 1),  # Verma, Gold
+        (1, 2),  # Verma, Silver
+        (2, 3),  # Bollinger, Bronze
+        (4, 3),  # Burma, Bronze
+    ]
+    cur.executemany(
+        'INSERT INTO badge_professor (professor_id, badge_id)'
+        'VALUES (%s, %s)',
+        badge_professor
     )
 
 

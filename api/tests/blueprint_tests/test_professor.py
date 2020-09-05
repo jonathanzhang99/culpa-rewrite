@@ -95,6 +95,11 @@ class ProfessorsTest(BaseTest):
         mock_load_professor_basic_info_by_id.return_value = [{
             'first_name': 'Nakul',
             'last_name': 'Verma',
+            'badge_id': 1,
+        }, {
+            'first_name': 'Nakul',
+            'last_name': 'Verma',
+            'badge_id': 2,
         }]
         mock_professor_courses.return_value = [{
             'course_id': 1,
@@ -113,6 +118,7 @@ class ProfessorsTest(BaseTest):
             'professorSummary': {
                 'firstName': 'Nakul',
                 'lastName': 'Verma',
+                'badges': [1, 2],
                 'courses': [
                     {
                         'courseId': 1,
@@ -237,6 +243,11 @@ class ProfessorsTest(BaseTest):
         mock_load_professor_basic_info_by_id.return_value = [{
             'first_name': 'Nakul',
             'last_name': 'Verma',
+            'badge_id': 1,
+        }, {
+            'first_name': 'Nakul',
+            'last_name': 'Verma',
+            'badge_id': 2,
         }]
         mock_professor_courses.return_value = []
         mock_load_review_highlight.return_value = [
@@ -247,6 +258,7 @@ class ProfessorsTest(BaseTest):
             'professorSummary': {
                 'firstName': 'Nakul',
                 'lastName': 'Verma',
+                'badges': [1, 2],
                 'courses': []
             },
             'professorReviewHighlight': [
@@ -263,7 +275,7 @@ class ProfessorsTest(BaseTest):
             self,
             mock_load_professor_basic_info_by_id):
         mock_load_professor_basic_info_by_id.return_value = []
-        expected_error = {'error': 'Missing professor name'}
+        expected_error = {'error': 'Missing professor'}
 
         res = self.client.get(f'/api/professor/{self.VERMA_PROFESSOR_ID}')
         self.assertEqual(res.status_code, 400)

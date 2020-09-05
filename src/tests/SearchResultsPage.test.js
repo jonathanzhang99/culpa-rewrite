@@ -17,6 +17,7 @@ describe("SearchResultsPage Components", () => {
       name: "both professors and courses found",
       testProfessorResults: [
         {
+          badges: [1, 2],
           childKey: "professor-2339",
           departments: [
             {
@@ -49,6 +50,7 @@ describe("SearchResultsPage Components", () => {
       name: "only professors found",
       testProfessorResults: [
         {
+          badges: [1, 2],
           childKey: "professor-2339",
           departments: [
             {

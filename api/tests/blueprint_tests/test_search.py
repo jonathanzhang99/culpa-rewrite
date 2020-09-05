@@ -9,27 +9,50 @@ PROFESSOR_RESULTS = [
         'first_name': 'Nakul',
         'last_name': 'Verma',
         'uni': 'nv2274',
+        'score': 0.5,
         'department_id': 1,
         'name': 'Computer Science',
-        'score': 0.5,
+        'badge_id': 1,
     },
     {
         'professor_id': 1,
         'first_name': 'Nakul',
         'last_name': 'Verma',
         'uni': 'nv2274',
+        'score': 0.5,
         'department_id': 2,
         'name': 'Mathematics',
+        'badge_id': 1,
+    },
+    {
+        'professor_id': 1,
+        'first_name': 'Nakul',
+        'last_name': 'Verma',
+        'uni': 'nv2274',
         'score': 0.5,
+        'department_id': 1,
+        'name': 'Computer Science',
+        'badge_id': 2,
+    },
+    {
+        'professor_id': 1,
+        'first_name': 'Nakul',
+        'last_name': 'Verma',
+        'uni': 'nv2274',
+        'score': 0.5,
+        'department_id': 2,
+        'name': 'Mathematics',
+        'badge_id': 2,
     },
     {
         'professor_id': 2,
         'first_name': 'Lee',
         'last_name': 'Bollinger',
         'uni': 'lcb50',
+        'score': 0.5,
         'department_id': 3,
         'name': 'Law',
-        'score': 0.5,
+        'badge_id': 3,
     }
 ]
 
@@ -61,6 +84,7 @@ class SearchTest(BaseTest):
         expected_results = {
             'professorResults': [
                 {
+                    'badges': [1, 2],
                     'childKey': 'professor-1',
                     'departments': [
                         {
@@ -77,6 +101,7 @@ class SearchTest(BaseTest):
                     'type': 'professor',
                 },
                 {
+                    'badges': [3],
                     'childKey': 'professor-2',
                     'departments': [{
                         'id': 3,
@@ -122,6 +147,7 @@ class SearchTest(BaseTest):
         expected_results = {
             'professorResults': [
                 {
+                    'badges': [1, 2],
                     'childKey': 'professor-1',
                     'departments': [
                         {
@@ -138,6 +164,7 @@ class SearchTest(BaseTest):
                     'type': 'professor',
                 },
                 {
+                    'badges': [3],
                     'childKey': 'professor-2',
                     'departments': [{
                         'id': 3,

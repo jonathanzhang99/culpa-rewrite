@@ -22,6 +22,7 @@ def course_info(course_id):
     # is uniquely identified by id and has professorDepartments as a subfield.
     professors = load_course_professors(course_id)
     course_professors = {}
+    department_ids = []  # prevents duplicate departments
     for professor in professors:
         professor_id = professor['professor_id']
         if professor_id not in course_professors:
@@ -29,12 +30,23 @@ def course_info(course_id):
                 'firstName': professor['first_name'],
                 'lastName': professor['last_name'],
                 'professorId': professor_id,
-                'professorDepartments': []
+                'professorDepartments': [],
+                'badges': [],
             }
-        course_professors[professor_id]['professorDepartments'].append({
-            'professorDepartmentId': professor['department_id'],
-            'professorDepartmentName': professor['name']
-        })
+            department_ids = []
+
+        department_id = professor['department_id']
+        if department_id not in department_ids:
+            course_professors[professor_id]['professorDepartments'].append({
+                'professorDepartmentId': professor['department_id'],
+                'professorDepartmentName': professor['name']
+            })
+            department_ids.append(department_id)
+
+        badge_id = professor['badge_id']
+        if badge_id and \
+           badge_id not in course_professors[professor_id]['badges']:
+            course_professors[professor_id]['badges'].append(badge_id)
 
     course_summary_json = {
         'courseName': basic_info[0]['name'],

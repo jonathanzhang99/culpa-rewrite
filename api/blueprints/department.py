@@ -54,14 +54,22 @@ def department_info(department_id):
     } for course in courses]
 
     professors = load_department_professors(department_id)
-    professors_json = [{
-        'professorId': professor['professor_id'],
-        'firstName': professor['first_name'],
-        'lastName': professor['last_name']
-    } for professor in professors]
+    professors_json = {}
+    for professor in professors:
+        professor_id = professor['professor_id']
+        if professor_id not in professors_json:
+            professors_json[professor_id] = {
+                'professorId': professor['professor_id'],
+                'firstName': professor['first_name'],
+                'lastName': professor['last_name'],
+                'badges': [],
+            }
+        if professor['badge_id']:
+            professors_json[professor_id]['badges'] \
+              .append(professor['badge_id'])
 
     return {
         'departmentName': name_str,
         'departmentCourses': courses_json,
-        'departmentProfessors': professors_json
+        'departmentProfessors': list(professors_json.values())
     }

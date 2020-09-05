@@ -1,8 +1,9 @@
 from pypika import Criterion, MySQLQuery as Query, Order
 
 from api.data import db
-from api.data.common import course, course_professor, department, \
-  department_professor, professor, Match, APPROVED
+from api.data.common import badge, badge_professor, course, \
+  course_professor, department, department_professor, professor, \
+  Match, APPROVED
 
 
 # TODO: This method is temporary to test search functionality
@@ -37,9 +38,14 @@ def load_professor_basic_info_by_id(professor_id):
     cur = db.get_cursor()
     query = Query \
         .from_(professor) \
+        .left_join(badge_professor) \
+        .on(badge_professor.professor_id == professor_id) \
+        .left_join(badge) \
+        .on(badge.badge_id == badge_professor.badge_id) \
         .select(
             professor.first_name,
-            professor.last_name) \
+            professor.last_name,
+            badge.badge_id) \
         .where(Criterion.all([
             professor.professor_id == professor_id,
             professor.status == APPROVED
@@ -144,13 +150,19 @@ def search_professor(search_query, limit=None):
         .limit(limit) \
         .as_('distinct_professor')
 
+    # Professor must have a department -> inner join
+    # Professor may not have a badge -> left join
     query = Query \
         .from_(distinct_professor) \
-        .join(department_professor) \
+        .inner_join(department_professor) \
         .on(department_professor.professor_id ==
             distinct_professor.professor_id) \
-        .join(department) \
+        .inner_join(department) \
         .on(department.department_id == department_professor.department_id) \
+        .left_join(badge_professor) \
+        .on(badge_professor.professor_id == distinct_professor.professor_id) \
+        .left_join(badge) \
+        .on(badge.badge_id == badge_professor.badge_id) \
         .select(
             distinct_professor.professor_id,
             distinct_professor.first_name,
@@ -159,6 +171,7 @@ def search_professor(search_query, limit=None):
             distinct_professor.score,
             department.department_id,
             department.name,
+            badge.badge_id
         ) \
         .get_sql()
 

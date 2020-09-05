@@ -107,14 +107,30 @@ class CoursesTest(BaseTest):
             'professor_id': 1,
             'first_name': 'Nakul',
             'last_name': 'Verma',
-            'name': 'Computer Science',
             'department_id': 1,
+            'name': 'Computer Science',
+            'badge_id': 1,
         }, {
             'professor_id': 1,
             'first_name': 'Nakul',
             'last_name': 'Verma',
-            'name': 'Mathematics',
             'department_id': 3,
+            'name': 'Mathematics',
+            'badge_id': 1,
+        }, {
+            'professor_id': 1,
+            'first_name': 'Nakul',
+            'last_name': 'Verma',
+            'department_id': 1,
+            'name': 'Computer Science',
+            'badge_id': 2,
+        }, {
+            'professor_id': 1,
+            'first_name': 'Nakul',
+            'last_name': 'Verma',
+            'department_id': 3,
+            'name': 'Mathematics',
+            'badge_id': 2,
         }]
         mock_load_review_highlight.return_value = [
             self.POSITIVE_REVIEW,
@@ -136,7 +152,8 @@ class CoursesTest(BaseTest):
                     }, {
                         'professorDepartmentId': 3,
                         'professorDepartmentName': 'Mathematics'
-                    }]
+                    }],
+                    'badges': [1, 2],
                 }]
             },
             'courseReviewHighlight': [
@@ -165,14 +182,30 @@ class CoursesTest(BaseTest):
             'professor_id': 1,
             'first_name': 'Nakul',
             'last_name': 'Verma',
-            'name': 'Computer Science',
             'department_id': 1,
+            'name': 'Computer Science',
+            'badge_id': 1,
         }, {
             'professor_id': 1,
             'first_name': 'Nakul',
             'last_name': 'Verma',
-            'name': 'Mathematics',
             'department_id': 3,
+            'name': 'Mathematics',
+            'badge_id': 1,
+        }, {
+            'professor_id': 1,
+            'first_name': 'Nakul',
+            'last_name': 'Verma',
+            'department_id': 1,
+            'name': 'Computer Science',
+            'badge_id': 2,
+        }, {
+            'professor_id': 1,
+            'first_name': 'Nakul',
+            'last_name': 'Verma',
+            'department_id': 3,
+            'name': 'Mathematics',
+            'badge_id': 2,
         }]
         mock_load_review_highlight.return_value = [
             self.POSITIVE_REVIEW,
@@ -193,7 +226,8 @@ class CoursesTest(BaseTest):
                     }, {
                         'professorDepartmentId': 3,
                         'professorDepartmentName': 'Mathematics'
-                    }]
+                    }],
+                    'badges': [1, 2],
                 }]
             },
             'courseReviewHighlight': [
@@ -221,15 +255,30 @@ class CoursesTest(BaseTest):
             'professor_id': 1,
             'first_name': 'Nakul',
             'last_name': 'Verma',
-            'name': 'Computer Science',
             'department_id': 1,
-        },
-            {
+            'name': 'Computer Science',
+            'badge_id': 1,
+        }, {
             'professor_id': 1,
             'first_name': 'Nakul',
             'last_name': 'Verma',
-            'name': 'Mathematics',
             'department_id': 3,
+            'name': 'Mathematics',
+            'badge_id': 1,
+        }, {
+            'professor_id': 1,
+            'first_name': 'Nakul',
+            'last_name': 'Verma',
+            'department_id': 1,
+            'name': 'Computer Science',
+            'badge_id': 2,
+        }, {
+            'professor_id': 1,
+            'first_name': 'Nakul',
+            'last_name': 'Verma',
+            'department_id': 3,
+            'name': 'Mathematics',
+            'badge_id': 2,
         }]
         mock_load_review_highlight.return_value = []
         expected_res = {
@@ -248,7 +297,8 @@ class CoursesTest(BaseTest):
                     }, {
                         'professorDepartmentId': 3,
                         'professorDepartmentName': 'Mathematics'
-                    }]
+                    }],
+                    'badges': [1, 2],
                 }]
             },
             'courseReviewHighlight': []

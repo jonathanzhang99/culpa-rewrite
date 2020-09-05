@@ -38,6 +38,14 @@ Object {
                 Nakul Verma
               </span>
             </a>
+            <img
+              class="ui avatar left spaced image"
+              src="gold-nugget.svg"
+            />
+            <img
+              class="ui avatar left spaced image"
+              src="silver-nugget.svg"
+            />
           </div>
           <div
             class="ten wide column"
@@ -135,6 +143,14 @@ Object {
               Nakul Verma
             </span>
           </a>
+          <img
+            class="ui avatar left spaced image"
+            src="gold-nugget.svg"
+          />
+          <img
+            class="ui avatar left spaced image"
+            src="silver-nugget.svg"
+          />
         </div>
         <div
           class="ten wide column"
@@ -595,6 +611,14 @@ Object {
                 Nakul Verma
               </span>
             </a>
+            <img
+              class="ui avatar left spaced image"
+              src="gold-nugget.svg"
+            />
+            <img
+              class="ui avatar left spaced image"
+              src="silver-nugget.svg"
+            />
           </div>
           <div
             class="ten wide column"
@@ -658,6 +682,14 @@ Object {
               Nakul Verma
             </span>
           </a>
+          <img
+            class="ui avatar left spaced image"
+            src="gold-nugget.svg"
+          />
+          <img
+            class="ui avatar left spaced image"
+            src="silver-nugget.svg"
+          />
         </div>
         <div
           class="ten wide column"

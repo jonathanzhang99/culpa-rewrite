@@ -86,11 +86,13 @@ class DepartmentsTest(BaseTest):
         mock_professors.return_value = [{
             'professor_id': 1,
             'first_name': 'Lydia',
-            'last_name': 'Chilton'
+            'last_name': 'Chilton',
+            'badge_id': None,
         }, {
             'professor_id': 2,
             'first_name': 'Nakul',
-            'last_name': 'Verma'
+            'last_name': 'Verma',
+            'badge_id': 1,
         }]
         expected_res = {
             'departmentName': 'Computer Science',
@@ -107,11 +109,13 @@ class DepartmentsTest(BaseTest):
                 {
                     'professorId': 1,
                     'firstName': 'Lydia',
-                    'lastName': 'Chilton'
+                    'lastName': 'Chilton',
+                    'badges': [],
                 }, {
                     'professorId': 2,
                     'firstName': 'Nakul',
-                    'lastName': 'Verma'
+                    'lastName': 'Verma',
+                    'badges': [1]
                 }
             ]
         }
