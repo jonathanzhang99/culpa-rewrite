@@ -9,7 +9,7 @@ from pypika.terms import AnalyticFunction
 
 from api.data import db
 from api.data.common import course, course_professor, flag, \
-    professor, review, vote
+    professor, review, vote, union_
 
 DateDiff = CustomFunction('DATEDIFF', ['start_date', 'end_date'])
 
@@ -251,7 +251,7 @@ def get_single_review(review_id, ip):
     return cur.fetchone()
 
 
-def get_course_review_summary(
+def load_review_highlight(
     query_prefix,
     ip
 ):
@@ -309,12 +309,10 @@ def get_course_review_summary(
         vote_count('agree'), order=Order.desc
     ).limit(1)
 
-    # Pypika does not support UNION between SELECT's that include ORDER BY
-    query_final = f'''
-    ({positive_review_query.get_sql()})
-    UNION
-    ({negative_review_query.get_sql()})
-    '''
+    query_final = union_(
+        positive_review_query.get_sql(),
+        negative_review_query.get_sql()
+    )
 
     cur.execute(query_final)
     return cur.fetchall()

@@ -8,16 +8,30 @@ from api.tests import BaseTest
 
 
 class ReviewTest(BaseTest):
+    PROFESSOR_ID = 1
+    PROFESSOR_TITLE = 'Nakul Verma'
+    COURSE_ID = 2
+    COURSE_PROFESSOR_ID = 3
+    CONTENT = 'perceptrons! svms! neural networks! HMMs!'
+    WORKLOAD = 'death by homework or teammates'
+    EVALUATION = 5
+    IP_ADDRESS = '127.0.0.1'
+    BASE_REVIEW_DATA = {
+        'content': CONTENT,
+        'workload': WORKLOAD,
+        'evaluation': EVALUATION,
+    }
+
     @mock.patch('api.blueprints.review.insert_review')
     def test_insert_valid_review(self, mock_insert_review):
         mock_insert_review.return_value = 0
 
-        review_data = {
-            'course': 99,
-            'content': 'perceptrons! svms! neural networks! HMMs!',
-            'workload': 'death by homework or teammates',
-            'evaluation': 5,
-        }
+        review_data = dict(self.BASE_REVIEW_DATA,
+                           professor={
+                               'title': self.PROFESSOR_TITLE,
+                               'id': self.PROFESSOR_ID
+                           },
+                           course=self.COURSE_PROFESSOR_ID)
 
         expected_res = {'reviewId': 0}
 
@@ -25,18 +39,19 @@ class ReviewTest(BaseTest):
                                json=review_data,
                                environ_base={'REMOTE_ADDR': '127.0.0.1'})
 
+        mock_insert_review.assert_called_with(self.COURSE_PROFESSOR_ID,
+                                              self.CONTENT,
+                                              self.WORKLOAD,
+                                              self.EVALUATION,
+                                              self.IP_ADDRESS)
         self.assertEqual(expected_res, res.json)
 
     @mock.patch('api.blueprints.review.insert_review')
     def test_insert_invalid_review(self, mock_insert_review):
         mock_insert_review.return_value = 0
 
-        review_data = {
-            'course': 99,
-            'content': 'perceptrons! svms! neural networks! HMMs!',
-            'workload': 'death by homework or teammates',
-            'evaluation': 5,
-        }
+        review_data = dict(self.BASE_REVIEW_DATA,
+                           course=self.COURSE_PROFESSOR_ID)
 
         expected_error = {'error': 'Missing inputs'}
         for removed_key in review_data.keys():
@@ -56,13 +71,12 @@ class ReviewTest(BaseTest):
     @mock.patch('api.blueprints.review.insert_review',
                 side_effect=IntegrityError)
     def test_insert_invalid_review_db_error(self, mock_insert_review):
-        review_data = {
-            'course': 99,
-            'content': 'perceptrons! svms! neural networks! HMMs!',
-            'workload': 'death by homework or teammates',
-            'evaluation': 5,
-        }
-
+        review_data = dict(self.BASE_REVIEW_DATA,
+                           professor={
+                               'title': self.PROFESSOR_TITLE,
+                               'id': self.PROFESSOR_ID
+                           },
+                           course=self.COURSE_PROFESSOR_ID)
         expected_error = {'error': 'Invalid data'}
 
         res = self.client.post('/api/review/submit',
@@ -71,6 +85,185 @@ class ReviewTest(BaseTest):
 
         self.assertEqual(res.status_code, 400)
         self.assertEqual(expected_error, res.json)
+
+    @mock.patch('api.blueprints.review.load_professor_basic_info_by_uni')
+    @mock.patch('api.blueprints.review.add_course_professor')
+    @mock.patch('api.blueprints.review.insert_review')
+    def test_insert_new_professor(self,
+                                  mock_insert_review,
+                                  mock_add_course_professor,
+                                  mock_load_professor_basic_info_by_uni):
+        mock_insert_review.return_value = 0
+        mock_add_course_professor.return_value = self.COURSE_PROFESSOR_ID
+
+        # note that the actual function returns a list of dictionaries
+        mock_load_professor_basic_info_by_uni.return_value = False
+
+        new_professor_data = {
+            'first_name': 'Nakul',
+            'last_name': 'Verma',
+            'uni': 'nv2274',
+            'department': 1,
+            'course': {'title': 'Machine Learning', 'id': self.COURSE_ID}
+        }
+        review_data = dict(self.BASE_REVIEW_DATA,
+                           newProfessor=new_professor_data)
+
+        res = self.client.post('/api/review/submit',
+                               json=review_data,
+                               environ_base={'REMOTE_ADDR': self.IP_ADDRESS})
+
+        mock_load_professor_basic_info_by_uni.assert_called_with('nv2274')
+        mock_add_course_professor.assert_called_with(new_professor_data,
+                                                     self.COURSE_ID)
+        mock_insert_review.assert_called_with(self.COURSE_PROFESSOR_ID,
+                                              self.CONTENT,
+                                              self.WORKLOAD,
+                                              self.EVALUATION,
+                                              self.IP_ADDRESS)
+        expected_res = {'reviewId': 0}
+        self.assertEqual(expected_res, res.json)
+
+    @mock.patch('api.blueprints.review.load_professor_basic_info_by_uni')
+    @mock.patch('api.blueprints.review.add_course_professor')
+    @mock.patch('api.blueprints.review.insert_review')
+    def test_insert_new_professor_and_new_course(
+            self,
+            mock_insert_review,
+            mock_add_course_professor,
+            mock_load_professor_basic_info_by_uni):
+        mock_insert_review.return_value = 0
+        mock_add_course_professor.return_value = self.COURSE_PROFESSOR_ID
+
+        # note that the actual function returns a list of dictionaries
+        mock_load_professor_basic_info_by_uni.return_value = False
+
+        new_course_data = {
+            'name': 'Machine Learning',
+            'code': 'COMS 4771',
+            'department': 99
+        }
+
+        new_professor_data = {
+            'first_name': 'Nakul',
+            'last_name': 'Verma',
+            'uni': 'nv2274',
+            'department': 1,
+            'course': {'title': 'Add new course dialog', 'id': -1}
+        }
+        review_data = dict(self.BASE_REVIEW_DATA,
+                           newProfessor=new_professor_data,
+                           newCourse=new_course_data)
+
+        res = self.client.post('/api/review/submit',
+                               json=review_data,
+                               environ_base={'REMOTE_ADDR': self.IP_ADDRESS})
+
+        mock_load_professor_basic_info_by_uni.assert_called_with('nv2274')
+        mock_add_course_professor.assert_called_with(new_professor_data,
+                                                     new_course_data)
+        mock_insert_review.assert_called_with(self.COURSE_PROFESSOR_ID,
+                                              self.CONTENT,
+                                              self.WORKLOAD,
+                                              self.EVALUATION,
+                                              self.IP_ADDRESS)
+        expected_res = {'reviewId': 0}
+        self.assertEqual(expected_res, res.json)
+
+    @mock.patch('api.blueprints.review.add_course_professor')
+    @mock.patch('api.blueprints.review.insert_review')
+    def test_add_existing_course_and_professor(self,
+                                               mock_insert_review,
+                                               mock_add_course_professor):
+        mock_insert_review.return_value = 0
+        mock_add_course_professor.return_value = self.COURSE_PROFESSOR_ID
+
+        new_course_data = {
+            'search': {'title': 'Machine Learning', 'id': self.COURSE_ID}
+        }
+
+        review_data = dict(self.BASE_REVIEW_DATA,
+                           professor={
+                               'title': self.PROFESSOR_TITLE,
+                               'id': self.PROFESSOR_ID
+                           },
+                           newCourse=new_course_data)
+
+        res = self.client.post('/api/review/submit',
+                               json=review_data,
+                               environ_base={'REMOTE_ADDR': self.IP_ADDRESS})
+
+        mock_add_course_professor.assert_called_with(self.PROFESSOR_ID,
+                                                     self.COURSE_ID)
+        mock_insert_review.assert_called_with(self.COURSE_PROFESSOR_ID,
+                                              self.CONTENT,
+                                              self.WORKLOAD,
+                                              self.EVALUATION,
+                                              self.IP_ADDRESS)
+        expected_res = {'reviewId': 0}
+        self.assertEqual(expected_res, res.json)
+
+    @mock.patch('api.blueprints.review.add_course_professor')
+    @mock.patch('api.blueprints.review.insert_review')
+    def test_add_new_course_and_existing_professor(self,
+                                                   mock_insert_review,
+                                                   mock_add_course_professor):
+        mock_insert_review.return_value = 0
+        mock_add_course_professor.return_value = self.COURSE_PROFESSOR_ID
+
+        new_course_data = {
+            'name': 'Machine Learning',
+            'code': 'COMS 4771',
+            'department': 99
+        }
+
+        review_data = dict(self.BASE_REVIEW_DATA,
+                           professor={
+                               'title': self.PROFESSOR_TITLE,
+                               'id': self.PROFESSOR_ID
+                           },
+                           newCourse=new_course_data)
+
+        res = self.client.post('/api/review/submit',
+                               json=review_data,
+                               environ_base={'REMOTE_ADDR': self.IP_ADDRESS})
+
+        mock_add_course_professor.assert_called_with(self.PROFESSOR_ID,
+                                                     new_course_data)
+        mock_insert_review.assert_called_with(self.COURSE_PROFESSOR_ID,
+                                              self.CONTENT,
+                                              self.WORKLOAD,
+                                              self.EVALUATION,
+                                              self.IP_ADDRESS)
+        expected_res = {'reviewId': 0}
+        self.assertEqual(expected_res, res.json)
+
+    @mock.patch('api.blueprints.review.load_professor_basic_info_by_uni')
+    def test_add_existing_professor_throws_error(
+            self,
+            mock_load_professor_basic_info_by_uni):
+        mock_load_professor_basic_info_by_uni.return_value = True
+
+        new_professor_data = {
+            'first_name': 'Nakul',
+            'last_name': 'Verma',
+            'uni': 'nv2274',
+            'department': 1,
+            'course': {'title': 'Machine Learning', 'id': self.COURSE_ID}
+        }
+
+        review_data = dict(self.BASE_REVIEW_DATA,
+                           newProfessor=new_professor_data)
+
+        res = self.client.post('/api/review/submit',
+                               json=review_data,
+                               environ_base={'REMOTE_ADDR': self.IP_ADDRESS})
+
+        expected_res = {
+            'error': 'Professor already exists. Try searching by UNI.'
+        }
+        self.assertEqual(res.status_code, 400)
+        self.assertEqual(expected_res, res.json)
 
     def test_parse_review(self):
         types = [{

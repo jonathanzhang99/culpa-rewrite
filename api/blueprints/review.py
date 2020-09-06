@@ -1,10 +1,13 @@
 import flask
 from datetime import datetime, timedelta
 
+from api.data.dataloaders.professors_loader import \
+    load_professor_basic_info_by_uni
 from api.data.dataloaders.reviews_loader import get_reviews_with_query_prefix,\
     prepare_course_query_prefix, prepare_professor_query_prefix, \
     get_single_review
-from api.data.datawriters.reviews_writer import insert_review
+from api.data.datawriters.reviews_writer import add_course_professor, \
+    insert_review
 
 review_blueprint = flask.Blueprint('review_blueprint', __name__)
 
@@ -81,13 +84,49 @@ def submit_review():
     request_json = flask.request.get_json()
 
     ip_addr = flask.request.remote_addr
+
+    new_professor = request_json.get('newProfessor')
+    new_course = request_json.get('newCourse')
+
+    new_course_professor_id = None
+
+    # If a new professor is submitted, then either 1) an EXISTING course is
+    # selected via course id in `new_professor['course']['id']` or 2) a NEW
+    # course is also submitted.
+    if new_professor:
+        uni = request_json['newProfessor']['uni']
+        if load_professor_basic_info_by_uni(uni):
+            return \
+                {'error': 'Professor already exists. Try searching by UNI.'}, \
+                400
+
+        course = new_course or new_professor['course']['id']
+        new_course_professor_id = add_course_professor(
+            new_professor,
+            course
+        )
+
+    # If no new professor is submitted but a new course is submitted, then
+    # the professor id must be defined.
+    elif new_course:
+        professor_id = request_json['professor']['id']
+
+        if new_course.get('search'):
+            new_course = new_course['search']['id']
+
+        new_course_professor_id = add_course_professor(
+            professor_id,
+            new_course
+        )
+
+    # new_course_professor_id is defined either by db insertions OR provided
+    # from the frontend.
     try:
         content = request_json['content']
         workload = request_json['workload']
         evaluation = request_json['evaluation']
 
-        # the frontend name is `course` to keep consistency.
-        course_professor_id = request_json['course']
+        course_professor_id = new_course_professor_id or request_json['course']
     except KeyError:
         return {'error': 'Missing inputs'}, 400
 

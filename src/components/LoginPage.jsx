@@ -2,8 +2,8 @@ import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
 
 import { AuthContext } from "components/common/Authentication";
-import Form from "components/common/Form";
-import { TextInput, PasswordInput, Submit } from "components/common/Inputs";
+import Form, { Submit } from "components/common/Form";
+import { TextInput, PasswordInput } from "components/common/Inputs";
 
 export default function LoginPage() {
   const history = useHistory();

@@ -6,7 +6,7 @@ from api.tests.data_tests.common import setup_votes, setup_reviews_and_flags,\
     setup_for_course_test
 from api.data.dataloaders.reviews_loader import get_reviews_with_query_prefix,\
     prepare_course_query_prefix, prepare_professor_query_prefix,\
-    get_single_review, get_course_review_summary
+    get_single_review, load_review_highlight
 
 
 class ReviewsLoaderTest(LoadersWritersBaseTest):
@@ -261,7 +261,7 @@ class ReviewsLoaderTest(LoadersWritersBaseTest):
             12345, '123.456.78.910'
         ))
 
-    def test_get_course_review_summary(self):
+    def test_load_review_highlight(self):
         '''
         Test cases:
             1. Most common -> most positive/negative review
@@ -350,6 +350,6 @@ class ReviewsLoaderTest(LoadersWritersBaseTest):
         ip = ''
         for test_case in test_cases:
             with self.subTest(test_case):
-                res = get_course_review_summary(
+                res = load_review_highlight(
                     prepare_course_query_prefix(test_case['course_id']), ip)
                 self.assertEqual(res, test_case['expected_res'])
