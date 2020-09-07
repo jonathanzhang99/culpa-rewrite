@@ -12,7 +12,7 @@ import useDataFetch from "components/common/useDataFetch";
 import ReviewCard from "components/reviews/ReviewCard";
 import ReviewSection from "components/reviews/ReviewSection";
 
-const defaultProps = {
+const defaultPropsProfessorCourses = {
   courses: [],
 };
 
@@ -127,27 +127,16 @@ const propTypesReview = {
 };
 
 function ProfessorReviewCard({ review }) {
-  const {
-    reviewType,
-    reviewHeader,
-    votes,
-    workload,
-    submissionDate,
-    reviewId,
-    deprecated,
-    content,
-  } = review;
-
   return (
     <ReviewCard
-      content={content}
-      deprecated={deprecated}
-      reviewHeader={reviewHeader}
-      reviewId={reviewId}
-      reviewType={reviewType}
-      submissionDate={submissionDate}
-      votes={votes}
-      workload={workload}
+      content={review.content}
+      deprecated={review.deprecated}
+      reviewHeader={review.reviewHeader}
+      reviewId={review.reviewId}
+      reviewType={review.reviewType}
+      submissionDate={review.submissionDate}
+      votes={review.votes}
+      workload={review.workload}
     />
   );
 }
@@ -206,6 +195,7 @@ function ProfessorReviewHighlight({ professorReviewHighlight }) {
       <DoubleProfessorReviewHighlight reviews={professorReviewHighlight} />
     );
   }
+  return <></>
 }
 
 export default function ProfessorInfoPage() {
@@ -266,12 +256,12 @@ export default function ProfessorInfoPage() {
 }
 
 ProfessorCourseList.propTypes = propTypesProfessorCourses;
-ProfessorCourseList.defaultProps = defaultProps;
+ProfessorCourseList.defaultProps = defaultPropsProfessorCourses;
 
 ReviewProfessorButton.propTypes = propTypesReviewProfessorButton;
 
 ProfessorSummary.propTypes = propTypesProfessorSummary;
-ProfessorSummary.defaultProps = defaultProps;
+ProfessorSummary.defaultProps = defaultPropsProfessorCourses;
 
 ProfessorReviewCard.propTypes = propTypesReview;
 
