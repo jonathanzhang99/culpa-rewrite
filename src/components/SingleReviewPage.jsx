@@ -32,13 +32,13 @@ export function ThankYouTextBox({ reviewId }) {
         <span style={{color:"#004E8D"}}> Review ID: {reviewId} </span>
         in case you need to refer to your submission in the future.
       </Header>
-      <Link to={"/review/submit"}><Button
+      <Link to="/review/submit"><Button
         color="orange" 
         size="medium"
       >
         WRITE ANOTHER REVIEW
       </Button></Link>
-      <Link to={"/"}><Button
+      <Link to="/"><Button
         color="blue"
         size="medium"
       >

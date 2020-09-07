@@ -283,7 +283,7 @@ export default function ReviewSection({initReviews, pageType, id, associatedEnti
             />
           )})}
         </Grid.Row>
-        <Grid.Row centered key={3} className="review-section-show-more-grid-row">
+        <Grid.Row centered className="review-section-show-more-grid-row" key={3}>
           <Button 
             fluid 
             name="showMoreButton" 
@@ -291,8 +291,8 @@ export default function ReviewSection({initReviews, pageType, id, associatedEnti
             onClick={onClickPagButton}
           >
             Show more<Icon 
-              name="arrow down"
               className="review-section-show-more-icon"
+              name="arrow down"
             />
           </Button>
         </Grid.Row>
