@@ -28,12 +28,24 @@ Object {
           </span>
           in case you need to refer to your submission in the future.
         </h3>
-        <button
-          class="ui orange medium button"
-          style="color: black;"
+        <a
+          href="/review/submit"
         >
-          WRITE ANOTHER REVIEW
-        </button>
+          <button
+            class="ui orange medium button"
+          >
+            WRITE ANOTHER REVIEW
+          </button>
+        </a>
+        <a
+          href="/"
+        >
+          <button
+            class="ui blue medium button"
+          >
+            BACK TO HOMEPAGE
+          </button>
+        </a>
       </div>
     </div>
   </body>,
@@ -61,12 +73,24 @@ Object {
         </span>
         in case you need to refer to your submission in the future.
       </h3>
-      <button
-        class="ui orange medium button"
-        style="color: black;"
+      <a
+        href="/review/submit"
       >
-        WRITE ANOTHER REVIEW
-      </button>
+        <button
+          class="ui orange medium button"
+        >
+          WRITE ANOTHER REVIEW
+        </button>
+      </a>
+      <a
+        href="/"
+      >
+        <button
+          class="ui blue medium button"
+        >
+          BACK TO HOMEPAGE
+        </button>
+      </a>
     </div>
   </div>,
   "debug": [Function],

@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import React from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { Container, Header, Button } from "semantic-ui-react"
 
 import ErrorComponent from "components/common/ErrorComponent";
@@ -13,10 +13,6 @@ const propTypesThankYouTextBox = {
 };
 
 export function ThankYouTextBox({ reviewId }) {
-  const history = useHistory();
-  const onClickWriteAnotherReview = () => {
-    history.push("/review/submit")
-  }
 
   return (
     <Container
@@ -36,14 +32,18 @@ export function ThankYouTextBox({ reviewId }) {
         <span style={{color:"#004E8D"}}> Review ID: {reviewId} </span>
         in case you need to refer to your submission in the future.
       </Header>
-      <Button
+      <Link to={"/review/submit"}><Button
         color="orange" 
         size="medium"
-        style={{color:"black"}}
-        onClick={onClickWriteAnotherReview}
       >
         WRITE ANOTHER REVIEW
-      </Button>
+      </Button></Link>
+      <Link to={"/"}><Button
+        color="blue"
+        size="medium"
+      >
+        BACK TO HOMEPAGE
+      </Button></Link>
     </Container>
   )
 };
@@ -57,7 +57,7 @@ export default function SingleReviewPage() {
     data: { review, flag },
     isLoading,
     isError,
-  } = useDataFetch(`/api/review/get/${reviewId}`, {
+  } = useDataFetch(`/api/review/${reviewId}`, {
       review: {},
       flag: ''
   })

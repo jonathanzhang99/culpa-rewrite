@@ -155,12 +155,11 @@ export default function CreateReviewPage() {
       return { error: err };
     }
   };
-
-  const onSubmitReviewSuccess = () => {
-    // TODO: redirect to the Review page
-    history.push(`/`);
-  };
-
+  
+  const onSubmitReviewSuccess = (res) => {
+    history.push(`/review/${res.reviewId}`);
+  }
+  
   /* * * * * * * * * * * * * * * * *
    * Professor Search methods      *
    * * * * * * * * * * * * * * * * */
@@ -247,10 +246,7 @@ export default function CreateReviewPage() {
       : dispatch({ type: SELECT_NEW_COURSE });
   };
 
-  const onSubmitReviewSuccess = (res) => {
-    history.push(`/review/${res.reviewId}`);
-  
-    const onCourseSearchChange = () => {
+  const onCourseSearchChange = () => {
     dispatch({ type: COURSE_SEARCH_CHANGE });
   };
 

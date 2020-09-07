@@ -293,7 +293,7 @@ class ReviewTest(BaseTest):
                 'courseCode': '12345'
             }
         }, {
-            'review_type': 'full',
+            'review_type': 'all',
             'header_data': {
                 'course_id': 1234,
                 'course_name': 'test course',
@@ -476,25 +476,38 @@ class ReviewTest(BaseTest):
         course_query_prefix_mock.assert_not_called()
         professor_query_prefix_mock.assert_not_called()
 
-    @mock.patch("api.blueprints.review.get_single_review")
+    @mock.patch("api.blueprints.review.load_review")
     @mock.patch("api.blueprints.review.parse_review")
     def test_get_single_review_card_data(
         self,
         parse_review_mock,
-        get_single_review_mock
+        load_review_mock
     ):
-        test_review = {
-            'flag_type': 'test flag',
-            'other_fields': 'test test test'
-        }
-        get_single_review_mock.return_value = test_review
-        parse_review_mock.return_value = 'test return value'
         review_id = 1
+        cases = [{
+            'flag': 'approved',
+            'review': 'test return value',
+            'review_json': 'test return value'
+        }, {
+            'flag': 'libel',
+            'review': 'test return value',
+            'review_json': {'reviewId': review_id}
+        }, {
+            'flag': 'pending',
+            'review': 'test return value',
+            'review_json': {'reviewId': review_id}
+        }]
 
-        res = self.client.get(f"/api/review/get/{review_id}")
+        for case in cases:
+            with self.subTest(case):
+                load_review_mock.return_value = {
+                    'flag_type': case['flag'],
+                    'other_fields': case['review']
+                }
+                parse_review_mock.return_value = case['review']
+                res = self.client.get(f"/api/review/{review_id}")
 
-        parse_review_mock.assert_called_with(test_review, 'full')
-        self.assertEqual(res.json, {
-            'flag': test_review['flag_type'],
-            'review': 'test return value'
-        })
+                self.assertEqual(res.json, {
+                    'flag': case['flag'],
+                    'review': case['review_json']
+                })

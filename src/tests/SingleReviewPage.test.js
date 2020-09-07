@@ -12,7 +12,7 @@ describe("single review page", () => {
       flag: "approved",
       review: {
         reviewId: 1,
-        reviewType: "full",
+        reviewType: "all",
         reviewHeader: {
           course: {
             courseId: 1,
@@ -95,7 +95,9 @@ describe("single review page", () => {
 describe("Thank you text box", () => {
   test("snapshot test", () => {
     const snapshot = render(
-      <ThankYouTextBox reviewId={12345}/>
+      <MemoryRouter>
+        <ThankYouTextBox reviewId={12345}/>
+      </MemoryRouter>
     )
     expect(snapshot).toMatchSnapshot()
   })

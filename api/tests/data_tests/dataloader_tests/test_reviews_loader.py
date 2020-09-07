@@ -6,7 +6,7 @@ from api.tests.data_tests.common import setup_votes, setup_reviews_and_flags,\
     setup_for_course_test
 from api.data.dataloaders.reviews_loader import get_reviews_with_query_prefix,\
     prepare_course_query_prefix, prepare_professor_query_prefix,\
-    get_single_review, load_review_highlight
+    load_review, load_review_highlight
 
 
 class ReviewsLoaderTest(LoadersWritersBaseTest):
@@ -206,7 +206,7 @@ class ReviewsLoaderTest(LoadersWritersBaseTest):
                     test_case['expected_review_ids']
                 )
 
-    def test_get_single_review(self):
+    def test_load_review(self):
         cases = [{
             'review_id': 2,
             'content': 'demo content 2',
@@ -253,11 +253,11 @@ class ReviewsLoaderTest(LoadersWritersBaseTest):
 
         for case in cases:
             with self.subTest(case):
-                res = get_single_review(case['review_id'], ip)
+                res = load_review(case['review_id'], ip)
                 self.assertEqual(res, case)
 
-    def test_get_single_review_invalid_id(self):
-        self.assertEqual(None, get_single_review(
+    def test_load_review_invalid_id(self):
+        self.assertEqual(None, load_review(
             12345, '123.456.78.910'
         ))
 

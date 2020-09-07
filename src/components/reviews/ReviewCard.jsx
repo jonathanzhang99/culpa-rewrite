@@ -169,7 +169,7 @@ export function VotesContainer({ reviewId, votes }) {
 VotesContainer.propTypes = propTypesVotesContainer;
 
 const propTypesReviewCard = {
-  reviewType: PropTypes.oneOf(["professor", "course", "full"]).isRequired,
+  reviewType: PropTypes.oneOf(["professor", "course", "all"]).isRequired,
   reviewHeader: PropTypes.oneOfType([
     PropTypes.shape({
       courseId: PropTypes.number.isRequired,
@@ -256,7 +256,7 @@ export default function ReviewCard({
                   lastName={reviewHeader.profLastName}
                 />
               )}
-              {reviewType === "full" && (
+              {reviewType === "all" && (
                 <div>
                   <ProfessorDisplayName
                     as="header"

@@ -77,12 +77,15 @@ def prepare_course_query_prefix(course_id, filter_list=None):
     ]
 
 
-def prepare_full_query_prefix():
-    q = Query.from_(course_professor).join(course).on(
-        course.course_id == course_professor.course_id
-    ).join(professor).on(
-        professor.professor_id == course_professor.professor_id
-    )
+def prepare_all_query_prefix():
+    q = Query \
+            .from_(course_professor) \
+            .join(course) \
+            .on(
+                course.course_id == course_professor.course_id) \
+            .join(professor) \
+            .on(
+                professor.professor_id == course_professor.professor_id)
     return q, [
         course.course_id,
         course.call_number.as_('course_call_number'),
@@ -206,8 +209,8 @@ def get_reviews_with_query_prefix(
     return cur.fetchall()
 
 
-def get_single_review(review_id, ip):
-    q, header_fields = prepare_full_query_prefix()
+def load_review(review_id, ip):
+    q, header_fields = prepare_all_query_prefix()
 
     q = q.join(review).on(
         review.course_professor_id == course_professor.course_professor_id

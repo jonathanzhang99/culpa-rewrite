@@ -5,7 +5,7 @@ from api.data.dataloaders.professors_loader import \
     load_professor_basic_info_by_uni
 from api.data.dataloaders.reviews_loader import get_reviews_with_query_prefix,\
     prepare_course_query_prefix, prepare_professor_query_prefix, \
-    get_single_review
+    load_review
 from api.data.datawriters.reviews_writer import add_course_professor, \
     insert_review
 
@@ -36,7 +36,7 @@ def parse_review(review, review_type):
             'courseName': review['name'],
             'courseCode': review['call_number']
         }
-    else:
+    elif review_type == "all":
         review_header = {
             'professor': {
                 'profId': review['prof_id'],
@@ -50,6 +50,8 @@ def parse_review(review, review_type):
                 'courseCode': review['course_call_number']
             }
         }
+    else:
+        raise Exception("invalid review type for parsing")
 
     return {
             'reviewType': review_type,
@@ -210,12 +212,16 @@ def get_reviews(page_type, id):
     return {'reviews': json}
 
 
-@review_blueprint.route('/get/<int:review_id>', methods=['GET'])
+@review_blueprint.route('/<int:review_id>', methods=['GET'])
 def get_single_review_card_data(review_id):
     ip = flask.request.remote_addr
-    review = get_single_review(review_id, ip)
+    review = load_review(review_id, ip)
+    json = parse_review(review, 'all') \
+        if review['flag_type'] == "approved" else {
+            'reviewId': review_id
+        }
 
     return {
         'flag': review['flag_type'],
-        'review': parse_review(review, 'full')
+        'review': json
     }

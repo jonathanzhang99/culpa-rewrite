@@ -517,8 +517,7 @@ Object {
             </div>
           </div>
           <div
-            class="centered row"
-            style="margin-bottom: 50px;"
+            class="centered row review-section-show-more-grid-row"
           >
             <button
               class="ui large fluid button"
@@ -527,8 +526,7 @@ Object {
               Show more
               <i
                 aria-hidden="true"
-                class="arrow down icon"
-                style="margin-left: 5px;"
+                class="arrow down icon review-section-show-more-icon"
               />
             </button>
           </div>
@@ -1049,8 +1047,7 @@ Object {
           </div>
         </div>
         <div
-          class="centered row"
-          style="margin-bottom: 50px;"
+          class="centered row review-section-show-more-grid-row"
         >
           <button
             class="ui large fluid button"
@@ -1059,8 +1056,7 @@ Object {
             Show more
             <i
               aria-hidden="true"
-              class="arrow down icon"
-              style="margin-left: 5px;"
+              class="arrow down icon review-section-show-more-icon"
             />
           </button>
         </div>
@@ -1638,8 +1634,7 @@ Object {
             </div>
           </div>
           <div
-            class="centered row"
-            style="margin-bottom: 50px;"
+            class="centered row review-section-show-more-grid-row"
           >
             <button
               class="ui large fluid button"
@@ -1648,8 +1643,7 @@ Object {
               Show more
               <i
                 aria-hidden="true"
-                class="arrow down icon"
-                style="margin-left: 5px;"
+                class="arrow down icon review-section-show-more-icon"
               />
             </button>
           </div>
@@ -2170,8 +2164,7 @@ Object {
           </div>
         </div>
         <div
-          class="centered row"
-          style="margin-bottom: 50px;"
+          class="centered row review-section-show-more-grid-row"
         >
           <button
             class="ui large fluid button"
@@ -2180,8 +2173,7 @@ Object {
             Show more
             <i
               aria-hidden="true"
-              class="arrow down icon"
-              style="margin-left: 5px;"
+              class="arrow down icon review-section-show-more-icon"
             />
           </button>
         </div>
