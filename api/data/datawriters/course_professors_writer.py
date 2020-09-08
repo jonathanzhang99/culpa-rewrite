@@ -3,8 +3,9 @@ from pypika import Criterion, MySQLQuery as Query
 from api.data import db
 from api.data.common import course_professor, PENDING, REJECTED
 from api.data.dataloaders.professors_loader import \
-    load_unrejected_professor_by_uni
-from api.data.datawriters.professors_writer import add_professor
+    load_any_status_professor_by_uni
+from api.data.datawriters.professors_writer import add_professor, \
+    update_professor_status_by_id
 from api.data.datawriters.courses_writer import add_course
 
 
@@ -61,18 +62,26 @@ def add_course_professor(professor_input, course_input):
     # match an existing professor that is either PENDING or APPROVED. If
     # a record is found, use the existing professor_id. If a new professor
     # has previously been rejected, then also create a new record.
-    #
-    # Create on REJECTED may cause unintended consequences in the future!
     if type(professor_input) is dict:
         uni = professor_input.get('uni')
-        existing_professor = load_unrejected_professor_by_uni(uni)
-        professor_id = existing_professor[0]['professor_id'] \
-            if existing_professor \
-            else add_professor(professor_input.get('first_name'),
-                               professor_input.get('last_name'),
-                               uni,
-                               professor_input.get('department'))
+        existing_professor = load_any_status_professor_by_uni(uni)
 
+        if existing_professor:
+            professor_id = existing_professor[0]['professor_id']
+            if existing_professor.get('status') == REJECTED:
+                update_professor_status_by_id(
+                    existing_professor[0]['professor_id'],
+                    PENDING
+                )
+        else:
+            professor_id = add_professor(professor_input.get('first_name'),
+                                         professor_input.get('last_name'),
+                                         uni,
+                                         professor_input.get('department'))
+
+    # Courses currently do not have the integrity checks given to professors
+    # since it is difficult to use the Course Code to guarantee the uniqueness
+    # of a code.
     if type(course_input) is dict:
         course_id = add_course(course_input.get('name'),
                                course_input.get('department'),

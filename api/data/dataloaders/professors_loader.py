@@ -2,7 +2,7 @@ from pypika import Criterion, MySQLQuery as Query, Order
 
 from api.data import db
 from api.data.common import course, course_professor, department, \
-  department_professor, professor, Match, APPROVED, REJECTED
+  department_professor, professor, Match, APPROVED
 
 
 # TODO: This method is temporary to test search functionality
@@ -21,6 +21,16 @@ def get_all_professors():
 
     cur.execute(query)
     return cur.fetchall()
+
+
+# TODO: Change professor loaders to be more generic:
+# Private generic functions:
+#   _load_professor_by_id(professor_id, [statuses])
+#   _load_professor_by_uni(professor_uni, [statuses])
+#
+# Public functions (e.g.):
+# def load_approved_professor_by_id(professor_id):
+#   return _load_professor_by_id(professor_id, APPROVED)
 
 
 def load_professor_basic_info_by_id(professor_id):
@@ -60,7 +70,7 @@ def load_professor_basic_info_by_uni(professor_uni):
     return cur.fetchall()
 
 
-def load_unrejected_professor_by_uni(professor_uni):
+def load_any_status_professor_by_uni(professor_uni):
     cur = db.get_cursor()
     query = Query \
         .from_(professor) \
@@ -69,11 +79,9 @@ def load_unrejected_professor_by_uni(professor_uni):
             professor.first_name,
             professor.last_name,
             professor.uni,
+            professor.status,
         ) \
-        .where(Criterion.all([
-            professor.uni == professor_uni,
-            professor.status != REJECTED
-        ])) \
+        .where(professor.uni == professor_uni) \
         .get_sql()
 
     cur.execute(query)

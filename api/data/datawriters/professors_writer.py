@@ -49,3 +49,19 @@ def add_professor(first_name, last_name, uni, department):
 
     cursor.execute(new_professor_department_query)
     return professor_id
+
+
+def update_professor_status_by_id(professor_id, status):
+    '''
+    Updates an existing professor with the given status flag
+    '''
+    cursor = db.get_cursor()
+
+    update_professor_query = Query \
+        .update(professor) \
+        .set(professor.status, PENDING) \
+        .where(professor.professor_id == professor_id) \
+        .get_sql()
+
+    cursor.execute(update_professor_query)
+    return professor_id
