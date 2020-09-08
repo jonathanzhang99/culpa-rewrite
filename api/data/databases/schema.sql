@@ -16,11 +16,12 @@ CREATE TABLE `course` (
     REFERENCES `department` (`department_id`)
 ) ENGINE=InnoDB;
 
+-- TODO: make uni not null
 CREATE TABLE `professor` (
   `professor_id` INT NOT NULL AUTO_INCREMENT,
   `first_name` VARCHAR(45) NULL,
   `last_name` VARCHAR(45) NOT NULL,
-  `uni` VARCHAR(15) NOT NULL UNIQUE,
+  `uni` VARCHAR(15) NULL UNIQUE,
   `status` ENUM('pending', 'approved', 'rejected') NULL,
   FULLTEXT KEY professor_search_index (first_name, last_name, uni),
   PRIMARY KEY (`professor_id`)
