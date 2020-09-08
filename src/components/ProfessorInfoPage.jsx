@@ -19,7 +19,7 @@ const defaultPropsProfessorCourses = {
 const propTypesProfessorCourses = {
   courses: PropTypes.arrayOf(
     PropTypes.shape({
-      courseProfessorId: PropTypes.number.isRequired,
+      courseId: PropTypes.number.isRequired,
       courseName: PropTypes.string.isRequired,
       courseCallNumber: PropTypes.string.isRequired,
     }).isRequired
@@ -30,20 +30,18 @@ function ProfessorCourseList({ courses }) {
   return (
     <>
       <span>Courses: </span>
-      {courses.map(
-        ({ courseProfessorId, courseName, courseCallNumber }, index) => {
-          return (
-            <span key={courseProfessorId}>
-              <CourseDisplayLink
-                courseCallNumber={courseCallNumber}
-                courseId={courseProfessorId}
-                courseName={courseName}
-              />
-              {index !== courses.length - 1 ? ", " : ""}
-            </span>
-          );
-        }
-      )}
+      {courses.map(({ courseId, courseName, courseCallNumber }, index) => {
+        return (
+          <span key={courseId}>
+            <CourseDisplayLink
+              courseCallNumber={courseCallNumber}
+              courseId={courseId}
+              courseName={courseName}
+            />
+            {index !== courses.length - 1 ? ", " : ""}
+          </span>
+        );
+      })}
     </>
   );
 }
@@ -65,7 +63,7 @@ function ReviewProfessorButton({ professorId, firstName, lastName }) {
 const propTypesProfessorSummary = {
   courses: PropTypes.arrayOf(
     PropTypes.shape({
-      courseProfessorId: PropTypes.number.isRequired,
+      courseId: PropTypes.number.isRequired,
       courseName: PropTypes.string.isRequired,
       courseCallNumber: PropTypes.string.isRequired,
     }).isRequired
@@ -103,9 +101,9 @@ export function ProfessorSummary({
 const reviewPropType = PropTypes.shape({
   reviewType: PropTypes.string.isRequired,
   reviewHeader: PropTypes.shape({
-    profId: PropTypes.number.isRequired,
-    profFirstName: PropTypes.string.isRequired,
-    profLastName: PropTypes.string.isRequired,
+    courseId: PropTypes.number.isRequired,
+    courseName: PropTypes.string.isRequired,
+    courseCallNumber: PropTypes.string.isRequired,
   }).isRequired,
   votes: PropTypes.shape({
     initUpvoteCount: PropTypes.number.isRequired,
@@ -192,10 +190,12 @@ function ProfessorReviewHighlight({ professorReviewHighlight }) {
   }
   if (professorReviewHighlight.length === 2) {
     return (
-      <DoubleProfessorReviewHighlight reviews={professorReviewHighlight} />
+      <DoubleProfessorReviewHighlight
+        professorReviewHighlight={professorReviewHighlight}
+      />
     );
   }
-  return <></>
+  return <></>;
 }
 
 export default function ProfessorInfoPage() {

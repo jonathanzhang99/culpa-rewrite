@@ -63,7 +63,7 @@ def load_professor_courses(professor_id):
         .on(
             course_professor.course_id == course.course_id) \
         .select(
-            course_professor.course_professor_id,
+            course.course_id,
             course.name,
             course.call_number) \
         .where(

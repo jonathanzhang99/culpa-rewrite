@@ -18,7 +18,7 @@ def professor_info(professor_id):
 
     courses = load_professor_courses(professor_id)
     courses_json = [{
-        'courseProfessorId': course['course_professor_id'],
+        'courseId': course['course_id'],
         'courseName': course['name'],
         'courseCallNumber': course['call_number']
     } for course in courses]
@@ -56,7 +56,7 @@ def professor_courses(professor_id):
     # TODO: (Sungbin, JZ) change json to conform to frontend props spec
     courses_json = [{
         'text': course['name'],
-        'value': course['course_professor_id'],
+        'value': course['course_id'],
         'key': course['name']
     } for course in courses]
 

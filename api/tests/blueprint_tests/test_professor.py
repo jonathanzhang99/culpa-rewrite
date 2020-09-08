@@ -46,7 +46,7 @@ class ProfessorsTest(BaseTest):
         'reviewHeader': {
             'courseId': 1,
             'courseName': 'Machine Learning',
-            'courseCode': 'COMS 4771'
+            'courseCallNumber': 'COMS 4771'
         },
         'reviewId': 1,
         'reviewType': 'professor',
@@ -68,7 +68,7 @@ class ProfessorsTest(BaseTest):
         'reviewHeader': {
             'courseId': 1,
             'courseName': 'Machine Learning',
-            'courseCode': 'COMS 4771'
+            'courseCallNumber': 'COMS 4771'
         },
         'reviewId': 4,
         'reviewType': 'professor',
@@ -97,11 +97,11 @@ class ProfessorsTest(BaseTest):
             'last_name': 'Verma',
         }]
         mock_professor_courses.return_value = [{
-            'course_professor_id': 1,
+            'course_id': 1,
             'name': 'Machine Learning',
             'call_number': 'COMS 4771'
         }, {
-            'course_professor_id': 2,
+            'course_id': 2,
             'name': 'Advanced Machine Learning',
             'call_number': 'COMS 4774'
         }]
@@ -115,11 +115,11 @@ class ProfessorsTest(BaseTest):
                 'lastName': 'Verma',
                 'courses': [
                     {
-                        'courseProfessorId': 1,
+                        'courseId': 1,
                         'courseName': 'Machine Learning',
                         'courseCallNumber': 'COMS 4771'
                     }, {
-                        'courseProfessorId': 2,
+                        'courseId': 2,
                         'courseName': 'Advanced Machine Learning',
                         'courseCallNumber': 'COMS 4774'
                     }
@@ -147,11 +147,11 @@ class ProfessorsTest(BaseTest):
             'last_name': 'Verma',
         }]
         mock_professor_courses.return_value = [{
-            'course_professor_id': 1,
+            'course_id': 1,
             'name': 'Machine Learning',
             'call_number': 'COMS 4771'
         }, {
-            'course_professor_id': 2,
+            'course_id': 2,
             'name': 'Advanced Machine Learning',
             'call_number': 'COMS 4774'
         }]
@@ -164,11 +164,11 @@ class ProfessorsTest(BaseTest):
                 'lastName': 'Verma',
                 'courses': [
                     {
-                        'courseProfessorId': 1,
+                        'courseId': 1,
                         'courseName': 'Machine Learning',
                         'courseCallNumber': 'COMS 4771'
                     }, {
-                        'courseProfessorId': 2,
+                        'courseId': 2,
                         'courseName': 'Advanced Machine Learning',
                         'courseCallNumber': 'COMS 4774'
                     }
@@ -195,11 +195,11 @@ class ProfessorsTest(BaseTest):
             'last_name': 'Verma',
         }]
         mock_professor_courses.return_value = [{
-            'course_professor_id': 1,
+            'course_id': 1,
             'name': 'Machine Learning',
             'call_number': 'COMS 4771'
         }, {
-            'course_professor_id': 2,
+            'course_id': 2,
             'name': 'Advanced Machine Learning',
             'call_number': 'COMS 4774'
         }]
@@ -210,11 +210,11 @@ class ProfessorsTest(BaseTest):
                 'lastName': 'Verma',
                 'courses': [
                     {
-                        'courseProfessorId': 1,
+                        'courseId': 1,
                         'courseName': 'Machine Learning',
                         'courseCallNumber': 'COMS 4771'
                     }, {
-                        'courseProfessorId': 2,
+                        'courseId': 2,
                         'courseName': 'Advanced Machine Learning',
                         'courseCallNumber': 'COMS 4774'
                     }
@@ -272,11 +272,11 @@ class ProfessorsTest(BaseTest):
     @mock.patch('api.blueprints.professor.load_professor_courses')
     def test_get_professor_courses(self, mock_professor_courses):
         mock_professor_courses.return_value = [{
-            'course_professor_id': 1,
+            'course_id': 1,
             'name': 'Machine Learning',
             'call_number': 'COMS 4771'
         }, {
-            'course_professor_id': 2,
+            'course_id': 2,
             'name': 'Advanced Machine Learning',
             'call_number': 'COMS 4774'
         }]
