@@ -4,7 +4,7 @@ from api.data import db
 from api.data.common import department_professor, professor, PENDING
 
 
-def add_professor(first_name, last_name, uni, department):
+def add_professor(first_name, last_name, uni, department_id):
     '''
     This function should only be called in `add_course_professor` in
     api.data.datawriters.course_professors_writer.py. The tests are
@@ -43,7 +43,7 @@ def add_professor(first_name, last_name, uni, department):
         ) \
         .insert(
             professor_id,
-            department
+            department_id
         ) \
         .get_sql()
 
@@ -59,7 +59,7 @@ def update_professor_status_by_id(professor_id, status):
 
     update_professor_query = Query \
         .update(professor) \
-        .set(professor.status, PENDING) \
+        .set(professor.status, status) \
         .where(professor.professor_id == professor_id) \
         .get_sql()
 
