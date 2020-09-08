@@ -41,20 +41,20 @@ def vote_clicked(vote_type, ip):
 # get_reviews_with_query_prefix as prefixes for the main query.
 # The flask layer decides which function to call based on page_type.
 def prepare_professor_query_prefix(prof_id, filter_list=None):
-    q = Query \
-            .from_(professor) \
-            .join(course_professor) \
-            .on(
-                Criterion.all([
-                    professor.professor_id == prof_id,
-                    professor.professor_id == course_professor.professor_id
-                ])) \
-            .join(course) \
-            .on(
-                course.course_id == course_professor.course_id)
+    query = Query \
+        .from_(professor) \
+        .join(course_professor) \
+        .on(
+            Criterion.all([
+                professor.professor_id == prof_id,
+                professor.professor_id == course_professor.professor_id
+            ])) \
+        .join(course) \
+        .on(
+            course.course_id == course_professor.course_id)
     if filter_list:
-        q = q.where(course.course_id.isin(filter_list))
-    return q, [
+        query = query.where(course.course_id.isin(filter_list))
+    return query, [
         course.course_id,
         course.call_number,
         course.name
@@ -62,20 +62,20 @@ def prepare_professor_query_prefix(prof_id, filter_list=None):
 
 
 def prepare_course_query_prefix(course_id, filter_list=None):
-    q = Query \
-            .from_(course) \
-            .join(course_professor) \
-            .on(
-                Criterion.all([
-                    course.course_id == course_id,
-                    course.course_id == course_professor.course_id
-                ])) \
-            .join(professor) \
-            .on(
-                professor.professor_id == course_professor.professor_id)
+    query = Query \
+        .from_(course) \
+        .join(course_professor) \
+        .on(
+            Criterion.all([
+                course.course_id == course_id,
+                course.course_id == course_professor.course_id
+            ])) \
+        .join(professor) \
+        .on(
+            professor.professor_id == course_professor.professor_id)
     if filter_list:
-        q = q.where(professor.professor_id.isin(filter_list))
-    return q, [
+        query = query.where(professor.professor_id.isin(filter_list))
+    return query, [
         professor.professor_id,
         professor.first_name,
         professor.last_name,
@@ -84,15 +84,15 @@ def prepare_course_query_prefix(course_id, filter_list=None):
 
 
 def prepare_all_query_prefix():
-    q = Query \
-            .from_(course_professor) \
-            .join(course) \
-            .on(
-                course.course_id == course_professor.course_id) \
-            .join(professor) \
-            .on(
-                professor.professor_id == course_professor.professor_id)
-    return q, [
+    query = Query \
+        .from_(course_professor) \
+        .join(course) \
+        .on(
+            course.course_id == course_professor.course_id) \
+        .join(professor) \
+        .on(
+            professor.professor_id == course_professor.professor_id)
+    return query, [
         course.course_id,
         course.call_number.as_('course_call_number'),
         course.name.as_('course_name'),
@@ -170,8 +170,8 @@ def get_reviews_with_query_prefix(
     cur = db.get_cursor()
     target_flags = get_flags_by_type(flag_type)
 
-    q, header_fields = query_prefix
-    q = q \
+    query, header_fields = query_prefix
+    query = query \
         .join(review) \
         .on(
             course_professor.course_professor_id ==
@@ -212,21 +212,21 @@ def get_reviews_with_query_prefix(
             'disagrees': vote_count('disagree'),
         }
 
-        q = q.orderby(sort_criterion_map[sort_criterion], order=order)
+        query = query.orderby(sort_criterion_map[sort_criterion], order=order)
 
     if filter_year:
-        q = q.where(
+        query = query.where(
             DateDiff(fn.Now(), review.submission_date) < filter_year * 365
         )
 
-    cur.execute(q.get_sql())
+    cur.execute(query.get_sql())
     return cur.fetchall()
 
 
 def load_review(review_id, ip):
-    q, header_fields = prepare_all_query_prefix()
+    query, header_fields = prepare_all_query_prefix()
 
-    q = q \
+    query = query \
         .join(review) \
         .on(
             review.course_professor_id ==
@@ -269,7 +269,7 @@ def load_review(review_id, ip):
         .get_sql()
 
     cur = db.get_cursor()
-    cur.execute(q)
+    cur.execute(query)
 
     return cur.fetchone()
 
@@ -291,8 +291,8 @@ def load_review_highlight(
     cur = db.get_cursor()
     approved_flags = get_flags_by_type('approved')
 
-    q, header_fields = query_prefix
-    q = q \
+    query, header_fields = query_prefix
+    query = query \
         .join(review) \
         .on(
             course_professor.course_professor_id ==
@@ -324,14 +324,14 @@ def load_review_highlight(
             vote_clicked('disagree', ip),
             vote_clicked('funny', ip))
 
-    positive_review_query = q \
+    positive_review_query = query \
         .orderby(
             review.rating, order=Order.desc) \
         .orderby(
             vote_count('agree'), order=Order.desc) \
         .limit(1)
 
-    negative_review_query = q \
+    negative_review_query = query \
         .orderby(
             review.rating, order=Order.asc) \
         .orderby(
