@@ -85,7 +85,7 @@ def load_any_status_professor_by_uni(professor_uni):
         .get_sql()
 
     cur.execute(query)
-    return cur.fetchall()
+    return cur.fetchone()
 
 
 def load_professor_courses(professor_id):

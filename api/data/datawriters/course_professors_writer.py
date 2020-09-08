@@ -67,10 +67,10 @@ def add_course_professor(professor_input, course_input):
         existing_professor = load_any_status_professor_by_uni(uni)
 
         if existing_professor:
-            professor_id = existing_professor[0]['professor_id']
+            professor_id = existing_professor['professor_id']
             if existing_professor.get('status') == REJECTED:
                 update_professor_status_by_id(
-                    existing_professor[0]['professor_id'],
+                    existing_professor['professor_id'],
                     PENDING
                 )
         else:

@@ -10,6 +10,8 @@ class CourseProfessorsWriterTest(LoadersWritersBaseTest):
     VERMA_PROFESSOR_ID = 1
     VERMA_UNI = 'nv2274'
     BOLLINGER_PROFESSOR_ID = 2
+    DURMA_PROFESSOR_ID = 6           # Rejected
+    DURMA_PROFESSOR_UNI = 'nv2277'   # Rejected
 
     MACHINE_LEARNING_COURSE_ID = 1
     INT_MACHINE_LEARNING_COURSE_ID = 7
@@ -349,3 +351,47 @@ class CourseProfessorsWriterTest(LoadersWritersBaseTest):
         self.assertEqual(1, len(course_professor_result))
         self.assertDictEqual(expected_course_professor_result,
                              course_professor_result[0])
+
+    def test_rejected_professor_updated_on_insert(self):
+        new_professor_input = {
+            'first_name': 'Nakul',
+            'last_name': 'Durma',
+            'uni': self.DURMA_PROFESSOR_UNI,
+            'department': self.COMPUTER_SCIENCE_DEPARTMENT_ID
+        }
+        add_course_professor(new_professor_input,
+                             self.MACHINE_LEARNING_COURSE_ID)
+
+        self.cur.execute(
+            ('SELECT * FROM course_professor WHERE '
+                'course_professor.course_id = %s AND '
+                'course_professor.professor_id = %s'),
+            [self.MACHINE_LEARNING_COURSE_ID, self.DURMA_PROFESSOR_ID]
+        )
+
+        course_professor_result = self.cur.fetchall()
+        expected_course_professor_result = {
+            'course_professor_id': self.NEW_COURSE_PROFESSOR_ID,
+            'course_id': self.MACHINE_LEARNING_COURSE_ID,
+            'professor_id': self.DURMA_PROFESSOR_ID,
+            'status': 'pending'
+        }
+
+        self.assertDictEqual(expected_course_professor_result,
+                             course_professor_result[0])
+
+        self.cur.execute(
+            'SELECT * FROM professor WHERE professor.professor_id = %s',
+            self.DURMA_PROFESSOR_ID
+        )
+
+        new_professor_result = self.cur.fetchall()
+        expected_professor_res = {
+            'professor_id': self.DURMA_PROFESSOR_ID,
+            'first_name': 'Nakul',
+            'last_name': 'Durma',
+            'status': 'pending',
+            'uni': self.DURMA_PROFESSOR_UNI
+        }
+
+        self.assertDictEqual(new_professor_result[0], expected_professor_res)
