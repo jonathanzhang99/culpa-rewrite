@@ -41,14 +41,17 @@ def vote_clicked(vote_type, ip):
 # get_reviews_with_query_prefix as prefixes for the main query.
 # The flask layer decides which function to call based on page_type.
 def prepare_professor_query_prefix(prof_id, filter_list=None):
-    q = Query.from_(professor).join(course_professor).on(
-        Criterion.all([
-            professor.professor_id == prof_id,
-            professor.professor_id == course_professor.professor_id,
-        ])
-    ).join(course).on(
-        course.course_id == course_professor.course_id
-    )
+    q = Query \
+            .from_(professor) \
+            .join(course_professor) \
+            .on(
+                Criterion.all([
+                    professor.professor_id == prof_id,
+                    professor.professor_id == course_professor.professor_id
+                ])) \
+            .join(course) \
+            .on(
+                course.course_id == course_professor.course_id)
     if filter_list:
         q = q.where(course.course_id.isin(filter_list))
     return q, [
@@ -59,14 +62,17 @@ def prepare_professor_query_prefix(prof_id, filter_list=None):
 
 
 def prepare_course_query_prefix(course_id, filter_list=None):
-    q = Query.from_(course).join(course_professor).on(
-        Criterion.all([
-            course.course_id == course_id,
-            course.course_id == course_professor.course_id,
-        ])
-    ).join(professor).on(
-        professor.professor_id == course_professor.professor_id
-    )
+    q = Query \
+            .from_(course) \
+            .join(course_professor) \
+            .on(
+                Criterion.all([
+                    course.course_id == course_id,
+                    course.course_id == course_professor.course_id
+                ])) \
+            .join(professor) \
+            .on(
+                professor.professor_id == course_professor.professor_id)
     if filter_list:
         q = q.where(professor.professor_id.isin(filter_list))
     return q, [
@@ -114,26 +120,30 @@ def get_flags_by_type(flag_type):
             the flag table, valid values are ['approved',
             'pending', 'libel', 'insufficient'].
     '''
-    ordered_flags = Query.from_(flag).select(
-        flag.review_id,
-        flag.user_id,
-        flag.type,
-        flag.created_at,
-        RowNumber().over(flag.review_id).orderby(
-            flag.created_at, order=Order.desc
-        ).as_('row_num')
-    )
+    ordered_flags = Query \
+        .from_(flag) \
+        .select(
+            flag.review_id,
+            flag.user_id,
+            flag.type,
+            flag.created_at,
+            RowNumber()
+                .over(flag.review_id)
+                .orderby(
+                    flag.created_at, order=Order.desc)
+            .as_('row_num'))
 
-    final_flags = Query.from_(ordered_flags).select(
-        ordered_flags.review_id,
-        ordered_flags.user_id,
-        ordered_flags.created_at,
-    ).where(
-        Criterion.all([
-            ordered_flags.row_num == 1,
-            ordered_flags.type == flag_type
-        ])
-    )
+    final_flags = Query \
+        .from_(ordered_flags) \
+        .select(
+            ordered_flags.review_id,
+            ordered_flags.user_id,
+            ordered_flags.created_at) \
+        .where(
+            Criterion.all([
+                ordered_flags.row_num == 1,
+                ordered_flags.type == flag_type
+            ]))
 
     return final_flags
 
@@ -161,33 +171,37 @@ def get_reviews_with_query_prefix(
     target_flags = get_flags_by_type(flag_type)
 
     q, header_fields = query_prefix
-    q = q.join(review).on(
-        course_professor.course_professor_id == review.course_professor_id
-    ).join(target_flags).on(
-        target_flags.review_id == review.review_id,
-    ).join(vote, JoinType.left).on(
-        review.review_id == vote.review_id
-    ).groupby(
-        *header_fields,
-        review.review_id,
-        review.content,
-        review.workload,
-        review.rating,
-        review.submission_date
-    ).select(
-        *header_fields,
-        review.review_id,
-        review.content,
-        review.workload,
-        review.rating,
-        review.submission_date,
-        vote_count('agree'),
-        vote_count('disagree'),
-        vote_count('funny'),
-        vote_clicked('agree', ip),
-        vote_clicked('disagree', ip),
-        vote_clicked('funny', ip)
-    )
+    q = q \
+        .join(review) \
+        .on(
+            course_professor.course_professor_id ==
+            review.course_professor_id) \
+        .join(target_flags) \
+        .on(
+            target_flags.review_id == review.review_id) \
+        .join(vote, JoinType.left) \
+        .on(
+            review.review_id == vote.review_id) \
+        .groupby(
+            *header_fields,
+            review.review_id,
+            review.content,
+            review.workload,
+            review.rating,
+            review.submission_date) \
+        .select(
+            *header_fields,
+            review.review_id,
+            review.content,
+            review.workload,
+            review.rating,
+            review.submission_date,
+            vote_count('agree'),
+            vote_count('disagree'),
+            vote_count('funny'),
+            vote_clicked('agree', ip),
+            vote_clicked('disagree', ip),
+            vote_clicked('funny', ip))
 
     if sort_criterion and sort_order:
         order = Order.desc if sort_order == 'DESC' else Order.asc
@@ -212,41 +226,47 @@ def get_reviews_with_query_prefix(
 def load_review(review_id, ip):
     q, header_fields = prepare_all_query_prefix()
 
-    q = q.join(review).on(
-        review.course_professor_id == course_professor.course_professor_id
-    ).join(flag).on(
-        Criterion.all([
-            review.review_id == review_id,
-            review.review_id == flag.review_id
-        ])
-    ).join(vote, JoinType.left).on(
-        review.review_id == vote.review_id
-    ).groupby(
-        *header_fields,
-        flag.type,
-        flag.created_at,
-        review.review_id,
-        review.content,
-        review.workload,
-        review.rating,
-        review.submission_date
-    ).select(
-        *header_fields,
-        flag.type.as_('flag_type'),
-        review.review_id,
-        review.content,
-        review.workload,
-        review.rating,
-        review.submission_date,
-        vote_count('agree'),
-        vote_count('disagree'),
-        vote_count('funny'),
-        vote_clicked('agree', ip),
-        vote_clicked('disagree', ip),
-        vote_clicked('funny', ip)
-    ).orderby(
-        flag.created_at, order=Order.desc
-    ).limit(1).get_sql()
+    q = q \
+        .join(review) \
+        .on(
+            review.course_professor_id ==
+            course_professor.course_professor_id) \
+        .join(flag) \
+        .on(
+            Criterion.all([
+                review.review_id == review_id,
+                review.review_id == flag.review_id
+            ])) \
+        .join(vote, JoinType.left) \
+        .on(
+            review.review_id == vote.review_id) \
+        .groupby(
+            *header_fields,
+            flag.type,
+            flag.created_at,
+            review.review_id,
+            review.content,
+            review.workload,
+            review.rating,
+            review.submission_date) \
+        .select(
+            *header_fields,
+            flag.type.as_('flag_type'),
+            review.review_id,
+            review.content,
+            review.workload,
+            review.rating,
+            review.submission_date,
+            vote_count('agree'),
+            vote_count('disagree'),
+            vote_count('funny'),
+            vote_clicked('agree', ip),
+            vote_clicked('disagree', ip),
+            vote_clicked('funny', ip)) \
+        .orderby(
+            flag.created_at, order=Order.desc) \
+        .limit(1) \
+        .get_sql()
 
     cur = db.get_cursor()
     cur.execute(q)
@@ -272,45 +292,51 @@ def load_review_highlight(
     approved_flags = get_flags_by_type('approved')
 
     q, header_fields = query_prefix
-    q = q.join(review).on(
-        course_professor.course_professor_id == review.course_professor_id
-    ).join(approved_flags).on(
-        approved_flags.review_id == review.review_id,
-    ).join(vote, JoinType.left).on(
-        review.review_id == vote.review_id
-    ).groupby(
-        *header_fields,
-        review.review_id,
-        review.content,
-        review.workload,
-        review.rating,
-        review.submission_date
-    ).select(
-        *header_fields,
-        review.review_id,
-        review.content,
-        review.workload,
-        review.rating,
-        review.submission_date,
-        vote_count('agree'),
-        vote_count('disagree'),
-        vote_count('funny'),
-        vote_clicked('agree', ip),
-        vote_clicked('disagree', ip),
-        vote_clicked('funny', ip)
-    )
+    q = q \
+        .join(review) \
+        .on(
+            course_professor.course_professor_id ==
+            review.course_professor_id) \
+        .join(approved_flags) \
+        .on(
+            approved_flags.review_id == review.review_id) \
+        .join(vote, JoinType.left) \
+        .on(
+            review.review_id == vote.review_id) \
+        .groupby(
+            *header_fields,
+            review.review_id,
+            review.content,
+            review.workload,
+            review.rating,
+            review.submission_date) \
+        .select(
+            *header_fields,
+            review.review_id,
+            review.content,
+            review.workload,
+            review.rating,
+            review.submission_date,
+            vote_count('agree'),
+            vote_count('disagree'),
+            vote_count('funny'),
+            vote_clicked('agree', ip),
+            vote_clicked('disagree', ip),
+            vote_clicked('funny', ip))
 
-    positive_review_query = q.orderby(
-        review.rating, order=Order.desc
-    ).orderby(
-        vote_count('agree'), order=Order.desc
-    ).limit(1)
+    positive_review_query = q \
+        .orderby(
+            review.rating, order=Order.desc) \
+        .orderby(
+            vote_count('agree'), order=Order.desc) \
+        .limit(1)
 
-    negative_review_query = q.orderby(
-        review.rating, order=Order.asc
-    ).orderby(
-        vote_count('agree'), order=Order.desc
-    ).limit(1)
+    negative_review_query = q \
+        .orderby(
+            review.rating, order=Order.asc) \
+        .orderby(
+            vote_count('agree'), order=Order.desc) \
+        .limit(1)
 
     query_final = union_(
         positive_review_query.get_sql(),
