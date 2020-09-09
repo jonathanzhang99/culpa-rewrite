@@ -298,15 +298,17 @@ export default function ReviewSection({
               );
             })}
         </Grid.Row>
-        <Grid.Row centered key={3} style={{ marginBottom: "50px" }}>
-          <Button
-            fluid
-            name="showMoreButton"
+        <Grid.Row centered className="review-section-show-more-grid-row" key={3}>
+          <Button 
+            fluid 
+            name="showMoreButton" 
             size="large"
             onClick={onClickPagButton}
           >
-            Show more
-            <Icon name="arrow down" style={{ marginLeft: "5px" }} />
+            Show more<Icon 
+              className="review-section-show-more-icon"
+              name="arrow down"
+            />
           </Button>
         </Grid.Row>
       </Grid>
