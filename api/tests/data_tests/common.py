@@ -1,3 +1,6 @@
+from api.data.common import APPROVED, PENDING, REJECTED
+
+
 def setup_department_professor_courses(cur):
     '''
     This is a utility function that will populate the
@@ -12,30 +15,44 @@ def setup_department_professor_courses(cur):
     )
 
     courses = [
-        ('Machine Learning', 1, 'COMS 4771'),                   # course_id: 1
-        ('Advanced Machine Learning', 1, 'COMS 4774'),          # course_id: 2
-        ('Operating Systems', 1, 'COMS 4118'),                  # course_id: 3
-        ('Advanced Programming', 1, 'COMS 3157'),               # course_id: 4
-        ('Freedom of Speech and Press', 2, 'POLS 3285'),        # course_id: 5
-        ('Mathematics of Machine Learning', 3, 'MATH FAKE'),    # course_id: 6
+        # course_id: 1
+        (1, 'Machine Learning', 1, 'COMS 4771', APPROVED),
+        # course_id: 2
+        (2, 'Advanced Machine Learning', 1, 'COMS 4774', APPROVED),
+        # course_id: 3
+        (3, 'Operating Systems', 1, 'COMS 4118', APPROVED),
+        # course_id: 4
+        (4, 'Advanced Programming', 1, 'COMS 3157', APPROVED),
+        # course_id: 5
+        (5, 'Freedom of Speech and Press', 2, 'POLS 3285', APPROVED),
+        # course_id: 6
+        (6, 'Mathematics of Machine Learning', 3, 'MATH FAKE', APPROVED),
+        # course_id: 7
+        (7, 'Intermediate Machine Learning', 1, 'COMS 4775', PENDING),
+        # course_id: 8
+        (8, 'Baby Machine Learning', 1, 'COMS 4776', REJECTED)
     ]
     cur.executemany(
-        'INSERT INTO course (name, department_id, call_number)'
-        'VALUES (%s, %s, %s)',
+        'INSERT INTO course'
+        '(course_id, name, department_id, call_number, status)'
+        'VALUES (%s, %s, %s, %s, %s)',
         courses
     )
 
     # Certain tests depend on the number of professors. If you
     # need to add additional entries, be sure to update tests.
     professors = [
-        ('Nakul', 'Verma', 'nv2274'),   # professor_id: 1
-        ('Lee', 'Bollinger', 'lcb50'),  # professor_id: 2
-        ('Jae W', 'Lee', 'jwl3'),       # professor_id: 3
-        ('Nakul', 'Burma', 'nv2275'),   # professor_id: 4
+        (1, 'Nakul', 'Verma', 'nv2274', APPROVED),   # professor_id: 1
+        (2, 'Lee', 'Bollinger', 'lcb50', APPROVED),  # professor_id: 2
+        (3, 'Jae W', 'Lee', 'jwl3', APPROVED),       # professor_id: 3
+        (4, 'Nakul', 'Burma', 'nv2275', APPROVED),   # professor_id: 4
+        (5, 'Nakul', 'Curma', 'nv2276', PENDING),    # professor_id: 5
+        (6, 'Nakul', 'Durma', 'nv2277', REJECTED),   # professor_id: 6
     ]
     cur.executemany(
-        'INSERT INTO professor (first_name, last_name, uni)'
-        'VALUES (%s, %s, %s)',
+        'INSERT INTO professor'
+        '(professor_id, first_name, last_name, uni, status)'
+        'VALUES (%s, %s, %s, %s, %s)',
         professors
     )
 
@@ -44,18 +61,21 @@ def setup_department_professor_courses(cur):
     # Bollinger – teaching single course
     # AP – multiple professors
     course_professor = [
-        (1, 1),  # Verma, Machine Learning
-        (1, 2),  # Verma, Advanced Machine learning
-        (1, 6),  # Verma, Mathematics of Machine Learning
-        (1, 4),  # Verma, Advanced Programming
-        (3, 4),  # JWL, Advanced Programming
-        (3, 3),  # JWL, Operating Systems
-        (2, 5)   # Bollinger, Freedom of Speech
+        (1, 1, 1, APPROVED),  # Verma, Machine Learning
+        (2, 1, 2, APPROVED),  # Verma, Advanced Machine learning
+        (3, 1, 6, APPROVED),  # Verma, Mathematics of Machine Learning
+        (4, 1, 4, APPROVED),  # Verma, Advanced Programming
+        (5, 3, 4, APPROVED),  # JWL, Advanced Programming
+        (6, 3, 3, APPROVED),  # JWL, Operating Systems
+        (7, 2, 5, APPROVED),  # Bollinger, Freedom of Speech
+        (8, 1, 5, PENDING),   # Verma, Freedom of Speech
+        (9, 1, 7, REJECTED),  # Verma, Intermediate Machine Learning
     ]
 
     cur.executemany(
-        'INSERT INTO course_professor (professor_id, course_id)'
-        'VALUES (%s, %s)',
+        'INSERT INTO course_professor'
+        '(course_professor_id, professor_id, course_id, status)'
+        'VALUES (%s, %s, %s, %s)',
         course_professor
     )
 
@@ -81,7 +101,7 @@ def setup_users(cur):
     user table with a minimum set of data for testing.
     '''
     users = [
-        (1, 'ab123@columbia.edu', 'userab', '###########', ''),
+        (1, 'admin@culpa.info', 'SERVER', '###########', ''),
         (2, 'cd456@columbia.edu', 'usercd', '@@@@@@@@@@@', ''),
         (3, 'ef789@columbia.edu', 'useref', '???????????', '')
     ]
@@ -228,21 +248,22 @@ def setup_for_course_test(cur):
 
     # Insert course with only neutral reviews
     cur.execute(
-        'INSERT INTO course (name, department_id, call_number)'
-        'VALUES (%s, %s, %s)',   # course_id: 7
-        ('course_without_review', 1, 'CWOR')
+        'INSERT INTO course (course_id, name, department_id, call_number)'
+        'VALUES (%s, %s, %s, %s)',   # course_id: 9
+        (9, 'course_without_review', 1, 'CWOR')
     )
     cur.execute(
-        'INSERT INTO course_professor (professor_id, course_id)'
-        'VALUES (%s, %s)',  # course_professor_id: 8
-        (1, 7)
+        'INSERT INTO course_professor'
+        '(course_professor_id, professor_id, course_id)'
+        'VALUES (%s, %s, %s)',  # course_professor_id: 8 -> 10
+        (10, 1, 9)
     )
     cur.execute(
         'INSERT INTO review'
         '(course_professor_id, content, ip, workload, rating, submission_date)'
         'VALUES'
         '(%s, %s, %s, %s, %s, %s)',
-        (8, 'neutral review', '123.456,78.914',
+        (10, 'neutral review', '123.456,78.914',
             'workload', 3, '2019-08-17')    # review_id: 12
     )
     cur.execute(
@@ -250,40 +271,41 @@ def setup_for_course_test(cur):
         '(course_professor_id, content, ip, workload, rating, submission_date)'
         'VALUES'
         '(%s, %s, %s, %s, %s, %s)',
-        (8, 'neutral review2', '123.456,78.914',
+        (10, 'neutral review2', '123.456,78.914',
             'workload', 3, '2019-08-17')    # review_id: 13
     )
 
     # Insert course without any reviews
     cur.execute(
-        'INSERT INTO course (name, department_id, call_number)'
-        'VALUES (%s, %s, %s)',   # course_id: 8
-        ('course_without_review', 1, 'CWOR')
+        'INSERT INTO course (course_id, name, department_id, call_number)'
+        'VALUES (%s, %s, %s, %s)',   # course_id: 10
+        (10, 'course_without_review', 1, 'CWOR')
     )
     cur.execute(
-        'INSERT INTO course_professor (professor_id, course_id)'
-        'VALUES (%s, %s)',  # course_professor_id: 9
-        (1, 7)
+        'INSERT INTO course_professor'
+        '(course_professor_id, professor_id, course_id)'
+        'VALUES (%s, %s, %s)',  # course_professor_id: 9 -> 11
+        (11, 1, 10)
     )
 
     # Insert course with reviews without any votes
     cur.execute(
-        'INSERT INTO course (name, department_id, call_number)'
-        # course_id: 9
-        'VALUES (%s, %s, %s)',
-        ('course_with_reviews_without_votes', 1, 'CWRWV')
+        'INSERT INTO course (course_id, name, department_id, call_number)'
+        # course_id: 11
+        'VALUES (%s, %s, %s, %s)',
+        (11, 'course_with_reviews_without_votes', 1, 'CWRWV')
     )
     cur.execute(
-        'INSERT INTO course_professor (professor_id, course_id)'
-        'VALUES (%s, %s)',  # course_professor_id: 10
-        (1, 8)
+        'INSERT INTO course_professor'
+        '(course_professor_id, professor_id, course_id)'
+        'VALUES (%s, %s, %s)',  # course_professor_id: 10 -> 12
+        (12, 1, 11)
     )
     cur.execute(
         'INSERT INTO review'
         '(course_professor_id, content, ip, workload, rating, submission_date)'
-        'VALUES'
-        '(%s, %s, %s, %s, %s, %s)',
-        (9, 'review_without_votes', '123.456,78.914',
+        'VALUES (%s, %s, %s, %s, %s, %s)',
+        (12, 'review_without_votes', '123.456,78.914',
             'workload', 3, '2019-08-17')    # review_id: 13
     )
 
