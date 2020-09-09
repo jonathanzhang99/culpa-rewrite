@@ -33,7 +33,7 @@ def parse_review(review, review_type):
         reviewHeader = {
             'courseId': review['course_id'],
             'courseName': review['name'],
-            'courseCode': review['call_number']
+            'courseCallNumber': review['call_number']
         }
 
     return {

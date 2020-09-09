@@ -20,12 +20,12 @@ describe("ProfessorSummary Component", () => {
       lastName: "Verma",
       courses: [
         {
-          courseProfessorId: 1,
+          courseId: 1,
           courseName: "Machine Learning",
           courseCallNumber: "COMS 4771",
         },
         {
-          courseProfessorId: 2,
+          courseId: 2,
           courseName: "Advanced Machine Learning",
           courseCallNumber: "COMS 4774",
         },
