@@ -290,7 +290,7 @@ class ReviewTest(BaseTest):
             'expected_review_header': {
                 'courseId': 12345,
                 'courseName': 'testtest',
-                'courseCode': '12345'
+                'courseCallNumber': '12345'
             }
         }, {
             'review_type': 'all',

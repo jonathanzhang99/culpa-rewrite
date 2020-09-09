@@ -216,7 +216,7 @@ def get_reviews_with_query_prefix(
 
     if filter_year:
         query = query.where(
-            DateDiff(fn.Now(), review.submission_date) < filter_year * 365
+            DateDiff(fn.Now(), review.submission_date) <= filter_year * 365
         )
 
     cur.execute(query.get_sql())

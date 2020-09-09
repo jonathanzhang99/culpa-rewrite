@@ -34,7 +34,7 @@ def parse_review(review, review_type):
         review_header = {
             'courseId': review['course_id'],
             'courseName': review['name'],
-            'courseCode': review['call_number']
+            'courseCallNumber': review['call_number']
         }
     elif review_type == "all":
         review_header = {

@@ -174,7 +174,7 @@ const propTypesReviewCard = {
     PropTypes.shape({
       courseId: PropTypes.number.isRequired,
       courseName: PropTypes.string.isRequired,
-      courseCode: PropTypes.string.isRequired,
+      courseCallNumber: PropTypes.string.isRequired,
     }),
     PropTypes.shape({
       profId: PropTypes.number.isRequired,
@@ -228,7 +228,7 @@ export default function ReviewCard({
   content,
 }) {
   return (
-    <Container style={{margin:"25px 0px"}}>
+    <Container style={{ margin: "25px 0px" }}>
       <Grid>
         <Grid.Column
           key={1}
@@ -243,12 +243,13 @@ export default function ReviewCard({
               </Message>
             )}
             <div style={{ position: "relative" }}>
-              {reviewType === 'professor' && (
+              {reviewType === "professor" && (
                 <CourseDisplayName
                   as="header"
-                  courseCallNumber={reviewHeader.courseCode}
+                  courseCallNumber={reviewHeader.courseCallNumber}
                   courseName={reviewHeader.courseName}
-              />)}
+                />
+              )}
               {reviewType === "course" && (
                 <ProfessorDisplayName
                   as="header"
