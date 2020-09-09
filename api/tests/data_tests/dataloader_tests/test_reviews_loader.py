@@ -258,7 +258,7 @@ class ReviewsLoaderTest(LoadersWritersBaseTest):
             ]
         },
             {
-            'course_id': 7,
+            'course_id': 9,
             'expected_res': [
                 {
                     'professor_id': 1,
@@ -284,11 +284,11 @@ class ReviewsLoaderTest(LoadersWritersBaseTest):
             'expected_res': ()
         },
             {
-            'course_id': 8,
+            'course_id': 10,
             'expected_res': ()
         },
             {
-            'course_id': 9,
+            'course_id': 11,
             'expected_res': ()
         }]
         setup_for_course_test(self.cur)
