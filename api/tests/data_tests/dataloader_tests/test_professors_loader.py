@@ -46,15 +46,11 @@ class ProfessorsLoaderTest(LoadersWritersBaseTest):
             'name': 'Advanced Machine Learning',
             'call_number': 'COMS 4774'
         }, {
-            'course_id': 6,
-            'name': 'Mathematics of Machine Learning',
-            'call_number': 'MATH FAKE'
-        }, {
             'course_id': 4,
             'name': 'Advanced Programming',
             'call_number': 'COMS 3157'
         }, {
-            'course_professor_id': 3,
+            'course_id': 6,
             'name': 'Mathematics of Machine Learning',
             'call_number': 'MATH FAKE'
         }]
