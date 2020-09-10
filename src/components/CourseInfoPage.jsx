@@ -11,6 +11,7 @@ import LoadingComponent from "components/common/LoadingComponent";
 import { ProfessorDisplayLink } from "components/common/ProfessorDisplay";
 import useDataFetch from "components/common/useDataFetch";
 import ReviewCard from "components/reviews/ReviewCard";
+import ReviewSection from "components/reviews/ReviewSection";
 
 const MAX_NUM_PROFESSORS_IN_LIST = 5;
 
@@ -34,7 +35,7 @@ const propTypesCourseProfessors = {
   ),
 };
 
-export function ProfessorsList({ courseProfessors }) {
+function ProfessorsList({ courseProfessors }) {
   return (
     <>
       <span>Professors: </span>
@@ -72,7 +73,7 @@ const propTypesProfessorsAccordion = {
   ),
 };
 
-export function ProfessorsAccordion({
+function ProfessorsAccordion({
   isAccordionActive,
   setAccordionActive,
   courseProfessors,
@@ -94,7 +95,7 @@ export function ProfessorsAccordion({
   );
 }
 
-export function ProfessorsComponent({
+function ProfessorsComponent({
   isAccordionActive,
   setAccordionActive,
   courseProfessors,
@@ -120,10 +121,7 @@ const propTypesProfessorDepartmentColumn = {
   ).isRequired,
 };
 
-export function ProfessorDepartmentColumn({
-  professorId,
-  professorDepartments,
-}) {
+function ProfessorDepartmentColumn({ professorId, professorDepartments }) {
   return (
     <Grid.Column key={`${professorId}_departments`}>
       {professorDepartments.map(
@@ -143,7 +141,7 @@ export function ProfessorDepartmentColumn({
   );
 }
 
-export function CourseProfessorsGrid({ courseProfessors }) {
+function CourseProfessorsGrid({ courseProfessors }) {
   return (
     <Grid columns={2}>
       {courseProfessors.map(
@@ -174,7 +172,7 @@ const propTypesReviewCourseButton = {
   courseName: PropTypes.string.isRequired,
 };
 
-export function ReviewCourseButton({ courseId, courseName }) {
+function ReviewCourseButton({ courseId, courseName }) {
   return (
     <CreateReviewButton color="yellow" courseId={courseId.toString()}>
       WRITE A REVIEW FOR {courseName}
@@ -290,63 +288,86 @@ function CourseReviewCard({ review }) {
   );
 }
 
+const propTypesDoubleCourseReviewHighlight = {
+  courseReviewHighlight: PropTypes.arrayOf(reviewPropType),
+};
+
+const defaultPropsDoubleCourseReviewHighlight = {
+  courseReviewHighlight: [],
+};
+
+function DoubleCourseReviewHighlight({ courseReviewHighlight }) {
+  return (
+    <Container>
+      <Grid relaxed columns={2}>
+        <Grid.Column>
+          <h3>Most Positive Review</h3>
+          <CourseReviewCard review={courseReviewHighlight[0]} />
+        </Grid.Column>
+        <Grid.Column>
+          <h3>Most Negative Review</h3>
+          <CourseReviewCard review={courseReviewHighlight[1]} />
+        </Grid.Column>
+      </Grid>
+    </Container>
+  );
+}
+
+const propTypesSingleCourseReviewHighlight = {
+  courseReviewHighlight: PropTypes.arrayOf(reviewPropType),
+};
+
+const defaultPropsSingleCourseReviewHighlight = {
+  courseReviewHighlight: [],
+};
+
+function SingleCourseReviewHighlight({ courseReviewHighlight }) {
+  return (
+    <Container>
+      <Grid relaxed columns={2}>
+        <Grid.Row>
+          <Grid.Column>
+            <h3>Most Agreed Review</h3>
+            <CourseReviewCard review={courseReviewHighlight[0]} />
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
+    </Container>
+  );
+}
+
 const propTypesCourseReviewHighlight = {
-  courseReviewHighlight: PropTypes.oneOfType([
-    PropTypes.shape({
-      positiveReview: reviewPropType,
-      negativeReview: reviewPropType,
-    }),
-    PropTypes.shape({
-      mostAgreedReview: reviewPropType,
-    }),
-  ]),
+  courseReviewHighlight: PropTypes.arrayOf(reviewPropType),
 };
 
 const defaultPropsCourseReviewHighlight = {
-  courseReviewHighlight: {
-    positiveReview: {},
-    negativeReview: {},
-  },
+  courseReviewHighlight: [],
 };
 
 function CourseReviewHighlight({ courseReviewHighlight }) {
-  if ("mostAgreedReview" in courseReviewHighlight) {
-    const { mostAgreedReview } = courseReviewHighlight;
+  /* 
+      NOTE: courseReviewHighlight[0] is the most positive and
+            [1] the most negative (when the length is 2)
+
+      courseReviewHighlight can have lengths 0-2:
+        2: There are most positive and negative reviews
+        1: Either most positive and negative reviews are the same review
+           or there is only one review for the course
+        0: There are no reviews for the course
+  */
+
+  if (courseReviewHighlight.length === 2) {
     return (
-      <Container>
-        <Grid>
-          <Grid.Row>
-            <Grid.Column width={14}>
-              <h3>Most Agreed Review</h3>
-              <CourseReviewCard review={mostAgreedReview} />
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
-      </Container>
+      <DoubleCourseReviewHighlight
+        courseReviewHighlight={courseReviewHighlight}
+      />
     );
   }
-
-  if (
-    "positiveReview" in courseReviewHighlight &&
-    "negativeReview" in courseReviewHighlight
-  ) {
-    const { positiveReview, negativeReview } = courseReviewHighlight;
+  if (courseReviewHighlight.length === 1) {
     return (
-      <Container>
-        <Grid>
-          <Grid.Row>
-            <Grid.Column width={7}>
-              <h3>Most Positive Review</h3>
-              <CourseReviewCard review={positiveReview} />
-            </Grid.Column>
-            <Grid.Column width={1} />
-            <Grid.Column width={7}>
-              <h3>Most Negative Review</h3>
-              <CourseReviewCard review={negativeReview} />
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
-      </Container>
+      <SingleCourseReviewHighlight
+        courseReviewHighlight={courseReviewHighlight}
+      />
     );
   }
 
@@ -355,37 +376,55 @@ function CourseReviewHighlight({ courseReviewHighlight }) {
 
 export default function CourseInfoPage() {
   const { courseId } = useParams();
-  const {
-    data: { courseInfo, courseReviewHighlight },
-    isLoading,
-    isError,
-  } = useDataFetch(`/api/course/${courseId}`, {
-    courseInfo: {
+
+  const courseDataFetched = useDataFetch(`/api/course/${courseId}`, {
+    courseSummary: {
       courseName: "",
       courseCallNumber: "",
       departmentId: 0,
       departmentName: "",
       courseProfessors: [],
     },
-    courseReviewHighlight: {},
+    courseReviewHighlight: [],
   });
-  // TODO: load and return Review Summary data here
 
-  if (isLoading || isError) {
-    return isLoading ? <LoadingComponent /> : <ErrorComponent />;
+  const { courseSummary, courseReviewHighlight } = courseDataFetched.data;
+  const isCourseLoading = courseDataFetched.isLoading;
+  const isCourseError = courseDataFetched.isError;
+
+  const reviewDataFetched = useDataFetch(`/api/review/get/course/${courseId}`, {
+    reviews: [],
+  });
+
+  const { reviews } = reviewDataFetched.data;
+  const isReviewLoading = reviewDataFetched.isLoading;
+  const isReviewError = reviewDataFetched.isError;
+
+  if (isCourseLoading || isCourseError) {
+    return isCourseLoading ? <LoadingComponent /> : <ErrorComponent />;
+  }
+
+  if (isReviewLoading || isReviewError) {
+    return isReviewLoading ? <LoadingComponent /> : <ErrorComponent />;
   }
 
   return (
     <>
       <CourseInfo
-        courseCallNumber={courseInfo.courseCallNumber}
+        courseCallNumber={courseSummary.courseCallNumber}
         courseId={Number(courseId)}
-        courseName={courseInfo.courseName}
-        courseProfessors={courseInfo.courseProfessors}
-        departmentId={courseInfo.departmentId}
-        departmentName={courseInfo.departmentName}
+        courseName={courseSummary.courseName}
+        courseProfessors={courseSummary.courseProfessors}
+        departmentId={courseSummary.departmentId}
+        departmentName={courseSummary.departmentName}
       />
       <CourseReviewHighlight courseReviewHighlight={courseReviewHighlight} />
+      <ReviewSection
+        associatedEntities={courseSummary.courseProfessors}
+        id={Number(courseId)}
+        initReviews={reviews}
+        pageType="course"
+      />
     </>
   );
 }
@@ -409,6 +448,12 @@ CourseInfo.propTypes = propTypesCourseInfo;
 CourseInfo.defaultProps = defaultProps;
 
 CourseReviewCard.propTypes = propTypesCourseReviewCard;
+
+DoubleCourseReviewHighlight.propTypes = propTypesDoubleCourseReviewHighlight;
+DoubleCourseReviewHighlight.defaultProps = defaultPropsDoubleCourseReviewHighlight;
+
+SingleCourseReviewHighlight.propTypes = propTypesSingleCourseReviewHighlight;
+SingleCourseReviewHighlight.defaultProps = defaultPropsSingleCourseReviewHighlight;
 
 CourseReviewHighlight.propTypes = propTypesCourseReviewHighlight;
 CourseReviewHighlight.defaultProps = defaultPropsCourseReviewHighlight;

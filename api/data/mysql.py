@@ -18,6 +18,7 @@ class MySQL(object):
         Registers the teardown function with the current app context. Required
         to successfully close a database connection after each request
         '''
+        self.server_user_id = app.config.get('MYSQL_SERVER_USER_ID')
         self.register_db_error_handlers(app)
         app.teardown_request(self.teardown)
 
@@ -48,6 +49,9 @@ class MySQL(object):
             if 'mysqldb' not in flask.g:
                 flask.g.mysqldb = self.connect()
             return flask.g.get('mysqldb')
+
+    def get_server_user_id(self):
+        return self.server_user_id
 
     def commit(self):
         if flask.g is not None and 'mysqldb' in flask.g:
