@@ -38,7 +38,7 @@ Object {
                   Adam
                    
                   Canon
-                </span>
+                </div>
                 <img
                   class="ui avatar left spaced image"
                   src="gold-nugget.svg"
@@ -171,7 +171,7 @@ Object {
                 Adam
                  
                 Canon
-              </span>
+              </div>
               <img
                 class="ui avatar left spaced image"
                 src="gold-nugget.svg"
@@ -361,7 +361,7 @@ Object {
                   Adam
                    
                   Canon
-                </span>
+                </div>
                 <img
                   class="ui avatar left spaced image"
                   src="gold-nugget.svg"
@@ -494,7 +494,7 @@ Object {
                 Adam
                  
                 Canon
-              </span>
+              </div>
               <img
                 class="ui avatar left spaced image"
                 src="gold-nugget.svg"
@@ -684,7 +684,7 @@ Object {
                   Adam
                    
                   Canon
-                </span>
+                </div>
                 <img
                   class="ui avatar left spaced image"
                   src="gold-nugget.svg"
@@ -817,7 +817,7 @@ Object {
                 Adam
                  
                 Canon
-              </span>
+              </div>
               <img
                 class="ui avatar left spaced image"
                 src="gold-nugget.svg"

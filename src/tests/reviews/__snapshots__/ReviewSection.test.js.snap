@@ -306,7 +306,7 @@ Object {
                         Nakul
                          
                         Verma
-                      </span>
+                      </div>
                       <img
                         class="ui avatar left spaced image"
                         src="gold-nugget.svg"
@@ -840,7 +840,7 @@ Object {
                       Nakul
                        
                       Verma
-                    </span>
+                    </div>
                     <img
                       class="ui avatar left spaced image"
                       src="gold-nugget.svg"

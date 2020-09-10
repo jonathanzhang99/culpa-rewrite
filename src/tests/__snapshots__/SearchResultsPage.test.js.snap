@@ -64,6 +64,37 @@ Object {
             </span>
           </div>
         </div>
+        <div
+          class="row"
+        >
+          <div
+            class="six wide column"
+          >
+            <a
+              href="/professor/40"
+            >
+              <span>
+                Lydia Chilton
+              </span>
+            </a>
+          </div>
+          <div
+            class="ten wide column"
+          >
+            <span>
+              <a
+                href="/department/29"
+              >
+                <span>
+                   
+                  Computer Science
+                   
+                </span>
+              </a>
+              
+            </span>
+          </div>
+        </div>
       </div>
       <div
         class="ui header"
@@ -86,6 +117,39 @@ Object {
                 
                  
                 User Interface Design
+              </span>
+            </a>
+          </div>
+          <div
+            class="ten wide column"
+          >
+            <span>
+              <a
+                href="/department/6"
+              >
+                <span>
+                   
+                  Computer Science
+                   
+                </span>
+              </a>
+              
+            </span>
+          </div>
+        </div>
+        <div
+          class="row"
+        >
+          <div
+            class="six wide column"
+          >
+            <a
+              href="/course/2"
+            >
+              <span>
+                
+                 
+                Machine Learning
               </span>
             </a>
           </div>
@@ -169,6 +233,37 @@ Object {
           </span>
         </div>
       </div>
+      <div
+        class="row"
+      >
+        <div
+          class="six wide column"
+        >
+          <a
+            href="/professor/40"
+          >
+            <span>
+              Lydia Chilton
+            </span>
+          </a>
+        </div>
+        <div
+          class="ten wide column"
+        >
+          <span>
+            <a
+              href="/department/29"
+            >
+              <span>
+                 
+                Computer Science
+                 
+              </span>
+            </a>
+            
+          </span>
+        </div>
+      </div>
     </div>
     <div
       class="ui header"
@@ -191,6 +286,39 @@ Object {
               
                
               User Interface Design
+            </span>
+          </a>
+        </div>
+        <div
+          class="ten wide column"
+        >
+          <span>
+            <a
+              href="/department/6"
+            >
+              <span>
+                 
+                Computer Science
+                 
+              </span>
+            </a>
+            
+          </span>
+        </div>
+      </div>
+      <div
+        class="row"
+      >
+        <div
+          class="six wide column"
+        >
+          <a
+            href="/course/2"
+          >
+            <span>
+              
+               
+              Machine Learning
             </span>
           </a>
         </div>
@@ -452,6 +580,39 @@ Object {
             </span>
           </div>
         </div>
+        <div
+          class="row"
+        >
+          <div
+            class="six wide column"
+          >
+            <a
+              href="/course/2"
+            >
+              <span>
+                
+                 
+                Machine Learning
+              </span>
+            </a>
+          </div>
+          <div
+            class="ten wide column"
+          >
+            <span>
+              <a
+                href="/department/6"
+              >
+                <span>
+                   
+                  Computer Science
+                   
+                </span>
+              </a>
+              
+            </span>
+          </div>
+        </div>
       </div>
     </div>
   </body>,
@@ -497,6 +658,39 @@ Object {
               
                
               User Interface Design
+            </span>
+          </a>
+        </div>
+        <div
+          class="ten wide column"
+        >
+          <span>
+            <a
+              href="/department/6"
+            >
+              <span>
+                 
+                Computer Science
+                 
+              </span>
+            </a>
+            
+          </span>
+        </div>
+      </div>
+      <div
+        class="row"
+      >
+        <div
+          class="six wide column"
+        >
+          <a
+            href="/course/2"
+          >
+            <span>
+              
+               
+              Machine Learning
             </span>
           </a>
         </div>
@@ -637,6 +831,37 @@ Object {
             </span>
           </div>
         </div>
+        <div
+          class="row"
+        >
+          <div
+            class="six wide column"
+          >
+            <a
+              href="/professor/40"
+            >
+              <span>
+                Lydia Chilton
+              </span>
+            </a>
+          </div>
+          <div
+            class="ten wide column"
+          >
+            <span>
+              <a
+                href="/department/29"
+              >
+                <span>
+                   
+                  Computer Science
+                   
+                </span>
+              </a>
+              
+            </span>
+          </div>
+        </div>
       </div>
       <div
         class="ui header"
@@ -690,6 +915,37 @@ Object {
             class="ui avatar left spaced image"
             src="silver-nugget.svg"
           />
+        </div>
+        <div
+          class="ten wide column"
+        >
+          <span>
+            <a
+              href="/department/29"
+            >
+              <span>
+                 
+                Computer Science
+                 
+              </span>
+            </a>
+            
+          </span>
+        </div>
+      </div>
+      <div
+        class="row"
+      >
+        <div
+          class="six wide column"
+        >
+          <a
+            href="/professor/40"
+          >
+            <span>
+              Lydia Chilton
+            </span>
+          </a>
         </div>
         <div
           class="ten wide column"

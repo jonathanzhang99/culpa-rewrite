@@ -25,9 +25,22 @@ describe("SearchResultsPage Components", () => {
               name: "Computer Science",
             },
           ],
-          last: "false",
           id: 2339,
           title: "Nakul Verma",
+          type: "professor",
+        },
+        {
+          badges: [],
+          childKey: "professor-40",
+          departments: [
+            {
+              id: 29,
+              name: "Computer Science",
+            },
+          ],
+          last: "true",
+          id: 40,
+          title: "Lydia Chilton",
           type: "professor",
         },
       ],
@@ -42,6 +55,18 @@ describe("SearchResultsPage Components", () => {
           ],
           id: 1,
           title: "User Interface Design",
+          type: "course",
+        },
+        {
+          childKey: "course-2",
+          departments: [
+            {
+              id: 6,
+              name: "Computer Science",
+            },
+          ],
+          id: 2,
+          title: "Machine Learning",
           type: "course",
         },
       ],
@@ -63,6 +88,20 @@ describe("SearchResultsPage Components", () => {
           title: "Nakul Verma",
           type: "professor",
         },
+        {
+          badges: [],
+          childKey: "professor-40",
+          departments: [
+            {
+              id: 29,
+              name: "Computer Science",
+            },
+          ],
+          last: "true",
+          id: 40,
+          title: "Lydia Chilton",
+          type: "professor",
+        },
       ],
       testCourseResults: [],
     },
@@ -80,6 +119,18 @@ describe("SearchResultsPage Components", () => {
           ],
           id: 1,
           title: "User Interface Design",
+          type: "course",
+        },
+        {
+          childKey: "course-2",
+          departments: [
+            {
+              id: 6,
+              name: "Computer Science",
+            },
+          ],
+          id: 2,
+          title: "Machine Learning",
           type: "course",
         },
       ],

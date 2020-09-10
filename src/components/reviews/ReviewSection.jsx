@@ -21,6 +21,7 @@ const propTypesReviewSection = {
           profFirstName: PropTypes.string.isRequired,
           profLastName: PropTypes.string.isRequired,
           uni: PropTypes.string.isRequired,
+          badges: PropTypes.arrayOf(PropTypes.number).isRequired,
         }),
       ]).isRequired,
       votes: PropTypes.shape({
@@ -46,6 +47,7 @@ const propTypesReviewSection = {
         professorId: PropTypes.number.isRequired,
         firstName: PropTypes.string.isRequired,
         lastName: PropTypes.string.isRequired,
+        badges: PropTypes.arrayOf(PropTypes.number).isRequired,
       }),
       PropTypes.shape({
         courseId: PropTypes.number.isRequired,

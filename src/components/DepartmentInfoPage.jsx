@@ -71,26 +71,21 @@ export function DepartmentProfessorColumn({ departmentProfessors }) {
   );
 }
 
-const defaultPropsDepartmentInfo = {
-  departmentCourses: [],
-  departmentProfessors: [],
-};
-
 const propTypesDepartmentInfo = {
   departmentName: PropTypes.string.isRequired,
   departmentCourses: PropTypes.arrayOf(
     PropTypes.shape({
       courseId: PropTypes.number.isRequired,
       courseName: PropTypes.string.isRequired,
-    }).isRequired
-  ),
+    })
+  ).isRequired,
   departmentProfessors: PropTypes.arrayOf(
     PropTypes.shape({
       professorId: PropTypes.number.isRequired,
       firstName: PropTypes.string.isRequired,
       lastName: PropTypes.string.isRequired,
-    }).isRequired
-  ),
+    })
+  ).isRequired,
 };
 
 export function DepartmentInfo({
@@ -141,4 +136,3 @@ DepartmentCourseColumn.propTypes = propTypesDepartmentCourses;
 DepartmentProfessorColumn.propTypes = propTypesDepartmentProfessors;
 
 DepartmentInfo.propTypes = propTypesDepartmentInfo;
-DepartmentInfo.defaultProps = defaultPropsDepartmentInfo;

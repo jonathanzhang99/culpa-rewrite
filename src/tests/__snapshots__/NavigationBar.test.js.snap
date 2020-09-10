@@ -95,7 +95,7 @@ Object {
           class="three wide column"
         >
           <a
-            href="/review"
+            href="/review/submit"
           >
             <button
               class="ui yellow fluid button"
@@ -252,7 +252,7 @@ Object {
         class="three wide column"
       >
         <a
-          href="/review"
+          href="/review/submit"
         >
           <button
             class="ui yellow fluid button"

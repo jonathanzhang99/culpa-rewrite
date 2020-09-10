@@ -8,8 +8,8 @@ from pypika import functions as fn, \
 from pypika.terms import AnalyticFunction
 
 from api.data import db
-from api.data.common import badge, badge_professor, course, \
-    course_professor, flag, professor, review, vote, union_
+from api.data.common import course, course_professor, flag, \
+  professor, review, vote, union_
 
 DateDiff = CustomFunction('DATEDIFF', ['start_date', 'end_date'])
 
@@ -72,21 +72,16 @@ def prepare_course_query_prefix(course_id, filter_list=None):
             ])) \
         .join(professor) \
         .on(
-            professor.professor_id == course_professor.professor_id) \
-        .left_join(badge_professor) \
-        .on(
-            badge_professor.professor_id == professor.professor_id) \
-        .left_join(badge) \
-        .on(
-            badge.badge_id == badge_professor.badge_id)
+            professor.professor_id == course_professor.professor_id)
+
     if filter_list:
         query = query.where(professor.professor_id.isin(filter_list))
+
     return query, [
         professor.professor_id,
         professor.first_name,
         professor.last_name,
-        professor.uni,
-        badge.badge_id,
+        professor.uni
     ]
 
 
@@ -291,6 +286,9 @@ def load_review_highlight(
         and most agreed votes
     - most negative review: approved review with lowest rating
         and most agreed votes
+
+    In case the two review are the same, only return one review
+    (most agreed review)
     '''
     cur = db.get_cursor()
     approved_flags = get_flags_by_type('approved')

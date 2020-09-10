@@ -57,7 +57,7 @@ def load_course_professors(course_id):
             professor.first_name,
             professor.last_name,
             department.department_id,
-            department.name,
+            department.name.as_('department_name'),
             badge.badge_id) \
         .get_sql()
     cur.execute(query)
@@ -83,7 +83,7 @@ def search_course(search_query, limit=None):
             course.name,
             course.call_number,
             department.department_id,
-            department.name,
+            department.name.as_('department_name'),
             match
         ).where(Criterion.all([
             match > 0,

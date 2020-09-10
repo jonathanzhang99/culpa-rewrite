@@ -18,6 +18,7 @@ const MAX_NUM_PROFESSORS_IN_LIST = 5;
 const propTypesCourseProfessors = {
   courseProfessors: PropTypes.arrayOf(
     PropTypes.shape({
+      badges: PropTypes.arrayOf(PropTypes.number).isRequired,
       firstName: PropTypes.string.isRequired,
       lastName: PropTypes.string.isRequired,
       professorId: PropTypes.number.isRequired,
@@ -27,7 +28,6 @@ const propTypesCourseProfessors = {
           professorDepartmentName: PropTypes.string.isRequired,
         }).isRequired
       ).isRequired,
-      badges: PropTypes.arrayOf(PropTypes.number).isRequired,
     })
   ).isRequired,
 };
@@ -166,7 +166,7 @@ const propTypesReviewCourseButton = {
 
 function ReviewCourseButton({ courseId, courseName }) {
   return (
-    <CreateReviewButton color="yellow" courseId={courseId.toString()}>
+    <CreateReviewButton color="yellow" courseId={courseId}>
       WRITE A REVIEW FOR {courseName}
     </CreateReviewButton>
   );
@@ -234,6 +234,7 @@ const reviewPropType = PropTypes.shape({
     profId: PropTypes.number.isRequired,
     profFirstName: PropTypes.string.isRequired,
     profLastName: PropTypes.string.isRequired,
+    badges: PropTypes.arrayOf(PropTypes.number).isRequired,
   }).isRequired,
   votes: PropTypes.shape({
     initUpvoteCount: PropTypes.number.isRequired,
@@ -281,11 +282,7 @@ function CourseReviewCard({ review }) {
 }
 
 const propTypesDoubleCourseReviewHighlight = {
-  courseReviewHighlight: PropTypes.arrayOf(reviewPropType),
-};
-
-const defaultPropsDoubleCourseReviewHighlight = {
-  courseReviewHighlight: [],
+  courseReviewHighlight: PropTypes.arrayOf(reviewPropType).isRequired,
 };
 
 function DoubleCourseReviewHighlight({ courseReviewHighlight }) {
@@ -306,11 +303,7 @@ function DoubleCourseReviewHighlight({ courseReviewHighlight }) {
 }
 
 const propTypesSingleCourseReviewHighlight = {
-  courseReviewHighlight: PropTypes.arrayOf(reviewPropType),
-};
-
-const defaultPropsSingleCourseReviewHighlight = {
-  courseReviewHighlight: [],
+  courseReviewHighlight: PropTypes.arrayOf(reviewPropType).isRequired,
 };
 
 function SingleCourseReviewHighlight({ courseReviewHighlight }) {
@@ -435,10 +428,8 @@ CourseInfo.propTypes = propTypesCourseInfo;
 CourseReviewCard.propTypes = propTypesCourseReviewCard;
 
 DoubleCourseReviewHighlight.propTypes = propTypesDoubleCourseReviewHighlight;
-DoubleCourseReviewHighlight.defaultProps = defaultPropsDoubleCourseReviewHighlight;
 
 SingleCourseReviewHighlight.propTypes = propTypesSingleCourseReviewHighlight;
-SingleCourseReviewHighlight.defaultProps = defaultPropsSingleCourseReviewHighlight;
 
 CourseReviewHighlight.propTypes = propTypesCourseReviewHighlight;
 CourseReviewHighlight.defaultProps = defaultPropsCourseReviewHighlight;

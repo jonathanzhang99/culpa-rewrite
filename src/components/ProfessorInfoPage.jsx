@@ -50,7 +50,7 @@ const propTypesReviewProfessorButton = {
 
 function ReviewProfessorButton({ professorId, firstName, lastName }) {
   return (
-    <CreateReviewButton color="yellow" professorId={professorId.toString()}>
+    <CreateReviewButton color="yellow" professorId={professorId}>
       WRITE A REVIEW FOR {firstName} {lastName}
     </CreateReviewButton>
   );
@@ -150,11 +150,7 @@ function SingleProfessorReviewHighlight({ review }) {
 }
 
 const propTypesProfessorReviewHighlight = {
-  professorReviewHighlight: PropTypes.arrayOf(reviewPropType),
-};
-
-const defaultPropsProfessorReviewHighlight = {
-  professorReviewHighlight: [],
+  professorReviewHighlight: PropTypes.arrayOf(reviewPropType).isRequired,
 };
 
 function DoubleProfessorReviewHighlight({ professorReviewHighlight }) {
@@ -267,7 +263,5 @@ ProfessorReviewCard.propTypes = propTypesReview;
 SingleProfessorReviewHighlight.propTypes = propTypesReview;
 
 DoubleProfessorReviewHighlight.propTypes = propTypesProfessorReviewHighlight;
-DoubleProfessorReviewHighlight.defaultProps = defaultPropsProfessorReviewHighlight;
 
 ProfessorReviewHighlight.propTypes = propTypesProfessorReviewHighlight;
-ProfessorReviewHighlight.defaultProps = defaultPropsProfessorReviewHighlight;

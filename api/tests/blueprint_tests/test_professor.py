@@ -2,6 +2,8 @@ from unittest import mock
 from datetime import datetime
 from api.tests import BaseTest
 
+from api.blueprints.professor import parse_professors
+
 
 class ProfessorsTest(BaseTest):
     VERMA_PROFESSOR_ID = 1
@@ -84,6 +86,211 @@ class ProfessorsTest(BaseTest):
         'workload': 'demo workload 4'
     }
 
+    def test_parse_professors_with_departments_badges(self):
+        professors = [{
+            'professor_id': 1,
+            'first_name': 'Nakul',
+            'last_name': 'Verma',
+            'department_id': 1,
+            'department_name': 'Computer Science',
+            'badge_id': 1,
+        }, {
+            'professor_id': 1,
+            'first_name': 'Nakul',
+            'last_name': 'Verma',
+            'department_id': 2,
+            'department_name': 'Mathematics',
+            'badge_id': 1,
+        }, {
+            'professor_id': 1,
+            'first_name': 'Nakul',
+            'last_name': 'Verma',
+            'department_id': 1,
+            'department_name': 'Computer Science',
+            'badge_id': 2,
+        }, {
+            'professor_id': 1,
+            'first_name': 'Nakul',
+            'last_name': 'Verma',
+            'department_id': 2,
+            'department_name': 'Mathematics',
+            'badge_id': 2,
+        }, {
+            'professor_id': 2,
+            'first_name': 'Lee',
+            'last_name': 'Bollinger',
+            'department_id': 3,
+            'department_name': 'Law',
+            'badge_id': 1,
+        }, {
+            'professor_id': 2,
+            'first_name': 'Lee',
+            'last_name': 'Bollinger',
+            'department_id': 3,
+            'department_name': 'Law',
+            'badge_id': 2,
+        }, {
+            'professor_id': 3,
+            'first_name': 'Jae Woo',
+            'last_name': 'Lee',
+            'department_id': 1,
+            'department_name': 'Computer Science',
+            'badge_id': None,
+        }]
+
+        expected_professors_json = [{
+            'badges': [1, 2],
+            'departments': [{
+                'departmentId': 1,
+                'departmentName': 'Computer Science'
+            }, {
+                'departmentId': 2,
+                'departmentName': 'Mathematics'
+            }],
+            'firstName': 'Nakul',
+            'lastName': 'Verma',
+            'professorId': 1,
+        }, {
+            'badges': [1, 2],
+            'departments': [{
+                'departmentId': 3,
+                'departmentName': 'Law'
+            }],
+            'firstName': 'Lee',
+            'lastName': 'Bollinger',
+            'professorId': 2,
+        }, {
+            'badges': [],
+            'departments': [{
+                'departmentId': 1,
+                'departmentName': 'Computer Science'
+            }],
+            'firstName': 'Jae Woo',
+            'lastName': 'Lee',
+            'professorId': 3,
+        }]
+
+        professors_json = parse_professors(professors)
+        self.assertEqual(professors_json, expected_professors_json)
+
+    def test_parse_professors_with_departments(self):
+        professors = [{
+            'professor_id': 1,
+            'first_name': 'Nakul',
+            'last_name': 'Verma',
+            'department_id': 1,
+            'department_name': 'Computer Science'
+        }, {
+            'professor_id': 1,
+            'first_name': 'Nakul',
+            'last_name': 'Verma',
+            'department_id': 2,
+            'department_name': 'Mathematics'
+        }, {
+            'professor_id': 2,
+            'first_name': 'Lee',
+            'last_name': 'Bollinger',
+            'department_id': 3,
+            'department_name': 'Law',
+        }, {
+            'professor_id': 3,
+            'first_name': 'Jae Woo',
+            'last_name': 'Lee',
+            'department_id': 1,
+            'department_name': 'Computer Science',
+        }]
+
+        expected_professors_json = [{
+            'badges': [],
+            'departments': [{
+                'departmentId': 1,
+                'departmentName': 'Computer Science'
+            }, {
+                'departmentId': 2,
+                'departmentName': 'Mathematics'
+            }],
+            'firstName': 'Nakul',
+            'lastName': 'Verma',
+            'professorId': 1,
+        }, {
+            'badges': [],
+            'departments': [{
+                'departmentId': 3,
+                'departmentName': 'Law'
+            }],
+            'firstName': 'Lee',
+            'lastName': 'Bollinger',
+            'professorId': 2,
+        }, {
+            'badges': [],
+            'departments': [{
+                'departmentId': 1,
+                'departmentName': 'Computer Science'
+            }],
+            'firstName': 'Jae Woo',
+            'lastName': 'Lee',
+            'professorId': 3,
+        }]
+
+        professors_json = parse_professors(professors)
+        self.assertEqual(professors_json, expected_professors_json)
+
+    def test_parse_professors_with_badges(self):
+        professors = [{
+            'professor_id': 1,
+            'first_name': 'Nakul',
+            'last_name': 'Verma',
+            'badge_id': 1,
+        }, {
+            'professor_id': 1,
+            'first_name': 'Nakul',
+            'last_name': 'Verma',
+            'badge_id': 2,
+        }, {
+            'professor_id': 2,
+            'first_name': 'Lee',
+            'last_name': 'Bollinger',
+            'badge_id': 1,
+        }, {
+            'professor_id': 2,
+            'first_name': 'Lee',
+            'last_name': 'Bollinger',
+            'badge_id': 2,
+        }, {
+            'professor_id': 3,
+            'first_name': 'Jae Woo',
+            'last_name': 'Lee',
+            'badge_id': None,
+        }]
+
+        expected_professors_json = [{
+            'badges': [1, 2],
+            'departments': [],
+            'firstName': 'Nakul',
+            'lastName': 'Verma',
+            'professorId': 1,
+        }, {
+            'badges': [1, 2],
+            'departments': [],
+            'firstName': 'Lee',
+            'lastName': 'Bollinger',
+            'professorId': 2,
+        }, {
+            'badges': [],
+            'departments': [],
+            'firstName': 'Jae Woo',
+            'lastName': 'Lee',
+            'professorId': 3,
+        }]
+
+        professors_json = parse_professors(professors)
+        self.assertEqual(professors_json, expected_professors_json)
+
+    def test_parse_professors_empty(self):
+        professors = []
+        professors_json = parse_professors(professors)
+        self.assertEqual(professors_json, [])
+
     @mock.patch('api.blueprints.professor.load_review_highlight')
     @mock.patch('api.blueprints.professor.load_professor_courses')
     @mock.patch('api.blueprints.professor.load_professor_basic_info_by_id')
@@ -151,6 +358,11 @@ class ProfessorsTest(BaseTest):
         mock_load_professor_basic_info_by_id.return_value = [{
             'first_name': 'Nakul',
             'last_name': 'Verma',
+            'badge_id': 1,
+        }, {
+            'first_name': 'Nakul',
+            'last_name': 'Verma',
+            'badge_id': 2,
         }]
         mock_professor_courses.return_value = [{
             'course_id': 1,
@@ -168,6 +380,7 @@ class ProfessorsTest(BaseTest):
             'professorSummary': {
                 'firstName': 'Nakul',
                 'lastName': 'Verma',
+                'badges': [1, 2],
                 'courses': [
                     {
                         'courseId': 1,
@@ -199,6 +412,11 @@ class ProfessorsTest(BaseTest):
         mock_professor_basic_info_by_id.return_value = [{
             'first_name': 'Nakul',
             'last_name': 'Verma',
+            'badge_id': 1,
+        }, {
+            'first_name': 'Nakul',
+            'last_name': 'Verma',
+            'badge_id': 2,
         }]
         mock_professor_courses.return_value = [{
             'course_id': 1,
@@ -214,6 +432,7 @@ class ProfessorsTest(BaseTest):
             'professorSummary': {
                 'firstName': 'Nakul',
                 'lastName': 'Verma',
+                'badges': [1, 2],
                 'courses': [
                     {
                         'courseId': 1,
@@ -275,7 +494,7 @@ class ProfessorsTest(BaseTest):
             self,
             mock_load_professor_basic_info_by_id):
         mock_load_professor_basic_info_by_id.return_value = []
-        expected_error = {'error': 'Missing professor'}
+        expected_error = {'error': 'Missing professor name'}
 
         res = self.client.get(f'/api/professor/{self.VERMA_PROFESSOR_ID}')
         self.assertEqual(res.status_code, 400)

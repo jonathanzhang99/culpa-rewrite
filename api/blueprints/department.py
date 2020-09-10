@@ -2,6 +2,7 @@ import flask
 
 from api.data.dataloaders.departments_loader import load_all_departments, \
     load_department_courses, load_department_name, load_department_professors
+from api.blueprints.professor import parse_professors
 
 department_blueprint = flask.Blueprint('department_blueprint', __name__)
 
@@ -47,29 +48,26 @@ def department_info(department_id):
         return {'error': 'Missing department name'}, 400
     name_str = name[0]['name']
 
-    courses = load_department_courses(department_id)
-    courses_json = [{
+    department_courses = load_department_courses(department_id)
+    department_courses_json = [{
         'courseId': course['course_id'],
         'courseName': course['name']
-    } for course in courses]
+    } for course in department_courses]
 
     professors = load_department_professors(department_id)
-    professors_json = {}
-    for professor in professors:
-        professor_id = professor['professor_id']
-        if professor_id not in professors_json:
-            professors_json[professor_id] = {
-                'professorId': professor['professor_id'],
-                'firstName': professor['first_name'],
-                'lastName': professor['last_name'],
-                'badges': [],
-            }
-        if professor['badge_id']:
-            professors_json[professor_id]['badges'] \
-              .append(professor['badge_id'])
+    professors_json = parse_professors(professors)
+
+    department_professors_json = []
+    for professor in professors_json:  # filter only necessary attr
+        department_professors_json.append({
+            'badges': professor['badges'],
+            'firstName': professor['firstName'],
+            'lastName': professor['lastName'],
+            'professorId': professor['professorId'],
+        })
 
     return {
         'departmentName': name_str,
-        'departmentCourses': courses_json,
-        'departmentProfessors': list(professors_json.values())
+        'departmentCourses': department_courses_json,
+        'departmentProfessors': department_professors_json,
     }

@@ -48,28 +48,28 @@ class CoursesLoaderTest(LoadersWritersBaseTest):
             'first_name': 'Nakul',
             'last_name': 'Verma',
             'department_id': 1,
-            'name': 'Computer Science',
+            'department_name': 'Computer Science',
             'badge_id': 1,
         }, {
             'professor_id': 1,
             'first_name': 'Nakul',
             'last_name': 'Verma',
             'department_id': 1,
-            'name': 'Computer Science',
+            'department_name': 'Computer Science',
             'badge_id': 2,
         }, {
             'professor_id': 1,
             'first_name': 'Nakul',
             'last_name': 'Verma',
             'department_id': 3,
-            'name': 'Mathematics',
+            'department_name': 'Mathematics',
             'badge_id': 1,
         }, {
             'professor_id': 1,
             'first_name': 'Nakul',
             'last_name': 'Verma',
             'department_id': 3,
-            'name': 'Mathematics',
+            'department_name': 'Mathematics',
             'badge_id': 2,
         }]
 
@@ -92,7 +92,7 @@ class CoursesLoaderTest(LoadersWritersBaseTest):
                 'name',
                 'call_number',
                 'department_id',
-                'department.name',
+                'department_name',
                 'score'
             ])
         )

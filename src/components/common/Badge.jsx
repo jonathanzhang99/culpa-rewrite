@@ -10,6 +10,12 @@ const propTypesBadge = {
   badgeId: PropTypes.number.isRequired,
 };
 
+/**
+ * Assumes badgeId of each badge is the following:
+ * 1 -> Gold Nugget
+ * 2 -> Silver Nugget
+ * 3 -> Bronze Nugget
+ */
 export default function Badge({ badgeId }) {
   switch (badgeId) {
     case 1: {

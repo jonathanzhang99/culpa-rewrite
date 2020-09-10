@@ -2,7 +2,7 @@ import flask
 from datetime import datetime, timedelta
 
 from api.data.dataloaders.professors_loader import \
-    load_professor_basic_info_by_uni
+    load_professor_basic_info_by_uni, load_professor_badges
 from api.data.dataloaders.reviews_loader import get_reviews_with_query_prefix,\
     prepare_course_query_prefix, prepare_professor_query_prefix, \
     load_review
@@ -26,6 +26,7 @@ def parse_review(review, review_type):
 
     if review_type == 'course':
         review_header = {
+            'badges': [],
             'profId': review['professor_id'],
             'profFirstName': review['first_name'],
             'profLastName': review['last_name'],
@@ -40,6 +41,7 @@ def parse_review(review, review_type):
     elif review_type == "all":
         review_header = {
             'professor': {
+                'badges': [],
                 'profId': review['prof_id'],
                 'profFirstName': review['prof_first_name'],
                 'profLastName': review['prof_last_name'],
@@ -205,7 +207,15 @@ def get_reviews(page_type, id):
         filter_year,
     )
 
-    reviews_json = parse_reviews(reviews, page_type)
+    reviews_json = []
+    for review in reviews:
+        review_json = parse_review(review, page_type)
+        if page_type == 'course':
+            badges = load_professor_badges(
+              review_json['reviewHeader']['profId'])
+            for badge in badges:
+                review_json['reviewHeader']['badges'].append(badge['badge_id'])
+        reviews_json.append(review_json)
 
     return {'reviews': reviews_json}
 

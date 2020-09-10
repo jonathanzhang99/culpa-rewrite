@@ -39,7 +39,7 @@ def load_professor_basic_info_by_id(professor_id):
     query = Query \
         .from_(professor) \
         .left_join(badge_professor) \
-        .on(badge_professor.professor_id == professor_id) \
+        .on(badge_professor.professor_id == professor.professor_id) \
         .left_join(badge) \
         .on(badge.badge_id == badge_professor.badge_id) \
         .select(
@@ -94,6 +94,19 @@ def load_any_status_professor_by_uni(professor_uni):
     return cur.fetchone()
 
 
+def load_professor_badges(professor_id):
+    cur = db.get_cursor()
+    query = Query \
+        .from_(badge) \
+        .join(badge_professor) \
+        .on(badge_professor.badge_id == badge.badge_id) \
+        .select(badge_professor.badge_id) \
+        .where(badge_professor.professor_id == professor_id) \
+        .get_sql()
+    cur.execute(query)
+    return cur.fetchall()
+
+
 def load_professor_courses(professor_id):
     '''
     Loads all of the course data for a given professor. The courses
@@ -139,7 +152,6 @@ def search_professor(search_query, limit=None):
             'professor_id',
             'first_name',
             'last_name',
-            'uni',
             match
         ) \
         .where(Criterion.all([
@@ -155,22 +167,21 @@ def search_professor(search_query, limit=None):
     query = Query \
         .from_(distinct_professor) \
         .inner_join(department_professor) \
-        .on(department_professor.professor_id ==
-            distinct_professor.professor_id) \
+        .on(distinct_professor.professor_id ==
+            department_professor.professor_id) \
         .inner_join(department) \
-        .on(department.department_id == department_professor.department_id) \
+        .on(department_professor.department_id == department.department_id) \
         .left_join(badge_professor) \
-        .on(badge_professor.professor_id == distinct_professor.professor_id) \
+        .on(distinct_professor.professor_id == badge_professor.professor_id) \
         .left_join(badge) \
-        .on(badge.badge_id == badge_professor.badge_id) \
+        .on(badge_professor.badge_id == badge.badge_id) \
         .select(
             distinct_professor.professor_id,
             distinct_professor.first_name,
             distinct_professor.last_name,
-            distinct_professor.uni,
             distinct_professor.score,
             department.department_id,
-            department.name,
+            department.name.as_('department_name'),
             badge.badge_id
         ) \
         .get_sql()

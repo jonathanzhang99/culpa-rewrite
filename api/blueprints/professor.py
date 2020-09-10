@@ -9,12 +9,57 @@ from api.blueprints.review import parse_review
 professor_blueprint = flask.Blueprint('professor_blueprint', __name__)
 
 
+def parse_professors(professors, isOrdered=False):
+    '''
+    static method for parsing professors into json objects
+    '''
+    professors_json = {}
+
+    professor_id_order = []  # preserves order of search results (optional)
+    department_ids = []      # prevents duplicate departments
+    for professor in professors:
+        professor_id = professor['professor_id']
+        if professor_id not in professors_json:  # new professor
+            professors_json[professor_id] = {
+                'badges': [],
+                'departments': [],
+                'firstName': professor['first_name'],
+                'lastName': professor['last_name'],
+                'professorId': professor_id,
+            }
+            professor_id_order.append(professor_id)
+            department_ids = []
+
+        if 'department_id' in professor:
+            department_id = professor['department_id']
+            if department_id not in department_ids:
+                professors_json[professor_id]['departments'].append({
+                   'departmentId': professor['department_id'],
+                   'departmentName': professor['department_name'],
+                })
+                department_ids.append(department_id)
+
+        if 'badge_id' in professor:
+            badge_id = professor['badge_id']
+            badge_ids = professors_json[professor_id]['badges']
+            if badge_id and badge_id not in badge_ids:
+                professors_json[professor_id]['badges'].append(badge_id)
+
+    if isOrdered:
+        ordered_professors = []
+        for professor_id in professor_id_order:
+            ordered_professors.append(professors_json[professor_id])
+        return ordered_professors
+
+    return list(professors_json.values())
+
+
 @professor_blueprint.route('/<int:professor_id>', methods=['GET'])
 def professor_info(professor_id):
     name = load_professor_basic_info_by_id(professor_id)
     if not name:
         return {'error': 'Missing professor name'}, 400
-    badges = [badge['badge_id'] for badge in professor if badge['badge_id']]
+    badges = [badge['badge_id'] for badge in name if badge['badge_id']]
 
     courses = load_professor_courses(professor_id)
     courses_json = [{
@@ -54,7 +99,6 @@ def professor_courses(professor_id):
     '''
     courses = load_professor_courses(professor_id)
 
-    # TODO: (Sungbin, JZ) change json to conform to frontend props spec
     courses_json = [{
         'text': course['name'],
         'value': course['course_id'],

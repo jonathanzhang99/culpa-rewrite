@@ -11,7 +11,7 @@ PROFESSOR_RESULTS = [
         'uni': 'nv2274',
         'score': 0.5,
         'department_id': 1,
-        'name': 'Computer Science',
+        'department_name': 'Computer Science',
         'badge_id': 1,
     },
     {
@@ -21,7 +21,7 @@ PROFESSOR_RESULTS = [
         'uni': 'nv2274',
         'score': 0.5,
         'department_id': 2,
-        'name': 'Mathematics',
+        'department_name': 'Mathematics',
         'badge_id': 1,
     },
     {
@@ -31,7 +31,7 @@ PROFESSOR_RESULTS = [
         'uni': 'nv2274',
         'score': 0.5,
         'department_id': 1,
-        'name': 'Computer Science',
+        'department_name': 'Computer Science',
         'badge_id': 2,
     },
     {
@@ -41,7 +41,7 @@ PROFESSOR_RESULTS = [
         'uni': 'nv2274',
         'score': 0.5,
         'department_id': 2,
-        'name': 'Mathematics',
+        'department_name': 'Mathematics',
         'badge_id': 2,
     },
     {
@@ -51,7 +51,7 @@ PROFESSOR_RESULTS = [
         'uni': 'lcb50',
         'score': 0.5,
         'department_id': 3,
-        'name': 'Law',
+        'department_name': 'Law',
         'badge_id': 3,
     }
 ]
@@ -62,7 +62,7 @@ COURSE_RESULT = [
         'name': 'Machine Learning',
         'call_number': 'COMS 4771',
         'department_id': 1,
-        'department.name': 'Computer Science',
+        'department_name': 'Computer Science',
         'score': 0.5,
     },
     {
@@ -70,7 +70,7 @@ COURSE_RESULT = [
         'name': 'Advanced Machine Learning',
         'call_number': 'COMS 4778',
         'department_id': 1,
-        'department.name': 'Computer Science',
+        'department_name': 'Computer Science',
         'score': 0.5,
     }
 ]
