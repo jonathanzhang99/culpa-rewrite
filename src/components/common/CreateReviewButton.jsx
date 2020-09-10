@@ -18,7 +18,7 @@ export default function CreateReviewButton({ courseId, professorId, ...rest }) {
   return (
     <Link
       to={{
-        pathname: "/review",
+        pathname: "/review/submit",
         state: { courseId, professorId },
       }}
     >
