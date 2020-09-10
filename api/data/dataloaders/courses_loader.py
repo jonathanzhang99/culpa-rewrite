@@ -1,8 +1,8 @@
-from pypika import MySQLQuery as Query, Order
+from pypika import Criterion, MySQLQuery as Query, Order
 
 from api.data import db
 from api.data.common import course, course_professor, professor, \
-    department, department_professor, Match
+    department, department_professor, Match, APPROVED
 
 
 def load_course_basic_info(course_id):
@@ -18,9 +18,12 @@ def load_course_basic_info(course_id):
         .inner_join(department) \
         .on(
             course.department_id == department.department_id) \
-        .where(
-            course.course_id == course_id) \
+        .where(Criterion.all([
+            course.course_id == course_id,
+            course.status == APPROVED
+        ])) \
         .get_sql()
+
     cur.execute(query)
     return cur.fetchall()
 
@@ -44,8 +47,10 @@ def load_course_professors(course_id):
         .inner_join(department) \
         .on(
             department_professor.department_id == department.department_id) \
-        .where(
-            course_professor.course_id == course_id) \
+        .where(Criterion.all([
+            course_professor.course_id == course_id,
+            course_professor.status == APPROVED,
+        ])) \
         .get_sql()
     cur.execute(query)
     return cur.fetchall()
@@ -72,7 +77,10 @@ def search_course(search_query, limit=None):
             department.department_id,
             department.name,
             match
-        ).where(match > 0) \
+        ).where(Criterion.all([
+            match > 0,
+            course.status == APPROVED
+        ])) \
         .orderby(match, order=Order.desc) \
         .limit(limit) \
         .get_sql()

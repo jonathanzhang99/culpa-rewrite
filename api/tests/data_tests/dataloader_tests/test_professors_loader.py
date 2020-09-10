@@ -28,9 +28,9 @@ class ProfessorsLoaderTest(LoadersWritersBaseTest):
 
     def test_load_professor_courses_single_course(self):
         expected_courses = [{
-                'course_professor_id': 7,
-                'name': 'Freedom of Speech and Press',
-                'call_number': 'POLS 3285'
+            'course_id': 5,
+            'name': 'Freedom of Speech and Press',
+            'call_number': 'POLS 3285'
         }]
 
         courses = load_professor_courses(BOLLINGER_PROFESSOR_ID)
@@ -38,21 +38,21 @@ class ProfessorsLoaderTest(LoadersWritersBaseTest):
 
     def test_load_professor_courses_multiple_courses(self):
         expected_courses = [{
-            'course_professor_id': 1,
+            'course_id': 1,
             'name': 'Machine Learning',
             'call_number': 'COMS 4771'
         }, {
-            'course_professor_id': 2,
+            'course_id': 2,
             'name': 'Advanced Machine Learning',
             'call_number': 'COMS 4774'
         }, {
-            'course_professor_id': 3,
-            'name': 'Mathematics of Machine Learning',
-            'call_number': 'MATH FAKE'
-        }, {
-            'course_professor_id': 4,
+            'course_id': 4,
             'name': 'Advanced Programming',
             'call_number': 'COMS 3157'
+        }, {
+            'course_id': 6,
+            'name': 'Mathematics of Machine Learning',
+            'call_number': 'MATH FAKE'
         }]
 
         courses = load_professor_courses(VERMA_PROFESSOR_ID)

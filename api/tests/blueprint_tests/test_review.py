@@ -290,7 +290,31 @@ class ReviewTest(BaseTest):
             'expected_review_header': {
                 'courseId': 12345,
                 'courseName': 'testtest',
-                'courseCode': '12345'
+                'courseCallNumber': '12345'
+            }
+        }, {
+            'review_type': 'all',
+            'header_data': {
+                'course_id': 1234,
+                'course_name': 'test course',
+                'course_call_number': 'test call number',
+                'prof_id': 5678,
+                'prof_first_name': 'John',
+                'prof_last_name': 'Doe',
+                'prof_uni': 'jd2910'
+            },
+            'expected_review_header': {
+                'course': {
+                    'courseId': 1234,
+                    'courseName': 'test course',
+                    'courseCode': 'test call number'
+                },
+                'professor': {
+                    'profId': 5678,
+                    'profFirstName': 'John',
+                    'profLastName': 'Doe',
+                    'uni': 'jd2910'
+                }
             }
         }]
         dates = [
@@ -451,3 +475,39 @@ class ReviewTest(BaseTest):
         get_reviews_with_query_prefix_mock.assert_not_called()
         course_query_prefix_mock.assert_not_called()
         professor_query_prefix_mock.assert_not_called()
+
+    @mock.patch("api.blueprints.review.load_review")
+    @mock.patch("api.blueprints.review.parse_review")
+    def test_get_single_review_card_data(
+        self,
+        parse_review_mock,
+        load_review_mock
+    ):
+        review_id = 1
+        cases = [{
+            'flag': 'approved',
+            'review': 'test return value',
+            'review_json': 'test return value'
+        }, {
+            'flag': 'libel',
+            'review': 'test return value',
+            'review_json': {'reviewId': review_id}
+        }, {
+            'flag': 'pending',
+            'review': 'test return value',
+            'review_json': {'reviewId': review_id}
+        }]
+
+        for case in cases:
+            with self.subTest(case):
+                load_review_mock.return_value = {
+                    'flag_type': case['flag'],
+                    'other_fields': case['review']
+                }
+                parse_review_mock.return_value = case['review']
+                res = self.client.get(f"/api/review/{review_id}")
+
+                self.assertEqual(res.json, {
+                    'flag': case['flag'],
+                    'review': case['review_json']
+                })
