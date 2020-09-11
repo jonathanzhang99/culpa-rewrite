@@ -1,6 +1,7 @@
 from api.data import db
 from api.data.dataloaders.professors_loader import load_professor_courses, \
-    load_professor_name, search_professor
+    load_professor_basic_info_by_id, load_professor_basic_info_by_uni, \
+    search_professor
 from api.tests import LoadersWritersBaseTest
 from api.tests.data_tests.common import setup_department_professor_courses
 
@@ -12,6 +13,8 @@ BAD_PROFESSOR_ID = -1
 COMPUTER_DEPARTMENT_ID = 1
 LAW_DEPARTMENT_ID = 2
 MATH_DEPARTMENT_ID = 3
+
+VERMA_PROFESSOR_UNI = 'nv2274'
 
 
 class ProfessorsLoaderTest(LoadersWritersBaseTest):
@@ -25,9 +28,9 @@ class ProfessorsLoaderTest(LoadersWritersBaseTest):
 
     def test_load_professor_courses_single_course(self):
         expected_courses = [{
-                'course_professor_id': 7,
-                'name': 'Freedom of Speech and Press',
-                'call_number': 'POLS 3285'
+            'course_id': 5,
+            'name': 'Freedom of Speech and Press',
+            'call_number': 'POLS 3285'
         }]
 
         courses = load_professor_courses(BOLLINGER_PROFESSOR_ID)
@@ -35,38 +38,53 @@ class ProfessorsLoaderTest(LoadersWritersBaseTest):
 
     def test_load_professor_courses_multiple_courses(self):
         expected_courses = [{
-            'course_professor_id': 1,
+            'course_id': 1,
             'name': 'Machine Learning',
             'call_number': 'COMS 4771'
         }, {
-            'course_professor_id': 2,
+            'course_id': 2,
             'name': 'Advanced Machine Learning',
             'call_number': 'COMS 4774'
         }, {
-            'course_professor_id': 3,
-            'name': 'Mathematics of Machine Learning',
-            'call_number': 'MATH FAKE'
-        }, {
-            'course_professor_id': 4,
+            'course_id': 4,
             'name': 'Advanced Programming',
             'call_number': 'COMS 3157'
+        }, {
+            'course_id': 6,
+            'name': 'Mathematics of Machine Learning',
+            'call_number': 'MATH FAKE'
         }]
 
         courses = load_professor_courses(VERMA_PROFESSOR_ID)
         self.assertEqual(expected_courses, courses)
 
-    def test_load_professor_name(self):
+    def test_load_professor_basic_info_by_id(self):
         expected_name = [{
             'first_name': 'Nakul',
             'last_name': 'Verma'
         }]
 
-        name = load_professor_name(VERMA_PROFESSOR_ID)
+        name = load_professor_basic_info_by_id(VERMA_PROFESSOR_ID)
         self.assertEqual(expected_name, name)
 
-    def test_load_professor_name_empty(self):
-        name = load_professor_name(BAD_PROFESSOR_ID)
-        self.assertEqual((), name)
+    def test_load_professor_basic_info_by_id_empty(self):
+        res = load_professor_basic_info_by_id(BAD_PROFESSOR_ID)
+        self.assertFalse(res)
+
+    def test_load_professor_basic_info_by_uni(self):
+        res = load_professor_basic_info_by_uni(VERMA_PROFESSOR_UNI)
+        expected_professor = [{
+            'professor_id': VERMA_PROFESSOR_ID,
+            'first_name': 'Nakul',
+            'last_name': 'Verma',
+            'uni': VERMA_PROFESSOR_UNI
+        }]
+
+        self.assertEqual(expected_professor, res)
+
+    def test_load_professor_by_bad_uni(self):
+        res = load_professor_basic_info_by_uni('uni123')
+        self.assertFalse(res)
 
     def test_search_professor_with_one_department_by_name(self):
         results = search_professor('bollinger')

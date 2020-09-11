@@ -20,7 +20,7 @@ Object {
             <div
               class="header"
             >
-              Login Error
+              Error
             </div>
           </div>
         </div>
@@ -65,56 +65,6 @@ Object {
                 >
                   No professors found
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div
-          class="disabled six wide field"
-        >
-          <label
-            for="form-input-course"
-          >
-            Course
-          </label>
-          <div
-            aria-disabled="true"
-            aria-expanded="false"
-            aria-invalid="true"
-            aria-label="Course"
-            class="ui disabled search selection dropdown"
-            id="form-input-course"
-            name="course"
-            role="combobox"
-          >
-            <input
-              aria-autocomplete="list"
-              autocomplete="off"
-              class="search"
-              tabindex="-1"
-              type="text"
-              value=""
-            />
-            <div
-              aria-atomic="true"
-              aria-live="polite"
-              class="divider default text"
-              role="alert"
-            >
-              Please select a Professor first
-            </div>
-            <i
-              aria-hidden="true"
-              class="dropdown icon"
-            />
-            <div
-              class="menu transition"
-              role="listbox"
-            >
-              <div
-                class="message"
-              >
-                No results found.
               </div>
             </div>
           </div>
@@ -294,7 +244,7 @@ Object {
           <div
             class="header"
           >
-            Login Error
+            Error
           </div>
         </div>
       </div>
@@ -339,56 +289,6 @@ Object {
               >
                 No professors found
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
-        class="disabled six wide field"
-      >
-        <label
-          for="form-input-course"
-        >
-          Course
-        </label>
-        <div
-          aria-disabled="true"
-          aria-expanded="false"
-          aria-invalid="true"
-          aria-label="Course"
-          class="ui disabled search selection dropdown"
-          id="form-input-course"
-          name="course"
-          role="combobox"
-        >
-          <input
-            aria-autocomplete="list"
-            autocomplete="off"
-            class="search"
-            tabindex="-1"
-            type="text"
-            value=""
-          />
-          <div
-            aria-atomic="true"
-            aria-live="polite"
-            class="divider default text"
-            role="alert"
-          >
-            Please select a Professor first
-          </div>
-          <i
-            aria-hidden="true"
-            class="dropdown icon"
-          />
-          <div
-            class="menu transition"
-            role="listbox"
-          >
-            <div
-              class="message"
-            >
-              No results found.
             </div>
           </div>
         </div>

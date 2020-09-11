@@ -3,40 +3,36 @@
  * the custom Form component. All components use Semantic UI React and
  * are compatible with react-hook-forms.
  *
- * Many of the prop types are duplicated on purpose in order to give a
- * consistent description of the props that each component accepts.
- *
  * NOTE: These components are NOT generic components. Only a selection
  * of the usable props are passed down to the base Semantic components
  * in order to limit the freedom and chance of breaking changes. If
  * you need additional functionality you will need to pass those props
  * down.
  *
- * NOTE: onChange is passed from Form component via the react-hook-form
- * controller. You should never directly pass in the onChange prop.
+ * NOTE: Do not use these input components outside of a Form component.
+ * There are no guarantees nor tests in the codebase to ensure that they
+ * work properly. If you need an input component outside of a Form, use
+ * the Semantic UI components directly. Example can be found in
+ * ReviewSection.jsx
+ *
+ * NOTE: `onChange` and `value` are passed from Form component via the
+ * react-hook-form controller. You should never directly pass these props.
  */
 /* eslint-disable react/jsx-props-no-spreading */
-import debounce from "lodash.debounce";
 import PropTypes from "prop-types";
-import React, { useCallback, useReducer, useState } from "react";
+import React from "react";
 import {
   Form as SemanticForm,
-  Button,
-  Grid,
   Input,
   TextArea,
-  Search,
   Dropdown,
   Radio,
-  Modal,
 } from "semantic-ui-react";
 
-import { CourseDisplayName } from "components/common/CourseDisplay";
-import { DepartmentDisplayName } from "components/common/DepartmentDisplay";
 import { FormGroup } from "components/common/Form";
-import { ProfessorDisplayName } from "components/common/ProfessorDisplay";
+import SearchInputImport from "components/common/SearchInput";
 
-export const SERACH_INPUT_ADD_ENTITY_ID = -1;
+export const SEARCH_INPUT_ADD_ENTITY_ID = -1;
 
 function getId(id, name) {
   return id || `form-input-${name}`;
@@ -139,7 +135,6 @@ export function TextAreaInput({
 }
 
 const propTypesDropdown = {
-  disabled: PropTypes.bool,
   options: PropTypes.arrayOf(PropTypes.any),
   placeholder: PropTypes.string,
   error: PropTypes.shape({
@@ -150,10 +145,10 @@ const propTypesDropdown = {
   name: PropTypes.string.isRequired,
   width: PropTypes.number,
   onChange: PropTypes.func,
+  onOptionSelect: PropTypes.func,
 };
 
 const defaultPropsDropdown = {
-  disabled: false,
   options: [],
   placeholder: undefined,
   error: undefined,
@@ -161,9 +156,9 @@ const defaultPropsDropdown = {
   label: "",
   width: undefined,
   onChange: () => {},
+  onOptionSelect: () => {},
 };
 export function DropdownInput({
-  disabled,
   name,
   label,
   error,
@@ -172,6 +167,7 @@ export function DropdownInput({
   options,
   placeholder,
   onChange,
+  onOptionSelect,
 }) {
   return (
     <SemanticForm.Field
@@ -179,7 +175,6 @@ export function DropdownInput({
       selection
       aria-label={label}
       control={Dropdown}
-      disabled={disabled}
       error={error}
       id={getId(id, name)}
       label={label}
@@ -187,7 +182,10 @@ export function DropdownInput({
       options={options}
       placeholder={placeholder}
       width={width}
-      onChange={(e, { value }) => onChange(value)}
+      onChange={(e, { value }) => {
+        onChange(value);
+        onOptionSelect(value);
+      }}
     />
   );
 }
@@ -232,291 +230,7 @@ export function RadioInputGroup({ name, labels, onChange, value }) {
   );
 }
 
-function searchReducer(state, action) {
-  switch (action.type) {
-    case "SEARCH_START": {
-      return {
-        ...state,
-        isLoading: true,
-      };
-    }
-    case "SEARCH_SUCCESS": {
-      return {
-        isLoading: false,
-        results: action.payload,
-      };
-    }
-    case "SEARCH_RESET": {
-      return {
-        isLoading: false,
-        results: [],
-      };
-    }
-    case "SEARCH_ERROR": {
-      return {
-        ...state,
-        isLoading: false,
-      };
-    }
-    default:
-      throw new Error();
-  }
-}
-
-const propTypesTextResult = {
-  title: PropTypes.string.isRequired,
-};
-
-function TextResult({ title }) {
-  return (
-    <Grid>
-      <Grid.Column>{title}</Grid.Column>
-    </Grid>
-  );
-}
-
-const propTypesResult = {
-  departments: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired,
-    })
-  ).isRequired,
-  last: PropTypes.string,
-  title: PropTypes.string.isRequired,
-  type: PropTypes.oneOf(["professor", "course"]).isRequired,
-};
-
-const defaultPropsResult = {
-  last: undefined,
-};
-
-function SearchResult({ departments, last, title, type }) {
-  return (
-    <Grid className={last && "last-professor-divider"} columns={2}>
-      <Grid.Column>
-        {type === "professor" ? (
-          <ProfessorDisplayName fullName={title} />
-        ) : (
-          <CourseDisplayName courseName={title} />
-        )}
-      </Grid.Column>
-      <Grid.Column>
-        {departments.map(({ id: departmentId, name }, index) => (
-          <span key={`department-${departmentId}`}>
-            <DepartmentDisplayName departmentName={name} />
-            {index !== departments.length - 1 ? "," : ""}
-          </span>
-        ))}
-      </Grid.Column>
-    </Grid>
-  );
-}
-
-function searchResultRenderer({ departments, last, title, type }) {
-  if (type === "text") return <TextResult title={title} />;
-  return (
-    <SearchResult
-      departments={departments}
-      last={last}
-      title={title}
-      type={type}
-    />
-  );
-}
-
-const propTypesSearchInput = {
-  error: PropTypes.shape({
-    message: PropTypes.string,
-  }),
-  id: PropTypes.string,
-  label: PropTypes.string,
-  name: PropTypes.string.isRequired,
-  placeholder: PropTypes.string,
-  searchEntity: PropTypes.oneOf(["all", "professor", "course"]),
-  searchLimit: PropTypes.number,
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-  width: PropTypes.number,
-  onChange: PropTypes.func,
-  onBlur: PropTypes.func,
-  onResultSelect: PropTypes.func,
-  onSearchChange: PropTypes.func,
-};
-
-const defaultPropsSearchInput = {
-  error: undefined,
-  id: undefined,
-  label: undefined,
-  placeholder: "",
-  searchEntity: "all",
-  searchLimit: undefined,
-  onChange: () => {},
-  onBlur: () => {},
-  onResultSelect: () => {},
-  onSearchChange: () => {},
-  value: "",
-  width: undefined,
-};
-
-/**
- * Search bar with autocompletion that receives onChange, onBlur, value from
- * react-hook-forms.
- *
- * onSearchChange: (value) => void
- */
-export function SearchInput({
-  error,
-  id,
-  label,
-  name,
-  placeholder,
-  searchEntity,
-  searchLimit,
-  value,
-  width,
-  onBlur,
-  onChange,
-  onResultSelect,
-  onSearchChange,
-}) {
-  const initialState = {
-    isLoading: false,
-    results: [],
-  };
-
-  const [{ isLoading, results }, dispatch] = useReducer(
-    searchReducer,
-    initialState
-  );
-
-  const noResultsMessage = `No ${
-    searchEntity === "all" ? "result" : searchEntity
-  }s found`;
-
-  const handleResultSelect = (e, { result }) => {
-    onChange(result.title);
-    onResultSelect(result);
-  };
-
-  /**
-   * useCallback memoizes a callback.
-   * It ensures that only one debouncer is created for each SearchInput.
-   */
-  const debouncedFetch = useCallback(
-    debounce(async (searchValue) => {
-      dispatch({ type: "SEARCH_START" });
-      const response = await fetch(
-        `/api/search?entity=${searchEntity}&query=${searchValue}&limit=${searchLimit}`,
-        {
-          method: "GET",
-          headers: { "Content-Type": "Application/json" },
-        }
-      );
-      try {
-        const { professorResults, courseResults } = await response.json();
-        const searchResults = [...professorResults, ...courseResults];
-
-        if (response.ok) {
-          dispatch({
-            type: "SEARCH_SUCCESS",
-            payload: searchResults,
-          });
-        }
-      } catch (err) {
-        dispatch({ type: "SEARCH_ERROR" });
-      }
-    }, 200),
-    [] // no condition to reset this debouncer
-  );
-
-  const handleSearchChange = (e, { value: searchValue }) => {
-    onChange(e);
-    onSearchChange(searchValue);
-
-    if (searchValue.length < 2) {
-      return dispatch({ type: "SEARCH_RESET" });
-    }
-
-    debouncedFetch(searchValue);
-
-    return null;
-  };
-
-  return (
-    <SemanticForm.Field
-      fluid
-      control={Search}
-      error={error}
-      id={getId(id, name)}
-      label={label}
-      loading={isLoading}
-      name={name}
-      noResultsMessage={noResultsMessage}
-      placeholder={placeholder}
-      resultRenderer={searchResultRenderer}
-      results={results}
-      value={value}
-      width={width}
-      onBlur={onBlur}
-      onResultSelect={handleResultSelect}
-      onSearchChange={handleSearchChange}
-    />
-  );
-}
-
-export function Submit(props) {
-  return (
-    <Button name="submit" type="submit" {...props}>
-      SUBMIT
-    </Button>
-  );
-}
-
-const propTypesSubmitConfirm = {
-  trigger: PropTypes.func,
-  handleSubmit: PropTypes.func,
-  content: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
-  header: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
-};
-
-const defaultPropsSubmitConfirm = {
-  trigger: () => {},
-  handleSubmit: () => {},
-  content: "",
-  header: "",
-};
-
-export function SubmitConfirm({ trigger, handleSubmit, content, header }) {
-  const [confirmOpen, setConfirmOpen] = useState(false);
-
-  const openConfirm = async () => {
-    if (!confirmOpen) {
-      const validated = await trigger();
-      if (validated) setConfirmOpen(true);
-    }
-  };
-
-  const closeConfirm = () => setConfirmOpen(false);
-
-  return (
-    <>
-      <Button name="confirmModal" type="button" onClick={openConfirm}>
-        SUBMIT
-      </Button>
-      <Modal open={confirmOpen} onClose={closeConfirm} onOpen={openConfirm}>
-        <Modal.Header>{header}</Modal.Header>
-        <Modal.Content>
-          <Modal.Description>{content}</Modal.Description>
-        </Modal.Content>
-        <Modal.Actions>
-          {/* TODO: Currently gives no options to specify custom buttons/text */}
-          <Button onClick={closeConfirm}>Edit Review</Button>
-          <Submit onClick={handleSubmit} />
-        </Modal.Actions>
-      </Modal>
-    </>
-  );
-}
+export const SearchInput = SearchInputImport;
 
 TextInput.propTypes = propTypesInput;
 TextInput.defaultProps = defaultPropsInput;
@@ -533,16 +247,13 @@ DropdownInput.defaultProps = defaultPropsDropdown;
 RadioInputGroup.propTypes = propTypesRadioInputGroup;
 RadioInputGroup.defaultProps = defaultPropsRadioInputGroup;
 
-SearchResult.propTypes = propTypesResult;
-SearchResult.defaultProps = defaultPropsResult;
+// SearchResult.propTypes = propTypesResult;
+// SearchResult.defaultProps = defaultPropsResult;
 
-TextResult.propTypes = propTypesTextResult;
+// TextResult.propTypes = propTypesTextResult;
 
-searchResultRenderer.propTypes = propTypesResult;
-searchResultRenderer.defaultProps = defaultPropsResult;
+// searchResultRenderer.propTypes = propTypesResult;
+// searchResultRenderer.defaultProps = defaultPropsResult;
 
-SearchInput.propTypes = propTypesSearchInput;
-SearchInput.defaultProps = defaultPropsSearchInput;
-
-SubmitConfirm.propTypes = propTypesSubmitConfirm;
-SubmitConfirm.defaultProps = defaultPropsSubmitConfirm;
+// SearchInput.propTypes = propTypesSearchInput;
+// SearchInput.defaultProps = defaultPropsSearchInput;

@@ -35,8 +35,10 @@ export default function NavigationBar({ children }) {
 
   const onSearchSubmit = ({ NavbarSearchbar }) => {
     const searchValue = NavbarSearchbar;
-    history.push(`/search?entity=all&query=${searchValue}`);
-    return {};
+    if (typeof searchValue === "string" && searchValue.length > 1) {
+      history.push(`/search?entity=all&query=${searchValue}`);
+    }
+    return {}; // Form requires output
   };
 
   const onResultSelect = ({ type, id }) => {
