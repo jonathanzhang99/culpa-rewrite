@@ -1,3 +1,15 @@
 /*******************************
          Site Overrides
 *******************************/
+
+.ui.header {
+  display: inline-block;
+}
+
+.ui.header.culpa-description {
+  font-weight: normal;
+}
+
+.ui.header.nugget-description {
+  color: @secondaryColor;
+}

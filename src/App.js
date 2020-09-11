@@ -6,11 +6,12 @@ import CourseInfoPage from "components/CourseInfoPage";
 import CreateReviewPage from "components/CreateReviewPage";
 import DepartmentInfoPage from "components/DepartmentInfoPage";
 import DepartmentsPage from "components/DepartmentsPage";
+import HomePage from "components/HomePage";
 import LoginPage from "components/LoginPage";
 import NavigationBar from "components/NavigationBar";
 import ProfessorInfoPage from "components/ProfessorInfoPage";
 import SearchResultsPage from "components/SearchResultsPage";
-import SingleReviewPage from "components/SingleReviewPage"
+import SingleReviewPage from "components/SingleReviewPage";
 
 function App() {
   return (
@@ -46,7 +47,7 @@ function App() {
               <SearchResultsPage />
             </Route>
             <Route path="/">
-              <h1>Welcome to CULPA: Temporary header</h1>
+              <HomePage />
             </Route>
           </Switch>
         </NavigationBar>

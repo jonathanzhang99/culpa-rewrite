@@ -136,7 +136,8 @@ export default function CreateReviewPage() {
         <List.Item>About a nonexisting professor or course</List.Item>
         <List.Item>Libelous or defamatory</List.Item>
       </List>
-      CULPA maintains the right to reject or remove any review.
+      <span style={{ color: "#82B7E8" }}>CULPA</span> maintains the right to
+      reject or remove any reviews.
     </>
   );
 
@@ -342,7 +343,7 @@ export default function CreateReviewPage() {
 
   return (
     <>
-      <h1>Write a Review</h1>
+      <Header size="huge">Write a Review</Header>
       <Form
         mode="onChange"
         onSubmit={onSubmitReview}
@@ -400,10 +401,13 @@ export default function CreateReviewPage() {
           rules={{ required: "Please describe the workload" }}
         />
         <RadioInputGroup labels={evaluationLabels} name="evaluation" />
-        <SubmitConfirm
-          content={confirmContent}
-          header="Are you sure you want to submit this review?"
-        />
+        <Divider hidden />
+        <div style={{ textAlign: "center" }}>
+          <SubmitConfirm
+            content={confirmContent}
+            header="Are you sure you want to submit this review?"
+          />
+        </div>
       </Form>
     </>
   );

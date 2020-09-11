@@ -5,12 +5,14 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <div
-        class="ui header"
-      >
-        Nakul
-         
-        Verma
+      <div>
+        <div
+          class="ui huge header"
+        >
+          Nakul
+           
+          Verma
+        </div>
       </div>
       <img
         class="ui avatar left spaced image"
@@ -25,7 +27,7 @@ Object {
       >
         <span>
           Courses: 
-        </span>
+        </div>
         <span>
           <a
             href="/course/1"
@@ -55,23 +57,23 @@ Object {
         href="/review/submit"
       >
         <button
-          class="ui orange button"
+          class="ui orange button relaxed create-review-button"
         >
-          WRITE A REVIEW FOR 
-          Nakul
-           
-          Verma
+          WRITE A REVIEW 
+          FOR NAKUL VERMA
         </button>
       </a>
     </div>
   </body>,
   "container": <div>
-    <div
-      class="ui header"
-    >
-      Nakul
-       
-      Verma
+    <div>
+      <div
+        class="ui huge header"
+      >
+        Nakul
+         
+        Verma
+      </div>
     </div>
     <img
       class="ui avatar left spaced image"
@@ -86,7 +88,7 @@ Object {
     >
       <span>
         Courses: 
-      </span>
+      </div>
       <span>
         <a
           href="/course/1"
@@ -116,12 +118,10 @@ Object {
       href="/review/submit"
     >
       <button
-        class="ui orange button"
+        class="ui orange button relaxed create-review-button"
       >
-        WRITE A REVIEW FOR 
-        Nakul
-         
-        Verma
+        WRITE A REVIEW 
+        FOR NAKUL VERMA
       </button>
     </a>
   </div>,
@@ -184,12 +184,14 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <div
-        class="ui header"
-      >
-        Nakul
-         
-        Verma
+      <div>
+        <div
+          class="ui huge header"
+        >
+          Nakul
+           
+          Verma
+        </div>
       </div>
       <img
         class="ui avatar left spaced image"
@@ -204,29 +206,29 @@ Object {
       >
         <span>
           Courses: 
-        </span>
+        </div>
       </div>
       <a
         href="/review/submit"
       >
         <button
-          class="ui orange button"
+          class="ui orange button relaxed create-review-button"
         >
-          WRITE A REVIEW FOR 
-          Nakul
-           
-          Verma
+          WRITE A REVIEW 
+          FOR NAKUL VERMA
         </button>
       </a>
     </div>
   </body>,
   "container": <div>
-    <div
-      class="ui header"
-    >
-      Nakul
-       
-      Verma
+    <div>
+      <div
+        class="ui huge header"
+      >
+        Nakul
+         
+        Verma
+      </div>
     </div>
     <img
       class="ui avatar left spaced image"
@@ -241,18 +243,16 @@ Object {
     >
       <span>
         Courses: 
-      </span>
+      </div>
     </div>
     <a
       href="/review/submit"
     >
       <button
-        class="ui orange button"
+        class="ui orange button relaxed create-review-button"
       >
-        WRITE A REVIEW FOR 
-        Nakul
-         
-        Verma
+        WRITE A REVIEW 
+        FOR NAKUL VERMA
       </button>
     </a>
   </div>,

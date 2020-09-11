@@ -4,6 +4,7 @@ import { useHistory, Link } from "react-router-dom";
 import { Button, Container, Grid, Icon, Image, Menu } from "semantic-ui-react";
 
 import CreateReviewButton from "components/common/CreateReviewButton";
+import Footer from "components/common/Footer";
 import Form from "components/common/Form";
 import { SearchInput } from "components/common/Inputs";
 import Sidebar from "components/common/Sidebar";
@@ -47,7 +48,13 @@ export default function NavigationBar({ children }) {
 
   return (
     <>
-      <Grid as={Menu} fixed="top" textAlign="center" verticalAlign="middle">
+      <Grid
+        as={Menu}
+        className="navbar"
+        fixed="top"
+        textAlign="center"
+        verticalAlign="middle"
+      >
         <Grid.Column width={1}>
           <Button basic compact onClick={showSidebar}>
             <Icon fitted color="blue" name="bars" size="big" />
@@ -70,17 +77,15 @@ export default function NavigationBar({ children }) {
           </Form>
         </Grid.Column>
         <Grid.Column width={3}>
-          <CreateReviewButton fluid color="orange">
-            WRITE A REVIEW
-          </CreateReviewButton>
+          <CreateReviewButton fluid color="orange" />
         </Grid.Column>
       </Grid>
-      <Container>
-        <div style={{ height: "120px" }} />
+      <Container className="root-container">
         <Sidebar hideSidebar={hideSidebar} isSidebarVisible={isSidebarVisible}>
           {children}
         </Sidebar>
       </Container>
+      <Footer />
     </>
   );
 }

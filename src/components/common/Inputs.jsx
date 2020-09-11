@@ -224,7 +224,7 @@ export function RadioInputGroup({ name, labels, onChange, value }) {
     );
   });
   return (
-    <FormGroup inline unstackable widths="equal">
+    <FormGroup unstackable widths="equal">
       {radioButtons}
     </FormGroup>
   );
@@ -246,14 +246,3 @@ DropdownInput.defaultProps = defaultPropsDropdown;
 
 RadioInputGroup.propTypes = propTypesRadioInputGroup;
 RadioInputGroup.defaultProps = defaultPropsRadioInputGroup;
-
-// SearchResult.propTypes = propTypesResult;
-// SearchResult.defaultProps = defaultPropsResult;
-
-// TextResult.propTypes = propTypesTextResult;
-
-// searchResultRenderer.propTypes = propTypesResult;
-// searchResultRenderer.defaultProps = defaultPropsResult;
-
-// SearchInput.propTypes = propTypesSearchInput;
-// SearchInput.defaultProps = defaultPropsSearchInput;

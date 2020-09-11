@@ -1,3 +1,9 @@
 /*******************************
     User Variable Overrides
 *******************************/
+
+/* Field */
+@fieldMargin: 0 0 1rem;
+
+/* Fields */
+@fieldsMargin: 0em -(@gutterWidth / 2) 1rem;

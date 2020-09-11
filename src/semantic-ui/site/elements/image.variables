@@ -1,3 +1,7 @@
 /*******************************
     User Variable Overrides
 *******************************/
+
+.ui.spaced.image {
+  margin: 2rem;
+}

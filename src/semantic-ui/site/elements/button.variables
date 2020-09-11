@@ -9,9 +9,12 @@
 /* Button */
 @backgroundColor: @primaryColor;
 
+@verticalPadding: @inputVerticalPadding / 1.5;
+@horizontalPadding: 0.5em;
+
 /* Text */
 @textColor: @secondaryColor;
-@fontFamily: "Source Code Pro", @fontName, "Helvetica Neue";
+@fontFamily: "Source Code Pro", Arial, Helvetica, sans-serif;
 
 /*-------------------
         States
@@ -47,5 +50,6 @@
 --------------------*/
 
 /* Colored */
+@blueTextColor: @textColor;
 @orangeTextColor: @textColor;
 @pinkTextColor: @textColor;

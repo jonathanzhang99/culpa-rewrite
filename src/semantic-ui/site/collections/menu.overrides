@@ -1,3 +1,13 @@
 /*******************************
          Site Overrides
 *******************************/
+
+.ui.menu.navbar {
+  background-color: @secondaryColor;
+}
+
+.ui.vertical.menu .item.sidebar-header {
+  background-color: @secondaryColor;
+  color: @white;
+  font-weight: @bold;
+}

@@ -7,6 +7,7 @@ const propTypesCourseDisplayName = {
   as: PropTypes.oneOf(["header", "text"]),
   courseCallNumber: PropTypes.string,
   courseName: PropTypes.string.isRequired,
+  size: PropTypes.oneOf(["tiny", "small", "medium", "large", "huge"]),
 };
 
 const propTypesCourseDisplayLink = {
@@ -14,17 +15,19 @@ const propTypesCourseDisplayLink = {
   courseCallNumber: PropTypes.string,
   courseId: PropTypes.number.isRequired,
   courseName: PropTypes.string.isRequired,
+  size: PropTypes.oneOf(["tiny", "small", "medium", "large", "huge"]),
 };
 
 const defaultProps = {
   courseCallNumber: "",
   as: "text",
+  size: "medium",
 };
 
-export function CourseDisplayName({ as, courseCallNumber, courseName }) {
+export function CourseDisplayName({ as, courseCallNumber, courseName, size }) {
   const CourseName = as === "header" ? Header : "span";
   return (
-    <CourseName>
+    <CourseName size={size}>
       {courseCallNumber} {courseName}
     </CourseName>
   );
@@ -35,6 +38,7 @@ export function CourseDisplayLink({
   courseCallNumber,
   courseId,
   courseName,
+  size,
 }) {
   return (
     <Link to={`/course/${courseId}`}>
@@ -42,6 +46,7 @@ export function CourseDisplayLink({
         as={as}
         courseCallNumber={courseCallNumber}
         courseName={courseName}
+        size={size}
       />
     </Link>
   );

@@ -33,7 +33,7 @@ Object {
                 style="position: relative;"
               >
                 <div
-                  class="ui header"
+                  class="ui medium header"
                 >
                   Adam
                    
@@ -84,8 +84,8 @@ Object {
                   style="padding-bottom: 0px; overflow: show;"
                 >
                   <img
-                    class="ui image"
-                    src="blue-upvote.png"
+                    class="ui mini image"
+                    src="blue-upvote.svg"
                   />
                 </div>
                 <div
@@ -101,8 +101,8 @@ Object {
                   style="padding-bottom: 0px;"
                 >
                   <img
-                    class="ui image"
-                    src="downvote.png"
+                    class="ui mini image"
+                    src="downvote.svg"
                   />
                 </div>
                 <div
@@ -118,8 +118,8 @@ Object {
                   style="padding-bottom: 0px;"
                 >
                   <img
-                    class="ui image"
-                    src="funny.png"
+                    class="ui mini image"
+                    src="funny.svg"
                   />
                 </div>
                 <div
@@ -166,7 +166,7 @@ Object {
               style="position: relative;"
             >
               <div
-                class="ui header"
+                class="ui medium header"
               >
                 Adam
                  
@@ -217,8 +217,8 @@ Object {
                 style="padding-bottom: 0px; overflow: show;"
               >
                 <img
-                  class="ui image"
-                  src="blue-upvote.png"
+                  class="ui mini image"
+                  src="blue-upvote.svg"
                 />
               </div>
               <div
@@ -234,8 +234,8 @@ Object {
                 style="padding-bottom: 0px;"
               >
                 <img
-                  class="ui image"
-                  src="downvote.png"
+                  class="ui mini image"
+                  src="downvote.svg"
                 />
               </div>
               <div
@@ -251,8 +251,8 @@ Object {
                 style="padding-bottom: 0px;"
               >
                 <img
-                  class="ui image"
-                  src="funny.png"
+                  class="ui mini image"
+                  src="funny.svg"
                 />
               </div>
               <div
@@ -356,7 +356,7 @@ Object {
                 style="position: relative;"
               >
                 <div
-                  class="ui header"
+                  class="ui medium header"
                 >
                   Adam
                    
@@ -407,8 +407,8 @@ Object {
                   style="padding-bottom: 0px; overflow: show;"
                 >
                   <img
-                    class="ui image"
-                    src="blue-upvote.png"
+                    class="ui mini image"
+                    src="blue-upvote.svg"
                   />
                 </div>
                 <div
@@ -424,8 +424,8 @@ Object {
                   style="padding-bottom: 0px;"
                 >
                   <img
-                    class="ui image"
-                    src="blue-downvote.png"
+                    class="ui mini image"
+                    src="blue-downvote.svg"
                   />
                 </div>
                 <div
@@ -441,8 +441,8 @@ Object {
                   style="padding-bottom: 0px;"
                 >
                   <img
-                    class="ui image"
-                    src="funny.png"
+                    class="ui mini image"
+                    src="funny.svg"
                   />
                 </div>
                 <div
@@ -489,7 +489,7 @@ Object {
               style="position: relative;"
             >
               <div
-                class="ui header"
+                class="ui medium header"
               >
                 Adam
                  
@@ -540,8 +540,8 @@ Object {
                 style="padding-bottom: 0px; overflow: show;"
               >
                 <img
-                  class="ui image"
-                  src="blue-upvote.png"
+                  class="ui mini image"
+                  src="blue-upvote.svg"
                 />
               </div>
               <div
@@ -557,8 +557,8 @@ Object {
                 style="padding-bottom: 0px;"
               >
                 <img
-                  class="ui image"
-                  src="blue-downvote.png"
+                  class="ui mini image"
+                  src="blue-downvote.svg"
                 />
               </div>
               <div
@@ -574,8 +574,8 @@ Object {
                 style="padding-bottom: 0px;"
               >
                 <img
-                  class="ui image"
-                  src="funny.png"
+                  class="ui mini image"
+                  src="funny.svg"
                 />
               </div>
               <div
@@ -679,7 +679,7 @@ Object {
                 style="position: relative;"
               >
                 <div
-                  class="ui header"
+                  class="ui medium header"
                 >
                   Adam
                    
@@ -730,8 +730,8 @@ Object {
                   style="padding-bottom: 0px; overflow: show;"
                 >
                   <img
-                    class="ui image"
-                    src="upvote.png"
+                    class="ui mini image"
+                    src="upvote.svg"
                   />
                 </div>
                 <div
@@ -747,8 +747,8 @@ Object {
                   style="padding-bottom: 0px;"
                 >
                   <img
-                    class="ui image"
-                    src="downvote.png"
+                    class="ui mini image"
+                    src="downvote.svg"
                   />
                 </div>
                 <div
@@ -764,8 +764,8 @@ Object {
                   style="padding-bottom: 0px;"
                 >
                   <img
-                    class="ui image"
-                    src="funny.png"
+                    class="ui mini image"
+                    src="funny.svg"
                   />
                 </div>
                 <div
@@ -812,7 +812,7 @@ Object {
               style="position: relative;"
             >
               <div
-                class="ui header"
+                class="ui medium header"
               >
                 Adam
                  
@@ -863,8 +863,8 @@ Object {
                 style="padding-bottom: 0px; overflow: show;"
               >
                 <img
-                  class="ui image"
-                  src="upvote.png"
+                  class="ui mini image"
+                  src="upvote.svg"
                 />
               </div>
               <div
@@ -880,8 +880,8 @@ Object {
                 style="padding-bottom: 0px;"
               >
                 <img
-                  class="ui image"
-                  src="downvote.png"
+                  class="ui mini image"
+                  src="downvote.svg"
                 />
               </div>
               <div
@@ -897,8 +897,8 @@ Object {
                 style="padding-bottom: 0px;"
               >
                 <img
-                  class="ui image"
-                  src="funny.png"
+                  class="ui mini image"
+                  src="funny.svg"
                 />
               </div>
               <div
@@ -1002,7 +1002,7 @@ Object {
                 style="position: relative;"
               >
                 <div
-                  class="ui header"
+                  class="ui medium header"
                 >
                   COMS1004
                    
@@ -1049,8 +1049,8 @@ Object {
                   style="padding-bottom: 0px; overflow: show;"
                 >
                   <img
-                    class="ui image"
-                    src="blue-upvote.png"
+                    class="ui mini image"
+                    src="blue-upvote.svg"
                   />
                 </div>
                 <div
@@ -1066,8 +1066,8 @@ Object {
                   style="padding-bottom: 0px;"
                 >
                   <img
-                    class="ui image"
-                    src="downvote.png"
+                    class="ui mini image"
+                    src="downvote.svg"
                   />
                 </div>
                 <div
@@ -1083,8 +1083,8 @@ Object {
                   style="padding-bottom: 0px;"
                 >
                   <img
-                    class="ui image"
-                    src="funny.png"
+                    class="ui mini image"
+                    src="funny.svg"
                   />
                 </div>
                 <div
@@ -1131,7 +1131,7 @@ Object {
               style="position: relative;"
             >
               <div
-                class="ui header"
+                class="ui medium header"
               >
                 COMS1004
                  
@@ -1178,8 +1178,8 @@ Object {
                 style="padding-bottom: 0px; overflow: show;"
               >
                 <img
-                  class="ui image"
-                  src="blue-upvote.png"
+                  class="ui mini image"
+                  src="blue-upvote.svg"
                 />
               </div>
               <div
@@ -1195,8 +1195,8 @@ Object {
                 style="padding-bottom: 0px;"
               >
                 <img
-                  class="ui image"
-                  src="downvote.png"
+                  class="ui mini image"
+                  src="downvote.svg"
                 />
               </div>
               <div
@@ -1212,8 +1212,8 @@ Object {
                 style="padding-bottom: 0px;"
               >
                 <img
-                  class="ui image"
-                  src="funny.png"
+                  class="ui mini image"
+                  src="funny.svg"
                 />
               </div>
               <div
@@ -1317,7 +1317,7 @@ Object {
                 style="position: relative;"
               >
                 <div
-                  class="ui header"
+                  class="ui medium header"
                 >
                   COMS1004
                    
@@ -1364,8 +1364,8 @@ Object {
                   style="padding-bottom: 0px; overflow: show;"
                 >
                   <img
-                    class="ui image"
-                    src="blue-upvote.png"
+                    class="ui mini image"
+                    src="blue-upvote.svg"
                   />
                 </div>
                 <div
@@ -1381,8 +1381,8 @@ Object {
                   style="padding-bottom: 0px;"
                 >
                   <img
-                    class="ui image"
-                    src="blue-downvote.png"
+                    class="ui mini image"
+                    src="blue-downvote.svg"
                   />
                 </div>
                 <div
@@ -1398,8 +1398,8 @@ Object {
                   style="padding-bottom: 0px;"
                 >
                   <img
-                    class="ui image"
-                    src="funny.png"
+                    class="ui mini image"
+                    src="funny.svg"
                   />
                 </div>
                 <div
@@ -1446,7 +1446,7 @@ Object {
               style="position: relative;"
             >
               <div
-                class="ui header"
+                class="ui medium header"
               >
                 COMS1004
                  
@@ -1493,8 +1493,8 @@ Object {
                 style="padding-bottom: 0px; overflow: show;"
               >
                 <img
-                  class="ui image"
-                  src="blue-upvote.png"
+                  class="ui mini image"
+                  src="blue-upvote.svg"
                 />
               </div>
               <div
@@ -1510,8 +1510,8 @@ Object {
                 style="padding-bottom: 0px;"
               >
                 <img
-                  class="ui image"
-                  src="blue-downvote.png"
+                  class="ui mini image"
+                  src="blue-downvote.svg"
                 />
               </div>
               <div
@@ -1527,8 +1527,8 @@ Object {
                 style="padding-bottom: 0px;"
               >
                 <img
-                  class="ui image"
-                  src="funny.png"
+                  class="ui mini image"
+                  src="funny.svg"
                 />
               </div>
               <div
@@ -1632,7 +1632,7 @@ Object {
                 style="position: relative;"
               >
                 <div
-                  class="ui header"
+                  class="ui medium header"
                 >
                   COMS1004
                    
@@ -1679,8 +1679,8 @@ Object {
                   style="padding-bottom: 0px; overflow: show;"
                 >
                   <img
-                    class="ui image"
-                    src="upvote.png"
+                    class="ui mini image"
+                    src="upvote.svg"
                   />
                 </div>
                 <div
@@ -1696,8 +1696,8 @@ Object {
                   style="padding-bottom: 0px;"
                 >
                   <img
-                    class="ui image"
-                    src="downvote.png"
+                    class="ui mini image"
+                    src="downvote.svg"
                   />
                 </div>
                 <div
@@ -1713,8 +1713,8 @@ Object {
                   style="padding-bottom: 0px;"
                 >
                   <img
-                    class="ui image"
-                    src="funny.png"
+                    class="ui mini image"
+                    src="funny.svg"
                   />
                 </div>
                 <div
@@ -1761,7 +1761,7 @@ Object {
               style="position: relative;"
             >
               <div
-                class="ui header"
+                class="ui medium header"
               >
                 COMS1004
                  
@@ -1808,8 +1808,8 @@ Object {
                 style="padding-bottom: 0px; overflow: show;"
               >
                 <img
-                  class="ui image"
-                  src="upvote.png"
+                  class="ui mini image"
+                  src="upvote.svg"
                 />
               </div>
               <div
@@ -1825,8 +1825,8 @@ Object {
                 style="padding-bottom: 0px;"
               >
                 <img
-                  class="ui image"
-                  src="downvote.png"
+                  class="ui mini image"
+                  src="downvote.svg"
                 />
               </div>
               <div
@@ -1842,8 +1842,8 @@ Object {
                 style="padding-bottom: 0px;"
               >
                 <img
-                  class="ui image"
-                  src="funny.png"
+                  class="ui mini image"
+                  src="funny.svg"
                 />
               </div>
               <div

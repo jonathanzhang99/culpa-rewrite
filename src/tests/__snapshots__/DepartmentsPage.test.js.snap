@@ -6,7 +6,7 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="ui header"
+        class="ui huge header"
       >
         List of Departments
       </div>
@@ -47,7 +47,7 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="ui header"
+      class="ui huge header"
     >
       List of Departments
     </div>
@@ -145,7 +145,7 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="ui header"
+        class="ui huge header"
       >
         List of Departments
       </div>
@@ -157,7 +157,7 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="ui header"
+      class="ui huge header"
     >
       List of Departments
     </div>

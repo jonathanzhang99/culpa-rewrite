@@ -1,3 +1,32 @@
 /*******************************
          Site Overrides
 *******************************/
+
+@background: @secondaryColor;
+/* See Power-user section in site.variables
+   for explanation of @px variables
+*/
+@borderRadius: @10px;
+
+/* Header */
+@headerBackground: @secondaryColor;
+@headerColor: @white;
+@headerFontSize: @large;
+@headerBorder: none;
+
+/* Content */
+@contentBackground: @secondaryColor;
+@contentPadding: 0rem 2rem;
+
+/* Modal Actions */
+@actionBorder: none;
+@actionBackground: @secondaryColor;
+@actionPadding: 2rem;
+@actionAlign: center;
+
+/* Responsive Widths */
+@mobileWidth: 63%;
+@tabletWidth: 59%;
+@computerWidth: 567px;
+@largeMonitorWidth: 600px;
+@widescreenMonitorWidth: 633px;

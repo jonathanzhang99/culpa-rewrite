@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import {
   Form as SemanticForm,
+  Icon,
   Message,
   Button,
   Modal,
@@ -63,7 +64,12 @@ export function SubmitConfirm({
 
   return (
     <>
-      <Button name="confirmModal" type="button" onClick={openConfirm}>
+      <Button
+        name="confirmModal"
+        size="huge"
+        type="button"
+        onClick={openConfirm}
+      >
         SUBMIT
       </Button>
       <Modal
@@ -71,14 +77,16 @@ export function SubmitConfirm({
         onClose={closeConfirm}
         onOpen={openConfirm}
       >
-        <Modal.Header>{header}</Modal.Header>
-        <Modal.Content>
-          <Modal.Description>{content}</Modal.Description>
-        </Modal.Content>
+        <Modal.Header>
+          <Icon color="red" name="warning circle" size="large" /> {header}
+        </Modal.Header>
+        <Modal.Content>{content}</Modal.Content>
         <Modal.Actions>
           {/* TODO: Currently gives no options to specify custom buttons/text */}
-          <Button onClick={closeConfirm}>Edit Review</Button>
-          <Submit onClick={handleSubmit} />
+          <Button color="pink" size="large" onClick={closeConfirm}>
+            EDIT REVIEW
+          </Button>
+          <Submit size="large" onClick={handleSubmit} />
         </Modal.Actions>
       </Modal>
     </>

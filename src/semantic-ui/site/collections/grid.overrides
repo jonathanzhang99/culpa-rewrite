@@ -1,3 +1,15 @@
 /*******************************
          Site Overrides
 *******************************/
+
+.ui.grid.footer {
+  background-color: @secondaryColor;
+  font-family: "Source Code Pro", Arial, Helvetica, sans-serif;
+  height: 150px;
+}
+
+.footer-link {
+  color: @white;
+  font-size: 1rem;
+  font-weight: @bold;
+}

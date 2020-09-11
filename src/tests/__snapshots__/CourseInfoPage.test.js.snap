@@ -6,21 +6,19 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="ui header"
+        class="ui huge header"
       >
         COMS 4771
          
         Machine Learning
       </div>
-      <div
-        class="ui container"
-      >
-        <div
-          class="ui container"
-        >
-          <span>
+      <div>
+        <div>
+          <div
+            class="ui header"
+          >
             Department: 
-          </span>
+          </div>
           <a
             href="/department/1"
           >
@@ -31,39 +29,39 @@ Object {
             </span>
           </a>
         </div>
-        <span>
+        <div
+          class="ui header"
+        >
           Professors: 
-        </span>
+        </div>
       </div>
       <a
         href="/review/submit"
       >
         <button
-          class="ui orange button"
+          class="ui orange button relaxed create-review-button"
         >
-          WRITE A REVIEW FOR 
-          Machine Learning
+          WRITE A REVIEW 
+          FOR MACHINE LEARNING
         </button>
       </a>
     </div>
   </body>,
   "container": <div>
     <div
-      class="ui header"
+      class="ui huge header"
     >
       COMS 4771
        
       Machine Learning
     </div>
-    <div
-      class="ui container"
-    >
-      <div
-        class="ui container"
-      >
-        <span>
+    <div>
+      <div>
+        <div
+          class="ui header"
+        >
           Department: 
-        </span>
+        </div>
         <a
           href="/department/1"
         >
@@ -74,18 +72,20 @@ Object {
           </span>
         </a>
       </div>
-      <span>
+      <div
+        class="ui header"
+      >
         Professors: 
-      </span>
+      </div>
     </div>
     <a
       href="/review/submit"
     >
       <button
-        class="ui orange button"
+        class="ui orange button relaxed create-review-button"
       >
-        WRITE A REVIEW FOR 
-        Machine Learning
+        WRITE A REVIEW 
+        FOR MACHINE LEARNING
       </button>
     </a>
   </div>,
@@ -149,21 +149,19 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="ui header"
+        class="ui huge header"
       >
         COMS 4771
          
         Machine Learning
       </div>
-      <div
-        class="ui container"
-      >
-        <div
-          class="ui container"
-        >
-          <span>
+      <div>
+        <div>
+          <div
+            class="ui header"
+          >
             Department: 
-          </span>
+          </div>
           <a
             href="/department/1"
           >
@@ -174,9 +172,11 @@ Object {
             </span>
           </a>
         </div>
-        <span>
+        <div
+          class="ui header"
+        >
           Professors: 
-        </span>
+        </div>
         <span>
           <a
             href="/professor/1"
@@ -202,31 +202,29 @@ Object {
         href="/review/submit"
       >
         <button
-          class="ui orange button"
+          class="ui orange button relaxed create-review-button"
         >
-          WRITE A REVIEW FOR 
-          Machine Learning
+          WRITE A REVIEW 
+          FOR MACHINE LEARNING
         </button>
       </a>
     </div>
   </body>,
   "container": <div>
     <div
-      class="ui header"
+      class="ui huge header"
     >
       COMS 4771
        
       Machine Learning
     </div>
-    <div
-      class="ui container"
-    >
-      <div
-        class="ui container"
-      >
-        <span>
+    <div>
+      <div>
+        <div
+          class="ui header"
+        >
           Department: 
-        </span>
+        </div>
         <a
           href="/department/1"
         >
@@ -237,9 +235,11 @@ Object {
           </span>
         </a>
       </div>
-      <span>
+      <div
+        class="ui header"
+      >
         Professors: 
-      </span>
+      </div>
       <span>
         <a
           href="/professor/1"
@@ -265,10 +265,10 @@ Object {
       href="/review/submit"
     >
       <button
-        class="ui orange button"
+        class="ui orange button relaxed create-review-button"
       >
-        WRITE A REVIEW FOR 
-        Machine Learning
+        WRITE A REVIEW 
+        FOR MACHINE LEARNING
       </button>
     </a>
   </div>,
@@ -332,21 +332,19 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="ui header"
+        class="ui huge header"
       >
         COMS 4771
          
         Machine Learning
       </div>
-      <div
-        class="ui container"
-      >
-        <div
-          class="ui container"
-        >
-          <span>
+      <div>
+        <div>
+          <div
+            class="ui header"
+          >
             Department: 
-          </span>
+          </div>
           <a
             href="/department/1"
           >
@@ -659,31 +657,29 @@ Object {
         href="/review/submit"
       >
         <button
-          class="ui orange button"
+          class="ui orange button relaxed create-review-button"
         >
-          WRITE A REVIEW FOR 
-          Machine Learning
+          WRITE A REVIEW 
+          FOR MACHINE LEARNING
         </button>
       </a>
     </div>
   </body>,
   "container": <div>
     <div
-      class="ui header"
+      class="ui huge header"
     >
       COMS 4771
        
       Machine Learning
     </div>
-    <div
-      class="ui container"
-    >
-      <div
-        class="ui container"
-      >
-        <span>
+    <div>
+      <div>
+        <div
+          class="ui header"
+        >
           Department: 
-        </span>
+        </div>
         <a
           href="/department/1"
         >
@@ -996,10 +992,10 @@ Object {
       href="/review/submit"
     >
       <button
-        class="ui orange button"
+        class="ui orange button relaxed create-review-button"
       >
-        WRITE A REVIEW FOR 
-        Machine Learning
+        WRITE A REVIEW 
+        FOR MACHINE LEARNING
       </button>
     </a>
   </div>,
@@ -1063,21 +1059,19 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="ui header"
+        class="ui huge header"
       >
         COMS 4771
          
         Machine Learning
       </div>
-      <div
-        class="ui container"
-      >
-        <div
-          class="ui container"
-        >
-          <span>
+      <div>
+        <div>
+          <div
+            class="ui header"
+          >
             Department: 
-          </span>
+          </div>
           <a
             href="/department/1"
           >
@@ -1088,9 +1082,11 @@ Object {
             </span>
           </a>
         </div>
-        <span>
+        <div
+          class="ui header"
+        >
           Professors: 
-        </span>
+        </div>
         <span>
           <a
             href="/professor/1"
@@ -1128,31 +1124,29 @@ Object {
         href="/review/submit"
       >
         <button
-          class="ui orange button"
+          class="ui orange button relaxed create-review-button"
         >
-          WRITE A REVIEW FOR 
-          Machine Learning
+          WRITE A REVIEW 
+          FOR MACHINE LEARNING
         </button>
       </a>
     </div>
   </body>,
   "container": <div>
     <div
-      class="ui header"
+      class="ui huge header"
     >
       COMS 4771
        
       Machine Learning
     </div>
-    <div
-      class="ui container"
-    >
-      <div
-        class="ui container"
-      >
-        <span>
+    <div>
+      <div>
+        <div
+          class="ui header"
+        >
           Department: 
-        </span>
+        </div>
         <a
           href="/department/1"
         >
@@ -1163,9 +1157,11 @@ Object {
           </span>
         </a>
       </div>
-      <span>
+      <div
+        class="ui header"
+      >
         Professors: 
-      </span>
+      </div>
       <span>
         <a
           href="/professor/1"
@@ -1203,10 +1199,10 @@ Object {
       href="/review/submit"
     >
       <button
-        class="ui orange button"
+        class="ui orange button relaxed create-review-button"
       >
-        WRITE A REVIEW FOR 
-        Machine Learning
+        WRITE A REVIEW 
+        FOR MACHINE LEARNING
       </button>
     </a>
   </div>,

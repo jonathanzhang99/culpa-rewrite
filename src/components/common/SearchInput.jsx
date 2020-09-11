@@ -94,7 +94,7 @@ const defaultPropsSearchResult = {
 
 function SearchResult({ badges, departments, last, title, type }) {
   return (
-    <Grid className={last && "last-divider"} columns={2}>
+    <Grid className={last && "last-professor-divider"} columns={2}>
       <Grid.Column>
         {type === "professor" ? (
           <ProfessorDisplayName badges={badges} fullName={title} />

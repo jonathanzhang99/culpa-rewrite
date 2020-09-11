@@ -11,13 +11,7 @@
 
 /* Result */
 @resultDivider: none;
-@resultTextColor: #0072CE;
-.last-professor-divider {
-  border-bottom: 3px solid @secondaryColor;
-}
-
-/* Result Image */
-@resultImageBackground: @blue;
+@resultTextColor: @linkColor;
 
 /*******************************
             States

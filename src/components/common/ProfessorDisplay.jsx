@@ -11,6 +11,7 @@ const propTypesProfessorDisplayName = {
   firstName: PropTypes.string,
   fullName: PropTypes.string,
   lastName: PropTypes.string,
+  size: PropTypes.oneOf(["tiny", "small", "medium", "large", "huge"]),
 };
 
 const propTypesProfessorDisplayLink = {
@@ -20,6 +21,7 @@ const propTypesProfessorDisplayLink = {
   fullName: PropTypes.string,
   lastName: PropTypes.string,
   professorId: PropTypes.number.isRequired,
+  size: PropTypes.oneOf(["tiny", "small", "medium", "large", "huge"]),
 };
 
 const defaultProps = {
@@ -28,6 +30,7 @@ const defaultProps = {
   firstName: "",
   fullName: "",
   lastName: "",
+  size: "medium",
 };
 
 export function ProfessorDisplayName({
@@ -36,11 +39,12 @@ export function ProfessorDisplayName({
   firstName,
   fullName,
   lastName,
+  size,
 }) {
   const ProfessorName = as === "header" ? Header : "span";
   return (
     <>
-      <ProfessorName>
+      <ProfessorName size={size}>
         {fullName || (
           <>
             {firstName} {lastName}
@@ -61,6 +65,7 @@ export function ProfessorDisplayLink({
   fullName,
   lastName,
   professorId,
+  size,
 }) {
   return (
     <>
@@ -70,6 +75,7 @@ export function ProfessorDisplayLink({
           firstName={firstName}
           fullName={fullName}
           lastName={lastName}
+          size={size}
         />
       </Link>
       {badges.map((badgeId) => (

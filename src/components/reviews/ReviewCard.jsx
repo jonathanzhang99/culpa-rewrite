@@ -11,11 +11,11 @@ import {
 
 import { CourseDisplayName } from "components/common/CourseDisplay";
 import { ProfessorDisplayName } from "components/common/ProfessorDisplay";
-import downvoteClickedIcon from "icons/blue-downvote.png";
-import upvoteClickedIcon from "icons/blue-upvote.png";
-import downvoteIcon from "icons/downvote.png";
-import funnyIcon from "icons/funny.png";
-import upvoteIcon from "icons/upvote.png";
+import downvoteClickedIcon from "icons/blue-downvote.svg";
+import upvoteClickedIcon from "icons/blue-upvote.svg";
+import downvoteIcon from "icons/downvote.svg";
+import funnyIcon from "icons/funny.svg";
+import upvoteIcon from "icons/upvote.svg";
 
 const propTypesVotesContainer = {
   reviewId: PropTypes.number.isRequired,
@@ -136,6 +136,7 @@ export function VotesContainer({ reviewId, votes }) {
       <Grid centered style={{ padding: "30px 10px", height: "100%" }}>
         <Grid.Row style={{ paddingBottom: 0, overflow: "show" }}>
           <Image
+            size="mini"
             src={state.upvoteClicked ? upvoteClickedIcon : upvoteIcon}
             onClick={() => handleUpDownvote("upvote")}
           />
@@ -145,6 +146,7 @@ export function VotesContainer({ reviewId, votes }) {
         </Grid.Row>
         <Grid.Row style={{ paddingBottom: 0 }}>
           <Image
+            size="mini"
             src={state.downvoteClicked ? downvoteClickedIcon : downvoteIcon}
             onClick={() => handleUpDownvote("downvote")}
           />
@@ -154,6 +156,7 @@ export function VotesContainer({ reviewId, votes }) {
         </Grid.Row>
         <Grid.Row style={{ paddingBottom: 0 }}>
           <Image
+            size="mini"
             src={funnyIcon}
             onClick={() => dispatch({ type: "TOGGLE_FUNNY" })}
           />

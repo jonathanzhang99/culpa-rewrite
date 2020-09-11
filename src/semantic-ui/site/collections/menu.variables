@@ -2,4 +2,29 @@
     User Variable Overrides
 *******************************/
 
-@background:@secondaryColor;
+/*-------------------
+      Collection
+--------------------*/
+
+/* Menu */
+@border: none;
+
+/* Menu Item */
+@itemTextColor: @secondaryColor;
+
+/*--------------
+    Elements
+---------------*/
+
+/* Vertical Icon */
+@verticalIconMargin: -0.1em 0 0 0.5em;
+
+/*--------------
+     States
+---------------*/
+
+/* Hovered Item */
+@hoverItemTextColor: @secondaryColor;
+
+/* Pressed Item */
+@pressedItemTextColor: @secondaryColor;

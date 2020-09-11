@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
+import { Header } from "semantic-ui-react";
 
 import { AuthContext } from "components/common/Authentication";
 import Form, { Submit } from "components/common/Form";
@@ -13,7 +14,7 @@ export default function LoginPage() {
   };
   return (
     <>
-      <h1>Login</h1>
+      <Header size="huge">LOGIN</Header>
       <Form onSubmit={login} onSuccess={onSuccess}>
         <TextInput
           label="Username"
@@ -27,7 +28,7 @@ export default function LoginPage() {
           rules={{ required: "Missing password" }}
           width={5}
         />
-        <Submit />
+        <Submit size="large" />
       </Form>
     </>
   );

@@ -5,9 +5,11 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <h1>
+      <div
+        class="ui huge header"
+      >
         Write a Review
-      </h1>
+      </div>
       <form
         class="ui form"
       >
@@ -44,7 +46,6 @@ Object {
                 class="prompt"
                 id="form-input-professor"
                 name="professor"
-                placeholder="Search for professors"
                 tabindex="0"
                 type="text"
                 value=""
@@ -105,7 +106,7 @@ Object {
           />
         </div>
         <div
-          class="inline unstackable equal width fields"
+          class="unstackable equal width fields"
         >
           <div
             class="field"
@@ -218,20 +219,29 @@ Object {
             </div>
           </div>
         </div>
-        <button
-          class="ui button"
-          name="confirmModal"
-          type="button"
+        <div
+          class="ui hidden divider"
+        />
+        <div
+          style="text-align: center;"
         >
-          SUBMIT
-        </button>
+          <button
+            class="ui huge button"
+            name="confirmModal"
+            type="button"
+          >
+            SUBMIT
+          </button>
+        </div>
       </form>
     </div>
   </body>,
   "container": <div>
-    <h1>
+    <div
+      class="ui huge header"
+    >
       Write a Review
-    </h1>
+    </div>
     <form
       class="ui form"
     >
@@ -268,7 +278,6 @@ Object {
               class="prompt"
               id="form-input-professor"
               name="professor"
-              placeholder="Search for professors"
               tabindex="0"
               type="text"
               value=""
@@ -329,7 +338,7 @@ Object {
         />
       </div>
       <div
-        class="inline unstackable equal width fields"
+        class="unstackable equal width fields"
       >
         <div
           class="field"
@@ -442,13 +451,20 @@ Object {
           </div>
         </div>
       </div>
-      <button
-        class="ui button"
-        name="confirmModal"
-        type="button"
+      <div
+        class="ui hidden divider"
+      />
+      <div
+        style="text-align: center;"
       >
-        SUBMIT
-      </button>
+        <button
+          class="ui huge button"
+          name="confirmModal"
+          type="button"
+        >
+          SUBMIT
+        </button>
+      </div>
     </form>
   </div>,
   "debug": [Function],
