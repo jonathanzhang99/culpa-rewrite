@@ -1,6 +1,13 @@
 import React, { useEffect, useReducer, useRef } from "react";
 import { useHistory } from "react-router-dom";
-import { Divider, List, Segment, Header, Grid } from "semantic-ui-react";
+import {
+  Container,
+  Divider,
+  List,
+  Segment,
+  Header,
+  Grid,
+} from "semantic-ui-react";
 
 import Form, { FormGroup, SubmitConfirm } from "components/common/Form";
 import {
@@ -349,65 +356,66 @@ export default function CreateReviewPage() {
         onSubmit={onSubmitReview}
         onSuccess={onSubmitReviewSuccess}
       >
-        <SearchInput
-          addNewEntity
-          disabled={addProfessor}
-          label="Professor"
-          name="professor"
-          placeholder="Search for professors"
-          rules={{ required: "Please select a professor" }}
-          searchEntity="professor"
-          searchLimit={7}
-          width={6}
-          onResultSelect={onProfessorResultSelect}
-          onSearchChange={onProfessorSearchChange}
-        />
-        {professorSelected && (
-          <DropdownInput
-            label="Course"
-            name="course"
-            options={courseOptions}
-            placeholder={
-              professorSelected ? "" : "Please select a Professor first"
-            }
-            rules={{ required: "Please select a matching course" }}
+        <Container textAlign="left">
+          <SearchInput
+            addNewEntity
+            disabled={addProfessor}
+            label="Professor"
+            name="professor"
+            placeholder="Search for professors"
+            rules={{ required: "Please select a professor" }}
+            searchEntity="professor"
+            searchLimit={7}
             width={6}
-            onOptionSelect={onOptionSelect}
+            onResultSelect={onProfessorResultSelect}
+            onSearchChange={onProfessorSearchChange}
           />
-        )}
-        {(addProfessor || addCourse || searchAllCourses) && (
-          <Segment padded>
-            <Grid columns={2}>
-              <Grid.Column>
-                {addProfessor
-                  ? addProfessorInputs
-                  : searchAllCourses && searchAllCoursesInput}
-              </Grid.Column>
-              <Grid.Column>{addCourse && addCourseInputs}</Grid.Column>
-            </Grid>
-          </Segment>
-        )}
-        <Divider section />
-        <TextAreaInput
-          label="Content"
-          name="content"
-          rows={8}
-          rules={{ required: "Please describe the professor and course" }}
-        />
-        <TextAreaInput
-          label="Workload"
-          name="workload"
-          rows={8}
-          rules={{ required: "Please describe the workload" }}
-        />
-        <RadioInputGroup labels={evaluationLabels} name="evaluation" />
-        <Divider hidden />
-        <div style={{ textAlign: "center" }}>
+          {professorSelected && (
+            <DropdownInput
+              label="Course"
+              name="course"
+              options={courseOptions}
+              placeholder={
+                professorSelected ? "" : "Please select a Professor first"
+              }
+              rules={{ required: "Please select a matching course" }}
+              width={6}
+              onOptionSelect={onOptionSelect}
+            />
+          )}
+          {(addProfessor || addCourse || searchAllCourses) && (
+            <Segment padded>
+              <Grid columns={2}>
+                <Grid.Column>
+                  {addProfessor
+                    ? addProfessorInputs
+                    : searchAllCourses && searchAllCoursesInput}
+                </Grid.Column>
+                <Grid.Column>{addCourse && addCourseInputs}</Grid.Column>
+              </Grid>
+            </Segment>
+          )}
+          <Divider section />
+          <TextAreaInput
+            label="Content"
+            name="content"
+            rows={8}
+            rules={{ required: "Please describe the professor and course" }}
+          />
+          <TextAreaInput
+            label="Workload"
+            name="workload"
+            rows={8}
+            rules={{ required: "Please describe the workload" }}
+          />
+          <RadioInputGroup labels={evaluationLabels} name="evaluation" />
+        </Container>
+        <Container textAlign="center">
           <SubmitConfirm
             content={confirmContent}
             header="Are you sure you want to submit this review?"
           />
-        </div>
+        </Container>
       </Form>
     </>
   );

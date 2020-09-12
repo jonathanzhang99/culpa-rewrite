@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import React from "react";
 import { useParams } from "react-router-dom";
-import { Grid, Header } from "semantic-ui-react";
+import { Container, Grid, Header } from "semantic-ui-react";
 
 import { CourseDisplayLink } from "components/common/CourseDisplay";
 import CreateReviewButton from "components/common/CreateReviewButton";
@@ -25,7 +25,7 @@ const propTypesProfessorCourses = {
 function ProfessorCourseList({ courses }) {
   return (
     <>
-      <Header>Courses: </Header>
+      <Header className="list-header">Courses: </Header>
       {courses.map(({ courseId, courseName, courseCallNumber }, index) => {
         return (
           <span key={courseId}>
@@ -65,18 +65,16 @@ export function ProfessorSummary({
 }) {
   return (
     <>
-      <div>
-        <ProfessorDisplayName
-          as="header"
-          badges={badges}
-          firstName={firstName}
-          lastName={lastName}
-          size="huge"
-        />
-      </div>
-      <div>
+      <ProfessorDisplayName
+        as="header"
+        badges={badges}
+        firstName={firstName}
+        lastName={lastName}
+        size="huge"
+      />
+      <Container className="professor-course-list">
         <ProfessorCourseList courses={courses} />
-      </div>
+      </Container>
       <CreateReviewButton
         relaxed
         color="orange"

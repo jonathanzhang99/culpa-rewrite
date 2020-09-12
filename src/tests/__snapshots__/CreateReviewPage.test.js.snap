@@ -27,6 +27,242 @@ Object {
           </div>
         </div>
         <div
+          class="ui left aligned container"
+        >
+          <div
+            class="six wide field"
+          >
+            <label
+              for="form-input-professor"
+            >
+              Professor
+            </label>
+            <div
+              class="ui fluid search"
+            >
+              <div
+                class="ui icon input"
+              >
+                <input
+                  aria-invalid="true"
+                  autocomplete="off"
+                  class="prompt"
+                  id="form-input-professor"
+                  name="professor"
+                  tabindex="0"
+                  type="text"
+                  value=""
+                />
+                <i
+                  aria-hidden="true"
+                  class="search icon"
+                />
+              </div>
+              <div
+                class="results transition"
+              >
+                <div
+                  class="message empty"
+                >
+                  <div
+                    class="header"
+                  >
+                    No professors found
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="ui section divider"
+          />
+          <div
+            class="field"
+          >
+            <label
+              for="form-input-content"
+            >
+              Content
+            </label>
+            <textarea
+              aria-invalid="true"
+              aria-label="Content"
+              id="form-input-content"
+              name="content"
+              rows="8"
+            />
+          </div>
+          <div
+            class="field"
+          >
+            <label
+              for="form-input-workload"
+            >
+              Workload
+            </label>
+            <textarea
+              aria-invalid="true"
+              aria-label="Workload"
+              id="form-input-workload"
+              name="workload"
+              rows="8"
+            />
+          </div>
+          <div
+            class="unstackable equal width fields"
+          >
+            <div
+              class="field"
+            >
+              <div
+                class="ui radio checkbox"
+              >
+                <input
+                  class="hidden"
+                  id="evaluation-radio-button-1"
+                  name="evaluation"
+                  readonly=""
+                  tabindex="0"
+                  type="radio"
+                  value="1"
+                />
+                <label
+                  for="evaluation-radio-button-1"
+                >
+                  One of the worst experiences at Columbia. Avoid at all costs
+                </label>
+              </div>
+            </div>
+            <div
+              class="field"
+            >
+              <div
+                class="ui radio checkbox"
+              >
+                <input
+                  class="hidden"
+                  id="evaluation-radio-button-2"
+                  name="evaluation"
+                  readonly=""
+                  tabindex="0"
+                  type="radio"
+                  value="2"
+                />
+                <label
+                  for="evaluation-radio-button-2"
+                >
+                  Strong negative experience. Take only if necessary
+                </label>
+              </div>
+            </div>
+            <div
+              class="field"
+            >
+              <div
+                class="ui radio checkbox"
+              >
+                <input
+                  class="hidden"
+                  id="evaluation-radio-button-3"
+                  name="evaluation"
+                  readonly=""
+                  tabindex="0"
+                  type="radio"
+                  value="3"
+                />
+                <label
+                  for="evaluation-radio-button-3"
+                >
+                  Both negatives and positives much like life itself
+                </label>
+              </div>
+            </div>
+            <div
+              class="field"
+            >
+              <div
+                class="ui radio checkbox"
+              >
+                <input
+                  class="hidden"
+                  id="evaluation-radio-button-4"
+                  name="evaluation"
+                  readonly=""
+                  tabindex="0"
+                  type="radio"
+                  value="4"
+                />
+                <label
+                  for="evaluation-radio-button-4"
+                >
+                  Strong positive experience. Take if possible
+                </label>
+              </div>
+            </div>
+            <div
+              class="field"
+            >
+              <div
+                class="ui radio checkbox"
+              >
+                <input
+                  class="hidden"
+                  id="evaluation-radio-button-5"
+                  name="evaluation"
+                  readonly=""
+                  tabindex="0"
+                  type="radio"
+                  value="5"
+                />
+                <label
+                  for="evaluation-radio-button-5"
+                >
+                  A Columbia gem. Life-changing moments await
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="ui center aligned container"
+        >
+          <button
+            class="ui large button"
+            name="confirmModal"
+            type="button"
+          >
+            SUBMIT
+          </button>
+        </div>
+      </form>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="ui huge header"
+    >
+      Write a Review
+    </div>
+    <form
+      class="ui form"
+    >
+      <div
+        class="ui error message"
+      >
+        <div
+          class="content"
+        >
+          <div
+            class="header"
+          >
+            Error
+          </div>
+        </div>
+      </div>
+      <div
+        class="ui left aligned container"
+      >
+        <div
           class="six wide field"
         >
           <label
@@ -219,246 +455,12 @@ Object {
             </div>
           </div>
         </div>
-        <div
-          class="ui hidden divider"
-        />
-        <div
-          style="text-align: center;"
-        >
-          <button
-            class="ui huge button"
-            name="confirmModal"
-            type="button"
-          >
-            SUBMIT
-          </button>
-        </div>
-      </form>
-    </div>
-  </body>,
-  "container": <div>
-    <div
-      class="ui huge header"
-    >
-      Write a Review
-    </div>
-    <form
-      class="ui form"
-    >
-      <div
-        class="ui error message"
-      >
-        <div
-          class="content"
-        >
-          <div
-            class="header"
-          >
-            Error
-          </div>
-        </div>
       </div>
       <div
-        class="six wide field"
-      >
-        <label
-          for="form-input-professor"
-        >
-          Professor
-        </label>
-        <div
-          class="ui fluid search"
-        >
-          <div
-            class="ui icon input"
-          >
-            <input
-              aria-invalid="true"
-              autocomplete="off"
-              class="prompt"
-              id="form-input-professor"
-              name="professor"
-              tabindex="0"
-              type="text"
-              value=""
-            />
-            <i
-              aria-hidden="true"
-              class="search icon"
-            />
-          </div>
-          <div
-            class="results transition"
-          >
-            <div
-              class="message empty"
-            >
-              <div
-                class="header"
-              >
-                No professors found
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
-        class="ui section divider"
-      />
-      <div
-        class="field"
-      >
-        <label
-          for="form-input-content"
-        >
-          Content
-        </label>
-        <textarea
-          aria-invalid="true"
-          aria-label="Content"
-          id="form-input-content"
-          name="content"
-          rows="8"
-        />
-      </div>
-      <div
-        class="field"
-      >
-        <label
-          for="form-input-workload"
-        >
-          Workload
-        </label>
-        <textarea
-          aria-invalid="true"
-          aria-label="Workload"
-          id="form-input-workload"
-          name="workload"
-          rows="8"
-        />
-      </div>
-      <div
-        class="unstackable equal width fields"
-      >
-        <div
-          class="field"
-        >
-          <div
-            class="ui radio checkbox"
-          >
-            <input
-              class="hidden"
-              id="evaluation-radio-button-1"
-              name="evaluation"
-              readonly=""
-              tabindex="0"
-              type="radio"
-              value="1"
-            />
-            <label
-              for="evaluation-radio-button-1"
-            >
-              One of the worst experiences at Columbia. Avoid at all costs
-            </label>
-          </div>
-        </div>
-        <div
-          class="field"
-        >
-          <div
-            class="ui radio checkbox"
-          >
-            <input
-              class="hidden"
-              id="evaluation-radio-button-2"
-              name="evaluation"
-              readonly=""
-              tabindex="0"
-              type="radio"
-              value="2"
-            />
-            <label
-              for="evaluation-radio-button-2"
-            >
-              Strong negative experience. Take only if necessary
-            </label>
-          </div>
-        </div>
-        <div
-          class="field"
-        >
-          <div
-            class="ui radio checkbox"
-          >
-            <input
-              class="hidden"
-              id="evaluation-radio-button-3"
-              name="evaluation"
-              readonly=""
-              tabindex="0"
-              type="radio"
-              value="3"
-            />
-            <label
-              for="evaluation-radio-button-3"
-            >
-              Both negatives and positives much like life itself
-            </label>
-          </div>
-        </div>
-        <div
-          class="field"
-        >
-          <div
-            class="ui radio checkbox"
-          >
-            <input
-              class="hidden"
-              id="evaluation-radio-button-4"
-              name="evaluation"
-              readonly=""
-              tabindex="0"
-              type="radio"
-              value="4"
-            />
-            <label
-              for="evaluation-radio-button-4"
-            >
-              Strong positive experience. Take if possible
-            </label>
-          </div>
-        </div>
-        <div
-          class="field"
-        >
-          <div
-            class="ui radio checkbox"
-          >
-            <input
-              class="hidden"
-              id="evaluation-radio-button-5"
-              name="evaluation"
-              readonly=""
-              tabindex="0"
-              type="radio"
-              value="5"
-            />
-            <label
-              for="evaluation-radio-button-5"
-            >
-              A Columbia gem. Life-changing moments await
-            </label>
-          </div>
-        </div>
-      </div>
-      <div
-        class="ui hidden divider"
-      />
-      <div
-        style="text-align: center;"
+        class="ui center aligned container"
       >
         <button
-          class="ui huge button"
+          class="ui large button"
           name="confirmModal"
           type="button"
         >

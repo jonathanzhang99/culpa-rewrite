@@ -3,7 +3,7 @@
 *******************************/
 
 /* Field */
-@fieldMargin: 0 0 1rem;
+@fieldMargin: 0 0 2rem;
 
 /* Fields */
 @fieldsMargin: 0em -(@gutterWidth / 2) 1rem;

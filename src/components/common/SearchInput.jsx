@@ -248,7 +248,7 @@ export default function SearchInput({
       } catch (err) {
         dispatch({ type: SEARCH_ERROR });
       }
-    }, 200),
+    }, 300),
     [] // no condition to reset this debouncer
   );
 

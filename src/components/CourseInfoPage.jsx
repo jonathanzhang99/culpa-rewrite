@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import { Header, Icon, Accordion, Grid } from "semantic-ui-react";
+import { Container, Header, Icon, Accordion, Grid } from "semantic-ui-react";
 
 import { CourseDisplayName } from "components/common/CourseDisplay";
 import CreateReviewButton from "components/common/CreateReviewButton";
@@ -35,7 +35,7 @@ const propTypesCourseProfessors = {
 function ProfessorsList({ courseProfessors }) {
   return (
     <>
-      <Header>Professors: </Header>
+      <Header className="list-header">Professors: </Header>
       {courseProfessors.map(
         ({ badges, firstName, lastName, professorId }, index) => {
           return (
@@ -198,19 +198,19 @@ export function CourseInfo({
         size="huge"
       />
       <div>
-        <div>
-          <Header>Department: </Header>
-          <DepartmentDisplayLink
-            departmentId={departmentId}
-            departmentName={departmentName}
-          />
-        </div>
+        <Header>Department: </Header>
+        <DepartmentDisplayLink
+          departmentId={departmentId}
+          departmentName={departmentName}
+        />
+      </div>
+      <Container className="professor-course-list">
         <ProfessorsComponent
           courseProfessors={courseProfessors}
           isAccordionActive={isAccordionActive}
           setAccordionActive={setAccordionActive}
         />
-      </div>
+      </Container>
       <CreateReviewButton
         relaxed
         color="orange"

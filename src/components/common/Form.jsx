@@ -66,7 +66,7 @@ export function SubmitConfirm({
     <>
       <Button
         name="confirmModal"
-        size="huge"
+        size="large"
         type="button"
         onClick={openConfirm}
       >

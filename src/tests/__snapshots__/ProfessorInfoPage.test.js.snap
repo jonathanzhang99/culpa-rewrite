@@ -5,14 +5,12 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <div>
-        <div
-          class="ui huge header"
-        >
-          Nakul
-           
-          Verma
-        </div>
+      <div
+        class="ui huge header"
+      >
+        Nakul
+         
+        Verma
       </div>
       <img
         class="ui avatar left spaced image"
@@ -26,6 +24,12 @@ Object {
         class="ui container"
       >
         <span>
+      <div
+        class="ui container professor-course-list"
+      >
+        <div
+          class="ui header list-header"
+        >
           Courses: 
         </div>
         <span>
@@ -66,14 +70,12 @@ Object {
     </div>
   </body>,
   "container": <div>
-    <div>
-      <div
-        class="ui huge header"
-      >
-        Nakul
-         
-        Verma
-      </div>
+    <div
+      class="ui huge header"
+    >
+      Nakul
+       
+      Verma
     </div>
     <img
       class="ui avatar left spaced image"
@@ -87,6 +89,12 @@ Object {
       class="ui container"
     >
       <span>
+    <div
+      class="ui container professor-course-list"
+    >
+      <div
+        class="ui header list-header"
+      >
         Courses: 
       </div>
       <span>
@@ -184,14 +192,12 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <div>
-        <div
-          class="ui huge header"
-        >
-          Nakul
-           
-          Verma
-        </div>
+      <div
+        class="ui huge header"
+      >
+        Nakul
+         
+        Verma
       </div>
       <img
         class="ui avatar left spaced image"
@@ -205,6 +211,12 @@ Object {
         class="ui container"
       >
         <span>
+      <div
+        class="ui container professor-course-list"
+      >
+        <div
+          class="ui header list-header"
+        >
           Courses: 
         </div>
       </div>
@@ -221,14 +233,12 @@ Object {
     </div>
   </body>,
   "container": <div>
-    <div>
-      <div
-        class="ui huge header"
-      >
-        Nakul
-         
-        Verma
-      </div>
+    <div
+      class="ui huge header"
+    >
+      Nakul
+       
+      Verma
     </div>
     <img
       class="ui avatar left spaced image"
@@ -242,6 +252,12 @@ Object {
       class="ui container"
     >
       <span>
+    <div
+      class="ui container professor-course-list"
+    >
+      <div
+        class="ui header list-header"
+      >
         Courses: 
       </div>
     </div>

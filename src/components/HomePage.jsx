@@ -26,7 +26,7 @@ export default function HomePage() {
       <div>
         <Image avatar size="mini" spaced="right" src={silverNugget} />
         <Header className="nugget-description">
-          Silver nuggets mean that a professor has been consistenly reviewed as
+          Silver nuggets mean that a professor has been consistently reviewed as
           <span style={{ color: "#004E8D" }}> outstanding.</span>
         </Header>
       </div>
