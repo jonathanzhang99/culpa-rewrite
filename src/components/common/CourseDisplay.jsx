@@ -21,8 +21,8 @@ const propTypesCourseDisplayLink = {
 };
 
 const defaultProps = {
-  courseCallNumber: "",
   className: "",
+  courseCallNumber: "",
   as: "text",
   size: "medium",
 };

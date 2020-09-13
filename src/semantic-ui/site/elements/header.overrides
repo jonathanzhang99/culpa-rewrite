@@ -17,3 +17,7 @@
 .ui.header.nugget-description {
   color: @darkNavy;
 }
+
+.ui.header.review-card-header {
+  color: @linkColor;
+} 

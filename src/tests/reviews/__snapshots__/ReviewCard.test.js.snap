@@ -21,13 +21,13 @@ Object {
             Please keep in mind that this review is more than 5 years old.
           </div>
           <div
-            class="review-card-header-container"
+            class="ui two column grid"
           >
             <div
-              class="add-margin"
+              class="twelve wide column"
             >
               <div
-                class="ui medium header no-margin"
+                class="ui medium header no-margin review-card-header"
               >
                 Adam
                  
@@ -35,20 +35,16 @@ Object {
               </div>
             </div>
             <div
-              class="add-margin"
-            >
-              <div
-                class="ui small header no-margin"
-              >
-                2014-07-31
-              </div>
-            </div>
-            <div
-              class="review-id-container"
+              class="right aligned four wide column"
             >
               ID: 
               1
             </div>
+          </div>
+          <div
+            class="ui small header"
+          >
+            2014-07-31
           </div>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -129,13 +125,13 @@ Object {
           Please keep in mind that this review is more than 5 years old.
         </div>
         <div
-          class="review-card-header-container"
+          class="ui two column grid"
         >
           <div
-            class="add-margin"
+            class="twelve wide column"
           >
             <div
-              class="ui medium header no-margin"
+              class="ui medium header no-margin review-card-header"
             >
               Adam
                
@@ -143,20 +139,16 @@ Object {
             </div>
           </div>
           <div
-            class="add-margin"
-          >
-            <div
-              class="ui small header no-margin"
-            >
-              2014-07-31
-            </div>
-          </div>
-          <div
-            class="review-id-container"
+            class="right aligned four wide column"
           >
             ID: 
             1
           </div>
+        </div>
+        <div
+          class="ui small header"
+        >
+          2014-07-31
         </div>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -294,13 +286,13 @@ Object {
             Please keep in mind that this review is more than 5 years old.
           </div>
           <div
-            class="review-card-header-container"
+            class="ui two column grid"
           >
             <div
-              class="add-margin"
+              class="twelve wide column"
             >
               <div
-                class="ui medium header no-margin"
+                class="ui medium header no-margin review-card-header"
               >
                 Adam
                  
@@ -308,20 +300,16 @@ Object {
               </div>
             </div>
             <div
-              class="add-margin"
-            >
-              <div
-                class="ui small header no-margin"
-              >
-                2014-07-31
-              </div>
-            </div>
-            <div
-              class="review-id-container"
+              class="right aligned four wide column"
             >
               ID: 
               1
             </div>
+          </div>
+          <div
+            class="ui small header"
+          >
+            2014-07-31
           </div>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -402,13 +390,13 @@ Object {
           Please keep in mind that this review is more than 5 years old.
         </div>
         <div
-          class="review-card-header-container"
+          class="ui two column grid"
         >
           <div
-            class="add-margin"
+            class="twelve wide column"
           >
             <div
-              class="ui medium header no-margin"
+              class="ui medium header no-margin review-card-header"
             >
               Adam
                
@@ -416,20 +404,16 @@ Object {
             </div>
           </div>
           <div
-            class="add-margin"
-          >
-            <div
-              class="ui small header no-margin"
-            >
-              2014-07-31
-            </div>
-          </div>
-          <div
-            class="review-id-container"
+            class="right aligned four wide column"
           >
             ID: 
             1
           </div>
+        </div>
+        <div
+          class="ui small header"
+        >
+          2014-07-31
         </div>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -567,13 +551,13 @@ Object {
             Please keep in mind that this review is more than 5 years old.
           </div>
           <div
-            class="review-card-header-container"
+            class="ui two column grid"
           >
             <div
-              class="add-margin"
+              class="twelve wide column"
             >
               <div
-                class="ui medium header no-margin"
+                class="ui medium header no-margin review-card-header"
               >
                 Adam
                  
@@ -581,20 +565,16 @@ Object {
               </div>
             </div>
             <div
-              class="add-margin"
-            >
-              <div
-                class="ui small header no-margin"
-              >
-                2014-07-31
-              </div>
-            </div>
-            <div
-              class="review-id-container"
+              class="right aligned four wide column"
             >
               ID: 
               1
             </div>
+          </div>
+          <div
+            class="ui small header"
+          >
+            2014-07-31
           </div>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -675,13 +655,13 @@ Object {
           Please keep in mind that this review is more than 5 years old.
         </div>
         <div
-          class="review-card-header-container"
+          class="ui two column grid"
         >
           <div
-            class="add-margin"
+            class="twelve wide column"
           >
             <div
-              class="ui medium header no-margin"
+              class="ui medium header no-margin review-card-header"
             >
               Adam
                
@@ -689,20 +669,16 @@ Object {
             </div>
           </div>
           <div
-            class="add-margin"
-          >
-            <div
-              class="ui small header no-margin"
-            >
-              2014-07-31
-            </div>
-          </div>
-          <div
-            class="review-id-container"
+            class="right aligned four wide column"
           >
             ID: 
             1
           </div>
+        </div>
+        <div
+          class="ui small header"
+        >
+          2014-07-31
         </div>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -840,13 +816,13 @@ Object {
             Please keep in mind that this review is more than 5 years old.
           </div>
           <div
-            class="review-card-header-container"
+            class="ui two column grid"
           >
             <div
-              class="addMargin"
+              class="twelve wide column"
             >
               <div
-                class="ui medium header no-margin"
+                class="ui medium header no-margin review-card-header"
               >
                 COMS1004
                  
@@ -854,20 +830,16 @@ Object {
               </div>
             </div>
             <div
-              class="add-margin"
-            >
-              <div
-                class="ui small header no-margin"
-              >
-                2014-07-31
-              </div>
-            </div>
-            <div
-              class="review-id-container"
+              class="right aligned four wide column"
             >
               ID: 
               1
             </div>
+          </div>
+          <div
+            class="ui small header"
+          >
+            2014-07-31
           </div>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -948,13 +920,13 @@ Object {
           Please keep in mind that this review is more than 5 years old.
         </div>
         <div
-          class="review-card-header-container"
+          class="ui two column grid"
         >
           <div
-            class="addMargin"
+            class="twelve wide column"
           >
             <div
-              class="ui medium header no-margin"
+              class="ui medium header no-margin review-card-header"
             >
               COMS1004
                
@@ -962,20 +934,16 @@ Object {
             </div>
           </div>
           <div
-            class="add-margin"
-          >
-            <div
-              class="ui small header no-margin"
-            >
-              2014-07-31
-            </div>
-          </div>
-          <div
-            class="review-id-container"
+            class="right aligned four wide column"
           >
             ID: 
             1
           </div>
+        </div>
+        <div
+          class="ui small header"
+        >
+          2014-07-31
         </div>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -1113,13 +1081,13 @@ Object {
             Please keep in mind that this review is more than 5 years old.
           </div>
           <div
-            class="review-card-header-container"
+            class="ui two column grid"
           >
             <div
-              class="addMargin"
+              class="twelve wide column"
             >
               <div
-                class="ui medium header no-margin"
+                class="ui medium header no-margin review-card-header"
               >
                 COMS1004
                  
@@ -1127,20 +1095,16 @@ Object {
               </div>
             </div>
             <div
-              class="add-margin"
-            >
-              <div
-                class="ui small header no-margin"
-              >
-                2014-07-31
-              </div>
-            </div>
-            <div
-              class="review-id-container"
+              class="right aligned four wide column"
             >
               ID: 
               1
             </div>
+          </div>
+          <div
+            class="ui small header"
+          >
+            2014-07-31
           </div>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -1221,13 +1185,13 @@ Object {
           Please keep in mind that this review is more than 5 years old.
         </div>
         <div
-          class="review-card-header-container"
+          class="ui two column grid"
         >
           <div
-            class="addMargin"
+            class="twelve wide column"
           >
             <div
-              class="ui medium header no-margin"
+              class="ui medium header no-margin review-card-header"
             >
               COMS1004
                
@@ -1235,20 +1199,16 @@ Object {
             </div>
           </div>
           <div
-            class="add-margin"
-          >
-            <div
-              class="ui small header no-margin"
-            >
-              2014-07-31
-            </div>
-          </div>
-          <div
-            class="review-id-container"
+            class="right aligned four wide column"
           >
             ID: 
             1
           </div>
+        </div>
+        <div
+          class="ui small header"
+        >
+          2014-07-31
         </div>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -1386,13 +1346,13 @@ Object {
             Please keep in mind that this review is more than 5 years old.
           </div>
           <div
-            class="review-card-header-container"
+            class="ui two column grid"
           >
             <div
-              class="addMargin"
+              class="twelve wide column"
             >
               <div
-                class="ui medium header no-margin"
+                class="ui medium header no-margin review-card-header"
               >
                 COMS1004
                  
@@ -1400,20 +1360,16 @@ Object {
               </div>
             </div>
             <div
-              class="add-margin"
-            >
-              <div
-                class="ui small header no-margin"
-              >
-                2014-07-31
-              </div>
-            </div>
-            <div
-              class="review-id-container"
+              class="right aligned four wide column"
             >
               ID: 
               1
             </div>
+          </div>
+          <div
+            class="ui small header"
+          >
+            2014-07-31
           </div>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -1494,13 +1450,13 @@ Object {
           Please keep in mind that this review is more than 5 years old.
         </div>
         <div
-          class="review-card-header-container"
+          class="ui two column grid"
         >
           <div
-            class="addMargin"
+            class="twelve wide column"
           >
             <div
-              class="ui medium header no-margin"
+              class="ui medium header no-margin review-card-header"
             >
               COMS1004
                
@@ -1508,20 +1464,16 @@ Object {
             </div>
           </div>
           <div
-            class="add-margin"
-          >
-            <div
-              class="ui small header no-margin"
-            >
-              2014-07-31
-            </div>
-          </div>
-          <div
-            class="review-id-container"
+            class="right aligned four wide column"
           >
             ID: 
             1
           </div>
+        </div>
+        <div
+          class="ui small header"
+        >
+          2014-07-31
         </div>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit.

@@ -226,50 +226,46 @@ export default function ReviewCard({
   return (
     <Grid className="add-margin">
       <Grid.Column className="review-card-left-column" width={14}>
-        {deprecated ? (
+        {deprecated && (
           <Message color="red">
             <Icon color="red" name="warning circle" />
             Please keep in mind that this review is more than 5 years old.
           </Message>
-        ) : (
-          /* no message means extra margin on top, so remove it */
-          <div style={{ marginBottom: "-1rem" }} />
         )}
-        <div className="review-card-header-container">
-          {/* overuse div to exploit "margin collapsing" behavior */}
+        <Grid columns={2}>
           {reviewType === "professor" && (
-            <div className="addMargin">
+            <Grid.Column width={12}>
               <CourseDisplayName
                 as="header"
-                className="no-margin"
+                className="no-margin review-card-header"
                 courseCallNumber={reviewHeader.courseCallNumber}
                 courseName={reviewHeader.courseName}
               />
-            </div>
+            </Grid.Column>
           )}
           {reviewType === "course" && (
-            <div className="add-margin">
+            <Grid.Column width={12}>
               <ProfessorDisplayName
                 as="header"
                 badges={reviewHeader.professor.badges}
-                className="no-margin"
+                className="no-margin review-card-header"
                 firstName={reviewHeader.profFirstName}
                 lastName={reviewHeader.profLastName}
               />
-            </div>
+            </Grid.Column>
           )}
           {reviewType === "all" && (
-            <>
-              <div className="add-margin">
+            <Grid.Column width={12}>
+              <div>
                 <ProfessorDisplayName
                   as="header"
                   badges={reviewHeader.professor.badges}
-                  className="no-margin"
+                  className="no-margin review-card-header"
                   firstName={reviewHeader.professor.profFirstName}
                   lastName={reviewHeader.professor.profLastName}
                 />
               </div>
-              <div className="add-margin">
+              <div style={{ marginTop: "1rem" }}>
                 <CourseDisplayName
                   as="header"
                   className="no-margin"
@@ -277,15 +273,13 @@ export default function ReviewCard({
                   courseName={reviewHeader.course.courseName}
                 />
               </div>
-            </>
+            </Grid.Column>
           )}
-          <div className="add-margin">
-            <Header className="no-margin" size="small">
-              {submissionDate}
-            </Header>
-          </div>
-          <div className="review-id-container">ID: {reviewId}</div>
-        </div>
+          <Grid.Column textAlign="right" width={4}>
+            ID: {reviewId}
+          </Grid.Column>
+        </Grid>
+        <Header size="small">{submissionDate}</Header>
         <p>{content}</p>
         <Header size="small">Workload</Header>
         <p>{workload}</p>

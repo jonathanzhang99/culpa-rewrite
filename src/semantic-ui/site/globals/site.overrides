@@ -19,18 +19,3 @@ p {
   font-size: 1rem;
   font-weight: @bold;
 }
-
-/*-----------------------------
-          ReviewCard
------------------------------*/
-
-.review-card-header-container {
-  position: relative;
-}
-
-.review-id-container {
-  position: absolute;
-  top: 0;
-  right: 0;
-  fontSize: 16px;
-}

@@ -287,13 +287,13 @@ Object {
                   Please keep in mind that this review is more than 5 years old.
                 </div>
                 <div
-                  class="review-card-header-container"
+                  class="ui two column grid"
                 >
                   <div
-                    class="add-margin"
+                    class="twelve wide column"
                   >
                     <div
-                      class="ui medium header no-margin"
+                      class="ui medium header no-margin review-card-header"
                     >
                       Nakul
                        
@@ -301,20 +301,16 @@ Object {
                     </div>
                   </div>
                   <div
-                    class="add-margin"
-                  >
-                    <div
-                      class="ui small header no-margin"
-                    >
-                      2020-01-01
-                    </div>
-                  </div>
-                  <div
-                    class="review-id-container"
+                    class="right aligned four wide column"
                   >
                     ID: 
                     1
                   </div>
+                </div>
+                <div
+                  class="ui small header"
+                >
+                  2020-01-01
                 </div>
                 <p>
                   demo content
@@ -383,16 +379,13 @@ Object {
                 class="fourteen wide column review-card-left-column"
               >
                 <div
-                  style="margin-bottom: -1rem;"
-                />
-                <div
-                  class="review-card-header-container"
+                  class="ui two column grid"
                 >
                   <div
-                    class="add-margin"
+                    class="twelve wide column"
                   >
                     <div
-                      class="ui medium header no-margin"
+                      class="ui medium header no-margin review-card-header"
                     >
                       Lee
                        
@@ -400,20 +393,16 @@ Object {
                     </div>
                   </div>
                   <div
-                    class="add-margin"
-                  >
-                    <div
-                      class="ui small header no-margin"
-                    >
-                      2020-01-01
-                    </div>
-                  </div>
-                  <div
-                    class="review-id-container"
+                    class="right aligned four wide column"
                   >
                     ID: 
                     2
                   </div>
+                </div>
+                <div
+                  class="ui small header"
+                >
+                  2020-01-01
                 </div>
                 <p>
                   demo content
@@ -777,13 +766,13 @@ Object {
                 Please keep in mind that this review is more than 5 years old.
               </div>
               <div
-                class="review-card-header-container"
+                class="ui two column grid"
               >
                 <div
-                  class="add-margin"
+                  class="twelve wide column"
                 >
                   <div
-                    class="ui medium header no-margin"
+                    class="ui medium header no-margin review-card-header"
                   >
                     Nakul
                      
@@ -791,20 +780,16 @@ Object {
                   </div>
                 </div>
                 <div
-                  class="add-margin"
-                >
-                  <div
-                    class="ui small header no-margin"
-                  >
-                    2020-01-01
-                  </div>
-                </div>
-                <div
-                  class="review-id-container"
+                  class="right aligned four wide column"
                 >
                   ID: 
                   1
                 </div>
+              </div>
+              <div
+                class="ui small header"
+              >
+                2020-01-01
               </div>
               <p>
                 demo content
@@ -873,16 +858,13 @@ Object {
               class="fourteen wide column review-card-left-column"
             >
               <div
-                style="margin-bottom: -1rem;"
-              />
-              <div
-                class="review-card-header-container"
+                class="ui two column grid"
               >
                 <div
-                  class="add-margin"
+                  class="twelve wide column"
                 >
                   <div
-                    class="ui medium header no-margin"
+                    class="ui medium header no-margin review-card-header"
                   >
                     Lee
                      
@@ -890,20 +872,16 @@ Object {
                   </div>
                 </div>
                 <div
-                  class="add-margin"
-                >
-                  <div
-                    class="ui small header no-margin"
-                  >
-                    2020-01-01
-                  </div>
-                </div>
-                <div
-                  class="review-id-container"
+                  class="right aligned four wide column"
                 >
                   ID: 
                   2
                 </div>
+              </div>
+              <div
+                class="ui small header"
+              >
+                2020-01-01
               </div>
               <p>
                 demo content
@@ -1324,13 +1302,13 @@ Object {
                   Please keep in mind that this review is more than 5 years old.
                 </div>
                 <div
-                  class="review-card-header-container"
+                  class="ui two column grid"
                 >
                   <div
-                    class="addMargin"
+                    class="twelve wide column"
                   >
                     <div
-                      class="ui medium header no-margin"
+                      class="ui medium header no-margin review-card-header"
                     >
                       COMS 4771
                        
@@ -1338,20 +1316,16 @@ Object {
                     </div>
                   </div>
                   <div
-                    class="add-margin"
-                  >
-                    <div
-                      class="ui small header no-margin"
-                    >
-                      2020-01-01
-                    </div>
-                  </div>
-                  <div
-                    class="review-id-container"
+                    class="right aligned four wide column"
                   >
                     ID: 
                     1
                   </div>
+                </div>
+                <div
+                  class="ui small header"
+                >
+                  2020-01-01
                 </div>
                 <p>
                   demo content
@@ -1420,16 +1394,13 @@ Object {
                 class="fourteen wide column review-card-left-column"
               >
                 <div
-                  style="margin-bottom: -1rem;"
-                />
-                <div
-                  class="review-card-header-container"
+                  class="ui two column grid"
                 >
                   <div
-                    class="addMargin"
+                    class="twelve wide column"
                   >
                     <div
-                      class="ui medium header no-margin"
+                      class="ui medium header no-margin review-card-header"
                     >
                       POLS 3285
                        
@@ -1437,20 +1408,16 @@ Object {
                     </div>
                   </div>
                   <div
-                    class="add-margin"
-                  >
-                    <div
-                      class="ui small header no-margin"
-                    >
-                      2020-01-01
-                    </div>
-                  </div>
-                  <div
-                    class="review-id-container"
+                    class="right aligned four wide column"
                   >
                     ID: 
                     2
                   </div>
+                </div>
+                <div
+                  class="ui small header"
+                >
+                  2020-01-01
                 </div>
                 <p>
                   demo content
@@ -1814,13 +1781,13 @@ Object {
                 Please keep in mind that this review is more than 5 years old.
               </div>
               <div
-                class="review-card-header-container"
+                class="ui two column grid"
               >
                 <div
-                  class="addMargin"
+                  class="twelve wide column"
                 >
                   <div
-                    class="ui medium header no-margin"
+                    class="ui medium header no-margin review-card-header"
                   >
                     COMS 4771
                      
@@ -1828,20 +1795,16 @@ Object {
                   </div>
                 </div>
                 <div
-                  class="add-margin"
-                >
-                  <div
-                    class="ui small header no-margin"
-                  >
-                    2020-01-01
-                  </div>
-                </div>
-                <div
-                  class="review-id-container"
+                  class="right aligned four wide column"
                 >
                   ID: 
                   1
                 </div>
+              </div>
+              <div
+                class="ui small header"
+              >
+                2020-01-01
               </div>
               <p>
                 demo content
@@ -1910,16 +1873,13 @@ Object {
               class="fourteen wide column review-card-left-column"
             >
               <div
-                style="margin-bottom: -1rem;"
-              />
-              <div
-                class="review-card-header-container"
+                class="ui two column grid"
               >
                 <div
-                  class="addMargin"
+                  class="twelve wide column"
                 >
                   <div
-                    class="ui medium header no-margin"
+                    class="ui medium header no-margin review-card-header"
                   >
                     POLS 3285
                      
@@ -1927,20 +1887,16 @@ Object {
                   </div>
                 </div>
                 <div
-                  class="add-margin"
-                >
-                  <div
-                    class="ui small header no-margin"
-                  >
-                    2020-01-01
-                  </div>
-                </div>
-                <div
-                  class="review-id-container"
+                  class="right aligned four wide column"
                 >
                   ID: 
                   2
                 </div>
+              </div>
+              <div
+                class="ui small header"
+              >
+                2020-01-01
               </div>
               <p>
                 demo content
