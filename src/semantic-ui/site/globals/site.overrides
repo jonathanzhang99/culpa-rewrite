@@ -1,3 +1,36 @@
 /*******************************
          Site Overrides
 *******************************/
+
+p {
+  margin: 0;
+}
+
+.add-margin {
+  margin: 1rem 0;
+}
+
+/*-----------------------------
+            Footer
+-----------------------------*/
+
+.footer-link {
+  color: @white;
+  font-size: 1rem;
+  font-weight: @bold;
+}
+
+/*-----------------------------
+          ReviewCard
+-----------------------------*/
+
+.review-card-header-container {
+  position: relative;
+}
+
+.review-id-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  fontSize: 16px;
+}

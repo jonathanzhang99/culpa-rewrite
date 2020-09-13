@@ -8,8 +8,10 @@
 
 /* columbia blue */
 @primaryColor: #bbe1fa;
-/* navy */
+@columbiaBlue: #bbe1fa;
+/* dark navy */
 @secondaryColor: #1d2c4d;
+@darkNavy: #1d2c4d;
 
 /*-------------------
         Fonts
@@ -35,6 +37,8 @@
 --------------------*/
 
 @blue: #82B7E8;
+@gray: #F2F2F2;
+@navy: #004E8D;
 @orange: #FD9332;
 @pink: #FCB7B7;
 @red: #FD6464;

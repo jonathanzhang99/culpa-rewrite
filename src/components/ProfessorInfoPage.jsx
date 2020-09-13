@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import React from "react";
 import { useParams } from "react-router-dom";
-import { Container, Grid, Header } from "semantic-ui-react";
+import { Grid, Header } from "semantic-ui-react";
 
 import { CourseDisplayLink } from "components/common/CourseDisplay";
 import CreateReviewButton from "components/common/CreateReviewButton";
@@ -24,8 +24,8 @@ const propTypesProfessorCourses = {
 
 function ProfessorCourseList({ courses }) {
   return (
-    <>
-      <Header className="list-header">Courses: </Header>
+    <div className="add-margin">
+      <Header className="no-margin">Courses: </Header>
       {courses.map(({ courseId, courseName, courseCallNumber }, index) => {
         return (
           <span key={courseId}>
@@ -38,7 +38,7 @@ function ProfessorCourseList({ courses }) {
           </span>
         );
       })}
-    </>
+    </div>
   );
 }
 
@@ -64,23 +64,28 @@ export function ProfessorSummary({
   professorId,
 }) {
   return (
+    /* use div to move to a new line */
     <>
-      <ProfessorDisplayName
-        as="header"
-        badges={badges}
-        firstName={firstName}
-        lastName={lastName}
-        size="huge"
-      />
-      <Container className="professor-course-list">
+      <div>
+        <ProfessorDisplayName
+          as="header"
+          badges={badges}
+          firstName={firstName}
+          lastName={lastName}
+          size="huge"
+        />
+      </div>
+      <div>
         <ProfessorCourseList courses={courses} />
-      </Container>
-      <CreateReviewButton
-        relaxed
-        color="orange"
-        professorId={professorId}
-        subject={`${firstName} ${lastName}`}
-      />
+      </div>
+      <div>
+        <CreateReviewButton
+          relaxed
+          color="orange"
+          professorId={professorId}
+          subject={`${firstName} ${lastName}`}
+        />
+      </div>
     </>
   );
 }
@@ -128,7 +133,7 @@ function ProfessorReviewCard({ review }) {
 
 function SingleProfessorReviewHighlight({ review }) {
   return (
-    <Grid relaxed columns={2}>
+    <Grid columns={2}>
       <Grid.Column key="most_agreed_review_highlight">
         <Header>Most Agreed Review</Header>
         <ProfessorReviewCard review={review} />
@@ -143,7 +148,7 @@ const propTypesProfessorReviewHighlight = {
 
 function DoubleProfessorReviewHighlight({ professorReviewHighlight }) {
   return (
-    <Grid relaxed columns={2}>
+    <Grid columns={2}>
       <Grid.Column key="most_positive_review_highlight">
         <Header>Most Positive Review</Header>
         <ProfessorReviewCard review={professorReviewHighlight[0]} />

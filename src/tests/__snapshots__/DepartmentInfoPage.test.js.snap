@@ -8,9 +8,7 @@ Object {
       <div
         class="ui huge header"
       >
-         
         Computer Science
-         
       </div>
       <div
         class="ui divider"
@@ -36,7 +34,9 @@ Object {
             <a
               href="/course/1"
             >
-              <span>
+              <span
+                class=""
+              >
                 
                  
                 User Interface Design
@@ -49,7 +49,9 @@ Object {
             <a
               href="/course/2"
             >
-              <span>
+              <span
+                class=""
+              >
                 
                  
                 Machine Learning
@@ -75,7 +77,9 @@ Object {
             <a
               href="/professor/1"
             >
-              <span>
+              <span
+                class=""
+              >
                 Lydia
                  
                 Chilton
@@ -88,7 +92,9 @@ Object {
             <a
               href="/professor/2"
             >
-              <span>
+              <span
+                class=""
+              >
                 Nakul
                  
                 Verma
@@ -111,9 +117,7 @@ Object {
     <div
       class="ui huge header"
     >
-       
       Computer Science
-       
     </div>
     <div
       class="ui divider"
@@ -139,7 +143,9 @@ Object {
           <a
             href="/course/1"
           >
-            <span>
+            <span
+              class=""
+            >
               
                
               User Interface Design
@@ -152,7 +158,9 @@ Object {
           <a
             href="/course/2"
           >
-            <span>
+            <span
+              class=""
+            >
               
                
               Machine Learning
@@ -178,7 +186,9 @@ Object {
           <a
             href="/professor/1"
           >
-            <span>
+            <span
+              class=""
+            >
               Lydia
                
               Chilton
@@ -191,7 +201,9 @@ Object {
           <a
             href="/professor/2"
           >
-            <span>
+            <span
+              class=""
+            >
               Nakul
                
               Verma
@@ -271,9 +283,7 @@ Object {
       <div
         class="ui huge header"
       >
-         
         Computer Science
-         
       </div>
       <div
         class="ui divider"
@@ -314,9 +324,7 @@ Object {
     <div
       class="ui huge header"
     >
-       
       Computer Science
-       
     </div>
     <div
       class="ui divider"

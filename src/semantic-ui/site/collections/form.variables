@@ -6,4 +6,4 @@
 @fieldMargin: 0 0 2rem;
 
 /* Fields */
-@fieldsMargin: 0em -(@gutterWidth / 2) 1rem;
+@fieldsMargin: 0em -(@gutterWidth / 2) 2rem;

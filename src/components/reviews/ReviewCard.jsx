@@ -1,13 +1,6 @@
 import PropTypes from "prop-types";
 import React, { useEffect, useReducer } from "react";
-import {
-  Container,
-  Header,
-  Image,
-  Grid,
-  Message,
-  Icon,
-} from "semantic-ui-react";
+import { Header, Image, Grid, Message, Icon } from "semantic-ui-react";
 
 import { CourseDisplayName } from "components/common/CourseDisplay";
 import { ProfessorDisplayName } from "components/common/ProfessorDisplay";
@@ -132,40 +125,38 @@ export function VotesContainer({ reviewId, votes }) {
   };
 
   return (
-    <Container>
-      <Grid centered style={{ padding: "30px 10px", height: "100%" }}>
-        <Grid.Row style={{ paddingBottom: 0, overflow: "show" }}>
-          <Image
-            size="mini"
-            src={state.upvoteClicked ? upvoteClickedIcon : upvoteIcon}
-            onClick={() => handleUpDownvote("upvote")}
-          />
-        </Grid.Row>
-        <Grid.Row style={{ padding: 0, color: "white" }}>
-          <strong>{state.upvoteCount}</strong>
-        </Grid.Row>
-        <Grid.Row style={{ paddingBottom: 0 }}>
-          <Image
-            size="mini"
-            src={state.downvoteClicked ? downvoteClickedIcon : downvoteIcon}
-            onClick={() => handleUpDownvote("downvote")}
-          />
-        </Grid.Row>
-        <Grid.Row style={{ padding: 0, color: "white" }}>
-          <strong>{state.downvoteCount}</strong>
-        </Grid.Row>
-        <Grid.Row style={{ paddingBottom: 0 }}>
-          <Image
-            size="mini"
-            src={funnyIcon}
-            onClick={() => dispatch({ type: "TOGGLE_FUNNY" })}
-          />
-        </Grid.Row>
-        <Grid.Row style={{ padding: 0, color: "white" }}>
-          <strong>{state.funnyCount}</strong>
-        </Grid.Row>
-      </Grid>
-    </Container>
+    <Grid centered stackable>
+      <Grid.Row className="votes-container-icon-row">
+        <Image
+          size="mini"
+          src={state.upvoteClicked ? upvoteClickedIcon : upvoteIcon}
+          onClick={() => handleUpDownvote("upvote")}
+        />
+      </Grid.Row>
+      <Grid.Row className="votes-container-number-row">
+        {state.upvoteCount}
+      </Grid.Row>
+      <Grid.Row className="votes-container-icon-row">
+        <Image
+          size="mini"
+          src={state.downvoteClicked ? downvoteClickedIcon : downvoteIcon}
+          onClick={() => handleUpDownvote("downvote")}
+        />
+      </Grid.Row>
+      <Grid.Row className="votes-container-number-row">
+        {state.downvoteCount}
+      </Grid.Row>
+      <Grid.Row className="votes-container-icon-row">
+        <Image
+          size="mini"
+          src={funnyIcon}
+          onClick={() => dispatch({ type: "TOGGLE_FUNNY" })}
+        />
+      </Grid.Row>
+      <Grid.Row className="votes-container-number-row">
+        {state.funnyCount}
+      </Grid.Row>
+    </Grid>
   );
 }
 
@@ -233,77 +224,76 @@ export default function ReviewCard({
   content,
 }) {
   return (
-    <Container style={{ margin: "25px 0px" }}>
-      <Grid>
-        <Grid.Column
-          key={1}
-          style={{ backgroundColor: "#F2F2F2", padding: "20px 30px" }}
-          width={14}
-        >
-          <Container fluid>
-            {deprecated && (
-              <Message style={{ backgroundColor: "#FFF1F1" }}>
-                <Icon color="red" name="warning circle" />
-                Please keep in mind that this review is more than 5 years old.
-              </Message>
-            )}
-            <div style={{ position: "relative" }}>
-              {reviewType === "professor" && (
-                <CourseDisplayName
-                  as="header"
-                  courseCallNumber={reviewHeader.courseCallNumber}
-                  courseName={reviewHeader.courseName}
-                />
-              )}
-              {reviewType === "course" && (
+    <Grid className="add-margin">
+      <Grid.Column className="review-card-left-column" width={14}>
+        {deprecated ? (
+          <Message color="red">
+            <Icon color="red" name="warning circle" />
+            Please keep in mind that this review is more than 5 years old.
+          </Message>
+        ) : (
+          /* no message means extra margin on top, so remove it */
+          <div style={{ marginBottom: "-1rem" }} />
+        )}
+        <div className="review-card-header-container">
+          {/* overuse div to exploit "margin collapsing" behavior */}
+          {reviewType === "professor" && (
+            <div className="addMargin">
+              <CourseDisplayName
+                as="header"
+                className="no-margin"
+                courseCallNumber={reviewHeader.courseCallNumber}
+                courseName={reviewHeader.courseName}
+              />
+            </div>
+          )}
+          {reviewType === "course" && (
+            <div className="add-margin">
+              <ProfessorDisplayName
+                as="header"
+                badges={reviewHeader.professor.badges}
+                className="no-margin"
+                firstName={reviewHeader.profFirstName}
+                lastName={reviewHeader.profLastName}
+              />
+            </div>
+          )}
+          {reviewType === "all" && (
+            <>
+              <div className="add-margin">
                 <ProfessorDisplayName
                   as="header"
-                  badges={reviewHeader.badges}
-                  firstName={reviewHeader.profFirstName}
-                  lastName={reviewHeader.profLastName}
+                  badges={reviewHeader.professor.badges}
+                  className="no-margin"
+                  firstName={reviewHeader.professor.profFirstName}
+                  lastName={reviewHeader.professor.profLastName}
                 />
-              )}
-              {reviewType === "all" && (
-                <div>
-                  <ProfessorDisplayName
-                    as="header"
-                    badges={reviewHeader.professor.badges}
-                    firstName={reviewHeader.professor.profFirstName}
-                    lastName={reviewHeader.professor.profLastName}
-                  />
-                  <CourseDisplayName
-                    as="header"
-                    courseCallNumber={reviewHeader.course.courseCode}
-                    courseName={reviewHeader.course.courseName}
-                  />
-                </div>
-              )}
-              <Header as="h5">{submissionDate}</Header>
-              <div
-                style={{
-                  position: "absolute",
-                  top: 0,
-                  right: 0,
-                  fontSize: "16px",
-                }}
-              >
-                ID: {reviewId}
               </div>
-            </div>
-            <p>{content}</p>
-            <Header as="h5">Workload</Header>
-            <p>{workload}</p>
-          </Container>
-        </Grid.Column>
-        <Grid.Column
-          key={2}
-          style={{ backgroundColor: "#004E8D", paddingLeft: 0 }}
-          width={2}
-        >
-          <VotesContainer reviewId={reviewId} votes={votes} />
-        </Grid.Column>
-      </Grid>
-    </Container>
+              <div className="add-margin">
+                <CourseDisplayName
+                  as="header"
+                  className="no-margin"
+                  courseCallNumber={reviewHeader.course.courseCode}
+                  courseName={reviewHeader.course.courseName}
+                />
+              </div>
+            </>
+          )}
+          <div className="add-margin">
+            <Header className="no-margin" size="small">
+              {submissionDate}
+            </Header>
+          </div>
+          <div className="review-id-container">ID: {reviewId}</div>
+        </div>
+        <p>{content}</p>
+        <Header size="small">Workload</Header>
+        <p>{workload}</p>
+      </Grid.Column>
+      <Grid.Column className="review-card-right-column" width={2}>
+        <VotesContainer reviewId={reviewId} votes={votes} />
+      </Grid.Column>
+    </Grid>
   );
 }
 

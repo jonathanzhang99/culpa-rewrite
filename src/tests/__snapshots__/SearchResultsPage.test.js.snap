@@ -34,7 +34,9 @@ Object {
             <a
               href="/professor/2339"
             >
-              <span>
+              <span
+                class=""
+              >
                 Nakul Verma
               </span>
             </a>
@@ -85,10 +87,10 @@ Object {
               <a
                 href="/department/29"
               >
-                <span>
-                   
+                <span
+                  class=""
+                >
                   Computer Science
-                   
                 </span>
               </a>
               
@@ -116,7 +118,9 @@ Object {
             <a
               href="/course/1"
             >
-              <span>
+              <span
+                class=""
+              >
                 
                  
                 User Interface Design
@@ -130,10 +134,10 @@ Object {
               <a
                 href="/department/6"
               >
-                <span>
-                   
+                <span
+                  class=""
+                >
                   Computer Science
-                   
                 </span>
               </a>
               
@@ -206,7 +210,9 @@ Object {
           <a
             href="/professor/2339"
           >
-            <span>
+            <span
+              class=""
+            >
               Nakul Verma
             </span>
           </a>
@@ -257,10 +263,10 @@ Object {
             <a
               href="/department/29"
             >
-              <span>
-                 
+              <span
+                class=""
+              >
                 Computer Science
-                 
               </span>
             </a>
             
@@ -288,7 +294,9 @@ Object {
           <a
             href="/course/1"
           >
-            <span>
+            <span
+              class=""
+            >
               
                
               User Interface Design
@@ -302,10 +310,10 @@ Object {
             <a
               href="/department/6"
             >
-              <span>
-                 
+              <span
+                class=""
+              >
                 Computer Science
-                 
               </span>
             </a>
             
@@ -571,7 +579,9 @@ Object {
             <a
               href="/course/1"
             >
-              <span>
+              <span
+                class=""
+              >
                 
                  
                 User Interface Design
@@ -585,10 +595,10 @@ Object {
               <a
                 href="/department/6"
               >
-                <span>
-                   
+                <span
+                  class=""
+                >
                   Computer Science
-                   
                 </span>
               </a>
               
@@ -672,7 +682,9 @@ Object {
           <a
             href="/course/1"
           >
-            <span>
+            <span
+              class=""
+            >
               
                
               User Interface Design
@@ -686,10 +698,10 @@ Object {
             <a
               href="/department/6"
             >
-              <span>
-                 
+              <span
+                class=""
+              >
                 Computer Science
-                 
               </span>
             </a>
             
@@ -819,7 +831,9 @@ Object {
             <a
               href="/professor/2339"
             >
-              <span>
+              <span
+                class=""
+              >
                 Nakul Verma
               </span>
             </a>
@@ -870,10 +884,10 @@ Object {
               <a
                 href="/department/29"
               >
-                <span>
-                   
+                <span
+                  class=""
+                >
                   Computer Science
-                   
                 </span>
               </a>
               
@@ -924,7 +938,9 @@ Object {
           <a
             href="/professor/2339"
           >
-            <span>
+            <span
+              class=""
+            >
               Nakul Verma
             </span>
           </a>
@@ -975,10 +991,10 @@ Object {
             <a
               href="/department/29"
             >
-              <span>
-                 
+              <span
+                class=""
+              >
                 Computer Science
-                 
               </span>
             </a>
             

@@ -7,7 +7,7 @@
 *******************************/
 
 /* Result Box */
-@resultsBackground: #F2F2F2;
+@resultsBackground: @gray;
 
 /* Result */
 @resultDivider: none;

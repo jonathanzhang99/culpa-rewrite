@@ -227,7 +227,7 @@ Object {
           class="ui center aligned container"
         >
           <button
-            class="ui large button"
+            class="ui huge button"
             name="confirmModal"
             type="button"
           >
@@ -460,7 +460,7 @@ Object {
         class="ui center aligned container"
       >
         <button
-          class="ui large button"
+          class="ui huge button"
           name="confirmModal"
           type="button"
         >

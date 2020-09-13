@@ -21,10 +21,10 @@ Object {
           <a
             href="/department/1"
           >
-            <span>
-               
+            <span
+              class=""
+            >
               Computer Science
-               
             </span>
           </a>
         </div>
@@ -35,10 +35,10 @@ Object {
           <a
             href="/department/2"
           >
-            <span>
-               
+            <span
+              class=""
+            >
               English
-               
             </span>
           </a>
         </div>
@@ -62,10 +62,10 @@ Object {
         <a
           href="/department/1"
         >
-          <span>
-             
+          <span
+            class=""
+          >
             Computer Science
-             
           </span>
         </a>
       </div>
@@ -76,10 +76,10 @@ Object {
         <a
           href="/department/2"
         >
-          <span>
-             
+          <span
+            class=""
+          >
             English
-             
           </span>
         </a>
       </div>

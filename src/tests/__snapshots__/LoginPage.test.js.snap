@@ -67,7 +67,7 @@ Object {
           </div>
         </div>
         <button
-          class="ui large button"
+          class="ui huge button"
           name="submit"
           type="submit"
         >
@@ -139,7 +139,7 @@ Object {
         </div>
       </div>
       <button
-        class="ui large button"
+        class="ui huge button"
         name="submit"
         type="submit"
       >

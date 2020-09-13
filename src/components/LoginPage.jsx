@@ -28,7 +28,7 @@ export default function LoginPage() {
           rules={{ required: "Missing password" }}
           width={5}
         />
-        <Submit size="large" />
+        <Submit size="huge" />
       </Form>
     </>
   );

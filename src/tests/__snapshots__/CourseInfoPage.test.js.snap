@@ -5,12 +5,14 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <div
-        class="ui huge header"
-      >
-        COMS 4771
-         
-        Machine Learning
+      <div>
+        <div
+          class="ui huge header"
+        >
+          COMS 4771
+           
+          Machine Learning
+        </div>
       </div>
       <div>
         <div
@@ -21,22 +23,76 @@ Object {
         <a
           href="/department/1"
         >
-          <span>
-             
+          <span
+            class=""
+          >
             Computer Science
-             
           </span>
         </a>
       </div>
+      <div>
+        <div
+          class="add-margin"
+        >
+          <div
+            class="ui header no-margin"
+          >
+            Professors: 
+          </div>
+        </div>
+      </div>
+      <div>
+        <a
+          href="/review/submit"
+        >
+          <button
+            class="ui orange button relaxed create-review-button"
+          >
+            WRITE A REVIEW 
+            FOR MACHINE LEARNING
+          </button>
+        </a>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div>
       <div
-        class="ui container professor-course-list"
+        class="ui huge header"
+      >
+        COMS 4771
+         
+        Machine Learning
+      </div>
+    </div>
+    <div>
+      <div
+        class="ui header"
+      >
+        Department: 
+      </div>
+      <a
+        href="/department/1"
+      >
+        <span
+          class=""
+        >
+          Computer Science
+        </span>
+      </a>
+    </div>
+    <div>
+      <div
+        class="add-margin"
       >
         <div
-          class="ui header list-header"
+          class="ui header no-margin"
         >
           Professors: 
         </div>
       </div>
+    </div>
+    <div>
       <a
         href="/review/submit"
       >
@@ -48,50 +104,6 @@ Object {
         </button>
       </a>
     </div>
-  </body>,
-  "container": <div>
-    <div
-      class="ui huge header"
-    >
-      COMS 4771
-       
-      Machine Learning
-    </div>
-    <div>
-      <div
-        class="ui header"
-      >
-        Department: 
-      </div>
-      <a
-        href="/department/1"
-      >
-        <span>
-           
-          Computer Science
-           
-        </span>
-      </a>
-    </div>
-    <div
-      class="ui container professor-course-list"
-    >
-      <div
-        class="ui header list-header"
-      >
-        Professors: 
-      </div>
-    </div>
-    <a
-      href="/review/submit"
-    >
-      <button
-        class="ui orange button relaxed create-review-button"
-      >
-        WRITE A REVIEW 
-        FOR MACHINE LEARNING
-      </button>
-    </a>
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],
@@ -152,12 +164,14 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <div
-        class="ui huge header"
-      >
-        COMS 4771
-         
-        Machine Learning
+      <div>
+        <div
+          class="ui huge header"
+        >
+          COMS 4771
+           
+          Machine Learning
+        </div>
       </div>
       <div>
         <div
@@ -168,18 +182,84 @@ Object {
         <a
           href="/department/1"
         >
-          <span>
-             
+          <span
+            class=""
+          >
             Computer Science
-             
           </span>
         </a>
       </div>
+      <div>
+        <div
+          class="add-margin"
+        >
+          <div
+            class="ui header no-margin"
+          >
+            Professors: 
+          </div>
+          <span>
+            <a
+              href="/professor/1"
+            >
+              <span
+                class=""
+              >
+                Nakul
+                 
+                Verma
+              </span>
+            </a>
+            
+          </span>
+        </div>
+      </div>
+      <div>
+        <a
+          href="/review/submit"
+        >
+          <button
+            class="ui orange button relaxed create-review-button"
+          >
+            WRITE A REVIEW 
+            FOR MACHINE LEARNING
+          </button>
+        </a>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div>
       <div
-        class="ui container professor-course-list"
+        class="ui huge header"
+      >
+        COMS 4771
+         
+        Machine Learning
+      </div>
+    </div>
+    <div>
+      <div
+        class="ui header"
+      >
+        Department: 
+      </div>
+      <a
+        href="/department/1"
+      >
+        <span
+          class=""
+        >
+          Computer Science
+        </span>
+      </a>
+    </div>
+    <div>
+      <div
+        class="add-margin"
       >
         <div
-          class="ui header list-header"
+          class="ui header no-margin"
         >
           Professors: 
         </div>
@@ -187,7 +267,9 @@ Object {
           <a
             href="/professor/1"
           >
-            <span>
+            <span
+              class=""
+            >
               Nakul
                
               Verma
@@ -204,6 +286,8 @@ Object {
           
         </span>
       </div>
+    </div>
+    <div>
       <a
         href="/review/submit"
       >
@@ -215,70 +299,6 @@ Object {
         </button>
       </a>
     </div>
-  </body>,
-  "container": <div>
-    <div
-      class="ui huge header"
-    >
-      COMS 4771
-       
-      Machine Learning
-    </div>
-    <div>
-      <div
-        class="ui header"
-      >
-        Department: 
-      </div>
-      <a
-        href="/department/1"
-      >
-        <span>
-           
-          Computer Science
-           
-        </span>
-      </a>
-    </div>
-    <div
-      class="ui container professor-course-list"
-    >
-      <div
-        class="ui header list-header"
-      >
-        Professors: 
-      </div>
-      <span>
-        <a
-          href="/professor/1"
-        >
-          <span>
-            Nakul
-             
-            Verma
-          </span>
-        </a>
-        <img
-          class="ui avatar left spaced image"
-          src="gold-nugget.svg"
-        />
-        <img
-          class="ui avatar left spaced image"
-          src="silver-nugget.svg"
-        />
-        
-      </span>
-    </div>
-    <a
-      href="/review/submit"
-    >
-      <button
-        class="ui orange button relaxed create-review-button"
-      >
-        WRITE A REVIEW 
-        FOR MACHINE LEARNING
-      </button>
-    </a>
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],
@@ -339,12 +359,14 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <div
-        class="ui huge header"
-      >
-        COMS 4771
-         
-        Machine Learning
+      <div>
+        <div
+          class="ui huge header"
+        >
+          COMS 4771
+           
+          Machine Learning
+        </div>
       </div>
       <div>
         <div
@@ -355,18 +377,16 @@ Object {
         <a
           href="/department/1"
         >
-          <span>
-             
+          <span
+            class=""
+          >
             Computer Science
-             
           </span>
         </a>
       </div>
-      <div
-        class="ui container professor-course-list"
-      >
+      <div>
         <div
-          class="accordion ui"
+          class="accordion ui add-margin"
         >
           <div
             class="title"
@@ -393,7 +413,9 @@ Object {
                   <a
                     href="/professor/1"
                   >
-                    <span>
+                    <span
+                      class=""
+                    >
                       Nakul
                        
                       Verma
@@ -415,10 +437,10 @@ Object {
                     <a
                       href="/department/1"
                     >
-                      <span>
-                         
+                      <span
+                        class=""
+                      >
                         Computer Science
-                         
                       </span>
                     </a>
                     , 
@@ -427,10 +449,10 @@ Object {
                     <a
                       href="/department/3"
                     >
-                      <span>
-                         
+                      <span
+                        class=""
+                      >
                         Mathematics
-                         
                       </span>
                     </a>
                     
@@ -446,7 +468,9 @@ Object {
                   <a
                     href="/professor/2"
                   >
-                    <span>
+                    <span
+                      class=""
+                    >
                       Daniel
                        
                       Hsu
@@ -460,10 +484,10 @@ Object {
                     <a
                       href="/department/1"
                     >
-                      <span>
-                         
+                      <span
+                        class=""
+                      >
                         Computer Science
-                         
                       </span>
                     </a>
                     
@@ -479,7 +503,9 @@ Object {
                   <a
                     href="/professor/3"
                   >
-                    <span>
+                    <span
+                      class=""
+                    >
                       Dorrie
                        
                       Tang
@@ -497,10 +523,10 @@ Object {
                     <a
                       href="/department/1"
                     >
-                      <span>
-                         
+                      <span
+                        class=""
+                      >
                         Computer Science
-                         
                       </span>
                     </a>
                     
@@ -516,7 +542,9 @@ Object {
                   <a
                     href="/professor/4"
                   >
-                    <span>
+                    <span
+                      class=""
+                    >
                       Elaine
                        
                       Wang
@@ -534,10 +562,10 @@ Object {
                     <a
                       href="/department/1"
                     >
-                      <span>
-                         
+                      <span
+                        class=""
+                      >
                         Computer Science
-                         
                       </span>
                     </a>
                     
@@ -553,7 +581,9 @@ Object {
                   <a
                     href="/professor/5"
                   >
-                    <span>
+                    <span
+                      class=""
+                    >
                       Jonathan
                        
                       Zhang
@@ -571,10 +601,10 @@ Object {
                     <a
                       href="/department/1"
                     >
-                      <span>
-                         
+                      <span
+                        class=""
+                      >
                         Computer Science
-                         
                       </span>
                     </a>
                     
@@ -590,7 +620,9 @@ Object {
                   <a
                     href="/professor/6"
                   >
-                    <span>
+                    <span
+                      class=""
+                    >
                       Jin Woo
                        
                       Hsu
@@ -604,10 +636,10 @@ Object {
                     <a
                       href="/department/1"
                     >
-                      <span>
-                         
+                      <span
+                        class=""
+                      >
                         Computer Science
-                         
                       </span>
                     </a>
                     
@@ -623,7 +655,9 @@ Object {
                   <a
                     href="/professor/7"
                   >
-                    <span>
+                    <span
+                      class=""
+                    >
                       Sungbin
                        
                       Kim
@@ -649,10 +683,10 @@ Object {
                     <a
                       href="/department/1"
                     >
-                      <span>
-                         
+                      <span
+                        class=""
+                      >
                         Computer Science
-                         
                       </span>
                     </a>
                     
@@ -663,25 +697,29 @@ Object {
           </div>
         </div>
       </div>
-      <a
-        href="/review/submit"
-      >
-        <button
-          class="ui orange button relaxed create-review-button"
+      <div>
+        <a
+          href="/review/submit"
         >
-          WRITE A REVIEW 
-          FOR MACHINE LEARNING
-        </button>
-      </a>
+          <button
+            class="ui orange button relaxed create-review-button"
+          >
+            WRITE A REVIEW 
+            FOR MACHINE LEARNING
+          </button>
+        </a>
+      </div>
     </div>
   </body>,
   "container": <div>
-    <div
-      class="ui huge header"
-    >
-      COMS 4771
-       
-      Machine Learning
+    <div>
+      <div
+        class="ui huge header"
+      >
+        COMS 4771
+         
+        Machine Learning
+      </div>
     </div>
     <div>
       <div
@@ -692,18 +730,16 @@ Object {
       <a
         href="/department/1"
       >
-        <span>
-           
+        <span
+          class=""
+        >
           Computer Science
-           
         </span>
       </a>
     </div>
-    <div
-      class="ui container professor-course-list"
-    >
+    <div>
       <div
-        class="accordion ui"
+        class="accordion ui add-margin"
       >
         <div
           class="title"
@@ -730,7 +766,9 @@ Object {
                 <a
                   href="/professor/1"
                 >
-                  <span>
+                  <span
+                    class=""
+                  >
                     Nakul
                      
                     Verma
@@ -752,10 +790,10 @@ Object {
                   <a
                     href="/department/1"
                   >
-                    <span>
-                       
+                    <span
+                      class=""
+                    >
                       Computer Science
-                       
                     </span>
                   </a>
                   , 
@@ -764,10 +802,10 @@ Object {
                   <a
                     href="/department/3"
                   >
-                    <span>
-                       
+                    <span
+                      class=""
+                    >
                       Mathematics
-                       
                     </span>
                   </a>
                   
@@ -783,7 +821,9 @@ Object {
                 <a
                   href="/professor/2"
                 >
-                  <span>
+                  <span
+                    class=""
+                  >
                     Daniel
                      
                     Hsu
@@ -797,10 +837,10 @@ Object {
                   <a
                     href="/department/1"
                   >
-                    <span>
-                       
+                    <span
+                      class=""
+                    >
                       Computer Science
-                       
                     </span>
                   </a>
                   
@@ -816,7 +856,9 @@ Object {
                 <a
                   href="/professor/3"
                 >
-                  <span>
+                  <span
+                    class=""
+                  >
                     Dorrie
                      
                     Tang
@@ -834,10 +876,10 @@ Object {
                   <a
                     href="/department/1"
                   >
-                    <span>
-                       
+                    <span
+                      class=""
+                    >
                       Computer Science
-                       
                     </span>
                   </a>
                   
@@ -853,7 +895,9 @@ Object {
                 <a
                   href="/professor/4"
                 >
-                  <span>
+                  <span
+                    class=""
+                  >
                     Elaine
                      
                     Wang
@@ -871,10 +915,10 @@ Object {
                   <a
                     href="/department/1"
                   >
-                    <span>
-                       
+                    <span
+                      class=""
+                    >
                       Computer Science
-                       
                     </span>
                   </a>
                   
@@ -890,7 +934,9 @@ Object {
                 <a
                   href="/professor/5"
                 >
-                  <span>
+                  <span
+                    class=""
+                  >
                     Jonathan
                      
                     Zhang
@@ -908,10 +954,10 @@ Object {
                   <a
                     href="/department/1"
                   >
-                    <span>
-                       
+                    <span
+                      class=""
+                    >
                       Computer Science
-                       
                     </span>
                   </a>
                   
@@ -927,7 +973,9 @@ Object {
                 <a
                   href="/professor/6"
                 >
-                  <span>
+                  <span
+                    class=""
+                  >
                     Jin Woo
                      
                     Hsu
@@ -941,10 +989,10 @@ Object {
                   <a
                     href="/department/1"
                   >
-                    <span>
-                       
+                    <span
+                      class=""
+                    >
                       Computer Science
-                       
                     </span>
                   </a>
                   
@@ -960,7 +1008,9 @@ Object {
                 <a
                   href="/professor/7"
                 >
-                  <span>
+                  <span
+                    class=""
+                  >
                     Sungbin
                      
                     Kim
@@ -986,10 +1036,10 @@ Object {
                   <a
                     href="/department/1"
                   >
-                    <span>
-                       
+                    <span
+                      class=""
+                    >
                       Computer Science
-                       
                     </span>
                   </a>
                   
@@ -1000,16 +1050,18 @@ Object {
         </div>
       </div>
     </div>
-    <a
-      href="/review/submit"
-    >
-      <button
-        class="ui orange button relaxed create-review-button"
+    <div>
+      <a
+        href="/review/submit"
       >
-        WRITE A REVIEW 
-        FOR MACHINE LEARNING
-      </button>
-    </a>
+        <button
+          class="ui orange button relaxed create-review-button"
+        >
+          WRITE A REVIEW 
+          FOR MACHINE LEARNING
+        </button>
+      </a>
+    </div>
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],
@@ -1070,12 +1122,14 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <div
-        class="ui huge header"
-      >
-        COMS 4771
-         
-        Machine Learning
+      <div>
+        <div
+          class="ui huge header"
+        >
+          COMS 4771
+           
+          Machine Learning
+        </div>
       </div>
       <div>
         <div
@@ -1086,18 +1140,98 @@ Object {
         <a
           href="/department/1"
         >
-          <span>
-             
+          <span
+            class=""
+          >
             Computer Science
-             
           </span>
         </a>
       </div>
+      <div>
+        <div
+          class="add-margin"
+        >
+          <div
+            class="ui header no-margin"
+          >
+            Professors: 
+          </div>
+          <span>
+            <a
+              href="/professor/1"
+            >
+              <span
+                class=""
+              >
+                Nakul
+                 
+                Verma
+              </span>
+            </a>
+            , 
+          </span>
+          <span>
+            <a
+              href="/professor/2"
+            >
+              <span
+                class=""
+              >
+                Daniel
+                 
+                Hsu
+              </span>
+            </a>
+            
+          </span>
+        </div>
+      </div>
+      <div>
+        <a
+          href="/review/submit"
+        >
+          <button
+            class="ui orange button relaxed create-review-button"
+          >
+            WRITE A REVIEW 
+            FOR MACHINE LEARNING
+          </button>
+        </a>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div>
       <div
-        class="ui container professor-course-list"
+        class="ui huge header"
+      >
+        COMS 4771
+         
+        Machine Learning
+      </div>
+    </div>
+    <div>
+      <div
+        class="ui header"
+      >
+        Department: 
+      </div>
+      <a
+        href="/department/1"
+      >
+        <span
+          class=""
+        >
+          Computer Science
+        </span>
+      </a>
+    </div>
+    <div>
+      <div
+        class="add-margin"
       >
         <div
-          class="ui header list-header"
+          class="ui header no-margin"
         >
           Professors: 
         </div>
@@ -1105,7 +1239,9 @@ Object {
           <a
             href="/professor/1"
           >
-            <span>
+            <span
+              class=""
+            >
               Nakul
                
               Verma
@@ -1125,7 +1261,9 @@ Object {
           <a
             href="/professor/2"
           >
-            <span>
+            <span
+              class=""
+            >
               Daniel
                
               Hsu
@@ -1134,6 +1272,8 @@ Object {
           
         </span>
       </div>
+    </div>
+    <div>
       <a
         href="/review/submit"
       >
@@ -1145,82 +1285,6 @@ Object {
         </button>
       </a>
     </div>
-  </body>,
-  "container": <div>
-    <div
-      class="ui huge header"
-    >
-      COMS 4771
-       
-      Machine Learning
-    </div>
-    <div>
-      <div
-        class="ui header"
-      >
-        Department: 
-      </div>
-      <a
-        href="/department/1"
-      >
-        <span>
-           
-          Computer Science
-           
-        </span>
-      </a>
-    </div>
-    <div
-      class="ui container professor-course-list"
-    >
-      <div
-        class="ui header list-header"
-      >
-        Professors: 
-      </div>
-      <span>
-        <a
-          href="/professor/1"
-        >
-          <span>
-            Nakul
-             
-            Verma
-          </span>
-        </a>
-        <img
-          class="ui avatar left spaced image"
-          src="gold-nugget.svg"
-        />
-        <img
-          class="ui avatar left spaced image"
-          src="silver-nugget.svg"
-        />
-        , 
-      </span>
-      <span>
-        <a
-          href="/professor/2"
-        >
-          <span>
-            Daniel
-             
-            Hsu
-          </span>
-        </a>
-        
-      </span>
-    </div>
-    <a
-      href="/review/submit"
-    >
-      <button
-        class="ui orange button relaxed create-review-button"
-      >
-        WRITE A REVIEW 
-        FOR MACHINE LEARNING
-      </button>
-    </a>
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],

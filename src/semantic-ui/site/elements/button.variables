@@ -7,13 +7,13 @@
 --------------------*/
 
 /* Button */
-@backgroundColor: @primaryColor;
+@backgroundColor: @columbiaBlue;
 
 @verticalPadding: @inputVerticalPadding / 1.5;
 @horizontalPadding: 0.5em;
 
 /* Text */
-@textColor: @secondaryColor;
+@textColor: @darkNavy;
 @fontFamily: "Source Code Pro", Arial, Helvetica, sans-serif;
 
 /*-------------------

@@ -2,25 +2,25 @@
          Site Overrides
 *******************************/
 
-@background: @secondaryColor;
+@background: @darkNavy;
 /* See Power-user section in site.variables
    for explanation of @px variables
 */
 @borderRadius: @10px;
 
 /* Header */
-@headerBackground: @secondaryColor;
+@headerBackground: @darkNavy;
 @headerColor: @white;
 @headerFontSize: @large;
 @headerBorder: none;
 
 /* Content */
-@contentBackground: @secondaryColor;
+@contentBackground: @darkNavy;
 @contentPadding: 0rem 2rem;
 
 /* Modal Actions */
 @actionBorder: none;
-@actionBackground: @secondaryColor;
+@actionBackground: @darkNavy;
 @actionPadding: 2rem;
 @actionAlign: center;
 

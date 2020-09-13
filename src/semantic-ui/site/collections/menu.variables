@@ -10,7 +10,7 @@
 @border: none;
 
 /* Menu Item */
-@itemTextColor: @secondaryColor;
+@itemTextColor: @darkNavy;
 
 /*--------------
     Elements
@@ -24,7 +24,7 @@
 ---------------*/
 
 /* Hovered Item */
-@hoverItemTextColor: @secondaryColor;
+@hoverItemTextColor: @darkNavy;
 
 /* Pressed Item */
-@pressedItemTextColor: @secondaryColor;
+@pressedItemTextColor: @darkNavy;

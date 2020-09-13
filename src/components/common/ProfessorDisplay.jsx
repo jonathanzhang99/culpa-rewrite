@@ -8,6 +8,7 @@ import Badge from "components/common/Badge";
 const propTypesProfessorDisplayName = {
   as: PropTypes.oneOf(["header", "text"]),
   badges: PropTypes.arrayOf(PropTypes.number),
+  className: PropTypes.string,
   firstName: PropTypes.string,
   fullName: PropTypes.string,
   lastName: PropTypes.string,
@@ -17,6 +18,7 @@ const propTypesProfessorDisplayName = {
 const propTypesProfessorDisplayLink = {
   as: PropTypes.oneOf(["header", "text"]),
   badges: PropTypes.arrayOf(PropTypes.number),
+  className: PropTypes.string,
   firstName: PropTypes.string,
   fullName: PropTypes.string,
   lastName: PropTypes.string,
@@ -27,6 +29,7 @@ const propTypesProfessorDisplayLink = {
 const defaultProps = {
   as: "text",
   badges: [],
+  className: "",
   firstName: "",
   fullName: "",
   lastName: "",
@@ -36,6 +39,7 @@ const defaultProps = {
 export function ProfessorDisplayName({
   as,
   badges,
+  className,
   firstName,
   fullName,
   lastName,
@@ -44,7 +48,7 @@ export function ProfessorDisplayName({
   const ProfessorName = as === "header" ? Header : "span";
   return (
     <>
-      <ProfessorName size={size}>
+      <ProfessorName className={className} size={size}>
         {fullName || (
           <>
             {firstName} {lastName}
@@ -61,6 +65,7 @@ export function ProfessorDisplayName({
 export function ProfessorDisplayLink({
   as,
   badges,
+  className,
   firstName,
   fullName,
   lastName,
@@ -72,6 +77,7 @@ export function ProfessorDisplayLink({
       <Link to={`/professor/${professorId}`}>
         <ProfessorDisplayName
           as={as}
+          className={className}
           firstName={firstName}
           fullName={fullName}
           lastName={lastName}

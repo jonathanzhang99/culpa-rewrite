@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import { Container, Header, Icon, Accordion, Grid } from "semantic-ui-react";
+import { Header, Icon, Accordion, Grid } from "semantic-ui-react";
 
 import { CourseDisplayName } from "components/common/CourseDisplay";
 import CreateReviewButton from "components/common/CreateReviewButton";
@@ -34,8 +34,8 @@ const propTypesCourseProfessors = {
 
 function ProfessorsList({ courseProfessors }) {
   return (
-    <>
-      <Header className="list-header">Professors: </Header>
+    <div className="add-margin">
+      <Header className="no-margin">Professors: </Header>
       {courseProfessors.map(
         ({ badges, firstName, lastName, professorId }, index) => {
           return (
@@ -51,7 +51,7 @@ function ProfessorsList({ courseProfessors }) {
           );
         }
       )}
-    </>
+    </div>
   );
 }
 
@@ -80,7 +80,7 @@ function ProfessorsAccordion({
   courseProfessors,
 }) {
   return (
-    <Accordion>
+    <Accordion className="add-margin">
       <Accordion.Title
         active={isAccordionActive}
         onClick={() => setAccordionActive(!isAccordionActive)}
@@ -190,13 +190,16 @@ export function CourseInfo({
 }) {
   const [isAccordionActive, setAccordionActive] = useState(false);
   return (
+    /* use div to move to a new line */
     <>
-      <CourseDisplayName
-        as="header"
-        courseCallNumber={courseCallNumber}
-        courseName={courseName}
-        size="huge"
-      />
+      <div>
+        <CourseDisplayName
+          as="header"
+          courseCallNumber={courseCallNumber}
+          courseName={courseName}
+          size="huge"
+        />
+      </div>
       <div>
         <Header>Department: </Header>
         <DepartmentDisplayLink
@@ -204,19 +207,21 @@ export function CourseInfo({
           departmentName={departmentName}
         />
       </div>
-      <Container className="professor-course-list">
+      <div>
         <ProfessorsComponent
           courseProfessors={courseProfessors}
           isAccordionActive={isAccordionActive}
           setAccordionActive={setAccordionActive}
         />
-      </Container>
-      <CreateReviewButton
-        relaxed
-        color="orange"
-        courseId={courseId}
-        subject={courseName}
-      />
+      </div>
+      <div>
+        <CreateReviewButton
+          relaxed
+          color="orange"
+          courseId={courseId}
+          subject={courseName}
+        />
+      </div>
     </>
   );
 }
@@ -281,7 +286,7 @@ const propTypesDoubleCourseReviewHighlight = {
 function DoubleCourseReviewHighlight({ courseReviewHighlight }) {
   return (
     <>
-      <Grid relaxed columns={2}>
+      <Grid columns={2}>
         <Grid.Column>
           <Header>Most Positive Review</Header>
           <CourseReviewCard review={courseReviewHighlight[0]} />
@@ -302,7 +307,7 @@ const propTypesSingleCourseReviewHighlight = {
 function SingleCourseReviewHighlight({ courseReviewHighlight }) {
   return (
     <>
-      <Grid relaxed columns={2}>
+      <Grid columns={2}>
         <Grid.Row>
           <Grid.Column>
             <Header>Most Agreed Review</Header>

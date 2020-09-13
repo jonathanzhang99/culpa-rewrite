@@ -5,12 +5,14 @@ import { Header } from "semantic-ui-react";
 
 const propTypesDepartmentDisplayName = {
   as: PropTypes.oneOf(["header", "text"]),
+  className: PropTypes.string,
   departmentName: PropTypes.string.isRequired,
   size: PropTypes.oneOf(["tiny", "small", "medium", "large", "huge"]),
 };
 
 const propTypesDepartmentDisplayLink = {
   as: PropTypes.oneOf(["header", "text"]),
+  className: PropTypes.string,
   departmentId: PropTypes.number.isRequired,
   departmentName: PropTypes.string.isRequired,
   size: PropTypes.oneOf(["tiny", "small", "medium", "large", "huge"]),
@@ -18,16 +20,22 @@ const propTypesDepartmentDisplayLink = {
 
 const defaultProps = {
   as: "text",
+  className: "",
   size: "medium",
 };
 
-export function DepartmentDisplayName({ as, departmentName, size }) {
+export function DepartmentDisplayName({ as, className, departmentName, size }) {
   const DepartmentName = as === "header" ? Header : "span";
-  return <DepartmentName size={size}> {departmentName} </DepartmentName>;
+  return (
+    <DepartmentName className={className} size={size}>
+      {departmentName}
+    </DepartmentName>
+  );
 }
 
 export function DepartmentDisplayLink({
   as,
+  className,
   departmentId,
   departmentName,
   size,
@@ -36,6 +44,7 @@ export function DepartmentDisplayLink({
     <Link to={`/department/${departmentId}`}>
       <DepartmentDisplayName
         as={as}
+        className={className}
         departmentName={departmentName}
         size={size}
       />

@@ -3,11 +3,11 @@
 *******************************/
 
 .ui.menu.navbar {
-  background-color: @secondaryColor;
+  background-color: @darkNavy;
 }
 
 .ui.vertical.menu .item.sidebar-header {
-  background-color: @secondaryColor;
+  background-color: @darkNavy;
   color: @white;
   font-weight: @bold;
 }

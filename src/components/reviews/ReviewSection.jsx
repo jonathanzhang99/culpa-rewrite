@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import React, { useEffect, useReducer, useRef } from "react";
-import { Container, Dropdown, Grid, Button, Icon } from "semantic-ui-react";
+import { Dropdown, Grid, Button, Icon } from "semantic-ui-react";
 
 import ErrorComponent from "components/common/ErrorComponent";
 import LoadingComponent from "components/common/LoadingComponent";
@@ -235,8 +235,9 @@ export default function ReviewSection({
   }
 
   return (
-    <Container fluid>
-      <Grid>
+    /* use div to prevent "margin collapsing" behavior */
+    <div>
+      <Grid className="add-margin">
         <Grid.Row>
           <Grid.Column width={4}>
             <Dropdown
@@ -300,23 +301,18 @@ export default function ReviewSection({
               );
             })}
         </Grid.Row>
-        <Grid.Row
-          centered
-          className="review-section-show-more-grid-row"
-          key={3}
-        >
+        <Grid.Row key={3}>
           <Button
             fluid
             name="showMoreButton"
             size="large"
             onClick={onClickPagButton}
           >
-            Show more
-            <Icon className="review-section-show-more-icon" name="arrow down" />
+            Show more <Icon name="arrow down" />
           </Button>
         </Grid.Row>
       </Grid>
-    </Container>
+    </div>
   );
 }
 
