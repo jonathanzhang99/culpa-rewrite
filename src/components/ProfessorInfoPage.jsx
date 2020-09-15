@@ -204,6 +204,7 @@ export default function ProfessorInfoPage() {
     },
     professorReviewHighlight: [],
   });
+
   const reviewDataFetched = useDataFetch(
     `/api/review/get/professor/${professorId}`,
     {

@@ -1,7 +1,7 @@
 from api.data import db
 from api.data.dataloaders.professors_loader import load_professor_courses, \
-    load_professor_badges, load_professor_basic_info_by_id, \
-    load_professor_basic_info_by_uni, search_professor
+    load_professor_basic_info_by_id, load_professor_basic_info_by_uni, \
+    search_professor
 from api.tests import LoadersWritersBaseTest
 from api.tests.data_tests.common import setup_department_professor_courses
 from collections import namedtuple
@@ -29,31 +29,6 @@ class ProfessorsLoaderTest(LoadersWritersBaseTest):
         super().setUp()
         setup_department_professor_courses(self.cur)
         db.commit()
-
-    def test_load_professor_badges_no_badge(self):
-        badges = load_professor_badges(JWL_PROFESSOR_ID)
-        self.assertEqual((), badges)
-
-    def test_load_professor_badges_one_badge(self):
-        expected_badges = [{
-            'badge_id': 3,
-        }]
-
-        badges = load_professor_badges(BOLLINGER_PROFESSOR_ID)
-        self.assertEqual(expected_badges, badges)
-
-    def test_load_professor_badges_multiple_badges(self):
-        expected_badges = [
-            {'badge_id': 1},
-            {'badge_id': 2},
-        ]
-
-        badges = load_professor_badges(VERMA_PROFESSOR_ID)
-        self.assertEqual(expected_badges, badges)
-
-    def test_load_professor_badges_invalid_professor(self):
-        badges = load_professor_badges(BAD_PROFESSOR_ID)
-        self.assertEqual((), badges)
 
     def test_load_professor_courses_single_course(self):
         expected_courses = [{
@@ -91,11 +66,7 @@ class ProfessorsLoaderTest(LoadersWritersBaseTest):
         expected_results = [{
             'first_name': 'Nakul',
             'last_name': 'Verma',
-            'badge_id': 1,
-        }, {
-            'first_name': 'Nakul',
-            'last_name': 'Verma',
-            'badge_id': 2,
+            'badges': '[1, 2]',
         }]
 
         results = load_professor_basic_info_by_id(VERMA_PROFESSOR_ID)

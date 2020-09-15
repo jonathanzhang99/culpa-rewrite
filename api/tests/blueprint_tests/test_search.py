@@ -84,6 +84,17 @@ class SearchTest(BaseTest):
         expected_results = {
             'professorResults': [
                 {
+                    'badges': [3],
+                    'childKey': 'professor-2',
+                    'departments': [{
+                        'id': 3,
+                        'name': 'Law',
+                    }],
+                    'id': 2,
+                    'title': 'Lee Bollinger',
+                    'type': 'professor',
+                },
+                {
                     'badges': [1, 2],
                     'childKey': 'professor-1',
                     'departments': [
@@ -97,23 +108,22 @@ class SearchTest(BaseTest):
                         }
                     ],
                     'id': 1,
-                    'title': 'Nakul Verma',
-                    'type': 'professor',
-                },
-                {
-                    'badges': [3],
-                    'childKey': 'professor-2',
-                    'departments': [{
-                        'id': 3,
-                        'name': 'Law',
-                    }],
-                    'id': 2,
                     'last': 'true',
-                    'title': 'Lee Bollinger',
+                    'title': 'Nakul Verma',
                     'type': 'professor',
                 }
             ],
             'courseResults': [
+                {
+                    'childKey': 'course-2',
+                    'departments': [{
+                        'id': 1,
+                        'name': 'Computer Science',
+                    }],
+                    'id': 2,
+                    'title': 'Advanced Machine Learning',
+                    'type': 'course',
+                },
                 {
                     'childKey': 'course-1',
                     'departments': [{
@@ -124,21 +134,11 @@ class SearchTest(BaseTest):
                     'title': 'Machine Learning',
                     'type': 'course',
                 },
-                {
-                    'childKey': 'course-2',
-                    'departments': [{
-                        'id': 1,
-                        'name': 'Computer Science',
-                    }],
-                    'id': 2,
-                    'title': 'Advanced Machine Learning',
-                    'type': 'course',
-                }
             ]
         }
 
         search_results = self.client.get(
-          '/api/search?entity=all&query=testSearchValue')
+          '/api/search?entity=all&query=testSearchValue&alphabetize=true')
         self.assertEqual(expected_results, search_results.json)
 
     def test_search_only_professor(self,
@@ -146,6 +146,17 @@ class SearchTest(BaseTest):
                                    mock_search_course):
         expected_results = {
             'professorResults': [
+                {
+                    'badges': [3],
+                    'childKey': 'professor-2',
+                    'departments': [{
+                        'id': 3,
+                        'name': 'Law',
+                    }],
+                    'id': 2,
+                    'title': 'Lee Bollinger',
+                    'type': 'professor',
+                },
                 {
                     'badges': [1, 2],
                     'childKey': 'professor-1',
@@ -160,19 +171,8 @@ class SearchTest(BaseTest):
                         }
                     ],
                     'id': 1,
-                    'title': 'Nakul Verma',
-                    'type': 'professor',
-                },
-                {
-                    'badges': [3],
-                    'childKey': 'professor-2',
-                    'departments': [{
-                        'id': 3,
-                        'name': 'Law',
-                    }],
-                    'id': 2,
                     'last': 'true',
-                    'title': 'Lee Bollinger',
+                    'title': 'Nakul Verma',
                     'type': 'professor',
                 }
             ],
@@ -180,8 +180,8 @@ class SearchTest(BaseTest):
         }
 
         search_results = self.client.get(
-          '/api/search?entity=professor&query=testSearchValue')
-
+          '/api/search?entity=professor&query=testSearchValue&alphabetize=true'
+        )
         self.assertEqual(expected_results, search_results.json)
 
     def test_search_only_course(self,
@@ -191,16 +191,6 @@ class SearchTest(BaseTest):
             'professorResults': [],
             'courseResults': [
                 {
-                    'childKey': 'course-1',
-                    'departments': [{
-                        'id': 1,
-                        'name': 'Computer Science',
-                    }],
-                    'id': 1,
-                    'title': 'Machine Learning',
-                    'type': 'course'
-                },
-                {
                     'childKey': 'course-2',
                     'departments': [{
                         'id': 1,
@@ -209,12 +199,22 @@ class SearchTest(BaseTest):
                     'id': 2,
                     'title': 'Advanced Machine Learning',
                     'type': 'course',
+                },
+                {
+                    'childKey': 'course-1',
+                    'departments': [{
+                        'id': 1,
+                        'name': 'Computer Science',
+                    }],
+                    'id': 1,
+                    'title': 'Machine Learning',
+                    'type': 'course'
                 }
             ]
         }
 
         search_results = self.client.get(
-          '/api/search?entity=course&query=testSearchValue')
+          '/api/search?entity=course&query=testSearchValue&alphabetize=true')
         self.assertEqual(expected_results, search_results.json)
 
     def test_search_no_result(self, mock_search_professor, mock_search_course):

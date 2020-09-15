@@ -86,7 +86,7 @@ class ProfessorsTest(BaseTest):
         'workload': 'demo workload 4'
     }
 
-    def test_parse_professors_with_departments_badges(self):
+    def test_parse_professors_with_departments_and_badges(self):
         professors = [{
             'professor_id': 1,
             'first_name': 'Nakul',
@@ -302,11 +302,7 @@ class ProfessorsTest(BaseTest):
         mock_load_professor_basic_info_by_id.return_value = [{
             'first_name': 'Nakul',
             'last_name': 'Verma',
-            'badge_id': 1,
-        }, {
-            'first_name': 'Nakul',
-            'last_name': 'Verma',
-            'badge_id': 2,
+            'badges': '[1, 2]',
         }]
         mock_professor_courses.return_value = [{
             'course_id': 1,
@@ -358,11 +354,7 @@ class ProfessorsTest(BaseTest):
         mock_load_professor_basic_info_by_id.return_value = [{
             'first_name': 'Nakul',
             'last_name': 'Verma',
-            'badge_id': 1,
-        }, {
-            'first_name': 'Nakul',
-            'last_name': 'Verma',
-            'badge_id': 2,
+            'badges': '[1, 2]',
         }]
         mock_professor_courses.return_value = [{
             'course_id': 1,
@@ -412,11 +404,7 @@ class ProfessorsTest(BaseTest):
         mock_professor_basic_info_by_id.return_value = [{
             'first_name': 'Nakul',
             'last_name': 'Verma',
-            'badge_id': 1,
-        }, {
-            'first_name': 'Nakul',
-            'last_name': 'Verma',
-            'badge_id': 2,
+            'badges': '[1, 2]',
         }]
         mock_professor_courses.return_value = [{
             'course_id': 1,
@@ -462,11 +450,7 @@ class ProfessorsTest(BaseTest):
         mock_load_professor_basic_info_by_id.return_value = [{
             'first_name': 'Nakul',
             'last_name': 'Verma',
-            'badge_id': 1,
-        }, {
-            'first_name': 'Nakul',
-            'last_name': 'Verma',
-            'badge_id': 2,
+            'badges': '[1, 2]',
         }]
         mock_professor_courses.return_value = []
         mock_load_review_highlight.return_value = [
@@ -494,7 +478,7 @@ class ProfessorsTest(BaseTest):
             self,
             mock_load_professor_basic_info_by_id):
         mock_load_professor_basic_info_by_id.return_value = []
-        expected_error = {'error': 'Missing professor name'}
+        expected_error = {'error': 'Missing professor basic info'}
 
         res = self.client.get(f'/api/professor/{self.VERMA_PROFESSOR_ID}')
         self.assertEqual(res.status_code, 400)

@@ -9,6 +9,7 @@ class CoursesTest(BaseTest):
     BAD_COURSE_ID = 999999
 
     POSITIVE_REVIEW = {
+        'badges': '[null, null]',
         'professor_id': 3,
         'first_name': 'Jae W',
         'last_name': 'Lee',
@@ -27,6 +28,7 @@ class CoursesTest(BaseTest):
     }
 
     NEGATIVE_REVIEW = {
+        'badges': '[null]',
         'professor_id': 3,
         'first_name': 'Jae W',
         'last_name': 'Lee',
@@ -93,14 +95,12 @@ class CoursesTest(BaseTest):
     }
 
     @mock.patch('api.blueprints.course.load_review_highlight')
-    @mock.patch('api.blueprints.course.load_professor_badges')
     @mock.patch('api.blueprints.course.load_course_professors')
     @mock.patch('api.blueprints.course.load_course_basic_info')
     def test_get_course_info_two_review_highlights(
       self,
       mock_load_course_basic_info,
       mock_load_course_professors,
-      mock_load_professor_badges,
       mock_load_review_highlight):
         mock_load_course_basic_info.return_value = [{
             'course_id': self.ML_COURSE_ID,
@@ -142,7 +142,6 @@ class CoursesTest(BaseTest):
             self.POSITIVE_REVIEW,
             self.NEGATIVE_REVIEW,
         ]
-        mock_load_professor_badges.return_value = []
         expected_res = {
             'courseSummary': {
                 'courseName': 'Machine Learning',
@@ -173,14 +172,12 @@ class CoursesTest(BaseTest):
         self.assertEqual(expected_res, res.json)
 
     @mock.patch('api.blueprints.course.load_review_highlight')
-    @mock.patch('api.blueprints.course.load_professor_badges')
     @mock.patch('api.blueprints.course.load_course_professors')
     @mock.patch('api.blueprints.course.load_course_basic_info')
     def test_get_course_info_one_review_highlight(
             self,
             mock_load_course_basic_info,
             mock_load_course_professors,
-            mock_load_professor_badges,
             mock_load_review_highlight):
         mock_load_course_basic_info.return_value = [{
             'course_id': self.ML_COURSE_ID,
@@ -218,7 +215,6 @@ class CoursesTest(BaseTest):
             'department_name': 'Mathematics',
             'badge_id': 2,
         }]
-        mock_load_professor_badges.return_value = []
         mock_load_review_highlight.return_value = [
             self.POSITIVE_REVIEW,
         ]
@@ -322,14 +318,12 @@ class CoursesTest(BaseTest):
         self.assertDictEqual(expected_res, res.json)
 
     @mock.patch('api.blueprints.course.load_review_highlight')
-    @mock.patch('api.blueprints.course.load_professor_badges')
     @mock.patch('api.blueprints.course.load_course_professors')
     @mock.patch('api.blueprints.course.load_course_basic_info')
     def test_get_course_info_no_professors(
             self,
             mock_load_course_basic_info,
             mock_load_course_professors,
-            mock_load_professor_badges,
             mock_load_review_highlight):
         mock_load_course_basic_info.return_value = [{
             'course_id': self.ML_COURSE_ID,
@@ -339,7 +333,6 @@ class CoursesTest(BaseTest):
             'department_name': 'Computer Science',
         }]
         mock_load_course_professors.return_value = []
-        mock_load_professor_badges.return_value = []
         mock_load_review_highlight.return_value = [
             self.POSITIVE_REVIEW,
             self.NEGATIVE_REVIEW,

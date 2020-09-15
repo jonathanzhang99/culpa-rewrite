@@ -17,6 +17,7 @@ class ReviewsLoaderTest(LoadersWritersBaseTest):
             'type': 'course',
             'id': 4,
             'expected_res': [{
+                'badges': '[null]',
                 'professor_id': 3,
                 'first_name': 'Jae W',
                 'last_name': 'Lee',
@@ -33,6 +34,7 @@ class ReviewsLoaderTest(LoadersWritersBaseTest):
                 'disagree_clicked': Decimal(0),
                 'funny_clicked': Decimal(0)
             }, {
+                'badges': '[null, null, null, null]',
                 'professor_id': 3,
                 'first_name': 'Jae W',
                 'last_name': 'Lee',
@@ -49,6 +51,7 @@ class ReviewsLoaderTest(LoadersWritersBaseTest):
                 'disagree_clicked': Decimal(1),
                 'funny_clicked': Decimal(1)
             }, {
+                'badges': '[null]',
                 'professor_id': 3,
                 'first_name': 'Jae W',
                 'last_name': 'Lee',
@@ -221,13 +224,14 @@ class ReviewsLoaderTest(LoadersWritersBaseTest):
             'prof_first_name': 'Nakul',
             'prof_last_name': 'Verma',
             'prof_uni': 'nv2274',
+            'badges': '[1, 2]',
             'flag_type': 'libel',
             'agrees': Decimal(0),
             'disagrees': Decimal(0),
-            'funnys': Decimal(1),
+            'funnys': Decimal(2),
             'agree_clicked': Decimal(0),
             'disagree_clicked': Decimal(0),
-            'funny_clicked': Decimal(1)
+            'funny_clicked': Decimal(2)
         }, {
             'review_id': 5,
             'content': 'demo content 5',
@@ -241,6 +245,7 @@ class ReviewsLoaderTest(LoadersWritersBaseTest):
             'prof_first_name': 'Jae W',
             'prof_last_name': 'Lee',
             'prof_uni': 'jwl3',
+            'badges': '[null, null, null, null]',  # 4 duplicates
             'flag_type': 'approved',
             'agrees': Decimal(1),
             'disagrees': Decimal(2),
@@ -278,6 +283,7 @@ class ReviewsLoaderTest(LoadersWritersBaseTest):
             'course_id': 5,
             'expected_res': [
                 {
+                    'badges': '[3, 3, 3]',  # 3 duplicates
                     'professor_id': 2,
                     'first_name': 'Lee',
                     'last_name': 'Bollinger',
@@ -295,6 +301,7 @@ class ReviewsLoaderTest(LoadersWritersBaseTest):
                     'funny_clicked': Decimal('0')
                 },
                 {
+                    'badges': '[3]',
                     'professor_id': 2,
                     'first_name': 'Lee',
                     'last_name': 'Bollinger',
@@ -317,6 +324,7 @@ class ReviewsLoaderTest(LoadersWritersBaseTest):
             'course_id': 9,
             'expected_res': [
                 {
+                    'badges': '[1, 2]',
                     'professor_id': 1,
                     'first_name': 'Nakul',
                     'last_name': 'Verma',
@@ -353,4 +361,4 @@ class ReviewsLoaderTest(LoadersWritersBaseTest):
             with self.subTest(test_case):
                 res = load_review_highlight(
                     prepare_course_query_prefix(test_case['course_id']), ip)
-                self.assertCountEqual(res, test_case['expected_res'])
+                self.assertEqual(res, test_case['expected_res'])

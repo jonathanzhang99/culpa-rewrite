@@ -1,9 +1,12 @@
-from pypika import Criterion, MySQLQuery as Query, Order
+from pypika import MySQLQuery as Query, Criterion, Order, \
+  CustomFunction
 
 from api.data import db
 from api.data.common import badge, badge_professor, course, \
   course_professor, department, department_professor, professor, \
   Match, APPROVED
+
+JsonArrayAgg = CustomFunction('JSON_ARRAYAGG', ['attribute'])
 
 
 # TODO: This method is temporary to test search functionality
@@ -45,11 +48,14 @@ def load_professor_basic_info_by_id(professor_id):
         .select(
             professor.first_name,
             professor.last_name,
-            badge.badge_id) \
+            JsonArrayAgg(badge.badge_id).as_('badges')) \
         .where(Criterion.all([
             professor.professor_id == professor_id,
             professor.status == APPROVED
         ])) \
+        .groupby(
+            professor.first_name,
+            professor.last_name) \
         .get_sql()
 
     cur.execute(query)
@@ -92,19 +98,6 @@ def load_any_status_professor_by_uni(professor_uni):
 
     cur.execute(query)
     return cur.fetchone()
-
-
-def load_professor_badges(professor_id):
-    cur = db.get_cursor()
-    query = Query \
-        .from_(badge) \
-        .join(badge_professor) \
-        .on(badge_professor.badge_id == badge.badge_id) \
-        .select(badge_professor.badge_id) \
-        .where(badge_professor.professor_id == professor_id) \
-        .get_sql()
-    cur.execute(query)
-    return cur.fetchall()
 
 
 def load_professor_courses(professor_id):

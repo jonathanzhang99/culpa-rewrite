@@ -194,6 +194,7 @@ const propTypesReviewCard = {
         profFirstName: PropTypes.string.isRequired,
         profLastName: PropTypes.string.isRequired,
         uni: PropTypes.string.isRequired,
+        badges: PropTypes.arrayOf(PropTypes.number).isRequired,
       }),
     }),
   ]).isRequired,
@@ -263,6 +264,7 @@ export default function ReviewCard({
                 <div>
                   <ProfessorDisplayName
                     as="header"
+                    badges={reviewHeader.professor.badges}
                     firstName={reviewHeader.professor.profFirstName}
                     lastName={reviewHeader.professor.profLastName}
                   />

@@ -98,11 +98,12 @@ class DepartmentsTest(BaseTest):
             'departmentName': 'Computer Science',
             'departmentCourses': [
                 {
-                    'courseId': 1,
-                    'courseName': 'User Interface Design'
-                }, {
                     'courseId': 2,
                     'courseName': 'Machine Learning'
+                },
+                {
+                    'courseId': 1,
+                    'courseName': 'User Interface Design'
                 }
             ],
             'departmentProfessors': [

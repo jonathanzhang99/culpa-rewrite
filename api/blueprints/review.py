@@ -2,7 +2,7 @@ import flask
 from datetime import datetime, timedelta
 
 from api.data.dataloaders.professors_loader import \
-    load_professor_basic_info_by_uni, load_professor_badges
+    load_professor_basic_info_by_uni
 from api.data.dataloaders.reviews_loader import get_reviews_with_query_prefix,\
     prepare_course_query_prefix, prepare_professor_query_prefix, \
     load_review
@@ -11,6 +11,14 @@ from api.data.datawriters.course_professors_writer import \
 from api.data.datawriters.reviews_writer import insert_review
 
 review_blueprint = flask.Blueprint('review_blueprint', __name__)
+
+
+def parse_review_professor_badges(badges):
+    badges_json = []
+    for badge in badges.strip('[]').split(','):
+        if badge.strip().isdigit() and int(badge) not in badges_json:
+            badges_json.append(int(badge))
+    return badges_json
 
 
 def parse_review(review, review_type):
@@ -26,7 +34,7 @@ def parse_review(review, review_type):
 
     if review_type == 'course':
         review_header = {
-            'badges': [],
+            'badges': parse_review_professor_badges(review['badges']),
             'profId': review['professor_id'],
             'profFirstName': review['first_name'],
             'profLastName': review['last_name'],
@@ -41,7 +49,7 @@ def parse_review(review, review_type):
     elif review_type == "all":
         review_header = {
             'professor': {
-                'badges': [],
+                'badges': parse_review_professor_badges(review['badges']),
                 'profId': review['prof_id'],
                 'profFirstName': review['prof_first_name'],
                 'profLastName': review['prof_last_name'],
@@ -207,15 +215,7 @@ def get_reviews(page_type, id):
         filter_year,
     )
 
-    reviews_json = []
-    for review in reviews:
-        review_json = parse_review(review, page_type)
-        if page_type == 'course':
-            badges = load_professor_badges(
-              review_json['reviewHeader']['profId'])
-            for badge in badges:
-                review_json['reviewHeader']['badges'].append(badge['badge_id'])
-        reviews_json.append(review_json)
+    reviews_json = [parse_review(review, page_type) for review in reviews]
 
     return {'reviews': reviews_json}
 

@@ -8,10 +8,11 @@ from pypika import functions as fn, \
 from pypika.terms import AnalyticFunction
 
 from api.data import db
-from api.data.common import course, course_professor, flag, \
-  professor, review, vote, union_
+from api.data.common import badge, badge_professor, course, \
+  course_professor, flag, professor, review, vote, union_
 
 DateDiff = CustomFunction('DATEDIFF', ['start_date', 'end_date'])
+JsonArrayAgg = CustomFunction('JSON_ARRAYAGG', ['attribute'])
 
 
 class RowNumber(AnalyticFunction):
@@ -72,7 +73,12 @@ def prepare_course_query_prefix(course_id, filter_list=None):
             ])) \
         .join(professor) \
         .on(
-            professor.professor_id == course_professor.professor_id)
+            professor.professor_id == course_professor.professor_id) \
+        .left_join(badge_professor) \
+        .on(badge_professor.professor_id == professor.professor_id) \
+        .left_join(badge) \
+        .on(badge.badge_id == badge_professor.badge_id) \
+        .select(JsonArrayAgg(badge.badge_id).as_('badges')) \
 
     if filter_list:
         query = query.where(professor.professor_id.isin(filter_list))
@@ -81,7 +87,7 @@ def prepare_course_query_prefix(course_id, filter_list=None):
         professor.professor_id,
         professor.first_name,
         professor.last_name,
-        professor.uni
+        professor.uni,
     ]
 
 
@@ -93,7 +99,13 @@ def prepare_all_query_prefix():
             course.course_id == course_professor.course_id) \
         .join(professor) \
         .on(
-            professor.professor_id == course_professor.professor_id)
+            professor.professor_id == course_professor.professor_id) \
+        .left_join(badge_professor) \
+        .on(badge_professor.professor_id == professor.professor_id) \
+        .left_join(badge) \
+        .on(badge.badge_id == badge_professor.badge_id) \
+        .select(JsonArrayAgg(badge.badge_id).as_('badges')) \
+
     return query, [
         course.course_id,
         course.call_number.as_('course_call_number'),
@@ -293,8 +305,8 @@ def load_review_highlight(
     cur = db.get_cursor()
     approved_flags = get_flags_by_type('approved')
 
-    associated_professor, header_fields = query_prefix
-    query = associated_professor \
+    query, header_fields = query_prefix
+    query = query \
         .join(review) \
         .on(
             course_professor.course_professor_id ==
