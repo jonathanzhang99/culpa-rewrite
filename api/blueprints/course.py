@@ -10,24 +10,6 @@ from api.blueprints.professor import parse_professors
 course_blueprint = flask.Blueprint('course_blueprint', __name__)
 
 
-def parse_courses(courses, alphabetize=False):
-    '''
-    static method for parsing courses into json objects
-    '''
-    courses_json = [{
-        'courseId': course.get('course_id'),
-        'courseName': course.get('name'),
-        'courseCallNumber': course.get('course_call_number'),
-        'departmentId': course.get('department_id'),
-        'departmentName': course.get('department_name')
-    } for course in courses]
-
-    if alphabetize:
-        return sorted(courses_json, key=lambda course: course['courseName'])
-
-    return courses_json
-
-
 @course_blueprint.route('/<int:course_id>', methods=['GET'])
 def course_info(course_id):
     basic_info = load_course_basic_info(course_id)
@@ -40,7 +22,7 @@ def course_info(course_id):
     # Here we reformat into the JSON course_professors, so that each professor
     # is uniquely identified by id and has professorDepartments as a subfield.
     professors = load_course_professors(course_id)
-    professors_json = parse_professors(professors, alphabetize=True)
+    professors_json = parse_professors(professors)
 
     # rename keys
     course_professors_json = [{

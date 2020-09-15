@@ -59,12 +59,14 @@ def load_course_professors(course_id):
             department.department_id,
             department.name.as_('department_name'),
             badge.badge_id) \
+        .orderby(
+            professor.first_name) \
         .get_sql()
     cur.execute(query)
     return cur.fetchall()
 
 
-def search_course(search_query, limit=None):
+def search_course(search_query, limit=None, alphabetize=False):
     cur = db.get_cursor()
 
     search_params = [param + '*' for param in search_query.split()]
@@ -91,7 +93,9 @@ def search_course(search_query, limit=None):
         ])) \
         .orderby(match, order=Order.desc) \
         .limit(limit) \
-        .get_sql()
 
-    cur.execute(query)
+    if alphabetize:
+        query = query.orderby(course.name)
+
+    cur.execute(query.get_sql())
     return cur.fetchall()

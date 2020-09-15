@@ -42,10 +42,6 @@ class ProfessorsLoaderTest(LoadersWritersBaseTest):
 
     def test_load_professor_courses_multiple_courses(self):
         expected_courses = [{
-            'course_id': 1,
-            'name': 'Machine Learning',
-            'call_number': 'COMS 4771'
-        }, {
             'course_id': 2,
             'name': 'Advanced Machine Learning',
             'call_number': 'COMS 4774'
@@ -53,6 +49,10 @@ class ProfessorsLoaderTest(LoadersWritersBaseTest):
             'course_id': 4,
             'name': 'Advanced Programming',
             'call_number': 'COMS 3157'
+        }, {
+            'course_id': 1,
+            'name': 'Machine Learning',
+            'call_number': 'COMS 4771'
         }, {
             'course_id': 6,
             'name': 'Mathematics of Machine Learning',

@@ -49,13 +49,13 @@ def load_professor_basic_info_by_id(professor_id):
             professor.first_name,
             professor.last_name,
             JsonArrayAgg(badge.badge_id).as_('badges')) \
+        .groupby(
+            professor.first_name,
+            professor.last_name) \
         .where(Criterion.all([
             professor.professor_id == professor_id,
             professor.status == APPROVED
         ])) \
-        .groupby(
-            professor.first_name,
-            professor.last_name) \
         .get_sql()
 
     cur.execute(query)
@@ -120,13 +120,15 @@ def load_professor_courses(professor_id):
             course_professor.professor_id == professor_id,
             course_professor.status == APPROVED
         ])) \
+        .orderby(
+            course.name) \
         .get_sql()
 
     cur.execute(query)
     return cur.fetchall()
 
 
-def search_professor(search_query, limit=None):
+def search_professor(search_query, limit=None, alphabetize=False):
     cur = db.get_cursor()
 
     search_params = [param + '*' for param in search_query.split()]
@@ -177,7 +179,9 @@ def search_professor(search_query, limit=None):
             department.name.as_('department_name'),
             badge.badge_id
         ) \
-        .get_sql()
 
-    cur.execute(query)
+    if alphabetize:
+        query = query.orderby(distinct_professor.first_name)
+
+    cur.execute(query.get_sql())
     return cur.fetchall()

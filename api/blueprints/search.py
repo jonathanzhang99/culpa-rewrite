@@ -2,7 +2,6 @@ import flask
 
 from api.data.dataloaders.courses_loader import search_course
 from api.data.dataloaders.professors_loader import search_professor
-from api.blueprints.course import parse_courses
 from api.blueprints.professor import parse_professors
 
 search_blueprint = flask.Blueprint('search_blueprint', __name__)
@@ -24,16 +23,17 @@ def search():
     search_entity = url_params.get('entity', 'all')
     search_query = url_params.get('query', '')
     search_limit = url_params.get('limit', None)
-    search_order = url_params.get('alphabetize', None)
+    isAlphabetized = url_params.get('alphabetize', False)
 
     if len(search_query) < 2:
         return {'error': 'Query is too insubstantial'}, 400
 
     professor_results = []
     if search_entity in ['professor', 'all']:
-        professors = search_professor(search_query, search_limit)
-        professors_json = parse_professors(professors,
-                                           alphabetize=search_order)
+        professors = search_professor(search_query,
+                                      search_limit,
+                                      isAlphabetized)
+        professors_json = parse_professors(professors)
 
         # renaming keys
         professor_results = [{
@@ -56,19 +56,17 @@ def search():
     course_results = []
     if search_entity in ['course', 'all']:
         courses = search_course(search_query, search_limit)
-        courses_json = parse_courses(courses, alphabetize=search_order)
 
-        # renaming keys
         course_results = [{
-            'childKey': f'course-{course["courseId"]}',
+            'childKey': f'course-{course["course_id"]}',
             'departments': [{
-                'id': course['departmentId'],
-                'name': course['departmentName']
+                'id': course['department_id'],
+                'name': course['department_name']
             }],
-            'id': course['courseId'],
-            'title': course['courseName'],
+            'id': course['course_id'],
+            'title': course['name'],
             'type': 'course'
-        } for course in courses_json]
+        } for course in courses]
 
     return {
         'professorResults': professor_results,

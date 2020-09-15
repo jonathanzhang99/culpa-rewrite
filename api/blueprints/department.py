@@ -2,7 +2,6 @@ import flask
 
 from api.data.dataloaders.departments_loader import load_all_departments, \
     load_department_courses, load_department_name, load_department_professors
-from api.blueprints.course import parse_courses
 from api.blueprints.professor import parse_professors
 
 department_blueprint = flask.Blueprint('department_blueprint', __name__)
@@ -38,9 +37,6 @@ def all_departments():
         departments_json = [dict(department_json, key=department_json[id_key])
                             for department_json in departments_json]
 
-    # sort alphabetically
-    departments_json.sort(key=lambda department: department[name_key])
-
     return {'departments': departments_json}
 
 
@@ -53,18 +49,16 @@ def department_info(department_id):
     name_str = name[0]['name']
 
     courses = load_department_courses(department_id)
-    courses_json = parse_courses(courses, alphabetize=True)
 
-    # filter only necessary attr
     department_courses_json = [{
-        'courseId': course['courseId'],
-        'courseName': course['courseName']
-    } for course in courses_json]
+        'courseId': course['course_id'],
+        'courseName': course['name']
+    } for course in courses]
 
     professors = load_department_professors(department_id)
-    professors_json = parse_professors(professors, alphabetize=True)
+    professors_json = parse_professors(professors)
 
-    # filter only necessary attr
+    # filter only necessary attributes
     department_professors_json = [{
         'badges': professor['badges'],
         'firstName': professor['firstName'],

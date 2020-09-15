@@ -4,13 +4,13 @@ from api.data.dataloaders.professors_loader import load_professor_courses, \
      load_professor_basic_info_by_id
 from api.data.dataloaders.reviews_loader import \
      prepare_professor_query_prefix, load_review_highlight
-from api.blueprints.review import parse_review_professor_badges, parse_review
+from api.blueprints.review import parse_review
 from collections import OrderedDict
 
 professor_blueprint = flask.Blueprint('professor_blueprint', __name__)
 
 
-def parse_professors(professors, alphabetize=False):
+def parse_professors(professors):
     '''
     static method for parsing professors into json objects
     '''
@@ -44,10 +44,6 @@ def parse_professors(professors, alphabetize=False):
             if badge_id and badge_id not in badge_ids:
                 professors_json[professor_id]['badges'].append(badge_id)
 
-    if alphabetize:
-        return sorted(list(professors_json.values()),
-                      key=lambda professor: professor['firstName'])
-
     return list(professors_json.values())
 
 
@@ -67,7 +63,8 @@ def professor_info(professor_id):
     professor_summary_json = {
         'firstName': basic_info[0]['first_name'],
         'lastName': basic_info[0]['last_name'],
-        'badges': parse_review_professor_badges(basic_info[0]['badges']),
+        'badges': [badge for badge
+                   in flask.json.loads(basic_info[0]['badges']) if badge],
         'courses': professor_courses_json,
     }
 

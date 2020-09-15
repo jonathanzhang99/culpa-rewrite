@@ -77,11 +77,11 @@ class DepartmentsTest(BaseTest):
             'name': 'Computer Science'
         }]
         mock_courses.return_value = [{
-            'course_id': 1,
-            'name': 'User Interface Design',
-        }, {
             'course_id': 2,
             'name': 'Machine Learning'
+        }, {
+            'course_id': 1,
+            'name': 'User Interface Design',
         }]
         mock_professors.return_value = [{
             'professor_id': 1,

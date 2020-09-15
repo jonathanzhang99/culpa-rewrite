@@ -12,6 +12,8 @@ def load_all_departments():
         .select(
             department.department_id,
             department.name) \
+        .orderby(
+            department.name) \
         .get_sql()
 
     cur.execute(query)
@@ -42,8 +44,9 @@ def load_department_courses(department_id):
         .where(Criterion.all([
             course.department_id == department_id,
             course.status == APPROVED
-        ])
-            ) \
+        ])) \
+        .orderby(
+            course.name) \
         .get_sql()
 
     cur.execute(query)
@@ -70,6 +73,8 @@ def load_department_professors(department_id):
             department_professor.department_id == department_id,
             professor.status == APPROVED
         ])) \
+        .orderby(
+            professor.first_name) \
         .get_sql()
 
     cur.execute(query)

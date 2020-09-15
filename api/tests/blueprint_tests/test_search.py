@@ -5,46 +5,6 @@ from api.tests import BaseTest
 
 PROFESSOR_RESULTS = [
     {
-        'professor_id': 1,
-        'first_name': 'Nakul',
-        'last_name': 'Verma',
-        'uni': 'nv2274',
-        'score': 0.5,
-        'department_id': 1,
-        'department_name': 'Computer Science',
-        'badge_id': 1,
-    },
-    {
-        'professor_id': 1,
-        'first_name': 'Nakul',
-        'last_name': 'Verma',
-        'uni': 'nv2274',
-        'score': 0.5,
-        'department_id': 2,
-        'department_name': 'Mathematics',
-        'badge_id': 1,
-    },
-    {
-        'professor_id': 1,
-        'first_name': 'Nakul',
-        'last_name': 'Verma',
-        'uni': 'nv2274',
-        'score': 0.5,
-        'department_id': 1,
-        'department_name': 'Computer Science',
-        'badge_id': 2,
-    },
-    {
-        'professor_id': 1,
-        'first_name': 'Nakul',
-        'last_name': 'Verma',
-        'uni': 'nv2274',
-        'score': 0.5,
-        'department_id': 2,
-        'department_name': 'Mathematics',
-        'badge_id': 2,
-    },
-    {
         'professor_id': 2,
         'first_name': 'Lee',
         'last_name': 'Bollinger',
@@ -53,22 +13,62 @@ PROFESSOR_RESULTS = [
         'department_id': 3,
         'department_name': 'Law',
         'badge_id': 3,
+    },
+    {
+        'professor_id': 1,
+        'first_name': 'Nakul',
+        'last_name': 'Verma',
+        'uni': 'nv2274',
+        'score': 0.5,
+        'department_id': 1,
+        'department_name': 'Computer Science',
+        'badge_id': 1,
+    },
+    {
+        'professor_id': 1,
+        'first_name': 'Nakul',
+        'last_name': 'Verma',
+        'uni': 'nv2274',
+        'score': 0.5,
+        'department_id': 2,
+        'department_name': 'Mathematics',
+        'badge_id': 1,
+    },
+    {
+        'professor_id': 1,
+        'first_name': 'Nakul',
+        'last_name': 'Verma',
+        'uni': 'nv2274',
+        'score': 0.5,
+        'department_id': 1,
+        'department_name': 'Computer Science',
+        'badge_id': 2,
+    },
+    {
+        'professor_id': 1,
+        'first_name': 'Nakul',
+        'last_name': 'Verma',
+        'uni': 'nv2274',
+        'score': 0.5,
+        'department_id': 2,
+        'department_name': 'Mathematics',
+        'badge_id': 2,
     }
 ]
 
 COURSE_RESULT = [
     {
-        'course_id': 1,
-        'name': 'Machine Learning',
-        'call_number': 'COMS 4771',
+        'course_id': 2,
+        'name': 'Advanced Machine Learning',
+        'call_number': 'COMS 4778',
         'department_id': 1,
         'department_name': 'Computer Science',
         'score': 0.5,
     },
     {
-        'course_id': 2,
-        'name': 'Advanced Machine Learning',
-        'call_number': 'COMS 4778',
+        'course_id': 1,
+        'name': 'Machine Learning',
+        'call_number': 'COMS 4771',
         'department_id': 1,
         'department_name': 'Computer Science',
         'score': 0.5,
@@ -138,7 +138,7 @@ class SearchTest(BaseTest):
         }
 
         search_results = self.client.get(
-          '/api/search?entity=all&query=testSearchValue&alphabetize=true')
+          '/api/search?entity=all&query=testSearchValue&alphabetize=True')
         self.assertEqual(expected_results, search_results.json)
 
     def test_search_only_professor(self,
@@ -180,7 +180,7 @@ class SearchTest(BaseTest):
         }
 
         search_results = self.client.get(
-          '/api/search?entity=professor&query=testSearchValue&alphabetize=true'
+          '/api/search?entity=professor&query=testSearchValue&alphabetize=True'
         )
         self.assertEqual(expected_results, search_results.json)
 
@@ -214,7 +214,7 @@ class SearchTest(BaseTest):
         }
 
         search_results = self.client.get(
-          '/api/search?entity=course&query=testSearchValue&alphabetize=true')
+          '/api/search?entity=course&query=testSearchValue&alphabetize=True')
         self.assertEqual(expected_results, search_results.json)
 
     def test_search_no_result(self, mock_search_professor, mock_search_course):

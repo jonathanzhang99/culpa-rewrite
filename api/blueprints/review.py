@@ -13,14 +13,6 @@ from api.data.datawriters.reviews_writer import insert_review
 review_blueprint = flask.Blueprint('review_blueprint', __name__)
 
 
-def parse_review_professor_badges(badges):
-    badges_json = []
-    for badge in badges.strip('[]').split(','):
-        if badge.strip().isdigit() and int(badge) not in badges_json:
-            badges_json.append(int(badge))
-    return badges_json
-
-
 def parse_review(review, review_type):
     '''
     static method for parsing a review into a json object
@@ -34,7 +26,8 @@ def parse_review(review, review_type):
 
     if review_type == 'course':
         review_header = {
-            'badges': parse_review_professor_badges(review['badges']),
+            'badges': [badge for badge
+                       in flask.json.loads(review['badges']) if badge],
             'profId': review['professor_id'],
             'profFirstName': review['first_name'],
             'profLastName': review['last_name'],
@@ -49,7 +42,8 @@ def parse_review(review, review_type):
     elif review_type == "all":
         review_header = {
             'professor': {
-                'badges': parse_review_professor_badges(review['badges']),
+                'badges': [badge for badge
+                           in flask.json.loads(review['badges']) if badge],
                 'profId': review['prof_id'],
                 'profFirstName': review['prof_first_name'],
                 'profLastName': review['prof_last_name'],

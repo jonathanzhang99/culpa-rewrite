@@ -3,8 +3,7 @@ from datetime import datetime
 
 from pymysql.err import IntegrityError
 
-from api.blueprints.review import parse_review_professor_badges, \
-  parse_review
+from api.blueprints.review import parse_review
 from api.tests import BaseTest
 
 
@@ -22,30 +21,6 @@ class ReviewTest(BaseTest):
         'workload': WORKLOAD,
         'evaluation': EVALUATION,
     }
-
-    def test_parse_review_professor_badges_single_badge(self):
-        badges = '[1]'
-        expected_res = [1]
-        res = parse_review_professor_badges(badges)
-        self.assertEqual(res, expected_res)
-
-    def test_parse_review_professor_badges_multiple_badges(self):
-        badges = '[1, 2]'
-        expected_res = [1, 2]
-        res = parse_review_professor_badges(badges)
-        self.assertEqual(res, expected_res)
-
-    def test_parse_review_professor_badges_no_badge(self):
-        badges = '[null]'
-        expected_res = []
-        res = parse_review_professor_badges(badges)
-        self.assertEqual(res, expected_res)
-
-    def test_parse_review_professor_badges_invalid_badge(self):
-        badges = '[gold]'
-        expected_res = []
-        res = parse_review_professor_badges(badges)
-        self.assertEqual(res, expected_res)
 
     @mock.patch('api.blueprints.review.insert_review')
     def test_insert_valid_review(self, mock_insert_review):
