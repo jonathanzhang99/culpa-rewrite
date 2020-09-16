@@ -75,6 +75,7 @@ function TextResult({ title }) {
 }
 
 const propTypesSearchResult = {
+  badges: PropTypes.arrayOf(PropTypes.number),
   departments: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
@@ -87,15 +88,16 @@ const propTypesSearchResult = {
 };
 
 const defaultPropsSearchResult = {
+  badges: [],
   last: undefined,
 };
 
-function SearchResult({ departments, last, title, type }) {
+function SearchResult({ badges, departments, last, title, type }) {
   return (
     <Grid className={last && "last-divider"} columns={2}>
       <Grid.Column>
         {type === "professor" ? (
-          <ProfessorDisplayName fullName={title} />
+          <ProfessorDisplayName badges={badges} fullName={title} />
         ) : (
           <CourseDisplayName courseName={title} />
         )}
@@ -112,10 +114,11 @@ function SearchResult({ departments, last, title, type }) {
   );
 }
 
-function searchResultRenderer({ departments, last, title, type }) {
+function searchResultRenderer({ badges, departments, last, title, type }) {
   if (type === "text") return <TextResult title={title} />;
   return (
     <SearchResult
+      badges={badges}
       departments={departments}
       last={last}
       title={title}

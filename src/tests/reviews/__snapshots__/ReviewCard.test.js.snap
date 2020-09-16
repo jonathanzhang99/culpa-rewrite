@@ -39,6 +39,10 @@ Object {
                    
                   Canon
                 </div>
+                <img
+                  class="ui avatar left spaced image"
+                  src="gold-nugget.svg"
+                />
                 <h5
                   class="ui header"
                 >
@@ -168,6 +172,10 @@ Object {
                  
                 Canon
               </div>
+              <img
+                class="ui avatar left spaced image"
+                src="gold-nugget.svg"
+              />
               <h5
                 class="ui header"
               >
@@ -354,6 +362,10 @@ Object {
                    
                   Canon
                 </div>
+                <img
+                  class="ui avatar left spaced image"
+                  src="gold-nugget.svg"
+                />
                 <h5
                   class="ui header"
                 >
@@ -483,6 +495,10 @@ Object {
                  
                 Canon
               </div>
+              <img
+                class="ui avatar left spaced image"
+                src="gold-nugget.svg"
+              />
               <h5
                 class="ui header"
               >
@@ -669,6 +685,10 @@ Object {
                    
                   Canon
                 </div>
+                <img
+                  class="ui avatar left spaced image"
+                  src="gold-nugget.svg"
+                />
                 <h5
                   class="ui header"
                 >
@@ -798,6 +818,10 @@ Object {
                  
                 Canon
               </div>
+              <img
+                class="ui avatar left spaced image"
+                src="gold-nugget.svg"
+              />
               <h5
                 class="ui header"
               >

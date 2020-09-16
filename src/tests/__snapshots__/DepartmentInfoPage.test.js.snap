@@ -91,6 +91,14 @@ Object {
                 Verma
               </span>
             </a>
+            <img
+              class="ui avatar left spaced image"
+              src="gold-nugget.svg"
+            />
+            <img
+              class="ui avatar left spaced image"
+              src="silver-nugget.svg"
+            />
           </div>
         </div>
       </div>
@@ -183,6 +191,14 @@ Object {
               Verma
             </span>
           </a>
+          <img
+            class="ui avatar left spaced image"
+            src="gold-nugget.svg"
+          />
+          <img
+            class="ui avatar left spaced image"
+            src="silver-nugget.svg"
+          />
         </div>
       </div>
     </div>

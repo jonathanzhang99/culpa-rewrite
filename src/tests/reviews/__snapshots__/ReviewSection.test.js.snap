@@ -307,6 +307,10 @@ Object {
                          
                         Verma
                       </div>
+                      <img
+                        class="ui avatar left spaced image"
+                        src="gold-nugget.svg"
+                      />
                       <h5
                         class="ui header"
                       >
@@ -837,6 +841,10 @@ Object {
                        
                       Verma
                     </div>
+                    <img
+                      class="ui avatar left spaced image"
+                      src="gold-nugget.svg"
+                    />
                     <h5
                       class="ui header"
                     >

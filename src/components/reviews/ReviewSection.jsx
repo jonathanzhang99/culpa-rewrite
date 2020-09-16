@@ -21,6 +21,7 @@ const propTypesReviewSection = {
           profFirstName: PropTypes.string.isRequired,
           profLastName: PropTypes.string.isRequired,
           uni: PropTypes.string.isRequired,
+          badges: PropTypes.arrayOf(PropTypes.number).isRequired,
         }),
       ]).isRequired,
       votes: PropTypes.shape({
@@ -46,6 +47,7 @@ const propTypesReviewSection = {
         professorId: PropTypes.number.isRequired,
         firstName: PropTypes.string.isRequired,
         lastName: PropTypes.string.isRequired,
+        badges: PropTypes.arrayOf(PropTypes.number).isRequired,
       }),
       PropTypes.shape({
         courseId: PropTypes.number.isRequired,
@@ -298,17 +300,19 @@ export default function ReviewSection({
               );
             })}
         </Grid.Row>
-        <Grid.Row centered className="review-section-show-more-grid-row" key={3}>
-          <Button 
-            fluid 
-            name="showMoreButton" 
+        <Grid.Row
+          centered
+          className="review-section-show-more-grid-row"
+          key={3}
+        >
+          <Button
+            fluid
+            name="showMoreButton"
             size="large"
             onClick={onClickPagButton}
           >
-            Show more<Icon 
-              className="review-section-show-more-icon"
-              name="arrow down"
-            />
+            Show more
+            <Icon className="review-section-show-more-icon" name="arrow down" />
           </Button>
         </Grid.Row>
       </Grid>

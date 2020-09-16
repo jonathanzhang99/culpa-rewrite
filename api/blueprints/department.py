@@ -2,6 +2,7 @@ import flask
 
 from api.data.dataloaders.departments_loader import load_all_departments, \
     load_department_courses, load_department_name, load_department_professors
+from api.blueprints.professor import parse_professor
 
 department_blueprint = flask.Blueprint('department_blueprint', __name__)
 
@@ -48,20 +49,17 @@ def department_info(department_id):
     name_str = name[0]['name']
 
     courses = load_department_courses(department_id)
+
     courses_json = [{
         'courseId': course['course_id'],
         'courseName': course['name']
     } for course in courses]
 
     professors = load_department_professors(department_id)
-    professors_json = [{
-        'professorId': professor['professor_id'],
-        'firstName': professor['first_name'],
-        'lastName': professor['last_name']
-    } for professor in professors]
+    professors_json = [parse_professor(professor) for professor in professors]
 
     return {
         'departmentName': name_str,
         'departmentCourses': courses_json,
-        'departmentProfessors': professors_json
+        'departmentProfessors': professors_json,
     }

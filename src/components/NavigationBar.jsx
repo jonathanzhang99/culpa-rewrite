@@ -35,7 +35,7 @@ export default function NavigationBar({ children }) {
   const onSearchSubmit = ({ NavbarSearchbar }) => {
     const searchValue = NavbarSearchbar;
     if (typeof searchValue === "string" && searchValue.length > 1) {
-      history.push(`/search?entity=all&query=${searchValue}`);
+      history.push(`/search?entity=all&query=${searchValue}&alphabetize=True`);
     }
     return {}; // Form requires output
   };
@@ -62,7 +62,7 @@ export default function NavigationBar({ children }) {
             <SearchInput
               name="NavbarSearchbar"
               searchEntity="all"
-              searchLimit={7}
+              searchLimit={6}
               onResultSelect={onResultSelect}
             />
           </Form>

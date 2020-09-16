@@ -30,11 +30,13 @@ describe("DepartmentInfo Component", () => {
           professorId: 1,
           firstName: "Lydia",
           lastName: "Chilton",
+          badges: [],
         },
         {
           professorId: 2,
           firstName: "Nakul",
           lastName: "Verma",
+          badges: [1, 2],
         },
       ],
     },

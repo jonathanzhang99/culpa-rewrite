@@ -1,8 +1,9 @@
-from pypika import Criterion, MySQLQuery as Query, Order
+from pypika import MySQLQuery as Query, Criterion, Order
 
 from api.data import db
-from api.data.common import course, course_professor, department, \
-  department_professor, professor, Match, APPROVED
+from api.data.common import badge, badge_professor, course, \
+  course_professor, department, department_professor, professor, \
+  Match, APPROVED, JsonArrayAgg
 
 
 # TODO: This method is temporary to test search functionality
@@ -37,7 +38,15 @@ def load_professor_basic_info_by_id(professor_id):
     cur = db.get_cursor()
     query = Query \
         .from_(professor) \
+        .left_join(badge_professor) \
+        .on(badge_professor.professor_id == professor.professor_id) \
+        .left_join(badge) \
+        .on(badge.badge_id == badge_professor.badge_id) \
         .select(
+            professor.first_name,
+            professor.last_name,
+            JsonArrayAgg(badge.badge_id).as_('badges')) \
+        .groupby(
             professor.first_name,
             professor.last_name) \
         .where(Criterion.all([
@@ -108,13 +117,15 @@ def load_professor_courses(professor_id):
             course_professor.professor_id == professor_id,
             course_professor.status == APPROVED
         ])) \
+        .orderby(
+            course.name) \
         .get_sql()
 
     cur.execute(query)
     return cur.fetchall()
 
 
-def search_professor(search_query, limit=None):
+def search_professor(search_query, limit=None, alphabetize=False):
     cur = db.get_cursor()
 
     search_params = [param + '*' for param in search_query.split()]
@@ -125,42 +136,40 @@ def search_professor(search_query, limit=None):
         .against(search_params) \
         .as_('score')
 
-    # This subquery guarantees limit == number of distinct professors
-    # otherwise, limit == number of rows != number of distinct professors
-    distinct_professor = Query \
+    # Professor must have a department -> inner join
+    # Professor may not have a badge -> left join
+    query = Query \
         .from_(professor) \
+        .inner_join(department_professor) \
+        .on(professor.professor_id == department_professor.professor_id) \
+        .inner_join(department) \
+        .on(department_professor.department_id == department.department_id) \
+        .left_join(badge_professor) \
+        .on(professor.professor_id == badge_professor.professor_id) \
+        .left_join(badge) \
+        .on(badge_professor.badge_id == badge.badge_id) \
         .select(
-            'professor_id',
-            'first_name',
-            'last_name',
-            'uni',
-            match
+            professor.professor_id,
+            professor.first_name,
+            professor.last_name,
+            match,
+            JsonArrayAgg(department.department_id).as_('department_ids'),
+            JsonArrayAgg(department.name).as_('department_names'),
+            JsonArrayAgg(badge.badge_id).as_('badges'),
         ) \
+        .groupby(
+            professor.professor_id,
+            professor.first_name,
+            professor.last_name,
+            match) \
         .where(Criterion.all([
             match > 0,
-            professor.status == APPROVED
-        ])) \
-        .orderby('score', order=Order.desc) \
+            professor.status == APPROVED])) \
+        .orderby(match, order=Order.desc) \
         .limit(limit) \
-        .as_('distinct_professor')
 
-    query = Query \
-        .from_(distinct_professor) \
-        .join(department_professor) \
-        .on(department_professor.professor_id ==
-            distinct_professor.professor_id) \
-        .join(department) \
-        .on(department.department_id == department_professor.department_id) \
-        .select(
-            distinct_professor.professor_id,
-            distinct_professor.first_name,
-            distinct_professor.last_name,
-            distinct_professor.uni,
-            distinct_professor.score,
-            department.department_id,
-            department.name,
-        ) \
-        .get_sql()
+    if alphabetize:
+        query = query.orderby(professor.first_name)
 
-    cur.execute(query)
+    cur.execute(query.get_sql())
     return cur.fetchall()

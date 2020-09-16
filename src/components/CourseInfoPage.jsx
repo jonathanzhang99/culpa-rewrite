@@ -15,13 +15,10 @@ import ReviewSection from "components/reviews/ReviewSection";
 
 const MAX_NUM_PROFESSORS_IN_LIST = 5;
 
-const defaultProps = {
-  courseProfessors: [],
-};
-
 const propTypesCourseProfessors = {
   courseProfessors: PropTypes.arrayOf(
     PropTypes.shape({
+      badges: PropTypes.arrayOf(PropTypes.number).isRequired,
       firstName: PropTypes.string.isRequired,
       lastName: PropTypes.string.isRequired,
       professorId: PropTypes.number.isRequired,
@@ -31,26 +28,29 @@ const propTypesCourseProfessors = {
           professorDepartmentName: PropTypes.string.isRequired,
         }).isRequired
       ).isRequired,
-    }).isRequired
-  ),
+    })
+  ).isRequired,
 };
 
 function ProfessorsList({ courseProfessors }) {
   return (
     <>
       <span>Professors: </span>
-      {courseProfessors.map(({ firstName, lastName, professorId }, index) => {
-        return (
-          <span key={professorId}>
-            <ProfessorDisplayLink
-              firstName={firstName}
-              lastName={lastName}
-              professorId={professorId}
-            />
-            {index !== courseProfessors.length - 1 ? ", " : ""}
-          </span>
-        );
-      })}
+      {courseProfessors.map(
+        ({ badges, firstName, lastName, professorId }, index) => {
+          return (
+            <span key={professorId}>
+              <ProfessorDisplayLink
+                badges={badges}
+                firstName={firstName}
+                lastName={lastName}
+                professorId={professorId}
+              />
+              {index !== courseProfessors.length - 1 ? ", " : ""}
+            </span>
+          );
+        }
+      )}
     </>
   );
 }
@@ -69,8 +69,9 @@ const propTypesProfessorsAccordion = {
           professorDepartmentName: PropTypes.string.isRequired,
         }).isRequired
       ).isRequired,
-    }).isRequired
-  ),
+      badges: PropTypes.arrayOf(PropTypes.number).isRequired,
+    })
+  ).isRequired,
 };
 
 function ProfessorsAccordion({
@@ -95,6 +96,53 @@ function ProfessorsAccordion({
   );
 }
 
+function CourseProfessorsGrid({ courseProfessors }) {
+  return (
+    <Grid columns={2}>
+      {courseProfessors.map(
+        ({
+          badges,
+          firstName,
+          lastName,
+          professorId,
+          professorDepartments,
+        }) => {
+          return (
+            <Grid.Row key={`${professorId}_row`}>
+              <Grid.Column key={`${professorId}_link`}>
+                <ProfessorDisplayLink
+                  badges={badges}
+                  firstName={firstName}
+                  lastName={lastName}
+                  professorId={professorId}
+                />
+              </Grid.Column>
+              <Grid.Column key={`${professorId}_departments`}>
+                {professorDepartments.map(
+                  (
+                    { professorDepartmentId, professorDepartmentName },
+                    index
+                  ) => {
+                    return (
+                      <div key={professorDepartmentName}>
+                        <DepartmentDisplayLink
+                          departmentId={professorDepartmentId}
+                          departmentName={professorDepartmentName}
+                        />
+                        {professorDepartments.length - 1 !== index ? ", " : ""}
+                      </div>
+                    );
+                  }
+                )}
+              </Grid.Column>
+            </Grid.Row>
+          );
+        }
+      )}
+    </Grid>
+  );
+}
+
 function ProfessorsComponent({
   isAccordionActive,
   setAccordionActive,
@@ -111,62 +159,6 @@ function ProfessorsComponent({
   );
 }
 
-const propTypesProfessorDepartmentColumn = {
-  professorId: PropTypes.number.isRequired,
-  professorDepartments: PropTypes.arrayOf(
-    PropTypes.shape({
-      professorDepartmentId: PropTypes.number.isRequired,
-      professorDepartmentName: PropTypes.string.isRequired,
-    }).isRequired
-  ).isRequired,
-};
-
-function ProfessorDepartmentColumn({ professorId, professorDepartments }) {
-  return (
-    <Grid.Column key={`${professorId}_departments`}>
-      {professorDepartments.map(
-        ({ professorDepartmentId, professorDepartmentName }, index) => {
-          return (
-            <div key={professorDepartmentName}>
-              <DepartmentDisplayLink
-                departmentId={professorDepartmentId}
-                departmentName={professorDepartmentName}
-              />
-              {professorDepartments.length - 1 !== index ? ", " : ""}
-            </div>
-          );
-        }
-      )}
-    </Grid.Column>
-  );
-}
-
-function CourseProfessorsGrid({ courseProfessors }) {
-  return (
-    <Grid columns={2}>
-      {courseProfessors.map(
-        ({ firstName, lastName, professorId, professorDepartments }) => {
-          return (
-            <Grid.Row key={`${professorId}_row`}>
-              <Grid.Column key={`${professorId}_link`}>
-                <ProfessorDisplayLink
-                  firstName={firstName}
-                  lastName={lastName}
-                  professorId={professorId}
-                />
-              </Grid.Column>
-              <ProfessorDepartmentColumn
-                professorDepartments={professorDepartments}
-                professorId={professorId}
-              />
-            </Grid.Row>
-          );
-        }
-      )}
-    </Grid>
-  );
-}
-
 const propTypesReviewCourseButton = {
   courseId: PropTypes.number.isRequired,
   courseName: PropTypes.string.isRequired,
@@ -174,7 +166,7 @@ const propTypesReviewCourseButton = {
 
 function ReviewCourseButton({ courseId, courseName }) {
   return (
-    <CreateReviewButton color="yellow" courseId={courseId.toString()}>
+    <CreateReviewButton color="yellow" courseId={courseId}>
       WRITE A REVIEW FOR {courseName}
     </CreateReviewButton>
   );
@@ -197,8 +189,8 @@ const propTypesCourseInfo = {
           professorDepartmentName: PropTypes.string.isRequired,
         }).isRequired
       ).isRequired,
-    }).isRequired
-  ),
+    })
+  ).isRequired,
 };
 
 export function CourseInfo({
@@ -242,6 +234,7 @@ const reviewPropType = PropTypes.shape({
     profId: PropTypes.number.isRequired,
     profFirstName: PropTypes.string.isRequired,
     profLastName: PropTypes.string.isRequired,
+    badges: PropTypes.arrayOf(PropTypes.number).isRequired,
   }).isRequired,
   votes: PropTypes.shape({
     initUpvoteCount: PropTypes.number.isRequired,
@@ -289,11 +282,7 @@ function CourseReviewCard({ review }) {
 }
 
 const propTypesDoubleCourseReviewHighlight = {
-  courseReviewHighlight: PropTypes.arrayOf(reviewPropType),
-};
-
-const defaultPropsDoubleCourseReviewHighlight = {
-  courseReviewHighlight: [],
+  courseReviewHighlight: PropTypes.arrayOf(reviewPropType).isRequired,
 };
 
 function DoubleCourseReviewHighlight({ courseReviewHighlight }) {
@@ -314,11 +303,7 @@ function DoubleCourseReviewHighlight({ courseReviewHighlight }) {
 }
 
 const propTypesSingleCourseReviewHighlight = {
-  courseReviewHighlight: PropTypes.arrayOf(reviewPropType),
-};
-
-const defaultPropsSingleCourseReviewHighlight = {
-  courseReviewHighlight: [],
+  courseReviewHighlight: PropTypes.arrayOf(reviewPropType).isRequired,
 };
 
 function SingleCourseReviewHighlight({ courseReviewHighlight }) {
@@ -429,31 +414,22 @@ export default function CourseInfoPage() {
   );
 }
 ProfessorsList.propTypes = propTypesCourseProfessors;
-ProfessorsList.defaultProps = defaultProps;
 
 ProfessorsAccordion.propTypes = propTypesProfessorsAccordion;
-ProfessorsAccordion.defaultProps = defaultProps;
 
 ProfessorsComponent.propTypes = propTypesProfessorsAccordion;
-ProfessorsComponent.defaultProps = defaultProps;
 
 CourseProfessorsGrid.propTypes = propTypesCourseProfessors;
-CourseProfessorsGrid.defaultProps = defaultProps;
-
-ProfessorDepartmentColumn.propTypes = propTypesProfessorDepartmentColumn;
 
 ReviewCourseButton.propTypes = propTypesReviewCourseButton;
 
 CourseInfo.propTypes = propTypesCourseInfo;
-CourseInfo.defaultProps = defaultProps;
 
 CourseReviewCard.propTypes = propTypesCourseReviewCard;
 
 DoubleCourseReviewHighlight.propTypes = propTypesDoubleCourseReviewHighlight;
-DoubleCourseReviewHighlight.defaultProps = defaultPropsDoubleCourseReviewHighlight;
 
 SingleCourseReviewHighlight.propTypes = propTypesSingleCourseReviewHighlight;
-SingleCourseReviewHighlight.defaultProps = defaultPropsSingleCourseReviewHighlight;
 
 CourseReviewHighlight.propTypes = propTypesCourseReviewHighlight;
 CourseReviewHighlight.defaultProps = defaultPropsCourseReviewHighlight;

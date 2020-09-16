@@ -272,13 +272,15 @@ class ReviewTest(BaseTest):
                 'professor_id': 12345,
                 'uni': '12345',
                 'first_name': 'John',
-                'last_name': 'Doe'
+                'last_name': 'Doe',
+                'badges': '[null]',
             },
             'expected_review_header': {
                 'profId': 12345,
                 'profFirstName': 'John',
                 'profLastName': 'Doe',
-                'uni': '12345'
+                'uni': '12345',
+                'badges': [],
             }
         }, {
             'review_type': 'professor',
@@ -301,7 +303,8 @@ class ReviewTest(BaseTest):
                 'prof_id': 5678,
                 'prof_first_name': 'John',
                 'prof_last_name': 'Doe',
-                'prof_uni': 'jd2910'
+                'prof_uni': 'jd2910',
+                'badges': '[null]',
             },
             'expected_review_header': {
                 'course': {
@@ -313,7 +316,8 @@ class ReviewTest(BaseTest):
                     'profId': 5678,
                     'profFirstName': 'John',
                     'profLastName': 'Doe',
-                    'uni': 'jd2910'
+                    'uni': 'jd2910',
+                    'badges': [],
                 }
             }
         }]
@@ -340,6 +344,7 @@ class ReviewTest(BaseTest):
             'review_id': 12333,
             'content': 'test content',
             'workload': 'test workload',
+            'rating': 4,
         }
 
         for type_ in types:
@@ -349,10 +354,7 @@ class ReviewTest(BaseTest):
                     review['submission_date'] = date['submission_date']
 
                     with self.app.app_context():
-                        res = parse_review(
-                            review,
-                            type_['review_type'],
-                        )
+                        res = parse_review(review, type_['review_type'])
 
                     self.assertEqual(res, {
                         'reviewType': type_['review_type'],

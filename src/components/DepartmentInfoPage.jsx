@@ -10,17 +10,13 @@ import LoadingComponent from "components/common/LoadingComponent";
 import { ProfessorDisplayLink } from "components/common/ProfessorDisplay";
 import useDataFetch from "components/common/useDataFetch";
 
-const defaultPropsDepartmentCourses = {
-  departmentCourses: [],
-};
-
 const propTypesDepartmentCourses = {
   departmentCourses: PropTypes.arrayOf(
     PropTypes.shape({
       courseId: PropTypes.number.isRequired,
       courseName: PropTypes.string.isRequired,
-    }).isRequired
-  ),
+    })
+  ).isRequired,
 };
 
 export function DepartmentCourseColumn({ departmentCourses }) {
@@ -40,18 +36,15 @@ export function DepartmentCourseColumn({ departmentCourses }) {
   );
 }
 
-const defaultPropsDepartmentProfessors = {
-  departmentProfessors: [],
-};
-
 const propTypesDepartmentProfessors = {
   departmentProfessors: PropTypes.arrayOf(
     PropTypes.shape({
       professorId: PropTypes.number.isRequired,
       firstName: PropTypes.string.isRequired,
       lastName: PropTypes.string.isRequired,
-    }).isRequired
-  ),
+      badges: PropTypes.arrayOf(PropTypes.number).isRequired,
+    })
+  ).isRequired,
 };
 
 export function DepartmentProfessorColumn({ departmentProfessors }) {
@@ -60,25 +53,23 @@ export function DepartmentProfessorColumn({ departmentProfessors }) {
       <Grid.Row key="professors">
         <Header>Professors</Header>
       </Grid.Row>
-      {departmentProfessors.map(({ professorId, firstName, lastName }) => {
-        return (
-          <Grid.Row key={`professor_${professorId}`}>
-            <ProfessorDisplayLink
-              firstName={firstName}
-              lastName={lastName}
-              professorId={professorId}
-            />
-          </Grid.Row>
-        );
-      })}
+      {departmentProfessors.map(
+        ({ professorId, firstName, lastName, badges }) => {
+          return (
+            <Grid.Row key={`professor_${professorId}`}>
+              <ProfessorDisplayLink
+                badges={badges}
+                firstName={firstName}
+                lastName={lastName}
+                professorId={professorId}
+              />
+            </Grid.Row>
+          );
+        }
+      )}
     </Grid.Column>
   );
 }
-
-const defaultPropsDepartmentInfo = {
-  departmentCourses: [],
-  departmentProfessors: [],
-};
 
 const propTypesDepartmentInfo = {
   departmentName: PropTypes.string.isRequired,
@@ -86,15 +77,15 @@ const propTypesDepartmentInfo = {
     PropTypes.shape({
       courseId: PropTypes.number.isRequired,
       courseName: PropTypes.string.isRequired,
-    }).isRequired
-  ),
+    })
+  ).isRequired,
   departmentProfessors: PropTypes.arrayOf(
     PropTypes.shape({
       professorId: PropTypes.number.isRequired,
       firstName: PropTypes.string.isRequired,
       lastName: PropTypes.string.isRequired,
-    }).isRequired
-  ),
+    })
+  ).isRequired,
 };
 
 export function DepartmentInfo({
@@ -141,10 +132,7 @@ export default function DepartmentInfoPage() {
 }
 
 DepartmentCourseColumn.propTypes = propTypesDepartmentCourses;
-DepartmentCourseColumn.defaultProps = defaultPropsDepartmentCourses;
 
 DepartmentProfessorColumn.propTypes = propTypesDepartmentProfessors;
-DepartmentProfessorColumn.defaultProps = defaultPropsDepartmentProfessors;
 
 DepartmentInfo.propTypes = propTypesDepartmentInfo;
-DepartmentInfo.defaultProps = defaultPropsDepartmentInfo;

@@ -26,6 +26,8 @@ def parse_review(review, review_type):
 
     if review_type == 'course':
         review_header = {
+            'badges': [badge for badge
+                       in flask.json.loads(review['badges']) if badge],
             'profId': review['professor_id'],
             'profFirstName': review['first_name'],
             'profLastName': review['last_name'],
@@ -40,6 +42,8 @@ def parse_review(review, review_type):
     elif review_type == "all":
         review_header = {
             'professor': {
+                'badges': [badge for badge
+                           in flask.json.loads(review['badges']) if badge],
                 'profId': review['prof_id'],
                 'profFirstName': review['prof_first_name'],
                 'profLastName': review['prof_last_name'],
@@ -205,12 +209,9 @@ def get_reviews(page_type, id):
         filter_year,
     )
 
-    json = [parse_review(
-        review,
-        page_type,
-    ) for review in reviews]
+    reviews_json = [parse_review(review, page_type) for review in reviews]
 
-    return {'reviews': json}
+    return {'reviews': reviews_json}
 
 
 @review_blueprint.route('/<int:review_id>', methods=['GET'])

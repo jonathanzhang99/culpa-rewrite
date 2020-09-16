@@ -1,8 +1,8 @@
 from pypika import Criterion, MySQLQuery as Query
 
 from api.data import db
-from api.data.common import course, department, department_professor, \
-    professor, APPROVED
+from api.data.common import badge, badge_professor, course, department, \
+    department_professor, professor, APPROVED, JsonArrayAgg
 
 
 def load_all_departments():
@@ -11,6 +11,8 @@ def load_all_departments():
         .from_(department) \
         .select(
             department.department_id,
+            department.name) \
+        .orderby(
             department.name) \
         .get_sql()
 
@@ -42,8 +44,9 @@ def load_department_courses(department_id):
         .where(Criterion.all([
             course.department_id == department_id,
             course.status == APPROVED
-        ])
-            ) \
+        ])) \
+        .orderby(
+            course.name) \
         .get_sql()
 
     cur.execute(query)
@@ -57,7 +60,16 @@ def load_department_professors(department_id):
         .join(department_professor) \
         .on(
             professor.professor_id == department_professor.professor_id) \
+        .left_join(badge_professor) \
+        .on(professor.professor_id == badge_professor.professor_id) \
+        .left_join(badge) \
+        .on(badge_professor.badge_id == badge.badge_id) \
         .select(
+            professor.professor_id,
+            professor.first_name,
+            professor.last_name,
+            JsonArrayAgg(badge.badge_id).as_('badges')) \
+        .groupby(
             professor.professor_id,
             professor.first_name,
             professor.last_name) \
@@ -65,6 +77,8 @@ def load_department_professors(department_id):
             department_professor.department_id == department_id,
             professor.status == APPROVED
         ])) \
+        .orderby(
+            professor.first_name) \
         .get_sql()
 
     cur.execute(query)

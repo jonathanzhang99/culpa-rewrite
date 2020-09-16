@@ -8,8 +8,9 @@ from pypika import functions as fn, \
 from pypika.terms import AnalyticFunction
 
 from api.data import db
-from api.data.common import course, course_professor, flag, \
-    professor, review, vote, union_
+from api.data.common import badge, badge_professor, course, \
+  course_professor, flag, professor, review, vote, union_, \
+  JsonArrayAgg
 
 DateDiff = CustomFunction('DATEDIFF', ['start_date', 'end_date'])
 
@@ -68,18 +69,25 @@ def prepare_course_query_prefix(course_id, filter_list=None):
         .on(
             Criterion.all([
                 course.course_id == course_id,
-                course.course_id == course_professor.course_id
+                course.course_id == course_professor.course_id,
             ])) \
         .join(professor) \
         .on(
-            professor.professor_id == course_professor.professor_id)
+            professor.professor_id == course_professor.professor_id) \
+        .left_join(badge_professor) \
+        .on(badge_professor.professor_id == professor.professor_id) \
+        .left_join(badge) \
+        .on(badge.badge_id == badge_professor.badge_id) \
+        .select(JsonArrayAgg(badge.badge_id).as_('badges')) \
+
     if filter_list:
         query = query.where(professor.professor_id.isin(filter_list))
+
     return query, [
         professor.professor_id,
         professor.first_name,
         professor.last_name,
-        professor.uni
+        professor.uni,
     ]
 
 
@@ -91,7 +99,13 @@ def prepare_all_query_prefix():
             course.course_id == course_professor.course_id) \
         .join(professor) \
         .on(
-            professor.professor_id == course_professor.professor_id)
+            professor.professor_id == course_professor.professor_id) \
+        .left_join(badge_professor) \
+        .on(badge_professor.professor_id == professor.professor_id) \
+        .left_join(badge) \
+        .on(badge.badge_id == badge_professor.badge_id) \
+        .select(JsonArrayAgg(badge.badge_id).as_('badges')) \
+
     return query, [
         course.course_id,
         course.call_number.as_('course_call_number'),
@@ -112,7 +126,7 @@ def get_flags_by_type(flag_type):
 
     usage example (fetching approved reviews only):
             approved_flags = get_flags_by_type('approved')
-            q = Query.from_(review).join(approved_flags).on(
+            query = Query.from_(review).join(approved_flags).on(
                 approved_flags.review_id == review.review_id
             ).select(...).get_sql()
 

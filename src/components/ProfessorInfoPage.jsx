@@ -12,18 +12,14 @@ import useDataFetch from "components/common/useDataFetch";
 import ReviewCard from "components/reviews/ReviewCard";
 import ReviewSection from "components/reviews/ReviewSection";
 
-const defaultPropsProfessorCourses = {
-  courses: [],
-};
-
 const propTypesProfessorCourses = {
   courses: PropTypes.arrayOf(
     PropTypes.shape({
       courseId: PropTypes.number.isRequired,
       courseName: PropTypes.string.isRequired,
       courseCallNumber: PropTypes.string.isRequired,
-    }).isRequired
-  ),
+    })
+  ).isRequired,
 };
 
 function ProfessorCourseList({ courses }) {
@@ -54,26 +50,28 @@ const propTypesReviewProfessorButton = {
 
 function ReviewProfessorButton({ professorId, firstName, lastName }) {
   return (
-    <CreateReviewButton color="yellow" professorId={professorId.toString()}>
+    <CreateReviewButton color="yellow" professorId={professorId}>
       WRITE A REVIEW FOR {firstName} {lastName}
     </CreateReviewButton>
   );
 }
 
 const propTypesProfessorSummary = {
+  badges: PropTypes.arrayOf(PropTypes.number).isRequired,
   courses: PropTypes.arrayOf(
     PropTypes.shape({
       courseId: PropTypes.number.isRequired,
       courseName: PropTypes.string.isRequired,
       courseCallNumber: PropTypes.string.isRequired,
-    }).isRequired
-  ),
+    })
+  ).isRequired,
   firstName: PropTypes.string.isRequired,
   lastName: PropTypes.string.isRequired,
   professorId: PropTypes.number.isRequired,
 };
 
 export function ProfessorSummary({
+  badges,
   courses,
   firstName,
   lastName,
@@ -83,6 +81,7 @@ export function ProfessorSummary({
     <>
       <ProfessorDisplayName
         as="header"
+        badges={badges}
         firstName={firstName}
         lastName={lastName}
       />
@@ -151,11 +150,7 @@ function SingleProfessorReviewHighlight({ review }) {
 }
 
 const propTypesProfessorReviewHighlight = {
-  professorReviewHighlight: PropTypes.arrayOf(reviewPropType),
-};
-
-const defaultPropsProfessorReviewHighlight = {
-  professorReviewHighlight: [],
+  professorReviewHighlight: PropTypes.arrayOf(reviewPropType).isRequired,
 };
 
 function DoubleProfessorReviewHighlight({ professorReviewHighlight }) {
@@ -204,10 +199,12 @@ export default function ProfessorInfoPage() {
     professorSummary: {
       firstName: "",
       lastName: "",
+      badges: [],
       courses: [],
     },
     professorReviewHighlight: [],
   });
+
   const reviewDataFetched = useDataFetch(
     `/api/review/get/professor/${professorId}`,
     {
@@ -237,6 +234,7 @@ export default function ProfessorInfoPage() {
   return (
     <>
       <ProfessorSummary
+        badges={professorSummary.badges}
         courses={professorSummary.courses}
         firstName={professorSummary.firstName}
         lastName={professorSummary.lastName}
@@ -256,19 +254,15 @@ export default function ProfessorInfoPage() {
 }
 
 ProfessorCourseList.propTypes = propTypesProfessorCourses;
-ProfessorCourseList.defaultProps = defaultPropsProfessorCourses;
 
 ReviewProfessorButton.propTypes = propTypesReviewProfessorButton;
 
 ProfessorSummary.propTypes = propTypesProfessorSummary;
-ProfessorSummary.defaultProps = defaultPropsProfessorCourses;
 
 ProfessorReviewCard.propTypes = propTypesReview;
 
 SingleProfessorReviewHighlight.propTypes = propTypesReview;
 
 DoubleProfessorReviewHighlight.propTypes = propTypesProfessorReviewHighlight;
-DoubleProfessorReviewHighlight.defaultProps = defaultPropsProfessorReviewHighlight;
 
 ProfessorReviewHighlight.propTypes = propTypesProfessorReviewHighlight;
-ProfessorReviewHighlight.defaultProps = defaultPropsProfessorReviewHighlight;

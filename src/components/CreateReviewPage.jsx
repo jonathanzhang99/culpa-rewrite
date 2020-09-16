@@ -155,11 +155,11 @@ export default function CreateReviewPage() {
       return { error: err };
     }
   };
-  
+
   const onSubmitReviewSuccess = (res) => {
     history.push(`/review/${res.reviewId}`);
-  }
-  
+  };
+
   /* * * * * * * * * * * * * * * * *
    * Professor Search methods      *
    * * * * * * * * * * * * * * * * */

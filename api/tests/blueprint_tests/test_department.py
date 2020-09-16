@@ -77,41 +77,48 @@ class DepartmentsTest(BaseTest):
             'name': 'Computer Science'
         }]
         mock_courses.return_value = [{
-            'course_id': 1,
-            'name': 'User Interface Design',
-        }, {
             'course_id': 2,
             'name': 'Machine Learning'
+        }, {
+            'course_id': 1,
+            'name': 'User Interface Design',
         }]
         mock_professors.return_value = [{
             'professor_id': 1,
             'first_name': 'Lydia',
-            'last_name': 'Chilton'
+            'last_name': 'Chilton',
+            'badges': '[null]',
         }, {
             'professor_id': 2,
             'first_name': 'Nakul',
-            'last_name': 'Verma'
+            'last_name': 'Verma',
+            'badges': '[1, 2]',
         }]
         expected_res = {
             'departmentName': 'Computer Science',
             'departmentCourses': [
                 {
-                    'courseId': 1,
-                    'courseName': 'User Interface Design'
-                }, {
                     'courseId': 2,
                     'courseName': 'Machine Learning'
+                },
+                {
+                    'courseId': 1,
+                    'courseName': 'User Interface Design'
                 }
             ],
             'departmentProfessors': [
                 {
                     'professorId': 1,
                     'firstName': 'Lydia',
-                    'lastName': 'Chilton'
+                    'lastName': 'Chilton',
+                    'badges': [],
+                    'departments': [],
                 }, {
                     'professorId': 2,
                     'firstName': 'Nakul',
-                    'lastName': 'Verma'
+                    'lastName': 'Verma',
+                    'badges': [1, 2],
+                    'departments': [],
                 }
             ]
         }
