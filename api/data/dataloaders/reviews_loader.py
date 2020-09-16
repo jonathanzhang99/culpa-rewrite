@@ -9,10 +9,10 @@ from pypika.terms import AnalyticFunction
 
 from api.data import db
 from api.data.common import badge, badge_professor, course, \
-  course_professor, flag, professor, review, vote, union_
+  course_professor, flag, professor, review, vote, union_, \
+  JsonArrayAgg
 
 DateDiff = CustomFunction('DATEDIFF', ['start_date', 'end_date'])
-JsonArrayAgg = CustomFunction('JSON_ARRAYAGG', ['attribute'])
 
 
 class RowNumber(AnalyticFunction):

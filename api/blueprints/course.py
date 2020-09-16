@@ -5,7 +5,7 @@ from api.data.dataloaders.courses_loader import load_course_basic_info, \
 from api.data.dataloaders.reviews_loader import prepare_course_query_prefix,\
     load_review_highlight
 from api.blueprints.review import parse_review
-from api.blueprints.professor import parse_professors
+from api.blueprints.professor import parse_professor
 
 course_blueprint = flask.Blueprint('course_blueprint', __name__)
 
@@ -22,7 +22,8 @@ def course_info(course_id):
     # Here we reformat into the JSON course_professors, so that each professor
     # is uniquely identified by id and has professorDepartments as a subfield.
     professors = load_course_professors(course_id)
-    professors_json = parse_professors(professors)
+
+    professors_json = [parse_professor(professor) for professor in professors]
 
     # rename keys
     course_professors_json = [{

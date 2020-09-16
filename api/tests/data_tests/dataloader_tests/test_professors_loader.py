@@ -4,7 +4,6 @@ from api.data.dataloaders.professors_loader import load_professor_courses, \
     search_professor
 from api.tests import LoadersWritersBaseTest
 from api.tests.data_tests.common import setup_department_professor_courses
-from collections import namedtuple
 
 
 VERMA_PROFESSOR_ID = 1
@@ -103,9 +102,9 @@ class ProfessorsLoaderTest(LoadersWritersBaseTest):
                 'first_name',
                 'last_name',
                 'score',
-                'department_id',
-                'department_name',
-                'badge_id',
+                'department_ids',
+                'department_names',
+                'badges',
             ])
         )
 
@@ -120,18 +119,14 @@ class ProfessorsLoaderTest(LoadersWritersBaseTest):
             results[0].get('professor_id'), BOLLINGER_PROFESSOR_ID
         )
 
-        self.assertEqual(results[0].get('department_id'), LAW_DEPARTMENT_ID)
+        self.assertEqual(results[0].get('department_ids'),
+                         f'[{LAW_DEPARTMENT_ID}]')
 
-        self.assertEqual(results[0].get('badge_id'), BRONZE_NUGGET_ID)
+        self.assertEqual(results[0].get('badges'), f'[{BRONZE_NUGGET_ID}]')
 
     def test_search_professor_with_multiple_departments_by_name(self):
-        Professor = namedtuple('Professor',
-                               ['professor_id',
-                                'department_id',
-                                'badge_id'])
-
         results = search_professor('verma')
-        self.assertEqual(len(results), 4)  # 2 departments X 2 badges
+        self.assertEqual(len(results), 1)
 
         # assert the data formatting is correct
         self.assertEqual(
@@ -141,66 +136,59 @@ class ProfessorsLoaderTest(LoadersWritersBaseTest):
                 'first_name',
                 'last_name',
                 'score',
-                'department_id',
-                'department_name',
-                'badge_id',
+                'department_ids',
+                'department_names',
+                'badges',
             ])
         )
 
-        expected_results = [
-            Professor(VERMA_PROFESSOR_ID,
-                      COMPUTER_DEPARTMENT_ID,
-                      GOLD_NUGGET_ID),
-            Professor(VERMA_PROFESSOR_ID,
-                      COMPUTER_DEPARTMENT_ID,
-                      SILVER_NUGGET_ID),
-            Professor(VERMA_PROFESSOR_ID,
-                      MATH_DEPARTMENT_ID,
-                      GOLD_NUGGET_ID),
-            Professor(VERMA_PROFESSOR_ID,
-                      MATH_DEPARTMENT_ID,
-                      SILVER_NUGGET_ID),
-        ]
+        expected_result = {
+            'professor_id': VERMA_PROFESSOR_ID,
+            'department_ids': f'[{COMPUTER_DEPARTMENT_ID}, '
+                              + f'{COMPUTER_DEPARTMENT_ID}, '
+                              + f'{MATH_DEPARTMENT_ID}, '
+                              + f'{MATH_DEPARTMENT_ID}]',
+            'badges': f'[{GOLD_NUGGET_ID}, {SILVER_NUGGET_ID}, '
+                      + f'{GOLD_NUGGET_ID}, {SILVER_NUGGET_ID}]',
+        }
 
-        for prof, expected_prof in zip(results, expected_results):
-            self.assertGreater(prof.get('score'), 0)
-            self.assertEqual(
-                prof.get('professor_id'), expected_prof.professor_id
-            )
-            self.assertEqual(
-                prof.get('department_id'), expected_prof.department_id
-            )
-            self.assertEqual(
-                prof.get('badge_id'), expected_prof.badge_id
-            )
+        self.assertGreater(results[0].get('score'), 0)
+        self.assertEqual(
+            results[0]['professor_id'], expected_result['professor_id']
+        )
+        self.assertEqual(
+            results[0]['department_ids'], expected_result['department_ids']
+        )
+        self.assertEqual(
+            results[0]['badges'], expected_result['badges']
+        )
 
     def test_search_multiple_professors_by_name(self):
-        Professor = namedtuple('Professor',
-                               ['professor_id',
-                                'department_id',
-                                'badge_id'])
-
         results = search_professor('lee')
         self.assertEqual(len(results), 2)
 
         expected_results = [
-            Professor(BOLLINGER_PROFESSOR_ID,
-                      LAW_DEPARTMENT_ID,
-                      BRONZE_NUGGET_ID),
-            Professor(JWL_PROFESSOR_ID,
-                      COMPUTER_DEPARTMENT_ID,
-                      None),
+            {
+                'professor_id': BOLLINGER_PROFESSOR_ID,
+                'department_ids': f'[{LAW_DEPARTMENT_ID}]',
+                'badges': f'[{BRONZE_NUGGET_ID}]',
+            },
+            {
+                'professor_id': JWL_PROFESSOR_ID,
+                'department_ids': f'[{COMPUTER_DEPARTMENT_ID}]',
+                'badges': '[null]',
+            }
         ]
         for prof, expected_prof in zip(results, expected_results):
             self.assertGreater(prof.get('score'), 0)
             self.assertEqual(
-                prof.get('professor_id'), expected_prof.professor_id
+                prof['professor_id'], expected_prof['professor_id']
             )
             self.assertEqual(
-                prof.get('department_id'), expected_prof.department_id
+                prof['department_ids'], expected_prof['department_ids']
             )
             self.assertEqual(
-                prof.get('badge_id'), expected_prof.badge_id
+                prof['badges'], expected_prof['badges']
             )
 
     def test_search_professor_by_uni(self):
@@ -210,8 +198,9 @@ class ProfessorsLoaderTest(LoadersWritersBaseTest):
         self.assertEqual(
             results[0].get('professor_id'), BOLLINGER_PROFESSOR_ID
         )
-        self.assertEqual(results[0].get('department_id'), LAW_DEPARTMENT_ID)
-        self.assertEqual(results[0].get('badge_id'), BRONZE_NUGGET_ID)
+        self.assertEqual(results[0].get('department_ids'),
+                         f'[{LAW_DEPARTMENT_ID}]')
+        self.assertEqual(results[0].get('badges'), f'[{BRONZE_NUGGET_ID}]')
 
     def test_search_one_professor_with_limit(self):
         results = search_professor('lee', limit=1)
@@ -220,51 +209,40 @@ class ProfessorsLoaderTest(LoadersWritersBaseTest):
         self.assertEqual(
             results[0].get('professor_id'), BOLLINGER_PROFESSOR_ID
         )
-        self.assertEqual(results[0].get('department_id'), LAW_DEPARTMENT_ID)
-        self.assertEqual(results[0].get('badge_id'), BRONZE_NUGGET_ID)
+        self.assertEqual(results[0].get('department_ids'),
+                         f'[{LAW_DEPARTMENT_ID}]')
+        self.assertEqual(results[0].get('badges'), f'[{BRONZE_NUGGET_ID}]')
 
     def test_search_multiple_professors_with_limit(self):
-        Professor = namedtuple('Professor',
-                               ['professor_id',
-                                'department_id',
-                                'badge_id'])
-
         results = search_professor('nakul', limit=2)
 
-        # 2 departments X 2 badges + 2 departments X 1 badge
-        self.assertEqual(len(results), 6)
+        self.assertEqual(len(results), 2)
 
-        expected_results = [
-            Professor(VERMA_PROFESSOR_ID,
-                      COMPUTER_DEPARTMENT_ID,
-                      GOLD_NUGGET_ID),
-            Professor(VERMA_PROFESSOR_ID,
-                      COMPUTER_DEPARTMENT_ID,
-                      SILVER_NUGGET_ID),
-            Professor(VERMA_PROFESSOR_ID,
-                      MATH_DEPARTMENT_ID,
-                      GOLD_NUGGET_ID),
-            Professor(VERMA_PROFESSOR_ID,
-                      MATH_DEPARTMENT_ID,
-                      SILVER_NUGGET_ID),
-            Professor(BURMA_PROFESSOR_ID,
-                      COMPUTER_DEPARTMENT_ID,
-                      BRONZE_NUGGET_ID),
-            Professor(BURMA_PROFESSOR_ID,
-                      MATH_DEPARTMENT_ID,
-                      BRONZE_NUGGET_ID),
-        ]
+        expected_results = [{
+            'professor_id': VERMA_PROFESSOR_ID,
+            'department_ids': f'[{COMPUTER_DEPARTMENT_ID}, '
+                              + f'{COMPUTER_DEPARTMENT_ID}, '
+                              + f'{MATH_DEPARTMENT_ID}, '
+                              + f'{MATH_DEPARTMENT_ID}]',
+            'badges': f'[{GOLD_NUGGET_ID}, {SILVER_NUGGET_ID}, '
+                      + f'{GOLD_NUGGET_ID}, {SILVER_NUGGET_ID}]',
+        }, {
+            'professor_id': BURMA_PROFESSOR_ID,
+            'department_ids': f'[{COMPUTER_DEPARTMENT_ID}, '
+                              + f'{MATH_DEPARTMENT_ID}]',
+            'badges': f'[{BRONZE_NUGGET_ID}, {BRONZE_NUGGET_ID}]',
+        }]
 
         for prof, expected_prof in zip(results, expected_results):
-            self.assertGreater(prof.get('score'), 0)
+            self.assertGreater(prof['score'], 0)
             self.assertEqual(
-                prof.get('professor_id'), expected_prof.professor_id
+                prof['professor_id'], expected_prof['professor_id']
             )
             self.assertEqual(
-                prof.get('department_id'), expected_prof.department_id
+                prof['department_ids'], expected_prof['department_ids']
             )
             self.assertEqual(
-                prof.get('badge_id'), expected_prof.badge_id
+                prof['badges'], expected_prof['badges']
             )
 
     def test_search_professor_no_results(self):

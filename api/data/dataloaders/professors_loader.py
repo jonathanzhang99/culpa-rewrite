@@ -1,12 +1,9 @@
-from pypika import MySQLQuery as Query, Criterion, Order, \
-  CustomFunction
+from pypika import MySQLQuery as Query, Criterion, Order
 
 from api.data import db
 from api.data.common import badge, badge_professor, course, \
   course_professor, department, department_professor, professor, \
-  Match, APPROVED
-
-JsonArrayAgg = CustomFunction('JSON_ARRAYAGG', ['attribute'])
+  Match, APPROVED, JsonArrayAgg
 
 
 # TODO: This method is temporary to test search functionality
@@ -139,49 +136,40 @@ def search_professor(search_query, limit=None, alphabetize=False):
         .against(search_params) \
         .as_('score')
 
-    # This subquery guarantees limit == number of distinct professors
-    # otherwise, limit == number of rows != number of distinct professors
-    distinct_professor = Query \
-        .from_(professor) \
-        .select(
-            'professor_id',
-            'first_name',
-            'last_name',
-            match
-        ) \
-        .where(Criterion.all([
-            match > 0,
-            professor.status == APPROVED
-        ])) \
-        .orderby('score', order=Order.desc) \
-        .limit(limit) \
-        .as_('distinct_professor')
-
     # Professor must have a department -> inner join
     # Professor may not have a badge -> left join
     query = Query \
-        .from_(distinct_professor) \
+        .from_(professor) \
         .inner_join(department_professor) \
-        .on(distinct_professor.professor_id ==
-            department_professor.professor_id) \
+        .on(professor.professor_id == department_professor.professor_id) \
         .inner_join(department) \
         .on(department_professor.department_id == department.department_id) \
         .left_join(badge_professor) \
-        .on(distinct_professor.professor_id == badge_professor.professor_id) \
+        .on(professor.professor_id == badge_professor.professor_id) \
         .left_join(badge) \
         .on(badge_professor.badge_id == badge.badge_id) \
         .select(
-            distinct_professor.professor_id,
-            distinct_professor.first_name,
-            distinct_professor.last_name,
-            distinct_professor.score,
-            department.department_id,
-            department.name.as_('department_name'),
-            badge.badge_id
+            professor.professor_id,
+            professor.first_name,
+            professor.last_name,
+            match,
+            JsonArrayAgg(department.department_id).as_('department_ids'),
+            JsonArrayAgg(department.name).as_('department_names'),
+            JsonArrayAgg(badge.badge_id).as_('badges'),
         ) \
+        .groupby(
+            professor.professor_id,
+            professor.first_name,
+            professor.last_name,
+            match) \
+        .where(Criterion.all([
+            match > 0,
+            professor.status == APPROVED])) \
+        .orderby(match, order=Order.desc) \
+        .limit(limit) \
 
     if alphabetize:
-        query = query.orderby(distinct_professor.first_name)
+        query = query.orderby(professor.first_name)
 
     cur.execute(query.get_sql())
     return cur.fetchall()

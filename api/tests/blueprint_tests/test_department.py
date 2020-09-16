@@ -87,12 +87,12 @@ class DepartmentsTest(BaseTest):
             'professor_id': 1,
             'first_name': 'Lydia',
             'last_name': 'Chilton',
-            'badge_id': None,
+            'badges': '[null]',
         }, {
             'professor_id': 2,
             'first_name': 'Nakul',
             'last_name': 'Verma',
-            'badge_id': 1,
+            'badges': '[1, 2]',
         }]
         expected_res = {
             'departmentName': 'Computer Science',
@@ -112,11 +112,13 @@ class DepartmentsTest(BaseTest):
                     'firstName': 'Lydia',
                     'lastName': 'Chilton',
                     'badges': [],
+                    'departments': [],
                 }, {
                     'professorId': 2,
                     'firstName': 'Nakul',
                     'lastName': 'Verma',
-                    'badges': [1]
+                    'badges': [1, 2],
+                    'departments': [],
                 }
             ]
         }

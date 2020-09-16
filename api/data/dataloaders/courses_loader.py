@@ -3,7 +3,7 @@ from pypika import Criterion, MySQLQuery as Query, Order
 from api.data import db
 from api.data.common import badge, badge_professor, course, \
     course_professor, professor, department, department_professor, \
-    Match, APPROVED
+    Match, APPROVED, JsonArrayAgg
 
 
 def load_course_basic_info(course_id):
@@ -48,17 +48,21 @@ def load_course_professors(course_id):
         .left_join(badge) \
         .on(
             badge_professor.badge_id == badge.badge_id) \
-        .where(Criterion.all([
-            course_professor.course_id == course_id,
-            course_professor.status == APPROVED,
-        ])) \
         .select(
             professor.professor_id,
             professor.first_name,
             professor.last_name,
-            department.department_id,
-            department.name.as_('department_name'),
-            badge.badge_id) \
+            JsonArrayAgg(department.department_id).as_('department_ids'),
+            JsonArrayAgg(department.name).as_('department_names'),
+            JsonArrayAgg(badge.badge_id).as_('badges')) \
+        .groupby(
+            professor.professor_id,
+            professor.first_name,
+            professor.last_name) \
+        .where(Criterion.all([
+            course_professor.course_id == course_id,
+            course_professor.status == APPROVED,
+        ])) \
         .orderby(
             professor.first_name) \
         .get_sql()

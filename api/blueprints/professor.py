@@ -5,46 +5,39 @@ from api.data.dataloaders.professors_loader import load_professor_courses, \
 from api.data.dataloaders.reviews_loader import \
      prepare_professor_query_prefix, load_review_highlight
 from api.blueprints.review import parse_review
-from collections import OrderedDict
 
 professor_blueprint = flask.Blueprint('professor_blueprint', __name__)
 
 
-def parse_professors(professors):
+def parse_professor(professor):
     '''
-    static method for parsing professors into json objects
+    static method for parsing professor into an json object
     '''
-    professors_json = OrderedDict()
+    professor_json = {
+        'badges': [],
+        'departments': [],
+        'firstName': professor['first_name'],
+        'lastName': professor['last_name'],
+        'professorId': professor['professor_id'],
+    }
 
-    department_ids = []  # prevents duplicate departments
-    for professor in professors:
-        professor_id = professor['professor_id']
-        if professor_id not in professors_json:  # new professor
-            professors_json[professor_id] = {
-                'badges': [],
-                'departments': [],
-                'firstName': professor['first_name'],
-                'lastName': professor['last_name'],
-                'professorId': professor_id,
-            }
-            department_ids = []
-
-        if 'department_id' in professor:
-            department_id = professor['department_id']
-            if department_id not in department_ids:
-                professors_json[professor_id]['departments'].append({
-                   'departmentId': professor['department_id'],
-                   'departmentName': professor['department_name'],
+    seen_department_ids = []  # prevents duplicate departments
+    if 'department_ids' in professor:
+        for id, name in zip(flask.json.loads(professor['department_ids']),
+                            flask.json.loads(professor['department_names'])):
+            if id not in seen_department_ids:
+                professor_json['departments'].append({
+                    'departmentId': id,
+                    'departmentName': name
                 })
-                department_ids.append(department_id)
+                seen_department_ids.append(id)
 
-        if 'badge_id' in professor:
-            badge_id = professor['badge_id']
-            badge_ids = professors_json[professor_id]['badges']
-            if badge_id and badge_id not in badge_ids:
-                professors_json[professor_id]['badges'].append(badge_id)
+    if 'badges' in professor:
+        for badge in flask.json.loads(professor['badges']):
+            if badge and badge not in professor_json['badges']:
+                professor_json['badges'].append(badge)
 
-    return list(professors_json.values())
+    return professor_json
 
 
 @professor_blueprint.route('/<int:professor_id>', methods=['GET'])
@@ -63,8 +56,8 @@ def professor_info(professor_id):
     professor_summary_json = {
         'firstName': basic_info[0]['first_name'],
         'lastName': basic_info[0]['last_name'],
-        'badges': [badge for badge
-                   in flask.json.loads(basic_info[0]['badges']) if badge],
+        'badges': [badge for badge in flask.json.loads(basic_info[0]['badges'])
+                   if badge],
         'courses': professor_courses_json,
     }
 

@@ -2,7 +2,7 @@ from pypika import Criterion, MySQLQuery as Query
 
 from api.data import db
 from api.data.common import badge, badge_professor, course, department, \
-    department_professor, professor, APPROVED
+    department_professor, professor, APPROVED, JsonArrayAgg
 
 
 def load_all_departments():
@@ -68,7 +68,11 @@ def load_department_professors(department_id):
             professor.professor_id,
             professor.first_name,
             professor.last_name,
-            badge.badge_id) \
+            JsonArrayAgg(badge.badge_id).as_('badges')) \
+        .groupby(
+            professor.professor_id,
+            professor.first_name,
+            professor.last_name) \
         .where(Criterion.all([
             department_professor.department_id == department_id,
             professor.status == APPROVED

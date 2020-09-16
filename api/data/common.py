@@ -1,4 +1,4 @@
-from pypika import Table
+from pypika import Table, CustomFunction
 from pypika.terms import Function
 
 
@@ -20,6 +20,10 @@ badge_professor = Table('badge_professor')
 PENDING = 'pending'
 APPROVED = 'approved'
 REJECTED = 'rejected'
+
+
+# aggregate functions
+JsonArrayAgg = CustomFunction('JSON_ARRAYAGG', ['attribute'])
 
 
 class Match(Function):

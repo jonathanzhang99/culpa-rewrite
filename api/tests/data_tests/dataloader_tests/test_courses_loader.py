@@ -47,30 +47,10 @@ class CoursesLoaderTest(LoadersWritersBaseTest):
             'professor_id': 1,
             'first_name': 'Nakul',
             'last_name': 'Verma',
-            'department_id': 1,
-            'department_name': 'Computer Science',
-            'badge_id': 1,
-        }, {
-            'professor_id': 1,
-            'first_name': 'Nakul',
-            'last_name': 'Verma',
-            'department_id': 1,
-            'department_name': 'Computer Science',
-            'badge_id': 2,
-        }, {
-            'professor_id': 1,
-            'first_name': 'Nakul',
-            'last_name': 'Verma',
-            'department_id': 3,
-            'department_name': 'Mathematics',
-            'badge_id': 1,
-        }, {
-            'professor_id': 1,
-            'first_name': 'Nakul',
-            'last_name': 'Verma',
-            'department_id': 3,
-            'department_name': 'Mathematics',
-            'badge_id': 2,
+            'department_ids': '[1, 1, 3, 3]',
+            'department_names': '["Computer Science", "Computer Science", '
+                              + '"Mathematics", "Mathematics"]',
+            'badges': '[1, 2, 1, 2]',
         }]
 
         professors = load_course_professors(MACHINE_LEARNING_COURSE_ID)

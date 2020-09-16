@@ -113,30 +113,10 @@ class CoursesTest(BaseTest):
             'professor_id': 1,
             'first_name': 'Nakul',
             'last_name': 'Verma',
-            'department_id': 1,
-            'department_name': 'Computer Science',
-            'badge_id': 1,
-        }, {
-            'professor_id': 1,
-            'first_name': 'Nakul',
-            'last_name': 'Verma',
-            'department_id': 3,
-            'department_name': 'Mathematics',
-            'badge_id': 1,
-        }, {
-            'professor_id': 1,
-            'first_name': 'Nakul',
-            'last_name': 'Verma',
-            'department_id': 1,
-            'department_name': 'Computer Science',
-            'badge_id': 2,
-        }, {
-            'professor_id': 1,
-            'first_name': 'Nakul',
-            'last_name': 'Verma',
-            'department_id': 3,
-            'department_name': 'Mathematics',
-            'badge_id': 2,
+            'department_ids': '[1, 3, 1, 3]',
+            'department_names': '["Computer Science", "Mathematics", '
+                              + '"Computer Science", "Mathematics"]',
+            'badges': '[1, 1, 2, 2]',
         }]
         mock_load_review_highlight.return_value = [
             self.POSITIVE_REVIEW,
@@ -190,30 +170,10 @@ class CoursesTest(BaseTest):
             'professor_id': 1,
             'first_name': 'Nakul',
             'last_name': 'Verma',
-            'department_id': 1,
-            'department_name': 'Computer Science',
-            'badge_id': 1,
-        }, {
-            'professor_id': 1,
-            'first_name': 'Nakul',
-            'last_name': 'Verma',
-            'department_id': 3,
-            'department_name': 'Mathematics',
-            'badge_id': 1,
-        }, {
-            'professor_id': 1,
-            'first_name': 'Nakul',
-            'last_name': 'Verma',
-            'department_id': 1,
-            'department_name': 'Computer Science',
-            'badge_id': 2,
-        }, {
-            'professor_id': 1,
-            'first_name': 'Nakul',
-            'last_name': 'Verma',
-            'department_id': 3,
-            'department_name': 'Mathematics',
-            'badge_id': 2,
+            'department_ids': '[1, 3, 1, 3]',
+            'department_names': '["Computer Science", "Mathematics", '
+                              + '"Computer Science", "Mathematics"]',
+            'badges': '[1, 1, 2, 2]',
         }]
         mock_load_review_highlight.return_value = [
             self.POSITIVE_REVIEW,
@@ -265,30 +225,10 @@ class CoursesTest(BaseTest):
             'professor_id': 1,
             'first_name': 'Nakul',
             'last_name': 'Verma',
-            'department_id': 1,
-            'department_name': 'Computer Science',
-            'badge_id': 1,
-        }, {
-            'professor_id': 1,
-            'first_name': 'Nakul',
-            'last_name': 'Verma',
-            'department_id': 3,
-            'department_name': 'Mathematics',
-            'badge_id': 1,
-        }, {
-            'professor_id': 1,
-            'first_name': 'Nakul',
-            'last_name': 'Verma',
-            'department_id': 1,
-            'department_name': 'Computer Science',
-            'badge_id': 2,
-        }, {
-            'professor_id': 1,
-            'first_name': 'Nakul',
-            'last_name': 'Verma',
-            'department_id': 3,
-            'department_name': 'Mathematics',
-            'badge_id': 2,
+            'department_ids': '[1, 3, 1, 3]',
+            'department_names': '["Computer Science", "Mathematics", '
+                              + '"Computer Science", "Mathematics"]',
+            'badges': '[1, 1, 2, 2]',
         }]
         mock_load_review_highlight.return_value = []
         expected_res = {
@@ -353,8 +293,80 @@ class CoursesTest(BaseTest):
         res = self.client.get(f'/api/course/{self.ML_COURSE_ID}')
         self.assertEqual(expected_res, res.json)
 
+    @mock.patch('api.blueprints.course.load_review_highlight')
+    @mock.patch('api.blueprints.course.load_course_professors')
     @mock.patch('api.blueprints.course.load_course_basic_info')
-    def test_get_course_info_empty(self, mock_load_course_basic_info):
+    def test_course_info_multiple_course_professors(
+            self,
+            mock_load_course_basic_info,
+            mock_load_course_professors,
+            mock_load_review_highlight):
+        mock_load_course_basic_info.return_value = [{
+            'course_id': self.ML_COURSE_ID,
+            'name': 'Machine Learning',
+            'department_id': 1,
+            'call_number': 'COMS 4771',
+            'department_name': 'Computer Science',
+        }]
+        mock_load_course_professors.return_value = [{
+            'professor_id': 2,
+            'first_name': 'Jae Woo',
+            'last_name': 'Lee',
+            'department_ids': '[1]',
+            'department_names': '["Computer Science"]',
+            'badges': '[null]',
+        }, {
+            'professor_id': 1,
+            'first_name': 'Nakul',
+            'last_name': 'Verma',
+            'department_ids': '[1, 3, 1, 3]',
+            'department_names': '["Computer Science", "Mathematics", '
+                              + '"Computer Science", "Mathematics"]',
+            'badges': '[1, 1, 2, 2]',
+        }]
+        mock_load_review_highlight.return_value = [
+            self.POSITIVE_REVIEW,
+            self.NEGATIVE_REVIEW,
+        ]
+        expected_res = {
+            'courseReviewHighlight': [
+                self.POSITIVE_REVIEW_JSON,
+                self.NEGATIVE_REVIEW_JSON
+            ],
+            'courseSummary': {
+                'courseName': 'Machine Learning',
+                'courseCallNumber': 'COMS 4771',
+                'departmentId': 1,
+                'departmentName': 'Computer Science',
+                'courseProfessors': [{
+                    'firstName': 'Jae Woo',
+                    'lastName': 'Lee',
+                    'professorId': 2,
+                    'professorDepartments': [{
+                        'professorDepartmentId': 1,
+                        'professorDepartmentName': 'Computer Science'
+                    }],
+                    'badges': [],
+                }, {
+                    'firstName': 'Nakul',
+                    'lastName': 'Verma',
+                    'professorId': 1,
+                    'professorDepartments': [{
+                        'professorDepartmentId': 1,
+                        'professorDepartmentName': 'Computer Science'
+                    }, {
+                        'professorDepartmentId': 3,
+                        'professorDepartmentName': 'Mathematics'
+                    }],
+                    'badges': [1, 2],
+                }]
+            }
+        }
+        res = self.client.get(f'/api/course/{self.ML_COURSE_ID}')
+        self.assertEqual(expected_res, res.json)
+
+    @mock.patch('api.blueprints.course.load_course_basic_info')
+    def test_load_course_info_empty(self, mock_load_course_basic_info):
         mock_load_course_basic_info.return_value = []
         expected_res = {'error': 'Missing course basic info'}
 
@@ -363,7 +375,7 @@ class CoursesTest(BaseTest):
         self.assertEqual(expected_res, res.json)
 
     @mock.patch('api.blueprints.course.load_course_basic_info')
-    def test_get_course_info_db_failure(self, mock_load_course_basic_info):
+    def test_load_course_info_db_failure(self, mock_load_course_basic_info):
         mock_load_course_basic_info.side_effect = IntegrityError()
         expected_res = {'error': 'Invalid data'}
 

@@ -2,7 +2,7 @@ import flask
 
 from api.data.dataloaders.courses_loader import search_course
 from api.data.dataloaders.professors_loader import search_professor
-from api.blueprints.professor import parse_professors
+from api.blueprints.professor import parse_professor
 
 search_blueprint = flask.Blueprint('search_blueprint', __name__)
 
@@ -33,7 +33,8 @@ def search():
         professors = search_professor(search_query,
                                       search_limit,
                                       isAlphabetized)
-        professors_json = parse_professors(professors)
+        professors_json = [parse_professor(professor)
+                           for professor in professors]
 
         # renaming keys
         professor_results = [{
@@ -55,7 +56,7 @@ def search():
 
     course_results = []
     if search_entity in ['course', 'all']:
-        courses = search_course(search_query, search_limit)
+        courses = search_course(search_query, search_limit, isAlphabetized)
 
         course_results = [{
             'childKey': f'course-{course["course_id"]}',
