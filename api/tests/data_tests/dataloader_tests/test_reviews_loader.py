@@ -269,7 +269,6 @@ class ReviewsLoaderTest(LoadersWritersBaseTest):
         ))
 
     def test_load_review_highlight(self):
-        self.maxDiff = None
         '''
         Test cases:
             1. Most common -> most positive/negative review
@@ -323,10 +322,10 @@ class ReviewsLoaderTest(LoadersWritersBaseTest):
             ]
         },
             {
-            'course_id': 9,
+            'course_id': 8,
             'expected_res': [
                 {
-                    'badges': '[1, 2]',
+                    'badges': '[2, 1]',
                     'professor_id': 1,
                     'first_name': 'Nakul',
                     'last_name': 'Verma',
