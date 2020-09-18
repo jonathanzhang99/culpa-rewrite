@@ -15,17 +15,19 @@ jobs:
       - name: Terraform Config
         uses: hashicorp/setup-terraform@v1
         with:
-          cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+          cli_config_credentials_token: ${{ secrets.TF_API_KEY }}
+          terraform_version: 0.13.2
 
       - name: Terraform Init
         run: terraform init
 
-      - name: Setup Variable Files (HACKY)
+      - name: Setup Variable File (HACKY)
         env:
           DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
           AWS_EC2_PUBLIC_KEY: ${{ secrets.AWS_EC2_PUBLIC_KEY }}
         shell: bash
-        run: cat >> github.auto.tfvars << EOF
+        run: |
+          cat >> github.auto.tfvars <<-EOF
           github_ssh_key = "$AWS_EC2_PUBLIC_KEY"
           database_password = "$DATABASE_PASSWORD"
           EOF
