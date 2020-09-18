@@ -80,9 +80,7 @@ Object {
               <span
                 class=""
               >
-                Lydia
-                 
-                Chilton
+                Lydia Chilton
               </span>
             </a>
           </div>
@@ -95,19 +93,22 @@ Object {
               <span
                 class=""
               >
-                Nakul
-                 
-                Verma
+                Nakul Verma
               </span>
             </a>
-            <img
-              class="ui avatar left spaced image"
-              src="gold-nugget.svg"
-            />
-            <img
-              class="ui avatar left spaced image"
-              src="silver-nugget.svg"
-            />
+            <span>
+               
+              <img
+                class="ui medium right spaced image"
+                src="gold-nugget.svg"
+              />
+            </span>
+            <span>
+              <img
+                class="ui medium right spaced image"
+                src="silver-nugget.svg"
+              />
+            </span>
           </div>
         </div>
       </div>
@@ -189,9 +190,7 @@ Object {
             <span
               class=""
             >
-              Lydia
-               
-              Chilton
+              Lydia Chilton
             </span>
           </a>
         </div>
@@ -204,19 +203,22 @@ Object {
             <span
               class=""
             >
-              Nakul
-               
-              Verma
+              Nakul Verma
             </span>
           </a>
-          <img
-            class="ui avatar left spaced image"
-            src="gold-nugget.svg"
-          />
-          <img
-            class="ui avatar left spaced image"
-            src="silver-nugget.svg"
-          />
+          <span>
+             
+            <img
+              class="ui medium right spaced image"
+              src="gold-nugget.svg"
+            />
+          </span>
+          <span>
+            <img
+              class="ui medium right spaced image"
+              src="silver-nugget.svg"
+            />
+          </span>
         </div>
       </div>
     </div>

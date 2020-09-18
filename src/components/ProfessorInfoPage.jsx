@@ -26,18 +26,16 @@ function ProfessorCourseList({ courses }) {
   return (
     <div className="add-margin">
       <Header className="no-margin">Courses: </Header>
-      {courses.map(({ courseId, courseName, courseCallNumber }, index) => {
-        return (
-          <span key={courseId}>
-            <CourseDisplayLink
-              courseCallNumber={courseCallNumber}
-              courseId={courseId}
-              courseName={courseName}
-            />
-            {index !== courses.length - 1 ? ", " : ""}
-          </span>
-        );
-      })}
+      {courses.map(({ courseId, courseName, courseCallNumber }, index) => (
+        <span key={courseId}>
+          <CourseDisplayLink
+            courseCallNumber={courseCallNumber}
+            courseId={courseId}
+            courseName={courseName}
+          />
+          {index !== courses.length - 1 ? ", " : ""}
+        </span>
+      ))}
     </div>
   );
 }

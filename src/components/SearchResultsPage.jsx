@@ -53,7 +53,7 @@ function SearchResults({ results }) {
                   departmentId={departmentId}
                   departmentName={name}
                 />
-                {index !== departments.length - 1 ? "," : ""}
+                {index !== departments.length - 1 ? ", " : ""}
               </span>
             ))}
           </Grid.Column>

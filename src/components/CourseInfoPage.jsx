@@ -190,7 +190,7 @@ export function CourseInfo({
 }) {
   const [isAccordionActive, setAccordionActive] = useState(false);
   return (
-    /* use div to move to a new line */
+    /* use div to prevent margin collapsing */
     <>
       <div>
         <CourseDisplayName

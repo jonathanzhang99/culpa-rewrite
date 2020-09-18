@@ -235,7 +235,7 @@ export default function ReviewSection({
   }
 
   return (
-    /* use div to prevent "margin collapsing" behavior */
+    /* use div to prevent margin collapsing */
     <div>
       <Grid className="add-margin">
         <Grid.Row>

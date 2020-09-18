@@ -6,10 +6,10 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="ui grid add-margin"
+        class="ui grid add-margin fluid"
       >
         <div
-          class="fourteen wide column review-card-left-column"
+          class="column review-card-left-column"
         >
           <div
             class="ui red message"
@@ -29,10 +29,14 @@ Object {
               <div
                 class="ui medium header no-margin review-card-header"
               >
-                Adam
-                 
-                Canon
+                Adam Canon
               </div>
+              <span>
+                <img
+                  class="ui medium right spaced image"
+                  src="gold-nugget.svg"
+                />
+              </span>
             </div>
             <div
               class="right aligned four wide column"
@@ -59,7 +63,7 @@ Object {
           </p>
         </div>
         <div
-          class="two wide column review-card-right-column"
+          class="column review-card-right-column"
         >
           <div
             class="ui centered stackable grid"
@@ -110,10 +114,10 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="ui grid add-margin"
+      class="ui grid add-margin fluid"
     >
       <div
-        class="fourteen wide column review-card-left-column"
+        class="column review-card-left-column"
       >
         <div
           class="ui red message"
@@ -133,10 +137,14 @@ Object {
             <div
               class="ui medium header no-margin review-card-header"
             >
-              Adam
-               
-              Canon
+              Adam Canon
             </div>
+            <span>
+              <img
+                class="ui medium right spaced image"
+                src="gold-nugget.svg"
+              />
+            </span>
           </div>
           <div
             class="right aligned four wide column"
@@ -163,7 +171,7 @@ Object {
         </p>
       </div>
       <div
-        class="two wide column review-card-right-column"
+        class="column review-card-right-column"
       >
         <div
           class="ui centered stackable grid"
@@ -271,10 +279,10 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="ui grid add-margin"
+        class="ui grid add-margin fluid"
       >
         <div
-          class="fourteen wide column review-card-left-column"
+          class="column review-card-left-column"
         >
           <div
             class="ui red message"
@@ -294,10 +302,14 @@ Object {
               <div
                 class="ui medium header no-margin review-card-header"
               >
-                Adam
-                 
-                Canon
+                Adam Canon
               </div>
+              <span>
+                <img
+                  class="ui medium right spaced image"
+                  src="gold-nugget.svg"
+                />
+              </span>
             </div>
             <div
               class="right aligned four wide column"
@@ -324,7 +336,7 @@ Object {
           </p>
         </div>
         <div
-          class="two wide column review-card-right-column"
+          class="column review-card-right-column"
         >
           <div
             class="ui centered stackable grid"
@@ -375,10 +387,10 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="ui grid add-margin"
+      class="ui grid add-margin fluid"
     >
       <div
-        class="fourteen wide column review-card-left-column"
+        class="column review-card-left-column"
       >
         <div
           class="ui red message"
@@ -398,10 +410,14 @@ Object {
             <div
               class="ui medium header no-margin review-card-header"
             >
-              Adam
-               
-              Canon
+              Adam Canon
             </div>
+            <span>
+              <img
+                class="ui medium right spaced image"
+                src="gold-nugget.svg"
+              />
+            </span>
           </div>
           <div
             class="right aligned four wide column"
@@ -428,7 +444,7 @@ Object {
         </p>
       </div>
       <div
-        class="two wide column review-card-right-column"
+        class="column review-card-right-column"
       >
         <div
           class="ui centered stackable grid"
@@ -536,10 +552,10 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="ui grid add-margin"
+        class="ui grid add-margin fluid"
       >
         <div
-          class="fourteen wide column review-card-left-column"
+          class="column review-card-left-column"
         >
           <div
             class="ui red message"
@@ -559,10 +575,14 @@ Object {
               <div
                 class="ui medium header no-margin review-card-header"
               >
-                Adam
-                 
-                Canon
+                Adam Canon
               </div>
+              <span>
+                <img
+                  class="ui medium right spaced image"
+                  src="gold-nugget.svg"
+                />
+              </span>
             </div>
             <div
               class="right aligned four wide column"
@@ -589,7 +609,7 @@ Object {
           </p>
         </div>
         <div
-          class="two wide column review-card-right-column"
+          class="column review-card-right-column"
         >
           <div
             class="ui centered stackable grid"
@@ -640,10 +660,10 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="ui grid add-margin"
+      class="ui grid add-margin fluid"
     >
       <div
-        class="fourteen wide column review-card-left-column"
+        class="column review-card-left-column"
       >
         <div
           class="ui red message"
@@ -663,10 +683,14 @@ Object {
             <div
               class="ui medium header no-margin review-card-header"
             >
-              Adam
-               
-              Canon
+              Adam Canon
             </div>
+            <span>
+              <img
+                class="ui medium right spaced image"
+                src="gold-nugget.svg"
+              />
+            </span>
           </div>
           <div
             class="right aligned four wide column"
@@ -693,7 +717,7 @@ Object {
         </p>
       </div>
       <div
-        class="two wide column review-card-right-column"
+        class="column review-card-right-column"
       >
         <div
           class="ui centered stackable grid"
@@ -801,10 +825,10 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="ui grid add-margin"
+        class="ui grid add-margin fluid"
       >
         <div
-          class="fourteen wide column review-card-left-column"
+          class="column review-card-left-column"
         >
           <div
             class="ui red message"
@@ -854,7 +878,7 @@ Object {
           </p>
         </div>
         <div
-          class="two wide column review-card-right-column"
+          class="column review-card-right-column"
         >
           <div
             class="ui centered stackable grid"
@@ -905,10 +929,10 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="ui grid add-margin"
+      class="ui grid add-margin fluid"
     >
       <div
-        class="fourteen wide column review-card-left-column"
+        class="column review-card-left-column"
       >
         <div
           class="ui red message"
@@ -958,7 +982,7 @@ Object {
         </p>
       </div>
       <div
-        class="two wide column review-card-right-column"
+        class="column review-card-right-column"
       >
         <div
           class="ui centered stackable grid"
@@ -1066,10 +1090,10 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="ui grid add-margin"
+        class="ui grid add-margin fluid"
       >
         <div
-          class="fourteen wide column review-card-left-column"
+          class="column review-card-left-column"
         >
           <div
             class="ui red message"
@@ -1119,7 +1143,7 @@ Object {
           </p>
         </div>
         <div
-          class="two wide column review-card-right-column"
+          class="column review-card-right-column"
         >
           <div
             class="ui centered stackable grid"
@@ -1170,10 +1194,10 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="ui grid add-margin"
+      class="ui grid add-margin fluid"
     >
       <div
-        class="fourteen wide column review-card-left-column"
+        class="column review-card-left-column"
       >
         <div
           class="ui red message"
@@ -1223,7 +1247,7 @@ Object {
         </p>
       </div>
       <div
-        class="two wide column review-card-right-column"
+        class="column review-card-right-column"
       >
         <div
           class="ui centered stackable grid"
@@ -1331,10 +1355,10 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="ui grid add-margin"
+        class="ui grid add-margin fluid"
       >
         <div
-          class="fourteen wide column review-card-left-column"
+          class="column review-card-left-column"
         >
           <div
             class="ui red message"
@@ -1384,7 +1408,7 @@ Object {
           </p>
         </div>
         <div
-          class="two wide column review-card-right-column"
+          class="column review-card-right-column"
         >
           <div
             class="ui centered stackable grid"
@@ -1435,10 +1459,10 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="ui grid add-margin"
+      class="ui grid add-margin fluid"
     >
       <div
-        class="fourteen wide column review-card-left-column"
+        class="column review-card-left-column"
       >
         <div
           class="ui red message"
@@ -1488,7 +1512,7 @@ Object {
         </p>
       </div>
       <div
-        class="two wide column review-card-right-column"
+        class="column review-card-right-column"
       >
         <div
           class="ui centered stackable grid"

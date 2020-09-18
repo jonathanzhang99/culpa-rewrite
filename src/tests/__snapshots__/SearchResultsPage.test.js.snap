@@ -40,14 +40,19 @@ Object {
                 Nakul Verma
               </span>
             </a>
-            <img
-              class="ui avatar left spaced image"
-              src="gold-nugget.svg"
-            />
-            <img
-              class="ui avatar left spaced image"
-              src="silver-nugget.svg"
-            />
+            <span>
+               
+              <img
+                class="ui medium right spaced image"
+                src="gold-nugget.svg"
+              />
+            </span>
+            <span>
+              <img
+                class="ui medium right spaced image"
+                src="silver-nugget.svg"
+              />
+            </span>
           </div>
           <div
             class="ten wide column"
@@ -56,10 +61,10 @@ Object {
               <a
                 href="/department/29"
               >
-                <span>
-                   
+                <span
+                  class=""
+                >
                   Computer Science
-                   
                 </span>
               </a>
               
@@ -75,7 +80,9 @@ Object {
             <a
               href="/professor/40"
             >
-              <span>
+              <span
+                class=""
+              >
                 Lydia Chilton
               </span>
             </a>
@@ -153,7 +160,9 @@ Object {
             <a
               href="/course/2"
             >
-              <span>
+              <span
+                class=""
+              >
                 
                  
                 Machine Learning
@@ -167,10 +176,10 @@ Object {
               <a
                 href="/department/6"
               >
-                <span>
-                   
+                <span
+                  class=""
+                >
                   Computer Science
-                   
                 </span>
               </a>
               
@@ -216,14 +225,19 @@ Object {
               Nakul Verma
             </span>
           </a>
-          <img
-            class="ui avatar left spaced image"
-            src="gold-nugget.svg"
-          />
-          <img
-            class="ui avatar left spaced image"
-            src="silver-nugget.svg"
-          />
+          <span>
+             
+            <img
+              class="ui medium right spaced image"
+              src="gold-nugget.svg"
+            />
+          </span>
+          <span>
+            <img
+              class="ui medium right spaced image"
+              src="silver-nugget.svg"
+            />
+          </span>
         </div>
         <div
           class="ten wide column"
@@ -232,10 +246,10 @@ Object {
             <a
               href="/department/29"
             >
-              <span>
-                 
+              <span
+                class=""
+              >
                 Computer Science
-                 
               </span>
             </a>
             
@@ -251,7 +265,9 @@ Object {
           <a
             href="/professor/40"
           >
-            <span>
+            <span
+              class=""
+            >
               Lydia Chilton
             </span>
           </a>
@@ -329,7 +345,9 @@ Object {
           <a
             href="/course/2"
           >
-            <span>
+            <span
+              class=""
+            >
               
                
               Machine Learning
@@ -343,10 +361,10 @@ Object {
             <a
               href="/department/6"
             >
-              <span>
-                 
+              <span
+                class=""
+              >
                 Computer Science
-                 
               </span>
             </a>
             
@@ -614,7 +632,9 @@ Object {
             <a
               href="/course/2"
             >
-              <span>
+              <span
+                class=""
+              >
                 
                  
                 Machine Learning
@@ -628,10 +648,10 @@ Object {
               <a
                 href="/department/6"
               >
-                <span>
-                   
+                <span
+                  class=""
+                >
                   Computer Science
-                   
                 </span>
               </a>
               
@@ -717,7 +737,9 @@ Object {
           <a
             href="/course/2"
           >
-            <span>
+            <span
+              class=""
+            >
               
                
               Machine Learning
@@ -731,10 +753,10 @@ Object {
             <a
               href="/department/6"
             >
-              <span>
-                 
+              <span
+                class=""
+              >
                 Computer Science
-                 
               </span>
             </a>
             
@@ -837,14 +859,19 @@ Object {
                 Nakul Verma
               </span>
             </a>
-            <img
-              class="ui avatar left spaced image"
-              src="gold-nugget.svg"
-            />
-            <img
-              class="ui avatar left spaced image"
-              src="silver-nugget.svg"
-            />
+            <span>
+               
+              <img
+                class="ui medium right spaced image"
+                src="gold-nugget.svg"
+              />
+            </span>
+            <span>
+              <img
+                class="ui medium right spaced image"
+                src="silver-nugget.svg"
+              />
+            </span>
           </div>
           <div
             class="ten wide column"
@@ -853,10 +880,10 @@ Object {
               <a
                 href="/department/29"
               >
-                <span>
-                   
+                <span
+                  class=""
+                >
                   Computer Science
-                   
                 </span>
               </a>
               
@@ -872,7 +899,9 @@ Object {
             <a
               href="/professor/40"
             >
-              <span>
+              <span
+                class=""
+              >
                 Lydia Chilton
               </span>
             </a>
@@ -944,14 +973,19 @@ Object {
               Nakul Verma
             </span>
           </a>
-          <img
-            class="ui avatar left spaced image"
-            src="gold-nugget.svg"
-          />
-          <img
-            class="ui avatar left spaced image"
-            src="silver-nugget.svg"
-          />
+          <span>
+             
+            <img
+              class="ui medium right spaced image"
+              src="gold-nugget.svg"
+            />
+          </span>
+          <span>
+            <img
+              class="ui medium right spaced image"
+              src="silver-nugget.svg"
+            />
+          </span>
         </div>
         <div
           class="ten wide column"
@@ -960,10 +994,10 @@ Object {
             <a
               href="/department/29"
             >
-              <span>
-                 
+              <span
+                class=""
+              >
                 Computer Science
-                 
               </span>
             </a>
             
@@ -979,7 +1013,9 @@ Object {
           <a
             href="/professor/40"
           >
-            <span>
+            <span
+              class=""
+            >
               Lydia Chilton
             </span>
           </a>

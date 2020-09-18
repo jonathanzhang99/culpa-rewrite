@@ -13,6 +13,11 @@
 @resultDivider: none;
 @resultTextColor: @linkColor;
 
+/* Result Image */
+@resultImageFloat: none;
+@resultImageWidth: 1.5em;
+@resultImageHeight: 1.5em;
+
 /*******************************
             States
 *******************************/

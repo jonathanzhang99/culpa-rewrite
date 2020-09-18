@@ -272,10 +272,10 @@ Object {
             class="row"
           >
             <div
-              class="ui grid add-margin"
+              class="ui grid add-margin fluid"
             >
               <div
-                class="fourteen wide column review-card-left-column"
+                class="column review-card-left-column"
               >
                 <div
                   class="ui red message"
@@ -295,10 +295,14 @@ Object {
                     <div
                       class="ui medium header no-margin review-card-header"
                     >
-                      Nakul
-                       
-                      Verma
+                      Nakul Verma
                     </div>
+                    <span>
+                      <img
+                        class="ui medium right spaced image"
+                        src="gold-nugget.svg"
+                      />
+                    </span>
                   </div>
                   <div
                     class="right aligned four wide column"
@@ -325,7 +329,7 @@ Object {
                 </p>
               </div>
               <div
-                class="two wide column review-card-right-column"
+                class="column review-card-right-column"
               >
                 <div
                   class="ui centered stackable grid"
@@ -373,10 +377,10 @@ Object {
               </div>
             </div>
             <div
-              class="ui grid add-margin"
+              class="ui grid add-margin fluid"
             >
               <div
-                class="fourteen wide column review-card-left-column"
+                class="column review-card-left-column"
               >
                 <div
                   class="ui two column grid"
@@ -387,9 +391,7 @@ Object {
                     <div
                       class="ui medium header no-margin review-card-header"
                     >
-                      Lee
-                       
-                      Bollinger
+                      Lee Bollinger
                     </div>
                   </div>
                   <div
@@ -417,7 +419,7 @@ Object {
                 </p>
               </div>
               <div
-                class="two wide column review-card-right-column"
+                class="column review-card-right-column"
               >
                 <div
                   class="ui centered stackable grid"
@@ -751,10 +753,10 @@ Object {
           class="row"
         >
           <div
-            class="ui grid add-margin"
+            class="ui grid add-margin fluid"
           >
             <div
-              class="fourteen wide column review-card-left-column"
+              class="column review-card-left-column"
             >
               <div
                 class="ui red message"
@@ -774,10 +776,14 @@ Object {
                   <div
                     class="ui medium header no-margin review-card-header"
                   >
-                    Nakul
-                     
-                    Verma
+                    Nakul Verma
                   </div>
+                  <span>
+                    <img
+                      class="ui medium right spaced image"
+                      src="gold-nugget.svg"
+                    />
+                  </span>
                 </div>
                 <div
                   class="right aligned four wide column"
@@ -804,7 +810,7 @@ Object {
               </p>
             </div>
             <div
-              class="two wide column review-card-right-column"
+              class="column review-card-right-column"
             >
               <div
                 class="ui centered stackable grid"
@@ -852,10 +858,10 @@ Object {
             </div>
           </div>
           <div
-            class="ui grid add-margin"
+            class="ui grid add-margin fluid"
           >
             <div
-              class="fourteen wide column review-card-left-column"
+              class="column review-card-left-column"
             >
               <div
                 class="ui two column grid"
@@ -866,9 +872,7 @@ Object {
                   <div
                     class="ui medium header no-margin review-card-header"
                   >
-                    Lee
-                     
-                    Bollinger
+                    Lee Bollinger
                   </div>
                 </div>
                 <div
@@ -896,7 +900,7 @@ Object {
               </p>
             </div>
             <div
-              class="two wide column review-card-right-column"
+              class="column review-card-right-column"
             >
               <div
                 class="ui centered stackable grid"
@@ -1287,10 +1291,10 @@ Object {
             class="row"
           >
             <div
-              class="ui grid add-margin"
+              class="ui grid add-margin fluid"
             >
               <div
-                class="fourteen wide column review-card-left-column"
+                class="column review-card-left-column"
               >
                 <div
                   class="ui red message"
@@ -1340,7 +1344,7 @@ Object {
                 </p>
               </div>
               <div
-                class="two wide column review-card-right-column"
+                class="column review-card-right-column"
               >
                 <div
                   class="ui centered stackable grid"
@@ -1388,10 +1392,10 @@ Object {
               </div>
             </div>
             <div
-              class="ui grid add-margin"
+              class="ui grid add-margin fluid"
             >
               <div
-                class="fourteen wide column review-card-left-column"
+                class="column review-card-left-column"
               >
                 <div
                   class="ui two column grid"
@@ -1432,7 +1436,7 @@ Object {
                 </p>
               </div>
               <div
-                class="two wide column review-card-right-column"
+                class="column review-card-right-column"
               >
                 <div
                   class="ui centered stackable grid"
@@ -1766,10 +1770,10 @@ Object {
           class="row"
         >
           <div
-            class="ui grid add-margin"
+            class="ui grid add-margin fluid"
           >
             <div
-              class="fourteen wide column review-card-left-column"
+              class="column review-card-left-column"
             >
               <div
                 class="ui red message"
@@ -1819,7 +1823,7 @@ Object {
               </p>
             </div>
             <div
-              class="two wide column review-card-right-column"
+              class="column review-card-right-column"
             >
               <div
                 class="ui centered stackable grid"
@@ -1867,10 +1871,10 @@ Object {
             </div>
           </div>
           <div
-            class="ui grid add-margin"
+            class="ui grid add-margin fluid"
           >
             <div
-              class="fourteen wide column review-card-left-column"
+              class="column review-card-left-column"
             >
               <div
                 class="ui two column grid"
@@ -1911,7 +1915,7 @@ Object {
               </p>
             </div>
             <div
-              class="two wide column review-card-right-column"
+              class="column review-card-right-column"
             >
               <div
                 class="ui centered stackable grid"

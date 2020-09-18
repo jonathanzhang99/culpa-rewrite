@@ -49,14 +49,13 @@ export function ProfessorDisplayName({
   return (
     <>
       <ProfessorName className={className} size={size}>
-        {fullName || (
-          <>
-            {firstName} {lastName}
-          </>
-        )}
+        {fullName || `${firstName} ${lastName}`}
       </ProfessorName>
-      {badges.map((badgeId) => (
-        <Badge badgeId={badgeId} key={`badge-${badgeId}`} />
+      {badges.map((badgeId, index) => (
+        <span key={`badge-${badgeId}`}>
+          {as === "text" && index === 0 && " "}
+          <Badge badgeId={badgeId} size={size} />
+        </span>
       ))}
     </>
   );
@@ -84,8 +83,11 @@ export function ProfessorDisplayLink({
           size={size}
         />
       </Link>
-      {badges.map((badgeId) => (
-        <Badge badgeId={badgeId} key={`badge-${badgeId}`} />
+      {badges.map((badgeId, index) => (
+        <span key={`badge-${badgeId}`}>
+          {as === "text" && index === 0 && " "}
+          <Badge badgeId={badgeId} size={size} />
+        </span>
       ))}
     </>
   );

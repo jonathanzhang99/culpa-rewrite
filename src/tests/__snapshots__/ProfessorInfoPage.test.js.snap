@@ -9,10 +9,20 @@ Object {
         <div
           class="ui huge header"
         >
-          Nakul
-           
-          Verma
+          Nakul Verma
         </div>
+        <span>
+          <img
+            class="ui huge right spaced image"
+            src="gold-nugget.svg"
+          />
+        </span>
+        <span>
+          <img
+            class="ui huge right spaced image"
+            src="silver-nugget.svg"
+          />
+        </span>
       </div>
       <div>
         <div
@@ -72,10 +82,20 @@ Object {
       <div
         class="ui huge header"
       >
-        Nakul
-         
-        Verma
+        Nakul Verma
       </div>
+      <span>
+        <img
+          class="ui huge right spaced image"
+          src="gold-nugget.svg"
+        />
+      </span>
+      <span>
+        <img
+          class="ui huge right spaced image"
+          src="silver-nugget.svg"
+        />
+      </span>
     </div>
     <div>
       <div
@@ -192,10 +212,20 @@ Object {
         <div
           class="ui huge header"
         >
-          Nakul
-           
-          Verma
+          Nakul Verma
         </div>
+        <span>
+          <img
+            class="ui huge right spaced image"
+            src="gold-nugget.svg"
+          />
+        </span>
+        <span>
+          <img
+            class="ui huge right spaced image"
+            src="silver-nugget.svg"
+          />
+        </span>
       </div>
       <div>
         <div
@@ -227,10 +257,20 @@ Object {
       <div
         class="ui huge header"
       >
-        Nakul
-         
-        Verma
+        Nakul Verma
       </div>
+      <span>
+        <img
+          class="ui huge right spaced image"
+          src="gold-nugget.svg"
+        />
+      </span>
+      <span>
+        <img
+          class="ui huge right spaced image"
+          src="silver-nugget.svg"
+        />
+      </span>
     </div>
     <div>
       <div

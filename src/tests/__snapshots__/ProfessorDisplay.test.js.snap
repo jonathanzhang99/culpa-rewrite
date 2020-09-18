@@ -11,9 +11,7 @@ Object {
         <span
           class=""
         >
-          Nakul
-           
-          Verma
+          Nakul Verma
         </span>
       </a>
     </div>
@@ -25,9 +23,7 @@ Object {
       <span
         class=""
       >
-        Nakul
-         
-        Verma
+        Nakul Verma
       </span>
     </a>
   </div>,
@@ -96,9 +92,7 @@ Object {
         <span
           class=""
         >
-          
            
-          
         </span>
       </a>
     </div>
@@ -110,9 +104,7 @@ Object {
       <span
         class=""
       >
-        
          
-        
       </span>
     </a>
   </div>,
@@ -181,9 +173,7 @@ Object {
         <span
           class=""
         >
-          Nakul
-           
-          Verma
+          Nakul Verma
         </span>
       </a>
     </div>
@@ -195,9 +185,7 @@ Object {
       <span
         class=""
       >
-        Nakul
-         
-        Verma
+        Nakul Verma
       </span>
     </a>
   </div>,
@@ -266,9 +254,7 @@ Object {
         <span
           class=""
         >
-          
            
-          
         </span>
       </a>
     </div>
@@ -280,9 +266,7 @@ Object {
       <span
         class=""
       >
-        
          
-        
       </span>
     </a>
   </div>,
@@ -348,32 +332,38 @@ Object {
       <a
         href="/professor/2339"
       >
-        <span>
-          
+        <span
+          class=""
+        >
            
-          
         </span>
       </a>
-      <img
-        class="ui avatar left spaced image"
-        src="gold-nugget.svg"
-      />
+      <span>
+         
+        <img
+          class="ui medium right spaced image"
+          src="gold-nugget.svg"
+        />
+      </span>
     </div>
   </body>,
   "container": <div>
     <a
       href="/professor/2339"
     >
-      <span>
-        
+      <span
+        class=""
+      >
          
-        
       </span>
     </a>
-    <img
-      class="ui avatar left spaced image"
-      src="gold-nugget.svg"
-    />
+    <span>
+       
+      <img
+        class="ui medium right spaced image"
+        src="gold-nugget.svg"
+      />
+    </span>
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],
@@ -437,9 +427,7 @@ Object {
       <span
         class=""
       >
-        Nakul
-         
-        Verma
+        Nakul Verma
       </span>
     </div>
   </body>,
@@ -447,9 +435,7 @@ Object {
     <span
       class=""
     >
-      Nakul
-       
-      Verma
+      Nakul Verma
     </span>
   </div>,
   "debug": [Function],
@@ -514,9 +500,7 @@ Object {
       <span
         class=""
       >
-        
          
-        
       </span>
     </div>
   </body>,
@@ -524,9 +508,7 @@ Object {
     <span
       class=""
     >
-      
        
-      
     </span>
   </div>,
   "debug": [Function],
@@ -591,9 +573,7 @@ Object {
       <span
         class=""
       >
-        Nakul
-         
-        Verma
+        Nakul Verma
       </span>
     </div>
   </body>,
@@ -601,9 +581,7 @@ Object {
     <span
       class=""
     >
-      Nakul
-       
-      Verma
+      Nakul Verma
     </span>
   </div>,
   "debug": [Function],
@@ -668,9 +646,7 @@ Object {
       <span
         class=""
       >
-        
          
-        
       </span>
     </div>
   </body>,
@@ -678,9 +654,7 @@ Object {
     <span
       class=""
     >
-      
        
-      
     </span>
   </div>,
   "debug": [Function],
@@ -742,27 +716,33 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <span>
-        
+      <span
+        class=""
+      >
          
-        
       </span>
-      <img
-        class="ui avatar left spaced image"
-        src="gold-nugget.svg"
-      />
+      <span>
+         
+        <img
+          class="ui medium right spaced image"
+          src="gold-nugget.svg"
+        />
+      </span>
     </div>
   </body>,
   "container": <div>
-    <span>
-      
+    <span
+      class=""
+    >
        
-      
     </span>
-    <img
-      class="ui avatar left spaced image"
-      src="gold-nugget.svg"
-    />
+    <span>
+       
+      <img
+        class="ui medium right spaced image"
+        src="gold-nugget.svg"
+      />
+    </span>
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],
@@ -829,9 +809,7 @@ Object {
         <span
           class=""
         >
-          
            
-          
         </span>
       </a>
     </div>
@@ -843,9 +821,7 @@ Object {
       <span
         class=""
       >
-        
          
-        
       </span>
     </a>
   </div>,
@@ -914,9 +890,7 @@ Object {
         <span
           class=""
         >
-          
            
-          
         </span>
       </a>
     </div>
@@ -928,9 +902,7 @@ Object {
       <span
         class=""
       >
-        
          
-        
       </span>
     </a>
   </div>,
@@ -996,9 +968,7 @@ Object {
       <span
         class=""
       >
-        
          
-        
       </span>
     </div>
   </body>,
@@ -1006,9 +976,7 @@ Object {
     <span
       class=""
     >
-      
        
-      
     </span>
   </div>,
   "debug": [Function],
@@ -1073,9 +1041,7 @@ Object {
       <span
         class=""
       >
-        
          
-        
       </span>
     </div>
   </body>,
@@ -1083,9 +1049,7 @@ Object {
     <span
       class=""
     >
-      
        
-      
     </span>
   </div>,
   "debug": [Function],

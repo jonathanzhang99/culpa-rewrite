@@ -224,8 +224,8 @@ export default function ReviewCard({
   content,
 }) {
   return (
-    <Grid className="add-margin">
-      <Grid.Column className="review-card-left-column" width={14}>
+    <Grid className="add-margin fluid">
+      <Grid.Column className="review-card-left-column">
         {deprecated && (
           <Message color="red">
             <Icon color="red" name="warning circle" />
@@ -247,7 +247,7 @@ export default function ReviewCard({
             <Grid.Column width={12}>
               <ProfessorDisplayName
                 as="header"
-                badges={reviewHeader.professor.badges}
+                badges={reviewHeader.badges}
                 className="no-margin review-card-header"
                 firstName={reviewHeader.profFirstName}
                 lastName={reviewHeader.profLastName}
@@ -268,7 +268,7 @@ export default function ReviewCard({
               <div style={{ marginTop: "1rem" }}>
                 <CourseDisplayName
                   as="header"
-                  className="no-margin"
+                  className="no-margin review-card-header"
                   courseCallNumber={reviewHeader.course.courseCode}
                   courseName={reviewHeader.course.courseName}
                 />
@@ -284,7 +284,7 @@ export default function ReviewCard({
         <Header size="small">Workload</Header>
         <p>{workload}</p>
       </Grid.Column>
-      <Grid.Column className="review-card-right-column" width={2}>
+      <Grid.Column className="review-card-right-column">
         <VotesContainer reviewId={reviewId} votes={votes} />
       </Grid.Column>
     </Grid>

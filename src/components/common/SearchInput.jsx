@@ -106,7 +106,7 @@ function SearchResult({ badges, departments, last, title, type }) {
         {departments.map(({ id: departmentId, name }, index) => (
           <span key={`department-${departmentId}`}>
             <DepartmentDisplayName departmentName={name} />
-            {index !== departments.length - 1 ? "," : ""}
+            {index !== departments.length - 1 ? ", " : ""}
           </span>
         ))}
       </Grid.Column>
