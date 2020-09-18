@@ -62,11 +62,6 @@ jobs:
       - name: Build Task
         run: yarn build
 
-      - name: Get Server IP
-        uses: actions/download-artifact@v2
-        with:
-          name: public-ip
-
       - name: Set REMOTE_HOST
         run: echo "::set-env name=REMOTE_HOST::${{ needs.terraform-setup.outputs.public-ip }}"
 
