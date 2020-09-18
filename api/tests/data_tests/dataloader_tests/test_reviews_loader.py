@@ -1,5 +1,6 @@
 from datetime import datetime, timedelta
 from decimal import Decimal
+from flask import json
 
 from api.tests import LoadersWritersBaseTest
 from api.tests.data_tests.common import setup_votes, setup_reviews_and_flags,\
@@ -362,4 +363,7 @@ class ReviewsLoaderTest(LoadersWritersBaseTest):
                 res = load_review_highlight(
                     prepare_course_query_prefix(test_case['course_id']), ip)
                 for result, expected in zip(res, test_case['expected_res']):
+                    if result:
+                        result['badges'] = json.dumps(
+                            sorted(json.loads(result['badges'])))
                     self.assertEqual(result, expected)
