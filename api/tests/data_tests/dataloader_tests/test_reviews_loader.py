@@ -268,6 +268,7 @@ class ReviewsLoaderTest(LoadersWritersBaseTest):
         ))
 
     def test_load_review_highlight(self):
+        self.maxDiff = None
         '''
         Test cases:
             1. Most common -> most positive/negative review
@@ -361,4 +362,5 @@ class ReviewsLoaderTest(LoadersWritersBaseTest):
             with self.subTest(test_case):
                 res = load_review_highlight(
                     prepare_course_query_prefix(test_case['course_id']), ip)
-                self.assertCountEqual(res, test_case['expected_res'])
+                print(res)
+                self.assertEqual(res, test_case['expected_res'])
