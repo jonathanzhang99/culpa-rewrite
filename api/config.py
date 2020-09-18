@@ -24,7 +24,11 @@ class BaseConfig():
 
 
 class ProductionConfig(BaseConfig):
-    pass
+    # Expires in a week
+    TOKEN_EXPIRES_DELTA = 60 * 60 * 24 * 7
+    MYSQL_DATABASE_HOST = 'db.culpa.info'
+    MYSQL_DATABASE_USER = 'culpa'
+    MYSQL_DATABASE_DB = 'culpa_prod_db'
 
 
 class DevelopmentConfig(BaseConfig):

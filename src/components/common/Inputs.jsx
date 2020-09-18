@@ -232,6 +232,15 @@ export function RadioInputGroup({ name, labels, onChange, value }) {
 
 export const SearchInput = SearchInputImport;
 
+export const ValidInputComponents = [
+  TextInput,
+  PasswordInput,
+  TextAreaInput,
+  DropdownInput,
+  RadioInputGroup,
+  SearchInput,
+];
+
 TextInput.propTypes = propTypesInput;
 TextInput.defaultProps = defaultPropsInput;
 

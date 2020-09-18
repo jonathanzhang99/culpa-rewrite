@@ -1,0 +1,33 @@
+name: Verify Terraform
+
+on: pull_request
+
+jobs:
+  terraform-verify:
+    name: "Terraform Verify"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Terraform Config
+        uses: hashicorp/setup-terraform@v1
+        with:
+          cli_config_credentials_token: ${{ secrets.TF_API_KEY }}
+          terraform_version: 0.13.2
+
+      - name: Terraform Init
+        run: terraform init
+
+      - name: Setup Variable File (HACKY)
+        env:
+          AWS_EC2_PUBLIC_KEY: ${{ secrets.AWS_EC2_PUBLIC_KEY }}
+          DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
+        shell: bash
+        run: |
+          cat >> github.auto.tfvars <<-EOF
+          github_ssh_key = "$AWS_EC2_PUBLIC_KEY"
+          database_password = "$DATABASE_PASSWORD"
+          EOF
+
+      - name: Terraform Plan
+        run: terraform plan
