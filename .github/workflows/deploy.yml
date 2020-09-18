@@ -33,7 +33,7 @@ jobs:
           EOF
 
       - name: Terraform Apply
-        run: terraform apply -auto-approve"
+        run: terraform apply -auto-approve
 
       - name: Get Server IP
         run: terraform output public_ip >> public_ip.txt
