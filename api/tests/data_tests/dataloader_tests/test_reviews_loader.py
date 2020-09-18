@@ -322,10 +322,10 @@ class ReviewsLoaderTest(LoadersWritersBaseTest):
             ]
         },
             {
-            'course_id': 8,
+            'course_id': 9,
             'expected_res': [
                 {
-                    'badges': '[2, 1]',
+                    'badges': '[1, 2]',
                     'professor_id': 1,
                     'first_name': 'Nakul',
                     'last_name': 'Verma',
