@@ -1,8 +1,9 @@
-from pypika import MySQLQuery as Query, Order
+from pypika import Criterion, MySQLQuery as Query, Order
 
 from api.data import db
-from api.data.common import course, course_professor, professor, \
-    department, department_professor, Match
+from api.data.common import badge, badge_professor, course, \
+    course_professor, professor, department, department_professor, \
+    Match, APPROVED, JsonArrayAgg
 
 
 def load_course_basic_info(course_id):
@@ -18,9 +19,12 @@ def load_course_basic_info(course_id):
         .inner_join(department) \
         .on(
             course.department_id == department.department_id) \
-        .where(
-            course.course_id == course_id) \
+        .where(Criterion.all([
+            course.course_id == course_id,
+            course.status == APPROVED
+        ])) \
         .get_sql()
+
     cur.execute(query)
     return cur.fetchall()
 
@@ -29,12 +33,6 @@ def load_course_professors(course_id):
     cur = db.get_cursor()
     query = Query \
         .from_(course_professor) \
-        .select(
-            professor.professor_id,
-            professor.first_name,
-            professor.last_name,
-            department.department_id,
-            department.name) \
         .inner_join(professor) \
         .on(
             course_professor.professor_id == professor.professor_id) \
@@ -44,14 +42,35 @@ def load_course_professors(course_id):
         .inner_join(department) \
         .on(
             department_professor.department_id == department.department_id) \
-        .where(
-            course_professor.course_id == course_id) \
+        .left_join(badge_professor) \
+        .on(
+            professor.professor_id == badge_professor.professor_id) \
+        .left_join(badge) \
+        .on(
+            badge_professor.badge_id == badge.badge_id) \
+        .select(
+            professor.professor_id,
+            professor.first_name,
+            professor.last_name,
+            JsonArrayAgg(department.department_id).as_('department_ids'),
+            JsonArrayAgg(department.name).as_('department_names'),
+            JsonArrayAgg(badge.badge_id).as_('badges')) \
+        .groupby(
+            professor.professor_id,
+            professor.first_name,
+            professor.last_name) \
+        .where(Criterion.all([
+            course_professor.course_id == course_id,
+            course_professor.status == APPROVED,
+        ])) \
+        .orderby(
+            professor.first_name) \
         .get_sql()
     cur.execute(query)
     return cur.fetchall()
 
 
-def search_course(search_query, limit=None):
+def search_course(search_query, limit=None, alphabetize=False):
     cur = db.get_cursor()
 
     search_params = [param + '*' for param in search_query.split()]
@@ -70,12 +89,17 @@ def search_course(search_query, limit=None):
             course.name,
             course.call_number,
             department.department_id,
-            department.name,
+            department.name.as_('department_name'),
             match
-        ).where(match > 0) \
+        ).where(Criterion.all([
+            match > 0,
+            course.status == APPROVED
+        ])) \
         .orderby(match, order=Order.desc) \
         .limit(limit) \
-        .get_sql()
 
-    cur.execute(query)
+    if alphabetize:
+        query = query.orderby(course.name)
+
+    cur.execute(query.get_sql())
     return cur.fetchall()

@@ -1,8 +1,9 @@
-from pypika import MySQLQuery as Query, Order
+from pypika import MySQLQuery as Query, Criterion, Order
 
 from api.data import db
-from api.data.common import course, course_professor, department, \
-  department_professor, professor, Match
+from api.data.common import badge, badge_professor, course, \
+  course_professor, department, department_professor, professor, \
+  Match, APPROVED, JsonArrayAgg
 
 
 # TODO: This method is temporary to test search functionality
@@ -15,23 +16,85 @@ def get_all_professors():
             professor.professor_id,
             professor.first_name,
             professor.last_name) \
+        .where(
+            professor.status == APPROVED) \
         .get_sql()
+
     cur.execute(query)
     return cur.fetchall()
 
 
-def load_professor_name(professor_id):
+# TODO: Change professor loaders to be more generic:
+# Private generic functions:
+#   _load_professor_by_id(professor_id, [statuses])
+#   _load_professor_by_uni(professor_uni, [statuses])
+#
+# Public functions (e.g.):
+# def load_approved_professor_by_id(professor_id):
+#   return _load_professor_by_id(professor_id, APPROVED)
+
+
+def load_professor_basic_info_by_id(professor_id):
+    cur = db.get_cursor()
+    query = Query \
+        .from_(professor) \
+        .left_join(badge_professor) \
+        .on(badge_professor.professor_id == professor.professor_id) \
+        .left_join(badge) \
+        .on(badge.badge_id == badge_professor.badge_id) \
+        .select(
+            professor.first_name,
+            professor.last_name,
+            JsonArrayAgg(badge.badge_id).as_('badges')) \
+        .groupby(
+            professor.first_name,
+            professor.last_name) \
+        .where(Criterion.all([
+            professor.professor_id == professor_id,
+            professor.status == APPROVED
+        ])) \
+        .get_sql()
+
+    cur.execute(query)
+    return cur.fetchall()
+
+
+def load_professor_basic_info_by_uni(professor_uni):
     cur = db.get_cursor()
     query = Query \
         .from_(professor) \
         .select(
+            professor.professor_id,
             professor.first_name,
-            professor.last_name) \
-        .where(
-            professor.professor_id == professor_id) \
+            professor.last_name,
+            professor.uni,
+        ) \
+        .where(Criterion.all([
+            professor.uni == professor_uni,
+            professor.status == APPROVED
+        ])) \
         .get_sql()
+
     cur.execute(query)
     return cur.fetchall()
+
+
+def load_any_status_professor_by_uni(professor_uni):
+    cur = db.get_cursor()
+    query = Query \
+        .from_(professor) \
+        .select(
+            professor.professor_id,
+            professor.first_name,
+            professor.last_name,
+            professor.uni,
+            professor.status,
+        ) \
+        .where(professor.uni == professor_uni) \
+        .get_sql()
+
+    cur.execute(query)
+    return cur.fetchone()
 
 
 def load_professor_courses(professor_id):
@@ -47,17 +110,22 @@ def load_professor_courses(professor_id):
         .on(
             course_professor.course_id == course.course_id) \
         .select(
-            course_professor.course_professor_id,
+            course.course_id,
             course.name,
             course.call_number) \
-        .where(
-            course_professor.professor_id == professor_id) \
+        .where(Criterion.all([
+            course_professor.professor_id == professor_id,
+            course_professor.status == APPROVED
+        ])) \
+        .orderby(
+            course.name) \
         .get_sql()
+
     cur.execute(query)
     return cur.fetchall()
 
 
-def search_professor(search_query, limit=None):
+def search_professor(search_query, limit=None, alphabetize=False):
     cur = db.get_cursor()
 
     search_params = [param + '*' for param in search_query.split()]
@@ -68,38 +136,40 @@ def search_professor(search_query, limit=None):
         .against(search_params) \
         .as_('score')
 
-    # this subquery guarantees limit == number of distinct professors
-    # otherwise, limit == number of rows != number of distinct professors
-    distinct_professor = Query \
-        .from_(professor) \
-        .select(
-            'professor_id',
-            'first_name',
-            'last_name',
-            'uni',
-            match
-        ) \
-        .where(match > 0) \
-        .orderby('score', order=Order.desc) \
-        .limit(limit) \
-        .as_('distinct_professor')
-
+    # Professor must have a department -> inner join
+    # Professor may not have a badge -> left join
     query = Query \
-        .from_(distinct_professor) \
-        .join(department_professor) \
-        .on(department_professor.professor_id ==
-            distinct_professor.professor_id) \
-        .join(department) \
-        .on(department.department_id == department_professor.department_id) \
+        .from_(professor) \
+        .inner_join(department_professor) \
+        .on(professor.professor_id == department_professor.professor_id) \
+        .inner_join(department) \
+        .on(department_professor.department_id == department.department_id) \
+        .left_join(badge_professor) \
+        .on(professor.professor_id == badge_professor.professor_id) \
+        .left_join(badge) \
+        .on(badge_professor.badge_id == badge.badge_id) \
         .select(
-            distinct_professor.professor_id,
-            distinct_professor.first_name,
-            distinct_professor.last_name,
-            distinct_professor.uni,
-            distinct_professor.score,
-            department.department_id,
-            department.name,
+            professor.professor_id,
+            professor.first_name,
+            professor.last_name,
+            match,
+            JsonArrayAgg(department.department_id).as_('department_ids'),
+            JsonArrayAgg(department.name).as_('department_names'),
+            JsonArrayAgg(badge.badge_id).as_('badges'),
         ) \
-        .get_sql()
-    cur.execute(query)
+        .groupby(
+            professor.professor_id,
+            professor.first_name,
+            professor.last_name,
+            match) \
+        .where(Criterion.all([
+            match > 0,
+            professor.status == APPROVED])) \
+        .orderby(match, order=Order.desc) \
+        .limit(limit) \
+
+    if alphabetize:
+        query = query.orderby(professor.first_name)
+
+    cur.execute(query.get_sql())
     return cur.fetchall()

@@ -39,6 +39,35 @@ class DepartmentsTest(BaseTest):
         res = self.client.get('/api/department/all')
         self.assertEqual(expected_res, res.json)
 
+    @mock.patch('api.blueprints.department.load_all_departments')
+    def test_retrieve_all_departments_in_option_format(self, mock_departments):
+        mock_departments.return_value = [{
+            'key': 1,
+            'department_id': 1,
+            'name': 'Computer Science'
+        }, {
+            'key': 2,
+            'department_id': 2,
+            'name': 'English'
+        }]
+
+        expected_res = {
+            'departments': [
+                {
+                    'key': 1,
+                    'value': 1,
+                    'text': 'Computer Science'
+                }, {
+                    'key': 2,
+                    'value': 2,
+                    'text': 'English'
+                }
+            ]
+        }
+
+        res = self.client.get('/api/department/all?option=1')
+        self.assertEqual(expected_res, res.json)
+
     @mock.patch('api.blueprints.department.load_department_professors')
     @mock.patch('api.blueprints.department.load_department_courses')
     @mock.patch('api.blueprints.department.load_department_name')
@@ -48,41 +77,48 @@ class DepartmentsTest(BaseTest):
             'name': 'Computer Science'
         }]
         mock_courses.return_value = [{
-            'course_id': 1,
-            'name': 'User Interface Design',
-        }, {
             'course_id': 2,
             'name': 'Machine Learning'
+        }, {
+            'course_id': 1,
+            'name': 'User Interface Design',
         }]
         mock_professors.return_value = [{
             'professor_id': 1,
             'first_name': 'Lydia',
-            'last_name': 'Chilton'
+            'last_name': 'Chilton',
+            'badges': '[null]',
         }, {
             'professor_id': 2,
             'first_name': 'Nakul',
-            'last_name': 'Verma'
+            'last_name': 'Verma',
+            'badges': '[1, 2]',
         }]
         expected_res = {
             'departmentName': 'Computer Science',
             'departmentCourses': [
                 {
-                    'courseId': 1,
-                    'courseName': 'User Interface Design'
-                }, {
                     'courseId': 2,
                     'courseName': 'Machine Learning'
+                },
+                {
+                    'courseId': 1,
+                    'courseName': 'User Interface Design'
                 }
             ],
             'departmentProfessors': [
                 {
                     'professorId': 1,
                     'firstName': 'Lydia',
-                    'lastName': 'Chilton'
+                    'lastName': 'Chilton',
+                    'badges': [],
+                    'departments': [],
                 }, {
                     'professorId': 2,
                     'firstName': 'Nakul',
-                    'lastName': 'Verma'
+                    'lastName': 'Verma',
+                    'badges': [1, 2],
+                    'departments': [],
                 }
             ]
         }

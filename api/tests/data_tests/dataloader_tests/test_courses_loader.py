@@ -43,22 +43,18 @@ class CoursesLoaderTest(LoadersWritersBaseTest):
         self.assertEqual((), basic_info)
 
     def test_load_course_professors(self):
-        expected_courses = [{
+        expected_professors = [{
             'professor_id': 1,
             'first_name': 'Nakul',
             'last_name': 'Verma',
-            'department_id': 1,
-            'name': 'Computer Science'
-        }, {
-            'professor_id': 1,
-            'first_name': 'Nakul',
-            'last_name': 'Verma',
-            'department_id': 3,
-            'name': 'Mathematics'
+            'department_ids': '[1, 1, 3, 3]',
+            'department_names': '["Computer Science", "Computer Science", '
+                              + '"Mathematics", "Mathematics"]',
+            'badges': '[1, 2, 1, 2]',
         }]
 
-        courses = load_course_professors(MACHINE_LEARNING_COURSE_ID)
-        self.assertEqual(expected_courses, courses)
+        professors = load_course_professors(MACHINE_LEARNING_COURSE_ID)
+        self.assertEqual(expected_professors, professors)
 
     def test_load_course_professors_empty(self):
         professors = load_course_professors(BAD_COURSE_ID)
@@ -72,12 +68,11 @@ class CoursesLoaderTest(LoadersWritersBaseTest):
         self.assertEqual(
             set(results[0].keys()),
             set([
-                'call_number',
                 'course_id',
-                'department_id',
-                'department.name',
                 'name',
                 'call_number',
+                'department_id',
+                'department_name',
                 'score'
             ])
         )

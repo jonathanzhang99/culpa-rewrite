@@ -45,17 +45,17 @@ class DepartmentsLoaderTest(LoadersWritersBaseTest):
 
     def test_load_courses(self):
         expected_courses = [{
-            'course_id': 1,
-            'name': 'Machine Learning'
-        }, {
             'course_id': 2,
             'name': 'Advanced Machine Learning'
         }, {
-            'course_id': 3,
-            'name': 'Operating Systems'
-        }, {
             'course_id': 4,
             'name': 'Advanced Programming'
+        }, {
+            'course_id': 1,
+            'name': 'Machine Learning'
+        }, {
+            'course_id': 3,
+            'name': 'Operating Systems'
         }]
 
         courses = load_department_courses(CS_DEPARTMENT_ID)
@@ -68,19 +68,22 @@ class DepartmentsLoaderTest(LoadersWritersBaseTest):
     def test_load_professors(self):
         expected_professors = [
             {
-                'professor_id': 1,
-                'first_name': 'Nakul',
-                'last_name': 'Verma'
-            },
-            {
                 'professor_id': 3,
                 'first_name': 'Jae W',
-                'last_name': 'Lee'
+                'last_name': 'Lee',
+                'badges': '[null]',
+            },
+            {
+                'professor_id': 1,
+                'first_name': 'Nakul',
+                'last_name': 'Verma',
+                'badges': '[1, 2]',
             },
             {
                 'professor_id': 4,
                 'first_name': 'Nakul',
                 'last_name': 'Burma',
+                'badges': '[3]',
             }
         ]
 

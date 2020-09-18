@@ -39,6 +39,7 @@ describe("CourseInfo Component", () => {
               professorDepartmentName: "Mathematics",
             },
           ],
+          badges: [1, 2],
         },
       ],
     },
@@ -64,6 +65,7 @@ describe("CourseInfo Component", () => {
               professorDepartmentName: "Mathematics",
             },
           ],
+          badges: [1, 2],
         },
         {
           firstName: "Daniel",
@@ -75,6 +77,7 @@ describe("CourseInfo Component", () => {
               professorDepartmentName: "Computer Science",
             },
           ],
+          badges: [],
         },
       ],
     },
@@ -100,6 +103,7 @@ describe("CourseInfo Component", () => {
               professorDepartmentName: "Mathematics",
             },
           ],
+          badges: [1, 2],
         },
         {
           firstName: "Daniel",
@@ -111,6 +115,7 @@ describe("CourseInfo Component", () => {
               professorDepartmentName: "Computer Science",
             },
           ],
+          badges: [],
         },
         {
           firstName: "Dorrie",
@@ -122,6 +127,7 @@ describe("CourseInfo Component", () => {
               professorDepartmentName: "Computer Science",
             },
           ],
+          badges: [1],
         },
         {
           firstName: "Elaine",
@@ -133,6 +139,7 @@ describe("CourseInfo Component", () => {
               professorDepartmentName: "Computer Science",
             },
           ],
+          badges: [2],
         },
         {
           firstName: "Jonathan",
@@ -144,6 +151,7 @@ describe("CourseInfo Component", () => {
               professorDepartmentName: "Computer Science",
             },
           ],
+          badges: [3],
         },
         {
           firstName: "Jin Woo",
@@ -155,6 +163,7 @@ describe("CourseInfo Component", () => {
               professorDepartmentName: "Computer Science",
             },
           ],
+          badges: [],
         },
         {
           firstName: "Sungbin",
@@ -166,6 +175,7 @@ describe("CourseInfo Component", () => {
               professorDepartmentName: "Computer Science",
             },
           ],
+          badges: [1, 2, 3],
         },
       ],
     },

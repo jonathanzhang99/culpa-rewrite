@@ -300,11 +300,17 @@ Object {
                     <div
                       style="position: relative;"
                     >
-                      <span>
+                      <div
+                        class="ui header"
+                      >
                         Nakul
                          
                         Verma
-                      </span>
+                      </div>
+                      <img
+                        class="ui avatar left spaced image"
+                        src="gold-nugget.svg"
+                      />
                       <h5
                         class="ui header"
                       >
@@ -414,11 +420,13 @@ Object {
                     <div
                       style="position: relative;"
                     >
-                      <span>
+                      <div
+                        class="ui header"
+                      >
                         Lee
                          
                         Bollinger
-                      </span>
+                      </div>
                       <h5
                         class="ui header"
                       >
@@ -513,8 +521,7 @@ Object {
             </div>
           </div>
           <div
-            class="centered row"
-            style="margin-bottom: 50px;"
+            class="centered row review-section-show-more-grid-row"
           >
             <button
               class="ui large fluid button"
@@ -523,8 +530,7 @@ Object {
               Show more
               <i
                 aria-hidden="true"
-                class="arrow down icon"
-                style="margin-left: 5px;"
+                class="arrow down icon review-section-show-more-icon"
               />
             </button>
           </div>
@@ -828,11 +834,17 @@ Object {
                   <div
                     style="position: relative;"
                   >
-                    <span>
+                    <div
+                      class="ui header"
+                    >
                       Nakul
                        
                       Verma
-                    </span>
+                    </div>
+                    <img
+                      class="ui avatar left spaced image"
+                      src="gold-nugget.svg"
+                    />
                     <h5
                       class="ui header"
                     >
@@ -942,11 +954,13 @@ Object {
                   <div
                     style="position: relative;"
                   >
-                    <span>
+                    <div
+                      class="ui header"
+                    >
                       Lee
                        
                       Bollinger
-                    </span>
+                    </div>
                     <h5
                       class="ui header"
                     >
@@ -1041,8 +1055,7 @@ Object {
           </div>
         </div>
         <div
-          class="centered row"
-          style="margin-bottom: 50px;"
+          class="centered row review-section-show-more-grid-row"
         >
           <button
             class="ui large fluid button"
@@ -1051,8 +1064,7 @@ Object {
             Show more
             <i
               aria-hidden="true"
-              class="arrow down icon"
-              style="margin-left: 5px;"
+              class="arrow down icon review-section-show-more-icon"
             />
           </button>
         </div>
@@ -1413,11 +1425,13 @@ Object {
                     <div
                       style="position: relative;"
                     >
-                      <span>
+                      <div
+                        class="ui header"
+                      >
                         COMS 4771
                          
                         Machine Learning
-                      </span>
+                      </div>
                       <h5
                         class="ui header"
                       >
@@ -1527,11 +1541,13 @@ Object {
                     <div
                       style="position: relative;"
                     >
-                      <span>
+                      <div
+                        class="ui header"
+                      >
                         POLS 3285
                          
                         Freedom of Speech and Press
-                      </span>
+                      </div>
                       <h5
                         class="ui header"
                       >
@@ -1626,8 +1642,7 @@ Object {
             </div>
           </div>
           <div
-            class="centered row"
-            style="margin-bottom: 50px;"
+            class="centered row review-section-show-more-grid-row"
           >
             <button
               class="ui large fluid button"
@@ -1636,8 +1651,7 @@ Object {
               Show more
               <i
                 aria-hidden="true"
-                class="arrow down icon"
-                style="margin-left: 5px;"
+                class="arrow down icon review-section-show-more-icon"
               />
             </button>
           </div>
@@ -1941,11 +1955,13 @@ Object {
                   <div
                     style="position: relative;"
                   >
-                    <span>
+                    <div
+                      class="ui header"
+                    >
                       COMS 4771
                        
                       Machine Learning
-                    </span>
+                    </div>
                     <h5
                       class="ui header"
                     >
@@ -2055,11 +2071,13 @@ Object {
                   <div
                     style="position: relative;"
                   >
-                    <span>
+                    <div
+                      class="ui header"
+                    >
                       POLS 3285
                        
                       Freedom of Speech and Press
-                    </span>
+                    </div>
                     <h5
                       class="ui header"
                     >
@@ -2154,8 +2172,7 @@ Object {
           </div>
         </div>
         <div
-          class="centered row"
-          style="margin-bottom: 50px;"
+          class="centered row review-section-show-more-grid-row"
         >
           <button
             class="ui large fluid button"
@@ -2164,8 +2181,7 @@ Object {
             Show more
             <i
               aria-hidden="true"
-              class="arrow down icon"
-              style="margin-left: 5px;"
+              class="arrow down icon review-section-show-more-icon"
             />
           </button>
         </div>

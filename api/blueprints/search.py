@@ -2,6 +2,7 @@ import flask
 
 from api.data.dataloaders.courses_loader import search_course
 from api.data.dataloaders.professors_loader import search_professor
+from api.blueprints.professor import parse_professor
 
 search_blueprint = flask.Blueprint('search_blueprint', __name__)
 
@@ -22,36 +23,32 @@ def search():
     search_entity = url_params.get('entity', 'all')
     search_query = url_params.get('query', '')
     search_limit = url_params.get('limit', None)
+    isAlphabetized = url_params.get('alphabetize', False)
 
     if len(search_query) < 2:
         return {'error': 'Query is too insubstantial'}, 400
 
     professor_results = []
     if search_entity in ['professor', 'all']:
-        professor_id_order = []  # preserves order of search results
-        professors = {}
-        search_results = search_professor(search_query, search_limit)
-        for professor in search_results:
-            professor_id = professor['professor_id']
+        professors = search_professor(search_query,
+                                      search_limit,
+                                      isAlphabetized)
+        professors_json = [parse_professor(professor)
+                           for professor in professors]
 
-            if professor_id not in professors:
-                professors[professor_id] = {
-                    'childKey': f'professor-{professor_id}',
-                    'departments': [],
-                    'id': professor['professor_id'],
-                    'title': professor["first_name"] + ' ' +
-                    professor["last_name"],
-                    'type': 'professor'
-                }
-                professor_id_order.append(professor_id)
-
-            professors[professor_id]['departments'].append({
-                'id': professor['department_id'],
-                'name': professor['name'],
-            })
-
-        for professor_id in professor_id_order:
-            professor_results.append(professors[professor_id])
+        # renaming keys
+        professor_results = [{
+            'badges': professor['badges'],
+            'childKey': f'professor-{professor["professorId"]}',
+            'departments': [{
+                'id': department['departmentId'],
+                'name': department['departmentName'],
+            } for department in professor['departments']],
+            'id': professor['professorId'],
+            'title': professor['firstName'] + ' ' +
+            professor['lastName'],
+            'type': 'professor',
+        } for professor in professors_json]
 
     # divides professors and courses
     if professor_results:
@@ -59,12 +56,13 @@ def search():
 
     course_results = []
     if search_entity in ['course', 'all']:
-        courses = search_course(search_query, search_limit)
+        courses = search_course(search_query, search_limit, isAlphabetized)
+
         course_results = [{
             'childKey': f'course-{course["course_id"]}',
             'departments': [{
                 'id': course['department_id'],
-                'name': course['department.name']
+                'name': course['department_name']
             }],
             'id': course['course_id'],
             'title': course['name'],

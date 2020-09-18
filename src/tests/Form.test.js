@@ -1,8 +1,8 @@
 import { render } from "@testing-library/react";
 import React from "react";
 
-import Form from "components/common/Form";
-import { TextInput, Submit } from "components/common/Inputs";
+import Form, { Submit } from "components/common/Form";
+import { TextInput } from "components/common/Inputs";
 
 describe("Form Component Tests", () => {
   const onSubmit = jest.fn();

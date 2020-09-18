@@ -14,6 +14,7 @@ import useDataFetch from "components/common/useDataFetch";
 const propTypesSearchResults = {
   results: PropTypes.arrayOf(
     PropTypes.shape({
+      badges: PropTypes.arrayOf(PropTypes.number),
       childKey: PropTypes.string.isRequired,
       departments: PropTypes.arrayOf(
         PropTypes.shape({
@@ -32,11 +33,15 @@ function SearchResults({ results }) {
   if (!results.length) return <p> No result found </p>;
   return (
     <Grid>
-      {results.map(({ childKey, departments, id, title, type }) => (
+      {results.map(({ badges, childKey, departments, id, title, type }) => (
         <Grid.Row key={childKey}>
           <Grid.Column width={6}>
             {type === "professor" ? (
-              <ProfessorDisplayLink fullName={title} professorId={id} />
+              <ProfessorDisplayLink
+                badges={badges}
+                fullName={title}
+                professorId={id}
+              />
             ) : (
               <CourseDisplayLink courseId={id} courseName={title} />
             )}

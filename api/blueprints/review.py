@@ -1,8 +1,13 @@
 import flask
 from datetime import datetime, timedelta
 
+from api.data.dataloaders.professors_loader import \
+    load_professor_basic_info_by_uni
 from api.data.dataloaders.reviews_loader import get_reviews_with_query_prefix,\
-    prepare_course_query_prefix, prepare_professor_query_prefix
+    prepare_course_query_prefix, prepare_professor_query_prefix, \
+    load_review
+from api.data.datawriters.course_professors_writer import \
+    add_course_professor
 from api.data.datawriters.reviews_writer import insert_review
 
 review_blueprint = flask.Blueprint('review_blueprint', __name__)
@@ -20,22 +25,42 @@ def parse_review(review, review_type):
     )
 
     if review_type == 'course':
-        reviewHeader = {
+        review_header = {
+            'badges': [badge for badge
+                       in flask.json.loads(review['badges']) if badge],
             'profId': review['professor_id'],
             'profFirstName': review['first_name'],
             'profLastName': review['last_name'],
             'uni': review['uni']
         }
-    else:
-        reviewHeader = {
+    elif review_type == 'professor':
+        review_header = {
             'courseId': review['course_id'],
             'courseName': review['name'],
-            'courseCode': review['call_number']
+            'courseCallNumber': review['call_number']
         }
+    elif review_type == "all":
+        review_header = {
+            'professor': {
+                'badges': [badge for badge
+                           in flask.json.loads(review['badges']) if badge],
+                'profId': review['prof_id'],
+                'profFirstName': review['prof_first_name'],
+                'profLastName': review['prof_last_name'],
+                'uni': review['prof_uni']
+            },
+            'course': {
+                'courseId': review['course_id'],
+                'courseName': review['course_name'],
+                'courseCode': review['course_call_number']
+            }
+        }
+    else:
+        raise Exception("invalid review type for parsing")
 
     return {
             'reviewType': review_type,
-            'reviewHeader': reviewHeader,
+            'reviewHeader': review_header,
             'votes': {
                 'initUpvoteCount': int(review['agrees']),
                 'initDownvoteCount': int(review['disagrees']),
@@ -66,13 +91,49 @@ def submit_review():
     request_json = flask.request.get_json()
 
     ip_addr = flask.request.remote_addr
+
+    new_professor = request_json.get('newProfessor')
+    new_course = request_json.get('newCourse')
+
+    new_course_professor_id = None
+
+    # If a new professor is submitted, then either 1) an EXISTING course is
+    # selected via course id in `new_professor['course']['id']` or 2) a NEW
+    # course is also submitted.
+    if new_professor:
+        uni = request_json['newProfessor']['uni']
+        if load_professor_basic_info_by_uni(uni):
+            return \
+                {'error': 'Professor already exists. Try searching by UNI.'}, \
+                400
+
+        course = new_course or new_professor['course']['id']
+        new_course_professor_id = add_course_professor(
+            new_professor,
+            course
+        )
+
+    # If no new professor is submitted but a new course is submitted, then
+    # the professor id must be defined.
+    elif new_course:
+        professor_id = request_json['professor']['id']
+
+        if new_course.get('search'):
+            new_course = new_course['search']['id']
+
+        new_course_professor_id = add_course_professor(
+            professor_id,
+            new_course
+        )
+
+    # new_course_professor_id is defined either by db insertions OR provided
+    # from the frontend.
     try:
         content = request_json['content']
         workload = request_json['workload']
         evaluation = request_json['evaluation']
 
-        # the frontend name is `course` to keep consistency.
-        course_professor_id = request_json['course']
+        course_professor_id = new_course_professor_id or request_json['course']
     except KeyError:
         return {'error': 'Missing inputs'}, 400
 
@@ -148,9 +209,21 @@ def get_reviews(page_type, id):
         filter_year,
     )
 
-    json = [parse_review(
-        review,
-        page_type,
-    ) for review in reviews]
+    reviews_json = [parse_review(review, page_type) for review in reviews]
 
-    return {'reviews': json}
+    return {'reviews': reviews_json}
+
+
+@review_blueprint.route('/<int:review_id>', methods=['GET'])
+def get_single_review_card_data(review_id):
+    ip = flask.request.remote_addr
+    review = load_review(review_id, ip)
+    json = parse_review(review, 'all') \
+        if review['flag_type'] == "approved" else {
+            'reviewId': review_id
+        }
+
+    return {
+        'flag': review['flag_type'],
+        'review': json
+    }

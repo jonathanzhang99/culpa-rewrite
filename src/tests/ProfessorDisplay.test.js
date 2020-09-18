@@ -38,6 +38,11 @@ describe("ProfessorDisplay Components", () => {
       as: "header",
       fullName: "Nakul Verma",
     },
+    {
+      testName: "renders ProfessorDisplayName with Gold Nugget",
+      badges: [1],
+      fullName: "Nakul Verma",
+    },
   ];
 
   const linkTestCases = [
@@ -76,12 +81,19 @@ describe("ProfessorDisplay Components", () => {
       fullName: "Nakul Verma",
       professorId: 2339,
     },
+    {
+      testName: "renders ProfessorDisplayLink with Gold Nugget",
+      badges: [1],
+      fullName: "Nakul Verma",
+      professorId: 2339,
+    },
   ];
 
-  nameTestCases.forEach(({ testName, firstName, lastName, type }) => {
+  nameTestCases.forEach(({ testName, badges, firstName, lastName, type }) => {
     test(testName, () => {
       const snapshot = render(
         <ProfessorDisplayName
+          badges={badges}
           firstName={firstName}
           lastName={lastName}
           type={type}
@@ -92,11 +104,12 @@ describe("ProfessorDisplay Components", () => {
   });
 
   linkTestCases.forEach(
-    ({ testName, firstName, lastName, professorId, type }) => {
+    ({ testName, badges, firstName, lastName, professorId, type }) => {
       test(testName, () => {
         const snapshot = render(
           <MemoryRouter>
             <ProfessorDisplayLink
+              badges={badges}
               firstName={firstName}
               lastName={lastName}
               professorId={professorId}

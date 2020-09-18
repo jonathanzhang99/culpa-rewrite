@@ -5,20 +5,20 @@ import { Link } from "react-router-dom";
 import { Button } from "semantic-ui-react";
 
 const propTypes = {
-  courseId: PropTypes.string,
-  professorId: PropTypes.string,
+  courseId: PropTypes.number,
+  professorId: PropTypes.number,
 };
 
 const defaultProps = {
-  courseId: "",
-  professorId: "",
+  courseId: undefined,
+  professorId: undefined,
 };
 
 export default function CreateReviewButton({ courseId, professorId, ...rest }) {
   return (
     <Link
       to={{
-        pathname: "/review",
+        pathname: "/review/submit",
         state: { courseId, professorId },
       }}
     >

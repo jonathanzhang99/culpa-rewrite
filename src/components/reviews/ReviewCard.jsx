@@ -169,18 +169,33 @@ export function VotesContainer({ reviewId, votes }) {
 VotesContainer.propTypes = propTypesVotesContainer;
 
 const propTypesReviewCard = {
-  reviewType: PropTypes.oneOf(["professor", "course"]).isRequired,
+  reviewType: PropTypes.oneOf(["professor", "course", "all"]).isRequired,
   reviewHeader: PropTypes.oneOfType([
     PropTypes.shape({
       courseId: PropTypes.number.isRequired,
       courseName: PropTypes.string.isRequired,
-      courseCode: PropTypes.string.isRequired,
+      courseCallNumber: PropTypes.string.isRequired,
     }),
     PropTypes.shape({
       profId: PropTypes.number.isRequired,
       profFirstName: PropTypes.string.isRequired,
       profLastName: PropTypes.string.isRequired,
       uni: PropTypes.string.isRequired,
+      badges: PropTypes.arrayOf(PropTypes.number).isRequired,
+    }),
+    PropTypes.shape({
+      course: PropTypes.shape({
+        courseId: PropTypes.number.isRequired,
+        courseName: PropTypes.string.isRequired,
+        courseCode: PropTypes.string.isRequired,
+      }),
+      professor: PropTypes.shape({
+        profId: PropTypes.number.isRequired,
+        profFirstName: PropTypes.string.isRequired,
+        profLastName: PropTypes.string.isRequired,
+        uni: PropTypes.string.isRequired,
+        badges: PropTypes.arrayOf(PropTypes.number).isRequired,
+      }),
     }),
   ]).isRequired,
   votes: PropTypes.shape({
@@ -215,7 +230,7 @@ export default function ReviewCard({
   content,
 }) {
   return (
-    <Container style={{margin:"25px 0px"}}>
+    <Container style={{ margin: "25px 0px" }}>
       <Grid>
         <Grid.Column
           key={1}
@@ -230,16 +245,35 @@ export default function ReviewCard({
               </Message>
             )}
             <div style={{ position: "relative" }}>
-              {reviewType === 'course' ? (
+              {reviewType === "professor" && (
+                <CourseDisplayName
+                  as="header"
+                  courseCallNumber={reviewHeader.courseCallNumber}
+                  courseName={reviewHeader.courseName}
+                />
+              )}
+              {reviewType === "course" && (
                 <ProfessorDisplayName
+                  as="header"
+                  badges={reviewHeader.badges}
                   firstName={reviewHeader.profFirstName}
                   lastName={reviewHeader.profLastName}
                 />
-              ) : (
-                <CourseDisplayName
-                  courseCallNumber={reviewHeader.courseCode}
-                  courseName={reviewHeader.courseName}
-                />
+              )}
+              {reviewType === "all" && (
+                <div>
+                  <ProfessorDisplayName
+                    as="header"
+                    badges={reviewHeader.professor.badges}
+                    firstName={reviewHeader.professor.profFirstName}
+                    lastName={reviewHeader.professor.profLastName}
+                  />
+                  <CourseDisplayName
+                    as="header"
+                    courseCallNumber={reviewHeader.course.courseCode}
+                    courseName={reviewHeader.course.courseName}
+                  />
+                </div>
               )}
               <Header as="h5">{submissionDate}</Header>
               <div

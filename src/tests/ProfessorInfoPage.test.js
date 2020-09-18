@@ -11,6 +11,7 @@ describe("ProfessorSummary Component", () => {
       professorId: 1,
       firstName: "Nakul",
       lastName: "Verma",
+      badges: [1, 2],
       courses: [],
     },
     {
@@ -18,14 +19,15 @@ describe("ProfessorSummary Component", () => {
       professorId: 1,
       firstName: "Nakul",
       lastName: "Verma",
+      badges: [1, 2],
       courses: [
         {
-          courseProfessorId: 1,
+          courseId: 1,
           courseName: "Machine Learning",
           courseCallNumber: "COMS 4771",
         },
         {
-          courseProfessorId: 2,
+          courseId: 2,
           courseName: "Advanced Machine Learning",
           courseCallNumber: "COMS 4774",
         },
@@ -33,11 +35,12 @@ describe("ProfessorSummary Component", () => {
     },
   ];
   testCases.forEach(
-    ({ testName, professorId, firstName, lastName, courses }) => {
+    ({ testName, professorId, firstName, lastName, badges, courses }) => {
       test(testName, () => {
         const snapshot = render(
           <MemoryRouter>
             <ProfessorSummary
+              badges={badges}
               courses={courses}
               firstName={firstName}
               lastName={lastName}

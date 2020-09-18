@@ -17,6 +17,7 @@ describe("SearchResultsPage Components", () => {
       name: "both professors and courses found",
       testProfessorResults: [
         {
+          badges: [1, 2],
           childKey: "professor-2339",
           departments: [
             {
@@ -24,9 +25,22 @@ describe("SearchResultsPage Components", () => {
               name: "Computer Science",
             },
           ],
-          last: "false",
           id: 2339,
           title: "Nakul Verma",
+          type: "professor",
+        },
+        {
+          badges: [],
+          childKey: "professor-40",
+          departments: [
+            {
+              id: 29,
+              name: "Computer Science",
+            },
+          ],
+          last: "true",
+          id: 40,
+          title: "Lydia Chilton",
           type: "professor",
         },
       ],
@@ -43,12 +57,25 @@ describe("SearchResultsPage Components", () => {
           title: "User Interface Design",
           type: "course",
         },
+        {
+          childKey: "course-2",
+          departments: [
+            {
+              id: 6,
+              name: "Computer Science",
+            },
+          ],
+          id: 2,
+          title: "Machine Learning",
+          type: "course",
+        },
       ],
     },
     {
       name: "only professors found",
       testProfessorResults: [
         {
+          badges: [1, 2],
           childKey: "professor-2339",
           departments: [
             {
@@ -59,6 +86,20 @@ describe("SearchResultsPage Components", () => {
           last: "false",
           id: 2339,
           title: "Nakul Verma",
+          type: "professor",
+        },
+        {
+          badges: [],
+          childKey: "professor-40",
+          departments: [
+            {
+              id: 29,
+              name: "Computer Science",
+            },
+          ],
+          last: "true",
+          id: 40,
+          title: "Lydia Chilton",
           type: "professor",
         },
       ],
@@ -78,6 +119,18 @@ describe("SearchResultsPage Components", () => {
           ],
           id: 1,
           title: "User Interface Design",
+          type: "course",
+        },
+        {
+          childKey: "course-2",
+          departments: [
+            {
+              id: 6,
+              name: "Computer Science",
+            },
+          ],
+          id: 2,
+          title: "Machine Learning",
           type: "course",
         },
       ],
