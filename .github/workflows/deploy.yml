@@ -9,6 +9,8 @@ jobs:
   terraform-setup:
     name: "Terraform Setup"
     runs-on: ubuntu-latest
+    outputs:
+      public-ip: ${{ steps.get-ip.outputs.stdout }}
     steps:
       - uses: actions/checkout@v2
 
@@ -36,13 +38,8 @@ jobs:
         run: terraform apply -auto-approve
 
       - name: Get Server IP
-        run: terraform output public_ip >> public_ip.txt
-
-      - name: Upload Server IP
-        uses: actions/upload-artifact@v2
-        with:
-          name: public_ip
-          path: public_ip.txt
+        id: get-ip
+        run: terraform output public_ip
 
   deploy-build:
     name: Deploy to AWS
@@ -68,10 +65,10 @@ jobs:
       - name: Get Server IP
         uses: actions/download-artifact@v2
         with:
-          name: public_ip
+          name: public-ip
 
       - name: Set REMOTE_HOST
-        run: echo "::set-env name=REMOTE_HOST::$(cat public_ip.txt)"
+        run: echo "::set-env name=REMOTE_HOST::${{ needs.terraform-setup.outputs.public-ip }}"
 
       - name: Deploy to Server
         uses: easingthemes/ssh-deploy@v2.1.4
