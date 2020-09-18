@@ -361,4 +361,5 @@ class ReviewsLoaderTest(LoadersWritersBaseTest):
             with self.subTest(test_case):
                 res = load_review_highlight(
                     prepare_course_query_prefix(test_case['course_id']), ip)
-                self.assertCountEqual(res, test_case['expected_res'])
+                for result, expected in zip(res, test_case['expected_res']):
+                    self.assertEqual(result, expected)
