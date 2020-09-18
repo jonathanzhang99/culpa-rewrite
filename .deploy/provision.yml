@@ -80,6 +80,7 @@ packages:
   - nginx
 
 runcmd:
+  - sudo chown -R ubuntu:ubuntu /data
   - python3.7 -m pip install pipenv
   - sudo cp /run/tmp/default /etc/nginx/sites-available/default
   - sudo systemctl stop apache2
