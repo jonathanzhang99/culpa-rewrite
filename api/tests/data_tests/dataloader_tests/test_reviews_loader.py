@@ -269,6 +269,7 @@ class ReviewsLoaderTest(LoadersWritersBaseTest):
         ))
 
     def test_load_review_highlight(self):
+        self.maxDiff = None
         '''
         Test cases:
             1. Most common -> most positive/negative review
