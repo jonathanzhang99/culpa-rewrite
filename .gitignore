@@ -22,6 +22,8 @@ __pycache__/
 .env.production.local
 .env
 .vscode/
+.terraform/
+terraform.tfstate*
 
 npm-debug.log*
 yarn-debug.log*

@@ -9,7 +9,7 @@ import {
   Modal,
 } from "semantic-ui-react";
 
-import * as Inputs from "components/common/Inputs";
+import { ValidInputComponents } from "components/common/Inputs";
 
 const FORM_ERRORS = "form";
 
@@ -152,7 +152,7 @@ export default function Form({
       // If the child is a supported input, wrap in a Controller. Controller component
       // are helper functions defined in react-hook-forms and support controlled
       // components such as Semantic UI components.
-      if (Object.keys(Inputs).includes(child.type.name)) {
+      if (ValidInputComponents.includes(child.type)) {
         const { name, rules } = child.props;
         return (
           <Controller
