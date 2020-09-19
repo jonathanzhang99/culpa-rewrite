@@ -75,5 +75,5 @@ jobs:
         env:
           SSH_PRIVATE_KEY: ${{ secrets.AWS_EC2_PRIVATE_KEY }}
           SOURCE: "dist/"
-          TARGET: "/home/ubuntu"
+          TARGET: "/home/ubuntu/dist"
           REMOTE_USER: "ubuntu"

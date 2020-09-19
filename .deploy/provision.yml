@@ -11,7 +11,7 @@ write_files:
       Type=simple
       User=ubuntu
       Environment=FLASK_ENV=production
-      WorkingDirectory=/home/ubuntu
+      WorkingDirectory=/home/ubuntu/dist
       ExecStartPre=/usr/bin/python3.7 -m pipenv install
       ExecStart=/usr/bin/python3.7 -m pipenv run gunicorn -b 127.0.0.1:5000 -w 4 "api.app:create_app()"
       Restart=always
@@ -38,7 +38,7 @@ write_files:
     content: |
       [Path]
       Unit=culpa-reloader.service
-      PathChanged=/home/ubuntu/api
+      PathChanged=/home/ubuntu/dist/api
 
       [Install]
       WantedBy=multi-user.target
@@ -49,7 +49,7 @@ write_files:
         listen 80 default_server;
         listen [::]:80 default_server;
 
-        root /home/ubuntu/build;
+        root /home/ubuntu/dist/build;
 
         index index.html;
 
@@ -69,10 +69,6 @@ write_files:
           proxy_pass http://127.0.0.1:5000;
         }
       }
-
-  - path: /home/ubuntu/build/index.html
-    content: |
-      <html><body>hi this is working but nothing is here. please push from Github to initiate deploy process</body></html>
 
 packages:
   - python3.7
