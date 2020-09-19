@@ -11,9 +11,9 @@ write_files:
       Type=simple
       User=ubuntu
       Environment=FLASK_ENV=production
-      WorkingDirectory=/data
+      WorkingDirectory=/home/ubuntu
       ExecStartPre=/usr/bin/python3.7 -m pipenv install
-      ExecStart=/usr/bin/python3.7 -m pipenv run gunicorn -b 127.0.0.1:8000 -w 4 "api.app:create_app()"
+      ExecStart=/usr/bin/python3.7 -m pipenv run gunicorn -b 127.0.0.1:5000 -w 4 "api.app:create_app()"
       Restart=always
 
       [Install]
@@ -38,7 +38,7 @@ write_files:
     content: |
       [Path]
       Unit=culpa-reloader.service
-      PathChanged=/data/api
+      PathChanged=/home/ubuntu/api
 
       [Install]
       WantedBy=multi-user.target
@@ -49,7 +49,7 @@ write_files:
         listen 80 default_server;
         listen [::]:80 default_server;
 
-        root /data/build;
+        root /home/ubuntu/build;
 
         index index.html;
 
@@ -70,9 +70,9 @@ write_files:
         }
       }
 
-  - path: /data/build/index.html
+  - path: /home/ubuntu/build/index.html
     content: |
-      <html><body>hi this is working</body></html>
+      <html><body>hi this is working but nothing is here. please push from Github to initiate deploy process</body></html>
 
 packages:
   - python3.7
@@ -80,7 +80,6 @@ packages:
   - nginx
 
 runcmd:
-  - sudo chown -R ubuntu:ubuntu /data
   - python3.7 -m pip install pipenv
   - sudo cp /run/tmp/default /etc/nginx/sites-available/default
   - sudo systemctl stop apache2
