@@ -16,7 +16,7 @@ class BaseConfig():
     MYSQL_USE_DICTCURSOR = True
 
     # The default user id for all server-initiated changes
-    MYSQL_SERVER_USER_ID = 1
+    MYSQL_SERVER_USER_ID = 0
 
     # Miscellaneous
     REVIEW_DEPRECATED_THRESHOLD_DAYS = 5 * 365

@@ -73,7 +73,7 @@ class MySQL(object):
         '''
         app = app or self.app
         if not app:
-            print('UH OH ')
+            print('UH OH')
             return
 
         @app.errorhandler(IntegrityError)

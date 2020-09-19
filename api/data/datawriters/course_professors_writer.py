@@ -87,9 +87,9 @@ def add_course_professor(professor_input, course_input):
                                course_input.get('department'),
                                course_input.get('code'))
 
-    # Before inserting a new course_professor entry, verify that the unique
-    # will not be broken and return the existing course_professor_id if we
-    # would insert a duplicate.
+    # Before inserting a new course_professor entry, verify that we are not
+    # adding an existing course instance. Return the existing
+    # course_professor_id if we would insert a duplicate.
     verify_unique_course_professor_query = Query \
         .from_(course_professor) \
         .select(
