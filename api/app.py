@@ -16,11 +16,13 @@ from api.utils import register_auth_error_handlers
 def create_app(config=None):
     app = Flask(__name__)
 
-    # set the configuration using the FLASK_ENV environment variable if
+    # Set the configuration using the FLASK_ENV environment variable if
     # config not provided
     app.config.from_object(config or configs[app.env])
+    # Load any override variables from a pyfile if defined
+    app.config.from_pyfile(app.config['PYFILE_CONFIG'])
 
-    # register all blueprints here
+    # IMPORTANT: Register all blueprints here
     app.register_blueprint(auth_blueprint, url_prefix='/api/auth')
     app.register_blueprint(department_blueprint, url_prefix='/api/department')
     app.register_blueprint(professor_blueprint, url_prefix='/api/professor')

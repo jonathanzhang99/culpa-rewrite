@@ -22,6 +22,10 @@ class BaseConfig():
     REVIEW_DEPRECATED_THRESHOLD_DAYS = 5 * 365
     DEFAULT_SORT = 'newest'
 
+    # config file to store sensitive variables for use on
+    # remote server. Created in the Deploy workflow.
+    PYFILE_CONFIG = 'env_config.py'
+
 
 class ProductionConfig(BaseConfig):
     # Expires in a week
