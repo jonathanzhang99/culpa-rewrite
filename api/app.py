@@ -20,7 +20,7 @@ def create_app(config=None):
     # config not provided
     app.config.from_object(config or configs[app.env])
     # Load any override variables from a pyfile if defined
-    app.config.from_pyfile(app.config['PYFILE_CONFIG'])
+    app.config.from_pyfile(app.config['PYFILE_CONFIG'], silent=True)
 
     # IMPORTANT: Register all blueprints here
     app.register_blueprint(auth_blueprint, url_prefix='/api/auth')

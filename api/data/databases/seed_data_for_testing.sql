@@ -108,7 +108,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (0,'admin@culpa.info','culpa_server','','');
+INSERT INTO `user` VALUES (1,'admin@culpa.info','culpa_server','','');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 

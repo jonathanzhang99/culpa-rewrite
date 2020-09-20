@@ -16,7 +16,7 @@ class BaseConfig():
     MYSQL_USE_DICTCURSOR = True
 
     # The default user id for all server-initiated changes
-    MYSQL_SERVER_USER_ID = 0
+    MYSQL_SERVER_USER_ID = 1
 
     # Miscellaneous
     REVIEW_DEPRECATED_THRESHOLD_DAYS = 5 * 365
@@ -43,6 +43,10 @@ class DevelopmentConfig(BaseConfig):
 class TestingConfig(BaseConfig):
     SECRET_KEY = 'culpa_testing'
     TESTING = True
+
+    # needs to be set to None to override the default
+    # connection behavior. In tests, the database will
+    # created afresh on each run by the test runner.
     MYSQL_DATABASE_DB = None
 
 
