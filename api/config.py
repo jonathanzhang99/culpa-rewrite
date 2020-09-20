@@ -22,6 +22,10 @@ class BaseConfig():
     REVIEW_DEPRECATED_THRESHOLD_DAYS = 5 * 365
     DEFAULT_SORT = 'newest'
 
+    # config file to store sensitive variables for use on
+    # remote server. Created in the Deploy workflow.
+    PYFILE_CONFIG = 'env_config.py'
+
 
 class ProductionConfig(BaseConfig):
     # Expires in a week
@@ -39,6 +43,10 @@ class DevelopmentConfig(BaseConfig):
 class TestingConfig(BaseConfig):
     SECRET_KEY = 'culpa_testing'
     TESTING = True
+
+    # needs to be set to None to override the default
+    # connection behavior. In tests, the database will
+    # created afresh on each run by the test runner.
     MYSQL_DATABASE_DB = None
 
 
