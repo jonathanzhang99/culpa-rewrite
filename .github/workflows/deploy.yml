@@ -75,9 +75,9 @@ jobs:
           FLASK_SECRET_KEY: ${{ secrets.FLASK_SECRET_KEY }}
         run: |
           cat >> api/env_config.py <<-EOF
-            MYSQL_DATABASE_PASSWORD = '$DATABASE_PASSWORD'
-            SECRET_KEY = '$FLASK_SECRET_KEY'
-            EOF
+          MYSQL_DATABASE_PASSWORD = '$DATABASE_PASSWORD'
+          SECRET_KEY = '$FLASK_SECRET_KEY'
+          EOF
           mkdir dist
           cp -r api/ build/ Pipfile Pipfile.lock dist/
 
