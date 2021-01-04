@@ -142,7 +142,6 @@ class SearchTest(BaseTest):
                         }
                     ],
                     'id': 1,
-                    'last': 'true',
                     'title': 'Nakul Verma',
                     'type': 'professor',
                 }

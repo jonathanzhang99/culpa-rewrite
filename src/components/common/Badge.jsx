@@ -8,6 +8,8 @@ import silverNugget from "icons/silver-nugget.svg";
 
 const propTypesBadge = {
   badgeId: PropTypes.number.isRequired,
+  size: PropTypes.oneOf(["tiny", "small", "medium", "large", "huge"])
+    .isRequired,
 };
 
 /**
@@ -16,16 +18,16 @@ const propTypesBadge = {
  * 2 -> Silver Nugget
  * 3 -> Bronze Nugget
  */
-export default function Badge({ badgeId }) {
+export default function Badge({ badgeId, size }) {
   switch (badgeId) {
     case 1: {
-      return <Image avatar spaced="left" src={goldNugget} />;
+      return <Image size={size} spaced="right" src={goldNugget} />;
     }
     case 2: {
-      return <Image avatar spaced="left" src={silverNugget} />;
+      return <Image size={size} spaced="right" src={silverNugget} />;
     }
     case 3: {
-      return <Image avatar spaced="left" src={bronzeNugget} />;
+      return <Image size={size} spaced="right" src={bronzeNugget} />;
     }
     default: {
       return null;

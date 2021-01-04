@@ -50,10 +50,6 @@ def search():
             'type': 'professor',
         } for professor in professors_json]
 
-    # divides professors and courses
-    if professor_results:
-        professor_results[-1]['last'] = 'true'
-
     course_results = []
     if search_entity in ['course', 'all']:
         courses = search_course(search_query, search_limit, isAlphabetized)
@@ -68,6 +64,10 @@ def search():
             'title': course['name'],
             'type': 'course'
         } for course in courses]
+
+    # divides professors and courses
+    if professor_results and course_results:
+        professor_results[-1]['last'] = 'true'
 
     return {
         'professorResults': professor_results,

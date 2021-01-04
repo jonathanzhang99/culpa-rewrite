@@ -1,3 +1,11 @@
 /*******************************
          Site Overrides
 *******************************/
+
+.ui.button.relaxed {
+  margin: 1rem 1rem 1rem 0;
+}
+
+.ui.button.create-review-button {
+  font-size: 1.25rem;
+}

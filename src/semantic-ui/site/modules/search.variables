@@ -1,3 +1,29 @@
 /*******************************
          Site Overrides
 *******************************/
+
+/*******************************
+            Search
+*******************************/
+
+/* Result Box */
+@resultsBackground: @gray;
+
+/* Result */
+@resultDivider: none;
+@resultTextColor: @linkColor;
+
+/* Result Image */
+@resultImageFloat: none;
+@resultImageWidth: 1.5em;
+@resultImageHeight: 1.5em;
+
+/*******************************
+            States
+*******************************/
+
+/* Hover */
+@resultHoverBackground: rgba(196, 196, 196, 0.3);
+
+/* Active Result */
+@resultActiveBackground: rgba(196, 196, 196, 0.3);

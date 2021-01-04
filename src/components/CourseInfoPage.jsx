@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import { Icon, Accordion, Grid, Container } from "semantic-ui-react";
+import { Header, Icon, Accordion, Grid } from "semantic-ui-react";
 
 import { CourseDisplayName } from "components/common/CourseDisplay";
 import CreateReviewButton from "components/common/CreateReviewButton";
@@ -34,8 +34,8 @@ const propTypesCourseProfessors = {
 
 function ProfessorsList({ courseProfessors }) {
   return (
-    <>
-      <span>Professors: </span>
+    <div className="add-margin">
+      <Header className="no-margin">Professors: </Header>
       {courseProfessors.map(
         ({ badges, firstName, lastName, professorId }, index) => {
           return (
@@ -51,7 +51,7 @@ function ProfessorsList({ courseProfessors }) {
           );
         }
       )}
-    </>
+    </div>
   );
 }
 
@@ -80,7 +80,7 @@ function ProfessorsAccordion({
   courseProfessors,
 }) {
   return (
-    <Accordion>
+    <Accordion className="add-margin">
       <Accordion.Title
         active={isAccordionActive}
         onClick={() => setAccordionActive(!isAccordionActive)}
@@ -93,6 +93,22 @@ function ProfessorsAccordion({
         <CourseProfessorsGrid courseProfessors={courseProfessors} />
       </Accordion.Content>
     </Accordion>
+  );
+}
+
+function ProfessorsComponent({
+  isAccordionActive,
+  setAccordionActive,
+  courseProfessors,
+}) {
+  return courseProfessors.length > MAX_NUM_PROFESSORS_IN_LIST ? (
+    <ProfessorsAccordion
+      courseProfessors={courseProfessors}
+      isAccordionActive={isAccordionActive}
+      setAccordionActive={setAccordionActive}
+    />
+  ) : (
+    <ProfessorsList courseProfessors={courseProfessors} />
   );
 }
 
@@ -124,13 +140,13 @@ function CourseProfessorsGrid({ courseProfessors }) {
                     index
                   ) => {
                     return (
-                      <div key={professorDepartmentName}>
+                      <span key={professorDepartmentName}>
                         <DepartmentDisplayLink
                           departmentId={professorDepartmentId}
                           departmentName={professorDepartmentName}
                         />
                         {professorDepartments.length - 1 !== index ? ", " : ""}
-                      </div>
+                      </span>
                     );
                   }
                 )}
@@ -140,35 +156,6 @@ function CourseProfessorsGrid({ courseProfessors }) {
         }
       )}
     </Grid>
-  );
-}
-
-function ProfessorsComponent({
-  isAccordionActive,
-  setAccordionActive,
-  courseProfessors,
-}) {
-  return courseProfessors.length > MAX_NUM_PROFESSORS_IN_LIST ? (
-    <ProfessorsAccordion
-      courseProfessors={courseProfessors}
-      isAccordionActive={isAccordionActive}
-      setAccordionActive={setAccordionActive}
-    />
-  ) : (
-    <ProfessorsList courseProfessors={courseProfessors} />
-  );
-}
-
-const propTypesReviewCourseButton = {
-  courseId: PropTypes.number.isRequired,
-  courseName: PropTypes.string.isRequired,
-};
-
-function ReviewCourseButton({ courseId, courseName }) {
-  return (
-    <CreateReviewButton color="yellow" courseId={courseId}>
-      WRITE A REVIEW FOR {courseName}
-    </CreateReviewButton>
   );
 }
 
@@ -203,27 +190,38 @@ export function CourseInfo({
 }) {
   const [isAccordionActive, setAccordionActive] = useState(false);
   return (
+    /* use div to prevent margin collapsing */
     <>
-      <CourseDisplayName
-        as="header"
-        courseCallNumber={courseCallNumber}
-        courseName={courseName}
-      />
-      <Container>
-        <Container>
-          <span>Department: </span>
-          <DepartmentDisplayLink
-            departmentId={departmentId}
-            departmentName={departmentName}
-          />
-        </Container>
+      <div>
+        <CourseDisplayName
+          as="header"
+          courseCallNumber={courseCallNumber}
+          courseName={courseName}
+          size="huge"
+        />
+      </div>
+      <div>
+        <Header>Department: </Header>
+        <DepartmentDisplayLink
+          departmentId={departmentId}
+          departmentName={departmentName}
+        />
+      </div>
+      <div>
         <ProfessorsComponent
           courseProfessors={courseProfessors}
           isAccordionActive={isAccordionActive}
           setAccordionActive={setAccordionActive}
         />
-      </Container>
-      <ReviewCourseButton courseId={courseId} courseName={courseName} />
+      </div>
+      <div>
+        <CreateReviewButton
+          relaxed
+          color="orange"
+          courseId={courseId}
+          subject={courseName}
+        />
+      </div>
     </>
   );
 }
@@ -287,18 +285,18 @@ const propTypesDoubleCourseReviewHighlight = {
 
 function DoubleCourseReviewHighlight({ courseReviewHighlight }) {
   return (
-    <Container>
-      <Grid relaxed columns={2}>
+    <>
+      <Grid columns={2}>
         <Grid.Column>
-          <h3>Most Positive Review</h3>
+          <Header>Most Positive Review</Header>
           <CourseReviewCard review={courseReviewHighlight[0]} />
         </Grid.Column>
         <Grid.Column>
-          <h3>Most Negative Review</h3>
+          <Header>Most Negative Review</Header>
           <CourseReviewCard review={courseReviewHighlight[1]} />
         </Grid.Column>
       </Grid>
-    </Container>
+    </>
   );
 }
 
@@ -308,16 +306,16 @@ const propTypesSingleCourseReviewHighlight = {
 
 function SingleCourseReviewHighlight({ courseReviewHighlight }) {
   return (
-    <Container>
-      <Grid relaxed columns={2}>
+    <>
+      <Grid columns={2}>
         <Grid.Row>
           <Grid.Column>
-            <h3>Most Agreed Review</h3>
+            <Header>Most Agreed Review</Header>
             <CourseReviewCard review={courseReviewHighlight[0]} />
           </Grid.Column>
         </Grid.Row>
       </Grid>
-    </Container>
+    </>
   );
 }
 
@@ -420,8 +418,6 @@ ProfessorsAccordion.propTypes = propTypesProfessorsAccordion;
 ProfessorsComponent.propTypes = propTypesProfessorsAccordion;
 
 CourseProfessorsGrid.propTypes = propTypesCourseProfessors;
-
-ReviewCourseButton.propTypes = propTypesReviewCourseButton;
 
 CourseInfo.propTypes = propTypesCourseInfo;
 

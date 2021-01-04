@@ -283,6 +283,38 @@ class ReviewTest(BaseTest):
                 'badges': [],
             }
         }, {
+            'review_type': 'course',
+            'header_data': {
+                'professor_id': 12345,
+                'uni': '12345',
+                'first_name': 'John',
+                'last_name': 'Doe',
+                'badges': '[1]',
+            },
+            'expected_review_header': {
+                'profId': 12345,
+                'profFirstName': 'John',
+                'profLastName': 'Doe',
+                'uni': '12345',
+                'badges': [1],
+            }
+        }, {
+            'review_type': 'course',
+            'header_data': {
+                'professor_id': 12345,
+                'uni': '12345',
+                'first_name': 'John',
+                'last_name': 'Doe',
+                'badges': '[1, 2]',
+            },
+            'expected_review_header': {
+                'profId': 12345,
+                'profFirstName': 'John',
+                'profLastName': 'Doe',
+                'uni': '12345',
+                'badges': [1, 2],
+            }
+        }, {
             'review_type': 'professor',
             'header_data': {
                 'course_id': 12345,
@@ -318,6 +350,58 @@ class ReviewTest(BaseTest):
                     'profLastName': 'Doe',
                     'uni': 'jd2910',
                     'badges': [],
+                }
+            }
+        }, {
+            'review_type': 'all',
+            'header_data': {
+                'course_id': 1234,
+                'course_name': 'test course',
+                'course_call_number': 'test call number',
+                'prof_id': 5678,
+                'prof_first_name': 'John',
+                'prof_last_name': 'Doe',
+                'prof_uni': 'jd2910',
+                'badges': '[1]',
+            },
+            'expected_review_header': {
+                'course': {
+                    'courseId': 1234,
+                    'courseName': 'test course',
+                    'courseCode': 'test call number'
+                },
+                'professor': {
+                    'profId': 5678,
+                    'profFirstName': 'John',
+                    'profLastName': 'Doe',
+                    'uni': 'jd2910',
+                    'badges': [1],
+                }
+            }
+        }, {
+            'review_type': 'all',
+            'header_data': {
+                'course_id': 1234,
+                'course_name': 'test course',
+                'course_call_number': 'test call number',
+                'prof_id': 5678,
+                'prof_first_name': 'John',
+                'prof_last_name': 'Doe',
+                'prof_uni': 'jd2910',
+                'badges': '[1, 2]',
+            },
+            'expected_review_header': {
+                'course': {
+                    'courseId': 1234,
+                    'courseName': 'test course',
+                    'courseCode': 'test call number'
+                },
+                'professor': {
+                    'profId': 5678,
+                    'profFirstName': 'John',
+                    'profLastName': 'Doe',
+                    'uni': 'jd2910',
+                    'badges': [1, 2],
                 }
             }
         }]

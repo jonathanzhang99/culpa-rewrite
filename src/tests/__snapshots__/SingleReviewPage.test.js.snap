@@ -9,14 +9,66 @@ Object {
         class="ui fluid center aligned container"
         style="margin: 20vh;"
       >
-        <h1
-          class="ui header"
+        <div>
+          <div
+            class="ui huge header"
+          >
+            Thank you!
+          </div>
+        </div>
+        <div>
+          <div
+            class="ui header"
+          >
+            Please save your
+            <span
+              style="color: rgb(0, 78, 141);"
+            >
+               Review ID: 
+              12345
+               
+            </span>
+            in case you need to refer to your submission in the future.
+          </div>
+        </div>
+        <div>
+          <a
+            href="/review/submit"
+          >
+            <button
+              class="ui orange huge button relaxed"
+            >
+              WRITE ANOTHER REVIEW
+            </button>
+          </a>
+          <a
+            href="/"
+          >
+            <button
+              class="ui blue huge button relaxed"
+            >
+              BACK TO HOMEPAGE
+            </button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="ui fluid center aligned container"
+      style="margin: 20vh;"
+    >
+      <div>
+        <div
+          class="ui huge header"
         >
           Thank you!
-        </h1>
-        <h3
+        </div>
+      </div>
+      <div>
+        <div
           class="ui header"
-          style="line-height: 30px; margin: 30px;"
         >
           Please save your
           <span
@@ -27,12 +79,14 @@ Object {
              
           </span>
           in case you need to refer to your submission in the future.
-        </h3>
+        </div>
+      </div>
+      <div>
         <a
           href="/review/submit"
         >
           <button
-            class="ui orange medium button"
+            class="ui orange huge button relaxed"
           >
             WRITE ANOTHER REVIEW
           </button>
@@ -41,56 +95,12 @@ Object {
           href="/"
         >
           <button
-            class="ui blue medium button"
+            class="ui blue huge button relaxed"
           >
             BACK TO HOMEPAGE
           </button>
         </a>
       </div>
-    </div>
-  </body>,
-  "container": <div>
-    <div
-      class="ui fluid center aligned container"
-      style="margin: 20vh;"
-    >
-      <h1
-        class="ui header"
-      >
-        Thank you!
-      </h1>
-      <h3
-        class="ui header"
-        style="line-height: 30px; margin: 30px;"
-      >
-        Please save your
-        <span
-          style="color: rgb(0, 78, 141);"
-        >
-           Review ID: 
-          12345
-           
-        </span>
-        in case you need to refer to your submission in the future.
-      </h3>
-      <a
-        href="/review/submit"
-      >
-        <button
-          class="ui orange medium button"
-        >
-          WRITE ANOTHER REVIEW
-        </button>
-      </a>
-      <a
-        href="/"
-      >
-        <button
-          class="ui blue medium button"
-        >
-          BACK TO HOMEPAGE
-        </button>
-      </a>
     </div>
   </div>,
   "debug": [Function],

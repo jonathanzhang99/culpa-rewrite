@@ -6,7 +6,7 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="ui header"
+        class="ui huge header"
       >
         Showing search results for 
         <em>
@@ -18,7 +18,7 @@ Object {
         class="ui divider"
       />
       <div
-        class="ui header"
+        class="ui huge header"
       >
          Professors 
       </div>
@@ -34,18 +34,25 @@ Object {
             <a
               href="/professor/2339"
             >
-              <span>
+              <span
+                class=""
+              >
                 Nakul Verma
               </span>
             </a>
-            <img
-              class="ui avatar left spaced image"
-              src="gold-nugget.svg"
-            />
-            <img
-              class="ui avatar left spaced image"
-              src="silver-nugget.svg"
-            />
+            <span>
+               
+              <img
+                class="ui medium right spaced image"
+                src="gold-nugget.svg"
+              />
+            </span>
+            <span>
+              <img
+                class="ui medium right spaced image"
+                src="silver-nugget.svg"
+              />
+            </span>
           </div>
           <div
             class="ten wide column"
@@ -54,10 +61,10 @@ Object {
               <a
                 href="/department/29"
               >
-                <span>
-                   
+                <span
+                  class=""
+                >
                   Computer Science
-                   
                 </span>
               </a>
               
@@ -73,7 +80,9 @@ Object {
             <a
               href="/professor/40"
             >
-              <span>
+              <span
+                class=""
+              >
                 Lydia Chilton
               </span>
             </a>
@@ -85,10 +94,10 @@ Object {
               <a
                 href="/department/29"
               >
-                <span>
-                   
+                <span
+                  class=""
+                >
                   Computer Science
-                   
                 </span>
               </a>
               
@@ -97,7 +106,10 @@ Object {
         </div>
       </div>
       <div
-        class="ui header"
+        class="ui hidden divider"
+      />
+      <div
+        class="ui huge header"
       >
          Courses 
       </div>
@@ -113,7 +125,9 @@ Object {
             <a
               href="/course/1"
             >
-              <span>
+              <span
+                class=""
+              >
                 
                  
                 User Interface Design
@@ -127,10 +141,10 @@ Object {
               <a
                 href="/department/6"
               >
-                <span>
-                   
+                <span
+                  class=""
+                >
                   Computer Science
-                   
                 </span>
               </a>
               
@@ -146,7 +160,9 @@ Object {
             <a
               href="/course/2"
             >
-              <span>
+              <span
+                class=""
+              >
                 
                  
                 Machine Learning
@@ -160,10 +176,10 @@ Object {
               <a
                 href="/department/6"
               >
-                <span>
-                   
+                <span
+                  class=""
+                >
                   Computer Science
-                   
                 </span>
               </a>
               
@@ -175,7 +191,7 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="ui header"
+      class="ui huge header"
     >
       Showing search results for 
       <em>
@@ -187,7 +203,7 @@ Object {
       class="ui divider"
     />
     <div
-      class="ui header"
+      class="ui huge header"
     >
        Professors 
     </div>
@@ -203,18 +219,25 @@ Object {
           <a
             href="/professor/2339"
           >
-            <span>
+            <span
+              class=""
+            >
               Nakul Verma
             </span>
           </a>
-          <img
-            class="ui avatar left spaced image"
-            src="gold-nugget.svg"
-          />
-          <img
-            class="ui avatar left spaced image"
-            src="silver-nugget.svg"
-          />
+          <span>
+             
+            <img
+              class="ui medium right spaced image"
+              src="gold-nugget.svg"
+            />
+          </span>
+          <span>
+            <img
+              class="ui medium right spaced image"
+              src="silver-nugget.svg"
+            />
+          </span>
         </div>
         <div
           class="ten wide column"
@@ -223,10 +246,10 @@ Object {
             <a
               href="/department/29"
             >
-              <span>
-                 
+              <span
+                class=""
+              >
                 Computer Science
-                 
               </span>
             </a>
             
@@ -242,7 +265,9 @@ Object {
           <a
             href="/professor/40"
           >
-            <span>
+            <span
+              class=""
+            >
               Lydia Chilton
             </span>
           </a>
@@ -254,10 +279,10 @@ Object {
             <a
               href="/department/29"
             >
-              <span>
-                 
+              <span
+                class=""
+              >
                 Computer Science
-                 
               </span>
             </a>
             
@@ -266,7 +291,10 @@ Object {
       </div>
     </div>
     <div
-      class="ui header"
+      class="ui hidden divider"
+    />
+    <div
+      class="ui huge header"
     >
        Courses 
     </div>
@@ -282,7 +310,9 @@ Object {
           <a
             href="/course/1"
           >
-            <span>
+            <span
+              class=""
+            >
               
                
               User Interface Design
@@ -296,10 +326,10 @@ Object {
             <a
               href="/department/6"
             >
-              <span>
-                 
+              <span
+                class=""
+              >
                 Computer Science
-                 
               </span>
             </a>
             
@@ -315,7 +345,9 @@ Object {
           <a
             href="/course/2"
           >
-            <span>
+            <span
+              class=""
+            >
               
                
               Machine Learning
@@ -329,10 +361,10 @@ Object {
             <a
               href="/department/6"
             >
-              <span>
-                 
+              <span
+                class=""
+              >
                 Computer Science
-                 
               </span>
             </a>
             
@@ -401,7 +433,7 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="ui header"
+        class="ui huge header"
       >
         Showing search results for 
         <em>
@@ -413,7 +445,7 @@ Object {
         class="ui divider"
       />
       <div
-        class="ui header"
+        class="ui huge header"
       >
          Professors 
       </div>
@@ -421,7 +453,10 @@ Object {
          No result found 
       </p>
       <div
-        class="ui header"
+        class="ui hidden divider"
+      />
+      <div
+        class="ui huge header"
       >
          Courses 
       </div>
@@ -432,7 +467,7 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="ui header"
+      class="ui huge header"
     >
       Showing search results for 
       <em>
@@ -444,7 +479,7 @@ Object {
       class="ui divider"
     />
     <div
-      class="ui header"
+      class="ui huge header"
     >
        Professors 
     </div>
@@ -452,7 +487,10 @@ Object {
        No result found 
     </p>
     <div
-      class="ui header"
+      class="ui hidden divider"
+    />
+    <div
+      class="ui huge header"
     >
        Courses 
     </div>
@@ -520,7 +558,7 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="ui header"
+        class="ui huge header"
       >
         Showing search results for 
         <em>
@@ -532,7 +570,7 @@ Object {
         class="ui divider"
       />
       <div
-        class="ui header"
+        class="ui huge header"
       >
          Professors 
       </div>
@@ -540,7 +578,10 @@ Object {
          No result found 
       </p>
       <div
-        class="ui header"
+        class="ui hidden divider"
+      />
+      <div
+        class="ui huge header"
       >
          Courses 
       </div>
@@ -556,7 +597,9 @@ Object {
             <a
               href="/course/1"
             >
-              <span>
+              <span
+                class=""
+              >
                 
                  
                 User Interface Design
@@ -570,10 +613,10 @@ Object {
               <a
                 href="/department/6"
               >
-                <span>
-                   
+                <span
+                  class=""
+                >
                   Computer Science
-                   
                 </span>
               </a>
               
@@ -589,7 +632,9 @@ Object {
             <a
               href="/course/2"
             >
-              <span>
+              <span
+                class=""
+              >
                 
                  
                 Machine Learning
@@ -603,10 +648,10 @@ Object {
               <a
                 href="/department/6"
               >
-                <span>
-                   
+                <span
+                  class=""
+                >
                   Computer Science
-                   
                 </span>
               </a>
               
@@ -618,7 +663,7 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="ui header"
+      class="ui huge header"
     >
       Showing search results for 
       <em>
@@ -630,7 +675,7 @@ Object {
       class="ui divider"
     />
     <div
-      class="ui header"
+      class="ui huge header"
     >
        Professors 
     </div>
@@ -638,7 +683,10 @@ Object {
        No result found 
     </p>
     <div
-      class="ui header"
+      class="ui hidden divider"
+    />
+    <div
+      class="ui huge header"
     >
        Courses 
     </div>
@@ -654,7 +702,9 @@ Object {
           <a
             href="/course/1"
           >
-            <span>
+            <span
+              class=""
+            >
               
                
               User Interface Design
@@ -668,10 +718,10 @@ Object {
             <a
               href="/department/6"
             >
-              <span>
-                 
+              <span
+                class=""
+              >
                 Computer Science
-                 
               </span>
             </a>
             
@@ -687,7 +737,9 @@ Object {
           <a
             href="/course/2"
           >
-            <span>
+            <span
+              class=""
+            >
               
                
               Machine Learning
@@ -701,10 +753,10 @@ Object {
             <a
               href="/department/6"
             >
-              <span>
-                 
+              <span
+                class=""
+              >
                 Computer Science
-                 
               </span>
             </a>
             
@@ -773,7 +825,7 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="ui header"
+        class="ui huge header"
       >
         Showing search results for 
         <em>
@@ -785,7 +837,7 @@ Object {
         class="ui divider"
       />
       <div
-        class="ui header"
+        class="ui huge header"
       >
          Professors 
       </div>
@@ -801,18 +853,25 @@ Object {
             <a
               href="/professor/2339"
             >
-              <span>
+              <span
+                class=""
+              >
                 Nakul Verma
               </span>
             </a>
-            <img
-              class="ui avatar left spaced image"
-              src="gold-nugget.svg"
-            />
-            <img
-              class="ui avatar left spaced image"
-              src="silver-nugget.svg"
-            />
+            <span>
+               
+              <img
+                class="ui medium right spaced image"
+                src="gold-nugget.svg"
+              />
+            </span>
+            <span>
+              <img
+                class="ui medium right spaced image"
+                src="silver-nugget.svg"
+              />
+            </span>
           </div>
           <div
             class="ten wide column"
@@ -821,10 +880,10 @@ Object {
               <a
                 href="/department/29"
               >
-                <span>
-                   
+                <span
+                  class=""
+                >
                   Computer Science
-                   
                 </span>
               </a>
               
@@ -840,7 +899,9 @@ Object {
             <a
               href="/professor/40"
             >
-              <span>
+              <span
+                class=""
+              >
                 Lydia Chilton
               </span>
             </a>
@@ -852,10 +913,10 @@ Object {
               <a
                 href="/department/29"
               >
-                <span>
-                   
+                <span
+                  class=""
+                >
                   Computer Science
-                   
                 </span>
               </a>
               
@@ -864,7 +925,10 @@ Object {
         </div>
       </div>
       <div
-        class="ui header"
+        class="ui hidden divider"
+      />
+      <div
+        class="ui huge header"
       >
          Courses 
       </div>
@@ -875,7 +939,7 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="ui header"
+      class="ui huge header"
     >
       Showing search results for 
       <em>
@@ -887,7 +951,7 @@ Object {
       class="ui divider"
     />
     <div
-      class="ui header"
+      class="ui huge header"
     >
        Professors 
     </div>
@@ -903,18 +967,25 @@ Object {
           <a
             href="/professor/2339"
           >
-            <span>
+            <span
+              class=""
+            >
               Nakul Verma
             </span>
           </a>
-          <img
-            class="ui avatar left spaced image"
-            src="gold-nugget.svg"
-          />
-          <img
-            class="ui avatar left spaced image"
-            src="silver-nugget.svg"
-          />
+          <span>
+             
+            <img
+              class="ui medium right spaced image"
+              src="gold-nugget.svg"
+            />
+          </span>
+          <span>
+            <img
+              class="ui medium right spaced image"
+              src="silver-nugget.svg"
+            />
+          </span>
         </div>
         <div
           class="ten wide column"
@@ -923,10 +994,10 @@ Object {
             <a
               href="/department/29"
             >
-              <span>
-                 
+              <span
+                class=""
+              >
                 Computer Science
-                 
               </span>
             </a>
             
@@ -942,7 +1013,9 @@ Object {
           <a
             href="/professor/40"
           >
-            <span>
+            <span
+              class=""
+            >
               Lydia Chilton
             </span>
           </a>
@@ -954,10 +1027,10 @@ Object {
             <a
               href="/department/29"
             >
-              <span>
-                 
+              <span
+                class=""
+              >
                 Computer Science
-                 
               </span>
             </a>
             
@@ -966,7 +1039,10 @@ Object {
       </div>
     </div>
     <div
-      class="ui header"
+      class="ui hidden divider"
+    />
+    <div
+      class="ui huge header"
     >
        Courses 
     </div>

@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import React from "react";
 import { useParams } from "react-router-dom";
-import { Grid, Header } from "semantic-ui-react";
+import { Divider, Grid, Header } from "semantic-ui-react";
 
 import { CourseDisplayLink } from "components/common/CourseDisplay";
 import { DepartmentDisplayName } from "components/common/DepartmentDisplay";
@@ -23,7 +23,7 @@ export function DepartmentCourseColumn({ departmentCourses }) {
   return (
     <Grid.Column>
       <Grid.Row key="courses">
-        <Header>Courses</Header>
+        <Header size="huge">Courses</Header>
       </Grid.Row>
       {departmentCourses.map(({ courseId, courseName }) => {
         return (
@@ -51,7 +51,7 @@ export function DepartmentProfessorColumn({ departmentProfessors }) {
   return (
     <Grid.Column>
       <Grid.Row key="professors">
-        <Header>Professors</Header>
+        <Header size="huge">Professors</Header>
       </Grid.Row>
       {departmentProfessors.map(
         ({ professorId, firstName, lastName, badges }) => {
@@ -95,7 +95,12 @@ export function DepartmentInfo({
 }) {
   return (
     <>
-      <DepartmentDisplayName as="header" departmentName={departmentName} />
+      <DepartmentDisplayName
+        as="header"
+        departmentName={departmentName}
+        size="huge"
+      />
+      <Divider />
       <Grid columns={2}>
         <DepartmentCourseColumn departmentCourses={departmentCourses} />
         <DepartmentProfessorColumn

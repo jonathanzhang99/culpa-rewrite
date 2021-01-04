@@ -6,7 +6,7 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="ui top fixed ui center aligned middle aligned grid menu"
+        class="ui top fixed ui center aligned middle aligned grid navbar menu"
       >
         <div
           class="one wide column"
@@ -26,9 +26,10 @@ Object {
           <a
             href="/"
           >
-            <h1>
-               CULPA 
-            </h1>
+            <img
+              class="ui image"
+              src="culpa.svg"
+            />
           </a>
         </div>
         <div
@@ -98,24 +99,22 @@ Object {
             href="/review/submit"
           >
             <button
-              class="ui yellow fluid button"
+              class="ui orange fluid button  create-review-button"
             >
-              WRITE A REVIEW
+              WRITE A REVIEW 
+              
             </button>
           </a>
         </div>
       </div>
       <div
-        class="ui container"
+        class="ui container root-container"
       >
         <div
-          style="height: 120px;"
-        />
-        <div
-          class="ui compact vertical ui overlay left thin sidebar menu"
+          class="ui borderless vertical ui overlay left sidebar menu"
         >
           <a
-            class="header item"
+            class="item sidebar-header"
             href="/"
           >
             WELCOME TO CULPA!
@@ -125,30 +124,50 @@ Object {
             href="/"
           >
             Home
+            <i
+              aria-hidden="true"
+              class="blue angle right large icon"
+            />
           </a>
           <a
             class="item"
             href="/about"
           >
             About
+            <i
+              aria-hidden="true"
+              class="blue angle right large icon"
+            />
           </a>
           <a
             class="item"
             href="/departments"
           >
             Departments
+            <i
+              aria-hidden="true"
+              class="blue angle right large icon"
+            />
           </a>
           <a
             class="item"
             href="/join-the-team"
           >
             Join the Team
+            <i
+              aria-hidden="true"
+              class="blue angle right large icon"
+            />
           </a>
           <a
             class="item"
             href="/login"
           >
             Login
+            <i
+              aria-hidden="true"
+              class="blue angle right large icon"
+            />
           </a>
         </div>
         <div
@@ -159,11 +178,69 @@ Object {
           />
         </div>
       </div>
+      <div
+        class="ui middle aligned two column grid footer"
+      >
+        <div
+          class="center aligned column"
+        >
+          <img
+            class="ui centered image"
+            src="culpa.svg"
+          />
+          <i
+            aria-hidden="true"
+            class="blue copyright outline small icon"
+          />
+          <span
+            style="color: rgb(130, 183, 232);"
+          >
+            1997-2020
+          </span>
+        </div>
+        <div
+          class="left aligned column"
+        >
+          <div
+            class="row"
+          >
+            <a
+              class="footer-link"
+              href="/"
+            >
+              About
+            </a>
+          </div>
+          <div
+            class="row"
+          >
+            <a
+              class="footer-link"
+              href="/join-the-team"
+            >
+              Join The Team
+            </a>
+          </div>
+          <div
+            class="row"
+          >
+            <i
+              aria-hidden="true"
+              class="blue mail small icon"
+            />
+            <span
+              class="footer-link"
+            >
+              admin@culpa.info
+            </span>
+          </div>
+        </div>
+      </div>
     </div>
   </body>,
   "container": <div>
     <div
-      class="ui top fixed ui center aligned middle aligned grid menu"
+      class="ui top fixed ui center aligned middle aligned grid navbar menu"
     >
       <div
         class="one wide column"
@@ -183,9 +260,10 @@ Object {
         <a
           href="/"
         >
-          <h1>
-             CULPA 
-          </h1>
+          <img
+            class="ui image"
+            src="culpa.svg"
+          />
         </a>
       </div>
       <div
@@ -255,24 +333,22 @@ Object {
           href="/review/submit"
         >
           <button
-            class="ui yellow fluid button"
+            class="ui orange fluid button  create-review-button"
           >
-            WRITE A REVIEW
+            WRITE A REVIEW 
+            
           </button>
         </a>
       </div>
     </div>
     <div
-      class="ui container"
+      class="ui container root-container"
     >
       <div
-        style="height: 120px;"
-      />
-      <div
-        class="ui compact vertical ui overlay left thin sidebar menu"
+        class="ui borderless vertical ui overlay left sidebar menu"
       >
         <a
-          class="header item"
+          class="item sidebar-header"
           href="/"
         >
           WELCOME TO CULPA!
@@ -282,30 +358,50 @@ Object {
           href="/"
         >
           Home
+          <i
+            aria-hidden="true"
+            class="blue angle right large icon"
+          />
         </a>
         <a
           class="item"
           href="/about"
         >
           About
+          <i
+            aria-hidden="true"
+            class="blue angle right large icon"
+          />
         </a>
         <a
           class="item"
           href="/departments"
         >
           Departments
+          <i
+            aria-hidden="true"
+            class="blue angle right large icon"
+          />
         </a>
         <a
           class="item"
           href="/join-the-team"
         >
           Join the Team
+          <i
+            aria-hidden="true"
+            class="blue angle right large icon"
+          />
         </a>
         <a
           class="item"
           href="/login"
         >
           Login
+          <i
+            aria-hidden="true"
+            class="blue angle right large icon"
+          />
         </a>
       </div>
       <div
@@ -314,6 +410,64 @@ Object {
         <div
           class="pusher"
         />
+      </div>
+    </div>
+    <div
+      class="ui middle aligned two column grid footer"
+    >
+      <div
+        class="center aligned column"
+      >
+        <img
+          class="ui centered image"
+          src="culpa.svg"
+        />
+        <i
+          aria-hidden="true"
+          class="blue copyright outline small icon"
+        />
+        <span
+          style="color: rgb(130, 183, 232);"
+        >
+          1997-2020
+        </span>
+      </div>
+      <div
+        class="left aligned column"
+      >
+        <div
+          class="row"
+        >
+          <a
+            class="footer-link"
+            href="/"
+          >
+            About
+          </a>
+        </div>
+        <div
+          class="row"
+        >
+          <a
+            class="footer-link"
+            href="/join-the-team"
+          >
+            Join The Team
+          </a>
+        </div>
+        <div
+          class="row"
+        >
+          <i
+            aria-hidden="true"
+            class="blue mail small icon"
+          />
+          <span
+            class="footer-link"
+          >
+            admin@culpa.info
+          </span>
+        </div>
       </div>
     </div>
   </div>,

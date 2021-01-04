@@ -1,3 +1,14 @@
 /*******************************
     User Variable Overrides
 *******************************/
+
+/*-------------------
+       Variations
+--------------------*/
+
+/* Size */
+@tinyWidth: unit(@h5, em);
+@smallWidth: unit(@h4, em);
+@mediumWidth: unit(@h3, em);
+@largeWidth: unit(@h2, em);
+@hugeWidth: unit(@h1, em);

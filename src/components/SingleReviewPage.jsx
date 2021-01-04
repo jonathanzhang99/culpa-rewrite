@@ -15,28 +15,28 @@ const propTypesThankYouTextBox = {
 export function ThankYouTextBox({ reviewId }) {
   return (
     <Container fluid style={{ margin: "20vh" }} textAlign="center">
-      <Header as="h1">Thank you!</Header>
-      <Header
-        as="h3"
-        style={{
-          lineHeight: "30px",
-          margin: "30px",
-        }}
-      >
-        Please save your
-        <span style={{ color: "#004E8D" }}> Review ID: {reviewId} </span>
-        in case you need to refer to your submission in the future.
-      </Header>
-      <Link to="/review/submit">
-        <Button color="orange" size="medium">
-          WRITE ANOTHER REVIEW
-        </Button>
-      </Link>
-      <Link to="/">
-        <Button color="blue" size="medium">
-          BACK TO HOMEPAGE
-        </Button>
-      </Link>
+      <div>
+        <Header size="huge">Thank you!</Header>
+      </div>
+      <div>
+        <Header>
+          Please save your
+          <span style={{ color: "#004E8D" }}> Review ID: {reviewId} </span>
+          in case you need to refer to your submission in the future.
+        </Header>
+      </div>
+      <div>
+        <Link to="/review/submit">
+          <Button className="relaxed" color="orange" size="huge">
+            WRITE ANOTHER REVIEW
+          </Button>
+        </Link>
+        <Link to="/">
+          <Button className="relaxed" color="blue" size="huge">
+            BACK TO HOMEPAGE
+          </Button>
+        </Link>
+      </div>
     </Container>
   );
 }
@@ -59,7 +59,7 @@ export default function SingleReviewPage() {
   }
 
   return (
-    <div>
+    <>
       {flag === "approved" ? (
         <ReviewCard
           content={review.content}
@@ -75,6 +75,6 @@ export default function SingleReviewPage() {
       ) : (
         review.reviewId && <ThankYouTextBox reviewId={review.reviewId} />
       )}
-    </div>
+    </>
   );
 }

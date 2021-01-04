@@ -1,3 +1,7 @@
 /*******************************
          Site Overrides
 *******************************/
+
+.last-professor-divider {
+  border-bottom: 3px solid @darkNavy;
+}

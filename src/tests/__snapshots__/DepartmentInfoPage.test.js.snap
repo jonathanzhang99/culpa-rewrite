@@ -6,12 +6,13 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="ui header"
+        class="ui huge header"
       >
-         
         Computer Science
-         
       </div>
+      <div
+        class="ui divider"
+      />
       <div
         class="ui two column grid"
       >
@@ -22,7 +23,7 @@ Object {
             class="row"
           >
             <div
-              class="ui header"
+              class="ui huge header"
             >
               Courses
             </div>
@@ -33,7 +34,9 @@ Object {
             <a
               href="/course/1"
             >
-              <span>
+              <span
+                class=""
+              >
                 
                  
                 User Interface Design
@@ -46,7 +49,9 @@ Object {
             <a
               href="/course/2"
             >
-              <span>
+              <span
+                class=""
+              >
                 
                  
                 Machine Learning
@@ -61,7 +66,7 @@ Object {
             class="row"
           >
             <div
-              class="ui header"
+              class="ui huge header"
             >
               Professors
             </div>
@@ -72,10 +77,10 @@ Object {
             <a
               href="/professor/1"
             >
-              <span>
-                Lydia
-                 
-                Chilton
+              <span
+                class=""
+              >
+                Lydia Chilton
               </span>
             </a>
           </div>
@@ -85,20 +90,25 @@ Object {
             <a
               href="/professor/2"
             >
-              <span>
-                Nakul
-                 
-                Verma
+              <span
+                class=""
+              >
+                Nakul Verma
               </span>
             </a>
-            <img
-              class="ui avatar left spaced image"
-              src="gold-nugget.svg"
-            />
-            <img
-              class="ui avatar left spaced image"
-              src="silver-nugget.svg"
-            />
+            <span>
+               
+              <img
+                class="ui medium right spaced image"
+                src="gold-nugget.svg"
+              />
+            </span>
+            <span>
+              <img
+                class="ui medium right spaced image"
+                src="silver-nugget.svg"
+              />
+            </span>
           </div>
         </div>
       </div>
@@ -106,12 +116,13 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="ui header"
+      class="ui huge header"
     >
-       
       Computer Science
-       
     </div>
+    <div
+      class="ui divider"
+    />
     <div
       class="ui two column grid"
     >
@@ -122,7 +133,7 @@ Object {
           class="row"
         >
           <div
-            class="ui header"
+            class="ui huge header"
           >
             Courses
           </div>
@@ -133,7 +144,9 @@ Object {
           <a
             href="/course/1"
           >
-            <span>
+            <span
+              class=""
+            >
               
                
               User Interface Design
@@ -146,7 +159,9 @@ Object {
           <a
             href="/course/2"
           >
-            <span>
+            <span
+              class=""
+            >
               
                
               Machine Learning
@@ -161,7 +176,7 @@ Object {
           class="row"
         >
           <div
-            class="ui header"
+            class="ui huge header"
           >
             Professors
           </div>
@@ -172,10 +187,10 @@ Object {
           <a
             href="/professor/1"
           >
-            <span>
-              Lydia
-               
-              Chilton
+            <span
+              class=""
+            >
+              Lydia Chilton
             </span>
           </a>
         </div>
@@ -185,20 +200,25 @@ Object {
           <a
             href="/professor/2"
           >
-            <span>
-              Nakul
-               
-              Verma
+            <span
+              class=""
+            >
+              Nakul Verma
             </span>
           </a>
-          <img
-            class="ui avatar left spaced image"
-            src="gold-nugget.svg"
-          />
-          <img
-            class="ui avatar left spaced image"
-            src="silver-nugget.svg"
-          />
+          <span>
+             
+            <img
+              class="ui medium right spaced image"
+              src="gold-nugget.svg"
+            />
+          </span>
+          <span>
+            <img
+              class="ui medium right spaced image"
+              src="silver-nugget.svg"
+            />
+          </span>
         </div>
       </div>
     </div>
@@ -263,12 +283,13 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="ui header"
+        class="ui huge header"
       >
-         
         Computer Science
-         
       </div>
+      <div
+        class="ui divider"
+      />
       <div
         class="ui two column grid"
       >
@@ -279,7 +300,7 @@ Object {
             class="row"
           >
             <div
-              class="ui header"
+              class="ui huge header"
             >
               Courses
             </div>
@@ -292,7 +313,7 @@ Object {
             class="row"
           >
             <div
-              class="ui header"
+              class="ui huge header"
             >
               Professors
             </div>
@@ -303,12 +324,13 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="ui header"
+      class="ui huge header"
     >
-       
       Computer Science
-       
     </div>
+    <div
+      class="ui divider"
+    />
     <div
       class="ui two column grid"
     >
@@ -319,7 +341,7 @@ Object {
           class="row"
         >
           <div
-            class="ui header"
+            class="ui huge header"
           >
             Courses
           </div>
@@ -332,7 +354,7 @@ Object {
           class="row"
         >
           <div
-            class="ui header"
+            class="ui huge header"
           >
             Professors
           </div>

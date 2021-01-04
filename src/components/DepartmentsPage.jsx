@@ -24,7 +24,7 @@ export function Departments({ departments }) {
   return (
     // TODO: Add styling into two columns with alphabetical sections
     <>
-      <Header>List of Departments</Header>
+      <Header size="huge">List of Departments</Header>
       <List>
         {departments.map(({ departmentId, departmentName }) => {
           return (
