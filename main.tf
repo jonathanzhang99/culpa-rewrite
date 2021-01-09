@@ -143,7 +143,7 @@ module "db" {
   engine            = "mysql"
   engine_version    = "8.0.17"
   instance_class    = "db.t2.micro"
-  allocated_storage = 5
+  allocated_storage = 10
   storage_encrypted = false
 
   name     = "culpa_prod_db"
@@ -155,8 +155,6 @@ module "db" {
 
   maintenance_window = "Mon:02:00-Mon:04:00"
   backup_window      = "04:00-06:00"
-
-  multi_az = true
 
   # disable backups to create DB faster
   backup_retention_period = 0

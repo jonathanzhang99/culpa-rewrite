@@ -1,0 +1,23 @@
+/*******************************
+         Site Overrides
+*******************************/
+
+.ui.header {
+  display: inline-block;
+}
+
+.ui.header.no-margin {
+  margin: 0 0.5em 0 0;
+}
+
+.ui.header.culpa-description {
+  font-weight: normal;
+}
+
+.ui.header.nugget-description {
+  color: @darkNavy;
+}
+
+.ui.header.review-card-header {
+  color: @linkColor;
+} 

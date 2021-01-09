@@ -1,0 +1,51 @@
+/*******************************
+         Site Overrides
+*******************************/
+
+.ui.grid.add-margin {
+  margin: 1rem 0;
+}
+
+.ui.grid.fluid {
+  width: 100%;
+}
+
+/*-----------------------------
+            Footer
+-----------------------------*/
+
+.ui.grid.footer {
+  background-color: @darkNavy;
+  font-family: "Source Code Pro", Arial, Helvetica, sans-serif;
+  height: 150px;
+}
+
+/*-----------------------------
+          ReviewCard
+-----------------------------*/
+
+.ui.grid > .column.review-card-left-column {
+  background-color: @gray;
+  padding: 25px;
+  width: 90%;
+}
+
+.ui.grid > .column.review-card-right-column {
+  background-color: @navy;
+  padding-top: 25px;
+  width: 10%;
+}
+
+/*-----------------------------
+        VotesContainer
+-----------------------------*/
+
+.ui.grid > .row.votes-container-icon-row {
+  padding-bottom: 0;
+}
+
+.ui.grid > .row.votes-container-number-row {
+  font-weight: @bold;
+  color: white;
+  padding: 0;
+}

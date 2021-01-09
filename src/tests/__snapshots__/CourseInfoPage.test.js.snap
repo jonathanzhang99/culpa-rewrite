@@ -5,89 +5,105 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
+      <div>
+        <div
+          class="ui huge header"
+        >
+          COMS 4771
+           
+          Machine Learning
+        </div>
+      </div>
+      <div>
+        <div
+          class="ui header"
+        >
+          Department: 
+        </div>
+        <a
+          href="/department/1"
+        >
+          <span
+            class=""
+          >
+            Computer Science
+          </span>
+        </a>
+      </div>
+      <div>
+        <div
+          class="add-margin"
+        >
+          <div
+            class="ui header no-margin"
+          >
+            Professors: 
+          </div>
+        </div>
+      </div>
+      <div>
+        <a
+          href="/review/submit"
+        >
+          <button
+            class="ui orange button relaxed create-review-button"
+          >
+            WRITE A REVIEW 
+            FOR MACHINE LEARNING
+          </button>
+        </a>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div>
       <div
-        class="ui header"
+        class="ui huge header"
       >
         COMS 4771
          
         Machine Learning
       </div>
+    </div>
+    <div>
       <div
-        class="ui container"
+        class="ui header"
+      >
+        Department: 
+      </div>
+      <a
+        href="/department/1"
+      >
+        <span
+          class=""
+        >
+          Computer Science
+        </span>
+      </a>
+    </div>
+    <div>
+      <div
+        class="add-margin"
       >
         <div
-          class="ui container"
+          class="ui header no-margin"
         >
-          <span>
-            Department: 
-          </span>
-          <a
-            href="/department/1"
-          >
-            <span>
-               
-              Computer Science
-               
-            </span>
-          </a>
-        </div>
-        <span>
           Professors: 
-        </span>
+        </div>
       </div>
+    </div>
+    <div>
       <a
         href="/review/submit"
       >
         <button
-          class="ui yellow button"
+          class="ui orange button relaxed create-review-button"
         >
-          WRITE A REVIEW FOR 
-          Machine Learning
+          WRITE A REVIEW 
+          FOR MACHINE LEARNING
         </button>
       </a>
     </div>
-  </body>,
-  "container": <div>
-    <div
-      class="ui header"
-    >
-      COMS 4771
-       
-      Machine Learning
-    </div>
-    <div
-      class="ui container"
-    >
-      <div
-        class="ui container"
-      >
-        <span>
-          Department: 
-        </span>
-        <a
-          href="/department/1"
-        >
-          <span>
-             
-            Computer Science
-             
-          </span>
-        </a>
-      </div>
-      <span>
-        Professors: 
-      </span>
-    </div>
-    <a
-      href="/review/submit"
-    >
-      <button
-        class="ui yellow button"
-      >
-        WRITE A REVIEW FOR 
-        Machine Learning
-      </button>
-    </a>
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],
@@ -148,129 +164,155 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
+      <div>
+        <div
+          class="ui huge header"
+        >
+          COMS 4771
+           
+          Machine Learning
+        </div>
+      </div>
+      <div>
+        <div
+          class="ui header"
+        >
+          Department: 
+        </div>
+        <a
+          href="/department/1"
+        >
+          <span
+            class=""
+          >
+            Computer Science
+          </span>
+        </a>
+      </div>
+      <div>
+        <div
+          class="add-margin"
+        >
+          <div
+            class="ui header no-margin"
+          >
+            Professors: 
+          </div>
+          <span>
+            <a
+              href="/professor/1"
+            >
+              <span
+                class=""
+              >
+                Nakul Verma
+              </span>
+            </a>
+            <span>
+               
+              <img
+                class="ui medium right spaced image"
+                src="gold-nugget.svg"
+              />
+            </span>
+            <span>
+              <img
+                class="ui medium right spaced image"
+                src="silver-nugget.svg"
+              />
+            </span>
+            
+          </span>
+        </div>
+      </div>
+      <div>
+        <a
+          href="/review/submit"
+        >
+          <button
+            class="ui orange button relaxed create-review-button"
+          >
+            WRITE A REVIEW 
+            FOR MACHINE LEARNING
+          </button>
+        </a>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div>
       <div
-        class="ui header"
+        class="ui huge header"
       >
         COMS 4771
          
         Machine Learning
       </div>
+    </div>
+    <div>
       <div
-        class="ui container"
+        class="ui header"
+      >
+        Department: 
+      </div>
+      <a
+        href="/department/1"
+      >
+        <span
+          class=""
+        >
+          Computer Science
+        </span>
+      </a>
+    </div>
+    <div>
+      <div
+        class="add-margin"
       >
         <div
-          class="ui container"
+          class="ui header no-margin"
         >
-          <span>
-            Department: 
-          </span>
-          <a
-            href="/department/1"
-          >
-            <span>
-               
-              Computer Science
-               
-            </span>
-          </a>
-        </div>
-        <span>
           Professors: 
-        </span>
+        </div>
         <span>
           <a
             href="/professor/1"
           >
-            <span>
-              Nakul
-               
-              Verma
+            <span
+              class=""
+            >
+              Nakul Verma
             </span>
           </a>
-          <img
-            class="ui avatar left spaced image"
-            src="gold-nugget.svg"
-          />
-          <img
-            class="ui avatar left spaced image"
-            src="silver-nugget.svg"
-          />
+          <span>
+             
+            <img
+              class="ui medium right spaced image"
+              src="gold-nugget.svg"
+            />
+          </span>
+          <span>
+            <img
+              class="ui medium right spaced image"
+              src="silver-nugget.svg"
+            />
+          </span>
           
         </span>
       </div>
+    </div>
+    <div>
       <a
         href="/review/submit"
       >
         <button
-          class="ui yellow button"
+          class="ui orange button relaxed create-review-button"
         >
-          WRITE A REVIEW FOR 
-          Machine Learning
+          WRITE A REVIEW 
+          FOR MACHINE LEARNING
         </button>
       </a>
     </div>
-  </body>,
-  "container": <div>
-    <div
-      class="ui header"
-    >
-      COMS 4771
-       
-      Machine Learning
-    </div>
-    <div
-      class="ui container"
-    >
-      <div
-        class="ui container"
-      >
-        <span>
-          Department: 
-        </span>
-        <a
-          href="/department/1"
-        >
-          <span>
-             
-            Computer Science
-             
-          </span>
-        </a>
-      </div>
-      <span>
-        Professors: 
-      </span>
-      <span>
-        <a
-          href="/professor/1"
-        >
-          <span>
-            Nakul
-             
-            Verma
-          </span>
-        </a>
-        <img
-          class="ui avatar left spaced image"
-          src="gold-nugget.svg"
-        />
-        <img
-          class="ui avatar left spaced image"
-          src="silver-nugget.svg"
-        />
-        
-      </span>
-    </div>
-    <a
-      href="/review/submit"
-    >
-      <button
-        class="ui yellow button"
-      >
-        WRITE A REVIEW FOR 
-        Machine Learning
-      </button>
-    </a>
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],
@@ -331,34 +373,34 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <div
-        class="ui header"
-      >
-        COMS 4771
-         
-        Machine Learning
-      </div>
-      <div
-        class="ui container"
-      >
+      <div>
         <div
-          class="ui container"
+          class="ui huge header"
         >
-          <span>
-            Department: 
-          </span>
-          <a
-            href="/department/1"
-          >
-            <span>
-               
-              Computer Science
-               
-            </span>
-          </a>
+          COMS 4771
+           
+          Machine Learning
         </div>
+      </div>
+      <div>
         <div
-          class="accordion ui"
+          class="ui header"
+        >
+          Department: 
+        </div>
+        <a
+          href="/department/1"
+        >
+          <span
+            class=""
+          >
+            Computer Science
+          </span>
+        </a>
+      </div>
+      <div>
+        <div
+          class="accordion ui add-margin"
         >
           <div
             class="title"
@@ -385,48 +427,53 @@ Object {
                   <a
                     href="/professor/1"
                   >
-                    <span>
-                      Nakul
-                       
-                      Verma
+                    <span
+                      class=""
+                    >
+                      Nakul Verma
                     </span>
                   </a>
-                  <img
-                    class="ui avatar left spaced image"
-                    src="gold-nugget.svg"
-                  />
-                  <img
-                    class="ui avatar left spaced image"
-                    src="silver-nugget.svg"
-                  />
+                  <span>
+                     
+                    <img
+                      class="ui medium right spaced image"
+                      src="gold-nugget.svg"
+                    />
+                  </span>
+                  <span>
+                    <img
+                      class="ui medium right spaced image"
+                      src="silver-nugget.svg"
+                    />
+                  </span>
                 </div>
                 <div
                   class="column"
                 >
-                  <div>
+                  <span>
                     <a
                       href="/department/1"
                     >
-                      <span>
-                         
+                      <span
+                        class=""
+                      >
                         Computer Science
-                         
                       </span>
                     </a>
                     , 
-                  </div>
-                  <div>
+                  </span>
+                  <span>
                     <a
                       href="/department/3"
                     >
-                      <span>
-                         
+                      <span
+                        class=""
+                      >
                         Mathematics
-                         
                       </span>
                     </a>
                     
-                  </div>
+                  </span>
                 </div>
               </div>
               <div
@@ -438,28 +485,28 @@ Object {
                   <a
                     href="/professor/2"
                   >
-                    <span>
-                      Daniel
-                       
-                      Hsu
+                    <span
+                      class=""
+                    >
+                      Daniel Hsu
                     </span>
                   </a>
                 </div>
                 <div
                   class="column"
                 >
-                  <div>
+                  <span>
                     <a
                       href="/department/1"
                     >
-                      <span>
-                         
+                      <span
+                        class=""
+                      >
                         Computer Science
-                         
                       </span>
                     </a>
                     
-                  </div>
+                  </span>
                 </div>
               </div>
               <div
@@ -471,32 +518,35 @@ Object {
                   <a
                     href="/professor/3"
                   >
-                    <span>
-                      Dorrie
-                       
-                      Tang
+                    <span
+                      class=""
+                    >
+                      Dorrie Tang
                     </span>
                   </a>
-                  <img
-                    class="ui avatar left spaced image"
-                    src="gold-nugget.svg"
-                  />
+                  <span>
+                     
+                    <img
+                      class="ui medium right spaced image"
+                      src="gold-nugget.svg"
+                    />
+                  </span>
                 </div>
                 <div
                   class="column"
                 >
-                  <div>
+                  <span>
                     <a
                       href="/department/1"
                     >
-                      <span>
-                         
+                      <span
+                        class=""
+                      >
                         Computer Science
-                         
                       </span>
                     </a>
                     
-                  </div>
+                  </span>
                 </div>
               </div>
               <div
@@ -508,32 +558,35 @@ Object {
                   <a
                     href="/professor/4"
                   >
-                    <span>
-                      Elaine
-                       
-                      Wang
+                    <span
+                      class=""
+                    >
+                      Elaine Wang
                     </span>
                   </a>
-                  <img
-                    class="ui avatar left spaced image"
-                    src="silver-nugget.svg"
-                  />
+                  <span>
+                     
+                    <img
+                      class="ui medium right spaced image"
+                      src="silver-nugget.svg"
+                    />
+                  </span>
                 </div>
                 <div
                   class="column"
                 >
-                  <div>
+                  <span>
                     <a
                       href="/department/1"
                     >
-                      <span>
-                         
+                      <span
+                        class=""
+                      >
                         Computer Science
-                         
                       </span>
                     </a>
                     
-                  </div>
+                  </span>
                 </div>
               </div>
               <div
@@ -545,32 +598,35 @@ Object {
                   <a
                     href="/professor/5"
                   >
-                    <span>
-                      Jonathan
-                       
-                      Zhang
+                    <span
+                      class=""
+                    >
+                      Jonathan Zhang
                     </span>
                   </a>
-                  <img
-                    class="ui avatar left spaced image"
-                    src="bronze-nugget.svg"
-                  />
+                  <span>
+                     
+                    <img
+                      class="ui medium right spaced image"
+                      src="bronze-nugget.svg"
+                    />
+                  </span>
                 </div>
                 <div
                   class="column"
                 >
-                  <div>
+                  <span>
                     <a
                       href="/department/1"
                     >
-                      <span>
-                         
+                      <span
+                        class=""
+                      >
                         Computer Science
-                         
                       </span>
                     </a>
                     
-                  </div>
+                  </span>
                 </div>
               </div>
               <div
@@ -582,28 +638,28 @@ Object {
                   <a
                     href="/professor/6"
                   >
-                    <span>
-                      Jin Woo
-                       
-                      Hsu
+                    <span
+                      class=""
+                    >
+                      Jin Woo Hsu
                     </span>
                   </a>
                 </div>
                 <div
                   class="column"
                 >
-                  <div>
+                  <span>
                     <a
                       href="/department/1"
                     >
-                      <span>
-                         
+                      <span
+                        class=""
+                      >
                         Computer Science
-                         
                       </span>
                     </a>
                     
-                  </div>
+                  </span>
                 </div>
               </div>
               <div
@@ -615,87 +671,96 @@ Object {
                   <a
                     href="/professor/7"
                   >
-                    <span>
-                      Sungbin
-                       
-                      Kim
+                    <span
+                      class=""
+                    >
+                      Sungbin Kim
                     </span>
                   </a>
-                  <img
-                    class="ui avatar left spaced image"
-                    src="gold-nugget.svg"
-                  />
-                  <img
-                    class="ui avatar left spaced image"
-                    src="silver-nugget.svg"
-                  />
-                  <img
-                    class="ui avatar left spaced image"
-                    src="bronze-nugget.svg"
-                  />
+                  <span>
+                     
+                    <img
+                      class="ui medium right spaced image"
+                      src="gold-nugget.svg"
+                    />
+                  </span>
+                  <span>
+                    <img
+                      class="ui medium right spaced image"
+                      src="silver-nugget.svg"
+                    />
+                  </span>
+                  <span>
+                    <img
+                      class="ui medium right spaced image"
+                      src="bronze-nugget.svg"
+                    />
+                  </span>
                 </div>
                 <div
                   class="column"
                 >
-                  <div>
+                  <span>
                     <a
                       href="/department/1"
                     >
-                      <span>
-                         
+                      <span
+                        class=""
+                      >
                         Computer Science
-                         
                       </span>
                     </a>
                     
-                  </div>
+                  </span>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <a
-        href="/review/submit"
-      >
-        <button
-          class="ui yellow button"
+      <div>
+        <a
+          href="/review/submit"
         >
-          WRITE A REVIEW FOR 
-          Machine Learning
-        </button>
-      </a>
+          <button
+            class="ui orange button relaxed create-review-button"
+          >
+            WRITE A REVIEW 
+            FOR MACHINE LEARNING
+          </button>
+        </a>
+      </div>
     </div>
   </body>,
   "container": <div>
-    <div
-      class="ui header"
-    >
-      COMS 4771
-       
-      Machine Learning
-    </div>
-    <div
-      class="ui container"
-    >
+    <div>
       <div
-        class="ui container"
+        class="ui huge header"
       >
-        <span>
-          Department: 
-        </span>
-        <a
-          href="/department/1"
-        >
-          <span>
-             
-            Computer Science
-             
-          </span>
-        </a>
+        COMS 4771
+         
+        Machine Learning
       </div>
+    </div>
+    <div>
       <div
-        class="accordion ui"
+        class="ui header"
+      >
+        Department: 
+      </div>
+      <a
+        href="/department/1"
+      >
+        <span
+          class=""
+        >
+          Computer Science
+        </span>
+      </a>
+    </div>
+    <div>
+      <div
+        class="accordion ui add-margin"
       >
         <div
           class="title"
@@ -722,48 +787,53 @@ Object {
                 <a
                   href="/professor/1"
                 >
-                  <span>
-                    Nakul
-                     
-                    Verma
+                  <span
+                    class=""
+                  >
+                    Nakul Verma
                   </span>
                 </a>
-                <img
-                  class="ui avatar left spaced image"
-                  src="gold-nugget.svg"
-                />
-                <img
-                  class="ui avatar left spaced image"
-                  src="silver-nugget.svg"
-                />
+                <span>
+                   
+                  <img
+                    class="ui medium right spaced image"
+                    src="gold-nugget.svg"
+                  />
+                </span>
+                <span>
+                  <img
+                    class="ui medium right spaced image"
+                    src="silver-nugget.svg"
+                  />
+                </span>
               </div>
               <div
                 class="column"
               >
-                <div>
+                <span>
                   <a
                     href="/department/1"
                   >
-                    <span>
-                       
+                    <span
+                      class=""
+                    >
                       Computer Science
-                       
                     </span>
                   </a>
                   , 
-                </div>
-                <div>
+                </span>
+                <span>
                   <a
                     href="/department/3"
                   >
-                    <span>
-                       
+                    <span
+                      class=""
+                    >
                       Mathematics
-                       
                     </span>
                   </a>
                   
-                </div>
+                </span>
               </div>
             </div>
             <div
@@ -775,28 +845,28 @@ Object {
                 <a
                   href="/professor/2"
                 >
-                  <span>
-                    Daniel
-                     
-                    Hsu
+                  <span
+                    class=""
+                  >
+                    Daniel Hsu
                   </span>
                 </a>
               </div>
               <div
                 class="column"
               >
-                <div>
+                <span>
                   <a
                     href="/department/1"
                   >
-                    <span>
-                       
+                    <span
+                      class=""
+                    >
                       Computer Science
-                       
                     </span>
                   </a>
                   
-                </div>
+                </span>
               </div>
             </div>
             <div
@@ -808,32 +878,35 @@ Object {
                 <a
                   href="/professor/3"
                 >
-                  <span>
-                    Dorrie
-                     
-                    Tang
+                  <span
+                    class=""
+                  >
+                    Dorrie Tang
                   </span>
                 </a>
-                <img
-                  class="ui avatar left spaced image"
-                  src="gold-nugget.svg"
-                />
+                <span>
+                   
+                  <img
+                    class="ui medium right spaced image"
+                    src="gold-nugget.svg"
+                  />
+                </span>
               </div>
               <div
                 class="column"
               >
-                <div>
+                <span>
                   <a
                     href="/department/1"
                   >
-                    <span>
-                       
+                    <span
+                      class=""
+                    >
                       Computer Science
-                       
                     </span>
                   </a>
                   
-                </div>
+                </span>
               </div>
             </div>
             <div
@@ -845,32 +918,35 @@ Object {
                 <a
                   href="/professor/4"
                 >
-                  <span>
-                    Elaine
-                     
-                    Wang
+                  <span
+                    class=""
+                  >
+                    Elaine Wang
                   </span>
                 </a>
-                <img
-                  class="ui avatar left spaced image"
-                  src="silver-nugget.svg"
-                />
+                <span>
+                   
+                  <img
+                    class="ui medium right spaced image"
+                    src="silver-nugget.svg"
+                  />
+                </span>
               </div>
               <div
                 class="column"
               >
-                <div>
+                <span>
                   <a
                     href="/department/1"
                   >
-                    <span>
-                       
+                    <span
+                      class=""
+                    >
                       Computer Science
-                       
                     </span>
                   </a>
                   
-                </div>
+                </span>
               </div>
             </div>
             <div
@@ -882,32 +958,35 @@ Object {
                 <a
                   href="/professor/5"
                 >
-                  <span>
-                    Jonathan
-                     
-                    Zhang
+                  <span
+                    class=""
+                  >
+                    Jonathan Zhang
                   </span>
                 </a>
-                <img
-                  class="ui avatar left spaced image"
-                  src="bronze-nugget.svg"
-                />
+                <span>
+                   
+                  <img
+                    class="ui medium right spaced image"
+                    src="bronze-nugget.svg"
+                  />
+                </span>
               </div>
               <div
                 class="column"
               >
-                <div>
+                <span>
                   <a
                     href="/department/1"
                   >
-                    <span>
-                       
+                    <span
+                      class=""
+                    >
                       Computer Science
-                       
                     </span>
                   </a>
                   
-                </div>
+                </span>
               </div>
             </div>
             <div
@@ -919,28 +998,28 @@ Object {
                 <a
                   href="/professor/6"
                 >
-                  <span>
-                    Jin Woo
-                     
-                    Hsu
+                  <span
+                    class=""
+                  >
+                    Jin Woo Hsu
                   </span>
                 </a>
               </div>
               <div
                 class="column"
               >
-                <div>
+                <span>
                   <a
                     href="/department/1"
                   >
-                    <span>
-                       
+                    <span
+                      class=""
+                    >
                       Computer Science
-                       
                     </span>
                   </a>
                   
-                </div>
+                </span>
               </div>
             </div>
             <div
@@ -952,56 +1031,65 @@ Object {
                 <a
                   href="/professor/7"
                 >
-                  <span>
-                    Sungbin
-                     
-                    Kim
+                  <span
+                    class=""
+                  >
+                    Sungbin Kim
                   </span>
                 </a>
-                <img
-                  class="ui avatar left spaced image"
-                  src="gold-nugget.svg"
-                />
-                <img
-                  class="ui avatar left spaced image"
-                  src="silver-nugget.svg"
-                />
-                <img
-                  class="ui avatar left spaced image"
-                  src="bronze-nugget.svg"
-                />
+                <span>
+                   
+                  <img
+                    class="ui medium right spaced image"
+                    src="gold-nugget.svg"
+                  />
+                </span>
+                <span>
+                  <img
+                    class="ui medium right spaced image"
+                    src="silver-nugget.svg"
+                  />
+                </span>
+                <span>
+                  <img
+                    class="ui medium right spaced image"
+                    src="bronze-nugget.svg"
+                  />
+                </span>
               </div>
               <div
                 class="column"
               >
-                <div>
+                <span>
                   <a
                     href="/department/1"
                   >
-                    <span>
-                       
+                    <span
+                      class=""
+                    >
                       Computer Science
-                       
                     </span>
                   </a>
                   
-                </div>
+                </span>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <a
-      href="/review/submit"
-    >
-      <button
-        class="ui yellow button"
+    <div>
+      <a
+        href="/review/submit"
       >
-        WRITE A REVIEW FOR 
-        Machine Learning
-      </button>
-    </a>
+        <button
+          class="ui orange button relaxed create-review-button"
+        >
+          WRITE A REVIEW 
+          FOR MACHINE LEARNING
+        </button>
+      </a>
+    </div>
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],
@@ -1062,153 +1150,179 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
+      <div>
+        <div
+          class="ui huge header"
+        >
+          COMS 4771
+           
+          Machine Learning
+        </div>
+      </div>
+      <div>
+        <div
+          class="ui header"
+        >
+          Department: 
+        </div>
+        <a
+          href="/department/1"
+        >
+          <span
+            class=""
+          >
+            Computer Science
+          </span>
+        </a>
+      </div>
+      <div>
+        <div
+          class="add-margin"
+        >
+          <div
+            class="ui header no-margin"
+          >
+            Professors: 
+          </div>
+          <span>
+            <a
+              href="/professor/1"
+            >
+              <span
+                class=""
+              >
+                Nakul Verma
+              </span>
+            </a>
+            <span>
+               
+              <img
+                class="ui medium right spaced image"
+                src="gold-nugget.svg"
+              />
+            </span>
+            <span>
+              <img
+                class="ui medium right spaced image"
+                src="silver-nugget.svg"
+              />
+            </span>
+            , 
+          </span>
+          <span>
+            <a
+              href="/professor/2"
+            >
+              <span
+                class=""
+              >
+                Daniel Hsu
+              </span>
+            </a>
+            
+          </span>
+        </div>
+      </div>
+      <div>
+        <a
+          href="/review/submit"
+        >
+          <button
+            class="ui orange button relaxed create-review-button"
+          >
+            WRITE A REVIEW 
+            FOR MACHINE LEARNING
+          </button>
+        </a>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div>
       <div
-        class="ui header"
+        class="ui huge header"
       >
         COMS 4771
          
         Machine Learning
       </div>
+    </div>
+    <div>
       <div
-        class="ui container"
+        class="ui header"
+      >
+        Department: 
+      </div>
+      <a
+        href="/department/1"
+      >
+        <span
+          class=""
+        >
+          Computer Science
+        </span>
+      </a>
+    </div>
+    <div>
+      <div
+        class="add-margin"
       >
         <div
-          class="ui container"
+          class="ui header no-margin"
         >
-          <span>
-            Department: 
-          </span>
-          <a
-            href="/department/1"
-          >
-            <span>
-               
-              Computer Science
-               
-            </span>
-          </a>
-        </div>
-        <span>
           Professors: 
-        </span>
+        </div>
         <span>
           <a
             href="/professor/1"
           >
-            <span>
-              Nakul
-               
-              Verma
+            <span
+              class=""
+            >
+              Nakul Verma
             </span>
           </a>
-          <img
-            class="ui avatar left spaced image"
-            src="gold-nugget.svg"
-          />
-          <img
-            class="ui avatar left spaced image"
-            src="silver-nugget.svg"
-          />
+          <span>
+             
+            <img
+              class="ui medium right spaced image"
+              src="gold-nugget.svg"
+            />
+          </span>
+          <span>
+            <img
+              class="ui medium right spaced image"
+              src="silver-nugget.svg"
+            />
+          </span>
           , 
         </span>
         <span>
           <a
             href="/professor/2"
           >
-            <span>
-              Daniel
-               
-              Hsu
+            <span
+              class=""
+            >
+              Daniel Hsu
             </span>
           </a>
           
         </span>
       </div>
+    </div>
+    <div>
       <a
         href="/review/submit"
       >
         <button
-          class="ui yellow button"
+          class="ui orange button relaxed create-review-button"
         >
-          WRITE A REVIEW FOR 
-          Machine Learning
+          WRITE A REVIEW 
+          FOR MACHINE LEARNING
         </button>
       </a>
     </div>
-  </body>,
-  "container": <div>
-    <div
-      class="ui header"
-    >
-      COMS 4771
-       
-      Machine Learning
-    </div>
-    <div
-      class="ui container"
-    >
-      <div
-        class="ui container"
-      >
-        <span>
-          Department: 
-        </span>
-        <a
-          href="/department/1"
-        >
-          <span>
-             
-            Computer Science
-             
-          </span>
-        </a>
-      </div>
-      <span>
-        Professors: 
-      </span>
-      <span>
-        <a
-          href="/professor/1"
-        >
-          <span>
-            Nakul
-             
-            Verma
-          </span>
-        </a>
-        <img
-          class="ui avatar left spaced image"
-          src="gold-nugget.svg"
-        />
-        <img
-          class="ui avatar left spaced image"
-          src="silver-nugget.svg"
-        />
-        , 
-      </span>
-      <span>
-        <a
-          href="/professor/2"
-        >
-          <span>
-            Daniel
-             
-            Hsu
-          </span>
-        </a>
-        
-      </span>
-    </div>
-    <a
-      href="/review/submit"
-    >
-      <button
-        class="ui yellow button"
-      >
-        WRITE A REVIEW FOR 
-        Machine Learning
-      </button>
-    </a>
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],

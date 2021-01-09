@@ -5,26 +5,38 @@ import { Header } from "semantic-ui-react";
 
 const propTypesCourseDisplayName = {
   as: PropTypes.oneOf(["header", "text"]),
+  className: PropTypes.string,
   courseCallNumber: PropTypes.string,
   courseName: PropTypes.string.isRequired,
+  size: PropTypes.oneOf(["tiny", "small", "medium", "large", "huge"]),
 };
 
 const propTypesCourseDisplayLink = {
   as: PropTypes.oneOf(["header", "text"]),
+  className: PropTypes.string,
   courseCallNumber: PropTypes.string,
   courseId: PropTypes.number.isRequired,
   courseName: PropTypes.string.isRequired,
+  size: PropTypes.oneOf(["tiny", "small", "medium", "large", "huge"]),
 };
 
 const defaultProps = {
+  className: "",
   courseCallNumber: "",
   as: "text",
+  size: "medium",
 };
 
-export function CourseDisplayName({ as, courseCallNumber, courseName }) {
+export function CourseDisplayName({
+  as,
+  className,
+  courseCallNumber,
+  courseName,
+  size,
+}) {
   const CourseName = as === "header" ? Header : "span";
   return (
-    <CourseName>
+    <CourseName className={className} size={size}>
       {courseCallNumber} {courseName}
     </CourseName>
   );
@@ -32,16 +44,20 @@ export function CourseDisplayName({ as, courseCallNumber, courseName }) {
 
 export function CourseDisplayLink({
   as,
+  className,
   courseCallNumber,
   courseId,
   courseName,
+  size,
 }) {
   return (
     <Link to={`/course/${courseId}`}>
       <CourseDisplayName
         as={as}
+        className={className}
         courseCallNumber={courseCallNumber}
         courseName={courseName}
+        size={size}
       />
     </Link>
   );

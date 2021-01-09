@@ -5,16 +5,31 @@ import { Link } from "react-router-dom";
 import { Button } from "semantic-ui-react";
 
 const propTypes = {
+  color: PropTypes.string,
   courseId: PropTypes.number,
+  fluid: PropTypes.bool,
+  subject: PropTypes.string,
   professorId: PropTypes.number,
+  relaxed: PropTypes.bool,
 };
 
 const defaultProps = {
+  color: "orange",
   courseId: undefined,
+  fluid: false,
+  subject: "",
   professorId: undefined,
+  relaxed: false,
 };
 
-export default function CreateReviewButton({ courseId, professorId, ...rest }) {
+export default function CreateReviewButton({
+  color,
+  courseId,
+  fluid,
+  professorId,
+  subject,
+  relaxed,
+}) {
   return (
     <Link
       to={{
@@ -22,7 +37,13 @@ export default function CreateReviewButton({ courseId, professorId, ...rest }) {
         state: { courseId, professorId },
       }}
     >
-      <Button {...rest} />
+      <Button
+        className={`${relaxed ? "relaxed" : ""} create-review-button`}
+        color={color}
+        fluid={fluid}
+      >
+        WRITE A REVIEW {subject ? `FOR ${subject.toUpperCase()}` : ""}
+      </Button>
     </Link>
   );
 }

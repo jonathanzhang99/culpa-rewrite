@@ -1,0 +1,19 @@
+/*******************************
+         Site Overrides
+*******************************/
+
+.ui.spaced.image {
+  margin: 2em;
+}
+
+.ui.right.spaced.image {
+  margin: 0 0.5em 0 0;
+}
+
+.ui.left.spaced.image {
+  margin: 0 0 0 0.5em;
+}
+
+.ui.huge.right.spaced.image {
+  margin-bottom: 1rem;
+}

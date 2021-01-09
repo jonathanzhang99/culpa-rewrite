@@ -1,0 +1,13 @@
+/*******************************
+         Site Overrides
+*******************************/
+
+.ui.menu.navbar {
+  background-color: @darkNavy;
+}
+
+.ui.vertical.menu .item.sidebar-header {
+  background-color: @darkNavy;
+  color: @white;
+  font-weight: @bold;
+}

@@ -1,0 +1,44 @@
+/*******************************
+     User Global Variables
+*******************************/
+
+/*-------------------
+     Brand Colors
+--------------------*/
+
+/* columbia blue */
+@primaryColor: #bbe1fa;
+@columbiaBlue: #bbe1fa;
+/* dark navy */
+@secondaryColor: #1d2c4d;
+@darkNavy: #1d2c4d;
+
+/*-------------------
+        Fonts
+--------------------*/
+
+@headerFont: "Noto Sans", Arial, Helvetica, sans-serif;
+@pageFont: "Noto Sans", Arial, Helvetica, sans-serif;
+
+@importGoogleFonts : true;
+@googleFontSizes   : '400,700,400italic,700italic';
+
+@googleProtocol    : 'https://';
+@googleFontRequest : 'Noto+Sans:@{googleFontSizes}|Source+Code+Pro:@{googleFontSizes}';
+
+/*-------------------
+        Links
+--------------------*/
+
+@linkColor: #0072ce;
+
+/*-------------------
+     Site Colors
+--------------------*/
+
+@blue: #82B7E8;
+@gray: #F2F2F2;
+@navy: #004E8D;
+@orange: #FD9332;
+@pink: #FCB7B7;
+@red: #FD6464;

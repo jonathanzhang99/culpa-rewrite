@@ -5,9 +5,11 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <h1>
-        Login
-      </h1>
+      <div
+        class="ui huge header"
+      >
+        LOGIN
+      </div>
       <form
         class="ui form"
       >
@@ -65,7 +67,7 @@ Object {
           </div>
         </div>
         <button
-          class="ui button"
+          class="ui huge button"
           name="submit"
           type="submit"
         >
@@ -75,9 +77,11 @@ Object {
     </div>
   </body>,
   "container": <div>
-    <h1>
-      Login
-    </h1>
+    <div
+      class="ui huge header"
+    >
+      LOGIN
+    </div>
     <form
       class="ui form"
     >
@@ -135,7 +139,7 @@ Object {
         </div>
       </div>
       <button
-        class="ui button"
+        class="ui huge button"
         name="submit"
         type="submit"
       >

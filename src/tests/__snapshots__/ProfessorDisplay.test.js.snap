@@ -8,10 +8,10 @@ Object {
       <a
         href="/professor/2339"
       >
-        <span>
-          Nakul
-           
-          Verma
+        <span
+          class=""
+        >
+          Nakul Verma
         </span>
       </a>
     </div>
@@ -20,10 +20,10 @@ Object {
     <a
       href="/professor/2339"
     >
-      <span>
-        Nakul
-         
-        Verma
+      <span
+        class=""
+      >
+        Nakul Verma
       </span>
     </a>
   </div>,
@@ -89,10 +89,10 @@ Object {
       <a
         href="/professor/2339"
       >
-        <span>
-          
+        <span
+          class=""
+        >
            
-          
         </span>
       </a>
     </div>
@@ -101,10 +101,10 @@ Object {
     <a
       href="/professor/2339"
     >
-      <span>
-        
+      <span
+        class=""
+      >
          
-        
       </span>
     </a>
   </div>,
@@ -170,10 +170,10 @@ Object {
       <a
         href="/professor/2339"
       >
-        <span>
-          Nakul
-           
-          Verma
+        <span
+          class=""
+        >
+          Nakul Verma
         </span>
       </a>
     </div>
@@ -182,10 +182,10 @@ Object {
     <a
       href="/professor/2339"
     >
-      <span>
-        Nakul
-         
-        Verma
+      <span
+        class=""
+      >
+        Nakul Verma
       </span>
     </a>
   </div>,
@@ -251,10 +251,10 @@ Object {
       <a
         href="/professor/2339"
       >
-        <span>
-          
+        <span
+          class=""
+        >
            
-          
         </span>
       </a>
     </div>
@@ -263,10 +263,10 @@ Object {
     <a
       href="/professor/2339"
     >
-      <span>
-        
+      <span
+        class=""
+      >
          
-        
       </span>
     </a>
   </div>,
@@ -332,32 +332,38 @@ Object {
       <a
         href="/professor/2339"
       >
-        <span>
-          
+        <span
+          class=""
+        >
            
-          
         </span>
       </a>
-      <img
-        class="ui avatar left spaced image"
-        src="gold-nugget.svg"
-      />
+      <span>
+         
+        <img
+          class="ui medium right spaced image"
+          src="gold-nugget.svg"
+        />
+      </span>
     </div>
   </body>,
   "container": <div>
     <a
       href="/professor/2339"
     >
-      <span>
-        
+      <span
+        class=""
+      >
          
-        
       </span>
     </a>
-    <img
-      class="ui avatar left spaced image"
-      src="gold-nugget.svg"
-    />
+    <span>
+       
+      <img
+        class="ui medium right spaced image"
+        src="gold-nugget.svg"
+      />
+    </span>
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],
@@ -418,18 +424,18 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <span>
-        Nakul
-         
-        Verma
+      <span
+        class=""
+      >
+        Nakul Verma
       </span>
     </div>
   </body>,
   "container": <div>
-    <span>
-      Nakul
-       
-      Verma
+    <span
+      class=""
+    >
+      Nakul Verma
     </span>
   </div>,
   "debug": [Function],
@@ -491,18 +497,18 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <span>
-        
+      <span
+        class=""
+      >
          
-        
       </span>
     </div>
   </body>,
   "container": <div>
-    <span>
-      
+    <span
+      class=""
+    >
        
-      
     </span>
   </div>,
   "debug": [Function],
@@ -564,18 +570,18 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <span>
-        Nakul
-         
-        Verma
+      <span
+        class=""
+      >
+        Nakul Verma
       </span>
     </div>
   </body>,
   "container": <div>
-    <span>
-      Nakul
-       
-      Verma
+    <span
+      class=""
+    >
+      Nakul Verma
     </span>
   </div>,
   "debug": [Function],
@@ -637,18 +643,18 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <span>
-        
+      <span
+        class=""
+      >
          
-        
       </span>
     </div>
   </body>,
   "container": <div>
-    <span>
-      
+    <span
+      class=""
+    >
        
-      
     </span>
   </div>,
   "debug": [Function],
@@ -710,27 +716,33 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <span>
-        
+      <span
+        class=""
+      >
          
-        
       </span>
-      <img
-        class="ui avatar left spaced image"
-        src="gold-nugget.svg"
-      />
+      <span>
+         
+        <img
+          class="ui medium right spaced image"
+          src="gold-nugget.svg"
+        />
+      </span>
     </div>
   </body>,
   "container": <div>
-    <span>
-      
+    <span
+      class=""
+    >
        
-      
     </span>
-    <img
-      class="ui avatar left spaced image"
-      src="gold-nugget.svg"
-    />
+    <span>
+       
+      <img
+        class="ui medium right spaced image"
+        src="gold-nugget.svg"
+      />
+    </span>
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],
@@ -794,10 +806,10 @@ Object {
       <a
         href="/professor/0"
       >
-        <span>
-          
+        <span
+          class=""
+        >
            
-          
         </span>
       </a>
     </div>
@@ -806,10 +818,10 @@ Object {
     <a
       href="/professor/0"
     >
-      <span>
-        
+      <span
+        class=""
+      >
          
-        
       </span>
     </a>
   </div>,
@@ -875,10 +887,10 @@ Object {
       <a
         href="/professor/0"
       >
-        <span>
-          
+        <span
+          class=""
+        >
            
-          
         </span>
       </a>
     </div>
@@ -887,10 +899,10 @@ Object {
     <a
       href="/professor/0"
     >
-      <span>
-        
+      <span
+        class=""
+      >
          
-        
       </span>
     </a>
   </div>,
@@ -953,18 +965,18 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <span>
-        
+      <span
+        class=""
+      >
          
-        
       </span>
     </div>
   </body>,
   "container": <div>
-    <span>
-      
+    <span
+      class=""
+    >
        
-      
     </span>
   </div>,
   "debug": [Function],
@@ -1026,18 +1038,18 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <span>
-        
+      <span
+        class=""
+      >
          
-        
       </span>
     </div>
   </body>,
   "container": <div>
-    <span>
-      
+    <span
+      class=""
+    >
        
-      
     </span>
   </div>,
   "debug": [Function],

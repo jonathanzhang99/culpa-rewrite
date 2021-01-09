@@ -1,0 +1,55 @@
+/*******************************
+    User Variable Overrides
+*******************************/
+
+/*-------------------
+       Element
+--------------------*/
+
+/* Button */
+@backgroundColor: @columbiaBlue;
+
+@verticalPadding: @inputVerticalPadding / 1.5;
+@horizontalPadding: 0.5em;
+
+/* Text */
+@textColor: @darkNavy;
+@fontFamily: "Source Code Pro", Arial, Helvetica, sans-serif;
+
+/*-------------------
+        States
+--------------------*/
+
+/* Hovered */
+@hoverBackgroundColor: @primaryColorHover;
+
+/* Pressed Down */
+@downBackgroundColor: @primaryColorDown;
+
+/* Active */
+@activeBackgroundColor: @primaryColorActive;
+
+/*-------------------
+        Types
+    used in navbar
+--------------------*/
+
+/* Basic */
+@basicBoxShadow: none;
+
+/* Basic Hover */
+@basicHoverBackground: transparent;
+@basicHoverBoxShadow: none;
+
+/* Basic Down */
+@basicDownBackground: transparent;
+@basicDownBoxShadow: none;
+
+/*-------------------
+      Variations
+--------------------*/
+
+/* Colored */
+@blueTextColor: @textColor;
+@orangeTextColor: @textColor;
+@pinkTextColor: @textColor;

@@ -8,10 +8,10 @@ Object {
       <a
         href="/department/29"
       >
-        <span>
-           
+        <span
+          class=""
+        >
           Computer Science
-           
         </span>
       </a>
     </div>
@@ -20,10 +20,10 @@ Object {
     <a
       href="/department/29"
     >
-      <span>
-         
+      <span
+        class=""
+      >
         Computer Science
-         
       </span>
     </a>
   </div>,
@@ -89,10 +89,10 @@ Object {
       <a
         href="/department/29"
       >
-        <span>
-           
+        <span
+          class=""
+        >
           Computer Science
-           
         </span>
       </a>
     </div>
@@ -101,10 +101,10 @@ Object {
     <a
       href="/department/29"
     >
-      <span>
-         
+      <span
+        class=""
+      >
         Computer Science
-         
       </span>
     </a>
   </div>,
@@ -167,18 +167,18 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <span>
-         
+      <span
+        class=""
+      >
         Computer Science
-         
       </span>
     </div>
   </body>,
   "container": <div>
-    <span>
-       
+    <span
+      class=""
+    >
       Computer Science
-       
     </span>
   </div>,
   "debug": [Function],
@@ -240,18 +240,18 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <span>
-         
+      <span
+        class=""
+      >
         Computer Science
-         
       </span>
     </div>
   </body>,
   "container": <div>
-    <span>
-       
+    <span
+      class=""
+    >
       Computer Science
-       
     </span>
   </div>,
   "debug": [Function],
@@ -316,11 +316,9 @@ Object {
       <a
         href="/department/0"
       >
-        <span>
-           
-          
-           
-        </span>
+        <span
+          class=""
+        />
       </a>
     </div>
   </body>,
@@ -328,11 +326,9 @@ Object {
     <a
       href="/department/0"
     >
-      <span>
-         
-        
-         
-      </span>
+      <span
+        class=""
+      />
     </a>
   </div>,
   "debug": [Function],
@@ -394,19 +390,15 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <span>
-         
-        
-         
-      </span>
+      <span
+        class=""
+      />
     </div>
   </body>,
   "container": <div>
-    <span>
-       
-      
-       
-    </span>
+    <span
+      class=""
+    />
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],

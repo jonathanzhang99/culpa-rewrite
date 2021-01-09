@@ -1,0 +1,11 @@
+/*******************************
+         Site Overrides
+*******************************/
+
+.ui.form {
+  margin: 1rem 0;
+}
+
+.ui.form.field {
+  float: top;
+}

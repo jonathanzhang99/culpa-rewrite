@@ -8,7 +8,9 @@ Object {
       <a
         href="/course/3"
       >
-        <span>
+        <span
+          class=""
+        >
           COMS 4771
            
           Machine Learning
@@ -20,7 +22,9 @@ Object {
     <a
       href="/course/3"
     >
-      <span>
+      <span
+        class=""
+      >
         COMS 4771
          
         Machine Learning
@@ -89,7 +93,9 @@ Object {
       <a
         href="/course/3"
       >
-        <span>
+        <span
+          class=""
+        >
           COMS 4771
            
           Machine Learning
@@ -101,7 +107,9 @@ Object {
     <a
       href="/course/3"
     >
-      <span>
+      <span
+        class=""
+      >
         COMS 4771
          
         Machine Learning
@@ -167,7 +175,9 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <span>
+      <span
+        class=""
+      >
         COMS 4771
          
         Machine Learning
@@ -175,7 +185,9 @@ Object {
     </div>
   </body>,
   "container": <div>
-    <span>
+    <span
+      class=""
+    >
       COMS 4771
        
       Machine Learning
@@ -240,7 +252,9 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <span>
+      <span
+        class=""
+      >
         COMS 4771
          
         Machine Learning
@@ -248,7 +262,9 @@ Object {
     </div>
   </body>,
   "container": <div>
-    <span>
+    <span
+      class=""
+    >
       COMS 4771
        
       Machine Learning
@@ -316,7 +332,9 @@ Object {
       <a
         href="/course/0"
       >
-        <span>
+        <span
+          class=""
+        >
           
            
           
@@ -328,7 +346,9 @@ Object {
     <a
       href="/course/0"
     >
-      <span>
+      <span
+        class=""
+      >
         
          
         
@@ -394,7 +414,9 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <span>
+      <span
+        class=""
+      >
         
          
         
@@ -402,7 +424,9 @@ Object {
     </div>
   </body>,
   "container": <div>
-    <span>
+    <span
+      class=""
+    >
       
        
       

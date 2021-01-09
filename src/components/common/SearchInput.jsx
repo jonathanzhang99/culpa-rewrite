@@ -94,7 +94,7 @@ const defaultPropsSearchResult = {
 
 function SearchResult({ badges, departments, last, title, type }) {
   return (
-    <Grid className={last && "last-divider"} columns={2}>
+    <Grid className={last && "last-professor-divider"} columns={2}>
       <Grid.Column>
         {type === "professor" ? (
           <ProfessorDisplayName badges={badges} fullName={title} />
@@ -106,7 +106,7 @@ function SearchResult({ badges, departments, last, title, type }) {
         {departments.map(({ id: departmentId, name }, index) => (
           <span key={`department-${departmentId}`}>
             <DepartmentDisplayName departmentName={name} />
-            {index !== departments.length - 1 ? "," : ""}
+            {index !== departments.length - 1 ? ", " : ""}
           </span>
         ))}
       </Grid.Column>
@@ -248,7 +248,7 @@ export default function SearchInput({
       } catch (err) {
         dispatch({ type: SEARCH_ERROR });
       }
-    }, 200),
+    }, 300),
     [] // no condition to reset this debouncer
   );
 

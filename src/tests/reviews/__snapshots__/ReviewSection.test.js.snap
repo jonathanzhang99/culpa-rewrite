@@ -5,11 +5,9 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <div
-        class="ui fluid container"
-      >
+      <div>
         <div
-          class="ui grid"
+          class="ui grid add-margin"
         >
           <div
             class="row"
@@ -274,263 +272,212 @@ Object {
             class="row"
           >
             <div
-              class="ui container"
-              style="margin: 25px 0px;"
+              class="ui grid add-margin fluid"
             >
               <div
-                class="ui grid"
+                class="column review-card-left-column"
               >
                 <div
-                  class="fourteen wide column"
-                  style="background-color: rgb(242, 242, 242); padding: 20px 30px;"
+                  class="ui red message"
+                >
+                  <i
+                    aria-hidden="true"
+                    class="red warning circle icon"
+                  />
+                  Please keep in mind that this review is more than 5 years old.
+                </div>
+                <div
+                  class="ui two column grid"
                 >
                   <div
-                    class="ui fluid container"
+                    class="twelve wide column"
                   >
                     <div
-                      class="ui message"
-                      style="background-color: rgb(255, 241, 241);"
+                      class="ui medium header no-margin review-card-header"
                     >
-                      <i
-                        aria-hidden="true"
-                        class="red warning circle icon"
-                      />
-                      Please keep in mind that this review is more than 5 years old.
+                      Nakul Verma
                     </div>
-                    <div
-                      style="position: relative;"
-                    >
-                      <div
-                        class="ui header"
-                      >
-                        Nakul
-                         
-                        Verma
-                      </div>
+                    <span>
                       <img
-                        class="ui avatar left spaced image"
+                        class="ui medium right spaced image"
                         src="gold-nugget.svg"
                       />
-                      <h5
-                        class="ui header"
-                      >
-                        2020-01-01
-                      </h5>
-                      <div
-                        style="position: absolute; top: 0px; right: 0px; font-size: 16px;"
-                      >
-                        ID: 
-                        1
-                      </div>
-                    </div>
-                    <p>
-                      demo content
-                    </p>
-                    <h5
-                      class="ui header"
-                    >
-                      Workload
-                    </h5>
-                    <p>
-                      demo workload
-                    </p>
+                    </span>
+                  </div>
+                  <div
+                    class="right aligned four wide column"
+                  >
+                    ID: 
+                    1
                   </div>
                 </div>
                 <div
-                  class="two wide column"
-                  style="background-color: rgb(0, 78, 141); padding-left: 0px;"
+                  class="ui small header"
+                >
+                  2020-01-01
+                </div>
+                <p>
+                  demo content
+                </p>
+                <div
+                  class="ui small header"
+                >
+                  Workload
+                </div>
+                <p>
+                  demo workload
+                </p>
+              </div>
+              <div
+                class="column review-card-right-column"
+              >
+                <div
+                  class="ui centered stackable grid"
                 >
                   <div
-                    class="ui container"
+                    class="row votes-container-icon-row"
                   >
-                    <div
-                      class="ui centered grid"
-                      style="padding: 30px 10px; height: 100%;"
-                    >
-                      <div
-                        class="row"
-                        style="padding-bottom: 0px; overflow: show;"
-                      >
-                        <img
-                          class="ui image"
-                          src="blue-upvote.png"
-                        />
-                      </div>
-                      <div
-                        class="row"
-                        style="padding: 0px; color: white;"
-                      >
-                        <strong>
-                          3
-                        </strong>
-                      </div>
-                      <div
-                        class="row"
-                        style="padding-bottom: 0px;"
-                      >
-                        <img
-                          class="ui image"
-                          src="downvote.png"
-                        />
-                      </div>
-                      <div
-                        class="row"
-                        style="padding: 0px; color: white;"
-                      >
-                        <strong>
-                          2
-                        </strong>
-                      </div>
-                      <div
-                        class="row"
-                        style="padding-bottom: 0px;"
-                      >
-                        <img
-                          class="ui image"
-                          src="funny.png"
-                        />
-                      </div>
-                      <div
-                        class="row"
-                        style="padding: 0px; color: white;"
-                      >
-                        <strong>
-                          1
-                        </strong>
-                      </div>
-                    </div>
+                    <img
+                      class="ui mini image"
+                      src="blue-upvote.svg"
+                    />
+                  </div>
+                  <div
+                    class="row votes-container-number-row"
+                  >
+                    3
+                  </div>
+                  <div
+                    class="row votes-container-icon-row"
+                  >
+                    <img
+                      class="ui mini image"
+                      src="downvote.svg"
+                    />
+                  </div>
+                  <div
+                    class="row votes-container-number-row"
+                  >
+                    2
+                  </div>
+                  <div
+                    class="row votes-container-icon-row"
+                  >
+                    <img
+                      class="ui mini image"
+                      src="funny.svg"
+                    />
+                  </div>
+                  <div
+                    class="row votes-container-number-row"
+                  >
+                    1
                   </div>
                 </div>
               </div>
             </div>
             <div
-              class="ui container"
-              style="margin: 25px 0px;"
+              class="ui grid add-margin fluid"
             >
               <div
-                class="ui grid"
+                class="column review-card-left-column"
               >
                 <div
-                  class="fourteen wide column"
-                  style="background-color: rgb(242, 242, 242); padding: 20px 30px;"
+                  class="ui two column grid"
                 >
                   <div
-                    class="ui fluid container"
+                    class="twelve wide column"
                   >
                     <div
-                      style="position: relative;"
+                      class="ui medium header no-margin review-card-header"
                     >
-                      <div
-                        class="ui header"
-                      >
-                        Lee
-                         
-                        Bollinger
-                      </div>
-                      <h5
-                        class="ui header"
-                      >
-                        2020-01-01
-                      </h5>
-                      <div
-                        style="position: absolute; top: 0px; right: 0px; font-size: 16px;"
-                      >
-                        ID: 
-                        2
-                      </div>
+                      Lee Bollinger
                     </div>
-                    <p>
-                      demo content
-                    </p>
-                    <h5
-                      class="ui header"
-                    >
-                      Workload
-                    </h5>
-                    <p>
-                      demo workload
-                    </p>
+                  </div>
+                  <div
+                    class="right aligned four wide column"
+                  >
+                    ID: 
+                    2
                   </div>
                 </div>
                 <div
-                  class="two wide column"
-                  style="background-color: rgb(0, 78, 141); padding-left: 0px;"
+                  class="ui small header"
+                >
+                  2020-01-01
+                </div>
+                <p>
+                  demo content
+                </p>
+                <div
+                  class="ui small header"
+                >
+                  Workload
+                </div>
+                <p>
+                  demo workload
+                </p>
+              </div>
+              <div
+                class="column review-card-right-column"
+              >
+                <div
+                  class="ui centered stackable grid"
                 >
                   <div
-                    class="ui container"
+                    class="row votes-container-icon-row"
                   >
-                    <div
-                      class="ui centered grid"
-                      style="padding: 30px 10px; height: 100%;"
-                    >
-                      <div
-                        class="row"
-                        style="padding-bottom: 0px; overflow: show;"
-                      >
-                        <img
-                          class="ui image"
-                          src="blue-upvote.png"
-                        />
-                      </div>
-                      <div
-                        class="row"
-                        style="padding: 0px; color: white;"
-                      >
-                        <strong>
-                          3
-                        </strong>
-                      </div>
-                      <div
-                        class="row"
-                        style="padding-bottom: 0px;"
-                      >
-                        <img
-                          class="ui image"
-                          src="downvote.png"
-                        />
-                      </div>
-                      <div
-                        class="row"
-                        style="padding: 0px; color: white;"
-                      >
-                        <strong>
-                          2
-                        </strong>
-                      </div>
-                      <div
-                        class="row"
-                        style="padding-bottom: 0px;"
-                      >
-                        <img
-                          class="ui image"
-                          src="funny.png"
-                        />
-                      </div>
-                      <div
-                        class="row"
-                        style="padding: 0px; color: white;"
-                      >
-                        <strong>
-                          1
-                        </strong>
-                      </div>
-                    </div>
+                    <img
+                      class="ui mini image"
+                      src="blue-upvote.svg"
+                    />
+                  </div>
+                  <div
+                    class="row votes-container-number-row"
+                  >
+                    3
+                  </div>
+                  <div
+                    class="row votes-container-icon-row"
+                  >
+                    <img
+                      class="ui mini image"
+                      src="downvote.svg"
+                    />
+                  </div>
+                  <div
+                    class="row votes-container-number-row"
+                  >
+                    2
+                  </div>
+                  <div
+                    class="row votes-container-icon-row"
+                  >
+                    <img
+                      class="ui mini image"
+                      src="funny.svg"
+                    />
+                  </div>
+                  <div
+                    class="row votes-container-number-row"
+                  >
+                    1
                   </div>
                 </div>
               </div>
             </div>
           </div>
           <div
-            class="centered row review-section-show-more-grid-row"
+            class="row"
           >
             <button
               class="ui large fluid button"
               name="showMoreButton"
             >
-              Show more
+              Show more 
               <i
                 aria-hidden="true"
-                class="arrow down icon review-section-show-more-icon"
+                class="arrow down icon"
               />
             </button>
           </div>
@@ -539,11 +486,9 @@ Object {
     </div>
   </body>,
   "container": <div>
-    <div
-      class="ui fluid container"
-    >
+    <div>
       <div
-        class="ui grid"
+        class="ui grid add-margin"
       >
         <div
           class="row"
@@ -808,263 +753,212 @@ Object {
           class="row"
         >
           <div
-            class="ui container"
-            style="margin: 25px 0px;"
+            class="ui grid add-margin fluid"
           >
             <div
-              class="ui grid"
+              class="column review-card-left-column"
             >
               <div
-                class="fourteen wide column"
-                style="background-color: rgb(242, 242, 242); padding: 20px 30px;"
+                class="ui red message"
+              >
+                <i
+                  aria-hidden="true"
+                  class="red warning circle icon"
+                />
+                Please keep in mind that this review is more than 5 years old.
+              </div>
+              <div
+                class="ui two column grid"
               >
                 <div
-                  class="ui fluid container"
+                  class="twelve wide column"
                 >
                   <div
-                    class="ui message"
-                    style="background-color: rgb(255, 241, 241);"
+                    class="ui medium header no-margin review-card-header"
                   >
-                    <i
-                      aria-hidden="true"
-                      class="red warning circle icon"
-                    />
-                    Please keep in mind that this review is more than 5 years old.
+                    Nakul Verma
                   </div>
-                  <div
-                    style="position: relative;"
-                  >
-                    <div
-                      class="ui header"
-                    >
-                      Nakul
-                       
-                      Verma
-                    </div>
+                  <span>
                     <img
-                      class="ui avatar left spaced image"
+                      class="ui medium right spaced image"
                       src="gold-nugget.svg"
                     />
-                    <h5
-                      class="ui header"
-                    >
-                      2020-01-01
-                    </h5>
-                    <div
-                      style="position: absolute; top: 0px; right: 0px; font-size: 16px;"
-                    >
-                      ID: 
-                      1
-                    </div>
-                  </div>
-                  <p>
-                    demo content
-                  </p>
-                  <h5
-                    class="ui header"
-                  >
-                    Workload
-                  </h5>
-                  <p>
-                    demo workload
-                  </p>
+                  </span>
+                </div>
+                <div
+                  class="right aligned four wide column"
+                >
+                  ID: 
+                  1
                 </div>
               </div>
               <div
-                class="two wide column"
-                style="background-color: rgb(0, 78, 141); padding-left: 0px;"
+                class="ui small header"
+              >
+                2020-01-01
+              </div>
+              <p>
+                demo content
+              </p>
+              <div
+                class="ui small header"
+              >
+                Workload
+              </div>
+              <p>
+                demo workload
+              </p>
+            </div>
+            <div
+              class="column review-card-right-column"
+            >
+              <div
+                class="ui centered stackable grid"
               >
                 <div
-                  class="ui container"
+                  class="row votes-container-icon-row"
                 >
-                  <div
-                    class="ui centered grid"
-                    style="padding: 30px 10px; height: 100%;"
-                  >
-                    <div
-                      class="row"
-                      style="padding-bottom: 0px; overflow: show;"
-                    >
-                      <img
-                        class="ui image"
-                        src="blue-upvote.png"
-                      />
-                    </div>
-                    <div
-                      class="row"
-                      style="padding: 0px; color: white;"
-                    >
-                      <strong>
-                        3
-                      </strong>
-                    </div>
-                    <div
-                      class="row"
-                      style="padding-bottom: 0px;"
-                    >
-                      <img
-                        class="ui image"
-                        src="downvote.png"
-                      />
-                    </div>
-                    <div
-                      class="row"
-                      style="padding: 0px; color: white;"
-                    >
-                      <strong>
-                        2
-                      </strong>
-                    </div>
-                    <div
-                      class="row"
-                      style="padding-bottom: 0px;"
-                    >
-                      <img
-                        class="ui image"
-                        src="funny.png"
-                      />
-                    </div>
-                    <div
-                      class="row"
-                      style="padding: 0px; color: white;"
-                    >
-                      <strong>
-                        1
-                      </strong>
-                    </div>
-                  </div>
+                  <img
+                    class="ui mini image"
+                    src="blue-upvote.svg"
+                  />
+                </div>
+                <div
+                  class="row votes-container-number-row"
+                >
+                  3
+                </div>
+                <div
+                  class="row votes-container-icon-row"
+                >
+                  <img
+                    class="ui mini image"
+                    src="downvote.svg"
+                  />
+                </div>
+                <div
+                  class="row votes-container-number-row"
+                >
+                  2
+                </div>
+                <div
+                  class="row votes-container-icon-row"
+                >
+                  <img
+                    class="ui mini image"
+                    src="funny.svg"
+                  />
+                </div>
+                <div
+                  class="row votes-container-number-row"
+                >
+                  1
                 </div>
               </div>
             </div>
           </div>
           <div
-            class="ui container"
-            style="margin: 25px 0px;"
+            class="ui grid add-margin fluid"
           >
             <div
-              class="ui grid"
+              class="column review-card-left-column"
             >
               <div
-                class="fourteen wide column"
-                style="background-color: rgb(242, 242, 242); padding: 20px 30px;"
+                class="ui two column grid"
               >
                 <div
-                  class="ui fluid container"
+                  class="twelve wide column"
                 >
                   <div
-                    style="position: relative;"
+                    class="ui medium header no-margin review-card-header"
                   >
-                    <div
-                      class="ui header"
-                    >
-                      Lee
-                       
-                      Bollinger
-                    </div>
-                    <h5
-                      class="ui header"
-                    >
-                      2020-01-01
-                    </h5>
-                    <div
-                      style="position: absolute; top: 0px; right: 0px; font-size: 16px;"
-                    >
-                      ID: 
-                      2
-                    </div>
+                    Lee Bollinger
                   </div>
-                  <p>
-                    demo content
-                  </p>
-                  <h5
-                    class="ui header"
-                  >
-                    Workload
-                  </h5>
-                  <p>
-                    demo workload
-                  </p>
+                </div>
+                <div
+                  class="right aligned four wide column"
+                >
+                  ID: 
+                  2
                 </div>
               </div>
               <div
-                class="two wide column"
-                style="background-color: rgb(0, 78, 141); padding-left: 0px;"
+                class="ui small header"
+              >
+                2020-01-01
+              </div>
+              <p>
+                demo content
+              </p>
+              <div
+                class="ui small header"
+              >
+                Workload
+              </div>
+              <p>
+                demo workload
+              </p>
+            </div>
+            <div
+              class="column review-card-right-column"
+            >
+              <div
+                class="ui centered stackable grid"
               >
                 <div
-                  class="ui container"
+                  class="row votes-container-icon-row"
                 >
-                  <div
-                    class="ui centered grid"
-                    style="padding: 30px 10px; height: 100%;"
-                  >
-                    <div
-                      class="row"
-                      style="padding-bottom: 0px; overflow: show;"
-                    >
-                      <img
-                        class="ui image"
-                        src="blue-upvote.png"
-                      />
-                    </div>
-                    <div
-                      class="row"
-                      style="padding: 0px; color: white;"
-                    >
-                      <strong>
-                        3
-                      </strong>
-                    </div>
-                    <div
-                      class="row"
-                      style="padding-bottom: 0px;"
-                    >
-                      <img
-                        class="ui image"
-                        src="downvote.png"
-                      />
-                    </div>
-                    <div
-                      class="row"
-                      style="padding: 0px; color: white;"
-                    >
-                      <strong>
-                        2
-                      </strong>
-                    </div>
-                    <div
-                      class="row"
-                      style="padding-bottom: 0px;"
-                    >
-                      <img
-                        class="ui image"
-                        src="funny.png"
-                      />
-                    </div>
-                    <div
-                      class="row"
-                      style="padding: 0px; color: white;"
-                    >
-                      <strong>
-                        1
-                      </strong>
-                    </div>
-                  </div>
+                  <img
+                    class="ui mini image"
+                    src="blue-upvote.svg"
+                  />
+                </div>
+                <div
+                  class="row votes-container-number-row"
+                >
+                  3
+                </div>
+                <div
+                  class="row votes-container-icon-row"
+                >
+                  <img
+                    class="ui mini image"
+                    src="downvote.svg"
+                  />
+                </div>
+                <div
+                  class="row votes-container-number-row"
+                >
+                  2
+                </div>
+                <div
+                  class="row votes-container-icon-row"
+                >
+                  <img
+                    class="ui mini image"
+                    src="funny.svg"
+                  />
+                </div>
+                <div
+                  class="row votes-container-number-row"
+                >
+                  1
                 </div>
               </div>
             </div>
           </div>
         </div>
         <div
-          class="centered row review-section-show-more-grid-row"
+          class="row"
         >
           <button
             class="ui large fluid button"
             name="showMoreButton"
           >
-            Show more
+            Show more 
             <i
               aria-hidden="true"
-              class="arrow down icon review-section-show-more-icon"
+              class="arrow down icon"
             />
           </button>
         </div>
@@ -1130,11 +1024,9 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <div
-        class="ui fluid container"
-      >
+      <div>
         <div
-          class="ui grid"
+          class="ui grid add-margin"
         >
           <div
             class="row"
@@ -1399,259 +1291,210 @@ Object {
             class="row"
           >
             <div
-              class="ui container"
-              style="margin: 25px 0px;"
+              class="ui grid add-margin fluid"
             >
               <div
-                class="ui grid"
+                class="column review-card-left-column"
               >
                 <div
-                  class="fourteen wide column"
-                  style="background-color: rgb(242, 242, 242); padding: 20px 30px;"
+                  class="ui red message"
+                >
+                  <i
+                    aria-hidden="true"
+                    class="red warning circle icon"
+                  />
+                  Please keep in mind that this review is more than 5 years old.
+                </div>
+                <div
+                  class="ui two column grid"
                 >
                   <div
-                    class="ui fluid container"
+                    class="twelve wide column"
                   >
                     <div
-                      class="ui message"
-                      style="background-color: rgb(255, 241, 241);"
+                      class="ui medium header no-margin review-card-header"
                     >
-                      <i
-                        aria-hidden="true"
-                        class="red warning circle icon"
-                      />
-                      Please keep in mind that this review is more than 5 years old.
+                      COMS 4771
+                       
+                      Machine Learning
                     </div>
-                    <div
-                      style="position: relative;"
-                    >
-                      <div
-                        class="ui header"
-                      >
-                        COMS 4771
-                         
-                        Machine Learning
-                      </div>
-                      <h5
-                        class="ui header"
-                      >
-                        2020-01-01
-                      </h5>
-                      <div
-                        style="position: absolute; top: 0px; right: 0px; font-size: 16px;"
-                      >
-                        ID: 
-                        1
-                      </div>
-                    </div>
-                    <p>
-                      demo content
-                    </p>
-                    <h5
-                      class="ui header"
-                    >
-                      Workload
-                    </h5>
-                    <p>
-                      demo workload
-                    </p>
+                  </div>
+                  <div
+                    class="right aligned four wide column"
+                  >
+                    ID: 
+                    1
                   </div>
                 </div>
                 <div
-                  class="two wide column"
-                  style="background-color: rgb(0, 78, 141); padding-left: 0px;"
+                  class="ui small header"
+                >
+                  2020-01-01
+                </div>
+                <p>
+                  demo content
+                </p>
+                <div
+                  class="ui small header"
+                >
+                  Workload
+                </div>
+                <p>
+                  demo workload
+                </p>
+              </div>
+              <div
+                class="column review-card-right-column"
+              >
+                <div
+                  class="ui centered stackable grid"
                 >
                   <div
-                    class="ui container"
+                    class="row votes-container-icon-row"
                   >
-                    <div
-                      class="ui centered grid"
-                      style="padding: 30px 10px; height: 100%;"
-                    >
-                      <div
-                        class="row"
-                        style="padding-bottom: 0px; overflow: show;"
-                      >
-                        <img
-                          class="ui image"
-                          src="blue-upvote.png"
-                        />
-                      </div>
-                      <div
-                        class="row"
-                        style="padding: 0px; color: white;"
-                      >
-                        <strong>
-                          3
-                        </strong>
-                      </div>
-                      <div
-                        class="row"
-                        style="padding-bottom: 0px;"
-                      >
-                        <img
-                          class="ui image"
-                          src="downvote.png"
-                        />
-                      </div>
-                      <div
-                        class="row"
-                        style="padding: 0px; color: white;"
-                      >
-                        <strong>
-                          2
-                        </strong>
-                      </div>
-                      <div
-                        class="row"
-                        style="padding-bottom: 0px;"
-                      >
-                        <img
-                          class="ui image"
-                          src="funny.png"
-                        />
-                      </div>
-                      <div
-                        class="row"
-                        style="padding: 0px; color: white;"
-                      >
-                        <strong>
-                          1
-                        </strong>
-                      </div>
-                    </div>
+                    <img
+                      class="ui mini image"
+                      src="blue-upvote.svg"
+                    />
+                  </div>
+                  <div
+                    class="row votes-container-number-row"
+                  >
+                    3
+                  </div>
+                  <div
+                    class="row votes-container-icon-row"
+                  >
+                    <img
+                      class="ui mini image"
+                      src="downvote.svg"
+                    />
+                  </div>
+                  <div
+                    class="row votes-container-number-row"
+                  >
+                    2
+                  </div>
+                  <div
+                    class="row votes-container-icon-row"
+                  >
+                    <img
+                      class="ui mini image"
+                      src="funny.svg"
+                    />
+                  </div>
+                  <div
+                    class="row votes-container-number-row"
+                  >
+                    1
                   </div>
                 </div>
               </div>
             </div>
             <div
-              class="ui container"
-              style="margin: 25px 0px;"
+              class="ui grid add-margin fluid"
             >
               <div
-                class="ui grid"
+                class="column review-card-left-column"
               >
                 <div
-                  class="fourteen wide column"
-                  style="background-color: rgb(242, 242, 242); padding: 20px 30px;"
+                  class="ui two column grid"
                 >
                   <div
-                    class="ui fluid container"
+                    class="twelve wide column"
                   >
                     <div
-                      style="position: relative;"
+                      class="ui medium header no-margin review-card-header"
                     >
-                      <div
-                        class="ui header"
-                      >
-                        POLS 3285
-                         
-                        Freedom of Speech and Press
-                      </div>
-                      <h5
-                        class="ui header"
-                      >
-                        2020-01-01
-                      </h5>
-                      <div
-                        style="position: absolute; top: 0px; right: 0px; font-size: 16px;"
-                      >
-                        ID: 
-                        2
-                      </div>
+                      POLS 3285
+                       
+                      Freedom of Speech and Press
                     </div>
-                    <p>
-                      demo content
-                    </p>
-                    <h5
-                      class="ui header"
-                    >
-                      Workload
-                    </h5>
-                    <p>
-                      demo workload
-                    </p>
+                  </div>
+                  <div
+                    class="right aligned four wide column"
+                  >
+                    ID: 
+                    2
                   </div>
                 </div>
                 <div
-                  class="two wide column"
-                  style="background-color: rgb(0, 78, 141); padding-left: 0px;"
+                  class="ui small header"
+                >
+                  2020-01-01
+                </div>
+                <p>
+                  demo content
+                </p>
+                <div
+                  class="ui small header"
+                >
+                  Workload
+                </div>
+                <p>
+                  demo workload
+                </p>
+              </div>
+              <div
+                class="column review-card-right-column"
+              >
+                <div
+                  class="ui centered stackable grid"
                 >
                   <div
-                    class="ui container"
+                    class="row votes-container-icon-row"
                   >
-                    <div
-                      class="ui centered grid"
-                      style="padding: 30px 10px; height: 100%;"
-                    >
-                      <div
-                        class="row"
-                        style="padding-bottom: 0px; overflow: show;"
-                      >
-                        <img
-                          class="ui image"
-                          src="blue-upvote.png"
-                        />
-                      </div>
-                      <div
-                        class="row"
-                        style="padding: 0px; color: white;"
-                      >
-                        <strong>
-                          3
-                        </strong>
-                      </div>
-                      <div
-                        class="row"
-                        style="padding-bottom: 0px;"
-                      >
-                        <img
-                          class="ui image"
-                          src="downvote.png"
-                        />
-                      </div>
-                      <div
-                        class="row"
-                        style="padding: 0px; color: white;"
-                      >
-                        <strong>
-                          2
-                        </strong>
-                      </div>
-                      <div
-                        class="row"
-                        style="padding-bottom: 0px;"
-                      >
-                        <img
-                          class="ui image"
-                          src="funny.png"
-                        />
-                      </div>
-                      <div
-                        class="row"
-                        style="padding: 0px; color: white;"
-                      >
-                        <strong>
-                          1
-                        </strong>
-                      </div>
-                    </div>
+                    <img
+                      class="ui mini image"
+                      src="blue-upvote.svg"
+                    />
+                  </div>
+                  <div
+                    class="row votes-container-number-row"
+                  >
+                    3
+                  </div>
+                  <div
+                    class="row votes-container-icon-row"
+                  >
+                    <img
+                      class="ui mini image"
+                      src="downvote.svg"
+                    />
+                  </div>
+                  <div
+                    class="row votes-container-number-row"
+                  >
+                    2
+                  </div>
+                  <div
+                    class="row votes-container-icon-row"
+                  >
+                    <img
+                      class="ui mini image"
+                      src="funny.svg"
+                    />
+                  </div>
+                  <div
+                    class="row votes-container-number-row"
+                  >
+                    1
                   </div>
                 </div>
               </div>
             </div>
           </div>
           <div
-            class="centered row review-section-show-more-grid-row"
+            class="row"
           >
             <button
               class="ui large fluid button"
               name="showMoreButton"
             >
-              Show more
+              Show more 
               <i
                 aria-hidden="true"
-                class="arrow down icon review-section-show-more-icon"
+                class="arrow down icon"
               />
             </button>
           </div>
@@ -1660,11 +1503,9 @@ Object {
     </div>
   </body>,
   "container": <div>
-    <div
-      class="ui fluid container"
-    >
+    <div>
       <div
-        class="ui grid"
+        class="ui grid add-margin"
       >
         <div
           class="row"
@@ -1929,259 +1770,210 @@ Object {
           class="row"
         >
           <div
-            class="ui container"
-            style="margin: 25px 0px;"
+            class="ui grid add-margin fluid"
           >
             <div
-              class="ui grid"
+              class="column review-card-left-column"
             >
               <div
-                class="fourteen wide column"
-                style="background-color: rgb(242, 242, 242); padding: 20px 30px;"
+                class="ui red message"
+              >
+                <i
+                  aria-hidden="true"
+                  class="red warning circle icon"
+                />
+                Please keep in mind that this review is more than 5 years old.
+              </div>
+              <div
+                class="ui two column grid"
               >
                 <div
-                  class="ui fluid container"
+                  class="twelve wide column"
                 >
                   <div
-                    class="ui message"
-                    style="background-color: rgb(255, 241, 241);"
+                    class="ui medium header no-margin review-card-header"
                   >
-                    <i
-                      aria-hidden="true"
-                      class="red warning circle icon"
-                    />
-                    Please keep in mind that this review is more than 5 years old.
+                    COMS 4771
+                     
+                    Machine Learning
                   </div>
-                  <div
-                    style="position: relative;"
-                  >
-                    <div
-                      class="ui header"
-                    >
-                      COMS 4771
-                       
-                      Machine Learning
-                    </div>
-                    <h5
-                      class="ui header"
-                    >
-                      2020-01-01
-                    </h5>
-                    <div
-                      style="position: absolute; top: 0px; right: 0px; font-size: 16px;"
-                    >
-                      ID: 
-                      1
-                    </div>
-                  </div>
-                  <p>
-                    demo content
-                  </p>
-                  <h5
-                    class="ui header"
-                  >
-                    Workload
-                  </h5>
-                  <p>
-                    demo workload
-                  </p>
+                </div>
+                <div
+                  class="right aligned four wide column"
+                >
+                  ID: 
+                  1
                 </div>
               </div>
               <div
-                class="two wide column"
-                style="background-color: rgb(0, 78, 141); padding-left: 0px;"
+                class="ui small header"
+              >
+                2020-01-01
+              </div>
+              <p>
+                demo content
+              </p>
+              <div
+                class="ui small header"
+              >
+                Workload
+              </div>
+              <p>
+                demo workload
+              </p>
+            </div>
+            <div
+              class="column review-card-right-column"
+            >
+              <div
+                class="ui centered stackable grid"
               >
                 <div
-                  class="ui container"
+                  class="row votes-container-icon-row"
                 >
-                  <div
-                    class="ui centered grid"
-                    style="padding: 30px 10px; height: 100%;"
-                  >
-                    <div
-                      class="row"
-                      style="padding-bottom: 0px; overflow: show;"
-                    >
-                      <img
-                        class="ui image"
-                        src="blue-upvote.png"
-                      />
-                    </div>
-                    <div
-                      class="row"
-                      style="padding: 0px; color: white;"
-                    >
-                      <strong>
-                        3
-                      </strong>
-                    </div>
-                    <div
-                      class="row"
-                      style="padding-bottom: 0px;"
-                    >
-                      <img
-                        class="ui image"
-                        src="downvote.png"
-                      />
-                    </div>
-                    <div
-                      class="row"
-                      style="padding: 0px; color: white;"
-                    >
-                      <strong>
-                        2
-                      </strong>
-                    </div>
-                    <div
-                      class="row"
-                      style="padding-bottom: 0px;"
-                    >
-                      <img
-                        class="ui image"
-                        src="funny.png"
-                      />
-                    </div>
-                    <div
-                      class="row"
-                      style="padding: 0px; color: white;"
-                    >
-                      <strong>
-                        1
-                      </strong>
-                    </div>
-                  </div>
+                  <img
+                    class="ui mini image"
+                    src="blue-upvote.svg"
+                  />
+                </div>
+                <div
+                  class="row votes-container-number-row"
+                >
+                  3
+                </div>
+                <div
+                  class="row votes-container-icon-row"
+                >
+                  <img
+                    class="ui mini image"
+                    src="downvote.svg"
+                  />
+                </div>
+                <div
+                  class="row votes-container-number-row"
+                >
+                  2
+                </div>
+                <div
+                  class="row votes-container-icon-row"
+                >
+                  <img
+                    class="ui mini image"
+                    src="funny.svg"
+                  />
+                </div>
+                <div
+                  class="row votes-container-number-row"
+                >
+                  1
                 </div>
               </div>
             </div>
           </div>
           <div
-            class="ui container"
-            style="margin: 25px 0px;"
+            class="ui grid add-margin fluid"
           >
             <div
-              class="ui grid"
+              class="column review-card-left-column"
             >
               <div
-                class="fourteen wide column"
-                style="background-color: rgb(242, 242, 242); padding: 20px 30px;"
+                class="ui two column grid"
               >
                 <div
-                  class="ui fluid container"
+                  class="twelve wide column"
                 >
                   <div
-                    style="position: relative;"
+                    class="ui medium header no-margin review-card-header"
                   >
-                    <div
-                      class="ui header"
-                    >
-                      POLS 3285
-                       
-                      Freedom of Speech and Press
-                    </div>
-                    <h5
-                      class="ui header"
-                    >
-                      2020-01-01
-                    </h5>
-                    <div
-                      style="position: absolute; top: 0px; right: 0px; font-size: 16px;"
-                    >
-                      ID: 
-                      2
-                    </div>
+                    POLS 3285
+                     
+                    Freedom of Speech and Press
                   </div>
-                  <p>
-                    demo content
-                  </p>
-                  <h5
-                    class="ui header"
-                  >
-                    Workload
-                  </h5>
-                  <p>
-                    demo workload
-                  </p>
+                </div>
+                <div
+                  class="right aligned four wide column"
+                >
+                  ID: 
+                  2
                 </div>
               </div>
               <div
-                class="two wide column"
-                style="background-color: rgb(0, 78, 141); padding-left: 0px;"
+                class="ui small header"
+              >
+                2020-01-01
+              </div>
+              <p>
+                demo content
+              </p>
+              <div
+                class="ui small header"
+              >
+                Workload
+              </div>
+              <p>
+                demo workload
+              </p>
+            </div>
+            <div
+              class="column review-card-right-column"
+            >
+              <div
+                class="ui centered stackable grid"
               >
                 <div
-                  class="ui container"
+                  class="row votes-container-icon-row"
                 >
-                  <div
-                    class="ui centered grid"
-                    style="padding: 30px 10px; height: 100%;"
-                  >
-                    <div
-                      class="row"
-                      style="padding-bottom: 0px; overflow: show;"
-                    >
-                      <img
-                        class="ui image"
-                        src="blue-upvote.png"
-                      />
-                    </div>
-                    <div
-                      class="row"
-                      style="padding: 0px; color: white;"
-                    >
-                      <strong>
-                        3
-                      </strong>
-                    </div>
-                    <div
-                      class="row"
-                      style="padding-bottom: 0px;"
-                    >
-                      <img
-                        class="ui image"
-                        src="downvote.png"
-                      />
-                    </div>
-                    <div
-                      class="row"
-                      style="padding: 0px; color: white;"
-                    >
-                      <strong>
-                        2
-                      </strong>
-                    </div>
-                    <div
-                      class="row"
-                      style="padding-bottom: 0px;"
-                    >
-                      <img
-                        class="ui image"
-                        src="funny.png"
-                      />
-                    </div>
-                    <div
-                      class="row"
-                      style="padding: 0px; color: white;"
-                    >
-                      <strong>
-                        1
-                      </strong>
-                    </div>
-                  </div>
+                  <img
+                    class="ui mini image"
+                    src="blue-upvote.svg"
+                  />
+                </div>
+                <div
+                  class="row votes-container-number-row"
+                >
+                  3
+                </div>
+                <div
+                  class="row votes-container-icon-row"
+                >
+                  <img
+                    class="ui mini image"
+                    src="downvote.svg"
+                  />
+                </div>
+                <div
+                  class="row votes-container-number-row"
+                >
+                  2
+                </div>
+                <div
+                  class="row votes-container-icon-row"
+                >
+                  <img
+                    class="ui mini image"
+                    src="funny.svg"
+                  />
+                </div>
+                <div
+                  class="row votes-container-number-row"
+                >
+                  1
                 </div>
               </div>
             </div>
           </div>
         </div>
         <div
-          class="centered row review-section-show-more-grid-row"
+          class="row"
         >
           <button
             class="ui large fluid button"
             name="showMoreButton"
           >
-            Show more
+            Show more 
             <i
               aria-hidden="true"
-              class="arrow down icon review-section-show-more-icon"
+              class="arrow down icon"
             />
           </button>
         </div>

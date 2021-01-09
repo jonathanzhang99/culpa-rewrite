@@ -1,0 +1,30 @@
+/*******************************
+    User Variable Overrides
+*******************************/
+
+/*-------------------
+      Collection
+--------------------*/
+
+/* Menu */
+@border: none;
+
+/* Menu Item */
+@itemTextColor: @darkNavy;
+
+/*--------------
+    Elements
+---------------*/
+
+/* Vertical Icon */
+@verticalIconMargin: -0.1em 0 0 0.5em;
+
+/*--------------
+     States
+---------------*/
+
+/* Hovered Item */
+@hoverItemTextColor: @darkNavy;
+
+/* Pressed Item */
+@pressedItemTextColor: @darkNavy;

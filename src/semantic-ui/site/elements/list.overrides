@@ -1,0 +1,7 @@
+/*******************************
+    User Variable Overrides
+*******************************/
+
+ul.ui.list:last-child, ol.ui.list:last-child, .ui.list:last-child {
+    margin-bottom: 1em;
+}

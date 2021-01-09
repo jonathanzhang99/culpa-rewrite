@@ -1,0 +1,7 @@
+/*******************************
+        User Overrides
+*******************************/
+
+.ui.accordion.add-margin {
+  margin: 1rem 0;
+}

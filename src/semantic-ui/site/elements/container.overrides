@@ -1,0 +1,8 @@
+/*******************************
+         Site Overrides
+*******************************/
+
+.ui.container.root-container {
+  margin: 20vh 0;
+  min-height: 100vh;
+}
