@@ -81,9 +81,6 @@ jobs:
           mkdir dist
           cp -r api/ build/ Pipfile Pipfile.lock dist/
 
-      - name: Set REMOTE_HOST
-        run: echo "::set-env name=REMOTE_HOST::${{ needs.terraform-setup.outputs.public-ip }}"
-
       - name: Deploy to Server
         uses: easingthemes/ssh-deploy@v2.1.4
         env:
@@ -91,3 +88,4 @@ jobs:
           SOURCE: "dist/"
           TARGET: "/home/ubuntu/dist"
           REMOTE_USER: "ubuntu"
+          REMOTE_HOST: ${{ needs.terraform-setup.outputs.public-ip }}
