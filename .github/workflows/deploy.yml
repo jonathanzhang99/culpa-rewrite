@@ -81,13 +81,11 @@ jobs:
           mkdir dist
           cp -r api/ build/ Pipfile Pipfile.lock dist/
 
-      - name: Set REMOTE_HOST
-        run: echo "::set-env name=REMOTE_HOST::${{ needs.terraform-setup.outputs.public-ip }}"
-
       - name: Deploy to Server
-        uses: easingthemes/ssh-deploy@v2.1.4
+        uses: easingthemes/ssh-deploy@v2.1.5
         env:
           SSH_PRIVATE_KEY: ${{ secrets.AWS_EC2_PRIVATE_KEY }}
           SOURCE: "dist/"
           TARGET: "/home/ubuntu/dist"
           REMOTE_USER: "ubuntu"
+          REMOTE_HOST: ${{ needs.terraform-setup.outputs.public-ip }}

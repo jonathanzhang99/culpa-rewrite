@@ -14,6 +14,10 @@
 # python
 __pycache__/
 
+# terraform
+.terraform/
+terraform.tfstate*
+
 # misc
 .DS_Store
 .env.local
@@ -22,8 +26,6 @@ __pycache__/
 .env.production.local
 .env
 .vscode/
-.terraform/
-terraform.tfstate*
 
 npm-debug.log*
 yarn-debug.log*

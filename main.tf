@@ -77,7 +77,7 @@ module "vpc" {
 }
 
 # Gives ingress access to all http ports and also allows ssh access
-# in rare emergency situations.
+# for deployment and in rare emergency situations.
 module "web_sg" {
   source  = "terraform-aws-modules/security-group/aws//modules/web"
   version = "3.0"
