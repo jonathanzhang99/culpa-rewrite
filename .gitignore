@@ -17,6 +17,7 @@ __pycache__/
 # terraform
 .terraform/
 terraform.tfstate*
+*.tfvars
 
 # misc
 .DS_Store

@@ -69,6 +69,10 @@ write_files:
           proxy_pass http://127.0.0.1:5000;
         }
       }
+  
+  - path: /run/tmp/tmp.html
+    content: |
+    <html><h1>Welcome to CULPA!</h1><br>If you see this, you have successfully setup the server. Please run the deployment from Github</html>
 
 packages:
   - python3.7
@@ -78,6 +82,7 @@ packages:
 runcmd:
   - python3.7 -m pip install pipenv
   - sudo cp /run/tmp/default /etc/nginx/sites-available/default
+  - sudo cp /run/tmp/tmp.html /home/ubuntu/dist/build/index.html
   - sudo systemctl stop apache2
   - sudo systemctl start nginx
   - sudo systemctl start culpa.service culpa-reloader.service culpa-reloader.path
