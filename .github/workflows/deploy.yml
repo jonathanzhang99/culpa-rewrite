@@ -54,7 +54,7 @@ jobs:
       - name: Get Server IP
         id: get-ip
         run: |
-          PUBLIC_IP=$(terraform output public_ip)
+          PUBLIC_IP=$(eval 'terraform output public_ip')
           echo "$PUBLIC_IP"
           echo "::set-output name=ip::$PUBLIC_IP"
 
@@ -90,6 +90,9 @@ jobs:
           EOF
           mkdir -p dist
           cp -r api/ build/ Pipfile Pipfile.lock dist/
+
+      - name: Debug step
+        run: echo ${{ needs.terraform-setup.outputs.ip }}
 
       - name: Deploy to Server
         uses: easingthemes/ssh-deploy@v2.1.5
