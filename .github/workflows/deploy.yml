@@ -88,8 +88,10 @@ jobs:
           mkdir -p dist
           cp -r api/ build/ Pipfile Pipfile.lock dist/
 
-      - name: Debug step
-        run: printf ${{ needs.terraform-setup.outputs.ip }}
+      # This step is necessary due to a potential bug with Terraform Github actions
+      # where a newline is added to outputs.
+      - name: Set REMOTE_HOST environement variable
+        run: echo "REMOTE_HOST=${{ needs.terraform-setup.outputs.ip }}" >> $GITHUB_ENV
 
       - name: Deploy to Server
         uses: easingthemes/ssh-deploy@v2.1.5
@@ -97,5 +99,4 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.AWS_EC2_PRIVATE_KEY }}
           SOURCE: "dist/"
           TARGET: "/home/ubuntu/dist"
-          REMOTE_HOST: ${{ needs.terraform-setup.outputs.ip }}
           REMOTE_USER: "ubuntu"
