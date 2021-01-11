@@ -17,7 +17,7 @@ jobs:
     name: "Terraform Setup"
     runs-on: ubuntu-latest
     outputs:
-      ip: ${{ steps.get-ip.outputs.ip }}
+      ip: ${{ steps.get-ip.outputs.stdout }}
     steps:
       - uses: actions/checkout@v2
 
@@ -53,10 +53,7 @@ jobs:
 
       - name: Get Server IP
         id: get-ip
-        run: |
-          PUBLIC_IP=$(eval 'terraform output public_ip')
-          echo "$PUBLIC_IP"
-          echo "::set-output name=ip::$PUBLIC_IP"
+        run: terraform output public_ip
 
   deploy-build:
     name: Deploy to AWS
