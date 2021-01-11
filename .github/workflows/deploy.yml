@@ -43,7 +43,7 @@ jobs:
 
       - name: Terraform plan
         id: plan
-        run: terraform plan -detailed-exit-code
+        run: terraform plan -detailed-exitcode
 
       - name: Terraform Apply
         if: ${{ steps.plan.outputs.exitcode == 2 }}
