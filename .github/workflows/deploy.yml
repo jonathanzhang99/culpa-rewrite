@@ -41,19 +41,13 @@ jobs:
           database_password = "$DATABASE_PASSWORD"
           EOF
 
-      - name: Terraform plan
-        id: plan
-        run: terraform plan -detailed-exitcode
-
       - name: Terraform Apply
-        if: ${{ steps.plan.outputs.exitcode == 2 }}
         run: terraform apply -auto-approve
 
       # We run this wait step in order to make sure that the cloud-init
       # process can finish. It also adds a bit of time to panic-cancel
       # a deploy if you notice something wrong.
       - name: Wait for Server Initialization
-        if: ${{ steps.plan.outputs.exitcode == 2 }}
         shell: bash
         run: echo "Sleeping for one minute..." && sleep 60
 
