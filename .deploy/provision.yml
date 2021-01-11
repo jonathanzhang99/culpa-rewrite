@@ -1,11 +1,18 @@
 #cloud-config
+# This file provisions the server to run the CULPA application. It uses the
+# standard initialization method, cloud-init. More info can be found below:
+# https://cloudinit.readthedocs.io/en/latest/
 
 write_files:
+  # This is system daemon to automatically start/restart the flask
+  # server. There are three files culpa.service, culpa-reloader.service,
+  # culpa-reloader.path.
   - path: /etc/systemd/system/culpa.service
     content: |
       [Unit]
       Description=Flask Backend Server for CULPA
       After=network.target
+      ConditionFileNotEmpty=/home/ubuntu/dist/api/app.py
 
       [Service]
       Type=simple
@@ -15,6 +22,7 @@ write_files:
       ExecStartPre=/usr/bin/python3.7 -m pipenv install
       ExecStart=/usr/bin/python3.7 -m pipenv run gunicorn -b 127.0.0.1:5000 -w 4 "api.app:create_app()"
       Restart=always
+      RestartSec=10
 
       [Install]
       WantedBy=multi-user.target
@@ -43,6 +51,10 @@ write_files:
       [Install]
       WantedBy=multi-user.target
 
+  # This is the nginx configuration for the server. We serve pages from
+  # `/home/ubuntu/dist/build` where the built react app should be located.
+  # The python server runs on port 5000 and we forward all requests that
+  # begin with `/api` to the flask server.
   - path: /run/tmp/default
     content: |
       server {
@@ -69,10 +81,20 @@ write_files:
           proxy_pass http://127.0.0.1:5000;
         }
       }
-  
-  - path: /run/tmp/tmp.html
+
+  # This is the placeholder page on first deploy. It should not be seen and
+  # is solely for debugging purposes.
+  - path: /run/tmp/index.html
     content: |
-    <html><h1>Welcome to CULPA!</h1><br>If you see this, you have successfully setup the server. Please run the deployment from Github</html>
+      <html>
+        <h1>Welcome to CULPA!</h1>
+        <br>
+        <p>
+          If you see this, you have successfully setup the server but have
+          failed to/forgot to deploy the app.
+          Please run the deployment from Github.
+        </p>
+      </html>
 
 packages:
   - python3.7
@@ -80,9 +102,20 @@ packages:
   - nginx
 
 runcmd:
+  # Install pipenv
   - python3.7 -m pip install pipenv
+
+  # Copies the nginx config to the correct place after packages have finished installing.
   - sudo cp /run/tmp/default /etc/nginx/sites-available/default
-  - sudo cp /run/tmp/tmp.html /home/ubuntu/dist/build/index.html
+
+  # Copies the placeholder page
+  - sudo mkdir -p /home/ubuntu/dist/build && sudo cp /run/tmp/tmp.html /home/ubuntu/dist/build/
+
+  # Apache2 runs by default on linux (unsure if this can be changed). Stop apache2
   - sudo systemctl stop apache2
+
+  # Start nginx
   - sudo systemctl start nginx
+
+  # Setup the system daemons for the CULPA flask app. WILL safely error on first deploy.
   - sudo systemctl start culpa.service culpa-reloader.service culpa-reloader.path

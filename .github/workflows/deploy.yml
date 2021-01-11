@@ -44,6 +44,13 @@ jobs:
       - name: Terraform Apply
         run: terraform apply -auto-approve
 
+      # We run this wait step in order to make sure that the cloud-init
+      # process can finish. It also adds a bit of time to panic-cancel
+      # a deploy if you notice something wrong.
+      - name: Wait for Server Initialization
+        shell: bash
+        run: echo "Sleeping for one minute..." && sleep 60
+
       - name: Get Server IP
         id: get-ip
         run: terraform output public_ip
