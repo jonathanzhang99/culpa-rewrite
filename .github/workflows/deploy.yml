@@ -89,7 +89,7 @@ jobs:
           cp -r api/ build/ Pipfile Pipfile.lock dist/
 
       - name: Debug step
-        run: echo ${{ needs.terraform-setup.outputs.ip }}
+        run: printf ${{ needs.terraform-setup.outputs.ip }}
 
       - name: Deploy to Server
         uses: easingthemes/ssh-deploy@v2.1.5
@@ -97,5 +97,5 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.AWS_EC2_PRIVATE_KEY }}
           SOURCE: "dist/"
           TARGET: "/home/ubuntu/dist"
-          REMOTE_USER: "ubuntu"
           REMOTE_HOST: ${{ needs.terraform-setup.outputs.ip }}
+          REMOTE_USER: "ubuntu"
