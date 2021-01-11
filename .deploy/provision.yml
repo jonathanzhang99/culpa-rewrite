@@ -109,7 +109,7 @@ runcmd:
   - sudo cp /run/tmp/default /etc/nginx/sites-available/default
 
   # Copies the placeholder page
-  - sudo mkdir -p /home/ubuntu/dist/build && sudo cp /run/tmp/index.html /home/ubuntu/dist/build/
+  - sudo mkdir -p /home/ubuntu/dist/build && sudo cp /run/tmp/index.html /home/ubuntu/dist/build/ && chown -R ubuntu:ubuntu /home/ubuntu/dist
 
   # Apache2 runs by default on linux (unsure if this can be changed). Stop apache2
   - sudo systemctl stop apache2
