@@ -62,8 +62,8 @@ export function ProfessorSummary({
   professorId,
 }) {
   return (
-    /* use div to move to a new line */
     <>
+<<<<<<< HEAD
       <div>
         <ProfessorDisplayName
           as="header"
@@ -85,6 +85,22 @@ export function ProfessorSummary({
           subject={`${firstName} ${lastName}`}
         />
       </div>
+=======
+      <ProfessorDisplayName
+        as="header"
+        badges={badges}
+        firstName={firstName}
+        lastName={lastName}
+        size="huge"
+      />
+      <ProfessorCourseList courses={courses} />
+      <CreateReviewButton
+        relaxed
+        color="orange"
+        professorId={professorId}
+        subject={`${firstName} ${lastName}`}
+      />
+>>>>>>> Add block-display headers
     </>
   );
 }
