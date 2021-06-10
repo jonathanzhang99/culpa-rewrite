@@ -34,7 +34,7 @@ const propTypesCourseProfessors = {
 function ProfessorsList({ courseProfessors }) {
   return (
     <div className="add-margin">
-      <Header className="no-margin">Professors: </Header>
+      <Header className="no-vertical-margin">Professors: </Header>
       {courseProfessors.map(
         ({ badges, firstName, lastName, professorId }, index) => {
           return (

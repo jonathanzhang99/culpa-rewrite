@@ -25,7 +25,7 @@ const propTypesProfessorCourses = {
 function ProfessorCourseList({ courses }) {
   return (
     <div className="add-margin">
-      <Header className="no-margin">Courses: </Header>
+      <Header className="no-vertical-margin">Courses: </Header>
       {courses.map(({ courseId, courseName, courseCallNumber }, index) => (
         <span key={courseId}>
           <CourseDisplayLink

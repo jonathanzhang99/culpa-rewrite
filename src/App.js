@@ -1,6 +1,7 @@
 import React from "react";
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 
+import AdminApprovalPage from "components/admin/AdminApprovalPage";
 import AdminDashboardPage from "components/admin/AdminDashboardPage";
 import { AuthProvider, ProtectedRoute } from "components/common/Authentication";
 import ScrollToTop from "components/common/ScrollToTop";
@@ -25,9 +26,13 @@ function App() {
             <Route exact path="/login">
               <LoginPage />
             </Route>
-            <ProtectedRoute exact path="/admin">
+            {/* change Route to ProtectedRoute after fixing login bug */}
+            <Route exact path="/admin">
               <AdminDashboardPage />
-            </ProtectedRoute>
+            </Route>
+            <Route path="/admin/:reviewId">
+              <AdminApprovalPage />
+            </Route>
             <Route exact path="/review/submit">
               <CreateReviewPage />
             </Route>

@@ -57,7 +57,16 @@ const defaultPropsInput = {
   onChange: () => {},
 };
 
-export function TextInput({ error, id, label, name, width, onChange }) {
+export function TextInput({
+  error,
+  id,
+  label,
+  name,
+  width,
+  onChange,
+  readOnly,
+  value,
+}) {
   return (
     <SemanticForm.Field
       aria-label={label}
@@ -69,6 +78,8 @@ export function TextInput({ error, id, label, name, width, onChange }) {
       type="text"
       width={width}
       onChange={onChange}
+      readOnly={readOnly}
+      value={value}
     />
   );
 }
@@ -118,6 +129,8 @@ export function TextAreaInput({
   width,
   onChange,
   rows,
+  readOnly,
+  value,
 }) {
   return (
     <SemanticForm.Field
@@ -130,6 +143,8 @@ export function TextAreaInput({
       rows={rows}
       width={width}
       onChange={onChange}
+      readOnly={readOnly}
+      value={value}
     />
   );
 }
@@ -207,7 +222,14 @@ const defaultPropsRadioInputGroup = {
   value: undefined,
 };
 
-export function RadioInputGroup({ name, labels, onChange, value }) {
+export function RadioInputGroup({
+  name,
+  labels,
+  onChange,
+  value,
+  readOnly,
+  grouped,
+}) {
   const radioButtons = labels.map(({ label, key }) => {
     return (
       <SemanticForm.Field
@@ -220,14 +242,11 @@ export function RadioInputGroup({ name, labels, onChange, value }) {
         type="radio"
         value={key}
         onChange={(e, { value: checkedValue }) => onChange(checkedValue)}
+        readOnly={readOnly}
       />
     );
   });
-  return (
-    <FormGroup unstackable widths="equal">
-      {radioButtons}
-    </FormGroup>
-  );
+  return <FormGroup grouped={grouped}>{radioButtons}</FormGroup>;
 }
 
 export const SearchInput = SearchInputImport;

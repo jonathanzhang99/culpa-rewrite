@@ -161,12 +161,12 @@ export default function Form({
       // are helper functions defined in react-hook-forms and support controlled
       // components such as Semantic UI components.
       if (ValidInputComponents.includes(child.type)) {
-        const { name, rules } = child.props;
+        const { name, rules, value } = child.props;
         return (
           <Controller
             as={child}
             control={control}
-            defaultValue=""
+            defaultValue={value}
             error={getErrors(name)}
             name={name}
             rules={rules}

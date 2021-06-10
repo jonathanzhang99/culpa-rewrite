@@ -1,9 +1,12 @@
-from pypika import MySQLQuery as Query, Criterion, Order
+from pypika import functions as fn, \
+    MySQLQuery as Query, \
+    Criterion, \
+    Order
 
 from api.data import db
 from api.data.common import badge, badge_professor, course, \
   course_professor, department, department_professor, professor, \
-  Match, APPROVED, JsonArrayAgg
+  Match, APPROVED, PENDING, JsonArrayAgg
 
 
 # TODO: This method is temporary to test search functionality
@@ -173,3 +176,18 @@ def search_professor(search_query, limit=None, alphabetize=False):
 
     cur.execute(query.get_sql())
     return cur.fetchall()
+
+
+def count_pending_professors():
+    cur = db.get_cursor()
+    query = Query \
+        .from_(professor) \
+        .select(
+          fn.Count(professor.professor_id).as_('count')
+        ) \
+        .where(Criterion.all([
+          professor.status == PENDING
+        ])) \
+        .get_sql()
+    cur.execute(query)
+    return cur.fetchone()
