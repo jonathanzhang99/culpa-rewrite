@@ -2,9 +2,7 @@ from pypika import functions as fn, \
     MySQLQuery as Query
 
 from api.data import db
-from api.data.common import badge, badge_professor, course, \
-  course_professor, department, department_professor, professor, \
-  APPROVED, PENDING
+from api.data.common import course_professor, PENDING
 
 
 def count_pending_course_professor_relationships():

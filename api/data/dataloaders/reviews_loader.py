@@ -377,7 +377,6 @@ def count_pending_reviews():
 
 
 def load_pending_reviews():
-    cur = db.get_cursor()
     query = Query \
         .from_(course) \
         .join(course_professor) \
@@ -387,8 +386,8 @@ def load_pending_reviews():
     fields = [
         course.course_id,
         course.call_number,
-        course.name
+        course.nameg
     ]
     query_prefix = [query, fields]
-    dummy_ip = "127.0.0.1" # don't need ip but it's required
+    dummy_ip = "127.0.0.1"  # don't need ip but it's required
     return get_reviews_with_query_prefix(query_prefix, dummy_ip, flag_type="pending")
