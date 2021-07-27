@@ -390,4 +390,8 @@ def load_pending_reviews():
     ]
     query_prefix = [query, fields]
     dummy_ip = "127.0.0.1"  # don't need ip but it's required
-    return get_reviews_with_query_prefix(query_prefix, dummy_ip, flag_type="pending")
+    return get_reviews_with_query_prefix(
+      query_prefix,
+      dummy_ip,
+      flag_type="pending"
+    )

@@ -16,7 +16,7 @@ def dashboard():
     pending_professors_count = count_pending_professors()
     pending_courses_count = count_pending_courses()
     pending_relationships_count = \
-      count_pending_course_professor_relationships()
+     count_pending_course_professor_relationships()
 
     return {
       'pendingReviewsCount': pending_reviews_count['count'],
