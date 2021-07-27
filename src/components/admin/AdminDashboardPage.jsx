@@ -1,4 +1,5 @@
-import React, { useContext, useState } from "react";
+import PropTypes from "prop-types";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import {
   Button,
@@ -9,7 +10,7 @@ import {
   Segment,
 } from "semantic-ui-react";
 
-import { AuthContext } from "components/common/Authentication";
+// import { AuthContext } from "components/common/Authentication";
 import ErrorComponent from "components/common/ErrorComponent";
 import LoadingComponent from "components/common/LoadingComponent";
 import useDataFetch from "components/common/useDataFetch";
@@ -26,6 +27,13 @@ function TopPanel() {
     </Grid>
   );
 }
+
+const propTypesAdminDashboard = {
+  pendingReviewsCount: PropTypes.number.isRequired,
+  pendingProfessorsCount: PropTypes.number.isRequired,
+  pendingCoursesCount: PropTypes.number.isRequired,
+  pendingRelationshipsCount: PropTypes.number.isRequired,
+};
 
 function AdminDashboard({
   pendingReviewsCount,
@@ -88,8 +96,8 @@ function PendingReviews({ reviews, pageNumber }) {
   return reviews
     .slice(0, pageNumber * NUM_REVIEWS_PER_PAGE)
     .map(({ reviewId, reviewHeader }) => (
-      <Link to={`/admin/${reviewId}`} key={reviewId}>
-        <Button className="pending-review" as={Segment} fluid padded raised>
+      <Link key={reviewId} to={`/admin/${reviewId}`}>
+        <Button fluid padded raised as={Segment} className="pending-review">
           <Grid>
             <Grid.Column textAlign="left" width={12}>
               {`[${reviewHeader.courseCallNumber}] ${reviewHeader.courseName}`}
@@ -105,7 +113,7 @@ function PendingReviews({ reviews, pageNumber }) {
 }
 
 export default function AdminDashboardPage() {
-  const { logout } = useContext(AuthContext);
+  // const { logout } = useContext(AuthContext);
 
   const {
     data: {
@@ -154,17 +162,17 @@ export default function AdminDashboardPage() {
       </Header>
       <Divider section />
       <AdminDashboard
-        pendingReviewsCount={pendingReviewsCount}
-        pendingProfessorsCount={pendingProfessorsCount}
         pendingCoursesCount={pendingCoursesCount}
+        pendingProfessorsCount={pendingProfessorsCount}
         pendingRelationshipsCount={pendingRelationshipsCount}
+        pendingReviewsCount={pendingReviewsCount}
       />
       <Divider section />
       <Header className="block-display" size="huge" textAlign="center">
         Pending Reviews
       </Header>
       <Divider hidden />
-      <PendingReviews reviews={reviews} pageNumber={pageNumber} />
+      <PendingReviews pageNumber={pageNumber} reviews={reviews} />
       <Button
         fluid
         name="showMoreButton"
@@ -176,3 +184,5 @@ export default function AdminDashboardPage() {
     </>
   );
 }
+
+AdminDashboard.propTypes = propTypesAdminDashboard;

@@ -45,6 +45,10 @@ const propTypesInput = {
   id: PropTypes.string,
   label: PropTypes.string,
   name: PropTypes.string.isRequired,
+  // eslint-disable-next-line react/no-unused-prop-types
+  readOnly: PropTypes.bool,
+  // eslint-disable-next-line react/no-unused-prop-types
+  value: PropTypes.string,
   width: PropTypes.number,
   onChange: PropTypes.func,
 };
@@ -53,6 +57,8 @@ const defaultPropsInput = {
   error: undefined,
   id: "",
   label: "",
+  readOnly: false,
+  value: "",
   width: undefined,
   onChange: () => {},
 };
@@ -62,10 +68,10 @@ export function TextInput({
   id,
   label,
   name,
-  width,
-  onChange,
   readOnly,
   value,
+  width,
+  onChange,
 }) {
   return (
     <SemanticForm.Field
@@ -75,11 +81,11 @@ export function TextInput({
       id={getId(id, name)}
       label={label}
       name={name}
+      readOnly={readOnly}
       type="text"
+      value={value}
       width={width}
       onChange={onChange}
-      readOnly={readOnly}
-      value={value}
     />
   );
 }
@@ -107,6 +113,8 @@ const propTypesTextAreaInput = {
   id: PropTypes.string,
   label: PropTypes.string,
   name: PropTypes.string.isRequired,
+  readOnly: PropTypes.bool,
+  value: PropTypes.string,
   width: PropTypes.number,
   onChange: PropTypes.func,
   rows: PropTypes.number,
@@ -116,6 +124,8 @@ const defaultPropsTextAreaInput = {
   error: undefined,
   id: "",
   label: "",
+  readOnly: false,
+  value: "",
   width: undefined,
   onChange: () => {},
   rows: 3,
@@ -140,11 +150,11 @@ export function TextAreaInput({
       id={getId(id, name)}
       label={label}
       name={name}
+      readOnly={readOnly}
       rows={rows}
+      value={value}
       width={width}
       onChange={onChange}
-      readOnly={readOnly}
-      value={value}
     />
   );
 }
@@ -206,6 +216,7 @@ export function DropdownInput({
 }
 
 const propTypesRadioInputGroup = {
+  grouped: PropTypes.bool,
   name: PropTypes.string.isRequired,
   labels: PropTypes.arrayOf(
     PropTypes.shape({
@@ -213,22 +224,25 @@ const propTypesRadioInputGroup = {
       key: PropTypes.any,
     })
   ).isRequired,
+  readOnly: PropTypes.bool,
   onChange: PropTypes.func,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 
 const defaultPropsRadioInputGroup = {
+  grouped: false,
+  readOnly: false,
   onChange: () => {},
   value: undefined,
 };
 
 export function RadioInputGroup({
+  grouped,
   name,
   labels,
+  readOnly,
   onChange,
   value,
-  readOnly,
-  grouped,
 }) {
   const radioButtons = labels.map(({ label, key }) => {
     return (
@@ -239,10 +253,10 @@ export function RadioInputGroup({
         key={label}
         label={label}
         name={name}
+        readOnly={readOnly}
         type="radio"
         value={key}
         onChange={(e, { value: checkedValue }) => onChange(checkedValue)}
-        readOnly={readOnly}
       />
     );
   });

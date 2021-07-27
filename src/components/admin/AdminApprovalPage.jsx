@@ -63,7 +63,7 @@ export default function AdminApprovalPage() {
 
   const history = useHistory();
 
-  const onSubmitReviewSuccess = (res) => {
+  const onSubmitReviewSuccess = () => {
     history.push(`/admin`);
   };
 
@@ -104,51 +104,51 @@ export default function AdminApprovalPage() {
             onSuccess={onSubmitReviewSuccess}
           >
             <TextInput
+              readOnly
               label="Professor"
               name="professor"
-              width={10}
               value={`${review.reviewHeader.professor.profFirstName} ${review.reviewHeader.professor.profLastName}`}
-              readOnly
+              width={10}
             />
             <TextInput
+              readOnly
               label="Course"
               name="course"
-              width={10}
               value={`[${review.reviewHeader.course.courseCode}] ${review.reviewHeader.course.courseName}`}
-              readOnly
+              width={10}
             />
             <TextAreaInput
+              readOnly
               label="General Review"
               name="general-review"
               rows={8}
               value={review.content}
-              readOnly
             />
             <TextAreaInput
+              readOnly
               label="Workload Review"
               name="workload-review"
               rows={8}
               value={review.workload}
-              readOnly
             />
             <RadioInputGroup
+              readOnly
               labels={generateRadioLabels(evaluationTexts)}
               name="evaluation"
               value={review.rating}
-              readOnly
             />
             <Divider />
             <Header size="tiny">
               Would you like to publish or reject this review?
             </Header>
             <RadioInputGroup
+              grouped
               labels={generateRadioLabels(decisionTexts)}
               name="decision"
               rules={{ required: "Please make the decision" }}
-              grouped
             />
             <Container textAlign="center">
-              <Button size="huge" name="submit" type="submit">
+              <Button name="submit" size="huge" type="submit">
                 Complete Review
               </Button>
             </Container>
