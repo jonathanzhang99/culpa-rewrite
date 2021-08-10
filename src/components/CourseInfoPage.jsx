@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom";
 import { Header, Icon, Accordion, Grid } from "semantic-ui-react";
 
 import { CourseDisplayName } from "components/common/CourseDisplay";
-import CreateReviewButton from "components/common/CreateReviewButton";
 import { DepartmentDisplayLink } from "components/common/DepartmentDisplay";
 import ErrorComponent from "components/common/ErrorComponent";
 import LoadingComponent from "components/common/LoadingComponent";
@@ -160,7 +159,6 @@ function CourseProfessorsGrid({ courseProfessors }) {
 }
 
 const propTypesCourseInfo = {
-  courseId: PropTypes.number.isRequired,
   courseName: PropTypes.string.isRequired,
   courseCallNumber: PropTypes.string.isRequired,
   departmentId: PropTypes.number.isRequired,
@@ -181,7 +179,6 @@ const propTypesCourseInfo = {
 };
 
 export function CourseInfo({
-  courseId,
   courseName,
   courseCallNumber,
   departmentId,
@@ -212,14 +209,6 @@ export function CourseInfo({
           courseProfessors={courseProfessors}
           isAccordionActive={isAccordionActive}
           setAccordionActive={setAccordionActive}
-        />
-      </div>
-      <div>
-        <CreateReviewButton
-          relaxed
-          color="orange"
-          courseId={courseId}
-          subject={courseName}
         />
       </div>
     </>
@@ -395,7 +384,6 @@ export default function CourseInfoPage() {
     <>
       <CourseInfo
         courseCallNumber={courseSummary.courseCallNumber}
-        courseId={Number(courseId)}
         courseName={courseSummary.courseName}
         courseProfessors={courseSummary.courseProfessors}
         departmentId={courseSummary.departmentId}

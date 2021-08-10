@@ -1,5 +1,6 @@
-import React, { useEffect, useReducer, useRef } from "react";
-import { useHistory } from "react-router-dom";
+import queryString from "query-string";
+import React, { useEffect, useReducer, useRef, useCallback } from "react";
+import { useHistory, useLocation } from "react-router-dom";
 import {
   Container,
   Divider,
@@ -96,6 +97,13 @@ function reviewFormReducer(state, action) {
 
 export default function CreateReviewPage() {
   const history = useHistory();
+  const { search } = useLocation();
+
+  // if initial values are provided, then preset the form
+  const {
+    professorId: initialProfessorId,
+    professorName: initialProfessorName,
+  } = queryString.parse(search);
 
   const [
     {
@@ -174,38 +182,48 @@ export default function CreateReviewPage() {
 
   const searchAllCoursesId = -1;
 
-  const onProfessorResultSelect = async ({ id: professorId }) => {
-    if (professorId === SEARCH_INPUT_ADD_ENTITY_ID) {
-      dispatch({ type: SELECT_ADD_PROFESSOR });
-      return null;
-    }
-
-    dispatch({ type: SELECT_PROFESSOR });
-    const response = await fetch(`/api/professor/${professorId}/courses`, {
-      method: "GET",
-      headers: { "Content-Type": "Application/json" },
-    });
-
-    try {
-      const { courses } = await response.json();
-
-      if (response.ok) {
-        courses.push({
-          text: `Course not listed. Add course.`,
-          value: searchAllCoursesId,
-          key: `Course not listed. Add course.`,
-        });
-        dispatch({ type: SET_COURSE_OPTIONS, payload: courses });
+  const onProfessorResultSelect = useCallback(
+    async ({ id: professorId }) => {
+      if (professorId === SEARCH_INPUT_ADD_ENTITY_ID) {
+        dispatch({ type: SELECT_ADD_PROFESSOR });
+        return null;
       }
-    } catch (err) {
-      return { error: err };
-    }
-    return null;
-  };
+
+      dispatch({ type: SELECT_PROFESSOR });
+      const response = await fetch(`/api/professor/${professorId}/courses`, {
+        method: "GET",
+        headers: { "Content-Type": "Application/json" },
+      });
+
+      try {
+        const { courses } = await response.json();
+
+        if (response.ok) {
+          courses.push({
+            text: `Course not listed. Add course.`,
+            value: searchAllCoursesId,
+            key: `Course not listed. Add course.`,
+          });
+          dispatch({ type: SET_COURSE_OPTIONS, payload: courses });
+        }
+      } catch (err) {
+        return { error: err };
+      }
+      return null;
+    },
+    [dispatch, searchAllCoursesId]
+  );
 
   const onProfessorSearchChange = () => {
     dispatch({ type: PROFESSOR_SEARCH_CHANGE });
   };
+
+  // if initial values are provided, prepopulate courses
+  useEffect(() => {
+    if (initialProfessorId) {
+      onProfessorResultSelect({ id: initialProfessorId });
+    }
+  }, [initialProfessorId, onProfessorResultSelect]);
 
   /* * * * * * * * * * * * * * * * *
    * Course Dropdown methods       *
@@ -352,6 +370,7 @@ export default function CreateReviewPage() {
     <>
       <Header size="huge">Write a Review</Header>
       <Form
+        defaultValues={{ professor: initialProfessorName }}
         mode="onChange"
         onSubmit={onSubmitReview}
         onSuccess={onSubmitReviewSuccess}

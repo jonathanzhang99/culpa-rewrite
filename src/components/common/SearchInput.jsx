@@ -1,5 +1,6 @@
 import debounce from "lodash.debounce";
 import PropTypes from "prop-types";
+import queryString from "query-string";
 import React, { useCallback, useReducer } from "react";
 import { Form as SemanticForm, Grid, Search } from "semantic-ui-react";
 
@@ -225,8 +226,13 @@ export default function SearchInput({
   const debouncedFetch = useCallback(
     debounce(async (searchValue) => {
       dispatch({ type: SEARCH_START });
+      const query = {
+        entity: searchEntity,
+        query: searchValue,
+        limit: searchLimit,
+      };
       const response = await fetch(
-        `/api/search?entity=${searchEntity}&query=${searchValue}&limit=${searchLimit}`,
+        `/api/search?${queryString.stringify(query)}`,
         {
           method: "GET",
           headers: { "Content-Type": "Application/json" },

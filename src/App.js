@@ -2,6 +2,7 @@ import React from "react";
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 
 import { AuthProvider, ProtectedRoute } from "components/common/Authentication";
+import ScrollToTop from "components/common/ScrollToTop";
 import CourseInfoPage from "components/CourseInfoPage";
 import CreateReviewPage from "components/CreateReviewPage";
 import DepartmentInfoPage from "components/DepartmentInfoPage";
@@ -17,6 +18,7 @@ function App() {
   return (
     <AuthProvider>
       <Router>
+        <ScrollToTop />
         <NavigationBar>
           <Switch>
             <Route exact path="/login">
