@@ -65,7 +65,7 @@ Object {
       </div>
       <div>
         <a
-          href="/review/submit"
+          href="/review/submit?professorId=1&professorName=Nakul%20Verma"
         >
           <button
             class="ui orange button relaxed create-review-button"
@@ -138,7 +138,7 @@ Object {
     </div>
     <div>
       <a
-        href="/review/submit"
+        href="/review/submit?professorId=1&professorName=Nakul%20Verma"
       >
         <button
           class="ui orange button relaxed create-review-button"
@@ -240,7 +240,7 @@ Object {
       </div>
       <div>
         <a
-          href="/review/submit"
+          href="/review/submit?professorId=1&professorName=Nakul%20Verma"
         >
           <button
             class="ui orange button relaxed create-review-button"
@@ -285,7 +285,7 @@ Object {
     </div>
     <div>
       <a
-        href="/review/submit"
+        href="/review/submit?professorId=1&professorName=Nakul%20Verma"
       >
         <button
           class="ui orange button relaxed create-review-button"

@@ -131,11 +131,6 @@ describe("Create Review Page tests", () => {
       },
     });
 
-  test("should render", () => {
-    const snapshot = render(<CreateReviewPage />);
-    expect(snapshot).toMatchSnapshot();
-  });
-
   describe("frontend interactions", () => {
     const fieldErrorLabels = [
       "Please select a professor",
@@ -198,7 +193,7 @@ describe("Create Review Page tests", () => {
           expect(await screen.getByText(/lee bollinger/i)).toBeInTheDocument();
           expect(mockFetch).toHaveBeenCalledTimes(1);
           expect(mockFetch).toHaveBeenCalledWith(
-            "/api/search?entity=professor&query=testProfessorName&limit=7",
+            "/api/search?entity=professor&limit=7&query=testProfessorName",
             {
               method: "GET",
               headers: { "Content-Type": "Application/json" },
@@ -222,7 +217,7 @@ describe("Create Review Page tests", () => {
           ).toBeInTheDocument();
           expect(mockFetch).toHaveBeenCalledTimes(1);
           expect(mockFetch).toHaveBeenCalledWith(
-            "/api/search?entity=professor&query=testProfessorName&limit=7",
+            "/api/search?entity=professor&limit=7&query=testProfessorName",
             {
               method: "GET",
               headers: { "Content-Type": "Application/json" },
