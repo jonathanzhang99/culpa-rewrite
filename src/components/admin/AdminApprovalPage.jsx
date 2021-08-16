@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, Redirect, useHistory, useParams } from "react-router-dom";
 import {
   Button,
@@ -9,6 +9,7 @@ import {
   Icon,
 } from "semantic-ui-react";
 
+import { AuthContext } from "components/common/Authentication";
 import ErrorComponent from "components/common/ErrorComponent";
 import Form from "components/common/Form";
 import {
@@ -19,7 +20,7 @@ import {
 import LoadingComponent from "components/common/LoadingComponent";
 import useDataFetch from "components/common/useDataFetch";
 
-function TopPanel() {
+function TopPanel(logout) {
   return (
     <Grid columns={2}>
       <Grid.Column>
@@ -28,12 +29,16 @@ function TopPanel() {
           <Header className="no-margin"> Back </Header>
         </Link>
       </Grid.Column>
-      <Grid.Column textAlign="right">Logout</Grid.Column>
+      <Grid.Column textAlign="right">
+        <Header color="linkColor" size="medium" style={{cursor: "pointer"}} onClick={logout}> Logout </Header>
+      </Grid.Column>
     </Grid>
   );
 }
 
 export default function AdminApprovalPage() {
+  const { logout } = useContext(AuthContext);
+
   /* * * * * * * * * * * * * * * * *
    * Form contents                 *
    * * * * * * * * * * * * * * * * */
@@ -62,6 +67,19 @@ export default function AdminApprovalPage() {
    * * * * * * * * * * * * * * * * */
 
   const history = useHistory();
+
+  const onSubmitReview = async (data) => {
+    const response = await fetch("/api/review/submit", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: { "Content-Type": "application/json" },
+    });
+    try {
+      return await response.json();
+    } catch (err) {
+      return { error: err };
+    }
+  };
 
   const onSubmitReviewSuccess = () => {
     history.push(`/admin`);
@@ -95,12 +113,12 @@ export default function AdminApprovalPage() {
     <>
       {flag === "pending" ? (
         <>
-          <TopPanel />
+          <TopPanel logout={logout}/>
           <Header size="huge">Admin Approval Form</Header>
           <Divider />
           <Form
             mode="onSubmit"
-            onSubmit={() => {}}
+            onSubmit={onSubmitReview}
             onSuccess={onSubmitReviewSuccess}
           >
             <TextInput
@@ -145,7 +163,7 @@ export default function AdminApprovalPage() {
               grouped
               labels={generateRadioLabels(decisionTexts)}
               name="decision"
-              rules={{ required: "Please make the decision" }}
+              rules={{ required: "Please make a decision" }}
             />
             <Container textAlign="center">
               <Button name="submit" size="huge" type="submit">

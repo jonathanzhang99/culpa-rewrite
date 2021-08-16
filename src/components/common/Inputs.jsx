@@ -45,9 +45,7 @@ const propTypesInput = {
   id: PropTypes.string,
   label: PropTypes.string,
   name: PropTypes.string.isRequired,
-  // eslint-disable-next-line react/no-unused-prop-types
   readOnly: PropTypes.bool,
-  // eslint-disable-next-line react/no-unused-prop-types
   value: PropTypes.string,
   width: PropTypes.number,
   onChange: PropTypes.func,
@@ -90,7 +88,16 @@ export function TextInput({
   );
 }
 
-export function PasswordInput({ name, label, error, id, width, onChange }) {
+export function PasswordInput({
+  name,
+  label,
+  error,
+  id,
+  readOnly,
+  value,
+  width,
+  onChange
+}) {
   return (
     <SemanticForm.Field
       aria-label={label}
@@ -99,7 +106,9 @@ export function PasswordInput({ name, label, error, id, width, onChange }) {
       id={getId(id, name)}
       label={label}
       name={name}
+      readOnly={readOnly}
       type="password"
+      value={value}
       width={width}
       onChange={onChange}
     />
@@ -260,7 +269,7 @@ export function RadioInputGroup({
       />
     );
   });
-  return <FormGroup grouped={grouped}>{radioButtons}</FormGroup>;
+  return <FormGroup grouped={grouped}>{radioButtons}</FormGroup>
 }
 
 export const SearchInput = SearchInputImport;

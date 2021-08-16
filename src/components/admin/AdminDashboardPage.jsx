@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   Button,
@@ -10,20 +10,22 @@ import {
   Segment,
 } from "semantic-ui-react";
 
-// import { AuthContext } from "components/common/Authentication";
+import { AuthContext } from "components/common/Authentication";
 import ErrorComponent from "components/common/ErrorComponent";
 import LoadingComponent from "components/common/LoadingComponent";
 import useDataFetch from "components/common/useDataFetch";
 
 const NUM_REVIEWS_PER_PAGE = 7;
 
-function TopPanel() {
+function TopPanel(logout) {
   return (
     <Grid columns={2}>
       <Grid.Column>
         <Header size="huge"> Welcome Back! </Header>
       </Grid.Column>
-      <Grid.Column textAlign="right">Logout</Grid.Column>
+      <Grid.Column textAlign="right">
+        <Header color="linkColor" size="medium" style={{cursor: "pointer"}} onClick={logout}> Logout </Header>
+      </Grid.Column>
     </Grid>
   );
 }
@@ -113,7 +115,7 @@ function PendingReviews({ reviews, pageNumber }) {
 }
 
 export default function AdminDashboardPage() {
-  // const { logout } = useContext(AuthContext);
+  const { logout } = useContext(AuthContext);
 
   const {
     data: {
@@ -156,7 +158,7 @@ export default function AdminDashboardPage() {
 
   return (
     <>
-      <TopPanel />
+      <TopPanel logout={logout}/>
       <Header className="block-display" size="huge" textAlign="center">
         Admin Dashboard
       </Header>

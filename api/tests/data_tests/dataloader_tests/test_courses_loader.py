@@ -1,6 +1,6 @@
 from api.data import db
 from api.data.dataloaders.courses_loader import load_course_basic_info, \
-    load_course_professors, search_course
+    load_course_professors, search_course, count_pending_courses
 from api.tests import LoadersWritersBaseTest
 from api.tests.data_tests.common import setup_department_professor_courses
 
@@ -140,3 +140,6 @@ class CoursesLoaderTest(LoadersWritersBaseTest):
     def test_search_course_no_results(self):
         results = search_course('bad course name', limit=1)
         self.assertEqual(len(results), 0)
+
+    def test_count_pending_courses(self):
+        self.assertEqual(count_pending_courses()['count'], 1)

@@ -27,9 +27,9 @@ function App() {
               <LoginPage />
             </Route>
             {/* change Route to ProtectedRoute after fixing login bug */}
-            <ProtectedRoute exact path="/admin">
+            <Route exact path="/admin">
               <AdminDashboardPage />
-            </ProtectedRoute>
+            </Route>
             <Route path="/admin/:reviewId">
               <AdminApprovalPage />
             </Route>

@@ -45,6 +45,7 @@ class ProfessorsTest(BaseTest):
     POSITIVE_REVIEW_JSON = {
         'content': 'demo content 1',
         'deprecated': False,
+        'rating': 5,
         'reviewHeader': {
             'courseId': 1,
             'courseName': 'Machine Learning',
@@ -67,6 +68,7 @@ class ProfessorsTest(BaseTest):
     NEGATIVE_REVIEW_JSON = {
         'content': 'demo content 4',
         'deprecated': False,
+        'rating': 1,
         'reviewHeader': {
             'courseId': 1,
             'courseName': 'Machine Learning',

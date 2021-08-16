@@ -386,7 +386,7 @@ def load_pending_reviews():
     fields = [
         course.course_id,
         course.call_number,
-        course.nameg
+        course.name
     ]
     query_prefix = [query, fields]
     dummy_ip = "127.0.0.1"  # don't need ip but it's required

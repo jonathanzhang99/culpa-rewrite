@@ -454,6 +454,7 @@ class ReviewTest(BaseTest):
                         'submissionDate': date['formatted_date'],
                         'workload': review['workload'],
                         'content': review['content'],
+                        'rating': review['rating'],
                         'reviewId': review['review_id'],
                         'deprecated': date['deprecated']
                     })
@@ -577,11 +578,11 @@ class ReviewTest(BaseTest):
         }, {
             'flag': 'libel',
             'review': 'test return value',
-            'review_json': {'reviewId': review_id}
+            'review_json': 'test return value'
         }, {
             'flag': 'pending',
             'review': 'test return value',
-            'review_json': {'reviewId': review_id}
+            'review_json': 'test return value'
         }]
 
         for case in cases:

@@ -43,6 +43,7 @@ Object {
               id="form-input-username"
               name="username"
               type="text"
+              value=""
             />
           </div>
         </div>
@@ -63,6 +64,7 @@ Object {
               id="form-input-password"
               name="password"
               type="password"
+              value=""
             />
           </div>
         </div>
@@ -115,6 +117,7 @@ Object {
             id="form-input-username"
             name="username"
             type="text"
+            value=""
           />
         </div>
       </div>
@@ -135,6 +138,7 @@ Object {
             id="form-input-password"
             name="password"
             type="password"
+            value=""
           />
         </div>
       </div>
