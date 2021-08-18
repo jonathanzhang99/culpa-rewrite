@@ -26,7 +26,7 @@ Object {
         class="add-margin"
       >
         <div
-          class="ui header no-margin"
+          class="ui header no-vertical-margin"
         >
           Courses: 
         </div>
@@ -93,7 +93,7 @@ Object {
       class="add-margin"
     >
       <div
-        class="ui header no-margin"
+        class="ui header no-vertical-margin"
       >
         Courses: 
       </div>
@@ -217,7 +217,7 @@ Object {
         class="add-margin"
       >
         <div
-          class="ui header no-margin"
+          class="ui header no-vertical-margin"
         >
           Courses: 
         </div>
@@ -256,7 +256,7 @@ Object {
       class="add-margin"
     >
       <div
-        class="ui header no-margin"
+        class="ui header no-vertical-margin"
       >
         Courses: 
       </div>

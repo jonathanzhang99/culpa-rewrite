@@ -6,7 +6,7 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="ui huge header"
+        class="ui huge header block-display"
       >
         Showing search results for 
         <em>
@@ -18,7 +18,7 @@ Object {
         class="ui divider"
       />
       <div
-        class="ui huge header"
+        class="ui huge header block-display"
       >
          Professors 
       </div>
@@ -109,7 +109,7 @@ Object {
         class="ui hidden divider"
       />
       <div
-        class="ui huge header"
+        class="ui huge header block-display"
       >
          Courses 
       </div>
@@ -191,7 +191,7 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="ui huge header"
+      class="ui huge header block-display"
     >
       Showing search results for 
       <em>
@@ -203,7 +203,7 @@ Object {
       class="ui divider"
     />
     <div
-      class="ui huge header"
+      class="ui huge header block-display"
     >
        Professors 
     </div>
@@ -294,7 +294,7 @@ Object {
       class="ui hidden divider"
     />
     <div
-      class="ui huge header"
+      class="ui huge header block-display"
     >
        Courses 
     </div>
@@ -433,7 +433,7 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="ui huge header"
+        class="ui huge header block-display"
       >
         Showing search results for 
         <em>
@@ -445,7 +445,7 @@ Object {
         class="ui divider"
       />
       <div
-        class="ui huge header"
+        class="ui huge header block-display"
       >
          Professors 
       </div>
@@ -456,7 +456,7 @@ Object {
         class="ui hidden divider"
       />
       <div
-        class="ui huge header"
+        class="ui huge header block-display"
       >
          Courses 
       </div>
@@ -467,7 +467,7 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="ui huge header"
+      class="ui huge header block-display"
     >
       Showing search results for 
       <em>
@@ -479,7 +479,7 @@ Object {
       class="ui divider"
     />
     <div
-      class="ui huge header"
+      class="ui huge header block-display"
     >
        Professors 
     </div>
@@ -490,7 +490,7 @@ Object {
       class="ui hidden divider"
     />
     <div
-      class="ui huge header"
+      class="ui huge header block-display"
     >
        Courses 
     </div>
@@ -558,7 +558,7 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="ui huge header"
+        class="ui huge header block-display"
       >
         Showing search results for 
         <em>
@@ -570,7 +570,7 @@ Object {
         class="ui divider"
       />
       <div
-        class="ui huge header"
+        class="ui huge header block-display"
       >
          Professors 
       </div>
@@ -581,7 +581,7 @@ Object {
         class="ui hidden divider"
       />
       <div
-        class="ui huge header"
+        class="ui huge header block-display"
       >
          Courses 
       </div>
@@ -663,7 +663,7 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="ui huge header"
+      class="ui huge header block-display"
     >
       Showing search results for 
       <em>
@@ -675,7 +675,7 @@ Object {
       class="ui divider"
     />
     <div
-      class="ui huge header"
+      class="ui huge header block-display"
     >
        Professors 
     </div>
@@ -686,7 +686,7 @@ Object {
       class="ui hidden divider"
     />
     <div
-      class="ui huge header"
+      class="ui huge header block-display"
     >
        Courses 
     </div>
@@ -825,7 +825,7 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="ui huge header"
+        class="ui huge header block-display"
       >
         Showing search results for 
         <em>
@@ -837,7 +837,7 @@ Object {
         class="ui divider"
       />
       <div
-        class="ui huge header"
+        class="ui huge header block-display"
       >
          Professors 
       </div>
@@ -928,7 +928,7 @@ Object {
         class="ui hidden divider"
       />
       <div
-        class="ui huge header"
+        class="ui huge header block-display"
       >
          Courses 
       </div>
@@ -939,7 +939,7 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="ui huge header"
+      class="ui huge header block-display"
     >
       Showing search results for 
       <em>
@@ -951,7 +951,7 @@ Object {
       class="ui divider"
     />
     <div
-      class="ui huge header"
+      class="ui huge header block-display"
     >
        Professors 
     </div>
@@ -1042,7 +1042,7 @@ Object {
       class="ui hidden divider"
     />
     <div
-      class="ui huge header"
+      class="ui huge header block-display"
     >
        Courses 
     </div>

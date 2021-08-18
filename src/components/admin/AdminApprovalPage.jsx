@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import React, { useContext } from "react";
 import { Link, Redirect, useHistory, useParams } from "react-router-dom";
 import {
@@ -20,7 +21,11 @@ import {
 import LoadingComponent from "components/common/LoadingComponent";
 import useDataFetch from "components/common/useDataFetch";
 
-function TopPanel(logout) {
+const propTypesTopPanel = {
+  logout: PropTypes.func.isRequired
+};
+
+function TopPanel({logout}) {
   return (
     <Grid columns={2}>
       <Grid.Column>
@@ -63,29 +68,6 @@ export default function AdminApprovalPage() {
   };
 
   /* * * * * * * * * * * * * * * * *
-   * Form methods                  *
-   * * * * * * * * * * * * * * * * */
-
-  const history = useHistory();
-
-  const onSubmitReview = async (data) => {
-    const response = await fetch("/api/review/submit", {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: { "Content-Type": "application/json" },
-    });
-    try {
-      return await response.json();
-    } catch (err) {
-      return { error: err };
-    }
-  };
-
-  const onSubmitReviewSuccess = () => {
-    history.push(`/admin`);
-  };
-
-  /* * * * * * * * * * * * * * * * *
    * Review data                   *
    * * * * * * * * * * * * * * * * */
 
@@ -105,6 +87,29 @@ export default function AdminApprovalPage() {
     flag: "pending",
   });
 
+  /* * * * * * * * * * * * * * * * *
+   * Form methods                  *
+   * * * * * * * * * * * * * * * * */
+
+  const history = useHistory();
+
+  const onSubmitDecision = async (data) => {
+    const response = await fetch(`/api/admin/submit/${reviewId}`, {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: { "Content-Type": "application/json" },
+    });
+    try {
+      return await response.json();
+    } catch (err) {
+      return { error: err };
+    }
+  };
+
+  const onSubmitDecisionSuccess = () => {
+    history.push(`/admin`);
+  };
+
   if (isLoading || isError) {
     return isLoading ? <LoadingComponent /> : <ErrorComponent />;
   }
@@ -118,8 +123,8 @@ export default function AdminApprovalPage() {
           <Divider />
           <Form
             mode="onSubmit"
-            onSubmit={onSubmitReview}
-            onSuccess={onSubmitReviewSuccess}
+            onSubmit={onSubmitDecision}
+            onSuccess={onSubmitDecisionSuccess}
           >
             <TextInput
               readOnly
@@ -178,3 +183,5 @@ export default function AdminApprovalPage() {
     </>
   );
 }
+
+TopPanel.propTypes = propTypesTopPanel;

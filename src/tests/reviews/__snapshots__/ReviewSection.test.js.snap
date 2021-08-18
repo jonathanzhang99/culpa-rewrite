@@ -5,488 +5,6 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <div>
-        <div
-          class="ui grid add-margin"
-        >
-          <div
-            class="row"
-          >
-            <div
-              class="four wide column"
-            >
-              <div
-                aria-expanded="false"
-                class="ui fluid selection dropdown"
-                name="sorting"
-                role="listbox"
-                tabindex="0"
-              >
-                <div
-                  aria-atomic="true"
-                  aria-live="polite"
-                  class="divider default text"
-                  role="alert"
-                >
-                  Sort by
-                </div>
-                <i
-                  aria-hidden="true"
-                  class="dropdown icon"
-                />
-                <div
-                  class="menu transition"
-                >
-                  <div
-                    aria-checked="true"
-                    aria-selected="true"
-                    class="active selected item"
-                    role="option"
-                    style="pointer-events: all;"
-                  >
-                    <span
-                      class="text"
-                    >
-                      None
-                    </span>
-                  </div>
-                  <div
-                    aria-checked="false"
-                    aria-selected="false"
-                    class="item"
-                    role="option"
-                    style="pointer-events: all;"
-                  >
-                    <span
-                      class="text"
-                    >
-                      Most Positive
-                    </span>
-                  </div>
-                  <div
-                    aria-checked="false"
-                    aria-selected="false"
-                    class="item"
-                    role="option"
-                    style="pointer-events: all;"
-                  >
-                    <span
-                      class="text"
-                    >
-                      Most Negative
-                    </span>
-                  </div>
-                  <div
-                    aria-checked="false"
-                    aria-selected="false"
-                    class="item"
-                    role="option"
-                    style="pointer-events: all;"
-                  >
-                    <span
-                      class="text"
-                    >
-                      Newest
-                    </span>
-                  </div>
-                  <div
-                    aria-checked="false"
-                    aria-selected="false"
-                    class="item"
-                    role="option"
-                    style="pointer-events: all;"
-                  >
-                    <span
-                      class="text"
-                    >
-                      Oldest
-                    </span>
-                  </div>
-                  <div
-                    aria-checked="false"
-                    aria-selected="false"
-                    class="item"
-                    role="option"
-                    style="pointer-events: all;"
-                  >
-                    <span
-                      class="text"
-                    >
-                      Most Agreed
-                    </span>
-                  </div>
-                  <div
-                    aria-checked="false"
-                    aria-selected="false"
-                    class="item"
-                    role="option"
-                    style="pointer-events: all;"
-                  >
-                    <span
-                      class="text"
-                    >
-                      Most Disagreed
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="four wide column"
-            >
-              <div
-                aria-expanded="false"
-                class="ui fluid selection dropdown"
-                name="yearFilter"
-                role="listbox"
-                tabindex="0"
-              >
-                <div
-                  aria-atomic="true"
-                  aria-live="polite"
-                  class="divider default text"
-                  role="alert"
-                >
-                  Filter by
-                </div>
-                <i
-                  aria-hidden="true"
-                  class="dropdown icon"
-                />
-                <div
-                  class="menu transition"
-                >
-                  <div
-                    aria-checked="true"
-                    aria-selected="true"
-                    class="active selected item"
-                    role="option"
-                    style="pointer-events: all;"
-                  >
-                    <span
-                      class="text"
-                    >
-                      None
-                    </span>
-                  </div>
-                  <div
-                    aria-checked="false"
-                    aria-selected="false"
-                    class="item"
-                    role="option"
-                    style="pointer-events: all;"
-                  >
-                    <span
-                      class="text"
-                    >
-                      Written within 2 years
-                    </span>
-                  </div>
-                  <div
-                    aria-checked="false"
-                    aria-selected="false"
-                    class="item"
-                    role="option"
-                    style="pointer-events: all;"
-                  >
-                    <span
-                      class="text"
-                    >
-                      Written within 5 years
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="one wide column"
-            />
-            <div
-              class="seven wide column"
-            >
-              <div
-                aria-expanded="false"
-                class="ui fluid multiple search selection dropdown"
-                name="associatedEntityFilter"
-                role="combobox"
-              >
-                <input
-                  aria-autocomplete="list"
-                  autocomplete="off"
-                  class="search"
-                  tabindex="0"
-                  type="text"
-                  value=""
-                />
-                <span
-                  class="sizer"
-                />
-                <div
-                  aria-atomic="true"
-                  aria-live="polite"
-                  class="divider default text"
-                  role="alert"
-                >
-                  Search for a specific professor
-                </div>
-                <i
-                  aria-hidden="true"
-                  class="dropdown icon"
-                />
-                <div
-                  aria-multiselectable="true"
-                  class="menu transition"
-                  role="listbox"
-                >
-                  <div
-                    aria-checked="false"
-                    aria-selected="true"
-                    class="selected item"
-                    role="option"
-                    style="pointer-events: all;"
-                  >
-                    <span
-                      class="text"
-                    >
-                      Nakul Verma
-                    </span>
-                  </div>
-                  <div
-                    aria-checked="false"
-                    aria-selected="false"
-                    class="item"
-                    role="option"
-                    style="pointer-events: all;"
-                  >
-                    <span
-                      class="text"
-                    >
-                      Lee Bollinger
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div
-            class="row"
-          >
-            <div
-              class="ui grid add-margin fluid"
-            >
-              <div
-                class="column review-card-left-column"
-              >
-                <div
-                  class="ui red message"
-                >
-                  <i
-                    aria-hidden="true"
-                    class="red warning circle icon"
-                  />
-                  Please keep in mind that this review is more than 5 years old.
-                </div>
-                <div
-                  class="ui two column grid"
-                >
-                  <div
-                    class="twelve wide column"
-                  >
-                    <div
-                      class="ui medium header no-margin review-card-header"
-                    >
-                      Nakul Verma
-                    </div>
-                    <span>
-                      <img
-                        class="ui medium right spaced image"
-                        src="gold-nugget.svg"
-                      />
-                    </span>
-                  </div>
-                  <div
-                    class="right aligned four wide column"
-                  >
-                    ID: 
-                    1
-                  </div>
-                </div>
-                <div
-                  class="ui small header"
-                >
-                  2020-01-01
-                </div>
-                <p>
-                  demo content
-                </p>
-                <div
-                  class="ui small header"
-                >
-                  Workload
-                </div>
-                <p>
-                  demo workload
-                </p>
-              </div>
-              <div
-                class="column review-card-right-column"
-              >
-                <div
-                  class="ui centered stackable grid"
-                >
-                  <div
-                    class="row votes-container-icon-row"
-                  >
-                    <img
-                      class="ui mini image"
-                      src="blue-upvote.svg"
-                    />
-                  </div>
-                  <div
-                    class="row votes-container-number-row"
-                  >
-                    3
-                  </div>
-                  <div
-                    class="row votes-container-icon-row"
-                  >
-                    <img
-                      class="ui mini image"
-                      src="downvote.svg"
-                    />
-                  </div>
-                  <div
-                    class="row votes-container-number-row"
-                  >
-                    2
-                  </div>
-                  <div
-                    class="row votes-container-icon-row"
-                  >
-                    <img
-                      class="ui mini image"
-                      src="funny.svg"
-                    />
-                  </div>
-                  <div
-                    class="row votes-container-number-row"
-                  >
-                    1
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="ui grid add-margin fluid"
-            >
-              <div
-                class="column review-card-left-column"
-              >
-                <div
-                  class="ui two column grid"
-                >
-                  <div
-                    class="twelve wide column"
-                  >
-                    <div
-                      class="ui medium header no-margin review-card-header"
-                    >
-                      Lee Bollinger
-                    </div>
-                  </div>
-                  <div
-                    class="right aligned four wide column"
-                  >
-                    ID: 
-                    2
-                  </div>
-                </div>
-                <div
-                  class="ui small header"
-                >
-                  2020-01-01
-                </div>
-                <p>
-                  demo content
-                </p>
-                <div
-                  class="ui small header"
-                >
-                  Workload
-                </div>
-                <p>
-                  demo workload
-                </p>
-              </div>
-              <div
-                class="column review-card-right-column"
-              >
-                <div
-                  class="ui centered stackable grid"
-                >
-                  <div
-                    class="row votes-container-icon-row"
-                  >
-                    <img
-                      class="ui mini image"
-                      src="blue-upvote.svg"
-                    />
-                  </div>
-                  <div
-                    class="row votes-container-number-row"
-                  >
-                    3
-                  </div>
-                  <div
-                    class="row votes-container-icon-row"
-                  >
-                    <img
-                      class="ui mini image"
-                      src="downvote.svg"
-                    />
-                  </div>
-                  <div
-                    class="row votes-container-number-row"
-                  >
-                    2
-                  </div>
-                  <div
-                    class="row votes-container-icon-row"
-                  >
-                    <img
-                      class="ui mini image"
-                      src="funny.svg"
-                    />
-                  </div>
-                  <div
-                    class="row votes-container-number-row"
-                  >
-                    1
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div
-            class="row"
-          >
-            <button
-              class="ui large fluid button"
-              name="showMoreButton"
-            >
-              Show more 
-              <i
-                aria-hidden="true"
-                class="arrow down icon"
-              />
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </body>,
-  "container": <div>
-    <div>
       <div
         class="ui grid add-margin"
       >
@@ -774,7 +292,7 @@ Object {
                   class="twelve wide column"
                 >
                   <div
-                    class="ui medium header no-margin review-card-header"
+                    class="ui medium header no-vertical-margin review-card-header"
                   >
                     Nakul Verma
                   </div>
@@ -870,7 +388,7 @@ Object {
                   class="twelve wide column"
                 >
                   <div
-                    class="ui medium header no-margin review-card-header"
+                    class="ui medium header no-vertical-margin review-card-header"
                   >
                     Lee Bollinger
                   </div>
@@ -964,6 +482,484 @@ Object {
         </div>
       </div>
     </div>
+  </body>,
+  "container": <div>
+    <div
+      class="ui grid add-margin"
+    >
+      <div
+        class="row"
+      >
+        <div
+          class="four wide column"
+        >
+          <div
+            aria-expanded="false"
+            class="ui fluid selection dropdown"
+            name="sorting"
+            role="listbox"
+            tabindex="0"
+          >
+            <div
+              aria-atomic="true"
+              aria-live="polite"
+              class="divider default text"
+              role="alert"
+            >
+              Sort by
+            </div>
+            <i
+              aria-hidden="true"
+              class="dropdown icon"
+            />
+            <div
+              class="menu transition"
+            >
+              <div
+                aria-checked="true"
+                aria-selected="true"
+                class="active selected item"
+                role="option"
+                style="pointer-events: all;"
+              >
+                <span
+                  class="text"
+                >
+                  None
+                </span>
+              </div>
+              <div
+                aria-checked="false"
+                aria-selected="false"
+                class="item"
+                role="option"
+                style="pointer-events: all;"
+              >
+                <span
+                  class="text"
+                >
+                  Most Positive
+                </span>
+              </div>
+              <div
+                aria-checked="false"
+                aria-selected="false"
+                class="item"
+                role="option"
+                style="pointer-events: all;"
+              >
+                <span
+                  class="text"
+                >
+                  Most Negative
+                </span>
+              </div>
+              <div
+                aria-checked="false"
+                aria-selected="false"
+                class="item"
+                role="option"
+                style="pointer-events: all;"
+              >
+                <span
+                  class="text"
+                >
+                  Newest
+                </span>
+              </div>
+              <div
+                aria-checked="false"
+                aria-selected="false"
+                class="item"
+                role="option"
+                style="pointer-events: all;"
+              >
+                <span
+                  class="text"
+                >
+                  Oldest
+                </span>
+              </div>
+              <div
+                aria-checked="false"
+                aria-selected="false"
+                class="item"
+                role="option"
+                style="pointer-events: all;"
+              >
+                <span
+                  class="text"
+                >
+                  Most Agreed
+                </span>
+              </div>
+              <div
+                aria-checked="false"
+                aria-selected="false"
+                class="item"
+                role="option"
+                style="pointer-events: all;"
+              >
+                <span
+                  class="text"
+                >
+                  Most Disagreed
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="four wide column"
+        >
+          <div
+            aria-expanded="false"
+            class="ui fluid selection dropdown"
+            name="yearFilter"
+            role="listbox"
+            tabindex="0"
+          >
+            <div
+              aria-atomic="true"
+              aria-live="polite"
+              class="divider default text"
+              role="alert"
+            >
+              Filter by
+            </div>
+            <i
+              aria-hidden="true"
+              class="dropdown icon"
+            />
+            <div
+              class="menu transition"
+            >
+              <div
+                aria-checked="true"
+                aria-selected="true"
+                class="active selected item"
+                role="option"
+                style="pointer-events: all;"
+              >
+                <span
+                  class="text"
+                >
+                  None
+                </span>
+              </div>
+              <div
+                aria-checked="false"
+                aria-selected="false"
+                class="item"
+                role="option"
+                style="pointer-events: all;"
+              >
+                <span
+                  class="text"
+                >
+                  Written within 2 years
+                </span>
+              </div>
+              <div
+                aria-checked="false"
+                aria-selected="false"
+                class="item"
+                role="option"
+                style="pointer-events: all;"
+              >
+                <span
+                  class="text"
+                >
+                  Written within 5 years
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="one wide column"
+        />
+        <div
+          class="seven wide column"
+        >
+          <div
+            aria-expanded="false"
+            class="ui fluid multiple search selection dropdown"
+            name="associatedEntityFilter"
+            role="combobox"
+          >
+            <input
+              aria-autocomplete="list"
+              autocomplete="off"
+              class="search"
+              tabindex="0"
+              type="text"
+              value=""
+            />
+            <span
+              class="sizer"
+            />
+            <div
+              aria-atomic="true"
+              aria-live="polite"
+              class="divider default text"
+              role="alert"
+            >
+              Search for a specific professor
+            </div>
+            <i
+              aria-hidden="true"
+              class="dropdown icon"
+            />
+            <div
+              aria-multiselectable="true"
+              class="menu transition"
+              role="listbox"
+            >
+              <div
+                aria-checked="false"
+                aria-selected="true"
+                class="selected item"
+                role="option"
+                style="pointer-events: all;"
+              >
+                <span
+                  class="text"
+                >
+                  Nakul Verma
+                </span>
+              </div>
+              <div
+                aria-checked="false"
+                aria-selected="false"
+                class="item"
+                role="option"
+                style="pointer-events: all;"
+              >
+                <span
+                  class="text"
+                >
+                  Lee Bollinger
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="row"
+      >
+        <div
+          class="ui grid add-margin fluid"
+        >
+          <div
+            class="column review-card-left-column"
+          >
+            <div
+              class="ui red message"
+            >
+              <i
+                aria-hidden="true"
+                class="red warning circle icon"
+              />
+              Please keep in mind that this review is more than 5 years old.
+            </div>
+            <div
+              class="ui two column grid"
+            >
+              <div
+                class="twelve wide column"
+              >
+                <div
+                  class="ui medium header no-vertical-margin review-card-header"
+                >
+                  Nakul Verma
+                </div>
+                <span>
+                  <img
+                    class="ui medium right spaced image"
+                    src="gold-nugget.svg"
+                  />
+                </span>
+              </div>
+              <div
+                class="right aligned four wide column"
+              >
+                ID: 
+                1
+              </div>
+            </div>
+            <div
+              class="ui small header"
+            >
+              2020-01-01
+            </div>
+            <p>
+              demo content
+            </p>
+            <div
+              class="ui small header"
+            >
+              Workload
+            </div>
+            <p>
+              demo workload
+            </p>
+          </div>
+          <div
+            class="column review-card-right-column"
+          >
+            <div
+              class="ui centered stackable grid"
+            >
+              <div
+                class="row votes-container-icon-row"
+              >
+                <img
+                  class="ui mini image"
+                  src="blue-upvote.svg"
+                />
+              </div>
+              <div
+                class="row votes-container-number-row"
+              >
+                3
+              </div>
+              <div
+                class="row votes-container-icon-row"
+              >
+                <img
+                  class="ui mini image"
+                  src="downvote.svg"
+                />
+              </div>
+              <div
+                class="row votes-container-number-row"
+              >
+                2
+              </div>
+              <div
+                class="row votes-container-icon-row"
+              >
+                <img
+                  class="ui mini image"
+                  src="funny.svg"
+                />
+              </div>
+              <div
+                class="row votes-container-number-row"
+              >
+                1
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="ui grid add-margin fluid"
+        >
+          <div
+            class="column review-card-left-column"
+          >
+            <div
+              class="ui two column grid"
+            >
+              <div
+                class="twelve wide column"
+              >
+                <div
+                  class="ui medium header no-vertical-margin review-card-header"
+                >
+                  Lee Bollinger
+                </div>
+              </div>
+              <div
+                class="right aligned four wide column"
+              >
+                ID: 
+                2
+              </div>
+            </div>
+            <div
+              class="ui small header"
+            >
+              2020-01-01
+            </div>
+            <p>
+              demo content
+            </p>
+            <div
+              class="ui small header"
+            >
+              Workload
+            </div>
+            <p>
+              demo workload
+            </p>
+          </div>
+          <div
+            class="column review-card-right-column"
+          >
+            <div
+              class="ui centered stackable grid"
+            >
+              <div
+                class="row votes-container-icon-row"
+              >
+                <img
+                  class="ui mini image"
+                  src="blue-upvote.svg"
+                />
+              </div>
+              <div
+                class="row votes-container-number-row"
+              >
+                3
+              </div>
+              <div
+                class="row votes-container-icon-row"
+              >
+                <img
+                  class="ui mini image"
+                  src="downvote.svg"
+                />
+              </div>
+              <div
+                class="row votes-container-number-row"
+              >
+                2
+              </div>
+              <div
+                class="row votes-container-icon-row"
+              >
+                <img
+                  class="ui mini image"
+                  src="funny.svg"
+                />
+              </div>
+              <div
+                class="row votes-container-number-row"
+              >
+                1
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="row"
+      >
+        <button
+          class="ui large fluid button"
+          name="showMoreButton"
+        >
+          Show more 
+          <i
+            aria-hidden="true"
+            class="arrow down icon"
+          />
+        </button>
+      </div>
+    </div>
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],
@@ -1023,486 +1019,6 @@ exports[`review section snapshot tests professor page test 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
-    <div>
-      <div>
-        <div
-          class="ui grid add-margin"
-        >
-          <div
-            class="row"
-          >
-            <div
-              class="four wide column"
-            >
-              <div
-                aria-expanded="false"
-                class="ui fluid selection dropdown"
-                name="sorting"
-                role="listbox"
-                tabindex="0"
-              >
-                <div
-                  aria-atomic="true"
-                  aria-live="polite"
-                  class="divider default text"
-                  role="alert"
-                >
-                  Sort by
-                </div>
-                <i
-                  aria-hidden="true"
-                  class="dropdown icon"
-                />
-                <div
-                  class="menu transition"
-                >
-                  <div
-                    aria-checked="true"
-                    aria-selected="true"
-                    class="active selected item"
-                    role="option"
-                    style="pointer-events: all;"
-                  >
-                    <span
-                      class="text"
-                    >
-                      None
-                    </span>
-                  </div>
-                  <div
-                    aria-checked="false"
-                    aria-selected="false"
-                    class="item"
-                    role="option"
-                    style="pointer-events: all;"
-                  >
-                    <span
-                      class="text"
-                    >
-                      Most Positive
-                    </span>
-                  </div>
-                  <div
-                    aria-checked="false"
-                    aria-selected="false"
-                    class="item"
-                    role="option"
-                    style="pointer-events: all;"
-                  >
-                    <span
-                      class="text"
-                    >
-                      Most Negative
-                    </span>
-                  </div>
-                  <div
-                    aria-checked="false"
-                    aria-selected="false"
-                    class="item"
-                    role="option"
-                    style="pointer-events: all;"
-                  >
-                    <span
-                      class="text"
-                    >
-                      Newest
-                    </span>
-                  </div>
-                  <div
-                    aria-checked="false"
-                    aria-selected="false"
-                    class="item"
-                    role="option"
-                    style="pointer-events: all;"
-                  >
-                    <span
-                      class="text"
-                    >
-                      Oldest
-                    </span>
-                  </div>
-                  <div
-                    aria-checked="false"
-                    aria-selected="false"
-                    class="item"
-                    role="option"
-                    style="pointer-events: all;"
-                  >
-                    <span
-                      class="text"
-                    >
-                      Most Agreed
-                    </span>
-                  </div>
-                  <div
-                    aria-checked="false"
-                    aria-selected="false"
-                    class="item"
-                    role="option"
-                    style="pointer-events: all;"
-                  >
-                    <span
-                      class="text"
-                    >
-                      Most Disagreed
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="four wide column"
-            >
-              <div
-                aria-expanded="false"
-                class="ui fluid selection dropdown"
-                name="yearFilter"
-                role="listbox"
-                tabindex="0"
-              >
-                <div
-                  aria-atomic="true"
-                  aria-live="polite"
-                  class="divider default text"
-                  role="alert"
-                >
-                  Filter by
-                </div>
-                <i
-                  aria-hidden="true"
-                  class="dropdown icon"
-                />
-                <div
-                  class="menu transition"
-                >
-                  <div
-                    aria-checked="true"
-                    aria-selected="true"
-                    class="active selected item"
-                    role="option"
-                    style="pointer-events: all;"
-                  >
-                    <span
-                      class="text"
-                    >
-                      None
-                    </span>
-                  </div>
-                  <div
-                    aria-checked="false"
-                    aria-selected="false"
-                    class="item"
-                    role="option"
-                    style="pointer-events: all;"
-                  >
-                    <span
-                      class="text"
-                    >
-                      Written within 2 years
-                    </span>
-                  </div>
-                  <div
-                    aria-checked="false"
-                    aria-selected="false"
-                    class="item"
-                    role="option"
-                    style="pointer-events: all;"
-                  >
-                    <span
-                      class="text"
-                    >
-                      Written within 5 years
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="one wide column"
-            />
-            <div
-              class="seven wide column"
-            >
-              <div
-                aria-expanded="false"
-                class="ui fluid multiple search selection dropdown"
-                name="associatedEntityFilter"
-                role="combobox"
-              >
-                <input
-                  aria-autocomplete="list"
-                  autocomplete="off"
-                  class="search"
-                  tabindex="0"
-                  type="text"
-                  value=""
-                />
-                <span
-                  class="sizer"
-                />
-                <div
-                  aria-atomic="true"
-                  aria-live="polite"
-                  class="divider default text"
-                  role="alert"
-                >
-                  Search for a specific course
-                </div>
-                <i
-                  aria-hidden="true"
-                  class="dropdown icon"
-                />
-                <div
-                  aria-multiselectable="true"
-                  class="menu transition"
-                  role="listbox"
-                >
-                  <div
-                    aria-checked="false"
-                    aria-selected="true"
-                    class="selected item"
-                    role="option"
-                    style="pointer-events: all;"
-                  >
-                    <span
-                      class="text"
-                    >
-                      [COMS 4771] Machine Learning
-                    </span>
-                  </div>
-                  <div
-                    aria-checked="false"
-                    aria-selected="false"
-                    class="item"
-                    role="option"
-                    style="pointer-events: all;"
-                  >
-                    <span
-                      class="text"
-                    >
-                      [POLS 3285] Freedom of Speech and Press
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div
-            class="row"
-          >
-            <div
-              class="ui grid add-margin fluid"
-            >
-              <div
-                class="column review-card-left-column"
-              >
-                <div
-                  class="ui red message"
-                >
-                  <i
-                    aria-hidden="true"
-                    class="red warning circle icon"
-                  />
-                  Please keep in mind that this review is more than 5 years old.
-                </div>
-                <div
-                  class="ui two column grid"
-                >
-                  <div
-                    class="twelve wide column"
-                  >
-                    <div
-                      class="ui medium header no-margin review-card-header"
-                    >
-                      COMS 4771
-                       
-                      Machine Learning
-                    </div>
-                  </div>
-                  <div
-                    class="right aligned four wide column"
-                  >
-                    ID: 
-                    1
-                  </div>
-                </div>
-                <div
-                  class="ui small header"
-                >
-                  2020-01-01
-                </div>
-                <p>
-                  demo content
-                </p>
-                <div
-                  class="ui small header"
-                >
-                  Workload
-                </div>
-                <p>
-                  demo workload
-                </p>
-              </div>
-              <div
-                class="column review-card-right-column"
-              >
-                <div
-                  class="ui centered stackable grid"
-                >
-                  <div
-                    class="row votes-container-icon-row"
-                  >
-                    <img
-                      class="ui mini image"
-                      src="blue-upvote.svg"
-                    />
-                  </div>
-                  <div
-                    class="row votes-container-number-row"
-                  >
-                    3
-                  </div>
-                  <div
-                    class="row votes-container-icon-row"
-                  >
-                    <img
-                      class="ui mini image"
-                      src="downvote.svg"
-                    />
-                  </div>
-                  <div
-                    class="row votes-container-number-row"
-                  >
-                    2
-                  </div>
-                  <div
-                    class="row votes-container-icon-row"
-                  >
-                    <img
-                      class="ui mini image"
-                      src="funny.svg"
-                    />
-                  </div>
-                  <div
-                    class="row votes-container-number-row"
-                  >
-                    1
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="ui grid add-margin fluid"
-            >
-              <div
-                class="column review-card-left-column"
-              >
-                <div
-                  class="ui two column grid"
-                >
-                  <div
-                    class="twelve wide column"
-                  >
-                    <div
-                      class="ui medium header no-margin review-card-header"
-                    >
-                      POLS 3285
-                       
-                      Freedom of Speech and Press
-                    </div>
-                  </div>
-                  <div
-                    class="right aligned four wide column"
-                  >
-                    ID: 
-                    2
-                  </div>
-                </div>
-                <div
-                  class="ui small header"
-                >
-                  2020-01-01
-                </div>
-                <p>
-                  demo content
-                </p>
-                <div
-                  class="ui small header"
-                >
-                  Workload
-                </div>
-                <p>
-                  demo workload
-                </p>
-              </div>
-              <div
-                class="column review-card-right-column"
-              >
-                <div
-                  class="ui centered stackable grid"
-                >
-                  <div
-                    class="row votes-container-icon-row"
-                  >
-                    <img
-                      class="ui mini image"
-                      src="blue-upvote.svg"
-                    />
-                  </div>
-                  <div
-                    class="row votes-container-number-row"
-                  >
-                    3
-                  </div>
-                  <div
-                    class="row votes-container-icon-row"
-                  >
-                    <img
-                      class="ui mini image"
-                      src="downvote.svg"
-                    />
-                  </div>
-                  <div
-                    class="row votes-container-number-row"
-                  >
-                    2
-                  </div>
-                  <div
-                    class="row votes-container-icon-row"
-                  >
-                    <img
-                      class="ui mini image"
-                      src="funny.svg"
-                    />
-                  </div>
-                  <div
-                    class="row votes-container-number-row"
-                  >
-                    1
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div
-            class="row"
-          >
-            <button
-              class="ui large fluid button"
-              name="showMoreButton"
-            >
-              Show more 
-              <i
-                aria-hidden="true"
-                class="arrow down icon"
-              />
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </body>,
-  "container": <div>
     <div>
       <div
         class="ui grid add-margin"
@@ -1791,7 +1307,7 @@ Object {
                   class="twelve wide column"
                 >
                   <div
-                    class="ui medium header no-margin review-card-header"
+                    class="ui medium header no-vertical-margin review-card-header"
                   >
                     COMS 4771
                      
@@ -1883,7 +1399,7 @@ Object {
                   class="twelve wide column"
                 >
                   <div
-                    class="ui medium header no-margin review-card-header"
+                    class="ui medium header no-vertical-margin review-card-header"
                   >
                     POLS 3285
                      
@@ -1977,6 +1493,482 @@ Object {
             />
           </button>
         </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="ui grid add-margin"
+    >
+      <div
+        class="row"
+      >
+        <div
+          class="four wide column"
+        >
+          <div
+            aria-expanded="false"
+            class="ui fluid selection dropdown"
+            name="sorting"
+            role="listbox"
+            tabindex="0"
+          >
+            <div
+              aria-atomic="true"
+              aria-live="polite"
+              class="divider default text"
+              role="alert"
+            >
+              Sort by
+            </div>
+            <i
+              aria-hidden="true"
+              class="dropdown icon"
+            />
+            <div
+              class="menu transition"
+            >
+              <div
+                aria-checked="true"
+                aria-selected="true"
+                class="active selected item"
+                role="option"
+                style="pointer-events: all;"
+              >
+                <span
+                  class="text"
+                >
+                  None
+                </span>
+              </div>
+              <div
+                aria-checked="false"
+                aria-selected="false"
+                class="item"
+                role="option"
+                style="pointer-events: all;"
+              >
+                <span
+                  class="text"
+                >
+                  Most Positive
+                </span>
+              </div>
+              <div
+                aria-checked="false"
+                aria-selected="false"
+                class="item"
+                role="option"
+                style="pointer-events: all;"
+              >
+                <span
+                  class="text"
+                >
+                  Most Negative
+                </span>
+              </div>
+              <div
+                aria-checked="false"
+                aria-selected="false"
+                class="item"
+                role="option"
+                style="pointer-events: all;"
+              >
+                <span
+                  class="text"
+                >
+                  Newest
+                </span>
+              </div>
+              <div
+                aria-checked="false"
+                aria-selected="false"
+                class="item"
+                role="option"
+                style="pointer-events: all;"
+              >
+                <span
+                  class="text"
+                >
+                  Oldest
+                </span>
+              </div>
+              <div
+                aria-checked="false"
+                aria-selected="false"
+                class="item"
+                role="option"
+                style="pointer-events: all;"
+              >
+                <span
+                  class="text"
+                >
+                  Most Agreed
+                </span>
+              </div>
+              <div
+                aria-checked="false"
+                aria-selected="false"
+                class="item"
+                role="option"
+                style="pointer-events: all;"
+              >
+                <span
+                  class="text"
+                >
+                  Most Disagreed
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="four wide column"
+        >
+          <div
+            aria-expanded="false"
+            class="ui fluid selection dropdown"
+            name="yearFilter"
+            role="listbox"
+            tabindex="0"
+          >
+            <div
+              aria-atomic="true"
+              aria-live="polite"
+              class="divider default text"
+              role="alert"
+            >
+              Filter by
+            </div>
+            <i
+              aria-hidden="true"
+              class="dropdown icon"
+            />
+            <div
+              class="menu transition"
+            >
+              <div
+                aria-checked="true"
+                aria-selected="true"
+                class="active selected item"
+                role="option"
+                style="pointer-events: all;"
+              >
+                <span
+                  class="text"
+                >
+                  None
+                </span>
+              </div>
+              <div
+                aria-checked="false"
+                aria-selected="false"
+                class="item"
+                role="option"
+                style="pointer-events: all;"
+              >
+                <span
+                  class="text"
+                >
+                  Written within 2 years
+                </span>
+              </div>
+              <div
+                aria-checked="false"
+                aria-selected="false"
+                class="item"
+                role="option"
+                style="pointer-events: all;"
+              >
+                <span
+                  class="text"
+                >
+                  Written within 5 years
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="one wide column"
+        />
+        <div
+          class="seven wide column"
+        >
+          <div
+            aria-expanded="false"
+            class="ui fluid multiple search selection dropdown"
+            name="associatedEntityFilter"
+            role="combobox"
+          >
+            <input
+              aria-autocomplete="list"
+              autocomplete="off"
+              class="search"
+              tabindex="0"
+              type="text"
+              value=""
+            />
+            <span
+              class="sizer"
+            />
+            <div
+              aria-atomic="true"
+              aria-live="polite"
+              class="divider default text"
+              role="alert"
+            >
+              Search for a specific course
+            </div>
+            <i
+              aria-hidden="true"
+              class="dropdown icon"
+            />
+            <div
+              aria-multiselectable="true"
+              class="menu transition"
+              role="listbox"
+            >
+              <div
+                aria-checked="false"
+                aria-selected="true"
+                class="selected item"
+                role="option"
+                style="pointer-events: all;"
+              >
+                <span
+                  class="text"
+                >
+                  [COMS 4771] Machine Learning
+                </span>
+              </div>
+              <div
+                aria-checked="false"
+                aria-selected="false"
+                class="item"
+                role="option"
+                style="pointer-events: all;"
+              >
+                <span
+                  class="text"
+                >
+                  [POLS 3285] Freedom of Speech and Press
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="row"
+      >
+        <div
+          class="ui grid add-margin fluid"
+        >
+          <div
+            class="column review-card-left-column"
+          >
+            <div
+              class="ui red message"
+            >
+              <i
+                aria-hidden="true"
+                class="red warning circle icon"
+              />
+              Please keep in mind that this review is more than 5 years old.
+            </div>
+            <div
+              class="ui two column grid"
+            >
+              <div
+                class="twelve wide column"
+              >
+                <div
+                  class="ui medium header no-vertical-margin review-card-header"
+                >
+                  COMS 4771
+                   
+                  Machine Learning
+                </div>
+              </div>
+              <div
+                class="right aligned four wide column"
+              >
+                ID: 
+                1
+              </div>
+            </div>
+            <div
+              class="ui small header"
+            >
+              2020-01-01
+            </div>
+            <p>
+              demo content
+            </p>
+            <div
+              class="ui small header"
+            >
+              Workload
+            </div>
+            <p>
+              demo workload
+            </p>
+          </div>
+          <div
+            class="column review-card-right-column"
+          >
+            <div
+              class="ui centered stackable grid"
+            >
+              <div
+                class="row votes-container-icon-row"
+              >
+                <img
+                  class="ui mini image"
+                  src="blue-upvote.svg"
+                />
+              </div>
+              <div
+                class="row votes-container-number-row"
+              >
+                3
+              </div>
+              <div
+                class="row votes-container-icon-row"
+              >
+                <img
+                  class="ui mini image"
+                  src="downvote.svg"
+                />
+              </div>
+              <div
+                class="row votes-container-number-row"
+              >
+                2
+              </div>
+              <div
+                class="row votes-container-icon-row"
+              >
+                <img
+                  class="ui mini image"
+                  src="funny.svg"
+                />
+              </div>
+              <div
+                class="row votes-container-number-row"
+              >
+                1
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="ui grid add-margin fluid"
+        >
+          <div
+            class="column review-card-left-column"
+          >
+            <div
+              class="ui two column grid"
+            >
+              <div
+                class="twelve wide column"
+              >
+                <div
+                  class="ui medium header no-vertical-margin review-card-header"
+                >
+                  POLS 3285
+                   
+                  Freedom of Speech and Press
+                </div>
+              </div>
+              <div
+                class="right aligned four wide column"
+              >
+                ID: 
+                2
+              </div>
+            </div>
+            <div
+              class="ui small header"
+            >
+              2020-01-01
+            </div>
+            <p>
+              demo content
+            </p>
+            <div
+              class="ui small header"
+            >
+              Workload
+            </div>
+            <p>
+              demo workload
+            </p>
+          </div>
+          <div
+            class="column review-card-right-column"
+          >
+            <div
+              class="ui centered stackable grid"
+            >
+              <div
+                class="row votes-container-icon-row"
+              >
+                <img
+                  class="ui mini image"
+                  src="blue-upvote.svg"
+                />
+              </div>
+              <div
+                class="row votes-container-number-row"
+              >
+                3
+              </div>
+              <div
+                class="row votes-container-icon-row"
+              >
+                <img
+                  class="ui mini image"
+                  src="downvote.svg"
+                />
+              </div>
+              <div
+                class="row votes-container-number-row"
+              >
+                2
+              </div>
+              <div
+                class="row votes-container-icon-row"
+              >
+                <img
+                  class="ui mini image"
+                  src="funny.svg"
+                />
+              </div>
+              <div
+                class="row votes-container-number-row"
+              >
+                1
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="row"
+      >
+        <button
+          class="ui large fluid button"
+          name="showMoreButton"
+        >
+          Show more 
+          <i
+            aria-hidden="true"
+            class="arrow down icon"
+          />
+        </button>
       </div>
     </div>
   </div>,

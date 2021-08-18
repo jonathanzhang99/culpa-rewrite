@@ -30,7 +30,7 @@ Object {
         class="add-margin"
       >
         <div
-          class="ui header no-margin"
+          class="ui header no-vertical-margin"
         >
           Professors: 
         </div>
@@ -73,7 +73,7 @@ Object {
       class="add-margin"
     >
       <div
-        class="ui header no-margin"
+        class="ui header no-vertical-margin"
       >
         Professors: 
       </div>
@@ -173,7 +173,7 @@ Object {
         class="add-margin"
       >
         <div
-          class="ui header no-margin"
+          class="ui header no-vertical-margin"
         >
           Professors: 
         </div>
@@ -241,7 +241,7 @@ Object {
       class="add-margin"
     >
       <div
-        class="ui header no-margin"
+        class="ui header no-vertical-margin"
       >
         Professors: 
       </div>
@@ -1127,7 +1127,7 @@ Object {
         class="add-margin"
       >
         <div
-          class="ui header no-margin"
+          class="ui header no-vertical-margin"
         >
           Professors: 
         </div>
@@ -1207,7 +1207,7 @@ Object {
       class="add-margin"
     >
       <div
-        class="ui header no-margin"
+        class="ui header no-vertical-margin"
       >
         Professors: 
       </div>

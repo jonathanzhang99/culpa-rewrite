@@ -17,14 +17,26 @@ import useDataFetch from "components/common/useDataFetch";
 
 const NUM_REVIEWS_PER_PAGE = 7;
 
-function TopPanel(logout) {
+const propTypesTopPanel = {
+  logout: PropTypes.func.isRequired,
+};
+
+function TopPanel({ logout }) {
   return (
     <Grid columns={2}>
       <Grid.Column>
         <Header size="huge"> Welcome Back! </Header>
       </Grid.Column>
       <Grid.Column textAlign="right">
-        <Header color="linkColor" size="medium" style={{cursor: "pointer"}} onClick={logout}> Logout </Header>
+        <Header
+          color="linkColor"
+          size="medium"
+          style={{ cursor: "pointer" }}
+          onClick={logout}
+        >
+          {" "}
+          Logout{" "}
+        </Header>
       </Grid.Column>
     </Grid>
   );
@@ -93,25 +105,27 @@ function AdminDashboard({
   );
 }
 
-function PendingReviews({ reviews, pageNumber }) {
+export function PendingReviews({ reviews, pageNumber }) {
   /* as Segment because of styling */
   return reviews
-    .slice(0, pageNumber * NUM_REVIEWS_PER_PAGE)
-    .map(({ reviewId, reviewHeader }) => (
-      <Link key={reviewId} to={`/admin/${reviewId}`}>
-        <Button fluid padded raised as={Segment} className="pending-review">
-          <Grid>
-            <Grid.Column textAlign="left" width={12}>
-              {`[${reviewHeader.courseCallNumber}] ${reviewHeader.courseName}`}
-            </Grid.Column>
-            <Grid.Column textAlign="right" width={4}>
-              {`ID: ${reviewId}`}
-              <Icon color="blue" name="angle right" />
-            </Grid.Column>
-          </Grid>
-        </Button>
-      </Link>
-    ));
+    ? reviews
+        .slice(0, pageNumber * NUM_REVIEWS_PER_PAGE)
+        .map(({ reviewId, reviewHeader }) => (
+          <Link key={reviewId} to={`/admin/${reviewId}`}>
+            <Button fluid padded raised as={Segment} className="pending-review">
+              <Grid>
+                <Grid.Column textAlign="left" width={12}>
+                  {`[${reviewHeader.courseCallNumber}] ${reviewHeader.courseName}`}
+                </Grid.Column>
+                <Grid.Column textAlign="right" width={4}>
+                  {`ID: ${reviewId}`}
+                  <Icon color="blue" name="angle right" />
+                </Grid.Column>
+              </Grid>
+            </Button>
+          </Link>
+        ))
+    : null;
 }
 
 export default function AdminDashboardPage() {
@@ -158,7 +172,7 @@ export default function AdminDashboardPage() {
 
   return (
     <>
-      <TopPanel logout={logout}/>
+      <TopPanel logout={logout} />
       <Header className="block-display" size="huge" textAlign="center">
         Admin Dashboard
       </Header>
@@ -188,3 +202,4 @@ export default function AdminDashboardPage() {
 }
 
 AdminDashboard.propTypes = propTypesAdminDashboard;
+TopPanel.propTypes = propTypesTopPanel;

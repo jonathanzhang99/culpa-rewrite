@@ -16,10 +16,12 @@ badge = Table('badge')
 badge_professor = Table('badge_professor')
 
 
-# enum values for status (professor, course, course_professor)
+# enum values for status/types (professor, course, course_professor, flag)
 PENDING = 'pending'
 APPROVED = 'approved'
 REJECTED = 'rejected'
+LIBEL = 'libel'
+INSUFFICIENT = 'insufficient'
 
 
 # aggregate functions
