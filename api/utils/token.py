@@ -41,9 +41,10 @@ def create_token(username, secret, expires_delta, algorithm):
     if expires_delta:
         data['exp'] = now + expires_delta
 
-    encoded_token = jwt.encode(data, secret, algorithm)
+    encoded_token = jwt.encode(data, secret, algorithm=algorithm) \
+        .decode('utf-8')
     return encoded_token
 
 
 def decode_token(encoded_token, secret, algorithms):
-    return jwt.decode(encoded_token, secret, algorithms=algorithms)
+    return jwt.decode(encoded_token, key=secret, algorithms=algorithms)

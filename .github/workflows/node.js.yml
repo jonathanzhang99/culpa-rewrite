@@ -3,7 +3,7 @@
 
 name: React Frontend CI
 
-on: [push, pull_request]
+on: push
 
 jobs:
   react-frontend-build:
