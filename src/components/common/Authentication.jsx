@@ -36,13 +36,13 @@ function authReducer(state, action) {
         isLoggedIn: false,
       };
     case "LOGOUT_SUCCESS":
-      localStorage.setItem("authToken", "");
+      localStorage.removeItem("authToken");
       return {
         ...state,
         isError: false,
         isLoading: false,
         isLoggedIn: false,
-        authToken: "",
+        authToken: undefined,
       };
     default:
       throw new Error();
@@ -68,7 +68,7 @@ export function AuthProvider({ children }) {
   const [state, dispatch] = useReducer(authReducer, {
     isError: false,
     isLoading: false,
-    isLoggedIn: false,
+    isLoggedIn: !!existingToken,
     authToken: existingToken,
   });
 

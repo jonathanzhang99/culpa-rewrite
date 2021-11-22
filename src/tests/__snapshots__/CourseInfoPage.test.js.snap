@@ -41,18 +41,6 @@ Object {
           </div>
         </div>
       </div>
-      <div>
-        <a
-          href="/review/submit"
-        >
-          <button
-            class="ui orange button relaxed create-review-button"
-          >
-            WRITE A REVIEW 
-            FOR MACHINE LEARNING
-          </button>
-        </a>
-      </div>
     </div>
   </body>,
   "container": <div>
@@ -91,18 +79,6 @@ Object {
           Professors: 
         </div>
       </div>
-    </div>
-    <div>
-      <a
-        href="/review/submit"
-      >
-        <button
-          class="ui orange button relaxed create-review-button"
-        >
-          WRITE A REVIEW 
-          FOR MACHINE LEARNING
-        </button>
-      </a>
     </div>
   </div>,
   "debug": [Function],
@@ -225,18 +201,6 @@ Object {
           </span>
         </div>
       </div>
-      <div>
-        <a
-          href="/review/submit"
-        >
-          <button
-            class="ui orange button relaxed create-review-button"
-          >
-            WRITE A REVIEW 
-            FOR MACHINE LEARNING
-          </button>
-        </a>
-      </div>
     </div>
   </body>,
   "container": <div>
@@ -300,18 +264,6 @@ Object {
           
         </span>
       </div>
-    </div>
-    <div>
-      <a
-        href="/review/submit"
-      >
-        <button
-          class="ui orange button relaxed create-review-button"
-        >
-          WRITE A REVIEW 
-          FOR MACHINE LEARNING
-        </button>
-      </a>
     </div>
   </div>,
   "debug": [Function],
@@ -718,18 +670,6 @@ Object {
           </div>
         </div>
       </div>
-      <div>
-        <a
-          href="/review/submit"
-        >
-          <button
-            class="ui orange button relaxed create-review-button"
-          >
-            WRITE A REVIEW 
-            FOR MACHINE LEARNING
-          </button>
-        </a>
-      </div>
     </div>
   </body>,
   "container": <div>
@@ -1078,18 +1018,6 @@ Object {
         </div>
       </div>
     </div>
-    <div>
-      <a
-        href="/review/submit"
-      >
-        <button
-          class="ui orange button relaxed create-review-button"
-        >
-          WRITE A REVIEW 
-          FOR MACHINE LEARNING
-        </button>
-      </a>
-    </div>
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],
@@ -1223,18 +1151,6 @@ Object {
           </span>
         </div>
       </div>
-      <div>
-        <a
-          href="/review/submit"
-        >
-          <button
-            class="ui orange button relaxed create-review-button"
-          >
-            WRITE A REVIEW 
-            FOR MACHINE LEARNING
-          </button>
-        </a>
-      </div>
     </div>
   </body>,
   "container": <div>
@@ -1310,18 +1226,6 @@ Object {
           
         </span>
       </div>
-    </div>
-    <div>
-      <a
-        href="/review/submit"
-      >
-        <button
-          class="ui orange button relaxed create-review-button"
-        >
-          WRITE A REVIEW 
-          FOR MACHINE LEARNING
-        </button>
-      </a>
     </div>
   </div>,
   "debug": [Function],

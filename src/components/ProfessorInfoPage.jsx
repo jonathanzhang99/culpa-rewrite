@@ -81,6 +81,7 @@ export function ProfessorSummary({
           relaxed
           color="orange"
           professorId={professorId}
+          professorName={`${firstName} ${lastName}`}
           subject={`${firstName} ${lastName}`}
         />
       </div>

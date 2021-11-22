@@ -1,40 +1,42 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import PropTypes from "prop-types";
+import queryString from "query-string";
 import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "semantic-ui-react";
 
 const propTypes = {
   color: PropTypes.string,
-  courseId: PropTypes.number,
   fluid: PropTypes.bool,
   subject: PropTypes.string,
   professorId: PropTypes.number,
+  professorName: PropTypes.string,
   relaxed: PropTypes.bool,
 };
 
 const defaultProps = {
   color: "orange",
-  courseId: undefined,
   fluid: false,
   subject: "",
   professorId: undefined,
+  professorName: undefined,
   relaxed: false,
 };
 
 export default function CreateReviewButton({
   color,
-  courseId,
   fluid,
   professorId,
+  professorName,
   subject,
   relaxed,
 }) {
+  const query = { professorId, professorName };
   return (
     <Link
       to={{
         pathname: "/review/submit",
-        state: { courseId, professorId },
+        search: `?${queryString.stringify(query)}`,
       }}
     >
       <Button
