@@ -5,6 +5,8 @@ import { MemoryRouter } from "react-router-dom";
 import { AuthProvider } from "components/common/Authentication";
 import NavigationBar from "components/NavigationBar";
 
+const TEST_SEARCH_VALUE = 'testSearchValue'
+
 describe("Navbar Component Tests", () => {
   const professorAndCourseResults = {
     professorResults: [
@@ -136,7 +138,7 @@ describe("Navbar Component Tests", () => {
 
       await act(async () => {
         fireEvent.input(screen.getByRole("textbox"), {
-          target: { value: "testSearchValue" },
+          target: { value: TEST_SEARCH_VALUE },
         });
       });
 
@@ -145,7 +147,7 @@ describe("Navbar Component Tests", () => {
         expect(screen.getByText(/nakul verma/i)).toBeInTheDocument();
         expect(screen.getByText(/user interface design/i)).toBeInTheDocument();
         expect(mockFetch).toHaveBeenCalledWith(
-          "/api/search?entity=all&query=testSearchValue&limit=6",
+          `/api/search?entity=all&limit=6&query=${TEST_SEARCH_VALUE}`,
           {
             method: "GET",
             headers: { "Content-Type": "Application/json" },
@@ -159,7 +161,7 @@ describe("Navbar Component Tests", () => {
 
       await act(async () => {
         fireEvent.input(screen.getByRole("textbox"), {
-          target: { value: "testSearchValue" },
+          target: { value: TEST_SEARCH_VALUE },
         });
       });
 
@@ -169,7 +171,7 @@ describe("Navbar Component Tests", () => {
           screen.queryByText(/user interface design/i)
         ).not.toBeInTheDocument();
         expect(mockFetch).toHaveBeenCalledWith(
-          "/api/search?entity=all&query=testSearchValue&limit=6",
+          `/api/search?entity=all&limit=6&query=${TEST_SEARCH_VALUE}`,
           {
             method: "GET",
             headers: { "Content-Type": "Application/json" },
@@ -183,7 +185,7 @@ describe("Navbar Component Tests", () => {
 
       await act(async () => {
         fireEvent.input(screen.getByRole("textbox"), {
-          target: { value: "testSearchValue" },
+          target: { value: TEST_SEARCH_VALUE },
         });
       });
 
@@ -191,7 +193,7 @@ describe("Navbar Component Tests", () => {
         expect(screen.queryByText(/nakul verma/i)).not.toBeInTheDocument();
         expect(screen.getByText(/user interface design/i)).toBeInTheDocument();
         expect(mockFetch).toHaveBeenCalledWith(
-          "/api/search?entity=all&query=testSearchValue&limit=6",
+          `/api/search?entity=all&limit=6&query=${TEST_SEARCH_VALUE}`,
           {
             method: "GET",
             headers: { "Content-Type": "Application/json" },
@@ -205,7 +207,7 @@ describe("Navbar Component Tests", () => {
 
       await act(async () => {
         fireEvent.input(screen.getByRole("textbox"), {
-          target: { value: "testSearchValue" },
+          target: { value: TEST_SEARCH_VALUE },
         });
       });
 
@@ -215,7 +217,7 @@ describe("Navbar Component Tests", () => {
           screen.queryByText(/user interface design/i)
         ).not.toBeInTheDocument();
         expect(mockFetch).toHaveBeenCalledWith(
-          "/api/search?entity=all&query=testSearchValue&limit=6",
+          `/api/search?entity=all&limit=6&query=${TEST_SEARCH_VALUE}`,
           {
             method: "GET",
             headers: { "Content-Type": "Application/json" },
