@@ -1,5 +1,13 @@
 terraform {
-  required_version = ">= 0.12"
+  # This version must manually set and match the version on app.terraform.io backend.
+  required_version = "= 1.0.3"
+
+  required_providers {
+    aws = {
+      source = "hashicorp/aws"
+      version = ">= 3.57.0"
+    }
+  }
 
   backend "remote" {
     organization = "culpa"
@@ -12,7 +20,6 @@ terraform {
 
 # Use Amazon Web Services in us-east-2 region (Ohio)
 provider "aws" {
-  version = "3.5.0"
   region  = "us-east-2"
 }
 
@@ -49,7 +56,7 @@ data "aws_ami" "ubuntu_ami" {
 # hold the internal db server.
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
-  version = "2.48.0"
+  version = "3.11.3"
 
   name = "culpa-vpc"
   cidr = "10.0.0.0/16"
@@ -80,7 +87,7 @@ module "vpc" {
 # for deployment and in rare emergency situations.
 module "web_sg" {
   source  = "terraform-aws-modules/security-group/aws//modules/web"
-  version = "3.0"
+  version = "4.8.0"
 
   name        = "EC2 Web Security Group"
   description = "Gives web access to the EC2 instance"
@@ -93,7 +100,7 @@ module "web_sg" {
 # Only allows access from within the VPC to Mysql port.
 module "db_sg" {
   source  = "terraform-aws-modules/security-group/aws//modules/mysql"
-  version = "3.0"
+  version = "4.8.0"
 
   name        = "Mysql Security Group"
   description = "db can only be accessed with the VPC"
@@ -109,14 +116,13 @@ resource "aws_key_pair" "github_ssh_key" {
 
 module "ec2" {
   source  = "terraform-aws-modules/ec2-instance/aws"
-  version = "2.0"
+  version = "3.4.0"
 
   name           = "CULPA Production Server"
-  instance_count = 1
   ami            = data.aws_ami.ubuntu_ami.id
   instance_type  = "t2.micro"
 
-  vpc_security_group_ids      = [module.web_sg.this_security_group_id]
+  vpc_security_group_ids      = [module.web_sg.security_group_id]
   subnet_id                   = module.vpc.public_subnets[0]
   associate_public_ip_address = true
   key_name                    = aws_key_pair.github_ssh_key.key_name
@@ -151,7 +157,7 @@ module "db" {
   password = var.database_password
   port     = "3306"
 
-  vpc_security_group_ids = [module.db_sg.this_security_group_id]
+  vpc_security_group_ids = [module.db_sg.security_group_id]
 
   maintenance_window = "Mon:02:00-Mon:04:00"
   backup_window      = "04:00-06:00"
@@ -209,7 +215,7 @@ resource "aws_route53_record" "db" {
   name    = "db.culpa.info"
   type    = "CNAME"
   ttl     = 300
-  records = [module.db.this_db_instance_address]
+  records = [module.db.db_instance_address]
 }
 
 output "public_ip" {
