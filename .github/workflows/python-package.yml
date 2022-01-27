@@ -3,7 +3,7 @@
 
 name: Python Backend CI
 
-on: [push, pull_request]
+on: push
 
 jobs:
   python-backend-build:
