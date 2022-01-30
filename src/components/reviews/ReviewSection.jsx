@@ -235,84 +235,81 @@ export default function ReviewSection({
   }
 
   return (
-    /* use div to prevent margin collapsing */
-    <div>
-      <Grid className="add-margin">
-        <Grid.Row>
-          <Grid.Column width={4}>
-            <Dropdown
-              fluid
-              selection
-              name="sorting"
-              options={sortingOptions}
-              placeholder="Sort by"
-              text={state.sorting}
-              value={state.sorting}
-              onChange={onSortChange}
-            />
-          </Grid.Column>
-          <Grid.Column width={4}>
-            <Dropdown
-              fluid
-              selection
-              name="yearFilter"
-              options={yearOptions}
-              placeholder="Filter by"
-              text={state.filters.yearText}
-              value={state.filters.year}
-              onChange={onFilterYearChange}
-            />
-          </Grid.Column>
-          <Grid.Column width={1} />
-          <Grid.Column width={7}>
-            <Dropdown
-              fluid
-              multiple
-              search
-              selection
-              name="associatedEntityFilter"
-              options={associatedEntitiesFilterOptions}
-              placeholder={
-                state.pageType === "professor"
-                  ? "Search for a specific course"
-                  : "Search for a specific professor"
-              }
-              value={state.filters.associatedEntitiesFilter}
-              onChange={onFilterAssociatedEntitiesChange}
-            />
-          </Grid.Column>
-        </Grid.Row>
-        <Grid.Row>
-          {state.reviews
-            .slice(0, state.pageNumber * NUM_REVIEWS_PER_PAGE)
-            .map((review) => {
-              return (
-                <ReviewCard
-                  content={review.content}
-                  deprecated={review.deprecated}
-                  key={review.reviewId}
-                  reviewHeader={review.reviewHeader}
-                  reviewId={review.reviewId}
-                  reviewType={review.reviewType}
-                  submissionDate={review.submissionDate}
-                  votes={review.votes}
-                  workload={review.workload}
-                />
-              );
-            })}
-        </Grid.Row>
-        <Grid.Row key={3}>
-          <Button
+    <Grid className="add-margin">
+      <Grid.Row>
+        <Grid.Column width={4}>
+          <Dropdown
             fluid
-            name="showMoreButton"
-            size="large"
-            onClick={onClickPagButton}
-          >
-            Show more <Icon name="arrow down" />
-          </Button>
-        </Grid.Row>
-      </Grid>
-    </div>
+            selection
+            name="sorting"
+            options={sortingOptions}
+            placeholder="Sort by"
+            text={state.sorting}
+            value={state.sorting}
+            onChange={onSortChange}
+          />
+        </Grid.Column>
+        <Grid.Column width={4}>
+          <Dropdown
+            fluid
+            selection
+            name="yearFilter"
+            options={yearOptions}
+            placeholder="Filter by"
+            text={state.filters.yearText}
+            value={state.filters.year}
+            onChange={onFilterYearChange}
+          />
+        </Grid.Column>
+        <Grid.Column width={1} />
+        <Grid.Column width={7}>
+          <Dropdown
+            fluid
+            multiple
+            search
+            selection
+            name="associatedEntityFilter"
+            options={associatedEntitiesFilterOptions}
+            placeholder={
+              state.pageType === "professor"
+                ? "Search for a specific course"
+                : "Search for a specific professor"
+            }
+            value={state.filters.associatedEntitiesFilter}
+            onChange={onFilterAssociatedEntitiesChange}
+          />
+        </Grid.Column>
+      </Grid.Row>
+      <Grid.Row>
+        {state.reviews
+          .slice(0, state.pageNumber * NUM_REVIEWS_PER_PAGE)
+          .map((review) => {
+            return (
+              <ReviewCard
+                content={review.content}
+                deprecated={review.deprecated}
+                key={review.reviewId}
+                reviewHeader={review.reviewHeader}
+                reviewId={review.reviewId}
+                reviewType={review.reviewType}
+                submissionDate={review.submissionDate}
+                votes={review.votes}
+                workload={review.workload}
+              />
+            );
+          })}
+      </Grid.Row>
+      <Grid.Row key={3}>
+        <Button
+          fluid
+          name="showMoreButton"
+          size="large"
+          onClick={onClickPagButton}
+        >
+          Show more <Icon name="arrow down" />
+        </Button>
+      </Grid.Row>
+    </Grid>
   );
 }
 

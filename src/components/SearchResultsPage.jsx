@@ -83,14 +83,14 @@ export default function SearchResultsPage() {
 
   return (
     <>
-      <Header size="huge">
+      <Header className="block-display" size="huge">
         Showing search results for <em> {query} </em>
       </Header>
       <Divider />
-      <Header size="huge"> Professors </Header>
+      <Header className="block-display" size="huge"> Professors </Header>
       <SearchResults results={professorResults} />
       <Divider hidden />
-      <Header size="huge"> Courses </Header>
+      <Header className="block-display" size="huge"> Courses </Header>
       <SearchResults results={courseResults} />
     </>
   );

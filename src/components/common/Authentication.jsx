@@ -57,7 +57,7 @@ const propTypes = {
 };
 
 /**
- * AuthProvider createa React Context with values such that children elements
+ * AuthProvider creates React Context with values such that children elements
  * in the tree can access user auth token and manipulate them
  * (e.g. login, logout)
  *

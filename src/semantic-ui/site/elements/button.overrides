@@ -9,3 +9,11 @@
 .ui.button.create-review-button {
   font-size: 1.25rem;
 }
+
+.ui.button.pending-review:hover {
+  background-color: #CACBCD;
+}
+
+.ui.button.pending-review:active {
+  background-color: #BABBBC;
+}

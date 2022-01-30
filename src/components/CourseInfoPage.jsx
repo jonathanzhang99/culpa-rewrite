@@ -34,7 +34,7 @@ const propTypesCourseProfessors = {
 function ProfessorsList({ courseProfessors }) {
   return (
     <div className="add-margin">
-      <Header className="no-margin">Professors: </Header>
+      <Header className="no-vertical-margin">Professors: </Header>
       {courseProfessors.map(
         ({ badges, firstName, lastName, professorId }, index) => {
           return (
@@ -187,30 +187,24 @@ export function CourseInfo({
 }) {
   const [isAccordionActive, setAccordionActive] = useState(false);
   return (
-    /* use div to prevent margin collapsing */
     <>
-      <div>
-        <CourseDisplayName
-          as="header"
-          courseCallNumber={courseCallNumber}
-          courseName={courseName}
-          size="huge"
-        />
-      </div>
-      <div>
-        <Header>Department: </Header>
-        <DepartmentDisplayLink
-          departmentId={departmentId}
-          departmentName={departmentName}
-        />
-      </div>
-      <div>
-        <ProfessorsComponent
-          courseProfessors={courseProfessors}
-          isAccordionActive={isAccordionActive}
-          setAccordionActive={setAccordionActive}
-        />
-      </div>
+      <CourseDisplayName
+        as="header"
+        className="block-display"
+        courseCallNumber={courseCallNumber}
+        courseName={courseName}
+        size="huge"
+      />
+      <Header>Department: </Header>
+      <DepartmentDisplayLink
+        departmentId={departmentId}
+        departmentName={departmentName}
+      />
+      <ProfessorsComponent
+        courseProfessors={courseProfessors}
+        isAccordionActive={isAccordionActive}
+        setAccordionActive={setAccordionActive}
+      />
     </>
   );
 }

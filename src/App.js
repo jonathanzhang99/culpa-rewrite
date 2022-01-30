@@ -1,6 +1,8 @@
 import React from "react";
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 
+import AdminApprovalPage from "components/admin/AdminApprovalPage";
+import AdminDashboardPage from "components/admin/AdminDashboardPage";
 import { AuthProvider, ProtectedRoute } from "components/common/Authentication";
 import ScrollToTop from "components/common/ScrollToTop";
 import CourseInfoPage from "components/CourseInfoPage";
@@ -25,8 +27,11 @@ function App() {
               <LoginPage />
             </Route>
             <ProtectedRoute exact path="/admin">
-              <h1>Admin only page!!</h1>
+              <AdminDashboardPage />
             </ProtectedRoute>
+            <Route path="/admin/:reviewId">
+              <AdminApprovalPage />
+            </Route>
             <Route exact path="/review/submit">
               <CreateReviewPage />
             </Route>

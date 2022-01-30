@@ -49,6 +49,7 @@ class CoursesTest(BaseTest):
     POSITIVE_REVIEW_JSON = {
         'content': 'demo content 1',
         'deprecated': False,
+        'rating': 5,
         'reviewHeader': {
             'profFirstName': 'Jae W',
             'profId': 3,
@@ -73,6 +74,7 @@ class CoursesTest(BaseTest):
     NEGATIVE_REVIEW_JSON = {
         'content': 'demo content 4',
         'deprecated': False,
+        'rating': 1,
         'reviewHeader': {
             'profFirstName': 'Jae W',
             'profId': 3,

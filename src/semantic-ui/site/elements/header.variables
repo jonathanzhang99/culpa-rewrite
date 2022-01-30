@@ -10,3 +10,10 @@
 
 @firstMargin: 1rem;
 @lastMargin: 1rem;
+
+/*-------------------
+      Variations
+--------------------*/
+
+/* Sizing */
+@massiveFontSize: @hugeFontSize * 2;

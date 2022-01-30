@@ -6,7 +6,15 @@
   display: inline-block;
 }
 
+.ui.header.block-display {
+  display: block;
+}
+
 .ui.header.no-margin {
+  margin: 0;
+}
+
+.ui.header.no-vertical-margin {
   margin: 0 0.5em 0 0;
 }
 
@@ -21,3 +29,11 @@
 .ui.header.review-card-header {
   color: @linkColor;
 } 
+
+.ui.massive.header {
+  font-size: @massiveFontSize;
+}
+
+.ui.linkColor.header {
+  color: @linkColor !important;
+}

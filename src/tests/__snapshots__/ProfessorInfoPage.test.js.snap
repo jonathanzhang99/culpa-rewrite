@@ -5,80 +5,6 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <div>
-        <div
-          class="ui huge header"
-        >
-          Nakul Verma
-        </div>
-        <span>
-          <img
-            class="ui huge right spaced image"
-            src="gold-nugget.svg"
-          />
-        </span>
-        <span>
-          <img
-            class="ui huge right spaced image"
-            src="silver-nugget.svg"
-          />
-        </span>
-      </div>
-      <div>
-        <div
-          class="add-margin"
-        >
-          <div
-            class="ui header no-margin"
-          >
-            Courses: 
-          </div>
-          <span>
-            <a
-              href="/course/1"
-            >
-              <span
-                class=""
-              >
-                COMS 4771
-                 
-                Machine Learning
-              </span>
-            </a>
-            , 
-          </span>
-          <span>
-            <a
-              href="/course/2"
-            >
-              <span
-                class=""
-              >
-                COMS 4774
-                 
-                Advanced Machine Learning
-              </span>
-            </a>
-            
-          </span>
-        </div>
-      </div>
-      <div>
-        <a
-          href="/review/submit?professorId=1&professorName=Nakul%20Verma"
-        >
-          <button
-            class="ui orange button relaxed create-review-button"
-          >
-            WRITE A REVIEW 
-            FOR NAKUL VERMA
-          </button>
-        </a>
-      </div>
-    </div>
-  </body>,
-  "container": <div>
-    <div>
       <div
         class="ui huge header"
       >
@@ -96,13 +22,11 @@ Object {
           src="silver-nugget.svg"
         />
       </span>
-    </div>
-    <div>
       <div
         class="add-margin"
       >
         <div
-          class="ui header no-margin"
+          class="ui header no-vertical-margin"
         >
           Courses: 
         </div>
@@ -135,8 +59,6 @@ Object {
           
         </span>
       </div>
-    </div>
-    <div>
       <a
         href="/review/submit?professorId=1&professorName=Nakul%20Verma"
       >
@@ -148,6 +70,72 @@ Object {
         </button>
       </a>
     </div>
+  </body>,
+  "container": <div>
+    <div
+      class="ui huge header"
+    >
+      Nakul Verma
+    </div>
+    <span>
+      <img
+        class="ui huge right spaced image"
+        src="gold-nugget.svg"
+      />
+    </span>
+    <span>
+      <img
+        class="ui huge right spaced image"
+        src="silver-nugget.svg"
+      />
+    </span>
+    <div
+      class="add-margin"
+    >
+      <div
+        class="ui header no-vertical-margin"
+      >
+        Courses: 
+      </div>
+      <span>
+        <a
+          href="/course/1"
+        >
+          <span
+            class=""
+          >
+            COMS 4771
+             
+            Machine Learning
+          </span>
+        </a>
+        , 
+      </span>
+      <span>
+        <a
+          href="/course/2"
+        >
+          <span
+            class=""
+          >
+            COMS 4774
+             
+            Advanced Machine Learning
+          </span>
+        </a>
+        
+      </span>
+    </div>
+    <a
+      href="/review/submit?professorId=1&professorName=Nakul%20Verma"
+    >
+      <button
+        class="ui orange button relaxed create-review-button"
+      >
+        WRITE A REVIEW 
+        FOR NAKUL VERMA
+      </button>
+    </a>
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],
@@ -208,52 +196,6 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <div>
-        <div
-          class="ui huge header"
-        >
-          Nakul Verma
-        </div>
-        <span>
-          <img
-            class="ui huge right spaced image"
-            src="gold-nugget.svg"
-          />
-        </span>
-        <span>
-          <img
-            class="ui huge right spaced image"
-            src="silver-nugget.svg"
-          />
-        </span>
-      </div>
-      <div>
-        <div
-          class="add-margin"
-        >
-          <div
-            class="ui header no-margin"
-          >
-            Courses: 
-          </div>
-        </div>
-      </div>
-      <div>
-        <a
-          href="/review/submit?professorId=1&professorName=Nakul%20Verma"
-        >
-          <button
-            class="ui orange button relaxed create-review-button"
-          >
-            WRITE A REVIEW 
-            FOR NAKUL VERMA
-          </button>
-        </a>
-      </div>
-    </div>
-  </body>,
-  "container": <div>
-    <div>
       <div
         class="ui huge header"
       >
@@ -271,19 +213,15 @@ Object {
           src="silver-nugget.svg"
         />
       </span>
-    </div>
-    <div>
       <div
         class="add-margin"
       >
         <div
-          class="ui header no-margin"
+          class="ui header no-vertical-margin"
         >
           Courses: 
         </div>
       </div>
-    </div>
-    <div>
       <a
         href="/review/submit?professorId=1&professorName=Nakul%20Verma"
       >
@@ -295,6 +233,44 @@ Object {
         </button>
       </a>
     </div>
+  </body>,
+  "container": <div>
+    <div
+      class="ui huge header"
+    >
+      Nakul Verma
+    </div>
+    <span>
+      <img
+        class="ui huge right spaced image"
+        src="gold-nugget.svg"
+      />
+    </span>
+    <span>
+      <img
+        class="ui huge right spaced image"
+        src="silver-nugget.svg"
+      />
+    </span>
+    <div
+      class="add-margin"
+    >
+      <div
+        class="ui header no-vertical-margin"
+      >
+        Courses: 
+      </div>
+    </div>
+    <a
+      href="/review/submit?professorId=1&professorName=Nakul%20Verma"
+    >
+      <button
+        class="ui orange button relaxed create-review-button"
+      >
+        WRITE A REVIEW 
+        FOR NAKUL VERMA
+      </button>
+    </a>
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],

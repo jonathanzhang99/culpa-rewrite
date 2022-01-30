@@ -1,3 +1,8 @@
 /*******************************
          Site Overrides
 *******************************/
+
+/* undo default behavior of removing margin */
+.ui.segment:first-child, .ui.segment:last-child {
+  margin: 1rem 0em;
+}

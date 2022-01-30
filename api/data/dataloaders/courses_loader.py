@@ -1,9 +1,12 @@
-from pypika import Criterion, MySQLQuery as Query, Order
+from pypika import functions as fn, \
+    MySQLQuery as Query, \
+    Criterion, \
+    Order
 
 from api.data import db
 from api.data.common import badge, badge_professor, course, \
     course_professor, professor, department, department_professor, \
-    Match, APPROVED, JsonArrayAgg
+    Match, APPROVED, PENDING, JsonArrayAgg
 
 
 def load_course_basic_info(course_id):
@@ -103,3 +106,18 @@ def search_course(search_query, limit=None, alphabetize=False):
 
     cur.execute(query.get_sql())
     return cur.fetchall()
+
+
+def count_pending_courses():
+    cur = db.get_cursor()
+    query = Query \
+        .from_(course) \
+        .select(
+            fn.Count(course.course_id).as_('count')
+        ) \
+        .where(
+            course.status == PENDING
+        ) \
+        .get_sql()
+    cur.execute(query)
+    return cur.fetchone()

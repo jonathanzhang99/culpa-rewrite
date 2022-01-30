@@ -7,7 +7,7 @@ from api.tests.data_tests.common import setup_votes, setup_reviews_and_flags,\
     setup_for_course_test
 from api.data.dataloaders.reviews_loader import get_reviews_with_query_prefix,\
     prepare_course_query_prefix, prepare_professor_query_prefix,\
-    load_review, load_review_highlight
+    load_review, load_review_highlight, count_pending_reviews
 
 
 class ReviewsLoaderTest(LoadersWritersBaseTest):
@@ -28,40 +28,6 @@ class ReviewsLoaderTest(LoadersWritersBaseTest):
                 'workload': 'demo workload 4',
                 'rating': 3,
                 'submission_date': datetime.strptime('2019-10-13', '%Y-%m-%d'),
-                'agrees': Decimal(0),
-                'disagrees': Decimal(0),
-                'funnys': Decimal(0),
-                'agree_clicked': Decimal(0),
-                'disagree_clicked': Decimal(0),
-                'funny_clicked': Decimal(0)
-            }, {
-                'badges': '[null, null, null, null]',
-                'professor_id': 3,
-                'first_name': 'Jae W',
-                'last_name': 'Lee',
-                'uni': 'jwl3',
-                'review_id': 5,
-                'content': 'demo content 5',
-                'workload': 'demo workload 5',
-                'rating': 3,
-                'submission_date': datetime.strptime('2018-09-01', '%Y-%m-%d'),
-                'agrees': Decimal(1),
-                'disagrees': Decimal(2),
-                'funnys': Decimal(1),
-                'agree_clicked': Decimal(0),
-                'disagree_clicked': Decimal(1),
-                'funny_clicked': Decimal(1)
-            }, {
-                'badges': '[null]',
-                'professor_id': 3,
-                'first_name': 'Jae W',
-                'last_name': 'Lee',
-                'uni': 'jwl3',
-                'review_id': 6,
-                'content': 'demo content 6',
-                'workload': 'demo workload 6',
-                'rating': 3,
-                'submission_date': datetime.strptime('2016-05-20', '%Y-%m-%d'),
                 'agrees': Decimal(0),
                 'disagrees': Decimal(0),
                 'funnys': Decimal(0),
@@ -173,7 +139,7 @@ class ReviewsLoaderTest(LoadersWritersBaseTest):
             'type': 'professor',
             'id': 3,
             'filter_list': [4, 5],
-            'expected_review_ids': [4, 5, 6]
+            'expected_review_ids': [4]
         }, {
             'type': 'professor',
             'id': 3,
@@ -247,7 +213,7 @@ class ReviewsLoaderTest(LoadersWritersBaseTest):
             'prof_last_name': 'Lee',
             'prof_uni': 'jwl3',
             'badges': '[null, null, null, null]',  # 4 duplicates
-            'flag_type': 'approved',
+            'flag_type': 'pending',
             'agrees': Decimal(1),
             'disagrees': Decimal(2),
             'funnys': Decimal(1),
@@ -367,3 +333,11 @@ class ReviewsLoaderTest(LoadersWritersBaseTest):
                         result['badges'] = json.dumps(
                             sorted(json.loads(result['badges'])))
                     self.assertEqual(result, expected)
+
+    def test_count_pending_reviews(self):
+        setup_reviews_and_flags(self.cur)
+        self.assertEqual(count_pending_reviews()['count'], 2)
+
+    def test_count_pending_reviews_invalid(self):
+        # does not set up the database so that it is empty
+        self.assertEqual(count_pending_reviews()['count'], 0)

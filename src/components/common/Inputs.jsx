@@ -45,6 +45,8 @@ const propTypesInput = {
   id: PropTypes.string,
   label: PropTypes.string,
   name: PropTypes.string.isRequired,
+  readOnly: PropTypes.bool,
+  value: PropTypes.string,
   width: PropTypes.number,
   onChange: PropTypes.func,
 };
@@ -53,11 +55,22 @@ const defaultPropsInput = {
   error: undefined,
   id: "",
   label: "",
+  readOnly: false,
+  value: "",
   width: undefined,
   onChange: () => {},
 };
 
-export function TextInput({ error, id, label, name, width, onChange }) {
+export function TextInput({
+  error,
+  id,
+  label,
+  name,
+  readOnly,
+  value,
+  width,
+  onChange,
+}) {
   return (
     <SemanticForm.Field
       aria-label={label}
@@ -66,14 +79,25 @@ export function TextInput({ error, id, label, name, width, onChange }) {
       id={getId(id, name)}
       label={label}
       name={name}
+      readOnly={readOnly}
       type="text"
+      value={value}
       width={width}
       onChange={onChange}
     />
   );
 }
 
-export function PasswordInput({ name, label, error, id, width, onChange }) {
+export function PasswordInput({
+  name,
+  label,
+  error,
+  id,
+  readOnly,
+  value,
+  width,
+  onChange
+}) {
   return (
     <SemanticForm.Field
       aria-label={label}
@@ -82,7 +106,9 @@ export function PasswordInput({ name, label, error, id, width, onChange }) {
       id={getId(id, name)}
       label={label}
       name={name}
+      readOnly={readOnly}
       type="password"
+      value={value}
       width={width}
       onChange={onChange}
     />
@@ -96,6 +122,8 @@ const propTypesTextAreaInput = {
   id: PropTypes.string,
   label: PropTypes.string,
   name: PropTypes.string.isRequired,
+  readOnly: PropTypes.bool,
+  value: PropTypes.string,
   width: PropTypes.number,
   onChange: PropTypes.func,
   rows: PropTypes.number,
@@ -105,6 +133,8 @@ const defaultPropsTextAreaInput = {
   error: undefined,
   id: "",
   label: "",
+  readOnly: false,
+  value: "",
   width: undefined,
   onChange: () => {},
   rows: 3,
@@ -118,6 +148,8 @@ export function TextAreaInput({
   width,
   onChange,
   rows,
+  readOnly,
+  value,
 }) {
   return (
     <SemanticForm.Field
@@ -127,7 +159,9 @@ export function TextAreaInput({
       id={getId(id, name)}
       label={label}
       name={name}
+      readOnly={readOnly}
       rows={rows}
+      value={value}
       width={width}
       onChange={onChange}
     />
@@ -191,6 +225,7 @@ export function DropdownInput({
 }
 
 const propTypesRadioInputGroup = {
+  grouped: PropTypes.bool,
   name: PropTypes.string.isRequired,
   labels: PropTypes.arrayOf(
     PropTypes.shape({
@@ -198,16 +233,26 @@ const propTypesRadioInputGroup = {
       key: PropTypes.any,
     })
   ).isRequired,
+  readOnly: PropTypes.bool,
   onChange: PropTypes.func,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 
 const defaultPropsRadioInputGroup = {
+  grouped: false,
+  readOnly: false,
   onChange: () => {},
   value: undefined,
 };
 
-export function RadioInputGroup({ name, labels, onChange, value }) {
+export function RadioInputGroup({
+  grouped,
+  name,
+  labels,
+  readOnly,
+  onChange,
+  value,
+}) {
   const radioButtons = labels.map(({ label, key }) => {
     return (
       <SemanticForm.Field
@@ -217,17 +262,14 @@ export function RadioInputGroup({ name, labels, onChange, value }) {
         key={label}
         label={label}
         name={name}
+        readOnly={readOnly}
         type="radio"
         value={key}
         onChange={(e, { value: checkedValue }) => onChange(checkedValue)}
       />
     );
   });
-  return (
-    <FormGroup unstackable widths="equal">
-      {radioButtons}
-    </FormGroup>
-  );
+  return <FormGroup grouped={grouped}>{radioButtons}</FormGroup>
 }
 
 export const SearchInput = SearchInputImport;

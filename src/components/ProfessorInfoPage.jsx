@@ -25,7 +25,7 @@ const propTypesProfessorCourses = {
 function ProfessorCourseList({ courses }) {
   return (
     <div className="add-margin">
-      <Header className="no-margin">Courses: </Header>
+      <Header className="no-vertical-margin">Courses: </Header>
       {courses.map(({ courseId, courseName, courseCallNumber }, index) => (
         <span key={courseId}>
           <CourseDisplayLink
@@ -62,29 +62,22 @@ export function ProfessorSummary({
   professorId,
 }) {
   return (
-    /* use div to move to a new line */
     <>
-      <div>
-        <ProfessorDisplayName
-          as="header"
-          badges={badges}
-          firstName={firstName}
-          lastName={lastName}
-          size="huge"
-        />
-      </div>
-      <div>
-        <ProfessorCourseList courses={courses} />
-      </div>
-      <div>
-        <CreateReviewButton
-          relaxed
-          color="orange"
-          professorId={professorId}
-          professorName={`${firstName} ${lastName}`}
-          subject={`${firstName} ${lastName}`}
-        />
-      </div>
+      <ProfessorDisplayName
+        as="header"
+        badges={badges}
+        firstName={firstName}
+        lastName={lastName}
+        size="huge"
+      />
+      <ProfessorCourseList courses={courses} />
+      <CreateReviewButton
+        relaxed
+        color="orange"
+        professorId={professorId}
+        professorName={`${firstName} ${lastName}`}
+        subject={`${firstName} ${lastName}`}
+      />
     </>
   );
 }

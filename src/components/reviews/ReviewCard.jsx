@@ -237,7 +237,7 @@ export default function ReviewCard({
             <Grid.Column width={12}>
               <CourseDisplayName
                 as="header"
-                className="no-margin review-card-header"
+                className="no-vertical-margin review-card-header"
                 courseCallNumber={reviewHeader.courseCallNumber}
                 courseName={reviewHeader.courseName}
               />
@@ -248,7 +248,7 @@ export default function ReviewCard({
               <ProfessorDisplayName
                 as="header"
                 badges={reviewHeader.badges}
-                className="no-margin review-card-header"
+                className="no-vertical-margin review-card-header"
                 firstName={reviewHeader.profFirstName}
                 lastName={reviewHeader.profLastName}
               />
@@ -260,7 +260,7 @@ export default function ReviewCard({
                 <ProfessorDisplayName
                   as="header"
                   badges={reviewHeader.professor.badges}
-                  className="no-margin review-card-header"
+                  className="no-vertical-margin review-card-header"
                   firstName={reviewHeader.professor.profFirstName}
                   lastName={reviewHeader.professor.profLastName}
                 />
@@ -268,7 +268,7 @@ export default function ReviewCard({
               <div style={{ marginTop: "1rem" }}>
                 <CourseDisplayName
                   as="header"
-                  className="no-margin review-card-header"
+                  className="no-vertical-margin review-card-header"
                   courseCallNumber={reviewHeader.course.courseCode}
                   courseName={reviewHeader.course.courseName}
                 />

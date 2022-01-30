@@ -359,3 +359,39 @@ def load_review_highlight(
 
     cur.execute(query_final)
     return cur.fetchall()
+
+
+def count_pending_reviews():
+    cur = db.get_cursor()
+    pending_flags = get_flags_by_type('pending')
+    query = Query \
+        .from_(review) \
+        .join(pending_flags) \
+        .on(
+            pending_flags.review_id == review.review_id) \
+        .select(
+            fn.Count(review.review_id).as_('count')) \
+        .get_sql()
+    cur.execute(query)
+    return cur.fetchone()
+
+
+def load_pending_reviews():
+    query = Query \
+        .from_(course) \
+        .join(course_professor) \
+        .on(
+            course.course_id == course_professor.course_id
+        )
+    fields = [
+        course.course_id,
+        course.call_number,
+        course.name
+    ]
+    query_prefix = [query, fields]
+    dummy_ip = "127.0.0.1"  # don't need ip but it's required
+    return get_reviews_with_query_prefix(
+      query_prefix,
+      dummy_ip,
+      flag_type="pending"
+    )

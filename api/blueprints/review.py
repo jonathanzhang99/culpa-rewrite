@@ -5,7 +5,7 @@ from api.data.dataloaders.professors_loader import \
     load_professor_basic_info_by_uni
 from api.data.dataloaders.reviews_loader import get_reviews_with_query_prefix,\
     prepare_course_query_prefix, prepare_professor_query_prefix, \
-    load_review
+    load_review, load_pending_reviews
 from api.data.datawriters.course_professors_writer import \
     add_course_professor
 from api.data.datawriters.reviews_writer import insert_review
@@ -74,6 +74,7 @@ def parse_review(review, review_type):
                 'funnyClicked': bool(review['funny_clicked']),
             },
             'reviewId': review['review_id'],
+            'rating': review['rating'],
             'content': review['content'],
             'workload': review['workload'],
             'submissionDate': formatted_date,
@@ -222,12 +223,18 @@ def get_reviews(page_type, id):
 def get_single_review_card_data(review_id):
     ip = flask.request.remote_addr
     review = load_review(review_id, ip)
-    json = parse_review(review, 'all') \
-        if review['flag_type'] == "approved" else {
-            'reviewId': review_id
-        }
+    json = parse_review(review, 'all')
 
     return {
         'flag': review['flag_type'],
         'review': json
     }
+
+
+@review_blueprint.route('/pending', methods=['GET'])
+def get_pending_reviews():
+    reviews = load_pending_reviews()
+
+    reviews_json = [parse_review(review, 'professor') for review in reviews]
+
+    return {'reviews': reviews_json}

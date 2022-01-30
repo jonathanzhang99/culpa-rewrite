@@ -2,7 +2,7 @@ import datetime
 from pypika import MySQLQuery as Query
 
 from api.data import db
-from api.data.common import flag, review, PENDING
+from api.data.common import flag, review, PENDING, APPROVED, INSUFFICIENT
 
 
 def insert_review(course_professor_id, content, workload, evaluation, ip):
@@ -49,4 +49,28 @@ def insert_review(course_professor_id, content, workload, evaluation, ip):
         .get_sql()
 
     cursor.execute(flag_query)
+    return review_id
+
+
+def approve_review(review_id):
+    cursor = db.get_cursor()
+    query = Query \
+        .update(flag) \
+        .set(flag.type, APPROVED) \
+        .where(flag.review_id == review_id) \
+        .get_sql()
+    cursor.execute(query)
+    return review_id
+
+
+# change 'rejected' with 'libel' and 'insufficient' in the future version
+# when 'escalate' feature is implemented
+def reject_review(review_id):
+    cursor = db.get_cursor()
+    query = Query \
+        .update(flag) \
+        .set(flag.type, INSUFFICIENT) \
+        .where(flag.review_id == review_id) \
+        .get_sql()
+    cursor.execute(query)
     return review_id

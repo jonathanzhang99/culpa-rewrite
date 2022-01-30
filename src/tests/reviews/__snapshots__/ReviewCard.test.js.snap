@@ -27,7 +27,7 @@ Object {
               class="twelve wide column"
             >
               <div
-                class="ui medium header no-margin review-card-header"
+                class="ui medium header no-vertical-margin review-card-header"
               >
                 Adam Canon
               </div>
@@ -135,7 +135,7 @@ Object {
             class="twelve wide column"
           >
             <div
-              class="ui medium header no-margin review-card-header"
+              class="ui medium header no-vertical-margin review-card-header"
             >
               Adam Canon
             </div>
@@ -300,7 +300,7 @@ Object {
               class="twelve wide column"
             >
               <div
-                class="ui medium header no-margin review-card-header"
+                class="ui medium header no-vertical-margin review-card-header"
               >
                 Adam Canon
               </div>
@@ -408,7 +408,7 @@ Object {
             class="twelve wide column"
           >
             <div
-              class="ui medium header no-margin review-card-header"
+              class="ui medium header no-vertical-margin review-card-header"
             >
               Adam Canon
             </div>
@@ -573,7 +573,7 @@ Object {
               class="twelve wide column"
             >
               <div
-                class="ui medium header no-margin review-card-header"
+                class="ui medium header no-vertical-margin review-card-header"
               >
                 Adam Canon
               </div>
@@ -681,7 +681,7 @@ Object {
             class="twelve wide column"
           >
             <div
-              class="ui medium header no-margin review-card-header"
+              class="ui medium header no-vertical-margin review-card-header"
             >
               Adam Canon
             </div>
@@ -846,7 +846,7 @@ Object {
               class="twelve wide column"
             >
               <div
-                class="ui medium header no-margin review-card-header"
+                class="ui medium header no-vertical-margin review-card-header"
               >
                 COMS1004
                  
@@ -950,7 +950,7 @@ Object {
             class="twelve wide column"
           >
             <div
-              class="ui medium header no-margin review-card-header"
+              class="ui medium header no-vertical-margin review-card-header"
             >
               COMS1004
                
@@ -1111,7 +1111,7 @@ Object {
               class="twelve wide column"
             >
               <div
-                class="ui medium header no-margin review-card-header"
+                class="ui medium header no-vertical-margin review-card-header"
               >
                 COMS1004
                  
@@ -1215,7 +1215,7 @@ Object {
             class="twelve wide column"
           >
             <div
-              class="ui medium header no-margin review-card-header"
+              class="ui medium header no-vertical-margin review-card-header"
             >
               COMS1004
                
@@ -1376,7 +1376,7 @@ Object {
               class="twelve wide column"
             >
               <div
-                class="ui medium header no-margin review-card-header"
+                class="ui medium header no-vertical-margin review-card-header"
               >
                 COMS1004
                  
@@ -1480,7 +1480,7 @@ Object {
             class="twelve wide column"
           >
             <div
-              class="ui medium header no-margin review-card-header"
+              class="ui medium header no-vertical-margin review-card-header"
             >
               COMS1004
                
