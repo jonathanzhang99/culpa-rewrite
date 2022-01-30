@@ -35,16 +35,6 @@ Object {
           Professors: 
         </div>
       </div>
-      <a
-        href="/review/submit"
-      >
-        <button
-          class="ui orange button relaxed create-review-button"
-        >
-          WRITE A REVIEW 
-          FOR MACHINE LEARNING
-        </button>
-      </a>
     </div>
   </body>,
   "container": <div>
@@ -78,16 +68,6 @@ Object {
         Professors: 
       </div>
     </div>
-    <a
-      href="/review/submit"
-    >
-      <button
-        class="ui orange button relaxed create-review-button"
-      >
-        WRITE A REVIEW 
-        FOR MACHINE LEARNING
-      </button>
-    </a>
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],
@@ -203,16 +183,6 @@ Object {
           
         </span>
       </div>
-      <a
-        href="/review/submit"
-      >
-        <button
-          class="ui orange button relaxed create-review-button"
-        >
-          WRITE A REVIEW 
-          FOR MACHINE LEARNING
-        </button>
-      </a>
     </div>
   </body>,
   "container": <div>
@@ -271,16 +241,6 @@ Object {
         
       </span>
     </div>
-    <a
-      href="/review/submit"
-    >
-      <button
-        class="ui orange button relaxed create-review-button"
-      >
-        WRITE A REVIEW 
-        FOR MACHINE LEARNING
-      </button>
-    </a>
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],
@@ -680,16 +640,6 @@ Object {
           </div>
         </div>
       </div>
-      <a
-        href="/review/submit"
-      >
-        <button
-          class="ui orange button relaxed create-review-button"
-        >
-          WRITE A REVIEW 
-          FOR MACHINE LEARNING
-        </button>
-      </a>
     </div>
   </body>,
   "container": <div>
@@ -1032,16 +982,6 @@ Object {
         </div>
       </div>
     </div>
-    <a
-      href="/review/submit"
-    >
-      <button
-        class="ui orange button relaxed create-review-button"
-      >
-        WRITE A REVIEW 
-        FOR MACHINE LEARNING
-      </button>
-    </a>
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],
@@ -1169,16 +1109,6 @@ Object {
           
         </span>
       </div>
-      <a
-        href="/review/submit"
-      >
-        <button
-          class="ui orange button relaxed create-review-button"
-        >
-          WRITE A REVIEW 
-          FOR MACHINE LEARNING
-        </button>
-      </a>
     </div>
   </body>,
   "container": <div>
@@ -1249,16 +1179,6 @@ Object {
         
       </span>
     </div>
-    <a
-      href="/review/submit"
-    >
-      <button
-        class="ui orange button relaxed create-review-button"
-      >
-        WRITE A REVIEW 
-        FOR MACHINE LEARNING
-      </button>
-    </a>
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],

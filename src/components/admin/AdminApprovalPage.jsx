@@ -22,10 +22,10 @@ import LoadingComponent from "components/common/LoadingComponent";
 import useDataFetch from "components/common/useDataFetch";
 
 const propTypesTopPanel = {
-  logout: PropTypes.func.isRequired
+  logout: PropTypes.func.isRequired,
 };
 
-function TopPanel({logout}) {
+function TopPanel({ logout }) {
   return (
     <Grid columns={2}>
       <Grid.Column>
@@ -35,7 +35,14 @@ function TopPanel({logout}) {
         </Link>
       </Grid.Column>
       <Grid.Column textAlign="right">
-        <Header color="linkColor" size="medium" style={{cursor: "pointer"}} onClick={logout}> Logout </Header>
+        <Header
+          color="linkColor"
+          size="medium"
+          style={{ cursor: "pointer" }}
+          onClick={logout}
+        >
+          Logout
+        </Header>
       </Grid.Column>
     </Grid>
   );
@@ -118,7 +125,7 @@ export default function AdminApprovalPage() {
     <>
       {flag === "pending" ? (
         <>
-          <TopPanel logout={logout}/>
+          <TopPanel logout={logout} />
           <Header size="huge">Admin Approval Form</Header>
           <Divider />
           <Form

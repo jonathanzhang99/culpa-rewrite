@@ -205,12 +205,6 @@ export function CourseInfo({
         isAccordionActive={isAccordionActive}
         setAccordionActive={setAccordionActive}
       />
-      <CreateReviewButton
-        relaxed
-        color="orange"
-        courseId={courseId}
-        subject={courseName}
-      />
     </>
   );
 }

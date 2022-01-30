@@ -34,8 +34,7 @@ function TopPanel({ logout }) {
           style={{ cursor: "pointer" }}
           onClick={logout}
         >
-          {" "}
-          Logout{" "}
+          Logout
         </Header>
       </Grid.Column>
     </Grid>
