@@ -136,7 +136,7 @@ module "ec2" {
 }
 
 resource "aws_eip" "server_eip" {
-  instance = module.ec2.id[0]
+  instance = module.ec2.id
   vpc      = true
 }
 
